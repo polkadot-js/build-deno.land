@@ -2,6 +2,7 @@
 
 ## master
 
+- @polkadot/types-known 8.9.2-8
 - @polkadot/types-create 8.9.2-8
 - @polkadot/types-codec 8.9.2-8
 - @polkadot/types-augment 8.9.2-8
