@@ -2,6 +2,7 @@
 
 ## master
 
+- @polkadot/x-textdecoder 9.5.2-13
 - @polkadot/x-randomvalues 9.5.2-13
 - @polkadot/x-global 9.5.2-13
 - @polkadot/x-fetch 9.5.2-13
