@@ -2,21 +2,21 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
-import type { Option, u32 } from 'https://deno.land/x/polkadot/types/mod.ts';
-import type { Hash, Proposal, Votes } from 'https://deno.land/x/polkadot/types/interfaces.ts';
+import type { Option, u32 } from 'https://deno.land/x/polkadot@0.0.0-6/types/mod.ts';
+import type { Hash, Proposal, Votes } from 'https://deno.land/x/polkadot@0.0.0-6/types/interfaces.ts';
 import type { DeriveApi, DeriveCollectiveProposal } from '../types.ts';
 import type { Collective } from './types.ts';
 
 import { catchError, combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.5';
 
-import { isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isFunction } from 'https://deno.land/x/polkadot@0.0.0-6/util/mod.ts';
 
 import { firstObservable } from '../util/index.ts';
 import { callMethod, withSection } from './helpers.ts';
 
 // We are re-exporting these from here to ensure that *.d.ts generation is correct
-export type { Option, u32 } from 'https://deno.land/x/polkadot/types/mod.ts';
-export type { Hash, Proposal, Votes } from 'https://deno.land/x/polkadot/types/interfaces.ts';
+export type { Option, u32 } from 'https://deno.land/x/polkadot@0.0.0-6/types/mod.ts';
+export type { Hash, Proposal, Votes } from 'https://deno.land/x/polkadot@0.0.0-6/types/interfaces.ts';
 
 type Result = [(Hash | Uint8Array | string)[], (Option<Proposal> | null)[], Option<Votes>[]];
 

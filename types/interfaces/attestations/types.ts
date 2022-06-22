@@ -1,10 +1,10 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Struct, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { CandidateReceipt, ParaId } from 'https://deno.land/x/polkadot/types/interfaces/parachains.ts';
-import type { AccountId, BlockNumber, H256, Hash } from 'https://deno.land/x/polkadot/types/interfaces/runtime.ts';
-import type { SessionIndex } from 'https://deno.land/x/polkadot/types/interfaces/session.ts';
+import type { Struct, Vec } from 'https://deno.land/x/polkadot@0.0.0-6/types-codec/mod.ts';
+import type { CandidateReceipt, ParaId } from 'https://deno.land/x/polkadot@0.0.0-6/types/interfaces/parachains.ts';
+import type { AccountId, BlockNumber, H256, Hash } from 'https://deno.land/x/polkadot@0.0.0-6/types/interfaces/runtime.ts';
+import type { SessionIndex } from 'https://deno.land/x/polkadot@0.0.0-6/types/interfaces/session.ts';
 
 /** @name BlockAttestations */
 export interface BlockAttestations extends Struct {

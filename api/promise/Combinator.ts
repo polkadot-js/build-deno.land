@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Callback } from 'https://deno.land/x/polkadot/types/types.ts';
+import type { Callback } from 'https://deno.land/x/polkadot@0.0.0-6/types/types.ts';
 import type { UnsubscribePromise } from '../types/index.ts';
 
-import { isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isFunction } from 'https://deno.land/x/polkadot@0.0.0-6/util/mod.ts';
 
 export type CombinatorCallback <T extends unknown[]> = Callback<T>;
 

@@ -3,9 +3,9 @@
 
 /* eslint-disable sort-keys */
 
-import type { OverrideVersionedType } from 'https://deno.land/x/polkadot/types/types.ts';
+import type { OverrideVersionedType } from 'https://deno.land/x/polkadot@0.0.0-6/types/types.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.0.0-6/util/mod.ts';
 
 const sharedTypes = {
   // Anchor

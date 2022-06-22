@@ -1,10 +1,10 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Enum, Option, Struct, U8aFixed, Vec, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types.ts';
-import type { AuthorityId } from 'https://deno.land/x/polkadot/types/interfaces/consensus.ts';
-import type { Hash, Header } from 'https://deno.land/x/polkadot/types/interfaces/runtime.ts';
+import type { Enum, Option, Struct, U8aFixed, Vec, u32, u64 } from 'https://deno.land/x/polkadot@0.0.0-6/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.0.0-6/types-codec/types.ts';
+import type { AuthorityId } from 'https://deno.land/x/polkadot@0.0.0-6/types/interfaces/consensus.ts';
+import type { Hash, Header } from 'https://deno.land/x/polkadot@0.0.0-6/types/interfaces/runtime.ts';
 
 /** @name AllowedSlots */
 export interface AllowedSlots extends Enum {

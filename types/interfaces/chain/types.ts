@@ -1,7 +1,7 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Hash } from 'https://deno.land/x/polkadot/types/interfaces/runtime.ts';
+import type { Hash } from 'https://deno.land/x/polkadot@0.0.0-6/types/interfaces/runtime.ts';
 
 /** @name BlockHash */
 export interface BlockHash extends Hash {}

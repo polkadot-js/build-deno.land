@@ -1,12 +1,12 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { BitVec, Bytes, Enum, Null, Struct, U8aFixed, Vec, bool, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types.ts';
-import type { BlockHash } from 'https://deno.land/x/polkadot/types/interfaces/chain.ts';
-import type { MultiSignature } from 'https://deno.land/x/polkadot/types/interfaces/extrinsics.ts';
-import type { AuthorityList, SetId } from 'https://deno.land/x/polkadot/types/interfaces/grandpa.ts';
-import type { AccountId, Balance, BlockNumber, H256, Header, MultiSigner, Weight } from 'https://deno.land/x/polkadot/types/interfaces/runtime.ts';
+import type { BitVec, Bytes, Enum, Null, Struct, U8aFixed, Vec, bool, u32, u64 } from 'https://deno.land/x/polkadot@0.0.0-6/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.0.0-6/types-codec/types.ts';
+import type { BlockHash } from 'https://deno.land/x/polkadot@0.0.0-6/types/interfaces/chain.ts';
+import type { MultiSignature } from 'https://deno.land/x/polkadot@0.0.0-6/types/interfaces/extrinsics.ts';
+import type { AuthorityList, SetId } from 'https://deno.land/x/polkadot@0.0.0-6/types/interfaces/grandpa.ts';
+import type { AccountId, Balance, BlockNumber, H256, Header, MultiSigner, Weight } from 'https://deno.land/x/polkadot@0.0.0-6/types/interfaces/runtime.ts';
 
 /** @name BridgedBlockHash */
 export interface BridgedBlockHash extends H256 {}
