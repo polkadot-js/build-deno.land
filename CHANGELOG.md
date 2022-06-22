@@ -2,6 +2,7 @@
 
 ## master
 
+- @polkadot/{hw-ledger, hw-ledger-transports, keyring, networks, util, util-crypto, x-bigint, x-fetch, x-global, x-randomvalues, x-textdecoder, x-textencoder, x-ws 9.5.2-14
 - @polkadot/types-known 8.9.2-8
 - @polkadot/types-create 8.9.2-8
 - @polkadot/types-codec 8.9.2-8
