@@ -2,6 +2,7 @@
 
 ## master
 
+- @polkadot/api-base 8.9.2-8
 - @polkadot/api-augment 8.9.2-8
 - @polkadot/api 8.9.2-8
 - @polkadot/x-ws 9.5.2-13
