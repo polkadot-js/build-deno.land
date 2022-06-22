@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { Point } from 'https://cdn.skypack.dev/@noble/secp256k1@1.6.0';
+import { Point } from 'https://deno.land/x/secp256k1@1.6.0';
 
 import { bnToU8a, hasBigInt, u8aConcat } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { isReady, secp256k1Expand as wasm } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';

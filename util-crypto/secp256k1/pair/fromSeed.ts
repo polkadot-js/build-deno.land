@@ -3,7 +3,7 @@
 
 import type { Keypair } from '../../types.ts';
 
-import { getPublicKey } from 'https://cdn.skypack.dev/@noble/secp256k1@1.6.0';
+import { getPublicKey } from 'https://deno.land/x/secp256k1@1.6.0';
 
 import { hasBigInt, u8aEmpty } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { isReady, secp256k1FromSeed } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
