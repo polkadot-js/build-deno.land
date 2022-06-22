@@ -1,9 +1,9 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Bytes, Option, u32, Vec } from 'https://deno.land/x/polkadot@0.0.0-6/types/mod.ts';
-import type { CollatorId, ParaId, ParaInfo, Retriable, UpwardMessage } from 'https://deno.land/x/polkadot@0.0.0-6/types/interfaces.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.0.0-6/types/types.ts';
+import type { Bytes, Option, u32, Vec } from 'https://deno.land/x/polkadot@0.0.0-7/types/mod.ts';
+import type { CollatorId, ParaId, ParaInfo, Retriable, UpwardMessage } from 'https://deno.land/x/polkadot@0.0.0-7/types/interfaces.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.0.0-7/types/types.ts';
 
 export type ParaInfoResult = Option<ParaInfo>;
 export type PendingSwap = Option<ParaId>;

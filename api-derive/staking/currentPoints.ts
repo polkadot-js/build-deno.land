@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
-import type { PalletStakingEraRewardPoints } from 'https://deno.land/x/polkadot@0.0.0-6/types/lookup.ts';
+import type { PalletStakingEraRewardPoints } from 'https://deno.land/x/polkadot@0.0.0-7/types/lookup.ts';
 import type { DeriveApi } from '../types.ts';
 
 import { switchMap } from 'https://esm.sh/rxjs@7.5.5';

@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
-import type { AnyFunction, Codec, DefinitionRpc } from 'https://deno.land/x/polkadot@0.0.0-6/types/types.ts';
+import type { AnyFunction, Codec, DefinitionRpc } from 'https://deno.land/x/polkadot@0.0.0-7/types/types.ts';
 
 export interface RpcInterfaceMethod {
   <T extends Codec> (...params: unknown[]): Observable<T>;

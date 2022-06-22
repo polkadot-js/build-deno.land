@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ExactDerive } from 'https://deno.land/x/polkadot@0.0.0-6/api-derive/mod.ts';
-import type { AnyFunction } from 'https://deno.land/x/polkadot@0.0.0-6/types/types.ts';
+import type { ExactDerive } from 'https://deno.land/x/polkadot@0.0.0-7/api-derive/mod.ts';
+import type { AnyFunction } from 'https://deno.land/x/polkadot@0.0.0-7/types/types.ts';
 import type { ApiTypes, DecorateMethod, MethodResult } from '../types/index.ts';
 
-import { lazyDeriveSection } from 'https://deno.land/x/polkadot@0.0.0-6/api-derive/mod.ts';
+import { lazyDeriveSection } from 'https://deno.land/x/polkadot@0.0.0-7/api-derive/mod.ts';
 
 type AnyDeriveSection = Record<string, AnyFunction>;
 

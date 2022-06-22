@@ -10,7 +10,7 @@
  * <BR>
  *
  * ```javascript
- * import { isBoolean } from 'https://deno.land/x/polkadot@0.0.0-6/util/mod.ts';
+ * import { isBoolean } from 'https://deno.land/x/polkadot@0.0.0-7/util/mod.ts';
  *
  * isBoolean(false); // => true
  * ```

@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.0-6/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.0.0-7/util/types.ts';
 import type { Prefix } from './types.ts';
 
-import { u8aSorted } from 'https://deno.land/x/polkadot@0.0.0-6/util/mod.ts';
+import { u8aSorted } from 'https://deno.land/x/polkadot@0.0.0-7/util/mod.ts';
 
 import { encodeAddress } from './encode.ts';
 import { addressToU8a } from './util.ts';

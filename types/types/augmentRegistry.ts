@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import 'https://deno.land/x/polkadot@0.0.0-6/types-create/types/augmentRegistry.ts';
+import 'https://deno.land/x/polkadot@0.0.0-7/types-create/types/augmentRegistry.ts';
 
-import type { Codec, CodecClass } from 'https://deno.land/x/polkadot@0.0.0-6/types-codec/types.ts';
-import type { TypeDef } from 'https://deno.land/x/polkadot@0.0.0-6/types-create/types.ts';
+import type { Codec, CodecClass } from 'https://deno.land/x/polkadot@0.0.0-7/types-codec/types.ts';
+import type { TypeDef } from 'https://deno.land/x/polkadot@0.0.0-7/types-create/types.ts';
 import type { ExtDef } from '../extrinsic/signedExtensions/types.ts';
 import type { MetadataLatest } from '../interfaces/metadata/index.ts';
 import type { SiField, SiLookupTypeId } from '../interfaces/scaleInfo/index.ts';

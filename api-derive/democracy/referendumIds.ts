@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
-import type { ReferendumIndex } from 'https://deno.land/x/polkadot@0.0.0-6/types/interfaces.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.0.0-6/util/mod.ts';
+import type { ReferendumIndex } from 'https://deno.land/x/polkadot@0.0.0-7/types/interfaces.ts';
+import type { BN } from 'https://deno.land/x/polkadot@0.0.0-7/util/mod.ts';
 import type { DeriveApi } from '../types.ts';
 
 import { map, of } from 'https://esm.sh/rxjs@7.5.5';

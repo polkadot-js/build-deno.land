@@ -1,13 +1,13 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import 'https://deno.land/x/polkadot@0.0.0-6/types-augment/mod.ts';
+import 'https://deno.land/x/polkadot@0.0.0-7/types-augment/mod.ts';
 
-import type { Bytes, Compact, Option, u32 } from 'https://deno.land/x/polkadot@0.0.0-6/types-codec/mod.ts';
-import type { IOption, ITuple } from 'https://deno.land/x/polkadot@0.0.0-6/types-codec/types.ts';
+import type { Bytes, Compact, Option, u32 } from 'https://deno.land/x/polkadot@0.0.0-7/types-codec/mod.ts';
+import type { IOption, ITuple } from 'https://deno.land/x/polkadot@0.0.0-7/types-codec/types.ts';
 import type { AccountId, BlockAttestations, SessionKeys7 } from './interfaces/index.ts';
 
-import { assert } from 'https://deno.land/x/polkadot@0.0.0-6/util/mod.ts';
+import { assert } from 'https://deno.land/x/polkadot@0.0.0-7/util/mod.ts';
 
 import { TypeRegistry } from './create/index.ts';
 

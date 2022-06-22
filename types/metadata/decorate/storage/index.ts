@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Registry } from 'https://deno.land/x/polkadot@0.0.0-6/types-codec/types.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.0.0-7/types-codec/types.ts';
 import type { MetadataLatest, StorageEntryMetadataLatest } from '../../../interfaces/index.ts';
 import type { Storage } from '../types.ts';
 
-import { lazyMethod, lazyMethods, stringCamelCase } from 'https://deno.land/x/polkadot@0.0.0-6/util/mod.ts';
+import { lazyMethod, lazyMethods, stringCamelCase } from 'https://deno.land/x/polkadot@0.0.0-7/util/mod.ts';
 
 import { objectNameToCamel } from '../util.ts';
 import { createFunction, createKeyRaw, NO_RAW_ARGS } from './createFunction.ts';

@@ -2,9 +2,9 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
-import type { StorageKey } from 'https://deno.land/x/polkadot@0.0.0-6/types/mod.ts';
-import type { EraIndex } from 'https://deno.land/x/polkadot@0.0.0-6/types/interfaces.ts';
-import type { PalletStakingValidatorPrefs } from 'https://deno.land/x/polkadot@0.0.0-6/types/lookup.ts';
+import type { StorageKey } from 'https://deno.land/x/polkadot@0.0.0-7/types/mod.ts';
+import type { EraIndex } from 'https://deno.land/x/polkadot@0.0.0-7/types/interfaces.ts';
+import type { PalletStakingValidatorPrefs } from 'https://deno.land/x/polkadot@0.0.0-7/types/lookup.ts';
 import type { DeriveApi, DeriveEraPrefs, DeriveEraValPrefs } from '../types.ts';
 
 import { map, of } from 'https://esm.sh/rxjs@7.5.5';

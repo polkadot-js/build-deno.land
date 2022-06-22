@@ -1,15 +1,15 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Option, Text, Type, Vec } from 'https://deno.land/x/polkadot@0.0.0-6/types-codec/mod.ts';
-import type { AnyString, Registry } from 'https://deno.land/x/polkadot@0.0.0-6/types-codec/types.ts';
-import type { ILookup, TypeDef } from 'https://deno.land/x/polkadot@0.0.0-6/types-create/types.ts';
+import type { Option, Text, Type, Vec } from 'https://deno.land/x/polkadot@0.0.0-7/types-codec/mod.ts';
+import type { AnyString, Registry } from 'https://deno.land/x/polkadot@0.0.0-7/types-codec/types.ts';
+import type { ILookup, TypeDef } from 'https://deno.land/x/polkadot@0.0.0-7/types-create/types.ts';
 import type { PortableType } from '../../interfaces/metadata/index.ts';
 import type { SiField, SiLookupTypeId, SiPath, SiType, SiTypeDefArray, SiTypeDefBitSequence, SiTypeDefCompact, SiTypeDefComposite, SiTypeDefSequence, SiTypeDefTuple, SiTypeDefVariant, SiTypeParameter, SiVariant } from '../../interfaces/scaleInfo/index.ts';
 
-import { sanitize, Struct, u32 } from 'https://deno.land/x/polkadot@0.0.0-6/types-codec/mod.ts';
-import { getTypeDef, TypeDefInfo, withTypeString } from 'https://deno.land/x/polkadot@0.0.0-6/types-create/mod.ts';
-import { assertUnreachable, isNumber, isString, logger, objectSpread, stringCamelCase, stringify, stringPascalCase } from 'https://deno.land/x/polkadot@0.0.0-6/util/mod.ts';
+import { sanitize, Struct, u32 } from 'https://deno.land/x/polkadot@0.0.0-7/types-codec/mod.ts';
+import { getTypeDef, TypeDefInfo, withTypeString } from 'https://deno.land/x/polkadot@0.0.0-7/types-create/mod.ts';
+import { assertUnreachable, isNumber, isString, logger, objectSpread, stringCamelCase, stringify, stringPascalCase } from 'https://deno.land/x/polkadot@0.0.0-7/util/mod.ts';
 
 const l = logger('PortableRegistry');
 

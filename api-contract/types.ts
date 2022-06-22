@@ -1,12 +1,12 @@
 // Copyright 2017-2022 @polkadot/api-contract authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ApiBase } from 'https://deno.land/x/polkadot@0.0.0-6/api/base.ts';
-import type { ApiTypes } from 'https://deno.land/x/polkadot@0.0.0-6/api/types.ts';
-import type { Text, u64 } from 'https://deno.land/x/polkadot@0.0.0-6/types/mod.ts';
-import type { ContractExecResultResult, ContractSelector, StorageDeposit } from 'https://deno.land/x/polkadot@0.0.0-6/types/interfaces.ts';
-import type { Codec, TypeDef } from 'https://deno.land/x/polkadot@0.0.0-6/types/types.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.0.0-6/util/mod.ts';
+import type { ApiBase } from 'https://deno.land/x/polkadot@0.0.0-7/api/base.ts';
+import type { ApiTypes } from 'https://deno.land/x/polkadot@0.0.0-7/api/types.ts';
+import type { Text, u64 } from 'https://deno.land/x/polkadot@0.0.0-7/types/mod.ts';
+import type { ContractExecResultResult, ContractSelector, StorageDeposit } from 'https://deno.land/x/polkadot@0.0.0-7/types/interfaces.ts';
+import type { Codec, TypeDef } from 'https://deno.land/x/polkadot@0.0.0-7/types/types.ts';
+import type { BN } from 'https://deno.land/x/polkadot@0.0.0-7/util/mod.ts';
 import type { Abi } from './index.ts';
 
 export interface ContractBase<ApiType extends ApiTypes> {

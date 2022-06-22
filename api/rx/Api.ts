@@ -5,7 +5,7 @@ import type { ApiOptions } from '../types/index.ts';
 
 import { from, Observable } from 'https://esm.sh/rxjs@7.5.5';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.0.0-6/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.0.0-7/util/mod.ts';
 
 import { ApiBase } from '../base/index.ts';
 import { toRxMethod } from './decorateMethod.ts';
@@ -30,7 +30,7 @@ import { toRxMethod } from './decorateMethod.ts';
  * <BR>
  *
  * ```javascript
- * import ApiRx from 'https://deno.land/x/polkadot@0.0.0-6/api/rx.ts';
+ * import ApiRx from 'https://deno.land/x/polkadot@0.0.0-7/api/rx.ts';
  *
  * // initialize via Promise & static create
  * const api = await ApiRx.create().toPromise();
@@ -47,7 +47,7 @@ import { toRxMethod } from './decorateMethod.ts';
  *
  * ```javascript
  * import { combineLatest, pairwise, switchMap } from 'https://esm.sh/rxjs@7.5.5';
- * import { ApiRx, WsProvider } from 'https://deno.land/x/polkadot@0.0.0-6/api/mod.ts';
+ * import { ApiRx, WsProvider } from 'https://deno.land/x/polkadot@0.0.0-7/api/mod.ts';
  *
  *
  * // initialize a provider with a specific endpoint
@@ -76,10 +76,10 @@ import { toRxMethod } from './decorateMethod.ts';
  *
  * ```javascript
  * import { first, switchMap } from 'https://esm.sh/rxjs@7.5.5';
- * import ApiRx from 'https://deno.land/x/polkadot@0.0.0-6/api/rx.ts';
+ * import ApiRx from 'https://deno.land/x/polkadot@0.0.0-7/api/rx.ts';
  *
  * // import the test keyring (already has dev keys for Alice, Bob, Charlie, Eve & Ferdie)
- * import testingPairs from 'https://deno.land/x/polkadot@0.0.0-6/keyring/testingPairs.ts';
+ * import testingPairs from 'https://deno.land/x/polkadot@0.0.0-7/keyring/testingPairs.ts';
  * const keyring = testingPairs();
  *
  * // get api via Promise
@@ -120,7 +120,7 @@ export class ApiRx extends ApiBase<'rxjs'> {
    *
    * ```javascript
    * import { switchMap } from 'https://esm.sh/rxjs@7.5.5';
-   * import Api from 'https://deno.land/x/polkadot@0.0.0-6/api/rx.ts';
+   * import Api from 'https://deno.land/x/polkadot@0.0.0-7/api/rx.ts';
    *
    * new Api().isReady
    *   .pipe(
@@ -151,7 +151,7 @@ export class ApiRx extends ApiBase<'rxjs'> {
    *
    * ```javascript
    * import { switchMap } from 'https://esm.sh/rxjs@7.5.5';
-   * import Api from 'https://deno.land/x/polkadot@0.0.0-6/api/rx.ts';
+   * import Api from 'https://deno.land/x/polkadot@0.0.0-7/api/rx.ts';
    *
    * Api.create()
    *   .pipe(

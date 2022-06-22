@@ -1,8 +1,8 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Vec } from 'https://deno.land/x/polkadot@0.0.0-6/types-codec/mod.ts';
-import type { TypeDef } from 'https://deno.land/x/polkadot@0.0.0-6/types-create/types.ts';
+import type { Vec } from 'https://deno.land/x/polkadot@0.0.0-7/types-codec/mod.ts';
+import type { TypeDef } from 'https://deno.land/x/polkadot@0.0.0-7/types-create/types.ts';
 import type { PortableType } from '../interfaces/metadata/index.ts';
 import type { SiLookupTypeId, SiType } from '../interfaces/scaleInfo/index.ts';
 

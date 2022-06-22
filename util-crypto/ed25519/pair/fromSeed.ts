@@ -5,7 +5,7 @@ import type { Keypair } from '../../types.ts';
 
 import nacl from 'https://esm.sh/tweetnacl@1.0.3';
 
-import { ed25519KeypairFromSeed, isReady } from 'https://deno.land/x/polkadot@0.0.0-6/wasm-crypto/mod.ts';
+import { ed25519KeypairFromSeed, isReady } from 'https://deno.land/x/polkadot@0.0.0-7/wasm-crypto/mod.ts';
 
 /**
  * @name ed25519PairFromSeed
@@ -16,7 +16,7 @@ import { ed25519KeypairFromSeed, isReady } from 'https://deno.land/x/polkadot@0.
  * <BR>
  *
  * ```javascript
- * import { ed25519PairFromSeed } from 'https://deno.land/x/polkadot@0.0.0-6/util-crypto/mod.ts';
+ * import { ed25519PairFromSeed } from 'https://deno.land/x/polkadot@0.0.0-7/util-crypto/mod.ts';
  *
  * ed25519PairFromSeed(...); // => { secretKey: [...], publicKey: [...] }
  * ```

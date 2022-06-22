@@ -3,7 +3,7 @@
 
 import './augmentRegistry.ts';
 
-export type { CodecCreateOptions as CreateOptions } from 'https://deno.land/x/polkadot@0.0.0-6/types-codec/types.ts';
+export type { CodecCreateOptions as CreateOptions } from 'https://deno.land/x/polkadot@0.0.0-7/types-codec/types.ts';
 
 export * from './lookup.ts';
 export * from './types.ts';

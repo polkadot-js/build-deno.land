@@ -1,11 +1,11 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { ApiTypes } from 'https://deno.land/x/polkadot@0.0.0-6/api-base/types.ts';
-import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.0.0-6/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.0.0-6/types-codec/types.ts';
-import type { AccountId32, H256 } from 'https://deno.land/x/polkadot@0.0.0-6/types/interfaces/runtime.ts';
-import type { FrameSupportScheduleLookupError, FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, FrameSupportWeightsPostDispatchInfo, NodeRuntimeProxyType, PalletAllianceCid, PalletAllianceUnscrupulousItem, PalletConvictionVotingTally, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNominationPoolsPoolState, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord, PalletStakingExposure, PalletStakingValidatorPrefs, PalletStateTrieMigrationMigrationCompute, SpFinalityGrandpaAppPublic, SpRuntimeDispatchError, SpRuntimeDispatchErrorWithPostInfo } from 'https://deno.land/x/polkadot@0.0.0-6/types/lookup.ts';
+import type { ApiTypes } from 'https://deno.land/x/polkadot@0.0.0-7/api-base/types.ts';
+import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.0.0-7/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.0.0-7/types-codec/types.ts';
+import type { AccountId32, H256 } from 'https://deno.land/x/polkadot@0.0.0-7/types/interfaces/runtime.ts';
+import type { FrameSupportScheduleLookupError, FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, FrameSupportWeightsPostDispatchInfo, NodeRuntimeProxyType, PalletAllianceCid, PalletAllianceUnscrupulousItem, PalletConvictionVotingTally, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNominationPoolsPoolState, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord, PalletStakingExposure, PalletStakingValidatorPrefs, PalletStateTrieMigrationMigrationCompute, SpFinalityGrandpaAppPublic, SpRuntimeDispatchError, SpRuntimeDispatchErrorWithPostInfo } from 'https://deno.land/x/polkadot@0.0.0-7/types/lookup.ts';
 
 declare module '@polkadot/api-base/types/events' {
   export interface AugmentedEvents<ApiType extends ApiTypes> {
