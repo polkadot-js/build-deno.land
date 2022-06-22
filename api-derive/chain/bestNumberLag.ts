@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
-import type { BlockNumber } from 'https://deno.land/x/polkadot/types/interfaces.ts';
+import type { BlockNumber } from 'https://deno.land/x/polkadot@0.0.0-6/types/interfaces.ts';
 import type { DeriveApi } from '../types.ts';
 
 import { combineLatest, map } from 'https://esm.sh/rxjs@7.5.5';

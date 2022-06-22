@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/types-create authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyString } from 'https://deno.land/x/polkadot/types-codec/types.ts';
-import type { TypeDef } from 'https://deno.land/x/polkadot/types-create/types.ts';
+import type { AnyString } from 'https://deno.land/x/polkadot@0.0.0-6/types-codec/types.ts';
+import type { TypeDef } from 'https://deno.land/x/polkadot@0.0.0-6/types-create/types.ts';
 
-import { sanitize } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import { isNumber, isString, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { sanitize } from 'https://deno.land/x/polkadot@0.0.0-6/types-codec/mod.ts';
+import { isNumber, isString, objectSpread } from 'https://deno.land/x/polkadot@0.0.0-6/util/mod.ts';
 
 import { TypeDefInfo } from '../types/index.ts';
 import { typeSplit } from './typeSplit.ts';

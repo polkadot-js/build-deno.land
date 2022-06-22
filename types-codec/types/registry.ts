@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { BN } from 'https://deno.land/x/polkadot@0.0.0-6/util/mod.ts';
 import type { Codec, CodecClass } from './codec.ts';
 import type { AnyTuple } from './helpers.ts';
 import type { ICompact, IEnum, IMap, IMethod, INumber, IOption, IResult, ISet, IStruct, ITuple, IU8a, IVec } from './interfaces.ts';

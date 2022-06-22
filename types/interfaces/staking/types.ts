@@ -1,9 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { BTreeMap, Compact, Enum, Option, Struct, Vec, bool, u128, u16, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types.ts';
-import type { AccountId, Balance, BlockNumber, Moment, PerU16, Perbill } from 'https://deno.land/x/polkadot/types/interfaces/runtime.ts';
+import type { BTreeMap, Compact, Enum, Option, Struct, Vec, bool, u128, u16, u32, u64 } from 'https://deno.land/x/polkadot@0.0.0-6/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.0.0-6/types-codec/types.ts';
+import type { AccountId, Balance, BlockNumber, Moment, PerU16, Perbill } from 'https://deno.land/x/polkadot@0.0.0-6/types/interfaces/runtime.ts';
 
 /** @name ActiveEraInfo */
 export interface ActiveEraInfo extends Struct {

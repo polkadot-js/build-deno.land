@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/rpc-provider authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { isFunction } from 'https://deno.land/x/polkadot/util/is/function.ts';
+import { isFunction } from 'https://deno.land/x/polkadot@0.0.0-6/util/is/function.ts';
 
 import { RpcErrorInterface } from '../types.ts';
 

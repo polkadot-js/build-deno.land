@@ -1,8 +1,8 @@
 // Copyright 2017-2022 @polkadot/api-base authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { PalletConstantMetadataLatest } from 'https://deno.land/x/polkadot/types/interfaces.ts';
-import type { Codec } from 'https://deno.land/x/polkadot/types/types.ts';
+import type { PalletConstantMetadataLatest } from 'https://deno.land/x/polkadot@0.0.0-6/types/interfaces.ts';
+import type { Codec } from 'https://deno.land/x/polkadot@0.0.0-6/types/types.ts';
 import type { ApiTypes } from './base.ts';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-empty-interface
