@@ -4,6 +4,7 @@
 
 - api, api-augment, api-base, api-contract, api-derive, rpc-augment, rpc-core, rpc-provider, types, types-augment, types-codec, types-create, types-known 8.9.2-11
 
+
 ## 0.0.0-4 Jun 22, 2022
 
 **Experimental** Please see the comments on 0.0.0-1 for the experimental nature of this bundle.
@@ -28,7 +29,7 @@
 - hw-ledger, hw-ledger-transports, keyring, networks, util, util-crypto, x-bigint, x-fetch, x-global, x-randomvalues, x-textdecoder, x-textencoder, x-ws 9.5.2-16
 
 
-## 0.0.0-1 Jun 22, 2022 
+## 0.0.0-1 Jun 22, 2022
 
 **Experimental** This is the first release of the Deno interfaces, as such it still needs a lot of testing and comes with no guarantee that it actually does what it says on the tin. Being brand new and not completely tested on end-to-end operation, unfound dragons probably do remain even with very basic operations. If you do try it out, let us know.
 
