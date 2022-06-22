@@ -65,7 +65,7 @@ async function gitPush(version: string): Promise<void> {
   const REPO = `https://${Deno.env.get('GH_PAT')}@github.com/${Deno.env.get('GITHUB_REPOSITORY')}.git`;
 
   await exec('git', 'add', '--all', '.');
-  await exec('git', 'commit', '--no-status', '--quiet', '-m', `[CI Skip] publish deno.land/x/polkadot@${version}`);
+  await exec('git', 'commit', '--no-status', '--quiet', '-m', `[CI Skip] deno.land/x/polkadot@${version}`);
   await exec('git', 'push', REPO);
   await exec('git', 'tag', version);
   await exec('git', 'push', REPO, '--tags');
