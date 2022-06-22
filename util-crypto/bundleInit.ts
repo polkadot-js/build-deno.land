@@ -3,7 +3,7 @@
 
 import 'https://deno.land/x/polkadot/x-bigint/shim.ts';
 
-import { utils as utilsNobleSecp256k1 } from 'https://deno.land/x/secp256k1@1.6.0';
+import { utils as utilsNobleSecp256k1 } from 'https://deno.land/x/secp256k1@1.6.0/mod.ts';
 
 import { u8aConcat } from 'https://deno.land/x/polkadot/util/mod.ts';
 
