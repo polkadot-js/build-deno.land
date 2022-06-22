@@ -53,8 +53,8 @@ async function gitSetup (): Promise<void> {
 	const USER = 'github-actions[bot]';
 	const MAIL = '41898282+github-actions[bot]@users.noreply.github.com';
 
-	await exec('git', 'config', 'user.name', `"${USER}"`);
-	await exec('git', 'config', 'user.email', `"${MAIL}"`);
+	await exec('git', 'config', 'user.name', USER);
+	await exec('git', 'config', 'user.email', MAIL);
 	await exec('git', 'config', 'push.default', 'simple');
 	await exec('git', 'config', 'merge.ours.driver', 'true');
 	await exec('git', 'checkout', 'master');
@@ -62,13 +62,13 @@ async function gitSetup (): Promise<void> {
 
 // commit and push the changes to git
 async function gitPush (version: string): Promise<void> {
-	const gitRepo = `https://${Deno.env.get('GH_PAT')}@github.com/${Deno.env.get('GITHUB_REPOSITORY')}.git`;
+	const REPO = `https://${Deno.env.get('GH_PAT')}@github.com/${Deno.env.get('GITHUB_REPOSITORY')}.git`;
 
 	await exec('git', 'add', '--all', '.');
-	await exec('git', 'commit', '--no-status', '--quiet', '-m', `"[CI Skip] publish deno.land/x/polkadot@${version}"`);
-	await exec('git', 'push', gitRepo);
+	await exec('git', 'commit', '--no-status', '--quiet', '-m', `[CI Skip] publish deno.land/x/polkadot@${version}`);
+	await exec('git', 'push', REPO);
 	await exec('git', 'tag', version);
-	await exec('git', 'push', gitRepo, '--tags');
+	await exec('git', 'push', REPO, '--tags');
 }
 
 const version = await getVersion();
