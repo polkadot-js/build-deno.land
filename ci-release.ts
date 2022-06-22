@@ -4,8 +4,13 @@
 // execute with
 //   deno run --allow-read --allow-run --allow-write --allow-env ci-release.ts
 
-const IS_CI = !!Deno.env.get('GITHUB_REPOSITORY');
+// true if we are running in a CI environment
+const isCi = !!Deno.env.get('GITHUB_REPOSITORY');
 
+// regex for matching `deno.land/x/polkador[@version]/
+const reVer = /deno\.land\/x\/polkadot(@\d\d?\.\d\d?\.\d\d?-?\d?\d?)?\//g;
+
+// execute a command
 async function exec (...cmd: string[]): Promise<void> {
 	const status = await Deno.run({ cmd }).status();
 
@@ -14,6 +19,7 @@ async function exec (...cmd: string[]): Promise<void> {
 	};
 }
 
+// retrieve the current version from CHANGELOG.md
 async function getVersion (): Promise<string> {
 	const contents = await Deno.readTextFile('CHANGELOG.md');
 	const vermatch = contents.match(/# CHANGELOG\n\n## (\d\d?.\d\d?.\d\d?-?\d?\d?) /);
@@ -25,29 +31,28 @@ async function getVersion (): Promise<string> {
 	return vermatch[1];
 }
 
+// sets the version globally to all deno.land/x/polkadot imports
 async function setVersion (version: string, dir: string): Promise<void> {
 	for await (const entry of Deno.readDir(dir)) {
 		if (entry.isDirectory) {
 			await setVersion(version, `${dir}/${entry.name}`);
-		} else if (entry.name.endsWith('.ts') && entry.name !== 'ci-release.ts') {
+		} else if (entry.name.endsWith('.ts')) {
 			const path = `${dir}/${entry.name}`;
 			const contents = await Deno.readTextFile(path);
 
-			if (/x\/polkadot@(DENOPUBVER|\d\d?.\d\d?.\d\d?-?\d?\d?)\//.test(contents) || /type: 'deno', version: '(DENOPUBVER|\d\d?.\d\d?.\d\d?-?\d?\d?)'/) {
-				await Deno.writeTextFile(path, contents
-					.replace(/x\/polkadot@(DENOPUBVER|\d\d?.\d\d?.\d\d?-?\d?\d?)\//g, `x/polkadot@${version}/`)
-					.replace(/type: 'deno', version: '(DENOPUBVER|\d\d?.\d\d?.\d\d?-?\d?\d?)'/g, `type: 'deno', version: '${version}'`)
-				);
+			if (reVer.test(contents)) {
+				await Deno.writeTextFile(path, contents.replace(reVer, `deno.land/x/polkadot@${version}/`));
 			}
 		}
   }
 }
 
+// sets up git, username, merge & latest
 async function gitSetup (): Promise<void> {
 	const USER = 'github-actions[bot]';
 	const MAIL = '41898282+github-actions[bot]@users.noreply.github.com';
 
-	if (IS_CI) {
+	if (isCi) {
 		await exec('git', 'config', 'user.name', `"${USER}"`);
 		await exec('git', 'config', 'user.email', `"${MAIL}"`);
 		await exec('git', 'config', 'push.default', 'simple');
@@ -57,8 +62,9 @@ async function gitSetup (): Promise<void> {
   await exec('git', 'checkout', 'master');
 }
 
+// commit and push the changes to git
 async function gitPush (version: string): Promise<void> {
-	if (IS_CI) {
+	if (isCi) {
 		await exec('git', 'add', '--all', '.');
 		await exec('git', 'commit', '--no-status', '--quiet', '-m', `"[CI Skip] publish deno.land/x/polkadot@${version}"`);
 		await exec('git', 'tag', `v${version}`);
