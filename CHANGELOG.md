@@ -2,6 +2,7 @@
 
 ## master
 
+- @polkadot/x-global 9.5.2-13
 - @polkadot/x-fetch 9.5.2-13
 - @polkadot/x-bigint 9.5.2-13
 - @polkadot/util-crypto 9.5.2-13
