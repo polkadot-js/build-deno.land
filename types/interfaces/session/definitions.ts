@@ -6,7 +6,7 @@
 
 import type { Definitions } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.0.0-5/util/mod.ts';
 
 // The runtime definition of SessionKeys are passed as a Trait to session
 // Defined in `node/runtime/src/lib.rs` as follow

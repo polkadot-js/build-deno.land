@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AccountId, AccountIndex, RegistrationJudgement } from 'https://deno.land/x/polkadot/types/interfaces.ts';
+import type { AccountId, AccountIndex, RegistrationJudgement } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces.ts';
 
 export type AccountIdAndIndex = [AccountId?, AccountIndex?];
 

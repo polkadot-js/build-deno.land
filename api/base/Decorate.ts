@@ -2,24 +2,24 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
-import type { DeriveCustom } from 'https://deno.land/x/polkadot/api-base/types.ts';
-import type { RpcInterface } from 'https://deno.land/x/polkadot/rpc-core/types.ts';
-import type { Option, Raw, StorageKey, Text, u64 } from 'https://deno.land/x/polkadot/types/mod.ts';
-import type { Call, Hash, RuntimeVersion } from 'https://deno.land/x/polkadot/types/interfaces.ts';
-import type { DecoratedMeta } from 'https://deno.land/x/polkadot/types/metadata/decorate/types.ts';
-import type { StorageEntry } from 'https://deno.land/x/polkadot/types/primitive/types.ts';
-import type { AnyFunction, AnyTuple, CallFunction, Codec, DefinitionRpc, DefinitionRpcSub, DetectCodec, IMethod, IStorageKey, Registry, RegistryError, RegistryTypes } from 'https://deno.land/x/polkadot/types/types.ts';
+import type { DeriveCustom } from 'https://deno.land/x/polkadot@0.0.0-5/api-base/types.ts';
+import type { RpcInterface } from 'https://deno.land/x/polkadot@0.0.0-5/rpc-core/types.ts';
+import type { Option, Raw, StorageKey, Text, u64 } from 'https://deno.land/x/polkadot@0.0.0-5/types/mod.ts';
+import type { Call, Hash, RuntimeVersion } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces.ts';
+import type { DecoratedMeta } from 'https://deno.land/x/polkadot@0.0.0-5/types/metadata/decorate/types.ts';
+import type { StorageEntry } from 'https://deno.land/x/polkadot@0.0.0-5/types/primitive/types.ts';
+import type { AnyFunction, AnyTuple, CallFunction, Codec, DefinitionRpc, DefinitionRpcSub, DetectCodec, IMethod, IStorageKey, Registry, RegistryError, RegistryTypes } from 'https://deno.land/x/polkadot@0.0.0-5/types/types.ts';
 import type { SubmittableExtrinsic } from '../submittable/types.ts';
 import type { ApiDecoration, ApiInterfaceRx, ApiOptions, ApiTypes, AugmentedQuery, DecoratedErrors, DecoratedEvents, DecoratedRpc, DecorateMethod, GenericStorageEntryFunction, PaginationOptions, QueryableConsts, QueryableStorage, QueryableStorageEntry, QueryableStorageEntryAt, QueryableStorageMulti, QueryableStorageMultiArg, SubmittableExtrinsicFunction, SubmittableExtrinsics } from '../types/index.ts';
 import type { VersionedRegistry } from './types.ts';
 
 import { BehaviorSubject, combineLatest, from, map, of, switchMap, tap, toArray } from 'https://esm.sh/rxjs@7.5.5';
 
-import { getAvailableDerives } from 'https://deno.land/x/polkadot/api-derive/mod.ts';
-import { memo, RpcCore } from 'https://deno.land/x/polkadot/rpc-core/mod.ts';
-import { WsProvider } from 'https://deno.land/x/polkadot/rpc-provider/mod.ts';
-import { expandMetadata, Metadata, TypeRegistry, unwrapStorageType } from 'https://deno.land/x/polkadot/types/mod.ts';
-import { arrayChunk, arrayFlatten, assert, assertReturn, BN, compactStripLength, lazyMethod, lazyMethods, logger, nextTick, objectSpread, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { getAvailableDerives } from 'https://deno.land/x/polkadot@0.0.0-5/api-derive/mod.ts';
+import { memo, RpcCore } from 'https://deno.land/x/polkadot@0.0.0-5/rpc-core/mod.ts';
+import { WsProvider } from 'https://deno.land/x/polkadot@0.0.0-5/rpc-provider/mod.ts';
+import { expandMetadata, Metadata, TypeRegistry, unwrapStorageType } from 'https://deno.land/x/polkadot@0.0.0-5/types/mod.ts';
+import { arrayChunk, arrayFlatten, assert, assertReturn, BN, compactStripLength, lazyMethod, lazyMethods, logger, nextTick, objectSpread, u8aToHex } from 'https://deno.land/x/polkadot@0.0.0-5/util/mod.ts';
 
 import { createSubmittable } from '../submittable/index.ts';
 import { augmentObject } from '../util/augmentObject.ts';
@@ -135,7 +135,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
    * <BR>
    *
    * ```javascript
-   * import Api from 'https://deno.land/x/polkadot/api/promise.ts';
+   * import Api from 'https://deno.land/x/polkadot@0.0.0-5/api/promise.ts';
    *
    * const api = new Api().isReady();
    *

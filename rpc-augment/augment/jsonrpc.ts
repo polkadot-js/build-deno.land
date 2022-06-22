@@ -1,30 +1,30 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { AugmentedRpc } from 'https://deno.land/x/polkadot/rpc-core/types.ts';
-import type { Metadata, StorageKey } from 'https://deno.land/x/polkadot/types/mod.ts';
-import type { Bytes, HashMap, Json, Null, Option, Text, U256, U64, Vec, bool, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { AnyNumber, Codec } from 'https://deno.land/x/polkadot/types-codec/types.ts';
-import type { ExtrinsicOrHash, ExtrinsicStatus } from 'https://deno.land/x/polkadot/types/interfaces/author.ts';
-import type { EpochAuthorship } from 'https://deno.land/x/polkadot/types/interfaces/babe.ts';
-import type { BeefySignedCommitment } from 'https://deno.land/x/polkadot/types/interfaces/beefy.ts';
-import type { BlockHash } from 'https://deno.land/x/polkadot/types/interfaces/chain.ts';
-import type { PrefixedStorageKey } from 'https://deno.land/x/polkadot/types/interfaces/childstate.ts';
-import type { AuthorityId } from 'https://deno.land/x/polkadot/types/interfaces/consensus.ts';
-import type { CodeUploadRequest, CodeUploadResult, ContractCallRequest, ContractExecResult, ContractInstantiateResult, InstantiateRequest } from 'https://deno.land/x/polkadot/types/interfaces/contracts.ts';
-import type { BlockStats } from 'https://deno.land/x/polkadot/types/interfaces/dev.ts';
-import type { CreatedBlock } from 'https://deno.land/x/polkadot/types/interfaces/engine.ts';
-import type { EthAccount, EthCallRequest, EthFilter, EthFilterChanges, EthLog, EthReceipt, EthRichBlock, EthSubKind, EthSubParams, EthSyncStatus, EthTransaction, EthTransactionRequest, EthWork } from 'https://deno.land/x/polkadot/types/interfaces/eth.ts';
-import type { Extrinsic } from 'https://deno.land/x/polkadot/types/interfaces/extrinsics.ts';
-import type { EncodedFinalityProofs, JustificationNotification, ReportedRoundStates } from 'https://deno.land/x/polkadot/types/interfaces/grandpa.ts';
-import type { MmrLeafBatchProof, MmrLeafProof } from 'https://deno.land/x/polkadot/types/interfaces/mmr.ts';
-import type { StorageKind } from 'https://deno.land/x/polkadot/types/interfaces/offchain.ts';
-import type { FeeDetails, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot/types/interfaces/payment.ts';
-import type { RpcMethods } from 'https://deno.land/x/polkadot/types/interfaces/rpc.ts';
-import type { AccountId, BlockNumber, H160, H256, H64, Hash, Header, Index, Justification, KeyValue, SignedBlock, StorageData } from 'https://deno.land/x/polkadot/types/interfaces/runtime.ts';
-import type { MigrationStatusResult, ReadProof, RuntimeVersion, TraceBlockResponse } from 'https://deno.land/x/polkadot/types/interfaces/state.ts';
-import type { ApplyExtrinsicResult, ChainProperties, ChainType, Health, NetworkState, NodeRole, PeerInfo, SyncState } from 'https://deno.land/x/polkadot/types/interfaces/system.ts';
-import type { IExtrinsic, Observable } from 'https://deno.land/x/polkadot/types/types.ts';
+import type { AugmentedRpc } from 'https://deno.land/x/polkadot@0.0.0-5/rpc-core/types.ts';
+import type { Metadata, StorageKey } from 'https://deno.land/x/polkadot@0.0.0-5/types/mod.ts';
+import type { Bytes, HashMap, Json, Null, Option, Text, U256, U64, Vec, bool, u32, u64 } from 'https://deno.land/x/polkadot@0.0.0-5/types-codec/mod.ts';
+import type { AnyNumber, Codec } from 'https://deno.land/x/polkadot@0.0.0-5/types-codec/types.ts';
+import type { ExtrinsicOrHash, ExtrinsicStatus } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces/author.ts';
+import type { EpochAuthorship } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces/babe.ts';
+import type { BeefySignedCommitment } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces/beefy.ts';
+import type { BlockHash } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces/chain.ts';
+import type { PrefixedStorageKey } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces/childstate.ts';
+import type { AuthorityId } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces/consensus.ts';
+import type { CodeUploadRequest, CodeUploadResult, ContractCallRequest, ContractExecResult, ContractInstantiateResult, InstantiateRequest } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces/contracts.ts';
+import type { BlockStats } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces/dev.ts';
+import type { CreatedBlock } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces/engine.ts';
+import type { EthAccount, EthCallRequest, EthFilter, EthFilterChanges, EthLog, EthReceipt, EthRichBlock, EthSubKind, EthSubParams, EthSyncStatus, EthTransaction, EthTransactionRequest, EthWork } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces/eth.ts';
+import type { Extrinsic } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces/extrinsics.ts';
+import type { EncodedFinalityProofs, JustificationNotification, ReportedRoundStates } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces/grandpa.ts';
+import type { MmrLeafBatchProof, MmrLeafProof } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces/mmr.ts';
+import type { StorageKind } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces/offchain.ts';
+import type { FeeDetails, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces/payment.ts';
+import type { RpcMethods } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces/rpc.ts';
+import type { AccountId, BlockNumber, H160, H256, H64, Hash, Header, Index, Justification, KeyValue, SignedBlock, StorageData } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces/runtime.ts';
+import type { MigrationStatusResult, ReadProof, RuntimeVersion, TraceBlockResponse } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces/state.ts';
+import type { ApplyExtrinsicResult, ChainProperties, ChainType, Health, NetworkState, NodeRole, PeerInfo, SyncState } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces/system.ts';
+import type { IExtrinsic, Observable } from 'https://deno.land/x/polkadot@0.0.0-5/types/types.ts';
 
 declare module '@polkadot/rpc-core/types/jsonrpc' {
   export interface RpcInterface {

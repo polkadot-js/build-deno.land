@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { EventRecord } from 'https://deno.land/x/polkadot/types/interfaces.ts';
+import type { EventRecord } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces.ts';
 
 import { SubmittableResult } from '../../index.ts';
 

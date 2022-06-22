@@ -1,9 +1,9 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { InterfaceTypes } from 'https://deno.land/x/polkadot/types/types.ts';
-import type { bool, BTreeMap, BTreeSet, Bytes, CodecSet, Compact, Enum, HashMap, Linkage, Null, Option, OptionBool, Range, RangeInclusive, Result, Struct, u8, U8aFixed, Vec, VecFixed } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { Codec, ICompact, IEnum, IMap, IMethod, INumber, IOption, IResult, ISet, IStruct, ITuple, IU8a, IVec } from 'https://deno.land/x/polkadot/types-codec/types.ts';
+import type { InterfaceTypes } from 'https://deno.land/x/polkadot@0.0.0-5/types/types.ts';
+import type { bool, BTreeMap, BTreeSet, Bytes, CodecSet, Compact, Enum, HashMap, Linkage, Null, Option, OptionBool, Range, RangeInclusive, Result, Struct, u8, U8aFixed, Vec, VecFixed } from 'https://deno.land/x/polkadot@0.0.0-5/types-codec/mod.ts';
+import type { Codec, ICompact, IEnum, IMap, IMethod, INumber, IOption, IResult, ISet, IStruct, ITuple, IU8a, IVec } from 'https://deno.land/x/polkadot@0.0.0-5/types-codec/types.ts';
 
 export type DetectCodec<T extends Codec, K extends string> =
   // This is weird - it looks the wrong way around (i.e. T check should be done first), however

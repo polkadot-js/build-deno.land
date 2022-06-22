@@ -1,10 +1,10 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { StorageKey } from 'https://deno.land/x/polkadot/types/mod.ts';
-import type { Bytes, Enum, HashMap, Option, Struct, Text, U8aFixed, Vec, bool, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types.ts';
-import type { Hash, StorageData } from 'https://deno.land/x/polkadot/types/interfaces/runtime.ts';
+import type { StorageKey } from 'https://deno.land/x/polkadot@0.0.0-5/types/mod.ts';
+import type { Bytes, Enum, HashMap, Option, Struct, Text, U8aFixed, Vec, bool, u32, u64 } from 'https://deno.land/x/polkadot@0.0.0-5/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.0.0-5/types-codec/types.ts';
+import type { Hash, StorageData } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces/runtime.ts';
 
 /** @name ApiId */
 export interface ApiId extends U8aFixed {}

@@ -1,11 +1,11 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { ApiTypes } from 'https://deno.land/x/polkadot/api-base/types.ts';
-import type { Bytes, Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { Codec } from 'https://deno.land/x/polkadot/types-codec/types.ts';
-import type { Perbill, Percent, Permill } from 'https://deno.land/x/polkadot/types/interfaces/runtime.ts';
-import type { FrameSupportPalletId, FrameSupportWeightsRuntimeDbWeight, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, SpVersionRuntimeVersion } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { ApiTypes } from 'https://deno.land/x/polkadot@0.0.0-5/api-base/types.ts';
+import type { Bytes, Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.0.0-5/types-codec/mod.ts';
+import type { Codec } from 'https://deno.land/x/polkadot@0.0.0-5/types-codec/types.ts';
+import type { Perbill, Percent, Permill } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces/runtime.ts';
+import type { FrameSupportPalletId, FrameSupportWeightsRuntimeDbWeight, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, SpVersionRuntimeVersion } from 'https://deno.land/x/polkadot@0.0.0-5/types/lookup.ts';
 
 declare module '@polkadot/api-base/types/consts' {
   export interface AugmentedConsts<ApiType extends ApiTypes> {

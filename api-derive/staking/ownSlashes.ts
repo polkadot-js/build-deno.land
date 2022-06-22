@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
-import type { BalanceOf, EraIndex, Perbill } from 'https://deno.land/x/polkadot/types/interfaces.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types/types.ts';
+import type { BalanceOf, EraIndex, Perbill } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.0.0-5/types/types.ts';
 import type { DeriveApi, DeriveStakerSlashes } from '../types.ts';
 
 import { combineLatest, map, of } from 'https://esm.sh/rxjs@7.5.5';

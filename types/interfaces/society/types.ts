@@ -1,9 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Enum, Struct, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types.ts';
-import type { AccountId, Balance } from 'https://deno.land/x/polkadot/types/interfaces/runtime.ts';
+import type { Enum, Struct, u32 } from 'https://deno.land/x/polkadot@0.0.0-5/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.0.0-5/types-codec/types.ts';
+import type { AccountId, Balance } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces/runtime.ts';
 
 /** @name Bid */
 export interface Bid extends Struct {

@@ -1,9 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Bytes, Compact, Enum, Null, Option, Raw, Result, Set, Struct, Text, U8aFixed, bool, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { AccountId, Balance, BlockNumber, Hash, Weight } from 'https://deno.land/x/polkadot/types/interfaces/runtime.ts';
-import type { DispatchError } from 'https://deno.land/x/polkadot/types/interfaces/system.ts';
+import type { Bytes, Compact, Enum, Null, Option, Raw, Result, Set, Struct, Text, U8aFixed, bool, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.0.0-5/types-codec/mod.ts';
+import type { AccountId, Balance, BlockNumber, Hash, Weight } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces/runtime.ts';
+import type { DispatchError } from 'https://deno.land/x/polkadot@0.0.0-5/types/interfaces/system.ts';
 
 /** @name AliveContractInfo */
 export interface AliveContractInfo extends Struct {
