@@ -1,0 +1,25 @@
+// Copyright 2017-2022 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+import { BigInt } from 'https://deno.land/x/polkadot/x-bigint/mod.ts';
+
+/** true if the environment has proper BigInt support */
+export const hasBigInt = typeof BigInt === 'function' && typeof BigInt.asIntN === 'function';
+
+/** true if the environment has support for Buffer */
+export const hasBuffer = typeof Buffer !== 'undefined';
+
+/** true if the environment is CJS */
+export const hasCjs = typeof require === 'function' && typeof module !== 'undefined';
+
+/** true if the environment has __dirname available */
+export const hasDirname = typeof __dirname !== 'undefined';
+
+/** true if the environment is ESM */
+export const hasEsm = !hasCjs;
+
+/** true if the environment has process available (typically Node.js) */
+export const hasProcess = typeof process === 'object';
+
+/** true if the environment has WebAssembly available */
+export const hasWasm = typeof WebAssembly !== 'undefined';

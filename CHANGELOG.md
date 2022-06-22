@@ -2,6 +2,7 @@
 
 ## master
 
+- @polkadot/util 9.5.2-13
 - @polkadot/networks 9.5.2-13
 - @polkadot/keyring 9.5.2-13
 - @polkadot/hw-ledger-transports 9.5.2-13
