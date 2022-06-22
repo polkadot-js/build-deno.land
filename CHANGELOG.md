@@ -2,6 +2,7 @@
 
 ## master
 
+- @polkadot/wasm-util 6.1.4
 - @polkadot/wasm-crypto-wasm 6.1.4
 - @polkadot/wasm-crypto-init 6.1.4
 - @polkadot/wasm-crypto-asmjs 6.1.4
