@@ -2,6 +2,7 @@
 
 ## master
 
+- @polkadot/x-bigint 9.5.2-13
 - @polkadot/util-crypto 9.5.2-13
 - @polkadot/util 9.5.2-13
 - @polkadot/networks 9.5.2-13
