@@ -3,7 +3,7 @@
 
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 
-import nacl from 'https://cdn.skypack.dev/tweetnacl@1.0.3';
+import nacl from 'https://esm.sh/tweetnacl@1.0.3';
 
 import { assert, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { ed25519Verify as wasmVerify, isReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';

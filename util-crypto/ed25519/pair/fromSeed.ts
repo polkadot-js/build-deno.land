@@ -3,7 +3,7 @@
 
 import type { Keypair } from '../../types.ts';
 
-import nacl from 'https://cdn.skypack.dev/tweetnacl@1.0.3';
+import nacl from 'https://esm.sh/tweetnacl@1.0.3';
 
 import { ed25519KeypairFromSeed, isReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 

@@ -19,7 +19,7 @@ import { BN } from './bn.ts';
  * <BR>
  *
  * ```javascript
- * import BN from 'https://cdn.skypack.dev/bn.js@5.2.1';
+ * import BN from 'https://esm.sh/bn.js@5.2.1';
  * import { bnToBn } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * bnToBn(0x1234); // => BN(0x1234)

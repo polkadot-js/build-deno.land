@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import ipRegex from 'https://cdn.skypack.dev/ip-regex@4.3.0';
+import ipRegex from 'https://esm.sh/ip-regex@4.3.0';
 
 type IpTypes = 'v4' | 'v6';
 

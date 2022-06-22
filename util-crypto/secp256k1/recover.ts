@@ -4,7 +4,7 @@
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { HashType } from './types.ts';
 
-import { recoverPublicKey, Signature } from 'https://deno.land/x/secp256k1@1.6.0/mod.ts';
+import { recoverPublicKey, Signature } from 'https://esm.sh/@noble/secp256k1@1.6.0';
 
 import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { isReady, secp256k1Recover as wasm } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';

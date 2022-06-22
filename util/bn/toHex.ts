@@ -21,7 +21,7 @@ const DEFAULT_OPTS: NumberOptions = { bitLength: -1, isLe: false, isNegative: fa
  * <BR>
  *
  * ```javascript
- * import BN from 'https://cdn.skypack.dev/bn.js@5.2.1';
+ * import BN from 'https://esm.sh/bn.js@5.2.1';
  * import { bnToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * bnToHex(new BN(0x123456)); // => '0x123456'

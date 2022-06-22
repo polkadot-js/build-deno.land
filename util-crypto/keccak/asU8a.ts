@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { keccak_256 as keccak256Js, keccak_512 as keccak512Js } from 'https://cdn.skypack.dev/@noble/hashes@1.1.2/sha3.js';
+import { keccak_256 as keccak256Js, keccak_512 as keccak512Js } from 'https://esm.sh/@noble/hashes@1.1.2/sha3.js';
 
 import { keccak256, keccak512 } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 

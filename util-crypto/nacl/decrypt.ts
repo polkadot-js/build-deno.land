@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import nacl from 'https://cdn.skypack.dev/tweetnacl@1.0.3';
+import nacl from 'https://esm.sh/tweetnacl@1.0.3';
 
 /**
  * @name naclDecrypt

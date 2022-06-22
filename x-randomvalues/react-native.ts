@@ -5,7 +5,7 @@
 // Copyright (c) 2018, 2020 Linus Unnebäck
 // SPDX-License-Identifier: MIT
 
-import { NativeModules } from 'https://cdn.skypack.dev/react-native';
+import { NativeModules } from 'https://esm.sh/react-native';
 
 import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
 

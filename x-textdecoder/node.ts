@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/x-textencoder authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import util from 'https://cdn.skypack.dev/util';
+import util from 'https://esm.sh/util';
 
 import { extractGlobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
 

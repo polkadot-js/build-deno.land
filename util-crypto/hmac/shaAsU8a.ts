@@ -1,9 +1,9 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { hmac } from 'https://cdn.skypack.dev/@noble/hashes@1.1.2/hmac.js';
-import { sha256 } from 'https://cdn.skypack.dev/@noble/hashes@1.1.2/sha256.js';
-import { sha512 } from 'https://cdn.skypack.dev/@noble/hashes@1.1.2/sha512.js';
+import { hmac } from 'https://esm.sh/@noble/hashes@1.1.2/hmac.js';
+import { sha256 } from 'https://esm.sh/@noble/hashes@1.1.2/sha256.js';
+import { sha512 } from 'https://esm.sh/@noble/hashes@1.1.2/sha512.js';
 
 import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { hmacSha256, hmacSha512, isReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';

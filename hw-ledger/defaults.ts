@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/hw-ledger authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type Transport from 'https://cdn.skypack.dev/@ledgerhq/hw-transport@6.27.1';
-import type { SubstrateApp } from 'https://cdn.skypack.dev/@zondax/ledger-substrate@0.31.0';
+import type Transport from 'https://esm.sh/@ledgerhq/hw-transport@6.27.1';
+import type { SubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.31.0';
 
-import { newAcalaApp, newAstarApp, newBifrostApp, newCentrifugeApp, newComposableApp, newDockApp, newEdgewareApp, newEquilibriumApp, newGenshiroApp, newKaruraApp, newKusamaApp, newNodleApp, newParallelApp, newPolkadexApp, newPolkadotApp, newPolymeshApp, newSoraApp, newStatemineApp, newStatemintApp, newXXNetworkApp } from 'https://cdn.skypack.dev/@zondax/ledger-substrate@0.31.0';
+import { newAcalaApp, newAstarApp, newBifrostApp, newCentrifugeApp, newComposableApp, newDockApp, newEdgewareApp, newEquilibriumApp, newGenshiroApp, newKaruraApp, newKusamaApp, newNodleApp, newParallelApp, newPolkadexApp, newPolkadotApp, newPolymeshApp, newSoraApp, newStatemineApp, newStatemintApp, newXXNetworkApp } from 'https://esm.sh/@zondax/ledger-substrate@0.31.0';
 
 // These match up with the keys of the knownLedger object in the @polkadot/networks/defaults/ledger.ts
 export const ledgerApps: Record<string, (transport: Transport) => SubstrateApp> = {

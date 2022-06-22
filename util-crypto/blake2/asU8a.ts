@@ -3,7 +3,7 @@
 
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 
-import { blake2b as blake2bJs } from 'https://cdn.skypack.dev/@noble/hashes@1.1.2/blake2b.js';
+import { blake2b as blake2bJs } from 'https://esm.sh/@noble/hashes@1.1.2/blake2b.js';
 
 import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { blake2b, isReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';

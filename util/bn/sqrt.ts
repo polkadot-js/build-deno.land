@@ -17,7 +17,7 @@ export const SQRT_MAX_SAFE_INTEGER = new BN(94906265);
  * <BR>
  *
  * ```javascript
- * import BN from 'https://cdn.skypack.dev/bn.js@5.2.1';
+ * import BN from 'https://esm.sh/bn.js@5.2.1';
  * import { bnSqrt } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * bnSqrt(new BN(16)).toString(); // => '4'

@@ -4,7 +4,7 @@
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { Params } from './types.ts';
 
-import { scrypt as scryptJs } from 'https://cdn.skypack.dev/@noble/hashes@1.1.2/scrypt.js';
+import { scrypt as scryptJs } from 'https://esm.sh/@noble/hashes@1.1.2/scrypt.js';
 
 import { hasBigInt, objectSpread, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { isReady, scrypt } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';

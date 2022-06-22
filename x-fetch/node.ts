@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/x-fetch authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import nodeFetch from 'https://cdn.skypack.dev/node-fetch@2.6.7';
+import nodeFetch from 'https://esm.sh/node-fetch@2.6.7';
 
 import { extractGlobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
 

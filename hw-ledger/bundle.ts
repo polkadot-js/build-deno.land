@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/hw-ledger authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ResponseBase, SubstrateApp } from 'https://cdn.skypack.dev/@zondax/ledger-substrate@0.31.0';
+import type { ResponseBase, SubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.31.0';
 import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerTypes, LedgerVersion } from './types.ts';
 
 import { transports } from 'https://deno.land/x/polkadot/hw-ledger-transports/mod.ts';

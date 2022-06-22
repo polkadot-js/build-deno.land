@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { base64 } from 'https://cdn.skypack.dev/@scure/base@1.1.1';
+import { base64 } from 'https://esm.sh/@scure/base@1.1.1';
 
 import { createDecode, createEncode, createIs, createValidate } from '../base32/helpers.ts';
 
