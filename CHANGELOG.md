@@ -2,6 +2,7 @@
 
 ## master
 
+- @polkadot/api-augment 8.9.2-8
 - @polkadot/api 8.9.2-8
 - @polkadot/x-ws 9.5.2-13
 - @polkadot/x-textencoder 9.5.2-13
