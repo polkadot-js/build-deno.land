@@ -2,6 +2,7 @@
 
 ## master
 
+- @polkadot/rpc-augment 8.9.2-8
 - @polkadot/api-derive 8.9.2-8
 - @polkadot/api-contract 8.9.2-8
 - @polkadot/api-base 8.9.2-8
