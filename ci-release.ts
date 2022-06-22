@@ -4,18 +4,19 @@
 // execute with
 //   deno run --allow-read --allow-run --allow-write --allow-env ci-release.ts
 
-// true if we are running in a CI environment
-const isCi = !!Deno.env.get('GITHUB_REPOSITORY');
-
-// regex for matching `deno.land/x/polkador[@version]/
+// regex for matching `deno.land/x/polkadot[@version]/
 const reVer = /deno\.land\/x\/polkadot(@\d\d?\.\d\d?\.\d\d?-?\d?\d?)?\//g;
 
 // execute a command
 async function exec (...cmd: string[]): Promise<void> {
+	const shortCmd = `'${cmd[0]} ${cmd[1]} ...'`;
+
+	console.log(`+ ${shortCmd}`);
+
 	const status = await Deno.run({ cmd }).status();
 
 	if (!status.success) {
-		throw new Error(`FATAL: '${cmd[0]} ${cmd[1]} ...' returned ${status.code}`);
+		throw new Error(`FATAL: ${shortCmd} returned ${status.code}`);
 	};
 }
 
@@ -52,24 +53,21 @@ async function gitSetup (): Promise<void> {
 	const USER = 'github-actions[bot]';
 	const MAIL = '41898282+github-actions[bot]@users.noreply.github.com';
 
-	if (isCi) {
-		await exec('git', 'config', 'user.name', `"${USER}"`);
-		await exec('git', 'config', 'user.email', `"${MAIL}"`);
-		await exec('git', 'config', 'push.default', 'simple');
-		await exec('git', 'config', 'merge.ours.driver', 'true');
-	}
-
-  await exec('git', 'checkout', 'master');
+	await exec('git', 'config', 'user.name', `"${USER}"`);
+	await exec('git', 'config', 'user.email', `"${MAIL}"`);
+	await exec('git', 'config', 'push.default', 'simple');
+	await exec('git', 'config', 'merge.ours.driver', 'true');
+	await exec('git', 'checkout', 'master');
 }
 
 // commit and push the changes to git
 async function gitPush (version: string): Promise<void> {
-	if (isCi) {
-		await exec('git', 'add', '--all', '.');
-		await exec('git', 'commit', '--no-status', '--quiet', '-m', `"[CI Skip] publish deno.land/x/polkadot@${version}"`);
-		await exec('git', 'tag', `v${version}`);
-		await exec('git', 'push', '--tags', `https://${Deno.env.get('GH_PAT')}@github.com/${Deno.env.get('GITHUB_REPOSITORY')}.git`);
-	}
+	const gitRepo = `https://${Deno.env.get('GH_PAT')}@github.com/${Deno.env.get('GITHUB_REPOSITORY')}.git`;
+
+	await exec('git', 'add', '--all', '.');
+	await exec('git', 'commit', '--no-status', '--quiet', '-m', `"[CI Skip] publish deno.land/x/polkadot@${version}"`);
+	await exec('git', 'tag', version);
+	await exec('git', 'push', gitRepo, '--tags');
 }
 
 const version = await getVersion();

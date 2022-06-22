@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.0.0-6 Jun 22, 2022
+
+**Experimental** Please see the comments on 0.0.0-1 for the experimental nature of this bundle.
+
+- Rebuild
+
+
 ## 0.0.0-5 Jun 22, 2022
 
 **Experimental** Please see the comments on 0.0.0-1 for the experimental nature of this bundle.
