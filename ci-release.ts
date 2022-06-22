@@ -66,6 +66,7 @@ async function gitPush (version: string): Promise<void> {
 
 	await exec('git', 'add', '--all', '.');
 	await exec('git', 'commit', '--no-status', '--quiet', '-m', `"[CI Skip] publish deno.land/x/polkadot@${version}"`);
+	await exec('git', 'push', gitRepo);
 	await exec('git', 'tag', version);
 	await exec('git', 'push', gitRepo, '--tags');
 }
