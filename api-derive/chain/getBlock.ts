@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://cdn.skypack.dev/rxjs@7.5.5';
+import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
 import type { SignedBlockExtended } from '../type/types.ts';
 import type { DeriveApi } from '../types.ts';
 
-import { catchError, combineLatest, map, of, switchMap } from 'https://cdn.skypack.dev/rxjs@7.5.5';
+import { catchError, combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.5';
 
 import { createSignedBlockExtended } from '../type/index.ts';
 import { memo } from '../util/index.ts';

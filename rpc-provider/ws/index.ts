@@ -5,7 +5,7 @@
 
 import type { JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, ProviderInterfaceEmitCb, ProviderInterfaceEmitted, ProviderStats } from '../types.ts';
 
-import EventEmitter from 'https://cdn.skypack.dev/eventemitter3@4.0.7';
+import EventEmitter from 'https://esm.sh/eventemitter3@4.0.7';
 
 import { isChildClass, isNull, isUndefined, logger, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';

@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://cdn.skypack.dev/rxjs@7.5.5';
+import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
 import type { Callback, Codec } from 'https://deno.land/x/polkadot/types/types.ts';
 import type { DecorateFn, DecorateMethodOptions, ObsInnerType, StorageEntryPromiseOverloads, UnsubscribePromise, VoidFn } from '../types/index.ts';
 
-import { catchError, EMPTY, Subscription, tap } from 'https://cdn.skypack.dev/rxjs@7.5.5';
+import { catchError, EMPTY, Subscription, tap } from 'https://esm.sh/rxjs@7.5.5';
 
 import { assert, isFunction, nextTick } from 'https://deno.land/x/polkadot/util/mod.ts';
 

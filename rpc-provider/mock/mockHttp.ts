@@ -3,7 +3,7 @@
 
 /* eslint-disable */
 
-import nock from 'https://cdn.skypack.dev/nock@13.2.7';
+import nock from 'https://esm.sh/nock@13.2.7';
 
 export const TEST_HTTP_URL = 'http://localhost:9944';
 

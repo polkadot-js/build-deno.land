@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master
+
+- api, api-augment, api-base, api-contract, api-derive, rpc-augment, rpc-core, rpc-provider, types, types-augment, types-codec, types-create, types-known 8.9.2-11
+
 ## 0.0.0-4 Jun 22, 2022
 
 **Experimental** Please see the comments on 0.0.0-1 for the experimental nature of this bundle.

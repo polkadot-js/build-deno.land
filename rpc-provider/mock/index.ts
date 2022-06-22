@@ -8,7 +8,7 @@ import type { Codec, Registry } from 'https://deno.land/x/polkadot/types/types.t
 import type { ProviderInterface, ProviderInterfaceEmitCb, ProviderInterfaceEmitted } from '../types.ts';
 import type { MockStateDb, MockStateSubscriptionCallback, MockStateSubscriptions } from './types.ts';
 
-import EventEmitter from 'https://cdn.skypack.dev/eventemitter3@4.0.7';
+import EventEmitter from 'https://esm.sh/eventemitter3@4.0.7';
 
 import { createTestKeyring } from 'https://deno.land/x/polkadot/keyring/testing.ts';
 import { decorateStorage, Metadata } from 'https://deno.land/x/polkadot/types/mod.ts';

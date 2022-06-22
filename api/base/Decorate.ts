@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://cdn.skypack.dev/rxjs@7.5.5';
+import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
 import type { DeriveCustom } from 'https://deno.land/x/polkadot/api-base/types.ts';
 import type { RpcInterface } from 'https://deno.land/x/polkadot/rpc-core/types.ts';
 import type { Option, Raw, StorageKey, Text, u64 } from 'https://deno.land/x/polkadot/types/mod.ts';
@@ -13,7 +13,7 @@ import type { SubmittableExtrinsic } from '../submittable/types.ts';
 import type { ApiDecoration, ApiInterfaceRx, ApiOptions, ApiTypes, AugmentedQuery, DecoratedErrors, DecoratedEvents, DecoratedRpc, DecorateMethod, GenericStorageEntryFunction, PaginationOptions, QueryableConsts, QueryableStorage, QueryableStorageEntry, QueryableStorageEntryAt, QueryableStorageMulti, QueryableStorageMultiArg, SubmittableExtrinsicFunction, SubmittableExtrinsics } from '../types/index.ts';
 import type { VersionedRegistry } from './types.ts';
 
-import { BehaviorSubject, combineLatest, from, map, of, switchMap, tap, toArray } from 'https://cdn.skypack.dev/rxjs@7.5.5';
+import { BehaviorSubject, combineLatest, from, map, of, switchMap, tap, toArray } from 'https://esm.sh/rxjs@7.5.5';
 
 import { getAvailableDerives } from 'https://deno.land/x/polkadot/api-derive/mod.ts';
 import { memo, RpcCore } from 'https://deno.land/x/polkadot/rpc-core/mod.ts';

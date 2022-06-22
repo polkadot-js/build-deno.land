@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/rpc-provider authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { Server, WebSocket } from 'https://cdn.skypack.dev/mock-socket@9.1.5';
+import { Server, WebSocket } from 'https://esm.sh/mock-socket@9.1.5';
 
 import { stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
 

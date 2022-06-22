@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/rpc-core authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://cdn.skypack.dev/rxjs@7.5.5';
+import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
 import type { AnyFunction, Codec, DefinitionRpc } from 'https://deno.land/x/polkadot/types/types.ts';
 
 export interface RpcInterfaceMethod {

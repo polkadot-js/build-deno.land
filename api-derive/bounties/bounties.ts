@@ -1,13 +1,13 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://cdn.skypack.dev/rxjs@7.5.5';
+import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
 import type { Bytes, Option } from 'https://deno.land/x/polkadot/types/mod.ts';
 import type { BountyIndex } from 'https://deno.land/x/polkadot/types/interfaces.ts';
 import type { PalletBountiesBounty } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { DeriveApi, DeriveBounties, DeriveCollectiveProposal } from '../types.ts';
 
-import { combineLatest, map, of, switchMap } from 'https://cdn.skypack.dev/rxjs@7.5.5';
+import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.5';
 
 import { memo } from '../util/index.ts';
 import { filterBountiesProposals } from './helpers/filterBountyProposals.ts';

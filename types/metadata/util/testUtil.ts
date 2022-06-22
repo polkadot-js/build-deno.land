@@ -4,8 +4,8 @@
 import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types.ts';
 import type { Check } from './types.ts';
 
-import fs from 'https://cdn.skypack.dev/fs';
-import path from 'https://cdn.skypack.dev/path';
+import fs from 'https://esm.sh/fs';
+import path from 'https://esm.sh/path';
 
 import { hexToU8a, stringCamelCase, stringify, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 

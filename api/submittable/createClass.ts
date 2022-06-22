@@ -3,14 +3,14 @@
 
 /* eslint-disable no-dupe-class-members */
 
-import type { Observable } from 'https://cdn.skypack.dev/rxjs@7.5.5';
+import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
 import type { Address, ApplyExtrinsicResult, Call, Extrinsic, ExtrinsicEra, ExtrinsicStatus, Hash, Header, Index, RuntimeDispatchInfo, SignerPayload } from 'https://deno.land/x/polkadot/types/interfaces.ts';
 import type { Callback, Codec, Constructor, IKeyringPair, ISubmittableResult, SignatureOptions } from 'https://deno.land/x/polkadot/types/types.ts';
 import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types.ts';
 import type { ApiInterfaceRx, ApiTypes, PromiseOrObs, SignerResult } from '../types/index.ts';
 import type { AddressOrPair, SignerOptions, SubmittableDryRunResult, SubmittableExtrinsic, SubmittablePaymentResult, SubmittableResultResult, SubmittableResultSubscription } from './types.ts';
 
-import { catchError, first, map, mapTo, mergeMap, of, switchMap, tap } from 'https://cdn.skypack.dev/rxjs@7.5.5';
+import { catchError, first, map, mapTo, mergeMap, of, switchMap, tap } from 'https://esm.sh/rxjs@7.5.5';
 
 import { assert, isBn, isFunction, isNumber, isString, isU8a, isUndefined, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 

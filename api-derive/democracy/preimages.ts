@@ -1,13 +1,13 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://cdn.skypack.dev/rxjs@7.5.5';
+import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
 import type { AccountId, Balance, BlockNumber, Hash, PreimageStatus, Proposal } from 'https://deno.land/x/polkadot/types/interfaces.ts';
 import type { Bytes, Option } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types.ts';
 import type { DeriveApi, DeriveProposalImage } from '../types.ts';
 
-import { map, of } from 'https://cdn.skypack.dev/rxjs@7.5.5';
+import { map, of } from 'https://esm.sh/rxjs@7.5.5';
 
 import { isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
 

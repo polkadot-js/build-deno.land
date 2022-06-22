@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/api-base authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://cdn.skypack.dev/rxjs@7.5.5';
+import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
 import type { AnyFunction, Callback, Codec } from 'https://deno.land/x/polkadot/types/types.ts';
 
 export type Push<T extends readonly unknown[], V> = [...T, V]

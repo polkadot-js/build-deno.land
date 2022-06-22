@@ -5,7 +5,7 @@ import './augmentLookup.ts';
 import './augmentRegistry.ts';
 
 // used inside augmented definitions
-export type { Observable } from 'https://cdn.skypack.dev/rxjs@7.5.5';
+export type { Observable } from 'https://esm.sh/rxjs@7.5.5';
 export * from 'https://deno.land/x/polkadot/types/types/registry.ts';
 
 export * from '../create/types.ts';
