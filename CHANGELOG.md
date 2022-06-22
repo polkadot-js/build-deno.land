@@ -2,6 +2,8 @@
 
 ## 0.0.0-4 Jun 22, 2022
 
+**Experimental** Please see the comments on 0.0.0-1 for the experimental nature of this bundle.
+
 - Load non-Deno 3rd-party deps from esm.sh (a couple non-operational on skypack)
 - hw-ledger, hw-ledger-transports, keyring, networks, util, util-crypto, x-bigint, x-fetch, x-global, x-randomvalues, x-textdecoder, x-textencoder, x-ws 9.5.2-18
 
