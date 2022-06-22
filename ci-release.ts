@@ -33,8 +33,11 @@ async function setVersion (version: string, dir: string): Promise<void> {
 			const path = `${dir}/${entry.name}`;
 			const contents = await Deno.readTextFile(path);
 
-			if (contents.includes('DENOPUBVER')) {
-				await Deno.writeTextFile(path, contents.replaceAll('DENOPUBVER', version));
+			if (/x\/polkadot@(DENOPUBVER|\d\d?.\d\d?.\d\d?-?\d?\d?)\//.test(contents) || /type: 'deno', version: '(DENOPUBVER|\d\d?.\d\d?.\d\d?-?\d?\d?)'/) {
+				await Deno.writeTextFile(path, contents
+					.replace(/x\/polkadot@(DENOPUBVER|\d\d?.\d\d?.\d\d?-?\d?\d?)\//g, `x/polkadot@${version}/`)
+					.replace(/type: 'deno', version: '(DENOPUBVER|\d\d?.\d\d?.\d\d?-?\d?\d?)'/g, `type: 'deno', version: '${version}'`)
+				);
 			}
 		}
   }
