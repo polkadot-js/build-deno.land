@@ -1,8 +1,12 @@
 # CHANGELOG
 
-## master
+## 0.0.0-2 Jun 22, 2022
 
+**Experimental** Please see the comments on 0.0.0-1 for the experimental nature of this bundle.
+
+- Allows for `@noble/secp256k1` to be mapped to `https://deno.land/x/secp256k1`
 - hw-ledger, hw-ledger-transports, keyring, networks, util, util-crypto, x-bigint, x-fetch, x-global, x-randomvalues, x-textdecoder, x-textencoder, x-ws 9.5.2-16
+
 
 ## 0.0.0-1 Jun 22, 2022 
 
