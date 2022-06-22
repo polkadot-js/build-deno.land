@@ -1,0 +1,13 @@
+// Auto-generated via `yarn polkadot-types-from-defs`, do not edit
+/* eslint-disable */
+
+import type { U8aFixed } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { AccountId } from 'https://deno.land/x/polkadot/types/interfaces/runtime.ts';
+
+/** @name AuthorityId */
+export interface AuthorityId extends AccountId {}
+
+/** @name RawVRFOutput */
+export interface RawVRFOutput extends U8aFixed {}
+
+export type PHANTOM_CONSENSUS = 'consensus';
