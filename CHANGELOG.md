@@ -2,6 +2,7 @@
 
 ## master
 
+- @polkadot/types-codec 8.9.2-8
 - @polkadot/types-augment 8.9.2-8
 - @polkadot/types 8.9.2-8
 - @polkadot/rpc-provider 8.9.2-8
