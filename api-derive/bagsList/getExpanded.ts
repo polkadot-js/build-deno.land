@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
-import type { BN } from 'https://deno.land/x/polkadot@0.0.0-8/util/mod.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { DeriveApi } from '../types.ts';
 import type { Bag, BagExpanded } from './types.ts';
 

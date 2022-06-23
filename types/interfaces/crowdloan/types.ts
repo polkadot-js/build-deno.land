@@ -1,9 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Enum, Option, Struct, u32 } from 'https://deno.land/x/polkadot@0.0.0-8/types-codec/mod.ts';
-import type { LeasePeriod } from 'https://deno.land/x/polkadot@0.0.0-8/types/interfaces/parachains.ts';
-import type { AccountId, Balance, BlockNumber, MultiSigner } from 'https://deno.land/x/polkadot@0.0.0-8/types/interfaces/runtime.ts';
+import type { Enum, Option, Struct, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { LeasePeriod } from 'https://deno.land/x/polkadot/types/interfaces/parachains/index.ts';
+import type { AccountId, Balance, BlockNumber, MultiSigner } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 /** @name FundIndex */
 export interface FundIndex extends u32 {}

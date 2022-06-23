@@ -1,12 +1,12 @@
 // Copyright 2017-2022 @polkadot/rpc-contract authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { SubmittableResult } from 'https://deno.land/x/polkadot@0.0.0-8/api/mod.ts';
-import type { EventRecord } from 'https://deno.land/x/polkadot@0.0.0-8/types/interfaces.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.0.0-8/util/mod.ts';
+import type { SubmittableResult } from 'https://deno.land/x/polkadot/api/mod.ts';
+import type { EventRecord } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { BlueprintOptions, ContractOptions } from './types.ts';
 
-import { isBigInt, isBn, isNumber, isString } from 'https://deno.land/x/polkadot@0.0.0-8/util/mod.ts';
+import { isBigInt, isBn, isNumber, isString } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 type ContractEvents = 'CodeStored' | 'ContractEmitted' | 'ContractExecution' | 'Instantiated';
 

@@ -6,7 +6,7 @@
 
 import type { Definitions } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.0.0-8/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { AllHashers } from './hashers.ts';
 import { v9 } from './v9.ts';

@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ApiInterfaceRx } from 'https://deno.land/x/polkadot@0.0.0-8/api-base/types.ts';
-import type { u32 } from 'https://deno.land/x/polkadot@0.0.0-8/types/mod.ts';
-import type { Balance, BlockNumber, BountyIndex, Hash, Proposal, ProposalIndex, SetIndex, Votes } from 'https://deno.land/x/polkadot@0.0.0-8/types/interfaces.ts';
-import type { PalletBountiesBounty, PalletTreasuryProposal } from 'https://deno.land/x/polkadot@0.0.0-8/types/lookup.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.0.0-8/util/mod.ts';
+import type { ApiInterfaceRx } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { u32 } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Balance, BlockNumber, BountyIndex, Hash, Proposal, ProposalIndex, SetIndex, Votes } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletBountiesBounty, PalletTreasuryProposal } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { ExactDerive } from './derive.ts';
 
 export * from './accounts/types.ts';

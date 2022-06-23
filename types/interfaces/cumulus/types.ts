@@ -1,8 +1,8 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Struct, U8aFixed, u32, u64 } from 'https://deno.land/x/polkadot@0.0.0-8/types-codec/mod.ts';
-import type { Weight } from 'https://deno.land/x/polkadot@0.0.0-8/types/interfaces/runtime.ts';
+import type { Struct, U8aFixed, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Weight } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 /** @name ConfigData */
 export interface ConfigData extends Struct {

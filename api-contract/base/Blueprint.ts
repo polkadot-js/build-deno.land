@@ -1,16 +1,16 @@
 // Copyright 2017-2022 @polkadot/api-contract authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot@0.0.0-8/api/submittable/types.ts';
-import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot@0.0.0-8/api/types.ts';
-import type { AccountId, EventRecord, Hash } from 'https://deno.land/x/polkadot@0.0.0-8/types/interfaces.ts';
-import type { ISubmittableResult } from 'https://deno.land/x/polkadot@0.0.0-8/types/types.ts';
+import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot/api/submittable/types.ts';
+import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot/api/types/index.ts';
+import type { AccountId, EventRecord, Hash } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { ISubmittableResult } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { AbiConstructor, BlueprintOptions } from '../types.ts';
 import type { MapConstructorExec } from './types.ts';
 
-import { SubmittableResult } from 'https://deno.land/x/polkadot@0.0.0-8/api/mod.ts';
-import { ApiBase } from 'https://deno.land/x/polkadot@0.0.0-8/api/base.ts';
-import { BN_ZERO, isUndefined } from 'https://deno.land/x/polkadot@0.0.0-8/util/mod.ts';
+import { SubmittableResult } from 'https://deno.land/x/polkadot/api/mod.ts';
+import { ApiBase } from 'https://deno.land/x/polkadot/api/base/index.ts';
+import { BN_ZERO, isUndefined } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Abi } from '../Abi/index.ts';
 import { applyOnEvent } from '../util.ts';

@@ -2,9 +2,9 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
-import type { Option } from 'https://deno.land/x/polkadot@0.0.0-8/types/mod.ts';
-import type { AccountId } from 'https://deno.land/x/polkadot@0.0.0-8/types/interfaces.ts';
-import type { NodeRuntimeSessionKeys } from 'https://deno.land/x/polkadot@0.0.0-8/types/lookup.ts';
+import type { Option } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { NodeRuntimeSessionKeys } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { DeriveApi } from '../types.ts';
 import type { DeriveStakingKeys } from './types.ts';
 
