@@ -4,12 +4,18 @@
 
 Here you will find most of the utilities, generally available elsewhere for Node, the browser and RN in a consumable form for the Deno runtime. 
 
-Access is to be done via the `https://deno.land/x/polkadot/<module>/mod.ts` form, where `<module>` corresponds to the namespace generally found elsewhere for `@polkadot/<module>`. Example usage information -
+Access is to be done via the `https://deno.land/x/polkadot/<module>/mod.ts` form, where `<module>` corresponds to the namespace generally found elsewhere for `@polkadot/<module>`. 
+
+For example, to access `polkadot/util` & `polkadot/api` interfaces -
 
 ```js
+import { ApiPromise, WsProvider } from 'https://deno.land/x/polkadot/api/mod.ts';
 import { stringToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
+const api = await ApiPromise.create({ provider: new WsProvider() });
+
 console.log(stringToU8a('hello world));
+api.rpc.chain.subscribeNewHeads(({ hash }) => console.log(hash.toHex()));
 ```
 
-For specific issues related to the Deno runtime usage (since this is still _very_ new), please log the issues against the specific repos.
+For any issues related to the Deno runtime usage (since this is still _very_ new), please log the issues against the relevant repos.
