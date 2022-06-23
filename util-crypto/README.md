@@ -13,5 +13,5 @@ yarn add @polkadot/util-crypto
 Functions can be imported as follows:
 
 ```js
-import { mnemonicGenerate } from '@polkadot/util-crypto';
+import { mnemonicGenerate } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 ```
