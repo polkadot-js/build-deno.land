@@ -4,6 +4,8 @@
 // execute with
 //   deno run --allow-read --allow-run --allow-write --allow-env ci-release.ts
 
+import { stringCamelCase } from 'https://deno.land/x/polkadot@0.0.0-8/util/mod.ts';
+
 // regex for matching `deno.land/x/polkadot[@<version>]/
 const reVer = /deno\.land\/x\/polkadot(@\d\d?\d?\.\d\d?\d?\.\d\d?\d?-?\d?\d?\d?)?\//g;
 
@@ -71,8 +73,22 @@ async function gitPush(version: string): Promise<void> {
   await exec('git', 'push', REPO, '--tags');
 }
 
+// creates a new mod.ts file with all the available imports
+async function createModTs (): Promise<void> {
+  const imports: string[] = [];
+
+  for await (const entry of Deno.readDir('.')) {
+    if (entry.isDirectory && !entry.name.startsWith('.')) {
+      imports.push(`export * as ${stringCamelCase(entry.name)} from './${entry.name}/mod.ts';`);
+    }
+  }
+
+  await Deno.writeTextFile('mod.ts', `// Copyright 2017-${new Date().getFullYear()} @polkadot/deno authors & contributors\n// SPDX-License-Identifier: Apache-2.0\n\n${imports.sort().join('\n')}\n`);
+}
+
 const version = await getVersion();
 
 await gitSetup();
+await createModTs();
 await setVersion(version, '.');
 await gitPush(version);
