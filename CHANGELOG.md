@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master
+
+- wasm-bridge, wasm-crypto, wasm-crypto-asmjs, wasm-crypto-init, wasm-crypto-wasm, wasm-util 6.1.5
+
 ## 0.0.0-8 Jun 23, 2022
 
 - Allow for augmentation conversions (as used in polkadot/api-augment)
