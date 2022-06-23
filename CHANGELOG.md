@@ -1,8 +1,10 @@
 # CHANGELOG
 
-## master
+## 0.0.0-8 Jun 23, 2022
 
+- Allow for augmentation conversions (as used in polkadot/api-augment)
 - api, api-augment, api-base, api-contract, api-derive, rpc-augment, rpc-core, rpc-provider, types, types-augment, types-codec, types-create, types-known 8.9.2-13
+
 
 ## 0.0.0-7 Jun 22, 2022
 
