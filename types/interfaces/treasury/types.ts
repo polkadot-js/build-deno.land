@@ -1,9 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Enum, Option, Struct, Vec, bool, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types.ts';
-import type { AccountId, Balance, BlockNumber, Hash } from 'https://deno.land/x/polkadot/types/interfaces/runtime.ts';
+import type { Enum, Option, Struct, Vec, bool, u32 } from 'https://deno.land/x/polkadot@0.0.0-8/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.0.0-8/types-codec/types.ts';
+import type { AccountId, Balance, BlockNumber, Hash } from 'https://deno.land/x/polkadot@0.0.0-8/types/interfaces/runtime.ts';
 
 /** @name Bounty */
 export interface Bounty extends Struct {

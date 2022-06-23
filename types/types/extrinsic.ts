@@ -1,8 +1,8 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyJson, AnyNumber, AnyTuple, AnyU8a, Codec } from 'https://deno.land/x/polkadot/types-codec/types.ts';
-import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { AnyJson, AnyNumber, AnyTuple, AnyU8a, Codec } from 'https://deno.land/x/polkadot@0.0.0-8/types-codec/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.0.0-8/util/types.ts';
 import type { ExtrinsicStatus } from '../interfaces/author/index.ts';
 import type { EcdsaSignature, Ed25519Signature, Sr25519Signature } from '../interfaces/extrinsics/index.ts';
 import type { Address, Call, H256, Hash } from '../interfaces/runtime/index.ts';

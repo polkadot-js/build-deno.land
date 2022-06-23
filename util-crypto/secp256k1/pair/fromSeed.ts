@@ -5,8 +5,8 @@ import type { Keypair } from '../../types.ts';
 
 import { getPublicKey } from 'https://esm.sh/@noble/secp256k1@1.6.0';
 
-import { hasBigInt, u8aEmpty } from 'https://deno.land/x/polkadot@0.0.0-7/util/mod.ts';
-import { isReady, secp256k1FromSeed } from 'https://deno.land/x/polkadot@0.0.0-7/wasm-crypto/mod.ts';
+import { hasBigInt, u8aEmpty } from 'https://deno.land/x/polkadot@0.0.0-8/util/mod.ts';
+import { isReady, secp256k1FromSeed } from 'https://deno.land/x/polkadot@0.0.0-8/wasm-crypto/mod.ts';
 
 /**
  * @name secp256k1PairFromSeed

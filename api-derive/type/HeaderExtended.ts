@@ -1,8 +1,8 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AccountId, Header } from 'https://deno.land/x/polkadot/types/interfaces.ts';
-import type { Registry } from 'https://deno.land/x/polkadot/types/types.ts';
+import type { AccountId, Header } from 'https://deno.land/x/polkadot@0.0.0-8/types/interfaces.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.0.0-8/types/types.ts';
 import type { HeaderExtended } from './types.ts';
 
 import { extractAuthor } from './util.ts';

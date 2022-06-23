@@ -3,8 +3,8 @@
 
 import type { KeyringInstance, KeyringOptions } from './types.ts';
 
-import { hexToU8a } from 'https://deno.land/x/polkadot@0.0.0-7/util/mod.ts';
-import { KeypairType } from 'https://deno.land/x/polkadot@0.0.0-7/util-crypto/types.ts';
+import { hexToU8a } from 'https://deno.land/x/polkadot@0.0.0-8/util/mod.ts';
+import { KeypairType } from 'https://deno.land/x/polkadot@0.0.0-8/util-crypto/types.ts';
 
 import { Keyring } from './keyring.ts';
 import { createPair } from './pair/index.ts';

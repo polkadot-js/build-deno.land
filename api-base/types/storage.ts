@@ -2,10 +2,10 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
-import type { StorageKey, u64 } from 'https://deno.land/x/polkadot/types/mod.ts';
-import type { Hash } from 'https://deno.land/x/polkadot/types/interfaces.ts';
-import type { StorageEntry } from 'https://deno.land/x/polkadot/types/primitive/types.ts';
-import type { AnyFunction, AnyTuple, Callback, Codec, IStorageKey } from 'https://deno.land/x/polkadot/types/types.ts';
+import type { StorageKey, u64 } from 'https://deno.land/x/polkadot@0.0.0-8/types/mod.ts';
+import type { Hash } from 'https://deno.land/x/polkadot@0.0.0-8/types/interfaces.ts';
+import type { StorageEntry } from 'https://deno.land/x/polkadot@0.0.0-8/types/primitive/types.ts';
+import type { AnyFunction, AnyTuple, Callback, Codec, IStorageKey } from 'https://deno.land/x/polkadot@0.0.0-8/types/types.ts';
 import type { ApiTypes, DropLast, MethodResult, ObsInnerType, PaginationOptions, PromiseOrObs, UnsubscribePromise } from './base.ts';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-empty-interface

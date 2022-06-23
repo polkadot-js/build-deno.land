@@ -9,7 +9,7 @@
 
 import type { BridgeBase, InitFn, InitPromise, WasmBaseInstance } from './types.ts';
 
-import { stringToU8a, u8aToString } from 'https://deno.land/x/polkadot@0.0.0-7/util/mod.ts';
+import { stringToU8a, u8aToString } from 'https://deno.land/x/polkadot@0.0.0-8/util/mod.ts';
 
 import { Wbg } from './wbg.ts';
 

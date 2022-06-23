@@ -1,13 +1,13 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { BTreeSet, Bytes, Enum, Option, Struct, U64, Vec, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types.ts';
-import type { BlockHash } from 'https://deno.land/x/polkadot/types/interfaces/chain.ts';
-import type { AuthorityId } from 'https://deno.land/x/polkadot/types/interfaces/consensus.ts';
-import type { AuthoritySignature } from 'https://deno.land/x/polkadot/types/interfaces/imOnline.ts';
-import type { BlockNumber, Hash, Header } from 'https://deno.land/x/polkadot/types/interfaces/runtime.ts';
-import type { MembershipProof } from 'https://deno.land/x/polkadot/types/interfaces/session.ts';
+import type { BTreeSet, Bytes, Enum, Option, Struct, U64, Vec, u32, u64 } from 'https://deno.land/x/polkadot@0.0.0-8/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.0.0-8/types-codec/types.ts';
+import type { BlockHash } from 'https://deno.land/x/polkadot@0.0.0-8/types/interfaces/chain.ts';
+import type { AuthorityId } from 'https://deno.land/x/polkadot@0.0.0-8/types/interfaces/consensus.ts';
+import type { AuthoritySignature } from 'https://deno.land/x/polkadot@0.0.0-8/types/interfaces/imOnline.ts';
+import type { BlockNumber, Hash, Header } from 'https://deno.land/x/polkadot@0.0.0-8/types/interfaces/runtime.ts';
+import type { MembershipProof } from 'https://deno.land/x/polkadot@0.0.0-8/types/interfaces/session.ts';
 
 /** @name AuthorityIndex */
 export interface AuthorityIndex extends u64 {}

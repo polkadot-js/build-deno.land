@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/x-textencoder authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { exposeGlobal } from 'https://deno.land/x/polkadot@0.0.0-7/x-global/mod.ts';
-import { TextEncoder } from 'https://deno.land/x/polkadot@0.0.0-7/x-textencoder/mod.ts';
+import { exposeGlobal } from 'https://deno.land/x/polkadot@0.0.0-8/x-global/mod.ts';
+import { TextEncoder } from 'https://deno.land/x/polkadot@0.0.0-8/x-textencoder/mod.ts';
 
 exposeGlobal('TextEncoder', TextEncoder);

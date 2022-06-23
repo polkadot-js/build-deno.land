@@ -14,7 +14,7 @@ import { isOn } from './helpers.ts';
  * <BR>
  *
  * ```javascript
- * import { isObservable } from 'https://deno.land/x/polkadot@0.0.0-7/util/mod.ts';
+ * import { isObservable } from 'https://deno.land/x/polkadot@0.0.0-8/util/mod.ts';
  *
  * console.log('isObservable', isObservable(...));
  * ```

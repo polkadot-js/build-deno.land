@@ -1,8 +1,8 @@
 // Copyright 2017-2022 @polkadot/api-contract authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ContractMetadataLatest, ContractMetadataV3 } from 'https://deno.land/x/polkadot/types/interfaces.ts';
-import type { Registry } from 'https://deno.land/x/polkadot/types/types.ts';
+import type { ContractMetadataLatest, ContractMetadataV3 } from 'https://deno.land/x/polkadot@0.0.0-8/types/interfaces.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.0.0-8/types/types.ts';
 
 import { v0ToV1 } from './toV1.ts';
 import { v1ToV2 } from './toV2.ts';

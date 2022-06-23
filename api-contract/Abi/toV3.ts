@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/api-contract authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ContractMetadataV2, ContractMetadataV3 } from 'https://deno.land/x/polkadot/types/interfaces.ts';
-import type { Registry } from 'https://deno.land/x/polkadot/types/types.ts';
+import type { ContractMetadataV2, ContractMetadataV3 } from 'https://deno.land/x/polkadot@0.0.0-8/types/interfaces.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.0.0-8/types/types.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.0.0-8/util/mod.ts';
 
 export function v2ToV3 (registry: Registry, v2: ContractMetadataV2): ContractMetadataV3 {
   return registry.createType('ContractMetadataV3', objectSpread({}, v2, {

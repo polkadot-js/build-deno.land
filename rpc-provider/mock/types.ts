@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Server } from 'https://esm.sh/mock-socket@9.1.5';
-import type { Constructor } from 'https://deno.land/x/polkadot/types/types.ts';
+import type { Constructor } from 'https://deno.land/x/polkadot@0.0.0-8/types/types.ts';
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 export interface Global extends NodeJS.Global {

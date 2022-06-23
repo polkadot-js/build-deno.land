@@ -1,8 +1,8 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { SignOptions } from 'https://deno.land/x/polkadot/keyring/types.ts';
-import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types.ts';
+import type { SignOptions } from 'https://deno.land/x/polkadot@0.0.0-8/keyring/types.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.0.0-8/types-codec/types.ts';
 import type { IKeyringPair } from '../types/index.ts';
 
 // a helper function for both types of payloads, Raw and metadata-known
