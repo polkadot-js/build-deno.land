@@ -1,14 +1,14 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyJson, Codec, CodecClass } from 'https://deno.land/x/polkadot@0.0.0-7/types-codec/types.ts';
-import type { TypeDef } from 'https://deno.land/x/polkadot@0.0.0-7/types-create/types.ts';
+import type { AnyJson, Codec, CodecClass } from 'https://deno.land/x/polkadot/types-codec/types.ts';
+import type { TypeDef } from 'https://deno.land/x/polkadot/types-create/types.ts';
 import type { EventMetadataLatest } from '../interfaces/metadata/index.ts';
 import type { EventId } from '../interfaces/system/index.ts';
 import type { IEvent, IEventData, InterfaceTypes, Registry } from '../types/index.ts';
 
-import { Null, Struct, Tuple } from 'https://deno.land/x/polkadot@0.0.0-7/types-codec/mod.ts';
-import { objectProperties, objectSpread } from 'https://deno.land/x/polkadot@0.0.0-7/util/mod.ts';
+import { Null, Struct, Tuple } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { objectProperties, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 interface Decoded {
   DataType: CodecClass<Null> | CodecClass<GenericEventData>;

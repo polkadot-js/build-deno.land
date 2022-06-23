@@ -1,9 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Bytes, Compact, Enum, Null, Option, Result, Struct, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.0.0-7/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.0.0-7/types-codec/types.ts';
-import type { AccountId, BlockNumber, Weight } from 'https://deno.land/x/polkadot@0.0.0-7/types/interfaces/runtime.ts';
+import type { Bytes, Compact, Enum, Null, Option, Result, Struct, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types.ts';
+import type { AccountId, BlockNumber, Weight } from 'https://deno.land/x/polkadot/types/interfaces/runtime.ts';
 
 /** @name AssetInstance */
 export interface AssetInstance extends AssetInstanceV2 {}

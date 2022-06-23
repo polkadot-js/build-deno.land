@@ -2,13 +2,13 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
-import type { Balance } from 'https://deno.land/x/polkadot@0.0.0-7/types/interfaces.ts';
-import type { PalletStakingStakingLedger, PalletStakingUnlockChunk } from 'https://deno.land/x/polkadot@0.0.0-7/types/lookup.ts';
+import type { Balance } from 'https://deno.land/x/polkadot/types/interfaces.ts';
+import type { PalletStakingStakingLedger, PalletStakingUnlockChunk } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { DeriveApi, DeriveSessionInfo, DeriveStakingAccount, DeriveStakingKeys, DeriveStakingQuery, DeriveUnlocking } from '../types.ts';
 
 import { combineLatest, map, switchMap } from 'https://esm.sh/rxjs@7.5.5';
 
-import { BN, BN_ZERO } from 'https://deno.land/x/polkadot@0.0.0-7/util/mod.ts';
+import { BN, BN_ZERO } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { firstMemo, memo } from '../util/index.ts';
 

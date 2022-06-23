@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/api-contract authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Text } from 'https://deno.land/x/polkadot@0.0.0-7/types/mod.ts';
-import type { ContractConstructorSpecV0, ContractEventSpecV0, ContractMessageSpecV0, ContractMetadataV1, ContractMetadataV2 } from 'https://deno.land/x/polkadot@0.0.0-7/types/interfaces.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.0.0-7/types/types.ts';
+import type { Text } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { ContractConstructorSpecV0, ContractEventSpecV0, ContractMessageSpecV0, ContractMetadataV1, ContractMetadataV2 } from 'https://deno.land/x/polkadot/types/interfaces.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types/types.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.0.0-7/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 type WithArgs = keyof typeof ARG_TYPES;
 

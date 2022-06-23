@@ -1,8 +1,8 @@
 // Copyright 2017-2022 @polkadot/api-contract authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { ApiBase } from 'https://deno.land/x/polkadot@0.0.0-7/api/base.ts';
-import { TypeRegistry } from 'https://deno.land/x/polkadot@0.0.0-7/types/mod.ts';
+import { ApiBase } from 'https://deno.land/x/polkadot/api/base.ts';
+import { TypeRegistry } from 'https://deno.land/x/polkadot/types/mod.ts';
 
 const registry = new TypeRegistry();
 

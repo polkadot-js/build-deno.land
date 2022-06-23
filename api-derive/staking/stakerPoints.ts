@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
-import type { EraIndex } from 'https://deno.land/x/polkadot@0.0.0-7/types/interfaces.ts';
+import type { EraIndex } from 'https://deno.land/x/polkadot/types/interfaces.ts';
 import type { DeriveApi, DeriveStakerPoints } from '../types.ts';
 
 import { map } from 'https://esm.sh/rxjs@7.5.5';
