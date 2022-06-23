@@ -1,11 +1,11 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
-  import type { BitVec, Bytes, Compact, Enum, Null, Option, Result, Struct, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-  import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-  import type { EthereumAddress } from 'https://deno.land/x/polkadot/types/interfaces/eth/index.ts';
-  import type { AccountId32, H256, PerU16 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+declare module 'https://deno.land/x/polkadot@0.0.0-9/types/lookup.ts' {
+  import type { BitVec, Bytes, Compact, Enum, Null, Option, Result, Struct, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.0.0-9/types-codec/mod.ts';
+  import type { ITuple } from 'https://deno.land/x/polkadot@0.0.0-9/types-codec/types/index.ts';
+  import type { EthereumAddress } from 'https://deno.land/x/polkadot@0.0.0-9/types/interfaces/eth/index.ts';
+  import type { AccountId32, H256, PerU16 } from 'https://deno.land/x/polkadot@0.0.0-9/types/interfaces/runtime/index.ts';
 
   /** @name PolkadotRuntimeCommonClaimsPalletEvent (71) */
   export interface PolkadotRuntimeCommonClaimsPalletEvent extends Enum {

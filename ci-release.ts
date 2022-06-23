@@ -4,7 +4,7 @@
 // execute with
 //   deno run --allow-read --allow-run --allow-write --allow-env ci-release.ts
 
-import { stringCamelCase } from 'https://deno.land/x/polkadot@0.0.0-8/util/mod.ts';
+import { stringCamelCase } from 'https://deno.land/x/polkadot@0.0.0-9/util/mod.ts';
 
 // regex for matching `deno.land/x/polkadot[@<version>]/
 const reVer = /deno\.land\/x\/polkadot(@\d\d?\d?\.\d\d?\d?\.\d\d?\d?-?\d?\d?\d?)?\//g;
