@@ -5,7 +5,7 @@
 //   deno run --allow-read --allow-run --allow-write --allow-env ci-release.ts
 
 // regex for matching `deno.land/x/polkadot[@<version>]/
-const reVer = /deno\.land\/x\/polkadot(@\d\d?\.\d\d?\.\d\d?-?\d?\d?)?\//g;
+const reVer = /deno\.land\/x\/polkadot(@\d\d?\d?\.\d\d?\d?\.\d\d?\d?-?\d?\d?\d?)?\//g;
 
 // execute a command
 async function exec(...cmd: string[]): Promise<void> {
@@ -37,7 +37,7 @@ async function setVersion(version: string, dir: string): Promise<void> {
   for await (const entry of Deno.readDir(dir)) {
     if (entry.isDirectory) {
       await setVersion(version, `${dir}/${entry.name}`);
-    } else if (entry.name.endsWith('.ts')) {
+    } else if (entry.name.endsWith('.ts') || entry.name.endsWith('.md')) {
       const path = `${dir}/${entry.name}`;
       const contents = await Deno.readTextFile(path);
 
