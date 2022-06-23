@@ -10,7 +10,7 @@
  * <BR>
  *
  * ```javascript
- * import { isError } from 'https://deno.land/x/polkadot@0.0.0-8/util/mod.ts';
+ * import { isError } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * console.log('isError', isError(new Error('message'))); // => true
  * ```
