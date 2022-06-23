@@ -4,7 +4,7 @@
 
 Here you will find most of the utilities, generally available elsewhere for Node, the browser and RN in a consumable form for the Deno runtime. 
 
-Access is to be done via the `https://deno.land/x/polkadot/<module>/mod.ts` form, where `<module>` corresponds to the namespace generally found elsewhere for `@polkadot/<module>`. 
+Access is to be done via the `https://deno.land/x/polkadot[@<version>]/<module>/mod.ts` form, where `<module>` corresponds to the namespace generally found elsewhere for `@polkadot/<module>`. 
 
 For example, to access `polkadot/util` & `polkadot/api` interfaces -
 
