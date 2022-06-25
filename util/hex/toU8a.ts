@@ -25,14 +25,14 @@ for (let i = 0; i < CHARS.length; i++) {
  * <BR>
  *
  * ```javascript
- * import { hexToU8a } from 'https://deno.land/x/polkadot@0.0.0-9/util/mod.ts';
+ * import { hexToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * hexToU8a('0x80001f'); // Uint8Array([0x80, 0x00, 0x1f])
  * hexToU8a('0x80001f', 32); // Uint8Array([0x00, 0x80, 0x00, 0x1f])
  * ```
  */
 export function hexToU8a (value?: HexString | string | null, bitLength = -1): Uint8Array {
-  if (!value) {
+  if (!value || value === '0x') {
     return new Uint8Array();
   }
 

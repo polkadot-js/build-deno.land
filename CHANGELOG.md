@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master
+
+- hw-ledger, hw-ledger-transports, keyring, networks, util, util-crypto, x-bigint, x-fetch, x-global, x-randomvalues, x-textdecoder, x-textencoder, x-ws 9.6.2
+
 ## 0.0.0-9 Jun 23, 2022
 
 **Experimental** Please see the comments on 0.0.0-1 for the experimental nature of this bundle.
