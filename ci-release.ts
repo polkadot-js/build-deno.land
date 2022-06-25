@@ -40,7 +40,7 @@ function git (...args: GitArgs): Promise<void> {
 // retrieve the current version from CHANGELOG.md
 async function getVersion(): Promise<string> {
   const contents = await Deno.readTextFile('CHANGELOG.md');
-  const vermatch = contents.match( /# CHANGELOG\n\n## (\d*.\d*.\d*(-\d*)?) /);
+  const vermatch = contents.match(/# CHANGELOG\n\n## (\d*.\d*.\d*(-\d*)?) /);
 
   if (!vermatch || !vermatch[1]) {
     throw new Error('FATAL: Unable to extract expected version from CHANGELOG.md');
