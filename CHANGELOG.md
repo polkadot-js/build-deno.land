@@ -1,10 +1,11 @@
 # CHANGELOG
 
-## master
+## 0.0.1 Jun 26, 2022
 
 - api, api-augment, api-base, api-contract, api-derive, rpc-augment, rpc-core, rpc-provider, types, types-augment, types-codec, types-create, types-known 8.10.1
-- phishing 0.15.2
 - hw-ledger, hw-ledger-transports, keyring, networks, util, util-crypto, x-bigint, x-fetch, x-global, x-randomvalues, x-textdecoder, x-textencoder, x-ws 9.6.2
+- phishing 0.15.2
+
 
 ## 0.0.0-9 Jun 23, 2022
 
