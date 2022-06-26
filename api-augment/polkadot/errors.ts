@@ -1,9 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { ApiTypes } from 'https://deno.land/x/polkadot@0.0.0-9/api-base/types/index.ts';
+import type { ApiTypes } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 
-declare module 'https://deno.land/x/polkadot@0.0.0-9/api-base/types/errors.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
   export interface AugmentedErrors<ApiType extends ApiTypes> {
     auctions: {
       /**
@@ -1558,6 +1558,10 @@ declare module 'https://deno.land/x/polkadot@0.0.0-9/api-base/types/errors.ts' {
        **/
       NotMember: AugmentedError<ApiType>;
       /**
+       * Too many members.
+       **/
+      TooManyMembers: AugmentedError<ApiType>;
+      /**
        * Generic error
        **/
       [key: string]: AugmentedError<ApiType>;
@@ -1593,6 +1597,11 @@ declare module 'https://deno.land/x/polkadot@0.0.0-9/api-base/types/errors.ts' {
       [key: string]: AugmentedError<ApiType>;
     };
     treasury: {
+      /**
+       * The spend origin is valid but the amount it is allowed to spend is lower than the
+       * amount to be spent.
+       **/
+      InsufficientPermission: AugmentedError<ApiType>;
       /**
        * Proposer's balance is too low.
        **/

@@ -5,7 +5,7 @@
 
 import type { DefinitionsRpc } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.0.0-9/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 // We use aliasSection here to override since these are in another namespace
 const netRpc: DefinitionsRpc = {
@@ -95,6 +95,24 @@ export const rpc: DefinitionsRpc = objectSpread({}, netRpc, web3Rpc, {
       }
     ],
     type: 'U256'
+  },
+  feeHistory: {
+    description: 'Returns fee history for given block count & reward percentiles',
+    params: [
+      {
+        name: 'blockCount',
+        type: 'U256'
+      },
+      {
+        name: 'newestBlock',
+        type: 'BlockNumber'
+      },
+      {
+        name: 'rewardPercentiles',
+        type: 'Option<Vec<f64>>'
+      }
+    ],
+    type: 'EthFeeHistory'
   },
   gasPrice: {
     description: 'Returns current gas price.',
@@ -365,6 +383,11 @@ export const rpc: DefinitionsRpc = objectSpread({}, netRpc, web3Rpc, {
   },
   hashrate: {
     description: 'Returns the number of hashes per second that the node is mining with.',
+    params: [],
+    type: 'U256'
+  },
+  maxPriorityFeePerGas: {
+    description: 'Returns max priority fee per gas',
     params: [],
     type: 'U256'
   },

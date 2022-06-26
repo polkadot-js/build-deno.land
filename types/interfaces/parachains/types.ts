@@ -1,11 +1,11 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { BTreeMap, BitVec, Bytes, Enum, Option, Struct, U8aFixed, Vec, bool, u32 } from 'https://deno.land/x/polkadot@0.0.0-9/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.0.0-9/types-codec/types/index.ts';
-import type { Signature } from 'https://deno.land/x/polkadot@0.0.0-9/types/interfaces/extrinsics/index.ts';
-import type { AccountId, Balance, BalanceOf, BlockNumber, H256, Hash, Header, StorageProof, ValidatorId, Weight } from 'https://deno.land/x/polkadot@0.0.0-9/types/interfaces/runtime/index.ts';
-import type { MembershipProof, SessionIndex } from 'https://deno.land/x/polkadot@0.0.0-9/types/interfaces/session/index.ts';
+import type { BTreeMap, BitVec, Bytes, Enum, Option, Struct, U8aFixed, Vec, bool, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Signature } from 'https://deno.land/x/polkadot/types/interfaces/extrinsics/index.ts';
+import type { AccountId, Balance, BalanceOf, BlockNumber, H256, Hash, Header, StorageProof, ValidatorId, Weight } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { MembershipProof, SessionIndex } from 'https://deno.land/x/polkadot/types/interfaces/session/index.ts';
 
 /** @name AbridgedCandidateReceipt */
 export interface AbridgedCandidateReceipt extends Struct {

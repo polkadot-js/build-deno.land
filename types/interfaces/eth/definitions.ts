@@ -8,7 +8,7 @@
 
 import type { DefinitionsTypes } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.0.0-9/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { rpc } from './rpc.ts';
 
@@ -163,6 +163,12 @@ const types: DefinitionsTypes = objectSpread({}, V0, V1, V2, {
     value: 'Option<U256>',
     data: 'Option<Bytes>',
     nonce: 'Option<U256>'
+  },
+  EthFeeHistory: {
+    oldestBlock: 'U256',
+    baseFeePerGas: 'Vec<U256>',
+    gasUsedRatio: 'Vec<f64>',
+    reward: 'Option<Vec<Vec<U256>>>'
   },
   EthFilter: {
     fromBlock: 'Option<BlockNumber>',
