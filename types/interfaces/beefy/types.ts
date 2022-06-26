@@ -1,10 +1,10 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Bytes, Option, Struct, U8aFixed, Vec, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { EcdsaSignature } from 'https://deno.land/x/polkadot/types/interfaces/extrinsics/index.ts';
-import type { BlockNumber, H256 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { Bytes, Option, Struct, U8aFixed, Vec, u32, u64 } from 'https://deno.land/x/polkadot@0.0.1/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.0.1/types-codec/types/index.ts';
+import type { EcdsaSignature } from 'https://deno.land/x/polkadot@0.0.1/types/interfaces/extrinsics/index.ts';
+import type { BlockNumber, H256 } from 'https://deno.land/x/polkadot@0.0.1/types/interfaces/runtime/index.ts';
 
 /** @name BeefyCommitment */
 export interface BeefyCommitment extends Struct {

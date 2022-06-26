@@ -1,6 +1,8 @@
 // Copyright 2017-2022 @polkadot/deno authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+// auto-generated via ci-release.ts, do not edit
+
 export * as api from './api/mod.ts';
 export * as apiAugment from './api-augment/mod.ts';
 export * as apiBase from './api-base/mod.ts';
