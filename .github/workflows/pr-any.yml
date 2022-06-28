@@ -1,0 +1,17 @@
+name: PR
+on: [pull_request]
+
+jobs:
+  pr:
+    strategy:
+      matrix:
+        step: ['cache']
+    name: ${{ matrix.step }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: denoland/setup-deno@v1
+        with:
+          deno-version: vx.x.x
+    - name: ${{ matrix.step }}
+      run: deno cache --reload mod.ts
