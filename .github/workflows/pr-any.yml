@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: denoland/setup-deno@v1
-        with:
-          deno-version: vx.x.x
+      with:
+        deno-version: vx.x.x
     - name: ${{ matrix.step }}
       run: deno cache --reload mod.ts
