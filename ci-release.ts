@@ -19,8 +19,13 @@ type GitArgs =
 // regex for matching `deno.land/x/polkadot[@<version>]/
 const RE_PKG = /deno\.land\/x\/polkadot(@\d*\.\d*\.\d*(-\d*)?)?\//g;
 
+// GitHub specific config, user, email & repo
+const GH_USER = 'github-actions[bot]';
+const GH_MAIL = '41898282+github-actions[bot]@users.noreply.github.com';
+const GH_REPO = `https://${Deno.env.get('GH_PAT')}@github.com/${Deno.env.get('GITHUB_REPOSITORY')}.git`;
+
 // execute a command
-async function exec(...cmd: string[]): Promise<void> {
+async function exec (...cmd: string[]): Promise<void> {
   const shortCmd = `'${cmd[0]} ${cmd[1]} ...'`;
 
   console.log(`+ ${shortCmd}`);
@@ -37,8 +42,26 @@ function git (...args: GitArgs): Promise<void> {
   return exec('git', ...args);
 }
 
+// sets up git, username, merge & latest
+async function gitSetup (): Promise<void> {
+  await git('config', 'user.name', GH_USER);
+  await git('config', 'user.email', GH_MAIL);
+  await git('config', 'push.default', 'simple');
+  await git('config', 'merge.ours.driver', 'true');
+  await git('checkout', 'master');
+}
+
+// commit and push the changes to git
+async function gitPush (version: string): Promise<void> {
+  await git('add', '--all', '.');
+  await git('commit', '--no-status', '--quiet', '-m', `[CI Skip] deno.land/x/polkadot@${version}`);
+  await git('push', GH_REPO);
+  await git('tag', version);
+  await git('push', GH_REPO, '--tags');
+}
+
 // retrieve the current version from CHANGELOG.md
-async function getVersion(): Promise<string> {
+async function getVersion (): Promise<string> {
   const contents = await Deno.readTextFile('CHANGELOG.md');
   const vermatch = contents.match(/# CHANGELOG\n\n## (\d*.\d*.\d*(-\d*)?) /);
 
@@ -50,42 +73,21 @@ async function getVersion(): Promise<string> {
 }
 
 // sets the version globally to all deno.land/x/polkadot imports
-async function setVersion(version: string, dir: string): Promise<void> {
+async function setVersion (version: string, dir: string): Promise<void> {
   for await (const entry of Deno.readDir(dir)) {
-    if (entry.isDirectory) {
-      await setVersion(version, `${dir}/${entry.name}`);
-    } else if (entry.name.endsWith('.ts') || entry.name.endsWith('.md')) {
-      const path = `${dir}/${entry.name}`;
-      const contents = await Deno.readTextFile(path);
+    if (!entry.name.startsWith('.')) {
+      if (entry.isDirectory) {
+        await setVersion(version, `${dir}/${entry.name}`);
+      } else if (entry.name.endsWith('.ts') || entry.name.endsWith('.tsx') || entry.name.endsWith('.md')) {
+        const path = `${dir}/${entry.name}`;
+        const contents = await Deno.readTextFile(path);
 
-      if (RE_PKG.test(contents)) {
-        await Deno.writeTextFile(path, contents.replace(RE_PKG, `deno.land/x/polkadot@${version}/`));
+        if (RE_PKG.test(contents)) {
+          await Deno.writeTextFile(path, contents.replace(RE_PKG, `deno.land/x/polkadot@${version}/`));
+        }
       }
     }
   }
-}
-
-// sets up git, username, merge & latest
-async function gitSetup(): Promise<void> {
-  const USER = 'github-actions[bot]';
-  const MAIL = '41898282+github-actions[bot]@users.noreply.github.com';
-
-  await git('config', 'user.name', USER);
-  await git('config', 'user.email', MAIL);
-  await git('config', 'push.default', 'simple');
-  await git('config', 'merge.ours.driver', 'true');
-  await git('checkout', 'master');
-}
-
-// commit and push the changes to git
-async function gitPush(version: string): Promise<void> {
-  const REPO = `https://${Deno.env.get('GH_PAT')}@github.com/${Deno.env.get('GITHUB_REPOSITORY')}.git`;
-
-  await git('add', '--all', '.');
-  await git('commit', '--no-status', '--quiet', '-m', `[CI Skip] deno.land/x/polkadot@${version}`);
-  await git('push', REPO);
-  await git('tag', version);
-  await git('push', REPO, '--tags');
 }
 
 // creates a new mod.ts file with all the available imports
@@ -101,9 +103,10 @@ async function createModTs (): Promise<void> {
   await Deno.writeTextFile('mod.ts', `// Copyright 2017-${new Date().getFullYear()} @polkadot/deno authors & contributors\n// SPDX-License-Identifier: Apache-2.0\n\n// auto-generated via ci-release.ts, do not edit\n\n${imports.sort().join('\n')}\n`);
 }
 
-const version = await getVersion();
-
 await gitSetup();
 await createModTs();
+
+const version = await getVersion();
+
 await setVersion(version, '.');
 await gitPush(version);
