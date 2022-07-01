@@ -16,8 +16,11 @@ type GitArgs =
   ['push', string, '--tags'] |
   ['tag', string];
 
+// use .. notation to import @polkadot packages
+const IS_DOT_PATH = false;
+
 // regex for matching `deno.land/x/polkadot[@<version>]/
-const RE_PKG = /deno\.land\/x\/polkadot(@\d*\.\d*\.\d*(-\d*)?)?\//g;
+const RE_PKG = /https:\/\/deno\.land\/x\/polkadot(@\d*\.\d*\.\d*(-\d*)?)?\//g;
 
 // GitHub specific config, user, email & repo
 const GH_USER = 'github-actions[bot]';
@@ -73,17 +76,26 @@ async function getVersion (): Promise<string> {
 }
 
 // sets the version globally to all deno.land/x/polkadot imports
-async function setVersion (version: string, dir: string): Promise<void> {
+async function setVersion (version: string, dir: string, level = 0): Promise<void> {
+  const topLevel = level
+    ? new Array<string>(level).fill('..').join('/')
+    : '.';
+
   for await (const entry of Deno.readDir(dir)) {
     if (!entry.name.startsWith('.')) {
       if (entry.isDirectory) {
-        await setVersion(version, `${dir}/${entry.name}`);
+        await setVersion(version, `${dir}/${entry.name}`, level + 1);
       } else if (entry.name.endsWith('.ts') || entry.name.endsWith('.tsx') || entry.name.endsWith('.md')) {
         const path = `${dir}/${entry.name}`;
         const contents = await Deno.readTextFile(path);
 
         if (RE_PKG.test(contents)) {
-          await Deno.writeTextFile(path, contents.replace(RE_PKG, `deno.land/x/polkadot@${version}/`));
+          await Deno.writeTextFile(
+            path,
+            !IS_DOT_PATH || entry.name.endsWith('.md')
+              ? contents.replace(RE_PKG, `https://deno.land/x/polkadot@${version}/`)
+              : contents.replace(RE_PKG, `${topLevel}/`)
+          );
         }
       }
     }
