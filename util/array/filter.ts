@@ -10,13 +10,13 @@
  * <BR>
  *
  * ```javascript
- * import { arrayFilter } from 'https://deno.land/x/polkadot@0.0.1/util/mod.ts';
+ * import { arrayFilter } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * arrayFilter([0, void 0, true, null, false, '']); // [0, true, null, false, '']
  * arrayFilter([0, void 0, true, null, false, ''], false); // [0, true, false, '']
  * ```
  */
-export function arrayFilter <T = unknown> (array: (T | null | undefined)[], allowNulls = true): T[] {
+export function arrayFilter <T = unknown> (array: readonly (T | null | undefined)[], allowNulls = true): T[] {
   return array.filter((v): v is T =>
     v !== undefined &&
     (allowNulls || v !== null)

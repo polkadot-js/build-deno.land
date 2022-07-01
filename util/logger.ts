@@ -107,7 +107,7 @@ function isDebugOff (e: string, type: string): boolean {
   );
 }
 
-function getDebugFlag (env: string[], type: string): boolean {
+function getDebugFlag (env: readonly string[], type: string): boolean {
   let flag = false;
 
   for (const e of env) {
@@ -142,7 +142,7 @@ function parseEnv (type: string): [boolean, number] {
  * <BR>
  *
  * ```javascript
- * import { logger } from 'https://deno.land/x/polkadot@0.0.1/util/mod.ts';
+ * import { logger } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * const l = logger('test');
  * ```

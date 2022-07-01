@@ -14,7 +14,7 @@ import { u8aToU8a } from './toU8a.ts';
  * <BR>
  *
  * ```javascript
- * import { { u8aConcat } from 'https://deno.land/x/polkadot@0.0.1/util/mod.ts';
+ * import { { u8aConcat } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * u8aConcat(
  *   new Uint8Array([1, 2, 3]),
@@ -22,7 +22,7 @@ import { u8aToU8a } from './toU8a.ts';
  * ); // [1, 2, 3, 4, 5, 6]
  * ```
  */
-export function u8aConcat (...list: U8aLike[]): Uint8Array {
+export function u8aConcat (...list: readonly U8aLike[]): Uint8Array {
   const u8as = new Array<Uint8Array>(list.length);
 
   for (let i = 0; i < list.length; i++) {

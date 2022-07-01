@@ -3,7 +3,7 @@
 
 import type { KnownSubstrate, Network, SubstrateNetwork } from './types.ts';
 
-import knownSubstrate from 'https://esm.sh/@substrate/ss58-registry@1.22.0';
+import knownSubstrate from 'https://esm.sh/@substrate/ss58-registry@1.23.0';
 
 import { knownGenesis, knownIcon, knownLedger, knownTestnet } from './defaults/index.ts';
 
