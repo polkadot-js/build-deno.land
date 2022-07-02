@@ -19,7 +19,7 @@ type GitArgs =
 // use .. notation to import @polkadot packages
 const IS_DOT_PATH = false;
 
-// regex for matching `deno.land/x/polkadot[@<version>]/
+// regex for matching https://deno.land/x/polkadot[@<version>]/
 const RE_PKG = /https:\/\/deno\.land\/x\/polkadot(@\d*\.\d*\.\d*(-\d*)?)?\//g;
 
 // GitHub specific config, user, email & repo
@@ -37,7 +37,7 @@ async function exec (...cmd: string[]): Promise<void> {
 
   if (!status.success) {
     throw new Error(`FATAL: ${shortCmd} returned ${status.code}`);
-  };
+  }
 }
 
 // shortcut for exec('git', ...string[])
