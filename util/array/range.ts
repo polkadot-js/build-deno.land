@@ -10,7 +10,7 @@
  * <BR>
  *
  * ```javascript
- * import { arrayRange } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { arrayRange } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
  *
  * arrayRange(5); // [0, 1, 2, 3, 4]
  * arrayRange(3, 5); // [5, 6, 7]

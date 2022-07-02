@@ -3,7 +3,7 @@
 
 import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta } from '../types.ts';
 
-import { encodeAddress } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
+import { encodeAddress } from 'https://deno.land/x/polkadot@0.0.2/util-crypto/mod.ts';
 
 const publicKey = new Uint8Array(32);
 const address = encodeAddress(publicKey);

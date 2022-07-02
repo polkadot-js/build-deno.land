@@ -17,7 +17,7 @@ const BL_32 = { bitLength: 32 };
  * <BR>
  *
  * ```javascript
- * import { compactToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { compactToU8a } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
  *
  * console.log(compactToU8a(511, 32)); // Uint8Array([0b11111101, 0b00000111])
  * ```

@@ -3,7 +3,7 @@
 
 import type { Keypair } from '../../types.ts';
 
-import { stringToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { stringToU8a } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
 
 import { blake2AsU8a } from '../../blake2/asU8a.ts';
 import { ed25519PairFromSeed } from './fromSeed.ts';
@@ -17,7 +17,7 @@ import { ed25519PairFromSeed } from './fromSeed.ts';
  * <BR>
  *
  * ```javascript
- * import { ed25519PairFromString } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
+ * import { ed25519PairFromString } from 'https://deno.land/x/polkadot@0.0.2/util-crypto/mod.ts';
  *
  * ed25519PairFromString('test'); // => { secretKey: [...], publicKey: [...] }
  * ```

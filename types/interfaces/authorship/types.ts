@@ -1,9 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Enum, Option } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { AccountId, BlockNumber, Hash } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { Enum, Option } from 'https://deno.land/x/polkadot@0.0.2/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.0.2/types-codec/types/index.ts';
+import type { AccountId, BlockNumber, Hash } from 'https://deno.land/x/polkadot@0.0.2/types/interfaces/runtime/index.ts';
 
 /** @name UncleEntryItem */
 export interface UncleEntryItem extends Enum {

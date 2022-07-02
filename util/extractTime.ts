@@ -57,7 +57,7 @@ function extractSecs (ms: number): Time {
  * <BR>
  *
  * ```javascript
- * import { extractTime } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { extractTime } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
  *
  * const { days, minutes, hours, seconds, milliseconds } = extractTime(6000); // 0, 0, 10, 0, 0
  * ```

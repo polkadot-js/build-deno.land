@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { EncryptedJsonEncoding } from 'https://deno.land/x/polkadot/util-crypto/types.ts';
+import type { EncryptedJsonEncoding } from 'https://deno.land/x/polkadot@0.0.2/util-crypto/types.ts';
 import type { PairInfo } from './types.ts';
 
-import { assert, u8aEq } from 'https://deno.land/x/polkadot/util/mod.ts';
-import { jsonDecryptData } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
+import { assert, u8aEq } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
+import { jsonDecryptData } from 'https://deno.land/x/polkadot@0.0.2/util-crypto/mod.ts';
 
 import { PKCS8_DIVIDER, PKCS8_HEADER, PUB_LENGTH, SEC_LENGTH, SEED_LENGTH } from './defaults.ts';
 

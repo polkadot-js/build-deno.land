@@ -1,9 +1,9 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.0.2/util/types.ts';
 
-import { u8aEq } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { u8aEq } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
 
 import { decodeAddress } from './decode.ts';
 
@@ -16,7 +16,7 @@ import { decodeAddress } from './decode.ts';
  * <BR>
  *
  * ```javascript
- * import { u8aEq } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { u8aEq } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
  *
  * u8aEq(new Uint8Array([0x68, 0x65]), new Uint8Array([0x68, 0x65])); // true
  * ```

@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { TextDecoder } from 'https://deno.land/x/polkadot/x-textdecoder/mod.ts';
+import { TextDecoder } from 'https://deno.land/x/polkadot@0.0.2/x-textdecoder/mod.ts';
 
 const decoder = new TextDecoder('utf-8');
 
@@ -14,7 +14,7 @@ const decoder = new TextDecoder('utf-8');
  * <BR>
  *
  * ```javascript
- * import { u8aToString } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { u8aToString } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
  *
  * u8aToString(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x6f])); // hello
  * ```

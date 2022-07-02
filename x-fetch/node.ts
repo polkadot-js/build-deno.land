@@ -3,7 +3,7 @@
 
 import nodeFetch from 'https://esm.sh/node-fetch@2.6.7';
 
-import { extractGlobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
+import { extractGlobal } from 'https://deno.land/x/polkadot@0.0.2/x-global/mod.ts';
 
 export { packageInfo } from './packageInfo.ts';
 

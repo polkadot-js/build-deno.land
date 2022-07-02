@@ -1,13 +1,13 @@
 // Copyright 2017-2022 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
-import type { EncryptedJsonEncoding, Keypair, KeypairType } from 'https://deno.land/x/polkadot/util-crypto/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.0.2/util/types.ts';
+import type { EncryptedJsonEncoding, Keypair, KeypairType } from 'https://deno.land/x/polkadot@0.0.2/util-crypto/types.ts';
 import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } from '../types.ts';
 import type { PairInfo } from './types.ts';
 
-import { assert, objectSpread, u8aConcat, u8aEmpty, u8aEq, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
-import { blake2AsU8a, convertPublicKeyToCurve25519, convertSecretKeyToCurve25519, ed25519PairFromSeed as ed25519FromSeed, ed25519Sign, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclOpen, naclSeal, secp256k1Compress, secp256k1Expand, secp256k1PairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify, sr25519PairFromSeed as sr25519FromSeed, sr25519Sign, sr25519VrfSign, sr25519VrfVerify } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
+import { assert, objectSpread, u8aConcat, u8aEmpty, u8aEq, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
+import { blake2AsU8a, convertPublicKeyToCurve25519, convertSecretKeyToCurve25519, ed25519PairFromSeed as ed25519FromSeed, ed25519Sign, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclOpen, naclSeal, secp256k1Compress, secp256k1Expand, secp256k1PairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify, sr25519PairFromSeed as sr25519FromSeed, sr25519Sign, sr25519VrfSign, sr25519VrfVerify } from 'https://deno.land/x/polkadot@0.0.2/util-crypto/mod.ts';
 
 import { decodePair } from './decode.ts';
 import { encodePair } from './encode.ts';

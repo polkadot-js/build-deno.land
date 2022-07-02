@@ -12,7 +12,7 @@ import { BN } from './bn.ts';
  *
  * ```javascript
  * import BN from 'https://esm.sh/bn.js@5.2.1';
- * import { bnMax } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { bnMax } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
  *
  * bnMax([new BN(1), new BN(3), new BN(2)]).toString(); // => '3'
  * ```
@@ -27,7 +27,7 @@ export const bnMax = createCmp<BN>((a, b) => a.gt(b));
  *
  * ```javascript
  * import BN from 'https://esm.sh/bn.js@5.2.1';
- * import { bnMin } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { bnMin } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
  *
  * bnMin([new BN(1), new BN(3), new BN(2)]).toString(); // => '1'
  * ```

@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { assert } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { assert } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
 
 import { DeriveJunction } from './DeriveJunction.ts';
 

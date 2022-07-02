@@ -14,7 +14,7 @@ import { u8aToU8a } from './toU8a.ts';
  * <BR>
  *
  * ```javascript
- * import { u8aCmp } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { u8aCmp } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
  *
  * u8aCmp(new Uint8Array([0x67, 0x65]), new Uint8Array([0x68, 0x65])); // -1
  * u8aCmp(new Uint8Array([0x68, 0x65]), new Uint8Array([0x68, 0x65])); // 0

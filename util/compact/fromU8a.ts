@@ -13,7 +13,7 @@ import { u8aToBn, u8aToU8a } from '../u8a/index.ts';
  * <BR>
  *
  * ```javascript
- * import { compactFromU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { compactFromU8a } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
  *
  * const [offset, length] = compactFromU8a(new Uint8Array([254, 255, 3, 0]));
  *

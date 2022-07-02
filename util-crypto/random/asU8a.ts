@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { getRandomValues } from 'https://deno.land/x/polkadot/x-randomvalues/mod.ts';
+import { getRandomValues } from 'https://deno.land/x/polkadot@0.0.2/x-randomvalues/mod.ts';
 
 import { createAsHex } from '../helpers.ts';
 
@@ -14,7 +14,7 @@ import { createAsHex } from '../helpers.ts';
  * <BR>
  *
  * ```javascript
- * import { randomAsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
+ * import { randomAsU8a } from 'https://deno.land/x/polkadot@0.0.2/util-crypto/mod.ts';
  *
  * randomAsU8a(); // => Uint8Array([...])
  * ```

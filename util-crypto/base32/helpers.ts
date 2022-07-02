@@ -1,12 +1,12 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { U8aLike } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { U8aLike } from 'https://deno.land/x/polkadot@0.0.2/util/types.ts';
 
-import { assert, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { assert, u8aToU8a } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
 
 // re-export the type so *.d.ts files don't have ../src imports
-export type { U8aLike } from 'https://deno.land/x/polkadot/util/types.ts';
+export type { U8aLike } from 'https://deno.land/x/polkadot@0.0.2/util/types.ts';
 
 interface Coder {
   decode: (value: string) => Uint8Array;

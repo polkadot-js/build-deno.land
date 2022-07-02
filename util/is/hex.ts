@@ -16,7 +16,7 @@ export const REGEX_HEX_NOPREFIX = /^[\da-fA-F]+$/;
  * <BR>
  *
  * ```javascript
- * import { isHex } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { isHex } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
  *
  * isHex('0x1234'); // => true
  * isHex('0x1234', 8); // => false

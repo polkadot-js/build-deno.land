@@ -3,7 +3,7 @@
 
 import type { EncryptedJsonEncoding } from './types.ts';
 
-import { assert, stringToU8a, u8aFixLength } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { assert, stringToU8a, u8aFixLength } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
 
 import { naclDecrypt } from '../nacl/index.ts';
 import { scryptEncode, scryptFromU8a } from '../scrypt/index.ts';

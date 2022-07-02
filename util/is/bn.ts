@@ -13,7 +13,7 @@ import { BN } from '../bn/bn.ts';
  *
  * ```javascript
  * import BN from 'https://esm.sh/bn.js@5.2.1';
- * import { isBn } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { isBn } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
  *
  * console.log('isBn', isBn(new BN(1))); // => true
  * ```

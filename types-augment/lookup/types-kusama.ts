@@ -1,10 +1,10 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
-  import type { Compact, Enum, Null, Struct, Vec, u16, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-  import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-  import type { PerU16 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+declare module 'https://deno.land/x/polkadot@0.0.2/types/lookup.ts' {
+  import type { Compact, Enum, Null, Struct, Vec, u16, u32 } from 'https://deno.land/x/polkadot@0.0.2/types-codec/mod.ts';
+  import type { ITuple } from 'https://deno.land/x/polkadot@0.0.2/types-codec/types/index.ts';
+  import type { PerU16 } from 'https://deno.land/x/polkadot@0.0.2/types/interfaces/runtime/index.ts';
 
   /** @name KusamaRuntimeProxyType (80) */
   export interface KusamaRuntimeProxyType extends Enum {

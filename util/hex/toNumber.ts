@@ -12,7 +12,7 @@ import { hexToBn } from './toBn.ts';
  * <BR>
  *
  * ```javascript
- * import { hexToNumber } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { hexToNumber } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
  *
  * hexToNumber('0x1234'); // => 0x1234
  * ```

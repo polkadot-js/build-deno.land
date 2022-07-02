@@ -14,7 +14,7 @@ import { isHex } from '../is/hex.ts';
  * <BR>
  *
  * ```javascript
- * import { hexHasPrefix } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { hexHasPrefix } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
  *
  * console.log('has prefix', hexHasPrefix('0x1234')); // => true
  * ```

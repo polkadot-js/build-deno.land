@@ -14,7 +14,7 @@ import nacl from 'https://esm.sh/tweetnacl@1.0.3';
  * <BR>
  *
  * ```javascript
- * import { ed25519PairFromSecret } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
+ * import { ed25519PairFromSecret } from 'https://deno.land/x/polkadot@0.0.2/util-crypto/mod.ts';
  *
  * ed25519PairFromSecret(...); // => { secretKey: [...], publicKey: [...] }
  * ```

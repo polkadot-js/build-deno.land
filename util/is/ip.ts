@@ -14,7 +14,7 @@ type IpTypes = 'v4' | 'v6';
  * <BR>
  *
  * ```javascript
- * import { isIp } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { isIp } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
  *
  * isIp('192.168.0.1')); // => true
  * isIp('1:2:3:4:5:6:7:8'); // => true

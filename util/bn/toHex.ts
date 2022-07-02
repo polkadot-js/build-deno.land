@@ -22,7 +22,7 @@ const DEFAULT_OPTS: NumberOptions = { bitLength: -1, isLe: false, isNegative: fa
  *
  * ```javascript
  * import BN from 'https://esm.sh/bn.js@5.2.1';
- * import { bnToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { bnToHex } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
  *
  * bnToHex(new BN(0x123456)); // => '0x123456'
  * ```

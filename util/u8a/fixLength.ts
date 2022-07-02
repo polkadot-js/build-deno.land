@@ -10,7 +10,7 @@
  * <BR>
  *
  * ```javascript
- * import { u8aFixLength } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { u8aFixLength } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
  *
  * u8aFixLength('0x12') // => 0x12
  * u8aFixLength('0x12', 16) // => 0x0012

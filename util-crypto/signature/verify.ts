@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.0.2/util/types.ts';
 import type { KeypairType, VerifyResult } from '../types.ts';
 
-import { u8aIsWrapped, u8aToU8a, u8aUnwrapBytes, u8aWrapBytes } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { u8aIsWrapped, u8aToU8a, u8aUnwrapBytes, u8aWrapBytes } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
 
 import { decodeAddress } from '../address/decode.ts';
 import { ed25519Verify } from '../ed25519/verify.ts';

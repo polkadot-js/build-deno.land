@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { BN_EIGHT, bnToU8a, u8aConcat, u8aToBn } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { BN_EIGHT, bnToU8a, u8aConcat, u8aToBn } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
 
 import { BN_LE_32_OPTS, BN_LE_512_OPTS, BN_LE_OPTS } from '../../bn.ts';
 import { hmacShaAsU8a } from '../../hmac/index.ts';

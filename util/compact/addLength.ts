@@ -11,7 +11,7 @@ import { compactToU8a } from './toU8a.ts';
  * <BR>
  *
  * ```javascript
- * import { compactAddLength } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { compactAddLength } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
  *
  * console.log(compactAddLength(new Uint8Array([0xde, 0xad, 0xbe, 0xef]))); // Uint8Array([4 << 2, 0xde, 0xad, 0xbe, 0xef])
  * ```

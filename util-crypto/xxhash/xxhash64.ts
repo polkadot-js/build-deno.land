@@ -1,8 +1,8 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { _0n, _1n } from 'https://deno.land/x/polkadot/util/mod.ts';
-import { BigInt } from 'https://deno.land/x/polkadot/x-bigint/mod.ts';
+import { _0n, _1n } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
+import { BigInt } from 'https://deno.land/x/polkadot@0.0.2/x-bigint/mod.ts';
 
 // Adapted from https://github.com/pierrec/js-xxhash/blob/0504e76f3d31a21ae8528a7f590c7289c9e431d2/lib/xxhash64.js
 //

@@ -1,7 +1,7 @@
 // Copyright 2020-2022 @polkadot/phishing authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { fetch } from 'https://deno.land/x/polkadot/x-fetch/mod.ts';
+import { fetch } from 'https://deno.land/x/polkadot@0.0.2/x-fetch/mod.ts';
 
 // a fetch with a 2s timeout
 async function fetchWithTimeout (url: string, timeout = 2000): Promise<Response> {

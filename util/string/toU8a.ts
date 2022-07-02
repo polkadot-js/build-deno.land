@@ -3,7 +3,7 @@
 
 import type { AnyString } from '../types.ts';
 
-import { TextEncoder } from 'https://deno.land/x/polkadot/x-textencoder/mod.ts';
+import { TextEncoder } from 'https://deno.land/x/polkadot@0.0.2/x-textencoder/mod.ts';
 
 const encoder = new TextEncoder();
 
@@ -16,7 +16,7 @@ const encoder = new TextEncoder();
  * <BR>
  *
  * ```javascript
- * import { stringToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { stringToU8a } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
  *
  * stringToU8a('hello'); // [0x68, 0x65, 0x6c, 0x6c, 0x6f]
  * ```

@@ -14,7 +14,7 @@ import { hexFixLength } from '../hex/fixLength.ts';
  * <BR>
  *
  * ```javascript
- * import { numberToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { numberToHex } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
  *
  * numberToHex(0x1234); // => '0x1234'
  * numberToHex(0x1234, 32); // => 0x00001234

@@ -10,7 +10,7 @@
  * <BR>
  *
  * ```javascript
- * import { arrayChunk } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { arrayChunk } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
  *
  * arrayChunk([1, 2, 3, 4, 5]); // [[1, 2], [3, 4], [5]]
  * ```

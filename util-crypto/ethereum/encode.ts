@@ -1,9 +1,9 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.0.2/util/types.ts';
 
-import { assert, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { assert, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
 
 import { keccakAsU8a } from '../keccak/index.ts';
 import { secp256k1Expand } from '../secp256k1/index.ts';

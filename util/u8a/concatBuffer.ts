@@ -14,7 +14,7 @@ import { u8aToU8a } from './toU8a.ts';
  * <BR>
  *
  * ```javascript
- * import { { u8aConcat } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { { u8aConcat } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
  *
  * u8aConcat(
  *   new Uint8Array([1, 2, 3]),

@@ -12,7 +12,7 @@ import { REGEX_HEX_NOPREFIX, REGEX_HEX_PREFIXED } from '../is/hex.ts';
  * <BR>
  *
  * ```javascript
- * import { hexStripPrefix } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { hexStripPrefix } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
  *
  * console.log('stripped', hexStripPrefix('0x1234')); // => 1234
  * ```

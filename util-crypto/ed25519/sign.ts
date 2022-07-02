@@ -1,13 +1,13 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.0.2/util/types.ts';
 import type { Keypair } from '../types.ts';
 
 import nacl from 'https://esm.sh/tweetnacl@1.0.3';
 
-import { assert, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
-import { ed25519Sign as wasmSign, isReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
+import { assert, u8aToU8a } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
+import { ed25519Sign as wasmSign, isReady } from 'https://deno.land/x/polkadot@0.0.2/wasm-crypto/mod.ts';
 
 /**
  * @name ed25519Sign
@@ -18,7 +18,7 @@ import { ed25519Sign as wasmSign, isReady } from 'https://deno.land/x/polkadot/w
  * <BR>
  *
  * ```javascript
- * import { ed25519Sign } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
+ * import { ed25519Sign } from 'https://deno.land/x/polkadot@0.0.2/util-crypto/mod.ts';
  *
  * ed25519Sign([...], [...]); // => [...]
  * ```

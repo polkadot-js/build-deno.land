@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { stringToU8a, u8aConcat } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { stringToU8a, u8aConcat } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
 
 import { blake2AsU8a } from '../blake2/asU8a.ts';
 

@@ -3,8 +3,8 @@
 
 import { Point } from 'https://esm.sh/@noble/secp256k1@1.6.0';
 
-import { bnToU8a, hasBigInt, u8aConcat } from 'https://deno.land/x/polkadot/util/mod.ts';
-import { isReady, secp256k1Expand as wasm } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
+import { bnToU8a, hasBigInt, u8aConcat } from 'https://deno.land/x/polkadot@0.0.2/util/mod.ts';
+import { isReady, secp256k1Expand as wasm } from 'https://deno.land/x/polkadot@0.0.2/wasm-crypto/mod.ts';
 
 import { BN_BE_256_OPTS } from '../bn.ts';
 
