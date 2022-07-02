@@ -3,20 +3,33 @@
 
 // Simple non-runnable checks to test type definitions in the editor itself
 
-import 'https://deno.land/x/polkadot@0.0.1/api-augment/mod.ts';
+import 'https://deno.land/x/polkadot/api-augment/mod.ts';
 
-import type { HeaderExtended } from 'https://deno.land/x/polkadot@0.0.1/api-derive/types.ts';
-import type { StorageKey } from 'https://deno.land/x/polkadot@0.0.1/types/mod.ts';
-import type { AccountId, Balance, DispatchErrorModule, Event, Header, Index } from 'https://deno.land/x/polkadot@0.0.1/types/interfaces/index.ts';
-import type { AnyTuple, IExtrinsic, IMethod } from 'https://deno.land/x/polkadot@0.0.1/types/types/index.ts';
+import type { HeaderExtended } from 'https://deno.land/x/polkadot/api-derive/types.ts';
+import type { StorageKey } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, Balance, DispatchErrorModule, Event, Header, Index } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { AnyTuple, IExtrinsic, IMethod } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import { ApiPromise } from 'https://deno.land/x/polkadot@0.0.1/api/mod.ts';
-import { createTestPairs, TestKeyringMap } from 'https://deno.land/x/polkadot@0.0.1/keyring/testingPairs.ts';
-import { createTypeUnsafe, TypeRegistry } from 'https://deno.land/x/polkadot@0.0.1/types/create/index.ts';
+import { ApiPromise } from 'https://deno.land/x/polkadot/api/mod.ts';
+import { createTestPairs, TestKeyringMap } from 'https://deno.land/x/polkadot/keyring/testingPairs.ts';
+import { createTypeUnsafe, TypeRegistry } from 'https://deno.land/x/polkadot/types/create/index.ts';
 
 import { SubmittableResult } from './/index.ts';
 
 const registry = new TypeRegistry();
+
+async function calls (api: ApiPromise): Promise<void> {
+  // it allows defaults
+  const testSetId = await api.call.grandpaApi.currentSetId();
+
+  // it allows type overrides (generally shouldn't be used, but available)
+  const testSetIdO = await api.call.grandpaApi.currentSetId<AccountId>();
+
+  // it allows actual params
+  const nonce = await api.call.accountNonceApi.accountNonce('5Test');
+
+  console.log(testSetId.toNumber(), testSetIdO.isAscii, nonce.toNumber());
+}
 
 function consts (api: ApiPromise): void {
   // constants has actual value & metadata
@@ -215,12 +228,13 @@ function types (api: ApiPromise): void {
   const compact = registry.createType('Compact<u32>', 2);
   const f32 = registry.createType('f32');
   const u32 = registry.createType('u32');
+  const raw = registry.createType('Raw');
   // const random = registry.createType('RandomType', 2); // This one should deliberately show a TS error
 
   const gasUnsafe = createTypeUnsafe(registry, 'Gas', [2]);
   const overriddenUnsafe = createTypeUnsafe<Header>(registry, 'Gas', [2]);
 
-  console.log(balance, gas, compact, gasUnsafe, overriddenUnsafe, u32.toNumber(), f32.toNumber(), api.createType('AccountData'));
+  console.log(balance, gas, compact, gasUnsafe, overriddenUnsafe, u32.toNumber(), f32.toNumber(), api.createType('AccountData'), raw.subarray(0, 10));
 }
 
 async function tx (api: ApiPromise, pairs: TestKeyringMap): Promise<void> {
@@ -289,6 +303,7 @@ async function main (): Promise<void> {
 
   // eslint-disable-next-line @typescript-eslint/no-floating-promises
   Promise.all([
+    calls(api),
     consts(api),
     derive(api),
     errors(api),

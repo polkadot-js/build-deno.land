@@ -6,20 +6,10 @@
 
 import type { Definitions } from '../../types/index.ts';
 
+import { rpc } from './rpc.ts';
+
 export default {
-  rpc: {
-    getBlockStats: {
-      description: 'Reexecute the specified `block_hash` and gather statistics while doing so',
-      params: [
-        {
-          name: 'at',
-          type: 'Hash',
-          isHistoric: true
-        }
-      ],
-      type: 'Option<BlockStats>'
-    }
-  },
+  rpc,
   types: {
     BlockStats: {
       witnessLen: 'u64',

@@ -6,9 +6,10 @@
 
 import type { Definitions } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.0.1/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { AllHashers } from './hashers.ts';
+import { runtime } from './runtime.ts';
 import { v9 } from './v9.ts';
 import { v10 } from './v10.ts';
 import { v11 } from './v11.ts';
@@ -20,6 +21,7 @@ export { AllHashers };
 
 export default {
   rpc: {},
+  runtime,
   types: objectSpread({}, v9, v10, v11, v12, v13, v14, {
     // latest mappings
     ErrorMetadataLatest: 'ErrorMetadataV14',
@@ -40,6 +42,9 @@ export default {
     StorageEntryModifierLatest: 'StorageEntryModifierV14',
     StorageEntryTypeLatest: 'StorageEntryTypeV14',
     StorageHasher: 'StorageHasherV14',
+
+    // additional types
+    OpaqueMetadata: 'Bytes',
 
     // the enum containing all the mappings
     MetadataAll: {

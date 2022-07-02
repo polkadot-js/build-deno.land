@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/types-create authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Codec, CodecClass, ICompact, INumber } from 'https://deno.land/x/polkadot@0.0.1/types-codec/types/index.ts';
-import type { ILookup, TypeDef } from 'https://deno.land/x/polkadot@0.0.1/types-create/types/index.ts';
+import type { Codec, CodecClass, ICompact, INumber } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { ILookup, TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 
-declare module 'https://deno.land/x/polkadot@0.0.1/types-codec/types/registry.ts' {
+declare module 'https://deno.land/x/polkadot/types-codec/types/registry.ts' {
   export interface Registry {
     readonly lookup: ILookup;
 

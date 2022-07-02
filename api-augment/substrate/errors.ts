@@ -1,9 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { ApiTypes } from 'https://deno.land/x/polkadot@0.0.1/api-base/types/index.ts';
+import type { ApiTypes } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 
-declare module 'https://deno.land/x/polkadot@0.0.1/api-base/types/errors.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
   export interface AugmentedErrors<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -733,6 +733,10 @@ declare module 'https://deno.land/x/polkadot@0.0.1/api-base/types/errors.ts' {
        * these are removed, either through `unvote` or `reap_vote`.
        **/
       VotesExist: AugmentedError<ApiType>;
+      /**
+       * Voting period too low
+       **/
+      VotingPeriodLow: AugmentedError<ApiType>;
       /**
        * Invalid upper bound.
        **/

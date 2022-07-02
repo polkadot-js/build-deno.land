@@ -1,9 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { PortableRegistry } from 'https://deno.land/x/polkadot@0.0.1/types/mod.ts';
-import type { Bytes, Enum, Option, Struct, Text, Type, Vec, bool, u8 } from 'https://deno.land/x/polkadot@0.0.1/types-codec/mod.ts';
-import type { Si1Field, Si1LookupTypeId, Si1Type, SiLookupTypeId } from 'https://deno.land/x/polkadot@0.0.1/types/interfaces/scaleInfo/index.ts';
+import type { PortableRegistry } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Bytes, Enum, Option, Struct, Text, Type, Vec, bool, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Si1Field, Si1LookupTypeId, Si1Type, SiLookupTypeId } from 'https://deno.land/x/polkadot/types/interfaces/scaleInfo/index.ts';
 
 /** @name ErrorMetadataLatest */
 export interface ErrorMetadataLatest extends ErrorMetadataV14 {}
@@ -274,6 +274,9 @@ export interface ModuleMetadataV9 extends Struct {
   readonly constants: Vec<ModuleConstantMetadataV9>;
   readonly errors: Vec<ErrorMetadataV9>;
 }
+
+/** @name OpaqueMetadata */
+export interface OpaqueMetadata extends Bytes {}
 
 /** @name PalletCallMetadataLatest */
 export interface PalletCallMetadataLatest extends PalletCallMetadataV14 {}

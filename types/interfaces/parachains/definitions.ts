@@ -6,9 +6,10 @@
 
 import type { Definitions } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.0.1/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import hrmpTypes from './hrmp.ts';
+import { runtime } from './runtime.ts';
 import slotTypes from './slots.ts';
 
 // proposeParachain
@@ -77,6 +78,7 @@ const disputeTypes = {
 
 export default {
   rpc: {},
+  runtime,
   types: objectSpread({}, cumulusTypes, disputeTypes, hrmpTypes, proposeTypes, slotTypes, {
     AbridgedCandidateReceipt: {
       parachainIndex: 'ParaId',
@@ -154,6 +156,13 @@ export default {
       paraHead: 'Hash',
       validationCodeHash: 'ValidationCodeHash'
     },
+    CandidateEvent: {
+      _enum: {
+        CandidateBacked: '(CandidateReceipt, HeadData, CoreIndex, GroupIndex)',
+        CandidateIncluded: '(CandidateReceipt, HeadData, CoreIndex, GroupIndex)',
+        CandidateTimedOut: '(CandidateReceipt, HeadData, CoreIndex)'
+      }
+    },
     CandidateHash: 'Hash',
     CandidateInfo: {
       who: 'AccountId',
@@ -197,6 +206,13 @@ export default {
         Parachain: 'Null'
       }
     },
+    CoreState: {
+      _enum: {
+        Occupied: 'OccupiedCore',
+        Scheduled: 'ScheduledCore',
+        Free: 'Null'
+      }
+    },
     DoubleVoteReport: {
       identity: 'ValidatorId',
       first: '(Statement, ValidatorSignature)',
@@ -206,6 +222,11 @@ export default {
     },
     DownwardMessage: 'Bytes',
     GroupIndex: 'u32',
+    GroupRotationInfo: {
+      sessionStartBlock: 'BlockNumber',
+      groupRotationFrequency: 'BlockNumber',
+      now: 'BlockNumber'
+    },
     GlobalValidationSchedule: {
       maxCodeSize: 'u32',
       maxHeadDataSize: 'u32',
@@ -273,6 +294,19 @@ export default {
       horizontalMessages: 'BTreeMap<ParaId, InboundHrmpMessages>'
     },
     MessageQueueChain: 'RelayChainHash',
+    OccupiedCore: {
+      nextUpOnAvailable: 'Option<ScheduledCore>',
+      occupiedSince: 'BlockNumber',
+      timeOutAt: 'BlockNumber',
+      nextUpOnTimeOut: 'Option<ScheduledCore>',
+      availability: 'BitVec',
+      groupResponsible: 'GroupIndex',
+      candidateHash: 'CandidateHash',
+      candidateDescriptor: 'CandidateDescriptor'
+    },
+    OccupiedCoreAssumption: {
+      _enum: ['Included,', 'TimedOut', 'Free']
+    },
     OutboundHrmpMessage: {
       recipient: 'u32',
       data: 'Bytes'
@@ -329,6 +363,12 @@ export default {
       relayParentStorageRoot: 'Hash',
       maxPovSize: 'u32'
     },
+    PvfCheckStatement: {
+      accept: 'bool',
+      subject: 'ValidationCodeHash',
+      sessionIndex: 'SessionIndex',
+      validatorIndex: 'ParaValidatorIndex'
+    },
     QueuedParathread: {
       claim: 'ParathreadEntry',
       coreOffset: 'u32'
@@ -348,14 +388,38 @@ export default {
         WithRetries: 'u32'
       }
     },
+    ScheduledCore: {
+      paraId: 'ParaId',
+      collator: 'Option<CollatorId>'
+    },
     Scheduling: {
       _enum: ['Always', 'Dynamic']
     },
+    ScrapedOnChainVotes: {
+      session: 'SessionIndex',
+      backingValidatorsPerCandidate: 'Vec<(CandidateReceipt, Vec<(ParaValidatorIndex, ValidityAttestation)>)>',
+      disputes: 'MultiDisputeStatementSet'
+    },
     SessionInfo: {
+      activeValidatorIndices: 'Vec<ParaValidatorIndex>',
+      randomSeed: '[u8; 32]',
+      disputePeriod: 'SessionIndex',
       validators: 'Vec<ValidatorId>',
       discoveryKeys: 'Vec<AuthorityDiscoveryId>',
       assignmentKeys: 'Vec<AssignmentId>',
-      validatorGroups: 'Vec<SessionInfoValidatorGroup>',
+      validatorGroups: 'Vec<Vec<ValidatorIndex>>',
+      nCores: 'u32',
+      zerothDelayTrancheWidth: 'u32',
+      relayVrfModuloSamples: 'u32',
+      nDelayTranches: 'u32',
+      noShowSlots: 'u32',
+      neededApprovals: 'u32'
+    },
+    OldV1SessionInfo: {
+      validators: 'Vec<ValidatorId>',
+      discoveryKeys: 'Vec<AuthorityDiscoveryId>',
+      assignmentKeys: 'Vec<AssignmentId>',
+      validatorGroups: 'Vec<Vec<ParaValidatorIndex>>',
       nCores: 'u32',
       zerothDelayTrancheWidth: 'u32',
       relayVrfModuloSamples: 'u32',

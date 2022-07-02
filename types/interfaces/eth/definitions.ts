@@ -8,9 +8,10 @@
 
 import type { DefinitionsTypes } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.0.1/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { rpc } from './rpc.ts';
+import { runtime } from './runtime.ts';
 
 const V0: DefinitionsTypes = {
   BlockV0: {
@@ -256,6 +257,9 @@ const types: DefinitionsTypes = objectSpread({}, V0, V1, V2, {
     logsBloom: 'EthBloom',
     statusCode: 'Option<U64>'
   },
+  // not convinced, however the original commit matches, so... (maybe V3 is incorrect?)
+  EthReceiptV0: 'EthReceipt',
+  EthReceiptV3: 'EthReceipt',
   EthStorageProof: {
     key: 'U256',
     value: 'U256',
@@ -335,4 +339,4 @@ const types: DefinitionsTypes = objectSpread({}, V0, V1, V2, {
   }
 });
 
-export default { rpc, types };
+export default { rpc, runtime, types };

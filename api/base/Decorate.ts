@@ -2,24 +2,27 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
-import type { DeriveCustom } from 'https://deno.land/x/polkadot@0.0.1/api-base/types/index.ts';
-import type { RpcInterface } from 'https://deno.land/x/polkadot@0.0.1/rpc-core/types/index.ts';
-import type { Option, Raw, StorageKey, Text, u64 } from 'https://deno.land/x/polkadot@0.0.1/types/mod.ts';
-import type { Call, Hash, RuntimeVersion } from 'https://deno.land/x/polkadot@0.0.1/types/interfaces/index.ts';
-import type { DecoratedMeta } from 'https://deno.land/x/polkadot@0.0.1/types/metadata/decorate/types.ts';
-import type { StorageEntry } from 'https://deno.land/x/polkadot@0.0.1/types/primitive/types.ts';
-import type { AnyFunction, AnyTuple, CallFunction, Codec, DefinitionRpc, DefinitionRpcSub, DetectCodec, IMethod, IStorageKey, Registry, RegistryError, RegistryTypes } from 'https://deno.land/x/polkadot@0.0.1/types/types/index.ts';
+import type { AugmentedCall, DeriveCustom, QueryableCalls } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { RpcInterface } from 'https://deno.land/x/polkadot/rpc-core/types/index.ts';
+import type { Option, Raw, StorageKey, Text, u64 } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Call, Hash, RuntimeVersion } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { DecoratedMeta } from 'https://deno.land/x/polkadot/types/metadata/decorate/types.ts';
+import type { StorageEntry } from 'https://deno.land/x/polkadot/types/primitive/types.ts';
+import type { AnyFunction, AnyTuple, CallFunction, Codec, DefinitionCallNamed, DefinitionRpc, DefinitionRpcSub, DefinitionsCall, DefinitionsCallEntry, DetectCodec, IMethod, IStorageKey, Registry, RegistryError, RegistryTypes } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { SubmittableExtrinsic } from '../submittable/types.ts';
 import type { ApiDecoration, ApiInterfaceRx, ApiOptions, ApiTypes, AugmentedQuery, DecoratedErrors, DecoratedEvents, DecoratedRpc, DecorateMethod, GenericStorageEntryFunction, PaginationOptions, QueryableConsts, QueryableStorage, QueryableStorageEntry, QueryableStorageEntryAt, QueryableStorageMulti, QueryableStorageMultiArg, SubmittableExtrinsicFunction, SubmittableExtrinsics } from '../types/index.ts';
 import type { VersionedRegistry } from './types.ts';
 
 import { BehaviorSubject, combineLatest, from, map, of, switchMap, tap, toArray } from 'https://esm.sh/rxjs@7.5.5';
 
-import { getAvailableDerives } from 'https://deno.land/x/polkadot@0.0.1/api-derive/mod.ts';
-import { memo, RpcCore } from 'https://deno.land/x/polkadot@0.0.1/rpc-core/mod.ts';
-import { WsProvider } from 'https://deno.land/x/polkadot@0.0.1/rpc-provider/mod.ts';
-import { expandMetadata, Metadata, TypeRegistry, unwrapStorageType } from 'https://deno.land/x/polkadot@0.0.1/types/mod.ts';
-import { arrayChunk, arrayFlatten, assert, assertReturn, BN, compactStripLength, lazyMethod, lazyMethods, logger, nextTick, objectSpread, u8aToHex } from 'https://deno.land/x/polkadot@0.0.1/util/mod.ts';
+import { getAvailableDerives } from 'https://deno.land/x/polkadot/api-derive/mod.ts';
+import { memo, RpcCore } from 'https://deno.land/x/polkadot/rpc-core/mod.ts';
+import { WsProvider } from 'https://deno.land/x/polkadot/rpc-provider/mod.ts';
+import { expandMetadata, Metadata, typeDefinitions, TypeRegistry, unwrapStorageType } from 'https://deno.land/x/polkadot/types/mod.ts';
+import { getSpecRuntime } from 'https://deno.land/x/polkadot/types-known/mod.ts';
+import { arrayChunk, arrayFlatten, assert, assertReturn, BN, compactStripLength, lazyMethod, lazyMethods, logger, nextTick, objectSpread, stringCamelCase, stringUpperFirst, u8aConcatStrict, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { blake2AsHex } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { createSubmittable } from '../submittable/index.ts';
 import { augmentObject } from '../util/augmentObject.ts';
@@ -66,6 +69,8 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
   // HACK Use BN import so decorateDerive works... yes, wtf.
   protected __phantom = new BN(0);
 
+  protected _call: QueryableCalls<ApiType> = {} as QueryableCalls<ApiType>;
+
   protected _consts: QueryableConsts<ApiType> = {} as QueryableConsts<ApiType>;
 
   protected _derive?: ReturnType<Decorate<ApiType>['_decorateDerive']>;
@@ -93,6 +98,8 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
   protected _rpc?: DecoratedRpc<ApiType, RpcInterface>;
 
   protected _rpcCore: RpcCore & RpcInterface;
+
+  protected _runtimeMap: Record<HexString, string> = {};
 
   protected _runtimeChain?: Text;
 
@@ -135,7 +142,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
    * <BR>
    *
    * ```javascript
-   * import Api from 'https://deno.land/x/polkadot@0.0.1/api/promise/index.ts';
+   * import Api from 'https://deno.land/x/polkadot/api/promise/index.ts';
    *
    * const api = new Api().isReady();
    *
@@ -206,6 +213,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
 
   protected _emptyDecorated (registry: Registry, blockHash?: Uint8Array): ApiDecoration<ApiType> {
     return {
+      call: {},
       consts: {},
       errors: {},
       events: {},
@@ -227,6 +235,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
       registry.decoratedMeta = expandMetadata(registry.registry, registry.metadata);
     }
 
+    const runtime = this._decorateCalls(registry, this._decorateMethod, blockHash);
     const storage = this._decorateStorage(registry.decoratedMeta, this._decorateMethod, blockHash);
     const storageRx = this._decorateStorage(registry.decoratedMeta, this._rxDecorateMethod, blockHash);
 
@@ -235,6 +244,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
     augmentObject('events', registry.decoratedMeta.events, decoratedApi.events, fromEmpty);
     augmentObject('query', storage, decoratedApi.query, fromEmpty);
     augmentObject('query', storageRx, decoratedApi.rx.query, fromEmpty);
+    augmentObject('call', runtime, decoratedApi.call, fromEmpty);
 
     decoratedApi.findCall = (callIndex: Uint8Array | string): CallFunction =>
       findCall(registry.registry, callIndex);
@@ -259,6 +269,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
 
     const { decoratedApi, decoratedMeta } = this._createDecorated(registry, fromEmpty, registry.decoratedApi);
 
+    this._call = decoratedApi.call;
     this._consts = decoratedApi.consts;
     this._errors = decoratedApi.errors;
     this._events = decoratedApi.events;
@@ -316,6 +327,28 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
       this._decorateRpc(this._rpcCore, this._rxDecorateMethod, this._rx.rpc);
     }
 
+    // extract the actual sections from the methods (this is useful when
+    // we try and create mappings to runtime names via a hash mapping)
+    const sectionMap: Record<string, boolean> = {};
+
+    for (let i = 0; i < methods.length; i++) {
+      const [section] = methods[i].split('_');
+
+      sectionMap[section] = true;
+    }
+
+    // convert the actual section names into an easy name lookup
+    const sections = Object.keys(sectionMap);
+
+    for (let i = 0; i < sections.length; i++) {
+      const nameA = stringUpperFirst(sections[i]);
+      const nameB = `${nameA}Api`;
+
+      this._runtimeMap[blake2AsHex(nameA, 64)] = nameA;
+      this._runtimeMap[blake2AsHex(nameB, 64)] = nameB;
+    }
+
+    // finally we filter the actual methods to expose
     this._filterRpcMethods(methods);
   }
 
@@ -402,6 +435,151 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
     }
 
     return out as DecoratedRpc<ApiType, RpcInterface>;
+  }
+
+  // add all definition entries
+  protected _addRuntimeDef (result: DefinitionsCall, additional?: DefinitionsCall): void {
+    if (!additional) {
+      return;
+    }
+
+    const entries = Object.entries(additional);
+
+    for (let j = 0; j < entries.length; j++) {
+      const [key, defs] = entries[j];
+
+      if (result[key]) {
+        // we have this one already, step through for new versions or
+        // new methods and add those as applicable
+        for (let k = 0; k < defs.length; k++) {
+          const def = defs[k];
+          const prev = result[key].find(({ version }) => def.version === version);
+
+          if (prev) {
+            // interleave the new methods with the old - last definition wins
+            objectSpread(prev.methods, def.methods);
+          } else {
+            // we don't have this specific version, add it
+            result[key].push(def);
+          }
+        }
+      } else {
+        // we don't have this runtime definition, add it as-is
+        result[key] = defs;
+      }
+    }
+  }
+
+  // extract all runtime definitions
+  protected _getRuntimeDefs (registry: Registry, specName: Text, chain: Text | string = ''): [string, DefinitionsCallEntry[]][] {
+    const result: DefinitionsCall = {};
+    const defValues = Object.values(typeDefinitions);
+
+    // options > chain/spec > built-in, apply in reverse order with
+    // methods overriding previous definitions (or interleave missing)
+    for (let i = 0; i < defValues.length; i++) {
+      this._addRuntimeDef(result, defValues[i].runtime);
+    }
+
+    this._addRuntimeDef(result, getSpecRuntime(registry, chain, specName));
+    this._addRuntimeDef(result, this._options.runtime);
+
+    return Object.entries(result);
+  }
+
+  // pre-metadata decoration
+  protected _decorateCalls<ApiType extends ApiTypes> ({ registry, runtimeVersion: { apis, specName } }: VersionedRegistry<ApiType>, decorateMethod: DecorateMethod<ApiType>, blockHash?: Uint8Array | string | null): QueryableCalls<ApiType> {
+    const result = {} as QueryableCalls<ApiType>;
+    const named: Record<string, Record<string, DefinitionCallNamed>> = {};
+    const hashes: Record<HexString, boolean> = {};
+    const sections = this._getRuntimeDefs(registry, specName, this._runtimeChain);
+    const older: string[] = [];
+
+    for (let i = 0; i < sections.length; i++) {
+      const [_section, secs] = sections[i];
+      const sectionHash = blake2AsHex(_section, 64);
+      const rtApi = apis.find(([a]) => a.eq(sectionHash));
+
+      hashes[sectionHash] = true;
+
+      if (rtApi) {
+        const all = secs.map(({ version }) => version).sort();
+        const sec = secs.find(({ version }) => rtApi[1].eq(version));
+
+        if (sec) {
+          const section = stringCamelCase(_section);
+          const methods = Object.entries(sec.methods);
+
+          if (methods.length) {
+            if (!named[section]) {
+              named[section] = {};
+            }
+
+            for (let m = 0; m < methods.length; m++) {
+              const [_method, def] = methods[m];
+              const method = stringCamelCase(_method);
+
+              named[section][method] = objectSpread({ method, name: `${_section}_${_method}`, section, sectionHash }, def);
+            }
+          }
+        } else {
+          older.push(`${_section}/${rtApi[1].toString()} (${all.join('/')} known)`);
+        }
+      }
+    }
+
+    // find the runtimes that we don't have hashes for
+    const notFound = apis
+      .map(([a, v]): [HexString, string] => [a.toHex(), v.toString()])
+      .filter(([a]) => !hashes[a])
+      .map(([a, v]) => `${this._runtimeMap[a] || a}/${v}`);
+
+    if (older.length) {
+      l.warn(`Not decorating runtime apis without matching versions: ${older.join(', ')}`);
+    }
+
+    if (notFound.length) {
+      l.warn(`Not decorating unknown runtime apis: ${notFound.join(', ')}`);
+    }
+
+    const stateCall = blockHash
+      ? (name: string, bytes: Uint8Array) => this._rpcCore.state.call(name, bytes, blockHash)
+      : (name: string, bytes: Uint8Array) => this._rpcCore.state.call(name, bytes);
+
+    const lazySection = (section: string) =>
+      lazyMethods({}, Object.keys(named[section]), (method: string) =>
+        this._decorateCall(registry, named[section][method], stateCall, decorateMethod)
+      );
+
+    const modules = Object.keys(named);
+
+    for (let i = 0; i < modules.length; i++) {
+      lazyMethod(result, modules[i], lazySection);
+    }
+
+    return result;
+  }
+
+  protected _decorateCall<ApiType extends ApiTypes> (registry: Registry, def: DefinitionCallNamed, stateCall: (method: string, bytes: Uint8Array) => Observable<Codec>, decorateMethod: DecorateMethod<ApiType>): AugmentedCall<ApiType> {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const decorated = decorateMethod((...args: unknown[]): Observable<Codec> => {
+      if (args.length !== def.params.length) {
+        throw new Error(`${def.name}:: Expected ${def.params.length} arguments, found ${args.length}`);
+      }
+
+      const bytes = registry.createType('Raw', u8aConcatStrict(
+        args.map((a, i) => registry.createTypeUnsafe(def.params[i].type, [a]).toU8a())
+      ));
+
+      return stateCall(def.name, bytes).pipe(
+        map((r) => registry.createTypeUnsafe(def.type, [r]))
+      );
+    });
+
+    (decorated as AugmentedCall<ApiType>).meta = def;
+
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    return decorated;
   }
 
   // only be called if supportMulti is true

@@ -1,15 +1,13 @@
 // Copyright 2017-2022 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { RpcInterface } from 'https://deno.land/x/polkadot@0.0.1/rpc-core/types/index.ts';
-import type { ProviderInterface } from 'https://deno.land/x/polkadot@0.0.1/rpc-provider/types.ts';
-import type { Text } from 'https://deno.land/x/polkadot@0.0.1/types/mod.ts';
-import type { Hash, RuntimeVersion } from 'https://deno.land/x/polkadot@0.0.1/types/interfaces/index.ts';
-import type { Metadata } from 'https://deno.land/x/polkadot@0.0.1/types/metadata/index.ts';
-import type { CallFunction, RegistryError } from 'https://deno.land/x/polkadot@0.0.1/types/types/index.ts';
-import type { ApiDecoration, ApiInterfaceRx, ApiTypes, DecoratedErrors, DecoratedEvents, DecoratedRpc, QueryableConsts, QueryableStorage, QueryableStorageMulti, SubmittableExtrinsics } from '../types/index.ts';
-
-import { assertReturn } from 'https://deno.land/x/polkadot@0.0.1/util/mod.ts';
+import type { RpcInterface } from 'https://deno.land/x/polkadot/rpc-core/types/index.ts';
+import type { ProviderInterface } from 'https://deno.land/x/polkadot/rpc-provider/types.ts';
+import type { Text } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Hash, RuntimeVersion } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Metadata } from 'https://deno.land/x/polkadot/types/metadata/index.ts';
+import type { CallFunction, RegistryError } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { ApiDecoration, ApiInterfaceRx, ApiTypes, DecoratedErrors, DecoratedEvents, DecoratedRpc, QueryableCalls, QueryableConsts, QueryableStorage, QueryableStorageMulti, SubmittableExtrinsics } from '../types/index.ts';
 
 import { packageInfo } from '../packageInfo.ts';
 import { findCall, findError } from './find.ts';
@@ -21,10 +19,21 @@ interface PkgJson {
 }
 
 function assertResult<T> (value: T | undefined): T {
-  return assertReturn(value, 'Api needs to be initialized before using, listen on \'ready\'');
+  if (value === undefined) {
+    throw new Error("Api interfaces needs to be initialized before using, wait for 'isReady'");
+  }
+
+  return value;
 }
 
 export abstract class Getters<ApiType extends ApiTypes> extends Init<ApiType> implements ApiDecoration<ApiType> {
+  /**
+   * @description Runtime call interfaces (currently untyped, only decorated via API options)
+   */
+  public get call (): QueryableCalls<ApiType> {
+    return assertResult(this._call);
+  }
+
   /**
    * @description Contains the parameter types (constants) of all modules.
    *

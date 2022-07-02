@@ -6,32 +6,12 @@
 
 import type { Definitions } from '../../types/index.ts';
 
-const QUERY_PARAMS = [
-  {
-    name: 'extrinsic',
-    type: 'Bytes'
-  },
-  {
-    name: 'at',
-    type: 'BlockHash',
-    isHistoric: true,
-    isOptional: true
-  }
-];
+import { rpc } from './rpc.ts';
+import { runtime } from './runtime.ts';
 
 export default {
-  rpc: {
-    queryInfo: {
-      description: 'Retrieves the fee information for an encoded extrinsic',
-      params: QUERY_PARAMS,
-      type: 'RuntimeDispatchInfo'
-    },
-    queryFeeDetails: {
-      description: 'Query the detailed fee of a given encoded extrinsic',
-      params: QUERY_PARAMS,
-      type: 'FeeDetails'
-    }
-  },
+  rpc,
+  runtime,
   types: {
     FeeDetails: {
       inclusionFee: 'Option<InclusionFee>'

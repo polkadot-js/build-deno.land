@@ -6,41 +6,12 @@
 
 import type { Definitions } from '../../types/index.ts';
 
+import { rpc } from './rpc.ts';
+import { runtime } from './runtime.ts';
+
 export default {
-  rpc: {
-    localStorageSet: {
-      description: 'Set offchain local storage under given key and prefix',
-      params: [
-        {
-          name: 'kind',
-          type: 'StorageKind'
-        },
-        {
-          name: 'key',
-          type: 'Bytes'
-        },
-        {
-          name: 'value',
-          type: 'Bytes'
-        }
-      ],
-      type: 'Null'
-    },
-    localStorageGet: {
-      description: 'Get offchain local storage under given key and prefix',
-      params: [
-        {
-          name: 'kind',
-          type: 'StorageKind'
-        },
-        {
-          name: 'key',
-          type: 'Bytes'
-        }
-      ],
-      type: 'Option<Bytes>'
-    }
-  },
+  rpc,
+  runtime,
   types: {
     StorageKind: {
       _enum: {

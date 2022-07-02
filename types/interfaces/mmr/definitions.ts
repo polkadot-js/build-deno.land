@@ -6,51 +6,38 @@
 
 import type { Definitions } from '../../types/index.ts';
 
+import { rpc } from './rpc.ts';
+import { runtime } from './runtime.ts';
+
 export default {
-  rpc: {
-    generateBatchProof: {
-      description: 'Generate MMR proof for the given leaf indices.',
-      params: [
-        {
-          name: 'leafIndices',
-          type: 'Vec<u64>'
-        },
-        {
-          name: 'at',
-          type: 'BlockHash',
-          isHistoric: true,
-          isOptional: true
-        }
-      ],
-      type: 'MmrLeafProof'
-    },
-    generateProof: {
-      description: 'Generate MMR proof for given leaf index.',
-      params: [
-        {
-          name: 'leafIndex',
-          type: 'u64'
-        },
-        {
-          name: 'at',
-          type: 'BlockHash',
-          isHistoric: true,
-          isOptional: true
-        }
-      ],
-      type: 'MmrLeafBatchProof'
-    }
-  },
+  rpc,
+  runtime,
   types: {
+    MmrBatchProof: {
+      leafIndices: 'Vec<MmrLeafIndex>',
+      leafCount: 'MmrNodeIndex',
+      items: 'Vec<Hash>'
+    },
+    MmrEncodableOpaqueLeaf: 'Bytes',
+    MmrError: {
+      _enum: ['Push', 'GetRoot', 'Commit', 'GenerateProof', 'Verify', 'LeafNotFound', ' PalletNotIncluded', 'InvalidLeafIndex']
+    },
     MmrLeafBatchProof: {
       blockHash: 'BlockHash',
       leaves: 'Bytes',
       proof: 'Bytes'
     },
+    MmrLeafIndex: 'u64',
     MmrLeafProof: {
       blockHash: 'BlockHash',
       leaf: 'Bytes',
       proof: 'Bytes'
+    },
+    MmrNodeIndex: 'u64',
+    MmrProof: {
+      leafIndex: 'MmrLeafIndex',
+      leafCount: 'MmrNodeIndex',
+      items: 'Vec<Hash>'
     }
   }
 } as Definitions;

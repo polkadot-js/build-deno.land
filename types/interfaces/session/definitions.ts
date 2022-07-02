@@ -6,7 +6,9 @@
 
 import type { Definitions } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.0.1/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+
+import { runtime } from './runtime.ts';
 
 // The runtime definition of SessionKeys are passed as a Trait to session
 // Defined in `node/runtime/src/lib.rs` as follow
@@ -39,12 +41,13 @@ const keyTypes = {
 
 export default {
   rpc: {},
+  runtime,
   types: objectSpread({}, keyTypes, {
     FullIdentification: 'Exposure',
     IdentificationTuple: '(ValidatorId, FullIdentification)',
     MembershipProof: {
       session: 'SessionIndex',
-      trieNodes: 'Vec<Vec<u8>>',
+      trieNodes: 'Vec<Bytes>',
       validatorCount: 'ValidatorCount'
     },
     SessionIndex: 'u32',

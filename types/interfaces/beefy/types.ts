@@ -1,10 +1,18 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Bytes, Option, Struct, U8aFixed, Vec, u32, u64 } from 'https://deno.land/x/polkadot@0.0.1/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.0.1/types-codec/types/index.ts';
-import type { EcdsaSignature } from 'https://deno.land/x/polkadot@0.0.1/types/interfaces/extrinsics/index.ts';
-import type { BlockNumber, H256 } from 'https://deno.land/x/polkadot@0.0.1/types/interfaces/runtime/index.ts';
+import type { Bytes, Option, Struct, U8aFixed, Vec, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { AuthorityId } from 'https://deno.land/x/polkadot/types/interfaces/consensus/index.ts';
+import type { EcdsaSignature } from 'https://deno.land/x/polkadot/types/interfaces/extrinsics/index.ts';
+import type { BlockNumber, H256 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+
+/** @name BeefyAuthoritySet */
+export interface BeefyAuthoritySet extends Struct {
+  readonly id: u64;
+  readonly len: u32;
+  readonly root: H256;
+}
 
 /** @name BeefyCommitment */
 export interface BeefyCommitment extends Struct {
@@ -37,6 +45,12 @@ export interface BeefySignedCommitment extends Struct {
 
 /** @name MmrRootHash */
 export interface MmrRootHash extends H256 {}
+
+/** @name ValidatorSet */
+export interface ValidatorSet extends Struct {
+  readonly validators: Vec<AuthorityId>;
+  readonly id: ValidatorSetId;
+}
 
 /** @name ValidatorSetId */
 export interface ValidatorSetId extends u64 {}

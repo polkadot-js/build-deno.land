@@ -6,25 +6,18 @@
 
 import type { Definitions } from '../../types/index.ts';
 
+import { rpc } from './rpc.ts';
+import { runtime } from './runtime.ts';
+
 export default {
-  rpc: {
-    subscribeJustifications: {
-      description: 'Returns the block most recently finalized by BEEFY, alongside side its justification.',
-      params: [],
-      pubsub: [
-        'justifications',
-        'subscribeJustifications',
-        'unsubscribeJustifications'
-      ],
-      type: 'BeefySignedCommitment'
-    },
-    getFinalizedHead: {
-      description: 'Returns hash of the latest BEEFY finalized block as seen by this client.',
-      params: [],
-      type: 'H256'
-    }
-  },
+  rpc,
+  runtime,
   types: {
+    BeefyAuthoritySet: {
+      id: 'u64',
+      len: 'u32',
+      root: 'H256'
+    },
     BeefyCommitment: {
       payload: 'BeefyPayload',
       blockNumber: 'BlockNumber',
@@ -43,6 +36,10 @@ export default {
     BeefyPayload: 'Vec<(BeefyPayloadId, Bytes)>',
     BeefyPayloadId: '[u8;2]',
     MmrRootHash: 'H256',
-    ValidatorSetId: 'u64'
+    ValidatorSetId: 'u64',
+    ValidatorSet: {
+      validators: 'Vec<AuthorityId>',
+      id: 'ValidatorSetId'
+    }
   }
 } as Definitions;

@@ -1,9 +1,9 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AccountId, Balance, EraIndex, RewardPoint } from 'https://deno.land/x/polkadot@0.0.1/types/interfaces/index.ts';
-import type { PalletStakingExposure, PalletStakingRewardDestination, PalletStakingStakingLedger, PalletStakingValidatorPrefs } from 'https://deno.land/x/polkadot@0.0.1/types/lookup.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.0.1/util/mod.ts';
+import type { AccountId, Balance, EraIndex, RewardPoint } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletStakingExposure, PalletStakingRewardDestination, PalletStakingStakingLedger, PalletStakingValidatorPrefs } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { DeriveSessionIndexes } from '../session/types.ts';
 
 export type DeriveEraValPoints = Record<string, RewardPoint>;

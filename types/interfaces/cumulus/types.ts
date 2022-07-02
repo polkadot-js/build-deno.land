@@ -1,8 +1,28 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Struct, U8aFixed, u32, u64 } from 'https://deno.land/x/polkadot@0.0.1/types-codec/mod.ts';
-import type { Weight } from 'https://deno.land/x/polkadot@0.0.1/types/interfaces/runtime/index.ts';
+import type { Option, Struct, U8aFixed, Vec, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { HeadData, OutboundHrmpMessage, RelayBlockNumber, UpwardMessage, ValidationCode } from 'https://deno.land/x/polkadot/types/interfaces/parachains/index.ts';
+import type { Weight } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+
+/** @name CollationInfo */
+export interface CollationInfo extends Struct {
+  readonly upwardMessages: Vec<UpwardMessage>;
+  readonly horizontalMessages: Vec<OutboundHrmpMessage>;
+  readonly newValidationCode: Option<ValidationCode>;
+  readonly processedDownwardMessages: u32;
+  readonly hrmpWatermark: RelayBlockNumber;
+  readonly headData: HeadData;
+}
+
+/** @name CollationInfoV1 */
+export interface CollationInfoV1 extends Struct {
+  readonly upwardMessages: Vec<UpwardMessage>;
+  readonly horizontalMessages: Vec<OutboundHrmpMessage>;
+  readonly newValidationCode: Option<ValidationCode>;
+  readonly processedDownwardMessages: u32;
+  readonly hrmpWatermark: RelayBlockNumber;
+}
 
 /** @name ConfigData */
 export interface ConfigData extends Struct {

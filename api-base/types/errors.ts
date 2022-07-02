@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/api-base authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { IsError } from 'https://deno.land/x/polkadot@0.0.1/types/metadata/decorate/types.ts';
+import type { IsError } from 'https://deno.land/x/polkadot/types/metadata/decorate/types.ts';
 import type { ApiTypes } from './base.ts';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-empty-interface

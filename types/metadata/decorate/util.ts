@@ -1,9 +1,9 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Text } from 'https://deno.land/x/polkadot@0.0.1/types-codec/mod.ts';
+import type { Text } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 
-import { stringCamelCase } from 'https://deno.land/x/polkadot@0.0.1/util/mod.ts';
+import { stringCamelCase } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 type Name = string | Text;
 

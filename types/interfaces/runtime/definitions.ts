@@ -6,7 +6,9 @@
 
 import type { Definitions } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.0.1/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+
+import { runtime } from './runtime.ts';
 
 const numberTypes = {
   Fixed64: 'Int<64, Fixed64>',
@@ -47,6 +49,7 @@ export const knownOrigins: Record<string, string> = {
 
 export default {
   rpc: {},
+  runtime,
   types: objectSpread({}, numberTypes, {
     AccountId: 'AccountId32',
     AccountId20: 'GenericEthereumAccountId',
@@ -178,11 +181,21 @@ export default {
       justifications: 'Option<Justifications>'
     },
     Slot: 'u64',
+    SlotDuration: 'u64',
     StorageData: 'Bytes',
+    StorageInfo: {
+      palletName: 'Bytes',
+      storage_name: 'Bytes',
+      prefix: 'Bytes',
+      maxValues: 'Option<u32>',
+      maxSize: 'Option<u32>'
+    },
     StorageProof: {
       trieNodes: 'Vec<Bytes>'
     },
     TransactionPriority: 'u64',
+    TransactionLongevity: 'u64',
+    TransactionTag: 'Bytes',
     TransactionInfo: {
       _alias: {
         dataSize: 'size'

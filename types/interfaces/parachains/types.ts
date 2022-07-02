@@ -1,11 +1,12 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { BTreeMap, BitVec, Bytes, Enum, Option, Struct, U8aFixed, Vec, bool, u32 } from 'https://deno.land/x/polkadot@0.0.1/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.0.1/types-codec/types/index.ts';
-import type { Signature } from 'https://deno.land/x/polkadot@0.0.1/types/interfaces/extrinsics/index.ts';
-import type { AccountId, Balance, BalanceOf, BlockNumber, H256, Hash, Header, StorageProof, ValidatorId, Weight } from 'https://deno.land/x/polkadot@0.0.1/types/interfaces/runtime/index.ts';
-import type { MembershipProof, SessionIndex } from 'https://deno.land/x/polkadot@0.0.1/types/interfaces/session/index.ts';
+import type { BTreeMap, BitVec, Bytes, Enum, Option, Struct, U8aFixed, Vec, bool, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Signature } from 'https://deno.land/x/polkadot/types/interfaces/extrinsics/index.ts';
+import type { AccountId, Balance, BalanceOf, BlockNumber, H256, Hash, Header, StorageProof, ValidatorId, Weight } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { MembershipProof, SessionIndex } from 'https://deno.land/x/polkadot/types/interfaces/session/index.ts';
+import type { ValidatorIndex } from 'https://deno.land/x/polkadot/types/interfaces/staking/index.ts';
 
 /** @name AbridgedCandidateReceipt */
 export interface AbridgedCandidateReceipt extends Struct {
@@ -121,6 +122,17 @@ export interface CandidateDescriptor extends Struct {
   readonly validationCodeHash: ValidationCodeHash;
 }
 
+/** @name CandidateEvent */
+export interface CandidateEvent extends Enum {
+  readonly isCandidateBacked: boolean;
+  readonly asCandidateBacked: ITuple<[CandidateReceipt, HeadData, CoreIndex, GroupIndex]>;
+  readonly isCandidateIncluded: boolean;
+  readonly asCandidateIncluded: ITuple<[CandidateReceipt, HeadData, CoreIndex, GroupIndex]>;
+  readonly isCandidateTimedOut: boolean;
+  readonly asCandidateTimedOut: ITuple<[CandidateReceipt, HeadData, CoreIndex]>;
+  readonly type: 'CandidateBacked' | 'CandidateIncluded' | 'CandidateTimedOut';
+}
+
 /** @name CandidateHash */
 export interface CandidateHash extends Hash {}
 
@@ -177,6 +189,16 @@ export interface CoreOccupied extends Enum {
   readonly asParathread: ParathreadEntry;
   readonly isParachain: boolean;
   readonly type: 'Parathread' | 'Parachain';
+}
+
+/** @name CoreState */
+export interface CoreState extends Enum {
+  readonly isOccupied: boolean;
+  readonly asOccupied: OccupiedCore;
+  readonly isScheduled: boolean;
+  readonly asScheduled: ScheduledCore;
+  readonly isFree: boolean;
+  readonly type: 'Occupied' | 'Scheduled' | 'Free';
 }
 
 /** @name DisputeLocation */
@@ -252,6 +274,13 @@ export interface GlobalValidationSchedule extends Struct {
 
 /** @name GroupIndex */
 export interface GroupIndex extends u32 {}
+
+/** @name GroupRotationInfo */
+export interface GroupRotationInfo extends Struct {
+  readonly sessionStartBlock: BlockNumber;
+  readonly groupRotationFrequency: BlockNumber;
+  readonly now: BlockNumber;
+}
 
 /** @name HeadData */
 export interface HeadData extends Bytes {}
@@ -413,6 +442,40 @@ export interface NewBidder extends Struct {
   readonly sub: SubId;
 }
 
+/** @name OccupiedCore */
+export interface OccupiedCore extends Struct {
+  readonly nextUpOnAvailable: Option<ScheduledCore>;
+  readonly occupiedSince: BlockNumber;
+  readonly timeOutAt: BlockNumber;
+  readonly nextUpOnTimeOut: Option<ScheduledCore>;
+  readonly availability: BitVec;
+  readonly groupResponsible: GroupIndex;
+  readonly candidateHash: CandidateHash;
+  readonly candidateDescriptor: CandidateDescriptor;
+}
+
+/** @name OccupiedCoreAssumption */
+export interface OccupiedCoreAssumption extends Enum {
+  readonly isIncluded: boolean;
+  readonly isTimedOut: boolean;
+  readonly isFree: boolean;
+  readonly type: 'Included' | 'TimedOut' | 'Free';
+}
+
+/** @name OldV1SessionInfo */
+export interface OldV1SessionInfo extends Struct {
+  readonly validators: Vec<ValidatorId>;
+  readonly discoveryKeys: Vec<AuthorityDiscoveryId>;
+  readonly assignmentKeys: Vec<AssignmentId>;
+  readonly validatorGroups: Vec<Vec<ParaValidatorIndex>>;
+  readonly nCores: u32;
+  readonly zerothDelayTrancheWidth: u32;
+  readonly relayVrfModuloSamples: u32;
+  readonly nDelayTranches: u32;
+  readonly noShowSlots: u32;
+  readonly neededApprovals: u32;
+}
+
 /** @name OutboundHrmpMessage */
 export interface OutboundHrmpMessage extends Struct {
   readonly recipient: u32;
@@ -520,6 +583,14 @@ export interface PersistedValidationData extends Struct {
   readonly maxPovSize: u32;
 }
 
+/** @name PvfCheckStatement */
+export interface PvfCheckStatement extends Struct {
+  readonly accept: bool;
+  readonly subject: ValidationCodeHash;
+  readonly sessionIndex: SessionIndex;
+  readonly validatorIndex: ParaValidatorIndex;
+}
+
 /** @name QueuedParathread */
 export interface QueuedParathread extends Struct {
   readonly claim: ParathreadEntry;
@@ -561,11 +632,24 @@ export interface Retriable extends Enum {
   readonly type: 'Never' | 'WithRetries';
 }
 
+/** @name ScheduledCore */
+export interface ScheduledCore extends Struct {
+  readonly paraId: ParaId;
+  readonly collator: Option<CollatorId>;
+}
+
 /** @name Scheduling */
 export interface Scheduling extends Enum {
   readonly isAlways: boolean;
   readonly isDynamic: boolean;
   readonly type: 'Always' | 'Dynamic';
+}
+
+/** @name ScrapedOnChainVotes */
+export interface ScrapedOnChainVotes extends Struct {
+  readonly session: SessionIndex;
+  readonly backingValidatorsPerCandidate: Vec<ITuple<[CandidateReceipt, Vec<ITuple<[ParaValidatorIndex, ValidityAttestation]>>]>>;
+  readonly disputes: MultiDisputeStatementSet;
 }
 
 /** @name ServiceQuality */
@@ -577,10 +661,13 @@ export interface ServiceQuality extends Enum {
 
 /** @name SessionInfo */
 export interface SessionInfo extends Struct {
+  readonly activeValidatorIndices: Vec<ParaValidatorIndex>;
+  readonly randomSeed: U8aFixed;
+  readonly disputePeriod: SessionIndex;
   readonly validators: Vec<ValidatorId>;
   readonly discoveryKeys: Vec<AuthorityDiscoveryId>;
   readonly assignmentKeys: Vec<AssignmentId>;
-  readonly validatorGroups: Vec<SessionInfoValidatorGroup>;
+  readonly validatorGroups: Vec<Vec<ValidatorIndex>>;
   readonly nCores: u32;
   readonly zerothDelayTrancheWidth: u32;
   readonly relayVrfModuloSamples: u32;

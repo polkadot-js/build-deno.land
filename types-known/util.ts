@@ -1,13 +1,13 @@
 // Copyright 2017-2022 @polkadot/types-known authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ExtDef } from 'https://deno.land/x/polkadot@0.0.1/types/extrinsic/signedExtensions/types.ts';
-import type { Hash } from 'https://deno.land/x/polkadot@0.0.1/types/interfaces/index.ts';
-import type { ChainUpgradeVersion, CodecHasher, DefinitionRpc, DefinitionRpcSub, OverrideModuleType, OverrideVersionedType, Registry, RegistryTypes } from 'https://deno.land/x/polkadot@0.0.1/types/types/index.ts';
-import type { Text } from 'https://deno.land/x/polkadot@0.0.1/types-codec/mod.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.0.1/util/mod.ts';
+import type { ExtDef } from 'https://deno.land/x/polkadot/types/extrinsic/signedExtensions/types.ts';
+import type { Hash } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { ChainUpgradeVersion, CodecHasher, DefinitionRpc, DefinitionRpcSub, DefinitionsCall, OverrideModuleType, OverrideVersionedType, Registry, RegistryTypes } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { Text } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 
-import { bnToBn, isNull, isUndefined, objectSpread } from 'https://deno.land/x/polkadot@0.0.1/util/mod.ts';
+import { bnToBn, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import typesChain from './chain/index.ts';
 import typesSpec from './spec/index.ts';
@@ -22,8 +22,8 @@ function withNames <T> (chainName: Text | string, specName: Text | string, fn: (
 function filterVersions (versions: OverrideVersionedType[] = [], specVersion: number): RegistryTypes {
   return versions
     .filter(({ minmax: [min, max] }) =>
-      (isUndefined(min) || isNull(min) || specVersion >= min) &&
-      (isUndefined(max) || isNull(max) || specVersion <= max)
+      (min === undefined || min === null || specVersion >= min) &&
+      (max === undefined || max === null || specVersion <= max)
     )
     .reduce((result: RegistryTypes, { types }): RegistryTypes =>
       objectSpread(result, types), {}
@@ -82,6 +82,18 @@ export function getSpecRpc ({ knownTypes }: Registry, chainName: Text | string, 
     objectSpread({},
       knownTypes.typesBundle?.spec?.[s]?.rpc,
       knownTypes.typesBundle?.chain?.[c]?.rpc
+    )
+  );
+}
+
+/**
+ * @description Based on the chain and runtimeVersion, get the applicable runtime definitions (ready for registration)
+ */
+export function getSpecRuntime ({ knownTypes }: Registry, chainName: Text | string, specName: Text | string): DefinitionsCall {
+  return withNames(chainName, specName, (c, s) =>
+    objectSpread({},
+      knownTypes.typesBundle?.spec?.[s]?.runtime,
+      knownTypes.typesBundle?.chain?.[c]?.runtime
     )
   );
 }

@@ -6,10 +6,12 @@
 
 import type { Definitions } from '../../types/index.ts';
 
-import rpc from './rpc.ts';
+import { rpc } from './rpc.ts';
+import { runtime } from './runtime.ts';
 
 export default {
   rpc,
+  runtime,
   types: {
     AliveContractInfo: {
       trieId: 'TrieId',

@@ -1,6 +1,8 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+
 export type DefinitionTypeType = string;
 
 export type DefinitionTypeEnum = { _fallback?: DefinitionTypeType } & ({ _enum: DefinitionTypeType[] } | { _enum: Record<string, DefinitionTypeType | null> });
@@ -42,15 +44,42 @@ export interface DefinitionRpcExt extends DefinitionRpc {
   section: string;
 }
 
+export interface DefinitionCallParam {
+  name: string;
+  type: DefinitionTypeType;
+}
+
+export interface DefinitionCall {
+  description: string;
+  params: DefinitionCallParam[];
+  type: DefinitionTypeType;
+}
+
 export interface DefinitionRpcSub extends DefinitionRpc {
   pubsub: [string, string, string];
 }
 
 export type DefinitionsRpc = Record<string, DefinitionRpc | DefinitionRpcSub>;
 
+export interface DefinitionsCallEntry {
+  methods: Record<string, DefinitionCall>;
+  version: number;
+}
+
+export type DefinitionsCall = Record<string, DefinitionsCallEntry[]>;
+
+export interface DefinitionCallNamed extends DefinitionCall {
+  method: string;
+  name: string;
+  section: string;
+  sectionHash: HexString;
+  version: number;
+}
+
 export type DefinitionsTypes = Record<string, DefinitionType>;
 
 export interface Definitions {
-  rpc: DefinitionsRpc;
+  rpc?: DefinitionsRpc;
+  runtime?: DefinitionsCall;
   types: DefinitionsTypes;
 }
