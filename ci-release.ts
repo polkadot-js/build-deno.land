@@ -19,6 +19,9 @@ type GitArgs =
 // use .. notation to import @polkadot packages
 const IS_DOT_PATH = false;
 
+// flag set to tru if we are in a CI environment
+const IS_CI = !!Deno.env.get('GITHUB_REPOSITORY');
+
 // regex for matching https://deno.land/x/polkadot[@<version>]/
 const RE_PKG = /https:\/\/deno\.land\/x\/polkadot(@\d*\.\d*\.\d*(-\d*)?)?\//g;
 
@@ -47,6 +50,11 @@ function git (...args: GitArgs): Promise<void> {
 
 // sets up git, username, merge & latest
 async function gitSetup (): Promise<void> {
+  if (!IS_CI) {
+    // don't clobber local setup on non-CI
+    return;
+  }
+
   await git('config', 'user.name', GH_USER);
   await git('config', 'user.email', GH_MAIL);
   await git('config', 'push.default', 'simple');
@@ -56,6 +64,11 @@ async function gitSetup (): Promise<void> {
 
 // commit and push the changes to git
 async function gitPush (version: string): Promise<void> {
+  if (!IS_CI) {
+    // don't push if we are not on CI
+    return;
+  }
+
   await git('add', '--all', '.');
   await git('commit', '--no-status', '--quiet', '-m', `[CI Skip] deno.land/x/polkadot@${version}`);
   await git('push', GH_REPO);
