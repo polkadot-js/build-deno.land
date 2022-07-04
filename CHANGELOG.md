@@ -1,11 +1,12 @@
 # CHANGELOG
 
-## master
+## 0.0.3 Jul 4, 2022
 
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 8.11.2
 - phishing 0.16.2
 - hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 9.7.2
 - wasm-{bridge, crypto, crypto-{asmjs, init, wasm}, util} 6.2.2
+
 
 ## 0.0.2 Jul 2, 2022
 
