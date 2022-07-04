@@ -5,7 +5,7 @@ jobs:
   pr:
     strategy:
       matrix:
-        step: ['cache', 'test']
+        step: ['cache', 'check', 'test']
     name: ${{ matrix.step }}
     runs-on: ubuntu-latest
     steps:
@@ -17,6 +17,8 @@ jobs:
       run: |
         if [ ${{ matrix.step }} == "cache" ]; then
           deno cache --reload mod.ts
+        elif [ ${{ matrix.step }} == "check" ]; then
+          deno check mod.ts || echo "Failed, but status marked as ok - failures (still) allowed"
         else
           deno test --no-check test.ts
         fi
