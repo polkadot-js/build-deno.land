@@ -2,6 +2,7 @@
 
 ## master
 
+- phishing 0.16.2
 - hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 9.7.2
 - wasm-{bridge, crypto, crypto-{asmjs, init, wasm}, util} 6.2.2
 
