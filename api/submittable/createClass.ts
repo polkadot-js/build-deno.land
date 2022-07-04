@@ -4,15 +4,15 @@
 /* eslint-disable no-dupe-class-members */
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
-import type { Address, ApplyExtrinsicResult, Call, Extrinsic, ExtrinsicEra, ExtrinsicStatus, Hash, Header, Index, RuntimeDispatchInfo, SignerPayload } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
-import type { Callback, Codec, Constructor, IKeyringPair, ISubmittableResult, SignatureOptions } from 'https://deno.land/x/polkadot/types/types/index.ts';
-import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Address, ApplyExtrinsicResult, Call, Extrinsic, ExtrinsicEra, ExtrinsicStatus, Hash, Header, Index, RuntimeDispatchInfo, SignerPayload } from 'https://deno.land/x/polkadot@0.0.3/types/interfaces/index.ts';
+import type { Callback, Codec, Constructor, IKeyringPair, ISubmittableResult, SignatureOptions } from 'https://deno.land/x/polkadot@0.0.3/types/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.0.3/types-codec/types/index.ts';
 import type { ApiInterfaceRx, ApiTypes, PromiseOrObs, SignerResult } from '../types/index.ts';
 import type { AddressOrPair, SignerOptions, SubmittableDryRunResult, SubmittableExtrinsic, SubmittablePaymentResult, SubmittableResultResult, SubmittableResultSubscription } from './types.ts';
 
 import { catchError, first, map, mapTo, mergeMap, of, switchMap, tap } from 'https://esm.sh/rxjs@7.5.5';
 
-import { assert, isBn, isFunction, isNumber, isString, isU8a, isUndefined, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { assert, isBn, isFunction, isNumber, isString, isU8a, isUndefined, objectSpread } from 'https://deno.land/x/polkadot@0.0.3/util/mod.ts';
 
 import { ApiBase } from '../base/index.ts';
 import { filterEvents, isKeyringPair } from '../util/index.ts';

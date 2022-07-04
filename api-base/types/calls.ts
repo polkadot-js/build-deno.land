@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
-import type { AnyFunction, Codec, DefinitionCallNamed } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { AnyFunction, Codec, DefinitionCallNamed } from 'https://deno.land/x/polkadot@0.0.3/types/types/index.ts';
 import type { ApiTypes, ReturnCodec } from './base.ts';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-empty-interface

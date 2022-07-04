@@ -6,7 +6,7 @@ import './augmentRegistry.ts';
 
 // used inside augmented definitions
 export type { Observable } from 'https://esm.sh/rxjs@7.5.5';
-export * from 'https://deno.land/x/polkadot/types/types/registry.ts';
+export * from 'https://deno.land/x/polkadot@0.0.3/types/types/registry.ts';
 
 export * from '../create/types.ts';
 export * from './calls.ts';

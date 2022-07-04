@@ -4,7 +4,7 @@
 import type { PortableType, Si0Field, Si0LookupTypeId, Si0Path, Si0Type, Si0TypeDefArray, Si0TypeDefBitSequence, Si0TypeDefComposite, Si0TypeDefPrimitive, Si0TypeDefSequence, Si0TypeDefVariant, Si1Field, Si1TypeDef, SiTypeDef } from '../../interfaces/index.ts';
 import type { Registry } from '../../types/index.ts';
 
-import { assertUnreachable } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { assertUnreachable } from 'https://deno.land/x/polkadot@0.0.3/util/mod.ts';
 
 function convertType (key: 'Compact' | 'Sequence'): (registry: Registry, si: Si0TypeDefSequence) => SiTypeDef {
   return (registry: Registry, { type }: Si0TypeDefSequence) =>

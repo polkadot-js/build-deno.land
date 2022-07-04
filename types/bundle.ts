@@ -9,7 +9,7 @@ export * from './create/index.ts';
 export * from './index.types.ts';
 export * from './metadata/index.ts';
 
-export { TypeDefInfo } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+export { TypeDefInfo } from 'https://deno.land/x/polkadot@0.0.3/types-create/mod.ts';
 
 export { convertSiV0toV1 } from './metadata/PortableRegistry/index.ts';
 export { packageInfo } from './packageInfo.ts';

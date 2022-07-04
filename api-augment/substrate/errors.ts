@@ -1,9 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { ApiTypes } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { ApiTypes } from 'https://deno.land/x/polkadot@0.0.3/api-base/types/index.ts';
 
-declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
+declare module 'https://deno.land/x/polkadot@0.0.3/api-base/types/errors.ts' {
   export interface AugmentedErrors<ApiType extends ApiTypes> {
     alliance: {
       /**
