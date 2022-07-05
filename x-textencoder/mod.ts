@@ -1,8 +1,8 @@
 // Copyright 2017-2022 @polkadot/x-textencoder authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { xglobal } from 'https://deno.land/x/polkadot@0.0.4-1/x-global/mod.ts';
-
 export { packageInfo } from './packageInfo.ts';
 
-export const TextEncoder = xglobal.TextEncoder;
+const _TextEncoder = TextEncoder;
+
+export { _TextEncoder as TextEncoder };
