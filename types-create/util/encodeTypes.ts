@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/types-create authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Registry } from 'https://deno.land/x/polkadot@0.0.4-6/types-codec/types/index.ts';
-import type { TypeDef } from 'https://deno.land/x/polkadot@0.0.4-6/types-create/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.0.4-7/types-codec/types/index.ts';
+import type { TypeDef } from 'https://deno.land/x/polkadot@0.0.4-7/types-create/types/index.ts';
 
-import { isNumber, isUndefined, objectSpread, stringify } from 'https://deno.land/x/polkadot@0.0.4-6/util/mod.ts';
+import { isNumber, isUndefined, objectSpread, stringify } from 'https://deno.land/x/polkadot@0.0.4-7/util/mod.ts';
 
 import { TypeDefInfo } from '../types/index.ts';
 

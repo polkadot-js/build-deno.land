@@ -3,17 +3,17 @@
 
 // Simple non-runnable checks to test type definitions in the editor itself
 
-import 'https://deno.land/x/polkadot@0.0.4-6/api-augment/mod.ts';
+import 'https://deno.land/x/polkadot@0.0.4-7/api-augment/mod.ts';
 
-import type { HeaderExtended } from 'https://deno.land/x/polkadot@0.0.4-6/api-derive/types.ts';
-import type { StorageKey } from 'https://deno.land/x/polkadot@0.0.4-6/types/mod.ts';
-import type { AccountId, Balance, DispatchErrorModule, Event, Header, Index } from 'https://deno.land/x/polkadot@0.0.4-6/types/interfaces/index.ts';
-import type { FrameSystemAccountInfo } from 'https://deno.land/x/polkadot@0.0.4-6/types/lookup.ts';
-import type { AnyTuple, IExtrinsic, IMethod } from 'https://deno.land/x/polkadot@0.0.4-6/types/types/index.ts';
+import type { HeaderExtended } from 'https://deno.land/x/polkadot@0.0.4-7/api-derive/types.ts';
+import type { StorageKey } from 'https://deno.land/x/polkadot@0.0.4-7/types/mod.ts';
+import type { AccountId, Balance, DispatchErrorModule, Event, Header, Index } from 'https://deno.land/x/polkadot@0.0.4-7/types/interfaces/index.ts';
+import type { FrameSystemAccountInfo } from 'https://deno.land/x/polkadot@0.0.4-7/types/lookup.ts';
+import type { AnyTuple, IExtrinsic, IMethod } from 'https://deno.land/x/polkadot@0.0.4-7/types/types/index.ts';
 
-import { ApiPromise } from 'https://deno.land/x/polkadot@0.0.4-6/api/mod.ts';
-import { createTestPairs, TestKeyringMap } from 'https://deno.land/x/polkadot@0.0.4-6/keyring/testingPairs.ts';
-import { createTypeUnsafe, TypeRegistry } from 'https://deno.land/x/polkadot@0.0.4-6/types/create/index.ts';
+import { ApiPromise } from 'https://deno.land/x/polkadot@0.0.4-7/api/mod.ts';
+import { createTestPairs, TestKeyringMap } from 'https://deno.land/x/polkadot@0.0.4-7/keyring/testingPairs.ts';
+import { createTypeUnsafe, TypeRegistry } from 'https://deno.land/x/polkadot@0.0.4-7/types/create/index.ts';
 
 import { SubmittableResult } from './/index.ts';
 

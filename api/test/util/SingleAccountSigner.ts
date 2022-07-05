@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Signer, SignerResult } from 'https://deno.land/x/polkadot@0.0.4-6/api/types/index.ts';
-import type { KeyringPair } from 'https://deno.land/x/polkadot@0.0.4-6/keyring/types.ts';
-import type { Registry, SignerPayloadJSON, SignerPayloadRaw } from 'https://deno.land/x/polkadot@0.0.4-6/types/types/index.ts';
+import type { Signer, SignerResult } from 'https://deno.land/x/polkadot@0.0.4-7/api/types/index.ts';
+import type { KeyringPair } from 'https://deno.land/x/polkadot@0.0.4-7/keyring/types.ts';
+import type { Registry, SignerPayloadJSON, SignerPayloadRaw } from 'https://deno.land/x/polkadot@0.0.4-7/types/types/index.ts';
 
-import { assert, hexToU8a, u8aToHex } from 'https://deno.land/x/polkadot@0.0.4-6/util/mod.ts';
+import { assert, hexToU8a, u8aToHex } from 'https://deno.land/x/polkadot@0.0.4-7/util/mod.ts';
 
 let id = 0;
 

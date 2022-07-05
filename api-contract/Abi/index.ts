@@ -1,14 +1,14 @@
 // Copyright 2017-2022 @polkadot/api-contract authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Bytes } from 'https://deno.land/x/polkadot@0.0.4-6/types/mod.ts';
-import type { ChainProperties, ContractConstructorSpecLatest, ContractEventSpecLatest, ContractMessageParamSpecLatest, ContractMessageSpecLatest, ContractMetadata, ContractMetadataLatest, ContractProjectInfo } from 'https://deno.land/x/polkadot@0.0.4-6/types/interfaces/index.ts';
-import type { Codec, Registry } from 'https://deno.land/x/polkadot@0.0.4-6/types/types/index.ts';
+import type { Bytes } from 'https://deno.land/x/polkadot@0.0.4-7/types/mod.ts';
+import type { ChainProperties, ContractConstructorSpecLatest, ContractEventSpecLatest, ContractMessageParamSpecLatest, ContractMessageSpecLatest, ContractMetadata, ContractMetadataLatest, ContractProjectInfo } from 'https://deno.land/x/polkadot@0.0.4-7/types/interfaces/index.ts';
+import type { Codec, Registry } from 'https://deno.land/x/polkadot@0.0.4-7/types/types/index.ts';
 import type { AbiConstructor, AbiEvent, AbiMessage, AbiParam, DecodedEvent, DecodedMessage } from '../types.ts';
 
-import { TypeRegistry } from 'https://deno.land/x/polkadot@0.0.4-6/types/mod.ts';
-import { TypeDefInfo } from 'https://deno.land/x/polkadot@0.0.4-6/types-create/mod.ts';
-import { assert, assertReturn, compactAddLength, compactStripLength, isNumber, isObject, isString, logger, stringCamelCase, stringify, u8aConcat, u8aToHex } from 'https://deno.land/x/polkadot@0.0.4-6/util/mod.ts';
+import { TypeRegistry } from 'https://deno.land/x/polkadot@0.0.4-7/types/mod.ts';
+import { TypeDefInfo } from 'https://deno.land/x/polkadot@0.0.4-7/types-create/mod.ts';
+import { assert, assertReturn, compactAddLength, compactStripLength, isNumber, isObject, isString, logger, stringCamelCase, stringify, u8aConcat, u8aToHex } from 'https://deno.land/x/polkadot@0.0.4-7/util/mod.ts';
 
 import { convertVersions, enumVersions } from './toLatest.ts';
 

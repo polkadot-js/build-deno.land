@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ApiPromise } from 'https://deno.land/x/polkadot@0.0.4-6/api/mod.ts';
-import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot@0.0.4-6/api-base/types/index.ts';
+import type { ApiPromise } from 'https://deno.land/x/polkadot@0.0.4-7/api/mod.ts';
+import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot@0.0.4-7/api-base/types/index.ts';
 
-import { Proposal, ProposalIndex } from 'https://deno.land/x/polkadot@0.0.4-6/types/interfaces/index.ts';
-import { Registry } from 'https://deno.land/x/polkadot@0.0.4-6/types/types/index.ts';
+import { Proposal, ProposalIndex } from 'https://deno.land/x/polkadot@0.0.4-7/types/interfaces/index.ts';
+import { Registry } from 'https://deno.land/x/polkadot@0.0.4-7/types/types/index.ts';
 
 export class ProposalFactory {
   readonly #api: ApiPromise;

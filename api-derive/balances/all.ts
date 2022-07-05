@@ -2,14 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
-import type { Option, Vec } from 'https://deno.land/x/polkadot@0.0.4-6/types/mod.ts';
-import type { AccountId, Balance, BalanceLockTo212, BlockNumber, VestingSchedule } from 'https://deno.land/x/polkadot@0.0.4-6/types/interfaces/index.ts';
-import type { PalletBalancesBalanceLock, PalletBalancesReserveData, PalletVestingVestingInfo } from 'https://deno.land/x/polkadot@0.0.4-6/types/lookup.ts';
+import type { Option, Vec } from 'https://deno.land/x/polkadot@0.0.4-7/types/mod.ts';
+import type { AccountId, Balance, BalanceLockTo212, BlockNumber, VestingSchedule } from 'https://deno.land/x/polkadot@0.0.4-7/types/interfaces/index.ts';
+import type { PalletBalancesBalanceLock, PalletBalancesReserveData, PalletVestingVestingInfo } from 'https://deno.land/x/polkadot@0.0.4-7/types/lookup.ts';
 import type { DeriveApi, DeriveBalancesAccount, DeriveBalancesAccountData, DeriveBalancesAll, DeriveBalancesAllAccountData, DeriveBalancesAllVesting } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.5';
 
-import { BN, BN_ZERO, bnMax, bnMin, isFunction } from 'https://deno.land/x/polkadot@0.0.4-6/util/mod.ts';
+import { BN, BN_ZERO, bnMax, bnMin, isFunction } from 'https://deno.land/x/polkadot@0.0.4-7/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 

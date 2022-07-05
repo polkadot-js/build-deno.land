@@ -1,9 +1,9 @@
 // Copyright 2017-2022 @polkadot/api-contract authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AccountId, Hash } from 'https://deno.land/x/polkadot@0.0.4-6/types/interfaces/index.ts';
+import type { AccountId, Hash } from 'https://deno.land/x/polkadot@0.0.4-7/types/interfaces/index.ts';
 
-import { ApiPromise, toPromiseMethod } from 'https://deno.land/x/polkadot@0.0.4-6/api/mod.ts';
+import { ApiPromise, toPromiseMethod } from 'https://deno.land/x/polkadot@0.0.4-7/api/mod.ts';
 
 import { Abi } from '../Abi/index.ts';
 import { Blueprint, Code, Contract } from '../base/index.ts';
