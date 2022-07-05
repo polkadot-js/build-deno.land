@@ -90,6 +90,7 @@ async function getVersion (): Promise<string> {
 
 // sets the version globally to all deno.land/x/polkadot imports
 async function setVersion (version: string, dir: string, level = 0): Promise<void> {
+  const isBeta = version.includes('-');
   const topLevel = level
     ? new Array<string>(level).fill('..').join('/')
     : '.';
@@ -102,7 +103,7 @@ async function setVersion (version: string, dir: string, level = 0): Promise<voi
         const path = `${dir}/${entry.name}`;
         const contents = await Deno.readTextFile(path);
 
-        if (RE_PKG.test(contents)) {
+        if (RE_PKG.test(contents) && (!isBeta || !entry.name.endsWith('.md'))) {
           await Deno.writeTextFile(
             path,
             !IS_DOT_PATH || entry.name.endsWith('.md')
