@@ -1,7 +1,7 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-// import 'https://deno.land/x/polkadot@0.0.4-6/types/lookup.ts';
+import 'https://deno.land/x/polkadot@0.0.4-6/types/lookup.ts';
 
 import type { Data } from 'https://deno.land/x/polkadot@0.0.4-6/types/mod.ts';
 import type { BTreeMap, Bytes, Compact, Enum, Null, Option, Result, Set, Struct, Text, U256, U8aFixed, Vec, WrapperKeepOpaque, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.0.4-6/types-codec/mod.ts';

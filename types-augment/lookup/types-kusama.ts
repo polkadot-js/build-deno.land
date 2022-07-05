@@ -1,7 +1,7 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-// import 'https://deno.land/x/polkadot@0.0.4-6/types/lookup.ts';
+import 'https://deno.land/x/polkadot@0.0.4-6/types/lookup.ts';
 
 import type { Compact, Enum, Null, Struct, Vec, u16, u32 } from 'https://deno.land/x/polkadot@0.0.4-6/types-codec/mod.ts';
 import type { ITuple } from 'https://deno.land/x/polkadot@0.0.4-6/types-codec/types/index.ts';
