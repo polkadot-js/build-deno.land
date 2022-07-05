@@ -26,7 +26,7 @@ export type __AugmentedCall<ApiType extends ApiTypes> = AugmentedCall<ApiType>;
 export type __DecoratedCallBase<ApiType extends ApiTypes> = DecoratedCallBase<ApiType>;
 
 declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
-  export interface AugmentedCalls<ApiType extends ApiTypes> {
+  interface AugmentedCalls<ApiType extends ApiTypes> {
     /** 0xbc9d89904f5b923f/1 */
     accountNonceApi: {
       /**

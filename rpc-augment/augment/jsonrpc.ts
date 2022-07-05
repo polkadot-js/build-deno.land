@@ -27,7 +27,7 @@ import type { ApplyExtrinsicResult, ChainProperties, ChainType, Health, NetworkS
 import type { IExtrinsic, Observable } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 declare module 'https://deno.land/x/polkadot/rpc-core/types/jsonrpc.ts' {
-  export interface RpcInterface {
+  interface RpcInterface {
     author: {
       /**
        * Returns true if the keystore has private keys for the given public key and key type.

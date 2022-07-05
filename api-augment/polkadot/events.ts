@@ -11,7 +11,7 @@ import type { FrameSupportScheduleLookupError, FrameSupportTokensMiscBalanceStat
 export type __AugmentedEvent<ApiType extends ApiTypes> = AugmentedEvent<ApiType>;
 
 declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
-  export interface AugmentedEvents<ApiType extends ApiTypes> {
+  interface AugmentedEvents<ApiType extends ApiTypes> {
     auctions: {
       /**
        * An auction ended. All funds become unreserved.

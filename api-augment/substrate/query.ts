@@ -13,7 +13,7 @@ export type __AugmentedQuery<ApiType extends ApiTypes> = AugmentedQuery<ApiType,
 export type __QueryableStorageEntry<ApiType extends ApiTypes> = QueryableStorageEntry<ApiType>;
 
 declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
-  export interface AugmentedQueries<ApiType extends ApiTypes> {
+  interface AugmentedQueries<ApiType extends ApiTypes> {
     alliance: {
       /**
        * The current IPFS CIDs of any announcements.

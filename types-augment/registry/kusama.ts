@@ -4,7 +4,7 @@
 import type { KusamaRuntimeNposCompactSolution24, KusamaRuntimeOriginCaller, KusamaRuntimeProxyType, KusamaRuntimeRuntime, KusamaRuntimeSessionKeys } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
-  export interface InterfaceTypes {
+  interface InterfaceTypes {
     KusamaRuntimeNposCompactSolution24: KusamaRuntimeNposCompactSolution24;
     KusamaRuntimeOriginCaller: KusamaRuntimeOriginCaller;
     KusamaRuntimeProxyType: KusamaRuntimeProxyType;

@@ -6,7 +6,7 @@ import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot/api-
 export type __AugmentedError<ApiType extends ApiTypes> = AugmentedError<ApiType>;
 
 declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
-  export interface AugmentedErrors<ApiType extends ApiTypes> {
+  interface AugmentedErrors<ApiType extends ApiTypes> {
     auctions: {
       /**
        * The para is already leased out for part of this range.
