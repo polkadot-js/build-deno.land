@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.0.4/types-codec/types/index.ts';
 import type { Codec } from '../types/index.ts';
 
-import { Json, Option, Text, u32, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import { isFunction, isNull, isUndefined } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { Json, Option, Text, u32, Vec } from 'https://deno.land/x/polkadot@0.0.4/types-codec/mod.ts';
+import { isFunction, isNull, isUndefined } from 'https://deno.land/x/polkadot@0.0.4/util/mod.ts';
 
 function createValue (registry: Registry, type: string, value: unknown, asArray = true): Option<Codec> {
   // We detect codec here as well - when found, generally this is constructed from itself

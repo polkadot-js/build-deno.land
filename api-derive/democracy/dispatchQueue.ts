@@ -2,16 +2,16 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
-import type { Option, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
-import type { BlockNumber, Call, Hash, ReferendumIndex, Scheduled } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
-import type { FrameSupportScheduleMaybeHashed, PalletSchedulerScheduledV3 } from 'https://deno.land/x/polkadot/types/lookup.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { Option, Vec } from 'https://deno.land/x/polkadot@0.0.4/types/mod.ts';
+import type { BlockNumber, Call, Hash, ReferendumIndex, Scheduled } from 'https://deno.land/x/polkadot@0.0.4/types/interfaces/index.ts';
+import type { FrameSupportScheduleMaybeHashed, PalletSchedulerScheduledV3 } from 'https://deno.land/x/polkadot@0.0.4/types/lookup.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.0.4/types/types/index.ts';
 import type { DeriveApi, DeriveDispatch, DeriveProposalImage } from '../types.ts';
 
 import { catchError, combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.5';
 
-import { Enum } from 'https://deno.land/x/polkadot/types/mod.ts';
-import { isFunction, stringToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { Enum } from 'https://deno.land/x/polkadot@0.0.4/types/mod.ts';
+import { isFunction, stringToHex } from 'https://deno.land/x/polkadot@0.0.4/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 

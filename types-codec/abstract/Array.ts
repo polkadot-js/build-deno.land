@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.0.4/util/types.ts';
 import type { AnyJson, Codec, Inspect, IU8a, IVec, Registry } from '../types/index.ts';
 
-import { compactToU8a, u8aConcatStrict, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { compactToU8a, u8aConcatStrict, u8aToHex } from 'https://deno.land/x/polkadot@0.0.4/util/mod.ts';
 
 import { compareArray } from '../utils/compareArray.ts';
 
