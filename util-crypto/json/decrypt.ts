@@ -3,7 +3,7 @@
 
 import type { EncryptedJson } from './types.ts';
 
-import { assert, hexToU8a, isHex } from 'https://deno.land/x/polkadot@0.0.4-3/util/mod.ts';
+import { assert, hexToU8a, isHex } from 'https://deno.land/x/polkadot@0.0.4-4/util/mod.ts';
 
 import { base64Decode } from '../base64/index.ts';
 import { jsonDecryptData } from './decryptData.ts';

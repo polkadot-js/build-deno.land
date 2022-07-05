@@ -18,7 +18,7 @@ const DEFAULT_OPTS: NumberOptions = { bitLength: -1, isLe: true, isNegative: fal
  * <BR>
  *
  * ```javascript
- * import { bnToU8a } from 'https://deno.land/x/polkadot@0.0.4-3/util/mod.ts';
+ * import { bnToU8a } from 'https://deno.land/x/polkadot@0.0.4-4/util/mod.ts';
  *
  * bnToU8a(new BN(0x1234)); // => [0x12, 0x34]
  * ```

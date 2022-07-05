@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.0.4-4/util/types.ts';
 import type { AnyNumber, Inspect, INumber, IU8a, Registry, UIntBitLength } from '../types/index.ts';
 
-import { BN, BN_BILLION, BN_HUNDRED, BN_MILLION, BN_QUINTILL, bnToBn, bnToHex, bnToU8a, formatBalance, formatNumber, hexToBn, isBn, isHex, isNumber, isString, isU8a, u8aToBn, u8aToNumber } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { BN, BN_BILLION, BN_HUNDRED, BN_MILLION, BN_QUINTILL, bnToBn, bnToHex, bnToU8a, formatBalance, formatNumber, hexToBn, isBn, isHex, isNumber, isString, isU8a, u8aToBn, u8aToNumber } from 'https://deno.land/x/polkadot@0.0.4-4/util/mod.ts';
 
 export const DEFAULT_UINT_BITS = 64;
 

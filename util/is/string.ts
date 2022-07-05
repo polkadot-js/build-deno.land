@@ -12,7 +12,7 @@ import type { AnyString } from '../types.ts';
  * <BR>
  *
  * ```javascript
- * import { isString } from 'https://deno.land/x/polkadot@0.0.4-3/util/mod.ts';
+ * import { isString } from 'https://deno.land/x/polkadot@0.0.4-4/util/mod.ts';
  *
  * console.log('isString', isString('test')); // => true
  * ```

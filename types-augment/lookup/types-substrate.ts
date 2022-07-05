@@ -1,16 +1,16 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot/types/lookup.ts';
+import 'https://deno.land/x/polkadot@0.0.4-4/types/lookup.ts';
 
-import type { Data } from 'https://deno.land/x/polkadot/types/mod.ts';
-import type { BTreeMap, Bytes, Compact, Enum, Null, Option, Result, Set, Struct, Text, U256, U8aFixed, Vec, WrapperKeepOpaque, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { Vote } from 'https://deno.land/x/polkadot/types/interfaces/elections/index.ts';
-import type { AccountId32, Call, H256, MultiAddress, PerU16, Perbill, Percent, Perquintill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
-import type { Event } from 'https://deno.land/x/polkadot/types/interfaces/system/index.ts';
+import type { Data } from 'https://deno.land/x/polkadot@0.0.4-4/types/mod.ts';
+import type { BTreeMap, Bytes, Compact, Enum, Null, Option, Result, Set, Struct, Text, U256, U8aFixed, Vec, WrapperKeepOpaque, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.0.4-4/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.0.4-4/types-codec/types/index.ts';
+import type { Vote } from 'https://deno.land/x/polkadot@0.0.4-4/types/interfaces/elections/index.ts';
+import type { AccountId32, Call, H256, MultiAddress, PerU16, Perbill, Percent, Perquintill } from 'https://deno.land/x/polkadot@0.0.4-4/types/interfaces/runtime/index.ts';
+import type { Event } from 'https://deno.land/x/polkadot@0.0.4-4/types/interfaces/system/index.ts';
 
-declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
+declare module 'https://deno.land/x/polkadot@0.0.4-4/types/lookup.ts' {
   /** @name FrameSystemAccountInfo (3) */
   interface FrameSystemAccountInfo extends Struct {
     readonly nonce: u32;
