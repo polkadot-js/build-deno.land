@@ -13,7 +13,7 @@
  * <BR>
  *
  * ```javascript
- * import { arrayFlatten } from 'https://deno.land/x/polkadot@0.0.4-8/util/mod.ts';
+ * import { arrayFlatten } from 'https://deno.land/x/polkadot@0.0.4-9/util/mod.ts';
  *
  * arrayFlatten([[1, 2], [3, 4], [5]]); // [1, 2, 3, 4, 5]
  * ```

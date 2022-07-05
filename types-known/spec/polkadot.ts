@@ -3,9 +3,9 @@
 
 /* eslint-disable sort-keys */
 
-import type { OverrideVersionedType } from 'https://deno.land/x/polkadot@0.0.4-8/types/types/index.ts';
+import type { OverrideVersionedType } from 'https://deno.land/x/polkadot@0.0.4-9/types/types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.0.4-8/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.0.4-9/util/mod.ts';
 
 const sharedTypes = {
   CompactAssignments: 'CompactAssignmentsWith16',

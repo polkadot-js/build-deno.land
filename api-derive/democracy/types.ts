@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Vec } from 'https://deno.land/x/polkadot@0.0.4-8/types/mod.ts';
-import type { AccountId, Balance, BlockNumber, Hash, PropIndex, Proposal, ReferendumIndex, ReferendumInfoTo239, Vote } from 'https://deno.land/x/polkadot@0.0.4-8/types/interfaces/index.ts';
-import type { PalletDemocracyReferendumStatus, PalletDemocracyVoteThreshold } from 'https://deno.land/x/polkadot@0.0.4-8/types/lookup.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.0.4-8/util/mod.ts';
+import type { Vec } from 'https://deno.land/x/polkadot@0.0.4-9/types/mod.ts';
+import type { AccountId, Balance, BlockNumber, Hash, PropIndex, Proposal, ReferendumIndex, ReferendumInfoTo239, Vote } from 'https://deno.land/x/polkadot@0.0.4-9/types/interfaces/index.ts';
+import type { PalletDemocracyReferendumStatus, PalletDemocracyVoteThreshold } from 'https://deno.land/x/polkadot@0.0.4-9/types/lookup.ts';
+import type { BN } from 'https://deno.land/x/polkadot@0.0.4-9/util/mod.ts';
 
 export interface AtBlock {
   at: BlockNumber;

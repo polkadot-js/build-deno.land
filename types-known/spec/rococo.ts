@@ -3,10 +3,10 @@
 
 /* eslint-disable sort-keys */
 
-import type { OverrideVersionedType } from 'https://deno.land/x/polkadot@0.0.4-8/types/types/index.ts';
+import type { OverrideVersionedType } from 'https://deno.land/x/polkadot@0.0.4-9/types/types/index.ts';
 
-import { mapXcmTypes } from 'https://deno.land/x/polkadot@0.0.4-8/types-create/mod.ts';
-import { objectSpread } from 'https://deno.land/x/polkadot@0.0.4-8/util/mod.ts';
+import { mapXcmTypes } from 'https://deno.land/x/polkadot@0.0.4-9/types-create/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.0.4-9/util/mod.ts';
 
 // structs need to be in order
 /* eslint-disable sort-keys */

@@ -1,8 +1,8 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { DeriveCustom } from 'https://deno.land/x/polkadot@0.0.4-8/api-base/types/index.ts';
-import type { AnyFunction } from 'https://deno.land/x/polkadot@0.0.4-8/types/types/index.ts';
+import type { DeriveCustom } from 'https://deno.land/x/polkadot@0.0.4-9/api-base/types/index.ts';
+import type { AnyFunction } from 'https://deno.land/x/polkadot@0.0.4-9/types/types/index.ts';
 import type { ExactDerive } from './derive.ts';
 import type { DeriveApi } from './types.ts';
 

@@ -1,10 +1,10 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Data } from 'https://deno.land/x/polkadot@0.0.4-8/types/mod.ts';
-import type { Enum, Option, Set, Struct, Vec, u32 } from 'https://deno.land/x/polkadot@0.0.4-8/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.0.4-8/types-codec/types/index.ts';
-import type { AccountId, Balance, H160 } from 'https://deno.land/x/polkadot@0.0.4-8/types/interfaces/runtime/index.ts';
+import type { Data } from 'https://deno.land/x/polkadot@0.0.4-9/types/mod.ts';
+import type { Enum, Option, Set, Struct, Vec, u32 } from 'https://deno.land/x/polkadot@0.0.4-9/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.0.4-9/types-codec/types/index.ts';
+import type { AccountId, Balance, H160 } from 'https://deno.land/x/polkadot@0.0.4-9/types/interfaces/runtime/index.ts';
 
 /** @name IdentityFields */
 export interface IdentityFields extends Set {
