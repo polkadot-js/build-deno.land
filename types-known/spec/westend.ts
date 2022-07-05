@@ -3,10 +3,10 @@
 
 /* eslint-disable sort-keys */
 
-import type { OverrideVersionedType } from 'https://deno.land/x/polkadot@0.0.4-2/types/types/index.ts';
+import type { OverrideVersionedType } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import { mapXcmTypes } from 'https://deno.land/x/polkadot@0.0.4-2/types-create/mod.ts';
-import { objectSpread } from 'https://deno.land/x/polkadot@0.0.4-2/util/mod.ts';
+import { mapXcmTypes } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const sharedTypes = {
   // 16 validators
@@ -24,6 +24,7 @@ const addrAccountIdTypes = {
   AccountInfo: 'AccountInfoWithRefCount',
   Address: 'AccountId',
   CompactAssignments: 'CompactAssignmentsWith16',
+  DispatchErrorModule: 'DispatchErrorModuleU8',
   LookupSource: 'AccountId',
   Keys: 'SessionKeys5',
   RawSolution: 'RawSolutionWith16',

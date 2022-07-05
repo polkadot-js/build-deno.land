@@ -3,10 +3,10 @@
 
 /* eslint-disable sort-keys */
 
-import type { OverrideVersionedType } from 'https://deno.land/x/polkadot@0.0.4-2/types/types/index.ts';
+import type { OverrideVersionedType } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import { mapXcmTypes } from 'https://deno.land/x/polkadot@0.0.4-2/types-create/mod.ts';
-import { objectSpread } from 'https://deno.land/x/polkadot@0.0.4-2/util/mod.ts';
+import { mapXcmTypes } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const sharedTypes = {
   CompactAssignments: 'CompactAssignmentsWith24',
@@ -22,6 +22,7 @@ const addrIndicesTypes = {
   AccountInfo: 'AccountInfoWithRefCount',
   Address: 'LookupSource',
   CompactAssignments: 'CompactAssignmentsWith16',
+  DispatchErrorModule: 'DispatchErrorModuleU8',
   RawSolution: 'RawSolutionWith16',
   Keys: 'SessionKeys5',
   LookupSource: 'IndicesLookupSource',
@@ -32,6 +33,7 @@ const addrAccountIdTypes = {
   AccountInfo: 'AccountInfoWithRefCount',
   Address: 'AccountId',
   CompactAssignments: 'CompactAssignmentsWith16',
+  DispatchErrorModule: 'DispatchErrorModuleU8',
   RawSolution: 'RawSolutionWith16',
   Keys: 'SessionKeys5',
   LookupSource: 'AccountId',

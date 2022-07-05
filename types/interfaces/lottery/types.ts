@@ -1,9 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Struct, bool, u8 } from 'https://deno.land/x/polkadot@0.0.4-2/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.0.4-2/types-codec/types/index.ts';
-import type { Balance, BlockNumber } from 'https://deno.land/x/polkadot@0.0.4-2/types/interfaces/runtime/index.ts';
+import type { Struct, bool, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Balance, BlockNumber } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 /** @name CallIndex */
 export interface CallIndex extends ITuple<[u8, u8]> {}
