@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.0.4-1/types-codec/types/index.ts';
 import type { MetadataV11, MetadataV12, ModuleMetadataV12 } from '../../interfaces/metadata/index.ts';
 
 /**
