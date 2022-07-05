@@ -102,7 +102,7 @@ async function setVersion (version: string, dir: string, level = 0): Promise<voi
     if (!entry.name.startsWith('.')) {
       if (entry.isDirectory) {
         await setVersion(version, `${dir}/${entry.name}`, level + 1);
-      } else if (entry.name.endsWith('.ts') || entry.name.endsWith('.tsx') || entry.name.endsWith('.md') || entry.name.endsWith('import_map.json')) {
+      } else if (entry.name.endsWith('.ts') || entry.name.endsWith('.tsx') || entry.name.endsWith('.md')) {
         const path = `${dir}/${entry.name}`;
         const contents = await Deno.readTextFile(path);
 
@@ -125,7 +125,7 @@ async function setVersion (version: string, dir: string, level = 0): Promise<voi
 }
 
 // creates a new mod.ts file with all the available imports
-async function createModTs (): Promise<void> {
+async function createModTs (version: string): Promise<void> {
   const imports: string[] = [];
 
   for await (const entry of Deno.readDir('.')) {
@@ -135,12 +135,18 @@ async function createModTs (): Promise<void> {
   }
 
   await Deno.writeTextFile('mod.ts', `// Copyright 2017-${new Date().getFullYear()} @polkadot/deno authors & contributors\n// SPDX-License-Identifier: Apache-2.0\n\n// auto-generated via ci-release.ts, do not edit\n\n${imports.sort().join('\n')}\n`);
+  await Deno.writeTextFile('import_map.json', `${JSON.stringify({
+    imports: {
+      // split so the script doesn't update this one :)
+      [`${['https:', '', 'deno.land', 'x', 'polkadot'].join('/')}/`]: './',
+      [`https://deno.land/x/polkadot@${version}/`]: './'
+    }
+  }, null, 2)}\n`);
 }
-
-await gitSetup();
-await createModTs();
 
 const version = await getVersion();
 
+await gitSetup();
+await createModTs(version);
 await setVersion(version, '.');
 await gitPush(version);
