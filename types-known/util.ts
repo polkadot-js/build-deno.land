@@ -1,13 +1,13 @@
 // Copyright 2017-2022 @polkadot/types-known authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ExtDef } from 'https://deno.land/x/polkadot@0.0.4-5/types/extrinsic/signedExtensions/types.ts';
-import type { Hash } from 'https://deno.land/x/polkadot@0.0.4-5/types/interfaces/index.ts';
-import type { ChainUpgradeVersion, CodecHasher, DefinitionRpc, DefinitionRpcSub, DefinitionsCall, OverrideModuleType, OverrideVersionedType, Registry, RegistryTypes } from 'https://deno.land/x/polkadot@0.0.4-5/types/types/index.ts';
-import type { Text } from 'https://deno.land/x/polkadot@0.0.4-5/types-codec/mod.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.0.4-5/util/mod.ts';
+import type { ExtDef } from 'https://deno.land/x/polkadot/types/extrinsic/signedExtensions/types.ts';
+import type { Hash } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { ChainUpgradeVersion, CodecHasher, DefinitionRpc, DefinitionRpcSub, DefinitionsCall, OverrideModuleType, OverrideVersionedType, Registry, RegistryTypes } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { Text } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 
-import { bnToBn, objectSpread } from 'https://deno.land/x/polkadot@0.0.4-5/util/mod.ts';
+import { bnToBn, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import typesChain from './chain/index.ts';
 import typesSpec from './spec/index.ts';
