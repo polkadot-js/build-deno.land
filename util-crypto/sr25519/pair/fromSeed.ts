@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.4-5/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.0.4-6/util/types.ts';
 import type { Keypair } from '../../types.ts';
 
-import { u8aToU8a } from 'https://deno.land/x/polkadot@0.0.4-5/util/mod.ts';
-import { sr25519KeypairFromSeed } from 'https://deno.land/x/polkadot@0.0.4-5/wasm-crypto/mod.ts';
+import { u8aToU8a } from 'https://deno.land/x/polkadot@0.0.4-6/util/mod.ts';
+import { sr25519KeypairFromSeed } from 'https://deno.land/x/polkadot@0.0.4-6/wasm-crypto/mod.ts';
 
 import { sr25519PairFromU8a } from './fromU8a.ts';
 

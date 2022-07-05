@@ -1,11 +1,11 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-// import 'https://deno.land/x/polkadot/types/types/registry.ts';
+// import 'https://deno.land/x/polkadot@0.0.4-6/types/types/registry.ts';
 
-import type { KusamaRuntimeNposCompactSolution24, KusamaRuntimeOriginCaller, KusamaRuntimeProxyType, KusamaRuntimeRuntime, KusamaRuntimeSessionKeys } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { KusamaRuntimeNposCompactSolution24, KusamaRuntimeOriginCaller, KusamaRuntimeProxyType, KusamaRuntimeRuntime, KusamaRuntimeSessionKeys } from 'https://deno.land/x/polkadot@0.0.4-6/types/lookup.ts';
 
-declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
+declare module 'https://deno.land/x/polkadot@0.0.4-6/types/types/registry.ts' {
   interface InterfaceTypes {
     KusamaRuntimeNposCompactSolution24: KusamaRuntimeNposCompactSolution24;
     KusamaRuntimeOriginCaller: KusamaRuntimeOriginCaller;
