@@ -4,10 +4,13 @@
 import './augmentLookup.ts';
 import './augmentRegistry.ts';
 
-// used inside augmented definitions
-export type { Observable } from 'https://esm.sh/rxjs@7.5.5';
+// augmented exports
 export * from 'https://deno.land/x/polkadot@0.0.4-8/types/types/registry.ts';
 
+// used inside augmented definitions
+export type { Observable } from 'https://esm.sh/rxjs@7.5.5';
+
+// normal exports
 export * from '../create/types.ts';
 export * from './calls.ts';
 export * from './codec.ts';
@@ -16,4 +19,3 @@ export * from './detect.ts';
 export * from './events.ts';
 export * from './extrinsic.ts';
 export * from './interfaces.ts';
-export * from './registry.ts';

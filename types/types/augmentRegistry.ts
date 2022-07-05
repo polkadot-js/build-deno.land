@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import 'https://deno.land/x/polkadot@0.0.4-8/types-create/types/augmentRegistry.ts';
-import 'https://deno.land/x/polkadot@0.0.4-8/types-codec/types/registry.ts';
 
 import type { Codec, CodecClass } from 'https://deno.land/x/polkadot@0.0.4-8/types-codec/types/index.ts';
 import type { TypeDef } from 'https://deno.land/x/polkadot@0.0.4-8/types-create/types/index.ts';
