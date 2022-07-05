@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master
+
+- api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 8.11.4-2-x
+
 ## 0.0.4-3 Jul 5, 2022
 
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 8.11.4-0-x
