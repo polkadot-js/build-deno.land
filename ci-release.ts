@@ -25,6 +25,9 @@ const IS_CI = !!Deno.env.get('GITHUB_REPOSITORY');
 // regex for matching https://deno.land/x/polkadot[@<version>]/
 const RE_PKG = /https:\/\/deno\.land\/x\/polkadot(@\d*\.\d*\.\d*(-\d*)?)?\//g;
 
+// regex for matching packageInfo (with ()'s to disallow here)
+const RE_VER = /type: ('deno'), version: ('.*')/g;
+
 // GitHub specific config, user, email & repo
 const GH_USER = 'github-actions[bot]';
 const GH_MAIL = '41898282+github-actions[bot]@users.noreply.github.com';
@@ -109,6 +112,11 @@ async function setVersion (version: string, dir: string, level = 0): Promise<voi
             !IS_DOT_PATH || entry.name.endsWith('.md')
               ? contents.replace(RE_PKG, `https://deno.land/x/polkadot@${version}/`)
               : contents.replace(RE_PKG, `${topLevel}/`)
+          );
+        } else if (RE_VER.test(contents) && entry.name.endsWith('packageInfo.ts')) {
+          await Deno.writeTextFile(
+            path,
+            contents.replace(RE_VER, `type: 'deno', version: '${version}'`)
           );
         }
       }
