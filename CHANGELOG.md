@@ -1,33 +1,36 @@
 # CHANGELOG
 
-## master
+## 0.0.4-5 Jul 5, 2022
+
+**Beta** Testing changes from latest util & api adjustments for Deno context
 
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 8.11.4-3-x
 
+
 ## 0.0.4-4 Jul 5, 2022
 
-**beta** Testing changes from latest util & api adjustments for Deno context
+**Beta** Testing changes from latest util & api adjustments for Deno context
 
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 8.11.4-2-x
 
 
 ## 0.0.4-3 Jul 5, 2022
 
-**beta** Testing changes from latest util & api adjustments for Deno context
+**Beta** Testing changes from latest util & api adjustments for Deno context
 
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 8.11.4-0-x
 
 
 ## 0.0.4-2 Jul 5, 2022
 
-**beta** Testing changes from latest util & api adjustments for Deno context
+**Beta** Testing changes from latest util & api adjustments for Deno context
 
 - hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 9.7.3-5-x
 
 
 ## 0.0.4-1 Jul 5, 2022
 
-**beta** Testing changes from latest util & api adjustments for Deno context
+**Beta** Testing changes from latest util & api adjustments for Deno context
 
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 8.11.3-3-x
 - hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 9.7.3-2-x
