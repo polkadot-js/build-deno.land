@@ -1,13 +1,13 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Text, u8 } from 'https://deno.land/x/polkadot@0.0.4-4/types-codec/mod.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.0.4-4/types-codec/types/index.ts';
+import type { Text, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { DispatchErrorModule, DispatchErrorModuleU8, DispatchErrorModuleU8a, MetadataLatest, SiField, SiVariant } from '../../../interfaces/index.ts';
 import type { PortableRegistry } from '../../../metadata/index.ts';
 import type { Errors, IsError } from '../types.ts';
 
-import { isCodec, isU8a, lazyMethod, objectSpread, stringCamelCase } from 'https://deno.land/x/polkadot@0.0.4-4/util/mod.ts';
+import { isCodec, isU8a, lazyMethod, objectSpread, stringCamelCase } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { lazyVariants } from '../../../create/lazy.ts';
 import { objectNameToString } from '../util.ts';

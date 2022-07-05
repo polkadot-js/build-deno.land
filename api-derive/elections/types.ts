@@ -1,8 +1,8 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { u32 } from 'https://deno.land/x/polkadot@0.0.4-4/types/mod.ts';
-import type { AccountId, Balance, BlockNumber, SetIndex, VoteIndex } from 'https://deno.land/x/polkadot@0.0.4-4/types/interfaces/index.ts';
+import type { u32 } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, Balance, BlockNumber, SetIndex, VoteIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 
 export interface DeriveElectionsInfo {
   candidates: AccountId[];

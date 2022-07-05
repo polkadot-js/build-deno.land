@@ -1,10 +1,10 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Bytes, Struct, Vec, u32 } from 'https://deno.land/x/polkadot@0.0.4-4/types-codec/mod.ts';
-import type { Signature } from 'https://deno.land/x/polkadot@0.0.4-4/types/interfaces/extrinsics/index.ts';
-import type { BlockNumber } from 'https://deno.land/x/polkadot@0.0.4-4/types/interfaces/runtime/index.ts';
-import type { SessionIndex } from 'https://deno.land/x/polkadot@0.0.4-4/types/interfaces/session/index.ts';
+import type { Bytes, Struct, Vec, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Signature } from 'https://deno.land/x/polkadot/types/interfaces/extrinsics/index.ts';
+import type { BlockNumber } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { SessionIndex } from 'https://deno.land/x/polkadot/types/interfaces/session/index.ts';
 
 /** @name AuthIndex */
 export interface AuthIndex extends u32 {}

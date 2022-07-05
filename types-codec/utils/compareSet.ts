@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { isObject } from 'https://deno.land/x/polkadot@0.0.4-4/util/mod.ts';
+import { isObject } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 function compareSetArray (a: Set<unknown>, b: any[]): boolean {
   // equal number of entries and each entry in the array should match
