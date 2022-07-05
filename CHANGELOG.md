@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.0.4-8 Jul 5, 2022
+
+**Beta** Testing changes from latest util & api adjustments for Deno context
+
+
 ## 0.0.4-7 Jul 5, 2022
 
 **Beta** Testing changes from latest util & api adjustments for Deno context

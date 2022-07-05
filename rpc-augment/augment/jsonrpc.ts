@@ -1,7 +1,7 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-// import 'https://deno.land/x/polkadot@0.0.4-7/rpc-core/types/jsonrpc.ts';
+import 'https://deno.land/x/polkadot@0.0.4-7/rpc-core/types/jsonrpc.ts';
 
 import type { AugmentedRpc } from 'https://deno.land/x/polkadot@0.0.4-7/rpc-core/types/index.ts';
 import type { Metadata, StorageKey } from 'https://deno.land/x/polkadot@0.0.4-7/types/mod.ts';
