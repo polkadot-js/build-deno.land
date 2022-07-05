@@ -1,10 +1,10 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Bytes, Enum, Option, Struct, Vec, bool, u32 } from 'https://deno.land/x/polkadot@0.0.3/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.0.3/types-codec/types/index.ts';
-import type { Vote, VoteThreshold } from 'https://deno.land/x/polkadot@0.0.3/types/interfaces/elections/index.ts';
-import type { AccountId, Balance, BlockNumber, Call, Hash } from 'https://deno.land/x/polkadot@0.0.3/types/interfaces/runtime/index.ts';
+import type { Bytes, Enum, Option, Struct, Vec, bool, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Vote, VoteThreshold } from 'https://deno.land/x/polkadot/types/interfaces/elections/index.ts';
+import type { AccountId, Balance, BlockNumber, Call, Hash } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 /** @name AccountVote */
 export interface AccountVote extends Enum {

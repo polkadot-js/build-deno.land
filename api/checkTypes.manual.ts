@@ -3,16 +3,17 @@
 
 // Simple non-runnable checks to test type definitions in the editor itself
 
-import 'https://deno.land/x/polkadot@0.0.3/api-augment/mod.ts';
+import 'https://deno.land/x/polkadot/api-augment/mod.ts';
 
-import type { HeaderExtended } from 'https://deno.land/x/polkadot@0.0.3/api-derive/types.ts';
-import type { StorageKey } from 'https://deno.land/x/polkadot@0.0.3/types/mod.ts';
-import type { AccountId, Balance, DispatchErrorModule, Event, Header, Index } from 'https://deno.land/x/polkadot@0.0.3/types/interfaces/index.ts';
-import type { AnyTuple, IExtrinsic, IMethod } from 'https://deno.land/x/polkadot@0.0.3/types/types/index.ts';
+import type { HeaderExtended } from 'https://deno.land/x/polkadot/api-derive/types.ts';
+import type { StorageKey } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, Balance, DispatchErrorModule, Event, Header, Index } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { FrameSystemAccountInfo } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { AnyTuple, IExtrinsic, IMethod } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import { ApiPromise } from 'https://deno.land/x/polkadot@0.0.3/api/mod.ts';
-import { createTestPairs, TestKeyringMap } from 'https://deno.land/x/polkadot@0.0.3/keyring/testingPairs.ts';
-import { createTypeUnsafe, TypeRegistry } from 'https://deno.land/x/polkadot@0.0.3/types/create/index.ts';
+import { ApiPromise } from 'https://deno.land/x/polkadot/api/mod.ts';
+import { createTestPairs, TestKeyringMap } from 'https://deno.land/x/polkadot/keyring/testingPairs.ts';
+import { createTypeUnsafe, TypeRegistry } from 'https://deno.land/x/polkadot/types/create/index.ts';
 
 import { SubmittableResult } from './/index.ts';
 
@@ -117,6 +118,9 @@ async function query (api: ApiPromise, pairs: TestKeyringMap): Promise<void> {
   // For older queries we can cast with `<Balance>` (newer chain have multi typed)
   const multia = await api.query.balances.freeBalance.multi<Balance>([pairs.alice.address, pairs.bob.address]);
   const multib = await api.query.system.account.multi([pairs.alice.address, pairs.bob.address]);
+
+  await api.query.system.account(pairs.alice.address);
+  await api.query.system.account<FrameSystemAccountInfo>(pairs.alice.address);
 
   console.log('query types:', bar, bal, bal2, override, oldBal, multia, multib);
 }

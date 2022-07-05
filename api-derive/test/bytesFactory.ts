@@ -1,8 +1,8 @@
 // Copyright 2017-2022 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { Bytes } from 'https://deno.land/x/polkadot@0.0.3/types/mod.ts';
-import { Registry } from 'https://deno.land/x/polkadot@0.0.3/types/types/index.ts';
+import { Bytes } from 'https://deno.land/x/polkadot/types/mod.ts';
+import { Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 export class BytesFactory {
   #registry: Registry;

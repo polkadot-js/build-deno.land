@@ -1,9 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { GenericEthereumAccountId, GenericEthereumLookupSource } from 'https://deno.land/x/polkadot@0.0.3/types/mod.ts';
-import type { Bytes, Enum, Option, Struct, U256, U64, U8aFixed, Vec, bool, f64, u32, u64 } from 'https://deno.land/x/polkadot@0.0.3/types-codec/mod.ts';
-import type { BlockNumber, H160, H2048, H256, H64 } from 'https://deno.land/x/polkadot@0.0.3/types/interfaces/runtime/index.ts';
+import type { GenericEthereumAccountId, GenericEthereumLookupSource } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Bytes, Enum, Option, Struct, U256, U64, U8aFixed, Vec, bool, f64, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { BlockNumber, H160, H2048, H256, H64 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 /** @name BlockV0 */
 export interface BlockV0 extends Struct {
