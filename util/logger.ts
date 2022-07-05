@@ -13,6 +13,8 @@ import { u8aToHex } from './u8a/toHex.ts';
 import { u8aToU8a } from './u8a/toU8a.ts';
 import { hasProcess } from './has.ts';
 
+declare const process: { env: Record<string, string> };
+
 type ConsoleType = 'error' | 'log' | 'warn';
 type LogType = ConsoleType | 'debug';
 
@@ -142,7 +144,7 @@ function parseEnv (type: string): [boolean, number] {
  * <BR>
  *
  * ```javascript
- * import { logger } from 'https://deno.land/x/polkadot@0.0.3/util/mod.ts';
+ * import { logger } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * const l = logger('test');
  * ```

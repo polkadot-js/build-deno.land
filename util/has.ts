@@ -1,7 +1,16 @@
 // Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { BigInt } from 'https://deno.land/x/polkadot@0.0.3/x-bigint/mod.ts';
+import { BigInt } from 'https://deno.land/x/polkadot/x-bigint/mod.ts';
+
+// Since we run in very different environments, we have to ensure we have all
+// the types used here for detection (some of these may require Node definitions,
+// which are not available in Deno/browser)
+declare const __dirname: unknown;
+declare const Buffer: unknown;
+declare const module: unknown;
+declare const process: unknown;
+declare const require: unknown;
 
 /** true if the environment has proper BigInt support */
 export const hasBigInt = typeof BigInt === 'function' && typeof BigInt.asIntN === 'function';
