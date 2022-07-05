@@ -1,8 +1,11 @@
 # CHANGELOG
 
-## master
+## 0.0.4-6 Jul 5, 2022
+
+**Beta** Testing changes from latest util & api adjustments for Deno context
 
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 8.11.4-4-x
+
 
 ## 0.0.4-5 Jul 5, 2022
 
