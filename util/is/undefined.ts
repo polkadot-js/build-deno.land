@@ -10,7 +10,7 @@
  * <BR>
  *
  * ```javascript
- * import { isUndefined } from 'https://deno.land/x/polkadot@0.0.4-4/util/mod.ts';
+ * import { isUndefined } from 'https://deno.land/x/polkadot@0.0.4-5/util/mod.ts';
  *
  * console.log('isUndefined', isUndefined(void(0))); // => true
  * ```

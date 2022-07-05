@@ -1,7 +1,7 @@
 // Copyright 2019-2022 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { createWasm } from 'https://deno.land/x/polkadot@0.0.4-4/wasm-crypto-init/none.ts';
+import { createWasm } from 'https://deno.land/x/polkadot@0.0.4-5/wasm-crypto-init/none.ts';
 
 import { initBridge } from './init.ts';
 

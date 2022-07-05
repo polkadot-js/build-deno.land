@@ -10,7 +10,7 @@
  * <BR>
  *
  * ```javascript
- * import { isUint8Array } from 'https://deno.land/x/polkadot@0.0.4-4/util/mod.ts';
+ * import { isUint8Array } from 'https://deno.land/x/polkadot@0.0.4-5/util/mod.ts';
  *
  * console.log('isU8a', isU8a([])); // => false
  * ```

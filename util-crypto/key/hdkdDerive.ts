@@ -3,7 +3,7 @@
 
 import type { Keypair } from '../types.ts';
 
-import { assert } from 'https://deno.land/x/polkadot@0.0.4-4/util/mod.ts';
+import { assert } from 'https://deno.land/x/polkadot@0.0.4-5/util/mod.ts';
 
 import { DeriveJunction } from './DeriveJunction.ts';
 
