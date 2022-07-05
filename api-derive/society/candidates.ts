@@ -2,10 +2,10 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
-import type { BalanceOf } from 'https://deno.land/x/polkadot@0.0.4-7/types/interfaces/index.ts';
-import type { PalletSocietyBid, PalletSocietyBidKind } from 'https://deno.land/x/polkadot@0.0.4-7/types/lookup.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.0.4-7/types/types/index.ts';
-import type { Option } from 'https://deno.land/x/polkadot@0.0.4-7/types-codec/mod.ts';
+import type { BalanceOf } from 'https://deno.land/x/polkadot@0.0.4-8/types/interfaces/index.ts';
+import type { PalletSocietyBid, PalletSocietyBidKind } from 'https://deno.land/x/polkadot@0.0.4-8/types/lookup.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.0.4-8/types/types/index.ts';
+import type { Option } from 'https://deno.land/x/polkadot@0.0.4-8/types-codec/mod.ts';
 import type { DeriveApi, DeriveSocietyCandidate } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.5';

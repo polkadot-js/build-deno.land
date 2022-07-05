@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { BigInt } from 'https://deno.land/x/polkadot@0.0.4-7/x-bigint/mod.ts';
+import { BigInt } from 'https://deno.land/x/polkadot@0.0.4-8/x-bigint/mod.ts';
 
 // @ts-expect-error not extensible, we make it extensible here
 export abstract class AbstractBigInt extends BigInt {

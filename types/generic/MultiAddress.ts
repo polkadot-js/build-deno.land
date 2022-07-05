@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Inspect, Registry } from 'https://deno.land/x/polkadot@0.0.4-7/types-codec/types/index.ts';
+import type { Inspect, Registry } from 'https://deno.land/x/polkadot@0.0.4-8/types-codec/types/index.ts';
 
-import { Enum } from 'https://deno.land/x/polkadot@0.0.4-7/types-codec/mod.ts';
-import { isBn, isNumber, isString, isU8a } from 'https://deno.land/x/polkadot@0.0.4-7/util/mod.ts';
-import { decodeAddress } from 'https://deno.land/x/polkadot@0.0.4-7/util-crypto/mod.ts';
+import { Enum } from 'https://deno.land/x/polkadot@0.0.4-8/types-codec/mod.ts';
+import { isBn, isNumber, isString, isU8a } from 'https://deno.land/x/polkadot@0.0.4-8/util/mod.ts';
+import { decodeAddress } from 'https://deno.land/x/polkadot@0.0.4-8/util-crypto/mod.ts';
 
 import { GenericAccountId } from './AccountId.ts';
 import { GenericAccountIndex } from './AccountIndex.ts';

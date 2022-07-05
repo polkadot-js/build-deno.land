@@ -3,7 +3,7 @@
 
 import type { Prefix } from './types.ts';
 
-import { logger } from 'https://deno.land/x/polkadot@0.0.4-7/util/mod.ts';
+import { logger } from 'https://deno.land/x/polkadot@0.0.4-8/util/mod.ts';
 
 import { defaults } from './defaults.ts';
 

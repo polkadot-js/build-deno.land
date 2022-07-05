@@ -1,12 +1,12 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyTuple, Registry } from 'https://deno.land/x/polkadot@0.0.4-7/types-codec/types/index.ts';
+import type { AnyTuple, Registry } from 'https://deno.land/x/polkadot@0.0.4-8/types-codec/types/index.ts';
 import type { MetadataLatest, PalletMetadataLatest, SiVariant } from '../../../interfaces/index.ts';
 import type { IEvent, IEventLike } from '../../../types/index.ts';
 import type { Events, IsEvent } from '../types.ts';
 
-import { isCodec, isU8a, lazyMethod, stringCamelCase } from 'https://deno.land/x/polkadot@0.0.4-7/util/mod.ts';
+import { isCodec, isU8a, lazyMethod, stringCamelCase } from 'https://deno.land/x/polkadot@0.0.4-8/util/mod.ts';
 
 import { lazyVariants } from '../../../create/lazy.ts';
 import { variantToMeta } from '../errors/index.ts';

@@ -2,14 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
-import type { Option } from 'https://deno.land/x/polkadot@0.0.4-7/types/mod.ts';
-import type { AccountId32 } from 'https://deno.land/x/polkadot@0.0.4-7/types/interfaces/index.ts';
-import type { PalletBagsListListBag, PalletBagsListListNode } from 'https://deno.land/x/polkadot@0.0.4-7/types/lookup.ts';
+import type { Option } from 'https://deno.land/x/polkadot@0.0.4-8/types/mod.ts';
+import type { AccountId32 } from 'https://deno.land/x/polkadot@0.0.4-8/types/interfaces/index.ts';
+import type { PalletBagsListListBag, PalletBagsListListNode } from 'https://deno.land/x/polkadot@0.0.4-8/types/lookup.ts';
 import type { DeriveApi } from '../types.ts';
 
 import { BehaviorSubject, map, of, switchMap, tap, toArray } from 'https://esm.sh/rxjs@7.5.5';
 
-import { nextTick } from 'https://deno.land/x/polkadot@0.0.4-7/util/mod.ts';
+import { nextTick } from 'https://deno.land/x/polkadot@0.0.4-8/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 
