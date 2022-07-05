@@ -102,7 +102,7 @@ async function setVersion (version: string, dir: string, level = 0): Promise<voi
     if (!entry.name.startsWith('.')) {
       if (entry.isDirectory) {
         await setVersion(version, `${dir}/${entry.name}`, level + 1);
-      } else if (entry.name.endsWith('.ts') || entry.name.endsWith('.tsx') || entry.name.endsWith('.md')) {
+      } else if (entry.name.endsWith('.ts') || entry.name.endsWith('.tsx') || entry.name.endsWith('.md') || entry.name.endsWith('import_map.json')) {
         const path = `${dir}/${entry.name}`;
         const contents = await Deno.readTextFile(path);
 
