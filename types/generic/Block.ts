@@ -1,12 +1,12 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Vec } from 'https://deno.land/x/polkadot@0.0.4-1/types-codec/mod.ts';
-import type { AnyNumber, AnyU8a, IU8a, Registry } from 'https://deno.land/x/polkadot@0.0.4-1/types-codec/types/index.ts';
+import type { Vec } from 'https://deno.land/x/polkadot@0.0.4-2/types-codec/mod.ts';
+import type { AnyNumber, AnyU8a, IU8a, Registry } from 'https://deno.land/x/polkadot@0.0.4-2/types-codec/types/index.ts';
 import type { GenericExtrinsic } from '../extrinsic/Extrinsic.ts';
 import type { Digest, DigestItem, Header } from '../interfaces/runtime/index.ts';
 
-import { Struct } from 'https://deno.land/x/polkadot@0.0.4-1/types-codec/mod.ts';
+import { Struct } from 'https://deno.land/x/polkadot@0.0.4-2/types-codec/mod.ts';
 
 export interface HeaderValue {
   digest?: Digest | { logs: DigestItem[] | string[] };

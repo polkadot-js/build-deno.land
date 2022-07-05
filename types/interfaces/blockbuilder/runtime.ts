@@ -3,7 +3,7 @@
 
 import type { DefinitionsCall, DefinitionsCallEntry } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.0.4-1/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.0.4-2/util/mod.ts';
 
 const BB_V5_TO_V6: DefinitionsCallEntry['methods'] = {
   check_inherents: {

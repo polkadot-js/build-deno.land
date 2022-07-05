@@ -2,13 +2,13 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
-import type { Header, Index } from 'https://deno.land/x/polkadot@0.0.4-1/types/interfaces/index.ts';
-import type { AnyNumber, Codec, IExtrinsicEra } from 'https://deno.land/x/polkadot@0.0.4-1/types/types/index.ts';
+import type { Header, Index } from 'https://deno.land/x/polkadot@0.0.4-2/types/interfaces/index.ts';
+import type { AnyNumber, Codec, IExtrinsicEra } from 'https://deno.land/x/polkadot@0.0.4-2/types/types/index.ts';
 import type { DeriveApi } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.5';
 
-import { isNumber, isUndefined } from 'https://deno.land/x/polkadot@0.0.4-1/util/mod.ts';
+import { isNumber, isUndefined } from 'https://deno.land/x/polkadot@0.0.4-2/util/mod.ts';
 
 import { FALLBACK_MAX_HASH_COUNT, FALLBACK_PERIOD, MAX_FINALITY_LAG, MORTAL_PERIOD } from './constants.ts';
 

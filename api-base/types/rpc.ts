@@ -2,11 +2,11 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
-import type { AnyFunction, Callback, DefinitionRpc } from 'https://deno.land/x/polkadot@0.0.4-1/types/types/index.ts';
+import type { AnyFunction, Callback, DefinitionRpc } from 'https://deno.land/x/polkadot@0.0.4-2/types/types/index.ts';
 
 import { ApiTypes, PromiseResult, Push, RxResult, UnsubscribePromise } from './base.ts';
 
-export type { AugmentedRpc } from 'https://deno.land/x/polkadot@0.0.4-1/rpc-core/types/index.ts';
+export type { AugmentedRpc } from 'https://deno.land/x/polkadot@0.0.4-2/rpc-core/types/index.ts';
 
 export interface RxRpcResult<F extends AnyFunction> extends RxResult<F> {
   raw <T> (...args: Parameters<F>): Observable<T>;

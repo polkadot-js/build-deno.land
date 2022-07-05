@@ -1,8 +1,8 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Codec } from 'https://deno.land/x/polkadot@0.0.4-1/types-codec/types/index.ts';
-import type { TypeDef } from 'https://deno.land/x/polkadot@0.0.4-1/types-create/types/index.ts';
+import type { Codec } from 'https://deno.land/x/polkadot@0.0.4-2/types-codec/types/index.ts';
+import type { TypeDef } from 'https://deno.land/x/polkadot@0.0.4-2/types-create/types/index.ts';
 import type { EventMetadataLatest } from '../interfaces/metadata/index.ts';
 import type { Hash } from '../interfaces/runtime/index.ts';
 import type { EventId, Phase } from '../interfaces/system/index.ts';

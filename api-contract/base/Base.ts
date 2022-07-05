@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot@0.0.4-1/api/types/index.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.0.4-1/types/types/index.ts';
+import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot@0.0.4-2/api/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.0.4-2/types/types/index.ts';
 
-import { ApiBase } from 'https://deno.land/x/polkadot@0.0.4-1/api/base/index.ts';
-import { assert, isFunction } from 'https://deno.land/x/polkadot@0.0.4-1/util/mod.ts';
+import { ApiBase } from 'https://deno.land/x/polkadot@0.0.4-2/api/base/index.ts';
+import { assert, isFunction } from 'https://deno.land/x/polkadot@0.0.4-2/util/mod.ts';
 
 import { Abi } from '../Abi/index.ts';
 

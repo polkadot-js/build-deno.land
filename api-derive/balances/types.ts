@@ -1,9 +1,9 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AccountId, Balance, BalanceLockTo212, Index } from 'https://deno.land/x/polkadot@0.0.4-1/types/interfaces/index.ts';
-import type { PalletBalancesBalanceLock, PalletBalancesReserveData } from 'https://deno.land/x/polkadot@0.0.4-1/types/lookup.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.0.4-1/util/mod.ts';
+import type { AccountId, Balance, BalanceLockTo212, Index } from 'https://deno.land/x/polkadot@0.0.4-2/types/interfaces/index.ts';
+import type { PalletBalancesBalanceLock, PalletBalancesReserveData } from 'https://deno.land/x/polkadot@0.0.4-2/types/lookup.ts';
+import type { BN } from 'https://deno.land/x/polkadot@0.0.4-2/util/mod.ts';
 
 export interface DeriveBalancesAccountData {
   freeBalance: Balance;
