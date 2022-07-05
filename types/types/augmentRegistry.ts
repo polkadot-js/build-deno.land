@@ -1,10 +1,13 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import 'https://deno.land/x/polkadot@0.0.4-9/types-create/types/augmentRegistry.ts';
+// import type lookup before we augment - in some environments
+// this is required to allow for ambient/previous definitions
+import 'https://deno.land/x/polkadot/types-codec/types/registry.ts';
+import 'https://deno.land/x/polkadot/types-create/types/augmentRegistry.ts';
 
-import type { Codec, CodecClass } from 'https://deno.land/x/polkadot@0.0.4-9/types-codec/types/index.ts';
-import type { TypeDef } from 'https://deno.land/x/polkadot@0.0.4-9/types-create/types/index.ts';
+import type { Codec, CodecClass } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 import type { ExtDef } from '../extrinsic/signedExtensions/types.ts';
 import type { MetadataLatest } from '../interfaces/metadata/index.ts';
 import type { SiField, SiLookupTypeId } from '../interfaces/scaleInfo/index.ts';
@@ -14,7 +17,7 @@ import type { CallFunction as CallFunctionExt } from './calls.ts';
 import type { DetectCodec } from './detect.ts';
 import type { CodecHasher, RegisteredTypes } from './registry.ts';
 
-declare module 'https://deno.land/x/polkadot@0.0.4-9/types-codec/types/registry.ts' {
+declare module 'https://deno.land/x/polkadot/types-codec/types/registry.ts' {
   interface RegistryError {
     fields: SiField[];
   }
