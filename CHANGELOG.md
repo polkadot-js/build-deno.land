@@ -1,8 +1,9 @@
 # CHANGELOG
 
-## master
+## 0.0.4-2 Jul 5, 2022
 
 - hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 9.7.3-5-x
+
 
 ## 0.0.4-1 Jul 5, 2022
 
