@@ -1,9 +1,10 @@
 # CHANGELOG
 
-## master
+## 0.0.4 Jul 5, 2022
 
+- Augmentation fixes, check command uses import_map
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 8.11.4-6-x
-- api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 8.11.4-5-x
+
 
 ## 0.0.4-9 Jul 5, 2022
 
