@@ -1,12 +1,12 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyU8a, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { AnyU8a, Registry } from 'https://deno.land/x/polkadot@0.0.4-3/types-codec/types/index.ts';
+import type { BN } from 'https://deno.land/x/polkadot@0.0.4-3/util/mod.ts';
 import type { IExtrinsicEra, INumber } from '../types/index.ts';
 
-import { Enum, Raw, Tuple, U64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import { bnToBn, formatNumber, hexToU8a, isHex, isObject, isU8a, u8aToBn, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { Enum, Raw, Tuple, U64 } from 'https://deno.land/x/polkadot@0.0.4-3/types-codec/mod.ts';
+import { bnToBn, formatNumber, hexToU8a, isHex, isObject, isU8a, u8aToBn, u8aToU8a } from 'https://deno.land/x/polkadot@0.0.4-3/util/mod.ts';
 
 import { IMMORTAL_ERA } from './constants.ts';
 

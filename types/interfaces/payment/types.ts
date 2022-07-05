@@ -1,9 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Option, Struct } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { Balance, Weight } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
-import type { DispatchClass } from 'https://deno.land/x/polkadot/types/interfaces/system/index.ts';
+import type { Option, Struct } from 'https://deno.land/x/polkadot@0.0.4-3/types-codec/mod.ts';
+import type { Balance, Weight } from 'https://deno.land/x/polkadot@0.0.4-3/types/interfaces/runtime/index.ts';
+import type { DispatchClass } from 'https://deno.land/x/polkadot@0.0.4-3/types/interfaces/system/index.ts';
 
 /** @name FeeDetails */
 export interface FeeDetails extends Struct {

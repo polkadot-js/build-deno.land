@@ -13,7 +13,7 @@ type FnType = Function;
  * <BR>
  *
  * ```javascript
- * import { isFunction } from 'https://deno.land/x/polkadot@0.0.4-2/util/mod.ts';
+ * import { isFunction } from 'https://deno.land/x/polkadot@0.0.4-3/util/mod.ts';
  *
  * isFunction(() => false); // => true
  * ```
