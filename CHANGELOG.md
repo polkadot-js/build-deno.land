@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master
+
+- wasm-{bridge, crypto, crypto-{asmjs, init, wasm}, util} 6.2.3
+
 ## 0.0.4 Jul 5, 2022
 
 - Augmentation fixes, check command uses import_map
