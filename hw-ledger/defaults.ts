@@ -2,13 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type Transport from 'https://esm.sh/@ledgerhq/hw-transport@6.27.1';
-import type { SubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.31.0';
+import type { SubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.32.0';
 
-import { newAcalaApp, newAstarApp, newBifrostApp, newCentrifugeApp, newComposableApp, newDockApp, newEdgewareApp, newEquilibriumApp, newGenshiroApp, newKaruraApp, newKusamaApp, newNodleApp, newParallelApp, newPolkadexApp, newPolkadotApp, newPolymeshApp, newSoraApp, newStatemineApp, newStatemintApp, newXXNetworkApp } from 'https://esm.sh/@zondax/ledger-substrate@0.31.0';
+import { newAcalaApp, newAlephZeroApp, newAstarApp, newBifrostApp, newCentrifugeApp, newComposableApp, newDockApp, newEdgewareApp, newEquilibriumApp, newGenshiroApp, newKaruraApp, newKusamaApp, newNodleApp, newParallelApp, newPolkadexApp, newPolkadotApp, newPolymeshApp, newSoraApp, newStafiApp, newStatemineApp, newStatemintApp, newXXNetworkApp } from 'https://esm.sh/@zondax/ledger-substrate@0.32.0';
 
 // These match up with the keys of the knownLedger object in the @polkadot/networks/defaults/ledger.ts
 export const ledgerApps: Record<string, (transport: Transport) => SubstrateApp> = {
   acala: newAcalaApp,
+  'aleph-node': newAlephZeroApp,
   astar: newAstarApp,
   bifrost: newBifrostApp,
   centrifuge: newCentrifugeApp,
@@ -25,6 +26,7 @@ export const ledgerApps: Record<string, (transport: Transport) => SubstrateApp> 
   polkadot: newPolkadotApp,
   polymesh: newPolymeshApp,
   sora: newSoraApp,
+  stafi: newStafiApp,
   statemine: newStatemineApp,
   statemint: newStatemintApp,
   xxnetwork: newXXNetworkApp

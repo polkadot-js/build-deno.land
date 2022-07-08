@@ -4,7 +4,6 @@
 import type { NumberOptions, ToBn } from '../types.ts';
 import type { BN } from './bn.ts';
 
-import { isNumber } from '../is/number.ts';
 import { bnToBn } from './toBn.ts';
 
 const DEFAULT_OPTS: NumberOptions = { bitLength: -1, isLe: true, isNegative: false };
@@ -18,20 +17,12 @@ const DEFAULT_OPTS: NumberOptions = { bitLength: -1, isLe: true, isNegative: fal
  * <BR>
  *
  * ```javascript
- * import { bnToU8a } from 'https://deno.land/x/polkadot@0.0.4/util/mod.ts';
+ * import { bnToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * bnToU8a(new BN(0x1234)); // => [0x12, 0x34]
  * ```
  */
-function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, options?: NumberOptions): Uint8Array;
-/** @deprecated Use bnToU8a(value?: ExtToBn | BN | bigint | number | null, options?: NumberOptions) */
-function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, bitLength?: number, isLe?: boolean): Uint8Array;
-/** @deprecated Use bnToU8a(value?: ExtToBn | BN | bigint | number | null, options?: NumberOptions) */
-function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, arg1: number | NumberOptions = DEFAULT_OPTS, arg2 = true): Uint8Array {
-  const { bitLength = -1, isLe = true, isNegative = false } = isNumber(arg1)
-    ? { bitLength: arg1, isLe: arg2 }
-    : arg1;
-
+export function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, { bitLength = -1, isLe = true, isNegative = false } = DEFAULT_OPTS): Uint8Array {
   const valueBn = bnToBn(value);
   const byteLength = bitLength === -1
     ? Math.ceil(valueBn.bitLength() / 8)
@@ -52,5 +43,3 @@ function bnToU8a <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number 
 
   return output;
 }
-
-export { bnToU8a };

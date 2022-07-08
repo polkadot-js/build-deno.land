@@ -4,7 +4,6 @@
 import type { ToBnOptions } from '../types.ts';
 
 import { BN } from '../bn/bn.ts';
-import { isBoolean } from '../is/boolean.ts';
 
 /**
  * @name u8aToBn
@@ -19,21 +18,12 @@ import { isBoolean } from '../is/boolean.ts';
  * <BR>
  *
  * ```javascript
- * import { u8aToBn } from 'https://deno.land/x/polkadot@0.0.4/util/mod.ts';
+ * import { u8aToBn } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
  * ```
  */
-function u8aToBn (value: Uint8Array, options?: ToBnOptions): BN;
-/** @deprecated Use u8aToBn(value: Uint8Array, options?: ToBnOptions) */
-function u8aToBn (value: Uint8Array, options?: boolean): BN;
-/** @deprecated Use u8aToBn (value?: string | null, options?: ToBnOptions) */
-function u8aToBn (value: Uint8Array, options: ToBnOptions | boolean = {}): BN {
-  // NOTE: This is the same process as followed in the hexToBn conversion
-  // For Uint8Array, default to LE
-  const { isLe = true, isNegative = false } = isBoolean(options)
-    ? { isLe: options }
-    : options;
+export function u8aToBn (value: Uint8Array, { isLe = true, isNegative = false }: ToBnOptions = {}): BN {
   const count = value.length;
 
   // shortcut for <= u48 values - in this case the manual conversion
@@ -130,5 +120,3 @@ function u8aToBn (value: Uint8Array, options: ToBnOptions | boolean = {}): BN {
     ? new BN(value, isLe ? 'le' : 'be').fromTwos(value.length * 8)
     : new BN(value, isLe ? 'le' : 'be');
 }
-
-export { u8aToBn };

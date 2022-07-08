@@ -4,13 +4,10 @@
 import type { HexString, NumberOptions, ToBn } from '../types.ts';
 import type { BN } from './bn.ts';
 
-import { isNumber } from '../is/number.ts';
-import { objectSpread } from '../object/spread.ts';
 import { u8aToHex } from '../u8a/index.ts';
 import { bnToU8a } from './toU8a.ts';
 
 const ZERO_STR = '0x00';
-const DEFAULT_OPTS: NumberOptions = { bitLength: -1, isLe: false, isNegative: false };
 
 /**
  * @name bnToHex
@@ -22,27 +19,13 @@ const DEFAULT_OPTS: NumberOptions = { bitLength: -1, isLe: false, isNegative: fa
  *
  * ```javascript
  * import BN from 'https://esm.sh/bn.js@5.2.1';
- * import { bnToHex } from 'https://deno.land/x/polkadot@0.0.4/util/mod.ts';
+ * import { bnToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * bnToHex(new BN(0x123456)); // => '0x123456'
  * ```
  */
-function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, options?: NumberOptions): HexString;
-/** @deprecated Use bnToHex (value?: ExtToBn | BN | bigint | number | null, options?: NumberOptions) */
-function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, bitLength?: number, isLe?: boolean): HexString;
-/** @deprecated Use bnToHex (value?: ExtToBn | BN | bigint | number | null, options?: NumberOptions) */
-function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, arg1: number | NumberOptions = DEFAULT_OPTS, arg2 = false): HexString {
+export function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, { bitLength = -1, isLe = false, isNegative = false }: NumberOptions = {}): HexString {
   return !value
     ? ZERO_STR
-    : u8aToHex(
-      bnToU8a(value, objectSpread(
-        // We spread here, the default for hex values is BE (JSONRPC via substrate)
-        { isLe: false, isNegative: false },
-        isNumber(arg1)
-          ? { bitLength: arg1, isLe: arg2 }
-          : arg1
-      ))
-    );
+    : u8aToHex(bnToU8a(value, { bitLength, isLe, isNegative }));
 }
-
-export { bnToHex };

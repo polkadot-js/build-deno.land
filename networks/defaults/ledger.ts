@@ -9,6 +9,7 @@ import type { KnownLedger } from '../types.ts';
 // NOTE: Any network here needs to have a genesisHash attached in the ./genesis.ts config
 export const knownLedger: KnownLedger = {
   acala: 0x00000313,
+  'aleph-node': 0x00000283,
   astar: 0x0000032a,
   bifrost: 0x00000314,
   centrifuge: 0x000002eb,
@@ -25,6 +26,7 @@ export const knownLedger: KnownLedger = {
   polkadot: 0x00000162,
   polymesh: 0x00000253,
   sora: 0x00000269,
+  stafi: 0x0000038b,
   statemine: 0x000001b2, // common-good on Kusama, shares derivation
   statemint: 0x00000162, // common-good on Polkadot, shares derivation
   xxnetwork: 0x000007a3

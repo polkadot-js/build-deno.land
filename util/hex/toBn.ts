@@ -4,7 +4,6 @@
 import type { ToBnOptions } from '../types.ts';
 
 import { BN } from '../bn/bn.ts';
-import { isBoolean } from '../is/boolean.ts';
 import { hexStripPrefix } from './stripPrefix.ts';
 
 /**
@@ -20,24 +19,16 @@ import { hexStripPrefix } from './stripPrefix.ts';
  * <BR>
  *
  * ```javascript
- * import { hexToBn } from 'https://deno.land/x/polkadot@0.0.4/util/mod.ts';
+ * import { hexToBn } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * hexToBn('0x123480001f'); // => BN(0x123480001f)
  * ```
  */
-function hexToBn (value?: string | null, options?: ToBnOptions): BN;
-/** @deprecated Use hexToBn (value?: string | null, options?: ToBnOptions) */
-function hexToBn (value?: string | null, options?: boolean): BN;
-/** @deprecated Use hexToBn (value?: string | null, options?: ToBnOptions) */
-function hexToBn (value?: string | null, options: ToBnOptions | boolean = {}): BN {
+export function hexToBn (value?: string | null, { isLe = false, isNegative = false }: ToBnOptions = {}): BN {
   if (!value || value === '0x') {
     return new BN(0);
   }
 
-  // For hex, default to BE
-  const { isLe = false, isNegative = false } = isBoolean(options)
-    ? { isLe: options }
-    : options;
   const stripped = hexStripPrefix(value);
   const bn = new BN(stripped, 16, isLe ? 'le' : 'be');
 
@@ -47,5 +38,3 @@ function hexToBn (value?: string | null, options: ToBnOptions | boolean = {}): B
     ? bn.fromTwos(stripped.length * 4)
     : bn;
 }
-
-export { hexToBn };
