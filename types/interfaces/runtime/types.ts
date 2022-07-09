@@ -1,12 +1,12 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { GenericAccountId, GenericAccountIndex, GenericBlock, GenericCall, GenericConsensusEngineId, GenericEthereumAccountId, GenericLookupSource, GenericMultiAddress, StorageKey } from 'https://deno.land/x/polkadot/types/mod.ts';
-import type { Bytes, Compact, DoNotConstruct, Enum, Int, Null, Option, Struct, U8aFixed, UInt, Vec, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { AuthorityId } from 'https://deno.land/x/polkadot/types/interfaces/consensus/index.ts';
-import type { Signature } from 'https://deno.land/x/polkadot/types/interfaces/extrinsics/index.ts';
-import type { SystemOrigin } from 'https://deno.land/x/polkadot/types/interfaces/system/index.ts';
+import type { GenericAccountId, GenericAccountIndex, GenericBlock, GenericCall, GenericConsensusEngineId, GenericEthereumAccountId, GenericLookupSource, GenericMultiAddress, StorageKey } from 'https://deno.land/x/polkadot@0.0.5/types/mod.ts';
+import type { Bytes, Compact, DoNotConstruct, Enum, Int, Null, Option, Struct, U8aFixed, UInt, Vec, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.0.5/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.0.5/types-codec/types/index.ts';
+import type { AuthorityId } from 'https://deno.land/x/polkadot@0.0.5/types/interfaces/consensus/index.ts';
+import type { Signature } from 'https://deno.land/x/polkadot@0.0.5/types/interfaces/extrinsics/index.ts';
+import type { SystemOrigin } from 'https://deno.land/x/polkadot@0.0.5/types/interfaces/system/index.ts';
 
 /** @name AccountId */
 export interface AccountId extends AccountId32 {}

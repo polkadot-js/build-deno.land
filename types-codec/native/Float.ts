@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.0.5/util/types.ts';
 import type { AnyFloat, CodecClass, IFloat, Inspect, IU8a, Registry } from '../types/index.ts';
 
-import { floatToU8a, isHex, isU8a, u8aToFloat, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { floatToU8a, isHex, isU8a, u8aToFloat, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.0.5/util/mod.ts';
 
 interface Options {
   bitLength?: 32 | 64;
