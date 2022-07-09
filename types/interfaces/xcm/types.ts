@@ -1,9 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Bytes, Compact, Enum, Null, Option, Result, Struct, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.0.4/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.0.4/types-codec/types/index.ts';
-import type { AccountId, BlockNumber, Weight } from 'https://deno.land/x/polkadot@0.0.4/types/interfaces/runtime/index.ts';
+import type { Bytes, Compact, Enum, Null, Option, Result, Struct, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { AccountId, BlockNumber, Weight } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 /** @name AssetInstance */
 export interface AssetInstance extends AssetInstanceV2 {}
@@ -820,7 +820,7 @@ export interface XcmOrderV0 extends Enum {
   } & Struct;
   readonly isInitiateTeleport: boolean;
   readonly asInitiateTeleport: {
-    readonly assets: Vec<MultiAsset>;
+    readonly assets: Vec<MultiAssetV0>;
     readonly dest: MultiLocationV0;
     readonly effects: Vec<XcmOrderV0>;
   } & Struct;
@@ -832,7 +832,7 @@ export interface XcmOrderV0 extends Enum {
   } & Struct;
   readonly isBuyExecution: boolean;
   readonly asBuyExecution: {
-    readonly fees: MultiAsset;
+    readonly fees: MultiAssetV0;
     readonly weight: u64;
     readonly debt: u64;
     readonly haltOnError: bool;

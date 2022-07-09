@@ -1,29 +1,27 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Registry } from 'https://deno.land/x/polkadot@0.0.4/types-codec/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.4/util/types.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 
-import { isString, isU8a, u8aToU8a } from 'https://deno.land/x/polkadot@0.0.4/util/mod.ts';
+import { isString, isU8a, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { MetadataVersioned } from './MetadataVersioned.ts';
-
-// magic u32 preceding the version id
-const VERSION_IDX = 4;
 
 // magic + lowest supported version
 const EMPTY_METADATA = new Uint8Array([0x6d, 0x65, 0x74, 0x61, 9]);
 
-/** @internal */
-function decodeU8a (registry: Registry, value: Uint8Array): MetadataVersioned | Uint8Array {
-  const u8a = value.length === 0
-    ? EMPTY_METADATA
-    : value;
+// magic u32 preceding the version id
+const VERSION_IDX = EMPTY_METADATA.length - 1;
 
-  // This is an f-ing hack as a follow-up to another ugly hack
-  // https://github.com/polkadot-js/api/commit/a9211690be6b68ad6c6dad7852f1665cadcfa5b2
-  // when we fail on V9, try to re-parse it as v10...
-  if (u8a[VERSION_IDX] === 9) {
+/** @internal */
+function decodeU8a (registry: Registry, u8a: Uint8Array): MetadataVersioned | Uint8Array {
+  if (u8a.length === 0) {
+    return EMPTY_METADATA;
+  } else if (u8a[VERSION_IDX] === 9) {
+    // This is an f-ing hack as a follow-up to another ugly hack
+    // https://github.com/polkadot-js/api/commit/a9211690be6b68ad6c6dad7852f1665cadcfa5b2
+    // when we fail on V9, try to re-parse it as v10...
     try {
       return new MetadataVersioned(registry, u8a);
     } catch (error) {

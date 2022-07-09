@@ -6,7 +6,7 @@
 
 import type { Definitions } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.0.4/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { AllHashers } from './hashers.ts';
 import { runtime } from './runtime.ts';
@@ -44,7 +44,7 @@ export default {
     StorageHasher: 'StorageHasherV14',
 
     // additional types
-    OpaqueMetadata: 'Bytes',
+    OpaqueMetadata: 'Opaque<Bytes>',
 
     // the enum containing all the mappings
     MetadataAll: {

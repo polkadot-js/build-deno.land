@@ -1,13 +1,13 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Registry } from 'https://deno.land/x/polkadot@0.0.4/types-codec/types/index.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.0.4/util/mod.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.4/util/types.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 
-import { AbstractBase } from 'https://deno.land/x/polkadot@0.0.4/types-codec/mod.ts';
-import { isBigInt, isBn, isHex, isNumber, isU8a, u8aConcat, u8aToBn, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.0.4/util/mod.ts';
-import { decodeAddress } from 'https://deno.land/x/polkadot@0.0.4/util-crypto/mod.ts';
+import { AbstractBase } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { isBigInt, isBn, isHex, isNumber, isU8a, u8aConcat, u8aToBn, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { decodeAddress } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { GenericAccountIndex } from '../generic/AccountIndex.ts';
 import { GenericEthereumAccountId } from './AccountId.ts';
@@ -23,7 +23,7 @@ function decodeString (registry: Registry, value: string): GenericEthereumAccoun
 
   return decoded.length === 20
     ? registry.createTypeUnsafe('EthereumAccountId', [decoded])
-    : registry.createTypeUnsafe('AccountIndex', [u8aToBn(decoded, true)]);
+    : registry.createTypeUnsafe('AccountIndex', [u8aToBn(decoded)]);
 }
 
 /** @internal */

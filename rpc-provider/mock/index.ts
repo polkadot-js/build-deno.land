@@ -3,21 +3,21 @@
 
 /* eslint-disable camelcase */
 
-import type { Header } from 'https://deno.land/x/polkadot@0.0.4/types/interfaces/index.ts';
-import type { Codec, Registry } from 'https://deno.land/x/polkadot@0.0.4/types/types/index.ts';
+import type { Header } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Codec, Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { ProviderInterface, ProviderInterfaceEmitCb, ProviderInterfaceEmitted } from '../types.ts';
 import type { MockStateDb, MockStateSubscriptionCallback, MockStateSubscriptions } from './types.ts';
 
 import EventEmitter from 'https://esm.sh/eventemitter3@4.0.7';
 
-import { createTestKeyring } from 'https://deno.land/x/polkadot@0.0.4/keyring/testing.ts';
-import { decorateStorage, Metadata } from 'https://deno.land/x/polkadot@0.0.4/types/mod.ts';
-import jsonrpc from 'https://deno.land/x/polkadot@0.0.4/types/interfaces/jsonrpc.ts';
-import rpcHeader from 'https://deno.land/x/polkadot@0.0.4/types-support/json/Header.004.json';
-import rpcSignedBlock from 'https://deno.land/x/polkadot@0.0.4/types-support/json/SignedBlock.004.immortal.json';
-import rpcMetadata from 'https://deno.land/x/polkadot@0.0.4/types-support/metadata/static-substrate.ts';
-import { BN, bnToU8a, logger, u8aToHex } from 'https://deno.land/x/polkadot@0.0.4/util/mod.ts';
-import { randomAsU8a } from 'https://deno.land/x/polkadot@0.0.4/util-crypto/mod.ts';
+import { createTestKeyring } from 'https://deno.land/x/polkadot/keyring/testing.ts';
+import { decorateStorage, Metadata } from 'https://deno.land/x/polkadot/types/mod.ts';
+import jsonrpc from 'https://deno.land/x/polkadot/types/interfaces/jsonrpc.ts';
+import rpcHeader from 'https://deno.land/x/polkadot/types-support/json/Header.004.json';
+import rpcSignedBlock from 'https://deno.land/x/polkadot/types-support/json/SignedBlock.004.immortal.json';
+import rpcMetadata from 'https://deno.land/x/polkadot/types-support/metadata/static-substrate.ts';
+import { BN, bnToU8a, logger, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { randomAsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 const INTERVAL = 1000;
 const SUBSCRIPTIONS: string[] = Array.prototype.concat.apply(
@@ -227,8 +227,8 @@ export class MockProvider implements ProviderInterface {
       number: blockNumber,
       parentHash: blockNumber.isZero()
         ? new Uint8Array(32)
-        : bnToU8a(this.prevNumber, 256, false),
-      stateRoot: bnToU8a(blockNumber, 256, false)
+        : bnToU8a(this.prevNumber, { bitLength: 256, isLe: false }),
+      stateRoot: bnToU8a(blockNumber, { bitLength: 256, isLe: false })
     });
 
     this.prevNumber = blockNumber;
@@ -237,7 +237,7 @@ export class MockProvider implements ProviderInterface {
   }
 
   private setStateBn (key: Uint8Array, value: BN | number): void {
-    this.db[u8aToHex(key)] = bnToU8a(value, 64, true);
+    this.db[u8aToHex(key)] = bnToU8a(value, { bitLength: 64, isLe: true });
   }
 
   private updateSubs (method: string, value: Codec): void {

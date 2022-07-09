@@ -7,7 +7,7 @@ import type { JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, Pro
 import { Chain, createScClient, ScClient, WellKnownChain } from 'https://esm.sh/@substrate/connect@0.7.7';
 import EventEmitter from 'https://esm.sh/eventemitter3@4.0.7';
 
-import { isError } from 'https://deno.land/x/polkadot@0.0.4/util/mod.ts';
+import { isError } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { RpcCoder } from '../coder/index.ts';
 import { healthChecker } from './Health.ts';
@@ -70,7 +70,7 @@ export class ScProvider implements ProviderInterface {
 
   // Config details can be found in @substrate/connect repo following the link:
   // https://github.com/paritytech/substrate-connect/blob/main/packages/connect/src/connector/index.ts
-  async connect (config?: ScConfig): Promise<void> {
+  async connect (config?: ScConfig, checkerFactory = healthChecker): Promise<void> {
     if (this.isConnected) {
       throw new Error('Already connected!');
     }
@@ -99,7 +99,7 @@ export class ScProvider implements ProviderInterface {
 
     scClients.set(this, client);
 
-    const hc = healthChecker();
+    const hc = checkerFactory();
 
     const onResponse = (res: string): void => {
       const hcRes = hc.responsePassThrough(res);
