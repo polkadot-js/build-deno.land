@@ -1,12 +1,12 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Text, Type } from 'https://deno.land/x/polkadot@0.0.5/types-codec/mod.ts';
+import type { Text, Type } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { ErrorMetadataV13, EventMetadataV13, ExtrinsicMetadataV13, ExtrinsicMetadataV14, FunctionMetadataV13, MetadataV13, MetadataV14, ModuleConstantMetadataV13, ModuleMetadataV13, PalletCallMetadataV14, PalletConstantMetadataV14, PalletErrorMetadataV14, PalletEventMetadataV14, PalletMetadataV14, PalletStorageMetadataV14, StorageEntryMetadataV14, StorageEntryTypeV14, StorageHasherV13, StorageMetadataV13 } from '../../interfaces/metadata/index.ts';
 import type { SiVariant } from '../../interfaces/scaleInfo/index.ts';
 import type { OverrideModuleType, Registry } from '../../types/index.ts';
 
-import { stringCamelCase } from 'https://deno.land/x/polkadot@0.0.5/util/mod.ts';
+import { stringCamelCase } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { getAliasTypes } from '../../interfaces/alias.ts';
 import { knownOrigins } from '../../interfaces/runtime/definitions.ts';
