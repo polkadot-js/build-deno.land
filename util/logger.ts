@@ -144,7 +144,7 @@ function parseEnv (type: string): [boolean, number] {
  * <BR>
  *
  * ```javascript
- * import { logger } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { logger } from 'https://deno.land/x/polkadot@0.0.6/util/mod.ts';
  *
  * const l = logger('test');
  * ```

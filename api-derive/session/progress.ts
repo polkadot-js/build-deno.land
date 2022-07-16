@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { Option, u64 } from 'https://deno.land/x/polkadot/types/mod.ts';
-import type { BlockNumber, SessionIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Option, u64 } from 'https://deno.land/x/polkadot@0.0.6/types/mod.ts';
+import type { BlockNumber, SessionIndex } from 'https://deno.land/x/polkadot@0.0.6/types/interfaces/index.ts';
 import type { DeriveApi, DeriveSessionInfo, DeriveSessionProgress } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.6';
