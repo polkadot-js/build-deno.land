@@ -29,6 +29,7 @@ export { default as identity } from './identity/definitions.ts';
 export { default as imOnline } from './imOnline/definitions.ts';
 export { default as lottery } from './lottery/definitions.ts';
 export { default as mmr } from './mmr/definitions.ts';
+export { default as nompools } from './nompools/definitions.ts';
 export { default as offences } from './offences/definitions.ts';
 export { default as pow } from './pow/definitions.ts';
 export { default as proxy } from './proxy/definitions.ts';
@@ -63,7 +64,8 @@ export { default as xcm } from './xcm/definitions.ts';
 export { default as contractsAbi } from './contractsAbi/definitions.ts';
 export { default as eth } from './eth/definitions.ts';
 
-// orml definitions
+// additional known/community definitions
+export { default as nimbus } from './nimbus/definitions.ts';
 export { default as ormlOracle } from './ormlOracle/definitions.ts';
 export { default as ormlTokens } from './ormlTokens/definitions.ts';
 

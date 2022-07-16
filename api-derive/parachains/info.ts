@@ -1,12 +1,12 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
+import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
 import type { CollatorId, ParaId } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { DeriveApi, DeriveParachainActive, DeriveParachainFull, DeriveParachainInfo } from '../types.ts';
 import type { Active, DidUpdate, Heads, ParaInfoResult, PendingSwap, RelayDispatchQueue, RetryQueue, SelectedThreads } from './types.ts';
 
-import { map, of } from 'https://esm.sh/rxjs@7.5.5';
+import { map, of } from 'https://esm.sh/rxjs@7.5.6';
 
 import { memo } from '../util/index.ts';
 import { didUpdateToBool } from './util.ts';

@@ -4,7 +4,7 @@
 import type { SignerPayloadRawBase } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { ApiOptions, ApiTypes, DecorateMethod, Signer } from '../types/index.ts';
 
-import { assert, isString, objectSpread, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isString, objectSpread, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Getters } from './Getters.ts';
 
@@ -69,7 +69,9 @@ export abstract class ApiBase<ApiType extends ApiTypes> extends Getters<ApiType>
     if (isString(address)) {
       const _signer = signer || this._rx.signer;
 
-      assert(_signer?.signRaw, 'No signer exists with a signRaw interface. You possibly need to pass through an explicit keypair for the origin so it can be used for signing.');
+      if (!_signer || !_signer.signRaw) {
+        throw new Error('No signer exists with a signRaw interface. You possibly need to pass through an explicit keypair for the origin so it can be used for signing.');
+      }
 
       return (
         await _signer.signRaw(

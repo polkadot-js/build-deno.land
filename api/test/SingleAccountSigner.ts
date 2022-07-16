@@ -5,7 +5,7 @@ import type { Signer, SignerResult } from 'https://deno.land/x/polkadot/api/type
 import type { KeyringPair } from 'https://deno.land/x/polkadot/keyring/types.ts';
 import type { Registry, SignerPayloadJSON, SignerPayloadRaw } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import { assert, hexToU8a, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { hexToU8a, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 let id = 0;
 
@@ -23,7 +23,9 @@ export class SingleAccountSigner implements Signer {
   }
 
   public async signPayload (payload: SignerPayloadJSON): Promise<SignerResult> {
-    assert(payload.address === this.#keyringPair.address, 'Signer does not have the keyringPair');
+    if (payload.address !== this.#keyringPair.address) {
+      throw new Error('Signer does not have the keyringPair');
+    }
 
     return new Promise((resolve): void => {
       setTimeout((): void => {
@@ -38,7 +40,9 @@ export class SingleAccountSigner implements Signer {
   }
 
   public async signRaw ({ address, data }: SignerPayloadRaw): Promise<SignerResult> {
-    assert(address === this.#keyringPair.address, 'Signer does not have the keyringPair');
+    if (address !== this.#keyringPair.address) {
+      throw new Error('Signer does not have the keyringPair');
+    }
 
     return new Promise((resolve): void => {
       setTimeout((): void => {

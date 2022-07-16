@@ -1,15 +1,15 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
-import type { AccountId } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
 import type { HeaderExtended } from '../type/types.ts';
 import type { DeriveApi } from '../types.ts';
 
-import { catchError, combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.5';
+import { combineLatest, map, switchMap } from 'https://esm.sh/rxjs@7.5.6';
 
 import { createHeaderExtended } from '../type/index.ts';
 import { memo } from '../util/index.ts';
+import { getAuthorDetails } from './util.ts';
 
 /**
  * @name getHeader
@@ -25,26 +25,18 @@ import { memo } from '../util/index.ts';
  * console.log(`block #${number} was authored by ${author}`);
  * ```
  */
-export function getHeader (instanceId: string, api: DeriveApi): (blockHash: Uint8Array | string) => Observable<HeaderExtended | undefined> {
-  return memo(instanceId, (blockHash: Uint8Array | string): Observable<HeaderExtended | undefined> =>
+export function getHeader (instanceId: string, api: DeriveApi): (blockHash: Uint8Array | string) => Observable<HeaderExtended> {
+  return memo(instanceId, (blockHash: Uint8Array | string): Observable<HeaderExtended> =>
     combineLatest([
       api.rpc.chain.getHeader(blockHash),
-      api.queryAt(blockHash).pipe(
-        switchMap((queryAt) =>
-          queryAt.session
-            ? queryAt.session.validators()
-            : of([] as AccountId[])
-        )
-      )
+      api.queryAt(blockHash)
     ]).pipe(
-      map(([header, validators]) =>
-        createHeaderExtended(header.registry, header, validators)
+      switchMap(([header, queryAt]) =>
+        getAuthorDetails(header, queryAt)
       ),
-      catchError((): Observable<undefined> =>
-        // where rpc.chain.getHeader throws, we will land here - it can happen that
-        // we supplied an invalid hash. (Due to defaults, storeage will have an
-        // empty value, so only the RPC is affected). So return undefined
-        of()
+      map(([header, validators, author]) =>
+        createHeaderExtended((validators || header).registry, header, validators, author)
       )
-    ));
+    )
+  );
 }

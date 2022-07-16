@@ -77,7 +77,7 @@ declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
     readonly votes24: Vec<ITuple<[Compact<u32>, Vec<ITuple<[Compact<u16>, Compact<PerU16>]>>, Compact<u16>]>>;
   }
 
-  /** @name KusamaRuntimeRuntime (779) */
+  /** @name KusamaRuntimeRuntime (777) */
   type KusamaRuntimeRuntime = Null;
 
 } // declare module

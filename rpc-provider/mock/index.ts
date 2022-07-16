@@ -13,8 +13,8 @@ import EventEmitter from 'https://esm.sh/eventemitter3@4.0.7';
 import { createTestKeyring } from 'https://deno.land/x/polkadot/keyring/testing.ts';
 import { decorateStorage, Metadata } from 'https://deno.land/x/polkadot/types/mod.ts';
 import jsonrpc from 'https://deno.land/x/polkadot/types/interfaces/jsonrpc.ts';
-import rpcHeader from 'https://deno.land/x/polkadot/types-support/json/Header.004.json';
-import rpcSignedBlock from 'https://deno.land/x/polkadot/types-support/json/SignedBlock.004.immortal.json';
+import rpcHeader from 'https://deno.land/x/polkadot/types-support/json/Header.004.json' assert { type: 'json' };
+import rpcSignedBlock from 'https://deno.land/x/polkadot/types-support/json/SignedBlock.004.immortal.json' assert { type: 'json' };
 import rpcMetadata from 'https://deno.land/x/polkadot/types-support/metadata/static-substrate.ts';
 import { BN, bnToU8a, logger, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { randomAsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
@@ -44,8 +44,7 @@ export class MockProvider implements ProviderInterface {
 
   private emitter = new EventEmitter();
 
-  // Browser/Deno = number, Node = Timeout
-  private intervalId?: unknown | null;
+  private intervalId?: ReturnType<typeof setInterval> | null;
 
   public isUpdating = true;
 
@@ -110,8 +109,7 @@ export class MockProvider implements ProviderInterface {
   // eslint-disable-next-line @typescript-eslint/require-await
   public async disconnect (): Promise<void> {
     if (this.intervalId) {
-      // different method signatures for Node vs Browser/Deno
-      clearInterval(this.intervalId as number);
+      clearInterval(this.intervalId);
       this.intervalId = null;
     }
   }

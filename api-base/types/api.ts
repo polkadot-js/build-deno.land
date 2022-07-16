@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/api-base authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
+import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
 import type { DecoratedRpc, QueryableConsts, QueryableStorage, QueryableStorageMulti, SubmittableExtrinsics } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 import type { RpcInterface } from 'https://deno.land/x/polkadot/rpc-core/types/index.ts';
 import type { Metadata } from 'https://deno.land/x/polkadot/types/mod.ts';

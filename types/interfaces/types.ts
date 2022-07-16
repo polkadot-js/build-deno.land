@@ -37,6 +37,8 @@ export * from './identity/types.ts';
 export * from './imOnline/types.ts';
 export * from './lottery/types.ts';
 export * from './mmr/types.ts';
+export * from './nimbus/types.ts';
+export * from './nompools/types.ts';
 export * from './offchain/types.ts';
 export * from './offences/types.ts';
 export * from './ormlOracle/types.ts';

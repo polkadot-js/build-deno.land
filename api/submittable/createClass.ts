@@ -3,16 +3,16 @@
 
 /* eslint-disable no-dupe-class-members */
 
-import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
+import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
 import type { Address, ApplyExtrinsicResult, Call, Extrinsic, ExtrinsicEra, ExtrinsicStatus, Hash, Header, Index, RuntimeDispatchInfo, SignerPayload } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { Callback, Codec, Constructor, IKeyringPair, ISubmittableResult, SignatureOptions } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { ApiInterfaceRx, ApiTypes, PromiseOrObs, SignerResult } from '../types/index.ts';
 import type { AddressOrPair, SignerOptions, SubmittableDryRunResult, SubmittableExtrinsic, SubmittablePaymentResult, SubmittableResultResult, SubmittableResultSubscription } from './types.ts';
 
-import { catchError, first, map, mapTo, mergeMap, of, switchMap, tap } from 'https://esm.sh/rxjs@7.5.5';
+import { catchError, first, map, mapTo, mergeMap, of, switchMap, tap } from 'https://esm.sh/rxjs@7.5.6';
 
-import { assert, isBn, isFunction, isNumber, isString, isU8a, isUndefined, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isBn, isFunction, isNumber, isString, isU8a, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { ApiBase } from '../base/index.ts';
 import { filterEvents, isKeyringPair } from '../util/index.ts';
@@ -34,7 +34,9 @@ const identity = <T> (input: T): T => input;
 
 function makeEraOptions (api: ApiInterfaceRx, registry: Registry, partialOptions: Partial<SignerOptions>, { header, mortalLength, nonce }: { header: Header | null; mortalLength: number; nonce: Index }): SignatureOptions {
   if (!header) {
-    assert(partialOptions.era === 0 || !isUndefined(partialOptions.blockHash), 'Expected blockHash to be passed alongside non-immortal era options');
+    if (partialOptions.era && !partialOptions.blockHash) {
+      throw new Error('Expected blockHash to be passed alongside non-immortal era options');
+    }
 
     if (isNumber(partialOptions.era)) {
       // since we have no header, it is immortal, remove any option overrides
@@ -299,7 +301,9 @@ export function createClass <ApiType extends ApiTypes> ({ api, apiType, blockHas
     #signViaSigner = async (address: Address | string | Uint8Array, options: SignatureOptions, header: Header | null): Promise<number> => {
       const signer = options.signer || api.signer;
 
-      assert(signer, 'No signer specified, either via api.setSigner or via sign options. You possibly need to pass through an explicit keypair for the origin so it can be used for signing.');
+      if (!signer) {
+        throw new Error('No signer specified, either via api.setSigner or via sign options. You possibly need to pass through an explicit keypair for the origin so it can be used for signing.');
+      }
 
       const payload = this.registry.createTypeUnsafe<SignerPayload>('SignerPayload', [objectSpread({}, options, {
         address,

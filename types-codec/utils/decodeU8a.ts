@@ -6,7 +6,7 @@ import type { Codec, CodecClass, Registry } from '../types/index.ts';
 import { u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 /** @internal */
-function formatFailure (registry: Registry, { message }: Error, u8a: Uint8Array, i: number, count: number, Type: CodecClass, key?: string): string {
+function formatFailure (registry: Registry, result: unknown[], { message }: Error, u8a: Uint8Array, i: number, count: number, Type: CodecClass, key?: string): string {
   let type = '';
 
   try {
@@ -14,6 +14,8 @@ function formatFailure (registry: Registry, { message }: Error, u8a: Uint8Array,
   } catch {
     // ignore
   }
+
+  // console.error(JSON.stringify(result, null, 2));
 
   return `decodeU8a: failed at ${u8aToHex(u8a.subarray(0, 16))}…${key ? ` on ${key}` : ''} (index ${i}/${count})${type}:: ${message}`;
 }
@@ -42,7 +44,7 @@ export function decodeU8a <T extends Codec = Codec> (registry: Registry, result:
       i++;
     }
   } catch (error) {
-    throw new Error(formatFailure(registry, error as Error, u8a.subarray(offset), i, count, Types[i], keys[i]));
+    throw new Error(formatFailure(registry, result, error as Error, u8a.subarray(offset), i, count, Types[i], keys[i]));
   }
 
   return [result, offset];
@@ -68,7 +70,7 @@ export function decodeU8aStruct (registry: Registry, result: [string, Codec][], 
       i++;
     }
   } catch (error) {
-    throw new Error(formatFailure(registry, error as Error, u8a.subarray(offset), i, count, Types[i], keys[i]));
+    throw new Error(formatFailure(registry, result, error as Error, u8a.subarray(offset), i, count, Types[i], keys[i]));
   }
 
   return [result, offset];
@@ -94,7 +96,7 @@ export function decodeU8aVec <T extends Codec = Codec> (registry: Registry, resu
       i++;
     }
   } catch (error) {
-    throw new Error(formatFailure(registry, error as Error, u8a.subarray(offset), i, count, Type));
+    throw new Error(formatFailure(registry, result, error as Error, u8a.subarray(offset), i, count, Type));
   }
 
   return [offset, offset - startAt];

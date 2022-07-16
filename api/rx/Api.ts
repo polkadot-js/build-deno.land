@@ -3,7 +3,7 @@
 
 import type { ApiOptions } from '../types/index.ts';
 
-import { from, Observable } from 'https://esm.sh/rxjs@7.5.5';
+import { from, Observable } from 'https://esm.sh/rxjs@7.5.6';
 
 import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
@@ -46,7 +46,7 @@ import { toRxMethod } from './decorateMethod.ts';
  * <BR>
  *
  * ```javascript
- * import { combineLatest, pairwise, switchMap } from 'https://esm.sh/rxjs@7.5.5';
+ * import { combineLatest, pairwise, switchMap } from 'https://esm.sh/rxjs@7.5.6';
  * import { ApiRx, WsProvider } from 'https://deno.land/x/polkadot/api/mod.ts';
  *
  *
@@ -75,7 +75,7 @@ import { toRxMethod } from './decorateMethod.ts';
  * <BR>
  *
  * ```javascript
- * import { first, switchMap } from 'https://esm.sh/rxjs@7.5.5';
+ * import { first, switchMap } from 'https://esm.sh/rxjs@7.5.6';
  * import ApiRx from 'https://deno.land/x/polkadot/api/rx/index.ts';
  *
  * // import the test keyring (already has dev keys for Alice, Bob, Charlie, Eve & Ferdie)
@@ -119,7 +119,7 @@ export class ApiRx extends ApiBase<'rxjs'> {
    * <BR>
    *
    * ```javascript
-   * import { switchMap } from 'https://esm.sh/rxjs@7.5.5';
+   * import { switchMap } from 'https://esm.sh/rxjs@7.5.6';
    * import Api from 'https://deno.land/x/polkadot/api/rx/index.ts';
    *
    * new Api().isReady
@@ -150,7 +150,7 @@ export class ApiRx extends ApiBase<'rxjs'> {
    * <BR>
    *
    * ```javascript
-   * import { switchMap } from 'https://esm.sh/rxjs@7.5.5';
+   * import { switchMap } from 'https://esm.sh/rxjs@7.5.6';
    * import Api from 'https://deno.land/x/polkadot/api/rx/index.ts';
    *
    * Api.create()

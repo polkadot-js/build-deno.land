@@ -1,14 +1,14 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
+import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
 import type { Option, u64 } from 'https://deno.land/x/polkadot/types/mod.ts';
 import type { PalletBagsListListBag } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { DeriveApi } from '../types.ts';
 import type { Bag } from './types.ts';
 
-import { map, of, switchMap } from 'https://esm.sh/rxjs@7.5.5';
+import { map, of, switchMap } from 'https://esm.sh/rxjs@7.5.6';
 
 import { BN_ZERO, bnToBn } from 'https://deno.land/x/polkadot/util/mod.ts';
 

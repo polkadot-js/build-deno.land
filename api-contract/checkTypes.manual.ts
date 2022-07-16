@@ -9,7 +9,7 @@ import { ApiPromise } from 'https://deno.land/x/polkadot/api/mod.ts';
 import { BlueprintPromise, ContractPromise } from 'https://deno.land/x/polkadot/api-contract/mod.ts';
 import { createTestPairs, TestKeyringMap } from 'https://deno.land/x/polkadot/keyring/testingPairs.ts';
 
-import abiIncrementer from './test/contracts/ink/v0/incrementer.json';
+import abiIncrementer from './test/contracts/ink/v0/incrementer.json' assert { type: 'json.ts' };
 
 async function checkBlueprint (api: ApiPromise, pairs: TestKeyringMap): Promise<void> {
   const blueprint = new BlueprintPromise(api, abiIncrementer as Record<string, unknown>, '0x1234');

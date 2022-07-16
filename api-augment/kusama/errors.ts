@@ -1297,13 +1297,13 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       NoVotes: AugmentedError<ApiType>;
       /**
-       * Cannot report self.
-       **/
-      ReportSelf: AugmentedError<ApiType>;
-      /**
        * Runner cannot re-submit candidacy.
        **/
       RunnerUpSubmit: AugmentedError<ApiType>;
+      /**
+       * Too many candidates have been created.
+       **/
+      TooManyCandidates: AugmentedError<ApiType>;
       /**
        * Cannot vote more than candidates.
        **/

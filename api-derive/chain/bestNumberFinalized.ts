@@ -3,7 +3,7 @@
 
 import type { DeriveApi } from '../types.ts';
 
-import { unwrapBlockNumber } from './util.ts';
+import { createBlockNumberDerive } from './util.ts';
 
 /**
  * @name bestNumberFinalized
@@ -18,7 +18,7 @@ import { unwrapBlockNumber } from './util.ts';
  * });
  * ```
  */
-export const bestNumberFinalized = unwrapBlockNumber(
+export const bestNumberFinalized = createBlockNumberDerive(
   (api: DeriveApi) =>
     api.rpc.chain.subscribeFinalizedHeads()
 );

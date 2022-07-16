@@ -11,7 +11,7 @@ import type { MapConstructorExec } from './types.ts';
 
 import { SubmittableResult } from 'https://deno.land/x/polkadot/api/mod.ts';
 import { ApiBase } from 'https://deno.land/x/polkadot/api/base/index.ts';
-import { assert, BN_ZERO, compactAddLength, isUndefined, isWasm, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { BN_ZERO, compactAddLength, isUndefined, isWasm, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Abi } from '../Abi/index.ts';
 import { applyOnEvent } from '../util.ts';
@@ -48,7 +48,9 @@ export class Code<ApiType extends ApiTypes> extends Base<ApiType> {
       ? this.abi.info.source.wasm
       : u8aToU8a(wasm);
 
-    assert(isWasm(this.code), 'No WASM code provided');
+    if (!isWasm(this.code)) {
+      throw new Error('No WASM code provided');
+    }
 
     this.abi.constructors.forEach((c): void => {
       if (isUndefined(this.#tx[c.method])) {

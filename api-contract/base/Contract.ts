@@ -9,11 +9,11 @@ import type { ISubmittableResult } from 'https://deno.land/x/polkadot/types/type
 import type { AbiMessage, ContractCallOutcome, ContractOptions, DecodedEvent } from '../types.ts';
 import type { ContractCallResult, ContractCallSend, ContractQuery, ContractTx, MapMessageQuery, MapMessageTx } from './types.ts';
 
-import { map } from 'https://esm.sh/rxjs@7.5.5';
+import { map } from 'https://esm.sh/rxjs@7.5.6';
 
 import { SubmittableResult } from 'https://deno.land/x/polkadot/api/mod.ts';
 import { ApiBase } from 'https://deno.land/x/polkadot/api/base/index.ts';
-import { assert, BN, BN_HUNDRED, BN_ONE, BN_ZERO, bnToBn, isFunction, isUndefined, logger } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { BN, BN_HUNDRED, BN_ONE, BN_ZERO, bnToBn, isFunction, isUndefined, logger } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Abi } from '../Abi/index.ts';
 import { applyOnEvent, extractOptions, isOptions } from '../util.ts';
@@ -87,7 +87,9 @@ export class Contract<ApiType extends ApiTypes> extends Base<ApiType> {
   }
 
   public get query (): MapMessageQuery<ApiType> {
-    assert(this.hasRpcContractsCall, ERROR_NO_CALL);
+    if (!this.hasRpcContractsCall) {
+      throw new Error(ERROR_NO_CALL);
+    }
 
     return this.#query;
   }
@@ -138,7 +140,9 @@ export class Contract<ApiType extends ApiTypes> extends Base<ApiType> {
   };
 
   #read = (messageOrId: AbiMessage | string | number, { gasLimit = BN_ZERO, storageDepositLimit = null, value = BN_ZERO }: ContractOptions, params: unknown[]): ContractCallSend<ApiType> => {
-    assert(this.hasRpcContractsCall, ERROR_NO_CALL);
+    if (!this.hasRpcContractsCall) {
+      throw new Error(ERROR_NO_CALL);
+    }
 
     const message = this.abi.findMessage(messageOrId);
 

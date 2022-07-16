@@ -1,12 +1,12 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
+import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
 import type { EraIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { PalletStakingEraRewardPoints } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { DeriveApi, DeriveEraPoints, DeriveEraValPoints } from '../types.ts';
 
-import { map, of } from 'https://esm.sh/rxjs@7.5.5';
+import { map, of } from 'https://esm.sh/rxjs@7.5.6';
 
 import { BN_ZERO } from 'https://deno.land/x/polkadot/util/mod.ts';
 

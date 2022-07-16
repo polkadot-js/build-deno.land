@@ -1,13 +1,13 @@
 // Copyright 2017-2022 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
+import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
 import type { Callback, Codec } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DecorateFn, DecorateMethodOptions, ObsInnerType, StorageEntryPromiseOverloads, UnsubscribePromise, VoidFn } from '../types/index.ts';
 
-import { catchError, EMPTY, Subscription, tap } from 'https://esm.sh/rxjs@7.5.5';
+import { catchError, EMPTY, Subscription, tap } from 'https://esm.sh/rxjs@7.5.6';
 
-import { assert, isFunction, nextTick } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isFunction, nextTick } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 interface Tracker<T> {
   reject: (value: Error) => Observable<never>;
@@ -57,7 +57,9 @@ function extractArgs (args: unknown[], needsCallback: boolean): [unknown[], Call
     : undefined;
 
   // When we need a subscription, ensure that a valid callback is actually passed
-  assert(!needsCallback || isFunction(callback), 'Expected a callback to be passed with subscriptions');
+  if (needsCallback && !isFunction(callback)) {
+    throw new Error('Expected a callback to be passed with subscriptions');
+  }
 
   return [actualArgs, callback];
 }

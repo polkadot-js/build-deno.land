@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://esm.sh/rxjs@7.5.5';
+import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
 import type { AugmentedCall, DeriveCustom, QueryableCalls } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 import type { RpcInterface } from 'https://deno.land/x/polkadot/rpc-core/types/index.ts';
 import type { Option, Raw, StorageKey, Text, u64 } from 'https://deno.land/x/polkadot/types/mod.ts';
@@ -14,14 +14,14 @@ import type { SubmittableExtrinsic } from '../submittable/types.ts';
 import type { ApiDecoration, ApiInterfaceRx, ApiOptions, ApiTypes, AugmentedQuery, DecoratedErrors, DecoratedEvents, DecoratedRpc, DecorateMethod, GenericStorageEntryFunction, PaginationOptions, QueryableConsts, QueryableStorage, QueryableStorageEntry, QueryableStorageEntryAt, QueryableStorageMulti, QueryableStorageMultiArg, SubmittableExtrinsicFunction, SubmittableExtrinsics } from '../types/index.ts';
 import type { VersionedRegistry } from './types.ts';
 
-import { BehaviorSubject, combineLatest, from, map, of, switchMap, tap, toArray } from 'https://esm.sh/rxjs@7.5.5';
+import { BehaviorSubject, combineLatest, from, map, of, switchMap, tap, toArray } from 'https://esm.sh/rxjs@7.5.6';
 
 import { getAvailableDerives } from 'https://deno.land/x/polkadot/api-derive/mod.ts';
 import { memo, RpcCore } from 'https://deno.land/x/polkadot/rpc-core/mod.ts';
 import { WsProvider } from 'https://deno.land/x/polkadot/rpc-provider/mod.ts';
 import { expandMetadata, Metadata, typeDefinitions, TypeRegistry, unwrapStorageType } from 'https://deno.land/x/polkadot/types/mod.ts';
 import { getSpecRuntime } from 'https://deno.land/x/polkadot/types-known/mod.ts';
-import { arrayChunk, arrayFlatten, assert, assertReturn, BN, compactStripLength, lazyMethod, lazyMethods, logger, nextTick, objectSpread, stringCamelCase, stringUpperFirst, u8aConcatStrict, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { arrayChunk, arrayFlatten, assertReturn, BN, compactStripLength, lazyMethod, lazyMethods, logger, nextTick, objectSpread, stringCamelCase, stringUpperFirst, u8aConcatStrict, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { blake2AsHex } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { createSubmittable } from '../submittable/index.ts';
@@ -918,7 +918,9 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
   }
 
   private _retrieveMapKeys ({ iterKey, meta, method, section }: StorageEntry, at: Hash | Uint8Array | string | null, args: unknown[]): Observable<StorageKey[]> {
-    assert(iterKey && meta.type.isMap, 'keys can only be retrieved on maps');
+    if (!iterKey || !meta.type.isMap) {
+      throw new Error('keys can only be retrieved on maps');
+    }
 
     const headKey = iterKey(...args).toHex();
     const startSubject = new BehaviorSubject<string>(headKey);
@@ -945,7 +947,9 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
   }
 
   private _retrieveMapKeysPaged ({ iterKey, meta, method, section }: StorageEntry, at: Hash | Uint8Array | string | undefined, opts: PaginationOptions): Observable<StorageKey[]> {
-    assert(iterKey && meta.type.isMap, 'keys can only be retrieved on maps');
+    if (!iterKey || !meta.type.isMap) {
+      throw new Error('keys can only be retrieved on maps');
+    }
 
     const setMeta = (key: StorageKey) => key.setMeta(meta, section, method);
     const query = at
