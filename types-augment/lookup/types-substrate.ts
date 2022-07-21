@@ -3,17 +3,17 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.0.6/types/lookup.ts';
+import 'https://deno.land/x/polkadot@0.0.7/types/lookup.ts';
 
-import type { Data } from 'https://deno.land/x/polkadot@0.0.6/types/mod.ts';
-import type { BTreeMap, Bytes, Compact, Enum, Null, Option, Result, Set, Struct, Text, U8aFixed, Vec, WrapperKeepOpaque, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.0.6/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.0.6/types-codec/types/index.ts';
-import type { Vote } from 'https://deno.land/x/polkadot@0.0.6/types/interfaces/elections/index.ts';
-import type { OpaqueMultiaddr, OpaquePeerId } from 'https://deno.land/x/polkadot@0.0.6/types/interfaces/imOnline/index.ts';
-import type { AccountId32, Call, H256, MultiAddress, PerU16, Perbill, Percent, Perquintill } from 'https://deno.land/x/polkadot@0.0.6/types/interfaces/runtime/index.ts';
-import type { Event } from 'https://deno.land/x/polkadot@0.0.6/types/interfaces/system/index.ts';
+import type { Data } from 'https://deno.land/x/polkadot@0.0.7/types/mod.ts';
+import type { BTreeMap, Bytes, Compact, Enum, Null, Option, Result, Set, Struct, Text, U8aFixed, Vec, WrapperKeepOpaque, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.0.7/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.0.7/types-codec/types/index.ts';
+import type { Vote } from 'https://deno.land/x/polkadot@0.0.7/types/interfaces/elections/index.ts';
+import type { OpaqueMultiaddr, OpaquePeerId } from 'https://deno.land/x/polkadot@0.0.7/types/interfaces/imOnline/index.ts';
+import type { AccountId32, Call, H256, MultiAddress, PerU16, Perbill, Percent, Perquintill } from 'https://deno.land/x/polkadot@0.0.7/types/interfaces/runtime/index.ts';
+import type { Event } from 'https://deno.land/x/polkadot@0.0.7/types/interfaces/system/index.ts';
 
-declare module 'https://deno.land/x/polkadot@0.0.6/types/lookup.ts' {
+declare module 'https://deno.land/x/polkadot@0.0.7/types/lookup.ts' {
   /** @name FrameSystemAccountInfo (3) */
   interface FrameSystemAccountInfo extends Struct {
     readonly nonce: u32;

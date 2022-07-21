@@ -1,9 +1,9 @@
 // Copyright 2017-2022 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { CallFunction, Registry, RegistryError } from 'https://deno.land/x/polkadot@0.0.6/types/types/index.ts';
+import type { CallFunction, Registry, RegistryError } from 'https://deno.land/x/polkadot@0.0.7/types/types/index.ts';
 
-import { u8aToU8a } from 'https://deno.land/x/polkadot@0.0.6/util/mod.ts';
+import { u8aToU8a } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
 
 export function findCall (registry: Registry, callIndex: Uint8Array | string): CallFunction {
   return registry.findMetaCall(u8aToU8a(callIndex));

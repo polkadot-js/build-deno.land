@@ -2,14 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { ObsInnerType } from 'https://deno.land/x/polkadot@0.0.6/api-base/types/index.ts';
-import type { EraIndex } from 'https://deno.land/x/polkadot@0.0.6/types/interfaces/index.ts';
+import type { ObsInnerType } from 'https://deno.land/x/polkadot@0.0.7/api-base/types/index.ts';
+import type { EraIndex } from 'https://deno.land/x/polkadot@0.0.7/types/interfaces/index.ts';
 import type { ExactDerive } from '../derive.ts';
 import type { DeriveApi } from '../types.ts';
 
 import { BehaviorSubject, combineLatest, map, of, switchMap, tap, toArray } from 'https://esm.sh/rxjs@7.5.6';
 
-import { arrayChunk, arrayFlatten, nextTick } from 'https://deno.land/x/polkadot@0.0.6/util/mod.ts';
+import { arrayChunk, arrayFlatten, nextTick } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 

@@ -3,11 +3,11 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.0.6/types/types/registry.ts';
+import 'https://deno.land/x/polkadot@0.0.7/types/types/registry.ts';
 
-import type { KusamaRuntimeNposCompactSolution24, KusamaRuntimeOriginCaller, KusamaRuntimeProxyType, KusamaRuntimeRuntime, KusamaRuntimeSessionKeys } from 'https://deno.land/x/polkadot@0.0.6/types/lookup.ts';
+import type { KusamaRuntimeNposCompactSolution24, KusamaRuntimeOriginCaller, KusamaRuntimeProxyType, KusamaRuntimeRuntime, KusamaRuntimeSessionKeys } from 'https://deno.land/x/polkadot@0.0.7/types/lookup.ts';
 
-declare module 'https://deno.land/x/polkadot@0.0.6/types/types/registry.ts' {
+declare module 'https://deno.land/x/polkadot@0.0.7/types/types/registry.ts' {
   interface InterfaceTypes {
     KusamaRuntimeNposCompactSolution24: KusamaRuntimeNposCompactSolution24;
     KusamaRuntimeOriginCaller: KusamaRuntimeOriginCaller;

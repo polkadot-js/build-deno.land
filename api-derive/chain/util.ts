@@ -2,10 +2,10 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { QueryableStorage } from 'https://deno.land/x/polkadot@0.0.6/api-base/types/index.ts';
-import type { Compact, Vec } from 'https://deno.land/x/polkadot@0.0.6/types/mod.ts';
-import type { AccountId, BlockNumber, Header } from 'https://deno.land/x/polkadot@0.0.6/types/interfaces/index.ts';
-import type { Codec, IOption } from 'https://deno.land/x/polkadot@0.0.6/types/types/index.ts';
+import type { QueryableStorage } from 'https://deno.land/x/polkadot@0.0.7/api-base/types/index.ts';
+import type { Compact, Vec } from 'https://deno.land/x/polkadot@0.0.7/types/mod.ts';
+import type { AccountId, BlockNumber, Header } from 'https://deno.land/x/polkadot@0.0.7/types/interfaces/index.ts';
+import type { Codec, IOption } from 'https://deno.land/x/polkadot@0.0.7/types/types/index.ts';
 import type { DeriveApi } from '../types.ts';
 
 import { combineLatest, map, of } from 'https://esm.sh/rxjs@7.5.6';
@@ -14,7 +14,7 @@ import { memo, unwrapBlockNumber } from '../util/index.ts';
 
 // re-export these - since these needs to be resolvable from api-derive, i.e. without this
 // we would emit code with ../<somewhere>/src embedded in the *.d.ts files
-export type { BlockNumber } from 'https://deno.land/x/polkadot@0.0.6/types/interfaces/index.ts';
+export type { BlockNumber } from 'https://deno.land/x/polkadot@0.0.7/types/interfaces/index.ts';
 
 export function createBlockNumberDerive <T extends { number: Compact<BlockNumber> | BlockNumber }> (fn: (api: DeriveApi) => Observable<T>): (instanceId: string, api: DeriveApi) => () => Observable<BlockNumber> {
   return (instanceId: string, api: DeriveApi) =>

@@ -2,10 +2,10 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot@0.0.6/api/submittable/types.ts';
-import type { ApiTypes, ObsInnerType } from 'https://deno.land/x/polkadot@0.0.6/api/types/index.ts';
-import type { AccountId } from 'https://deno.land/x/polkadot@0.0.6/types/interfaces/index.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.0.6/util/mod.ts';
+import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot@0.0.7/api/submittable/types.ts';
+import type { ApiTypes, ObsInnerType } from 'https://deno.land/x/polkadot@0.0.7/api/types/index.ts';
+import type { AccountId } from 'https://deno.land/x/polkadot@0.0.7/types/interfaces/index.ts';
+import type { BN } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
 import type { AbiMessage, BlueprintOptions, ContractCallOutcome, ContractOptions } from '../types.ts';
 
 export interface MessageMeta {

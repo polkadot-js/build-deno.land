@@ -1,8 +1,8 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Struct, bool, u8 } from 'https://deno.land/x/polkadot@0.0.6/types-codec/mod.ts';
-import type { Balance, Perbill } from 'https://deno.land/x/polkadot@0.0.6/types/interfaces/runtime/index.ts';
+import type { Struct, bool, u8 } from 'https://deno.land/x/polkadot@0.0.7/types-codec/mod.ts';
+import type { Balance, Perbill } from 'https://deno.land/x/polkadot@0.0.7/types/interfaces/runtime/index.ts';
 
 /** @name WeightToFeeCoefficient */
 export interface WeightToFeeCoefficient extends Struct {
