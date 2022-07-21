@@ -1,10 +1,12 @@
 # CHANGELOG
 
-## master
+## 0.0.7 Jul 21, 2022
 
+- **NOTE** Released without an API upgrade since API merges depends on the updated libs (which are backwards compatible)
 - phishing 0.18.1
 - hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 10.1.1
 - wasm-{bridge, crypto, crypto-{asmjs, init, wasm}, util} 6.3.1
+
 
 ## 0.0.6 Jul 16, 2022
 
