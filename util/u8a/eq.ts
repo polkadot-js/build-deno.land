@@ -14,7 +14,7 @@ import { u8aToU8a } from './toU8a.ts';
  * <BR>
  *
  * ```javascript
- * import { u8aEq } from 'https://deno.land/x/polkadot@0.0.6/util/mod.ts';
+ * import { u8aEq } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * u8aEq(new Uint8Array([0x68, 0x65]), new Uint8Array([0x68, 0x65])); // true
  * ```
@@ -26,8 +26,8 @@ export function u8aEq (a: HexString | Uint8Array | string, b: HexString | Uint8A
   if (u8aa.length === u8ab.length) {
     const dvA = new DataView(u8aa.buffer, u8aa.byteOffset);
     const dvB = new DataView(u8ab.buffer, u8ab.byteOffset);
-    const mod = u8aa.length % 4;
-    const length = u8aa.length - mod;
+    const mod = (u8aa.length % 4) | 0;
+    const length = (u8aa.length - mod) | 0;
 
     for (let i = 0; i < length; i += 4) {
       if (dvA.getUint32(i) !== dvB.getUint32(i)) {

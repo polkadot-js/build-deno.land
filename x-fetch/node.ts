@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/x-fetch authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { extractGlobal } from 'https://deno.land/x/polkadot@0.0.6/x-global/mod.ts';
+import { extractGlobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
 
 export { packageInfo } from './packageInfo.ts';
 
@@ -9,14 +9,14 @@ export { packageInfo } from './packageInfo.ts';
 // in. Logically we would like it in nodeFetch(...) itself, however
 // while it is all-ok on Node itself, it does create issues in Jest,
 // possibly due to the Jest 28 need for --experimental-vm-modules
-const importFetch = import('node-fetch').catch(() => null);
+const importFetch = import('https://esm.sh/node-fetch@3.2.9').catch(() => null);
 
 // keep track of the resolved import value
-let resolvedFetch: typeof fetch | null = null;
+let modFn: typeof fetch | null = null;
 
 async function nodeFetch (...args: Parameters<typeof fetch>): Promise<Response> {
-  if (resolvedFetch) {
-    return resolvedFetch(...args);
+  if (modFn) {
+    return modFn(...args);
   }
 
   const mod = await importFetch;
@@ -25,9 +25,9 @@ async function nodeFetch (...args: Parameters<typeof fetch>): Promise<Response> 
     throw new Error('Unable to import node-fetch in this environment');
   }
 
-  resolvedFetch = mod.default as unknown as typeof fetch;
+  modFn = mod.default as unknown as typeof fetch;
 
-  return resolvedFetch(...args);
+  return modFn(...args);
 }
 
 export const fetch = extractGlobal('fetch', nodeFetch);

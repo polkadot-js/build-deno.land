@@ -3,13 +3,15 @@
 
 import type { PairInfo } from './types.ts';
 
-import { assert, u8aConcat } from 'https://deno.land/x/polkadot@0.0.6/util/mod.ts';
-import { naclEncrypt, scryptEncode, scryptToU8a } from 'https://deno.land/x/polkadot@0.0.6/util-crypto/mod.ts';
+import { u8aConcat } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { naclEncrypt, scryptEncode, scryptToU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { PKCS8_DIVIDER, PKCS8_HEADER } from './defaults.ts';
 
 export function encodePair ({ publicKey, secretKey }: PairInfo, passphrase?: string): Uint8Array {
-  assert(secretKey, 'Expected a valid secretKey to be passed to encode');
+  if (!secretKey) {
+    throw new Error('Expected a valid secretKey to be passed to encode');
+  }
 
   const encoded = u8aConcat(
     PKCS8_HEADER,

@@ -13,7 +13,7 @@ import { isFunction } from './function.ts';
  * <BR>
  *
  * ```javascript
- * import { isBuffer } from 'https://deno.land/x/polkadot@0.0.6/util/mod.ts';
+ * import { isBuffer } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * console.log('isBuffer', isBuffer(Buffer.from([]))); // => true
  * ```

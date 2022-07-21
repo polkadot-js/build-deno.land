@@ -3,10 +3,11 @@
 
 import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta } from '../types.ts';
 
-import { encodeAddress } from 'https://deno.land/x/polkadot@0.0.6/util-crypto/mod.ts';
-
+// empty publicKey
 const publicKey = new Uint8Array(32);
-const address = encodeAddress(publicKey);
+
+// pre-computed via encodeAddress(publicKey)
+const address = '5C4hrfjw9DjXZTzV3MwzrrAr9P1MJhSrvWGWqi1eSuyUpnhM';
 
 const meta = {
   isTesting: true,

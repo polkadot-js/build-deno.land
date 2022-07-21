@@ -19,20 +19,16 @@ for (let i = 0; i < 256; i++) {
 }
 
 /** @internal */
-function hex (value: Uint8Array): string {
-  const mod = value.length % 2;
-  const length = value.length - mod;
-  const dv = new DataView(value.buffer, value.byteOffset);
-  let result = '';
+function hex (value: Uint8Array, result: HexString): HexString {
+  const mod = (value.length % 2) | 0;
+  const length = (value.length - mod) | 0;
 
   for (let i = 0; i < length; i += 2) {
-    // we only use getUint16 here instead of getUint32 - at least in our
-    // tests this is faster to execute (both long & short strings tested)
-    result += U16[dv.getUint16(i)];
+    result += U16[(value[i] << 8) | value[i + 1]];
   }
 
   if (mod) {
-    result += U8[dv.getUint8(length)];
+    result += U8[value[length] | 0];
   }
 
   return result;
@@ -47,19 +43,26 @@ function hex (value: Uint8Array): string {
  * <BR>
  *
  * ```javascript
- * import { u8aToHex } from 'https://deno.land/x/polkadot@0.0.6/util/mod.ts';
+ * import { u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
  * ```
  */
 export function u8aToHex (value?: Uint8Array | null, bitLength = -1, isPrefixed = true): HexString {
-  const length = Math.ceil(bitLength / 8);
+  // this is not 100% correct sinmce we support isPrefixed = false....
+  const empty = isPrefixed
+    ? '0x'
+    : '' as HexString;
 
-  return `${isPrefixed ? '0x' : ''}${
-    !value || !value.length
-      ? ''
-      : (bitLength > 0 && value.length > length)
-        ? `${hex(value.subarray(0, length / 2))}…${hex(value.subarray(value.length - length / 2))}`
-        : hex(value)
-  }` as HexString;
+  if (!value || !value.length) {
+    return empty;
+  } else if (bitLength > 0) {
+    const length = Math.ceil(bitLength / 8);
+
+    if (value.length > length) {
+      return `${hex(value.subarray(0, length / 2), empty)}…${hex(value.subarray(value.length - length / 2), '' as HexString)}`;
+    }
+  }
+
+  return hex(value, empty);
 }

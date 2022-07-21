@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { EncryptedJsonEncoding } from 'https://deno.land/x/polkadot@0.0.6/util-crypto/types.ts';
+import type { EncryptedJsonEncoding } from 'https://deno.land/x/polkadot/util-crypto/types.ts';
 import type { PairInfo } from './types.ts';
 
-import { assert, u8aEq } from 'https://deno.land/x/polkadot@0.0.6/util/mod.ts';
-import { jsonDecryptData } from 'https://deno.land/x/polkadot@0.0.6/util-crypto/mod.ts';
+import { u8aEq } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { jsonDecryptData } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { PKCS8_DIVIDER, PKCS8_HEADER, PUB_LENGTH, SEC_LENGTH, SEED_LENGTH } from './defaults.ts';
 
@@ -22,7 +22,9 @@ export function decodePair (passphrase?: string, encrypted?: Uint8Array | null, 
   const decrypted = jsonDecryptData(encrypted, passphrase, encType);
   const header = decrypted.subarray(0, PKCS8_HEADER.length);
 
-  assert(u8aEq(header, PKCS8_HEADER), 'Invalid Pkcs8 header found in body');
+  if (!u8aEq(header, PKCS8_HEADER)) {
+    throw new Error('Invalid Pkcs8 header found in body');
+  }
 
   let secretKey = decrypted.subarray(SEED_OFFSET, SEED_OFFSET + SEC_LENGTH);
   let divOffset = SEED_OFFSET + SEC_LENGTH;
@@ -34,7 +36,9 @@ export function decodePair (passphrase?: string, encrypted?: Uint8Array | null, 
     secretKey = decrypted.subarray(SEED_OFFSET, divOffset);
     divider = decrypted.subarray(divOffset, divOffset + PKCS8_DIVIDER.length);
 
-    assert(u8aEq(divider, PKCS8_DIVIDER), 'Invalid Pkcs8 divider found in body');
+    if (!u8aEq(divider, PKCS8_DIVIDER)) {
+      throw new Error('Invalid Pkcs8 divider found in body');
+    }
   }
 
   const pubOffset = divOffset + PKCS8_DIVIDER.length;

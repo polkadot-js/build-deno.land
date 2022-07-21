@@ -3,8 +3,6 @@
 
 import type { HexString } from '../types.ts';
 
-import { hexStripPrefix } from './stripPrefix.ts';
-
 /**
  * @name hexToU8a
  * @summary Creates a Uint8Array object from a hex string.
@@ -14,7 +12,7 @@ import { hexStripPrefix } from './stripPrefix.ts';
  * <BR>
  *
  * ```javascript
- * import { hexToU8a } from 'https://deno.land/x/polkadot@0.0.6/util/mod.ts';
+ * import { hexToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * hexToU8a('0x80001f'); // Uint8Array([0x80, 0x00, 0x1f])
  * hexToU8a('0x80001f', 32); // Uint8Array([0x00, 0x80, 0x00, 0x1f])
@@ -25,7 +23,9 @@ export function hexToU8a (_value?: HexString | string | null, bitLength = -1): U
     return new Uint8Array();
   }
 
-  const value = hexStripPrefix(_value);
+  const value = _value.startsWith('0x')
+    ? _value.substring(2)
+    : _value;
   const buf = Buffer.from(value, 'hex');
   const valLength = value.length / 2;
   const resultLength = Math.ceil(

@@ -3,7 +3,7 @@
 
 import type { Keypair } from '../../types.ts';
 
-import { assert } from 'https://deno.land/x/polkadot@0.0.6/util/mod.ts';
+import { assert } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { ed25519PairFromSeed } from '../../ed25519/index.ts';
 import { mnemonicValidate } from '../../mnemonic/index.ts';
