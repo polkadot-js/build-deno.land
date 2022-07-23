@@ -39,7 +39,7 @@ const v6exact = new RegExp(`^${v6}$`);
  * <BR>
  *
  * ```javascript
- * import { isIp } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
+ * import { isIp } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
  *
  * isIp('192.168.0.1')); // => true
  * isIp('1:2:3:4:5:6:7:8'); // => true

@@ -3,7 +3,7 @@
 
 import type { Keypair } from '../../types.ts';
 
-import { u8aConcat } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
+import { u8aConcat } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
 
 export function sr25519KeypairToU8a ({ publicKey, secretKey }: Keypair): Uint8Array {
   return u8aConcat(secretKey, publicKey).slice();

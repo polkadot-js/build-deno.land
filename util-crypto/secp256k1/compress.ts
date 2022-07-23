@@ -3,8 +3,8 @@
 
 import { Point } from 'https://esm.sh/@noble/secp256k1@1.6.3';
 
-import { hasBigInt } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
-import { isReady, secp256k1Compress as wasm } from 'https://deno.land/x/polkadot@0.0.7/wasm-crypto/mod.ts';
+import { hasBigInt } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
+import { isReady, secp256k1Compress as wasm } from 'https://deno.land/x/polkadot@0.0.8/wasm-crypto/mod.ts';
 
 export function secp256k1Compress (publicKey: Uint8Array, onlyJs?: boolean): Uint8Array {
   if (publicKey.length === 33) {

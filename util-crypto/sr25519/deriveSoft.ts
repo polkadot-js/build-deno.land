@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { sr25519DeriveKeypairSoft } from 'https://deno.land/x/polkadot@0.0.7/wasm-crypto/mod.ts';
+import { sr25519DeriveKeypairSoft } from 'https://deno.land/x/polkadot@0.0.8/wasm-crypto/mod.ts';
 
 import { createDeriveFn } from './derive.ts';
 

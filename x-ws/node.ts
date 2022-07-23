@@ -3,7 +3,7 @@
 
 import ws from 'https://esm.sh/websocket@1.0.34';
 
-import { extractGlobal } from 'https://deno.land/x/polkadot@0.0.7/x-global/mod.ts';
+import { extractGlobal } from 'https://deno.land/x/polkadot@0.0.8/x-global/mod.ts';
 
 export { packageInfo } from './packageInfo.ts';
 

@@ -13,5 +13,5 @@ yarn add @polkadot/keyring
 Classes and Functions can be imported as follows:
 
 ```js
-import Keyring from 'https://deno.land/x/polkadot@0.0.7/keyring/mod.ts';
+import Keyring from 'https://deno.land/x/polkadot@0.0.8/keyring/mod.ts';
 ```

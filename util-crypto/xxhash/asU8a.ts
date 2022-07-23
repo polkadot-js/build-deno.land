@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.7/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.0.8/util/types.ts';
 
-import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
-import { isReady, twox } from 'https://deno.land/x/polkadot@0.0.7/wasm-crypto/mod.ts';
+import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
+import { isReady, twox } from 'https://deno.land/x/polkadot@0.0.8/wasm-crypto/mod.ts';
 
 import { createAsHex } from '../helpers.ts';
 import { xxhash64 } from './xxhash64.ts';
@@ -18,7 +18,7 @@ import { xxhash64 } from './xxhash64.ts';
  * <BR>
  *
  * ```javascript
- * import { xxhashAsU8a } from 'https://deno.land/x/polkadot@0.0.7/util-crypto/mod.ts';
+ * import { xxhashAsU8a } from 'https://deno.land/x/polkadot@0.0.8/util-crypto/mod.ts';
  *
  * xxhashAsU8a('abc'); // => 0x44bc2cf5ad770999
  * ```

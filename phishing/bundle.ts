@@ -3,8 +3,8 @@
 
 import type { AddressList, HostList } from './types.ts';
 
-import { u8aEq } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
-import { decodeAddress } from 'https://deno.land/x/polkadot@0.0.7/util-crypto/mod.ts';
+import { u8aEq } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
+import { decodeAddress } from 'https://deno.land/x/polkadot@0.0.8/util-crypto/mod.ts';
 
 import { fetchJson } from './fetch.ts';
 
