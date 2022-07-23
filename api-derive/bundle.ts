@@ -1,8 +1,8 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { DeriveCustom } from 'https://deno.land/x/polkadot@0.0.7/api-base/types/index.ts';
-import type { AnyFunction } from 'https://deno.land/x/polkadot@0.0.7/types/types/index.ts';
+import type { DeriveCustom } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { AnyFunction, AnyString } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { ExactDerive } from './derive.ts';
 import type { DeriveApi } from './types.ts';
 
@@ -84,7 +84,7 @@ const checks: Record<string, Avail> = {
   }
 };
 
-function getModuleInstances (api: DeriveApi, specName: string, moduleName: string): string[] {
+function getModuleInstances (api: DeriveApi, specName: AnyString, moduleName: string): string[] {
   return api.registry.getModuleInstances(specName, moduleName) || [];
 }
 
@@ -97,7 +97,7 @@ function injectFunctions (instanceId: string, api: DeriveApi, derives: DeriveCus
   const result: Record<string, Record<string, AnyFunction>> = {};
   const names = Object.keys(derives);
   const keys = Object.keys(api.query);
-  const specName = api.runtimeVersion.specName.toString();
+  const specName = api.runtimeVersion.specName;
 
   const filterKeys = (q: string) => keys.includes(q);
   const filterInstances = (q: string) => getModuleInstances(api, specName, q).some(filterKeys);

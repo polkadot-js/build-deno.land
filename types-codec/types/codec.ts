@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.7/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson } from './helpers.ts';
 import type { IU8a } from './interfaces.ts';
 import type { Registry } from './registry.ts';
@@ -78,6 +78,11 @@ export interface Codec {
   toJSON (): AnyJson;
 
   /**
+   * @description Converts the value in a best-fit primitive form
+   */
+  toPrimitive (): AnyJson;
+
+  /**
    * @description Returns the base runtime type name for this instance
    */
   toRawType (): string;
@@ -105,6 +110,6 @@ export interface CodecClass<T = Codec> {
   new(registry: Registry, ...args: any[]): T;
 }
 
-export type CodecTo = 'toHex' | 'toJSON' | 'toString' | 'toU8a';
+export type CodecTo = 'toHex' | 'toJSON' | 'toPrimitive' | 'toString' | 'toU8a';
 
 export type ArgsDef = Record<string, CodecClass | string>;

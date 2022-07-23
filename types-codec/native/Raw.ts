@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.7/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, AnyU8a, Inspect, IU8a, Registry } from '../types/index.ts';
 
-import { isAscii, isUndefined, isUtf8, u8aToHex, u8aToString, u8aToU8a } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
+import { isAscii, isUndefined, isUtf8, u8aToHex, u8aToString, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 /**
  * @name Raw
@@ -111,6 +111,20 @@ export class Raw extends Uint8Array implements IU8a {
    * @description Converts the Object to to a human-friendly JSON, with additional fields, expansion and formatting of information
    */
   public toHuman (): AnyJson {
+    return this.toPrimitive();
+  }
+
+  /**
+   * @description Converts the Object to JSON, typically used for RPC transfers
+   */
+  public toJSON (): string {
+    return this.toHex();
+  }
+
+  /**
+   * @description Converts the value in a best-fit primitive form
+   */
+  public toPrimitive (): AnyJson {
     if (this.isAscii) {
       const text = this.toUtf8();
 
@@ -121,13 +135,6 @@ export class Raw extends Uint8Array implements IU8a {
     }
 
     return this.toJSON();
-  }
-
-  /**
-   * @description Converts the Object to JSON, typically used for RPC transfers
-   */
-  public toJSON (): string {
-    return this.toHex();
   }
 
   /**

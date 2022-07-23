@@ -2,10 +2,10 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { u32, Vec } from 'https://deno.land/x/polkadot@0.0.7/types/mod.ts';
-import type { AccountId32, Balance, BlockNumber } from 'https://deno.land/x/polkadot@0.0.7/types/interfaces/index.ts';
-import type { PalletElectionsPhragmenSeatHolder } from 'https://deno.land/x/polkadot@0.0.7/types/lookup.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.0.7/types/types/index.ts';
+import type { u32, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId32, Balance, BlockNumber } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletElectionsPhragmenSeatHolder } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DeriveApi } from '../types.ts';
 import type { DeriveElectionsInfo } from './types.ts';
 
@@ -55,7 +55,7 @@ function getConstants (api: DeriveApi, elections: string | null): Partial<Derive
 }
 
 function getModules (api: DeriveApi): [string, string | null] {
-  const [council] = api.registry.getModuleInstances(api.runtimeVersion.specName.toString(), 'council') || ['council'];
+  const [council] = api.registry.getModuleInstances(api.runtimeVersion.specName, 'council') || ['council'];
   const elections = api.query.phragmenElection
     ? 'phragmenElection'
     : api.query.electionsPhragmen

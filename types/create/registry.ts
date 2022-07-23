@@ -1,16 +1,16 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Codec, CodecClass, IU8a } from 'https://deno.land/x/polkadot@0.0.7/types-codec/types/index.ts';
-import type { CreateOptions, TypeDef } from 'https://deno.land/x/polkadot@0.0.7/types-create/types/index.ts';
+import type { AnyString, Codec, CodecClass, IU8a } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { CreateOptions, TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 import type { ExtDef } from '../extrinsic/signedExtensions/types.ts';
 import type { ChainProperties, DispatchErrorModule, DispatchErrorModuleU8, DispatchErrorModuleU8a, EventMetadataLatest, Hash, MetadataLatest, SiField, SiLookupTypeId, SiVariant } from '../interfaces/types.ts';
 import type { CallFunction, CodecHasher, Definitions, DetectCodec, RegisteredTypes, Registry, RegistryError, RegistryTypes } from '../types/index.ts';
 
-import { DoNotConstruct, Json, Raw } from 'https://deno.land/x/polkadot@0.0.7/types-codec/mod.ts';
-import { constructTypeClass, createClassUnsafe, createTypeUnsafe } from 'https://deno.land/x/polkadot@0.0.7/types-create/mod.ts';
-import { assertReturn, BN_ZERO, formatBalance, isFunction, isNumber, isString, isU8a, lazyMethod, logger, objectSpread, stringCamelCase, stringify } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
-import { blake2AsU8a } from 'https://deno.land/x/polkadot@0.0.7/util-crypto/mod.ts';
+import { DoNotConstruct, Json, Raw } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { constructTypeClass, createClassUnsafe, createTypeUnsafe } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { assertReturn, BN_ZERO, formatBalance, isFunction, isNumber, isString, isU8a, lazyMethod, logger, objectSpread, stringCamelCase, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { blake2AsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { expandExtensionTypes, fallbackExtensions, findUnknownExtensions } from '../extrinsic/signedExtensions/index.ts';
 import { GenericEventData } from '../generic/Event.ts';
@@ -105,20 +105,48 @@ function injectEvents (registry: TypeRegistry, { lookup, pallets }: MetadataLate
 }
 
 // create extrinsic mapping from metadata
-function injectExtrinsics (registry: TypeRegistry, { lookup, pallets }: MetadataLatest, version: number, result: Record<string, Record<string, CallFunction>>): void {
+function injectExtrinsics (registry: TypeRegistry, { lookup, pallets }: MetadataLatest, version: number, result: Record<string, Record<string, CallFunction>>, mapping: Record<string, string[]>): void {
   const filtered = pallets.filter(filterCallsSome);
 
   clearRecord(result);
+  clearRecord(mapping);
 
   for (let i = 0; i < filtered.length; i++) {
     const { calls, index, name } = filtered[i];
     const sectionIndex = version >= 12 ? index.toNumber() : i;
+    const sectionName = stringCamelCase(name);
+    const allCalls = calls.unwrap();
 
     lazyMethod(result, sectionIndex, () =>
-      lazyVariants(lookup, calls.unwrap(), getVariantStringIdx, (variant: SiVariant) =>
-        createCallFunction(registry, lookup, variant, stringCamelCase(name), sectionIndex)
+      lazyVariants(lookup, allCalls, getVariantStringIdx, (variant: SiVariant) =>
+        createCallFunction(registry, lookup, variant, sectionName, sectionIndex)
       )
     );
+
+    const { path } = registry.lookup.getSiType(allCalls.type);
+
+    // frame_system::pallet::Call / pallet_balances::pallet::Call / polkadot_runtime_parachains::configuration::pallet::Call /
+    const palletIdx = path.findIndex((v) => v.eq('pallet'));
+
+    if (palletIdx !== -1) {
+      const name = stringCamelCase(
+        path
+          .slice(0, palletIdx)
+          .map((p, i) =>
+            i === 0
+              // frame_system || pallet_balances
+              ? p.replace(/^(frame|pallet)_/, '')
+              : p
+          )
+          .join(' ')
+      );
+
+      if (!mapping[name]) {
+        mapping[name] = [sectionName];
+      } else {
+        mapping[name].push(sectionName);
+      }
+    }
   }
 }
 
@@ -155,6 +183,8 @@ export class TypeRegistry implements Registry {
   readonly #metadataErrors: Record<string, Record<string, RegistryError>> = {};
 
   readonly #metadataEvents: Record<string, Record<string, CodecClass<GenericEventData>>> = {};
+
+  readonly #moduleMap: Record<string, string[]> = {};
 
   #unknownTypes = new Map<string, boolean>();
 
@@ -403,8 +433,8 @@ export class TypeRegistry implements Registry {
     return this.#definitions.get(typeName);
   }
 
-  public getModuleInstances (specName: string, moduleName: string): string[] | undefined {
-    return this.#knownTypes?.typesBundle?.spec?.[specName]?.instances?.[moduleName];
+  public getModuleInstances (specName: AnyString, moduleName: string): string[] | undefined {
+    return this.#knownTypes?.typesBundle?.spec?.[specName.toString()]?.instances?.[moduleName] || this.#moduleMap[moduleName];
   }
 
   public getOrThrow <T extends Codec = Codec, K extends string = string, R = DetectCodec<T, K>> (name: K, msg?: string): CodecClass<R> {
@@ -527,7 +557,7 @@ export class TypeRegistry implements Registry {
     // attach the lookup at this point (before injecting)
     this.setLookup(this.#metadata.lookup);
 
-    injectExtrinsics(this, this.#metadata, this.#metadataVersion, this.#metadataCalls);
+    injectExtrinsics(this, this.#metadata, this.#metadataVersion, this.#metadataCalls, this.#moduleMap);
     injectErrors(this, this.#metadata, this.#metadataVersion, this.#metadataErrors);
     injectEvents(this, this.#metadata, this.#metadataVersion, this.#metadataEvents);
 

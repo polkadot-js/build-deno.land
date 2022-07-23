@@ -4,6 +4,4 @@
 export { HttpProvider } from './http/index.ts';
 export { packageInfo } from './packageInfo.ts';
 export { WsProvider } from './ws/index.ts';
-
-// ESM-only, only export top-level when we have dual versions
-// export { ScProvider } from './substrate-connect/index.ts';
+export { ScProvider } from './substrate-connect/index.ts';

@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.7/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, Codec, CodecClass, Inspect, ISet, IU8a, Registry } from '../types/index.ts';
 
-import { compactFromU8aLim, compactToU8a, isHex, isU8a, logger, stringify, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
+import { compactFromU8aLim, compactToU8a, isHex, isU8a, logger, stringify, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { compareSet, decodeU8aVec, sortSet, typeToConstructor } from '../utils/index.ts';
 
@@ -191,6 +191,19 @@ export class BTreeSet<V extends Codec = Codec> extends Set<V> implements ISet<V>
    */
   public toRawType (): string {
     return `BTreeSet<${this.registry.getClassName(this.#ValClass) || new this.#ValClass(this.registry).toRawType()}>`;
+  }
+
+  /**
+   * @description Converts the value in a best-fit primitive form
+   */
+  public toPrimitive (): AnyJson {
+    const json: AnyJson = [];
+
+    for (const v of this.values()) {
+      json.push(v.toPrimitive());
+    }
+
+    return json;
   }
 
   /**

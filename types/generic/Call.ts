@@ -1,12 +1,12 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyJson, AnyTuple, AnyU8a, ArgsDef, Codec, IMethod, Registry } from 'https://deno.land/x/polkadot@0.0.7/types-codec/types/index.ts';
+import type { AnyJson, AnyTuple, AnyU8a, ArgsDef, Codec, IMethod, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { FunctionMetadataLatest } from '../interfaces/metadata/index.ts';
 import type { CallBase, CallFunction, InterfaceTypes } from '../types/index.ts';
 
-import { Struct, U8aFixed } from 'https://deno.land/x/polkadot@0.0.7/types-codec/mod.ts';
-import { isHex, isObject, isU8a, objectSpread, u8aToU8a } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
+import { Struct, U8aFixed } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { isHex, isObject, isU8a, objectSpread, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 interface DecodeMethodInput {
   args: unknown;
@@ -103,6 +103,13 @@ function decodeCall (registry: Registry, value: unknown | DecodedMethod | Uint8A
 export class GenericCallIndex extends U8aFixed {
   constructor (registry: Registry, value?: AnyU8a) {
     super(registry, value, 16);
+  }
+
+  /**
+   * @description Converts the value in a best-fit primitive form
+   */
+  public override toPrimitive (): string {
+    return this.toHex();
   }
 }
 

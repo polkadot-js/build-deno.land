@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.7/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, Codec, CodecClass, Inspect, IOption, IU8a, Registry } from '../types/index.ts';
 
-import { isCodec, isNull, isU8a, isUndefined, u8aToHex } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
+import { isCodec, isNull, isU8a, isUndefined, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { typeToConstructor } from '../utils/index.ts';
 import { Null } from './Null.ts';
@@ -204,6 +204,15 @@ export class Option<T extends Codec> implements IOption<T> {
     return this.isNone
       ? null
       : this.#raw.toJSON();
+  }
+
+  /**
+   * @description Converts the value in a best-fit primitive form
+   */
+  public toPrimitive (): AnyJson {
+    return this.isNone
+      ? null
+      : this.#raw.toPrimitive();
   }
 
   /**

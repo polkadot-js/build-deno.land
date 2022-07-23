@@ -1,13 +1,14 @@
 // Copyright 2017-2022 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.7/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, Codec, CodecClass, IMap, Inspect, IU8a, Registry } from '../types/index.ts';
 
-import { compactFromU8aLim, compactToU8a, isHex, isObject, isU8a, logger, stringify, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
+import { compactFromU8aLim, compactToU8a, isHex, isObject, isU8a, logger, stringify, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { AbstractArray } from '../abstract/Array.ts';
 import { Enum } from '../base/Enum.ts';
+import { Raw } from '../native/Raw.ts';
 import { Struct } from '../native/Struct.ts';
 import { compareMap, decodeU8a, sortMap, typeToConstructor } from '../utils/index.ts';
 
@@ -182,7 +183,11 @@ export class CodecMap<K extends Codec = Codec, V extends Codec = Codec> extends 
     const json: Record<string, AnyJson> = {};
 
     for (const [k, v] of this.entries()) {
-      json[k.toString()] = v.toHuman(isExtended);
+      json[
+        k instanceof Raw && k.isAscii
+          ? k.toUtf8()
+          : k.toString()
+      ] = v.toHuman(isExtended);
     }
 
     return json;
@@ -196,6 +201,23 @@ export class CodecMap<K extends Codec = Codec, V extends Codec = Codec> extends 
 
     for (const [k, v] of this.entries()) {
       json[k.toString()] = v.toJSON();
+    }
+
+    return json;
+  }
+
+  /**
+   * @description Converts the value in a best-fit primitive form
+   */
+  public toPrimitive (): AnyJson {
+    const json: Record<string, AnyJson> = {};
+
+    for (const [k, v] of this.entries()) {
+      json[
+        k instanceof Raw && k.isAscii
+          ? k.toUtf8()
+          : k.toString()
+      ] = v.toPrimitive();
     }
 
     return json;

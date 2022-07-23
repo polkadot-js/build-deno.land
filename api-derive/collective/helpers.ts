@@ -7,12 +7,12 @@ import type { Collective } from './types.ts';
 
 import { of } from 'https://esm.sh/rxjs@7.5.6';
 
-import { isFunction } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
+import { isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 
 export function getInstance (api: DeriveApi, section: string): DeriveApi['query']['council'] {
-  const instances = api.registry.getModuleInstances(api.runtimeVersion.specName.toString(), section);
+  const instances = api.registry.getModuleInstances(api.runtimeVersion.specName, section);
   const name = instances && instances.length
     ? instances[0]
     : section;

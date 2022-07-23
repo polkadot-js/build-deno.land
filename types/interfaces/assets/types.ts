@@ -1,8 +1,8 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Bytes, Compact, Struct, bool, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.0.7/types-codec/mod.ts';
-import type { AccountId, BalanceOf } from 'https://deno.land/x/polkadot@0.0.7/types/interfaces/runtime/index.ts';
+import type { Bytes, Compact, Struct, bool, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { AccountId, BalanceOf } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 /** @name AssetApproval */
 export interface AssetApproval extends Struct {

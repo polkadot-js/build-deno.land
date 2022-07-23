@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.7/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, Codec, CodecClass, Inspect, IU8a, Registry } from '../types/index.ts';
 
 /**
@@ -69,6 +69,10 @@ export class DoNotConstruct implements Codec {
   }
 
   toJSON (): AnyJson {
+    throw this.#neverError;
+  }
+
+  toPrimitive (): AnyJson {
     throw this.#neverError;
   }
 

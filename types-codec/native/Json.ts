@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.7/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, Codec, Inspect, IU8a, Registry } from '../types/index.ts';
 
-import { isFunction, objectProperties, stringify } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
+import { isFunction, objectProperties, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { compareMap } from '../utils/index.ts';
 
@@ -104,6 +104,19 @@ export class Json extends Map<string, any> implements Codec {
   public toJSON (): Record<string, AnyJson> {
     return [...this.entries()].reduce<Record<string, AnyJson>>((json, [key, value]): Record<string, AnyJson> => {
       json[key] = value as AnyJson;
+
+      return json;
+    }, {});
+  }
+
+  /**
+   * @description Converts the value in a best-fit primitive form
+   */
+  public toPrimitive (): Record<string, AnyJson> {
+    return [...this.entries()].reduce<Record<string, AnyJson>>((json, [key, value]): Record<string, AnyJson> => {
+      json[key] = isFunction((value as Codec).toHuman)
+        ? (value as Codec).toPrimitive()
+        : value as AnyJson;
 
       return json;
     }, {});

@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.7/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyNumber, Inspect, INumber, IU8a, Registry, UIntBitLength } from '../types/index.ts';
 
-import { BN, bnToBn, bnToHex, bnToU8a, isString, isU8a, u8aToBn } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
+import { BN, bnToBn, bnToHex, bnToU8a, isString, isU8a, u8aToBn } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const BITLENGTH: UIntBitLength = 64;
 const U8A_OPTS = { bitLength: BITLENGTH, isLe: true };
@@ -134,6 +134,13 @@ export class CodecDate extends Date implements INumber {
    */
   public toNumber (): number {
     return Math.ceil(this.getTime() / 1000);
+  }
+
+  /**
+   * @description Converts the value in a best-fit primitive form
+   */
+  public toPrimitive (): number {
+    return this.toNumber();
   }
 
   /**

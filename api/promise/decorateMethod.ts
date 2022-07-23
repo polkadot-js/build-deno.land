@@ -2,12 +2,12 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { Callback, Codec } from 'https://deno.land/x/polkadot@0.0.7/types/types/index.ts';
+import type { Callback, Codec } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DecorateFn, DecorateMethodOptions, ObsInnerType, StorageEntryPromiseOverloads, UnsubscribePromise, VoidFn } from '../types/index.ts';
 
 import { catchError, EMPTY, Subscription, tap } from 'https://esm.sh/rxjs@7.5.6';
 
-import { isFunction, nextTick } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
+import { isFunction, nextTick } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 interface Tracker<T> {
   reject: (value: Error) => Observable<never>;

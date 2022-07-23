@@ -3,7 +3,7 @@
 
 import type { AnyJson, AnyU8a, Codec, CodecClass, Inspect, Registry } from '../types/index.ts';
 
-import { compactAddLength, compactStripLength, compactToU8a, isHex, isU8a, u8aToU8a } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
+import { compactAddLength, compactStripLength, compactToU8a, isHex, isU8a, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Raw } from '../native/Raw.ts';
 import { typeToConstructor } from '../utils/index.ts';
@@ -90,6 +90,15 @@ export class WrapperKeepOpaque<T extends Codec> extends Bytes {
     return this.#decoded
       ? this.#decoded.toHuman(isExtended)
       : super.toHuman();
+  }
+
+  /**
+   * @description Converts the value in a best-fit primitive form
+   */
+  public override toPrimitive (): any {
+    return this.#decoded
+      ? this.#decoded.toPrimitive()
+      : super.toPrimitive();
   }
 
   /**

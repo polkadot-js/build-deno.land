@@ -1,12 +1,12 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyJson } from 'https://deno.land/x/polkadot@0.0.7/types-codec/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.7/util/types.ts';
+import type { AnyJson } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { MetadataAll, MetadataLatest, MetadataV9, MetadataV10, MetadataV11, MetadataV12, MetadataV13, MetadataV14 } from '../interfaces/metadata/index.ts';
 import type { Registry } from '../types/index.ts';
 
-import { Struct } from 'https://deno.land/x/polkadot@0.0.7/types-codec/mod.ts';
+import { Struct } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 
 import { toV10 } from './v9/toV10.ts';
 import { toV11 } from './v10/toV11.ts';
@@ -17,11 +17,15 @@ import { toLatest } from './v14/toLatest.ts';
 import { MagicNumber } from './MagicNumber.ts';
 import { getUniqTypes, toCallsOnly } from './util/index.ts';
 
-type MetaMapped = MetadataV9 | MetadataV10 | MetadataV11 | MetadataV12 | MetadataV13 | MetadataV14;
-type MetaAsX = 'asV9' | 'asV10' | 'asV11' | 'asV12' | 'asV13' | 'asV14';
-type MetaVersions = 'latest' | 9 | 10 | 11 | 12 | 13 | 14;
+// Use these to generate all the Meta* types below via template keys
+// NOTE: Keep from latest -> earliest, see the LATEST_VERSION 0 index
+const KNOWN_VERSIONS = <const> [14, 13, 12, 11, 10, 9];
+const LATEST_VERSION = KNOWN_VERSIONS[0];
 
-const LATEST_VERSION = 14;
+type MetaAll = typeof KNOWN_VERSIONS[number];
+type MetaAsX = `asV${MetaAll}`;
+type MetaMapped = MetadataAll[MetaAsX];
+type MetaVersions = MetaAll | 'latest';
 
 /**
  * @name MetadataVersioned

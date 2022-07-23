@@ -2,14 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { Option, Vec } from 'https://deno.land/x/polkadot@0.0.7/types/mod.ts';
-import type { AccountId, Balance, BalanceLockTo212, BlockNumber, VestingSchedule } from 'https://deno.land/x/polkadot@0.0.7/types/interfaces/index.ts';
-import type { PalletBalancesBalanceLock, PalletBalancesReserveData, PalletVestingVestingInfo } from 'https://deno.land/x/polkadot@0.0.7/types/lookup.ts';
+import type { Option, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, Balance, BalanceLockTo212, BlockNumber, VestingSchedule } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletBalancesBalanceLock, PalletBalancesReserveData, PalletVestingVestingInfo } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { DeriveApi, DeriveBalancesAccount, DeriveBalancesAccountData, DeriveBalancesAll, DeriveBalancesAllAccountData, DeriveBalancesAllVesting } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.6';
 
-import { BN, BN_ZERO, bnMax, bnMin, isFunction } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
+import { BN, BN_ZERO, bnMax, bnMin, isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 
@@ -211,7 +211,7 @@ function queryCurrent (api: DeriveApi, accountId: AccountId | string, balanceIns
  * ```
  */
 export function all (instanceId: string, api: DeriveApi): (address: AccountId | string) => Observable<DeriveBalancesAll> {
-  const balanceInstances = api.registry.getModuleInstances(api.runtimeVersion.specName.toString(), 'balances');
+  const balanceInstances = api.registry.getModuleInstances(api.runtimeVersion.specName, 'balances');
 
   return memo(instanceId, (address: AccountId | string): Observable<DeriveBalancesAll> =>
     combineLatest([

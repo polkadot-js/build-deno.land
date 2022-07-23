@@ -3,11 +3,11 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.0.7/types-codec/types/registry.ts';
-import 'https://deno.land/x/polkadot@0.0.7/types-create/types/augmentRegistry.ts';
+import 'https://deno.land/x/polkadot/types-codec/types/registry.ts';
+import 'https://deno.land/x/polkadot/types-create/types/augmentRegistry.ts';
 
-import type { Codec, CodecClass } from 'https://deno.land/x/polkadot@0.0.7/types-codec/types/index.ts';
-import type { TypeDef } from 'https://deno.land/x/polkadot@0.0.7/types-create/types/index.ts';
+import type { AnyString, Codec, CodecClass } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 import type { ExtDef } from '../extrinsic/signedExtensions/types.ts';
 import type { MetadataLatest } from '../interfaces/metadata/index.ts';
 import type { SiField, SiLookupTypeId } from '../interfaces/scaleInfo/index.ts';
@@ -17,7 +17,7 @@ import type { CallFunction as CallFunctionExt } from './calls.ts';
 import type { DetectCodec } from './detect.ts';
 import type { CodecHasher, RegisteredTypes } from './registry.ts';
 
-declare module 'https://deno.land/x/polkadot@0.0.7/types-codec/types/registry.ts' {
+declare module 'https://deno.land/x/polkadot/types-codec/types/registry.ts' {
   interface RegistryError {
     fields: SiField[];
   }
@@ -41,7 +41,7 @@ declare module 'https://deno.land/x/polkadot@0.0.7/types-codec/types/registry.ts
     get <T extends Codec = Codec, K extends string = string> (name: K, withUnknown?: boolean, knownTypeDef?: TypeDef): CodecClass<DetectCodec<T, K>> | undefined;
     getChainProperties (): ChainProperties | undefined;
     getDefinition (typeName: string): string | undefined;
-    getModuleInstances (specName: string, moduleName: string): string[] | undefined;
+    getModuleInstances (specName: AnyString, moduleName: string): string[] | undefined;
 
     setKnownTypes (types: RegisteredTypes): void;
     setChainProperties (properties?: ChainProperties): void;

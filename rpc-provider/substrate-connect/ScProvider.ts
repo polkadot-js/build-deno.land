@@ -1,13 +1,13 @@
 // Copyright 2017-2022 @polkadot/rpc-provider authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Config as ScConfig } from 'https://esm.sh/@substrate/connect@0.7.8';
+import type { Config as ScConfig } from 'https://esm.sh/@substrate/connect@0.7.9';
 import type { JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, ProviderInterfaceEmitCb, ProviderInterfaceEmitted } from '../types.ts';
 
-import { Chain, createScClient, ScClient, WellKnownChain } from 'https://esm.sh/@substrate/connect@0.7.8';
+import { Chain, createScClient, ScClient, WellKnownChain } from 'https://esm.sh/@substrate/connect@0.7.9';
 import EventEmitter from 'https://esm.sh/eventemitter3@4.0.7';
 
-import { isError } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
+import { isError } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { RpcCoder } from '../coder/index.ts';
 import { healthChecker } from './Health.ts';

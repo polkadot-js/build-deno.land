@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyNumber, Registry } from 'https://deno.land/x/polkadot@0.0.7/types-codec/types/index.ts';
+import type { AnyNumber, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 
-import { u32 } from 'https://deno.land/x/polkadot@0.0.7/types-codec/mod.ts';
-import { BN, bnToBn, isBigInt, isBn, isHex, isNumber, isU8a } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
-import { decodeAddress, encodeAddress } from 'https://deno.land/x/polkadot@0.0.7/util-crypto/mod.ts';
+import { u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { BN, bnToBn, isBigInt, isBn, isHex, isNumber, isU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { decodeAddress, encodeAddress } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 const PREFIX_1BYTE = 0xef;
 const PREFIX_2BYTE = 0xfc;
@@ -102,6 +102,13 @@ export class GenericAccountIndex extends u32 {
    */
   public override toJSON (): string {
     return this.toString();
+  }
+
+  /**
+   * @description Converts the value in a best-fit primitive form
+   */
+  public override toPrimitive (): string {
+    return this.toJSON();
   }
 
   /**

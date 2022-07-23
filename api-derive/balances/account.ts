@@ -2,14 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { QueryableStorageEntry } from 'https://deno.land/x/polkadot@0.0.7/api-base/types/index.ts';
-import type { AccountData, AccountId, AccountIndex, AccountInfo, Address, Balance, Index } from 'https://deno.land/x/polkadot@0.0.7/types/interfaces/index.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.0.7/types/types/index.ts';
+import type { QueryableStorageEntry } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { AccountData, AccountId, AccountIndex, AccountInfo, Address, Balance, Index } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DeriveApi, DeriveBalancesAccount, DeriveBalancesAccountData } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.6';
 
-import { isFunction } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
+import { isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 
@@ -150,7 +150,8 @@ function querySystemAccount (api: DeriveApi, accountId: AccountId): Observable<R
  * ```
  */
 export function account (instanceId: string, api: DeriveApi): (address: AccountIndex | AccountId | Address | string) => Observable<DeriveBalancesAccount> {
-  const balanceInstances = api.registry.getModuleInstances(api.runtimeVersion.specName.toString(), 'balances');
+  const balanceInstances = api.registry.getModuleInstances(api.runtimeVersion.specName, 'balances');
+  const nonDefaultBalances = balanceInstances && (balanceInstances.length !== 1 || balanceInstances[0] !== 'balances');
 
   return memo(instanceId, (address: AccountIndex | AccountId | Address | string): Observable<DeriveBalancesAccount> =>
     api.derive.accounts.accountId(address).pipe(
@@ -158,7 +159,7 @@ export function account (instanceId: string, api: DeriveApi): (address: AccountI
         (accountId
           ? combineLatest([
             of(accountId),
-            balanceInstances
+            nonDefaultBalances
               ? queryBalancesAccount(api, accountId, balanceInstances)
               : isFunction(api.query.system?.account)
                 ? querySystemAccount(api, accountId)

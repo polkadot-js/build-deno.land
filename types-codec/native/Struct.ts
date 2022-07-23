@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.7/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, BareOpts, Codec, CodecClass, Inspect, IStruct, IU8a, Registry } from '../types/index.ts';
 
-import { isBoolean, isFunction, isHex, isObject, isU8a, isUndefined, objectProperties, stringCamelCase, stringify, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
+import { isBoolean, isFunction, isHex, isObject, isU8a, isUndefined, objectProperties, stringCamelCase, stringify, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { compareMap, decodeU8aStruct, mapToTypeMap, typesToMap } from '../utils/index.ts';
 
@@ -288,6 +288,23 @@ export class Struct<
       // We actually log inside the U8a decoding and use JSON.stringify(...), which
       // means that the Vec may be partially populated (same applies to toHuman, same check)
       json[jsonKey as string] = v && v.toJSON();
+    }
+
+    return json;
+  }
+
+  /**
+   * @description Converts the value in a best-fit primitive form
+   */
+  public toPrimitive (): Record<string, AnyJson> {
+    const json: Record<string, AnyJson> = {};
+
+    for (const [k, v] of this.entries()) {
+      const jsonKey = this.#jsonMap.get(k) || k;
+
+      // We actually log inside the U8a decoding and use JSON.stringify(...), which
+      // means that the Vec may be partially populated (same applies to toHuman, same check)
+      json[jsonKey as string] = v && v.toPrimitive();
     }
 
     return json;

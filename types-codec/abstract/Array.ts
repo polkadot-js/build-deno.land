@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.7/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, Codec, Inspect, IU8a, IVec, Registry } from '../types/index.ts';
 
-import { compactToU8a, u8aConcatStrict, u8aToHex } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
+import { compactToU8a, u8aConcatStrict, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { compareArray } from '../utils/compareArray.ts';
 
@@ -135,6 +135,19 @@ export abstract class AbstractArray<T extends Codec> extends Array<T> implements
       // We actually log inside the U8a decoding and use JSON.stringify(...), which
       // means that the Vec may be partially populated (same applies to toHuman, same check)
       result[i] = this[i] && this[i].toJSON();
+    }
+
+    return result;
+  }
+
+  /**
+   * @description Converts the value in a best-fit primitive form
+   */
+  public toPrimitive (): AnyJson {
+    const result = new Array<AnyJson>(this.length);
+
+    for (let i = 0; i < this.length; i++) {
+      result[i] = this[i] && this[i].toPrimitive();
     }
 
     return result;

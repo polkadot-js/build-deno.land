@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master
+
+- api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 8.14.1
+
 ## 0.0.7 Jul 21, 2022
 
 - **NOTE** Released without an API upgrade since API merges depends on the updated libs (which are backwards compatible)

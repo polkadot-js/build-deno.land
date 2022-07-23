@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.7/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { Codec, Inspect, IU8a, Registry } from '../types/index.ts';
 
-import { isNull } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
+import { isNull } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 /**
  * @name Null
@@ -66,6 +66,13 @@ export class Null implements Codec {
    * @description Converts the Object to JSON, typically used for RPC transfers
    */
   public toJSON (): null {
+    return null;
+  }
+
+  /**
+   * @description Converts the value in a best-fit primitive form
+   */
+  public toPrimitive (): null {
     return null;
   }
 

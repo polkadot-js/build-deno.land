@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.7/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyNumber, Inspect, INumber, IU8a, Registry, UIntBitLength } from '../types/index.ts';
 
-import { BN, BN_BILLION, BN_HUNDRED, BN_MILLION, BN_QUINTILL, bnToBn, bnToHex, bnToU8a, formatBalance, formatNumber, hexToBn, isBn, isHex, isNumber, isString, isU8a, u8aToBn, u8aToNumber } from 'https://deno.land/x/polkadot@0.0.7/util/mod.ts';
+import { BN, BN_BILLION, BN_HUNDRED, BN_MILLION, BN_QUINTILL, bnToBn, bnToHex, bnToU8a, formatBalance, formatNumber, hexToBn, isBn, isHex, isNumber, isString, isU8a, u8aToBn, u8aToNumber } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 export const DEFAULT_UINT_BITS = 64;
 
@@ -204,6 +204,15 @@ export abstract class AbstractInt extends BN implements INumber {
     //   - this.#bitLength - the type bits (this should be used, however contracts RPC is problematic)
     return onlyHex || (super.bitLength() > MAX_NUMBER_BITS)
       ? this.toHex()
+      : this.toNumber();
+  }
+
+  /**
+   * @description Returns the value in a primitive form, either number when <= 52 bits, or string otherwise
+   */
+  public toPrimitive (): number | string {
+    return super.bitLength() > MAX_NUMBER_BITS
+      ? this.toString()
       : this.toNumber();
   }
 
