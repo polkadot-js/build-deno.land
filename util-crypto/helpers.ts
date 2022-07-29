@@ -1,13 +1,13 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.8/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 
-import { hasBigInt, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
-import { isReady } from 'https://deno.land/x/polkadot@0.0.8/wasm-crypto/mod.ts';
+import { hasBigInt, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 // re-export so TS *.d.ts generation is correct
-export type { HexString } from 'https://deno.land/x/polkadot@0.0.8/util/types.ts';
+export type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 
 interface DualHash {
   256: (u8a: Uint8Array) => Uint8Array;

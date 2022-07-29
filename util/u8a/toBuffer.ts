@@ -10,7 +10,7 @@
  * <BR>
  *
  * ```javascript
- * import { u8aToBuffer } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
+ * import { u8aToBuffer } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * console.log('Buffer', u8aToBuffer('0x123480001f'));
  * ```

@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/hw-ledger authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type Transport from 'https://esm.sh/@ledgerhq/hw-transport@6.27.1';
+import type Transport from 'https://esm.sh/@ledgerhq/hw-transport@6.27.2';
 import type { SubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.33.0';
 
 import { newAcalaApp, newAlephZeroApp, newAstarApp, newBifrostApp, newCentrifugeApp, newComposableApp, newDockApp, newEdgewareApp, newEquilibriumApp, newGenshiroApp, newInterlayApp, newKaruraApp, newKusamaApp, newNodleApp, newParallelApp, newPolkadexApp, newPolkadotApp, newPolymeshApp, newSoraApp, newStafiApp, newStatemineApp, newStatemintApp, newUniqueApp, newXXNetworkApp } from 'https://esm.sh/@zondax/ledger-substrate@0.33.0';
