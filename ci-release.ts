@@ -19,6 +19,9 @@ type GitArgs =
 // use .. notation to import @polkadot packages
 const IS_DOT_PATH = false;
 
+// template for the deno.land/x path
+const DENO_X = 'https://deno.land/x';
+
 // flag set to tru if we are in a CI environment
 const IS_CI = !!Deno.env.get('GITHUB_REPOSITORY');
 
@@ -137,9 +140,9 @@ async function createModTs (version: string): Promise<void> {
   await Deno.writeTextFile('mod.ts', `// Copyright 2017-${new Date().getFullYear()} @polkadot/deno authors & contributors\n// SPDX-License-Identifier: Apache-2.0\n\n// auto-generated via ci-release.ts, do not edit\n\n${imports.sort().join('\n')}\n`);
   await Deno.writeTextFile('import_map.json', `${JSON.stringify({
     imports: {
-      // split so the script doesn't update this one :)
-      [`${['https:', '', 'deno.land', 'x', 'polkadot'].join('/')}/`]: './',
-      [`https://deno.land/x/polkadot@${version}/`]: './'
+      // we construct the urls here, we don't want to regex to catch it
+      [`${DENO_X}/polkadot/`]: './',
+      [`${DENO_X}/polkadot@${version}/`]: './'
     }
   }, null, 2)}\n`);
 }
