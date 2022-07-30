@@ -2,11 +2,13 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { CollatorId, ParaId } from 'https://deno.land/x/polkadot@0.0.8/types/interfaces/index.ts';
+import type { CollatorId, ParaId } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { DeriveApi, DeriveParachainActive, DeriveParachainFull, DeriveParachainInfo } from '../types.ts';
 import type { Active, DidUpdate, Heads, ParaInfoResult, PendingSwap, RelayDispatchQueue, RetryQueue, SelectedThreads } from './types.ts';
 
 import { map, of } from 'https://esm.sh/rxjs@7.5.6';
+
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 import { didUpdateToBool } from './util.ts';
@@ -28,20 +30,18 @@ function parseActive (id: ParaId, active: Active): DeriveParachainActive | null 
   if (found && found[1].isSome) {
     const [collatorId, retriable] = found[1].unwrap();
 
-    return {
-      collatorId,
-      ...(
-        retriable.isWithRetries
-          ? {
-            isRetriable: true,
-            retries: retriable.asWithRetries.toNumber()
-          }
-          : {
-            isRetriable: false,
-            retries: 0
-          }
-      )
-    };
+    return objectSpread<DeriveParachainActive>(
+      { collatorId },
+      retriable.isWithRetries
+        ? {
+          isRetriable: true,
+          retries: retriable.asWithRetries.toNumber()
+        }
+        : {
+          isRetriable: false,
+          retries: 0
+        }
+    );
   }
 
   return null;
@@ -65,7 +65,7 @@ function parse (id: ParaId, [active, retryQueue, selectedThreads, didUpdate, inf
     didUpdate: didUpdateToBool(didUpdate, id),
     heads,
     id,
-    info: { id, ...info.unwrap() } as DeriveParachainInfo,
+    info: objectSpread<DeriveParachainInfo>({ id }, info.unwrap()),
     pendingSwapId: pendingSwap.unwrapOr(null),
     relayDispatchQueue,
     retryCollators: parseCollators(id, retryQueue),

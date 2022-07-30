@@ -2,11 +2,13 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { Option, u64 } from 'https://deno.land/x/polkadot@0.0.8/types/mod.ts';
-import type { BlockNumber, SessionIndex } from 'https://deno.land/x/polkadot@0.0.8/types/interfaces/index.ts';
+import type { Option, u64 } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { BlockNumber, SessionIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { DeriveApi, DeriveSessionInfo, DeriveSessionProgress } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.6';
+
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 
@@ -28,20 +30,20 @@ function createDerive (api: DeriveApi, info: DeriveSessionInfo, [currentSlot, ep
   const sessionProgress = currentSlot.sub(epochStartSlot);
   const eraProgress = info.currentIndex.sub(activeEraStartSessionIndex).imul(info.sessionLength).iadd(sessionProgress);
 
-  return {
-    ...info,
+  return objectSpread({
     eraProgress: api.registry.createType('BlockNumber', eraProgress),
     sessionProgress: api.registry.createType('BlockNumber', sessionProgress)
-  };
+  }, info);
 }
 
 function queryAura (api: DeriveApi): Observable<DeriveSessionProgress> {
   return api.derive.session.info().pipe(
-    map((info): DeriveSessionProgress => ({
-      ...info,
-      eraProgress: api.registry.createType('BlockNumber'),
-      sessionProgress: api.registry.createType('BlockNumber')
-    }))
+    map((info): DeriveSessionProgress =>
+      objectSpread({
+        eraProgress: api.registry.createType('BlockNumber'),
+        sessionProgress: api.registry.createType('BlockNumber')
+      }, info)
+    )
   );
 }
 

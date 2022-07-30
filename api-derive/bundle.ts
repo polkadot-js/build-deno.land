@@ -1,8 +1,8 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { DeriveCustom } from 'https://deno.land/x/polkadot@0.0.8/api-base/types/index.ts';
-import type { AnyFunction, AnyString } from 'https://deno.land/x/polkadot@0.0.8/types/types/index.ts';
+import type { DeriveCustom } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { AnyFunction, AnyString } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { ExactDerive } from './derive.ts';
 import type { DeriveApi } from './types.ts';
 
@@ -22,6 +22,10 @@ export { lazyDeriveSection };
 
 // Enable derive only if some of these modules are available
 const checks: Record<string, Avail> = {
+  allianceMotion: {
+    instances: ['allianceMotion'],
+    methods: []
+  },
   bagsList: {
     instances: ['voterList', 'bagsList'],
     methods: [],

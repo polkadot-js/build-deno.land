@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.8/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, Codec, CodecClass, IEnum, Inspect, IU8a, Registry } from '../types/index.ts';
 
-import { isHex, isNumber, isObject, isString, isU8a, objectProperties, stringCamelCase, stringify, stringPascalCase, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
+import { isHex, isNumber, isObject, isString, isU8a, objectProperties, stringCamelCase, stringify, stringPascalCase, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { mapToTypeMap, typesToMap } from '../utils/index.ts';
 import { Null } from './Null.ts';
@@ -223,19 +223,6 @@ export class Enum implements IEnum {
   }
 
   public static with (Types: Record<string, string | CodecClass> | Record<string, number> | string[]): EnumCodecClass<Enum> {
-    const keys = Array.isArray(Types)
-      ? Types
-      : Object.keys(Types);
-    const asKeys = new Array<string>(keys.length);
-    const isKeys = new Array<string>(keys.length);
-
-    for (let i = 0; i < keys.length; i++) {
-      const name = stringPascalCase(keys[i]);
-
-      asKeys[i] = `as${name}`;
-      isKeys[i] = `is${name}`;
-    }
-
     let definition: Definition | undefined;
 
     // eslint-disable-next-line no-return-assign
@@ -243,17 +230,35 @@ export class Enum implements IEnum {
       definition = d;
 
     return class extends Enum {
-      constructor (registry: Registry, value?: unknown, index?: number) {
-        super(registry, Types, value, index, { definition, setDefinition });
+      static {
+        const keys = Array.isArray(Types)
+          ? Types
+          : Object.keys(Types);
+        const asKeys = new Array<string>(keys.length);
+        const isKeys = new Array<string>(keys.length);
 
-        objectProperties(this, isKeys, (_, i) => this.type === keys[i]);
-        objectProperties(this, asKeys, (k, i): Codec => {
-          if (!this[isKeys[i] as keyof this]) {
-            throw new Error(`Cannot convert '${this.type}' via ${k}`);
+        for (let i = 0; i < keys.length; i++) {
+          const name = stringPascalCase(keys[i]);
+
+          asKeys[i] = `as${name}`;
+          isKeys[i] = `is${name}`;
+        }
+
+        objectProperties(this.prototype, isKeys, (_: string, i: number, self: Enum) =>
+          self.type === keys[i]
+        );
+
+        objectProperties(this.prototype, asKeys, (k: string, i: number, self: Enum): Codec => {
+          if (self.type !== keys[i]) {
+            throw new Error(`Cannot convert '${self.type}' via ${k}`);
           }
 
-          return this.value;
+          return self.value;
         });
+      }
+
+      constructor (registry: Registry, value?: unknown, index?: number) {
+        super(registry, Types, value, index, { definition, setDefinition });
       }
     };
   }
@@ -305,14 +310,6 @@ export class Enum implements IEnum {
    */
   public get isNone (): boolean {
     return this.#raw instanceof Null;
-  }
-
-  /**
-   * @description Checks if the Enum points to a [[Null]] type
-   * @deprecated use isNone
-   */
-  public get isNull (): boolean {
-    return this.isNone;
   }
 
   /**

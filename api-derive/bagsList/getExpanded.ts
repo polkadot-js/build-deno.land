@@ -2,18 +2,20 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { BN } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { DeriveApi } from '../types.ts';
 import type { Bag, BagExpanded } from './types.ts';
 
 import { map, switchMap } from 'https://esm.sh/rxjs@7.5.6';
+
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 
 export function expand (instanceId: string, api: DeriveApi): (bag: Bag) => Observable<BagExpanded> {
   return memo(instanceId, (bag: Bag): Observable<BagExpanded> =>
     api.derive.bagsList.listNodes(bag.bag).pipe(
-      map((nodes) => ({ ...bag, nodes }))
+      map((nodes) => objectSpread({ nodes }, bag))
     )
   );
 }

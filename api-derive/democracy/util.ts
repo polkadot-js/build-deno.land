@@ -1,12 +1,12 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ReferendumInfoTo239, Tally } from 'https://deno.land/x/polkadot@0.0.8/types/interfaces/index.ts';
-import type { PalletDemocracyReferendumInfo, PalletDemocracyReferendumStatus, PalletDemocracyVoteThreshold } from 'https://deno.land/x/polkadot@0.0.8/types/lookup.ts';
-import type { Option } from 'https://deno.land/x/polkadot@0.0.8/types-codec/mod.ts';
+import type { ReferendumInfoTo239, Tally } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletDemocracyReferendumInfo, PalletDemocracyReferendumStatus, PalletDemocracyVoteThreshold } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { Option } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { DeriveReferendum, DeriveReferendumVote, DeriveReferendumVotes, DeriveReferendumVoteState } from '../types.ts';
 
-import { BN, bnSqrt } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
+import { BN, bnSqrt, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 interface ApproxState {
   votedAye: BN;
@@ -119,11 +119,10 @@ export function calcVotes (sqrtElectorate: BN, referendum: DeriveReferendum, vot
     ? calcVotesCurrent(referendum.status.tally, votes)
     : calcVotesPrev(votes);
 
-  return {
-    ...state,
+  return objectSpread({}, state, {
     isPassing: calcPassing(referendum.status.threshold, sqrtElectorate, state),
     votes
-  };
+  });
 }
 
 export function getStatus (info: Option<PalletDemocracyReferendumInfo | ReferendumInfoTo239>): PalletDemocracyReferendumStatus | ReferendumInfoTo239 | null {

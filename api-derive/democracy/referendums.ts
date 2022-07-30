@@ -6,6 +6,8 @@ import type { DeriveApi, DeriveReferendumExt } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.6';
 
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+
 import { memo } from '../util/index.ts';
 
 export function referendums (instanceId: string, api: DeriveApi): () => Observable<DeriveReferendumExt[]> {
@@ -20,10 +22,9 @@ export function referendums (instanceId: string, api: DeriveApi): () => Observab
           : of([[], []])
       ),
       map(([referendums, votes]) =>
-        referendums.map((referendum, index): DeriveReferendumExt => ({
-          ...referendum,
-          ...votes[index]
-        }))
+        referendums.map((referendum, index): DeriveReferendumExt =>
+          objectSpread({}, referendum, votes[index])
+        )
       )
     )
   );

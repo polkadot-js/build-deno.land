@@ -2,14 +2,16 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { u32, Vec } from 'https://deno.land/x/polkadot@0.0.8/types/mod.ts';
-import type { AccountId32, Balance, BlockNumber } from 'https://deno.land/x/polkadot@0.0.8/types/interfaces/index.ts';
-import type { PalletElectionsPhragmenSeatHolder } from 'https://deno.land/x/polkadot@0.0.8/types/lookup.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.0.8/types/types/index.ts';
+import type { u32, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId32, Balance, BlockNumber } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletElectionsPhragmenSeatHolder } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DeriveApi } from '../types.ts';
 import type { DeriveElectionsInfo } from './types.ts';
 
 import { combineLatest, map, of } from 'https://esm.sh/rxjs@7.5.6';
+
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 
@@ -107,15 +109,16 @@ export function info (instanceId: string, api: DeriveApi): () => Observable<Deri
         ? queryAll(api, council, elections)
         : queryCouncil(api, council)
     ).pipe(
-      map(([councilMembers, candidates, members, runnersUp]): DeriveElectionsInfo => ({
-        ...getConstants(api, elections),
-        candidateCount: api.registry.createType('u32', candidates.length),
-        candidates: candidates.map(getCandidate),
-        members: members.length
-          ? members.map(getAccountTuple).sort(sortAccounts)
-          : councilMembers.map((a): [AccountId32, Balance] => [a, api.registry.createType('Balance')]),
-        runnersUp: runnersUp.map(getAccountTuple).sort(sortAccounts)
-      }))
+      map(([councilMembers, candidates, members, runnersUp]): DeriveElectionsInfo =>
+        objectSpread({}, getConstants(api, elections), {
+          candidateCount: api.registry.createType('u32', candidates.length),
+          candidates: candidates.map(getCandidate),
+          members: members.length
+            ? members.map(getAccountTuple).sort(sortAccounts)
+            : councilMembers.map((a): [AccountId32, Balance] => [a, api.registry.createType('Balance')]),
+          runnersUp: runnersUp.map(getAccountTuple).sort(sortAccounts)
+        })
+      )
     );
   });
 }

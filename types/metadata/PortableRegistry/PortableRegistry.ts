@@ -1,15 +1,15 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Option, Text, Type, Vec } from 'https://deno.land/x/polkadot@0.0.8/types-codec/mod.ts';
-import type { AnyString, Registry } from 'https://deno.land/x/polkadot@0.0.8/types-codec/types/index.ts';
-import type { ILookup, TypeDef } from 'https://deno.land/x/polkadot@0.0.8/types-create/types/index.ts';
+import type { Option, Text, Type, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { AnyString, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { ILookup, TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 import type { PortableType } from '../../interfaces/metadata/index.ts';
 import type { SiField, SiLookupTypeId, SiPath, SiType, SiTypeDefArray, SiTypeDefBitSequence, SiTypeDefCompact, SiTypeDefComposite, SiTypeDefSequence, SiTypeDefTuple, SiTypeDefVariant, SiTypeParameter, SiVariant } from '../../interfaces/scaleInfo/index.ts';
 
-import { sanitize, Struct, u32 } from 'https://deno.land/x/polkadot@0.0.8/types-codec/mod.ts';
-import { getTypeDef, TypeDefInfo, withTypeString } from 'https://deno.land/x/polkadot@0.0.8/types-create/mod.ts';
-import { assertUnreachable, isNumber, isString, logger, objectSpread, stringCamelCase, stringify, stringPascalCase } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
+import { sanitize, Struct, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { getTypeDef, TypeDefInfo, withTypeString } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { assertUnreachable, isNumber, isString, logger, objectSpread, stringCamelCase, stringify, stringPascalCase } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const l = logger('PortableRegistry');
 
@@ -34,7 +34,7 @@ interface TypeInfo {
 // Just a placeholder for a type.unrwapOr()
 const TYPE_UNWRAP = { toNumber: () => -1 };
 
-// Alias the primitive enum with out known values
+// Alias the primitive enum with our known values
 const PRIMITIVE_ALIAS: Record<string, string> = {
   Char: 'u32', // Rust char is 4-bytes
   Str: 'Text'
@@ -655,7 +655,10 @@ export class PortableRegistry extends Struct implements ILookup {
       throw new Error(`PortableRegistry: ${lookupIndex}${namespace ? ` (${namespace})` : ''}: Error extracting ${stringify(type)}: ${(error as Error).message}`);
     }
 
-    return objectSpread({ docs: sanitizeDocs(type.docs), namespace }, typeDef);
+    return objectSpread({
+      docs: sanitizeDocs(type.docs),
+      namespace
+    }, typeDef);
   }
 
   #extractArray (_: number, { len, type }: SiTypeDefArray): TypeDef {
@@ -852,13 +855,10 @@ export class PortableRegistry extends Struct implements ILookup {
   }
 
   #extractHistoric (_: number, type: Type): TypeDef {
-    return objectSpread(
-      {
-        displayName: type.toString(),
-        isFromSi: true
-      },
-      getTypeDef(type)
-    );
+    return objectSpread({
+      displayName: type.toString(),
+      isFromSi: true
+    }, getTypeDef(type));
   }
 
   #extractPrimitive (_: number, type: SiType): TypeDef {
@@ -937,7 +937,9 @@ export class PortableRegistry extends Struct implements ILookup {
       return withTypeString(this.registry, {
         info: TypeDefInfo.Result,
         sub: params.map(({ type }, index) =>
-          objectSpread({ name: ['Ok', 'Error'][index] }, this.#createSiDef(type.unwrap()))
+          objectSpread({
+            name: ['Ok', 'Error'][index]
+          }, this.#createSiDef(type.unwrap()))
         )
       });
     } else if (variants.length === 0) {
@@ -971,13 +973,10 @@ export class PortableRegistry extends Struct implements ILookup {
         }
 
         sub.push(
-          objectSpread(
-            this.#extractFields(-1, fields),
-            {
-              index,
-              name: name.toString()
-            }
-          )
+          objectSpread(this.#extractFields(-1, fields), {
+            index,
+            name: name.toString()
+          })
         );
       });
 

@@ -2,10 +2,10 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { StorageKey, u64 } from 'https://deno.land/x/polkadot@0.0.8/types/mod.ts';
-import type { Hash } from 'https://deno.land/x/polkadot@0.0.8/types/interfaces/index.ts';
-import type { StorageEntry } from 'https://deno.land/x/polkadot@0.0.8/types/primitive/types.ts';
-import type { AnyFunction, AnyTuple, Callback, Codec, IStorageKey } from 'https://deno.land/x/polkadot@0.0.8/types/types/index.ts';
+import type { StorageKey, u64 } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Hash } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { StorageEntry } from 'https://deno.land/x/polkadot/types/primitive/types.ts';
+import type { AnyFunction, AnyTuple, Callback, Codec, IStorageKey } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { ApiTypes, DropLast, MethodResult, PaginationOptions, PromiseOrObs, ReturnCodec, UnsubscribePromise } from './base.ts';
 
 interface StorageEntryObservableMulti<R extends Codec = Codec> {
@@ -58,10 +58,6 @@ export interface StorageEntryBase<ApiType extends ApiTypes, F extends AnyFunctio
    * @deprecated Use api.at(<blockHash>)
    */
   keysAt: <K extends AnyTuple = A> (hash: Hash | Uint8Array | string, ...args: DropLast<Parameters<F>>) => PromiseOrObs<ApiType, StorageKey<K>[]>;
-  /**
-   * @deprecated The underlying RPC this been marked unsafe and is generally not exposed
-   */
-  range: <T extends Codec | any = ReturnCodec<F>>([from, to]: [Hash | Uint8Array | string, Hash | Uint8Array | string | undefined] | [Hash | Uint8Array | string], ...args: Parameters<F>) => PromiseOrObs<ApiType, [Hash, T][]>;
   /**
    * @deprecated Use api.at(<blockHash>)
    */

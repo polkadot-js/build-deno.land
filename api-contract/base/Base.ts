@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot@0.0.8/api/types/index.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.0.8/types/types/index.ts';
+import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot/api/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import { ApiBase } from 'https://deno.land/x/polkadot@0.0.8/api/base/index.ts';
-import { isFunction } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
+import { ApiBase } from 'https://deno.land/x/polkadot/api/base/index.ts';
+import { isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Abi } from '../Abi/index.ts';
 
@@ -26,10 +26,10 @@ export abstract class Base<ApiType extends ApiTypes> {
 
     if (!api || !api.isConnected || !api.tx) {
       throw new Error('Your API has not been initialized correctly and is not connected to a chain');
-    } else if (!api.tx.contracts || !Object.keys(api.tx.contracts).length) {
-      throw new Error('You need to connect to a chain with a runtime that supports contracts');
-    } else if (!isFunction(api.tx.contracts.instantiateWithCode)) {
-      throw new Error('You need to connect to a chain with a runtime with a V3 contracts module. The runtime does not expose api.tx.contracts.instantiateWithCode');
+    } else if (!api.tx.contracts || !isFunction(api.tx.contracts.instantiateWithCode) || api.tx.contracts.instantiateWithCode.meta.args.length !== 6) {
+      throw new Error('The runtime does not expose api.tx.contracts.instantiateWithCode with storageDepositLimit');
+    } else if (!api.call.contractsApi || !isFunction(api.call.contractsApi.call)) {
+      throw new Error('Your runtime does not expose the api.call.contractsApi.call runtime interfaces');
     }
   }
 

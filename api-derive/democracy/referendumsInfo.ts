@@ -2,15 +2,15 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { Option, Vec } from 'https://deno.land/x/polkadot@0.0.8/types/mod.ts';
-import type { AccountId, ReferendumInfoTo239, Vote } from 'https://deno.land/x/polkadot@0.0.8/types/interfaces/index.ts';
-import type { PalletDemocracyReferendumInfo, PalletDemocracyVoteVoting } from 'https://deno.land/x/polkadot@0.0.8/types/lookup.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
+import type { Option, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, ReferendumInfoTo239, Vote } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletDemocracyReferendumInfo, PalletDemocracyVoteVoting } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { DeriveApi, DeriveBalancesAccount, DeriveReferendum, DeriveReferendumVote, DeriveReferendumVotes } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.6';
 
-import { isFunction } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
+import { isFunction, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 import { calcVotes, getStatus } from './util.ts';
@@ -57,11 +57,12 @@ function extractVotes (mapped: [AccountId, PalletDemocracyVoteVoting][], referen
       // FIXME We are ignoring split votes
       votes.reduce((result: DeriveReferendumVote[], [, vote]): DeriveReferendumVote[] => {
         if (vote.isStandard) {
-          result.push({
-            accountId,
-            isDelegating: false,
-            ...vote.asStandard
-          });
+          result.push(
+            objectSpread({
+              accountId,
+              isDelegating: false
+            }, vote.asStandard)
+          );
         }
 
         return result;

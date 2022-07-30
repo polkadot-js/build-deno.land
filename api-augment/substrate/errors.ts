@@ -3,13 +3,13 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.0.8/api-base/types/errors.ts';
+import 'https://deno.land/x/polkadot/api-base/types/errors.ts';
 
-import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot@0.0.8/api-base/types/index.ts';
+import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 
 export type __AugmentedError<ApiType extends ApiTypes> = AugmentedError<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.0.8/api-base/types/errors.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
   interface AugmentedErrors<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -17,6 +17,14 @@ declare module 'https://deno.land/x/polkadot@0.0.8/api-base/types/errors.ts' {
        * nominated.
        **/
       AccountNonGrata: AugmentedError<ApiType>;
+      /**
+       * The founders/fellows/allies have already been initialized.
+       **/
+      AllianceAlreadyInitialized: AugmentedError<ApiType>;
+      /**
+       * The Alliance has not been initialized yet, therefore accounts cannot join it.
+       **/
+      AllianceNotYetInitialized: AugmentedError<ApiType>;
       /**
        * Account is already an elevated (fellow) member.
        **/
@@ -33,10 +41,6 @@ declare module 'https://deno.land/x/polkadot@0.0.8/api-base/types/errors.ts' {
        * Balance is insufficient for the required deposit.
        **/
       InsufficientFunds: AugmentedError<ApiType>;
-      /**
-       * The founders/fellows/allies have already been initialized.
-       **/
-      MembersAlreadyInitialized: AugmentedError<ApiType>;
       /**
        * The announcement is not found.
        **/

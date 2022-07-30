@@ -1,9 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Bytes, Compact, Enum, Null, Option, Result, Struct, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.0.8/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.0.8/types-codec/types/index.ts';
-import type { AccountId, BlockNumber, Weight } from 'https://deno.land/x/polkadot@0.0.8/types/interfaces/runtime/index.ts';
+import type { Bytes, Compact, Enum, Null, Option, Result, Struct, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { AccountId, BlockNumber, Weight } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 /** @name AssetInstance */
 export interface AssetInstance extends AssetInstanceV2 {}
@@ -554,10 +554,6 @@ export interface ResponseV2Error extends ITuple<[u32, XcmErrorV2]> {}
 export interface ResponseV2Result extends Result<Null, ResponseV2Error> {
   readonly isErr: boolean;
   readonly asErr: ResponseV2Error;
-  /** @deprecated Use isErr */
-  readonly isError: boolean;
-  /** @deprecated Use asErr */
-  readonly asError: ResponseV2Error;
   readonly isOk: boolean;
 }
 

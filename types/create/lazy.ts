@@ -4,7 +4,7 @@
 import type { SiLookupTypeId, SiVariant } from '../interfaces/index.ts';
 import type { PortableRegistry } from '../metadata/index.ts';
 
-import { lazyMethod } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
+import { lazyMethod } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 interface TypeHolder {
   type: SiLookupTypeId
@@ -15,7 +15,7 @@ export function lazyVariants <T> (lookup: PortableRegistry, { type }: TypeHolder
   const variants = lookup.getSiType(type).def.asVariant.variants;
 
   for (let i = 0; i < variants.length; i++) {
-    lazyMethod(result, variants[i], creator, getName);
+    lazyMethod(result, variants[i], creator, getName, i);
   }
 
   return result;

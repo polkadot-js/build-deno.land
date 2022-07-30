@@ -2,14 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { Option, Vec } from 'https://deno.land/x/polkadot@0.0.8/types/mod.ts';
-import type { AccountId, Balance, Hash, PropIndex } from 'https://deno.land/x/polkadot@0.0.8/types/interfaces/index.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.0.8/types/types/index.ts';
+import type { Option, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, Balance, Hash, PropIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DeriveApi, DeriveProposal, DeriveProposalImage } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.6';
 
-import { isFunction } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
+import { isFunction, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 
@@ -33,17 +33,17 @@ function parse ([proposals, images, optDepositors]: Result): DeriveProposal[] {
     .map(([index, imageHash, proposer], proposalIndex): DeriveProposal => {
       const depositors = optDepositors[proposalIndex].unwrap();
 
-      return {
-        ...(
-          isNewDepositors(depositors)
-            ? { balance: depositors[1], seconds: depositors[0] }
-            : { balance: depositors[0], seconds: depositors[1] }
-        ),
-        image: images[proposalIndex],
-        imageHash,
-        index,
-        proposer
-      };
+      return objectSpread(
+        {
+          image: images[proposalIndex],
+          imageHash,
+          index,
+          proposer
+        },
+        isNewDepositors(depositors)
+          ? { balance: depositors[1], seconds: depositors[0] }
+          : { balance: depositors[0], seconds: depositors[1] }
+      );
     });
 }
 
@@ -56,9 +56,11 @@ export function proposals (instanceId: string, api: DeriveApi): () => Observable
             ? combineLatest([
               of(proposals),
               api.derive.democracy.preimages(
-                proposals.map(([, hash]) => hash)),
+                proposals.map(([, hash]) => hash)
+              ),
               api.query.democracy.depositOf.multi(
-                proposals.map(([index]) => index))
+                proposals.map(([index]) => index)
+              )
             ])
             : of<Result>([[], [], []])
         ),

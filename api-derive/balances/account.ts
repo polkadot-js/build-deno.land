@@ -2,14 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { QueryableStorageEntry } from 'https://deno.land/x/polkadot@0.0.8/api-base/types/index.ts';
-import type { AccountData, AccountId, AccountIndex, AccountInfo, Address, Balance, Index } from 'https://deno.land/x/polkadot@0.0.8/types/interfaces/index.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.0.8/types/types/index.ts';
+import type { QueryableStorageEntry } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { AccountData, AccountId, AccountIndex, AccountInfo, Address, Balance, Index } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DeriveApi, DeriveBalancesAccount, DeriveBalancesAccountData } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.6';
 
-import { isFunction } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
+import { isFunction, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 
@@ -40,12 +40,11 @@ function getBalance (api: DeriveApi, [freeBalance, reservedBalance, frozenFee, f
 }
 
 function calcBalances (api: DeriveApi, [accountId, [accountNonce, [primary, ...additional]]]: [AccountId, Result]): DeriveBalancesAccount {
-  return {
+  return objectSpread({
     accountId,
     accountNonce,
-    additional: additional.map((b) => getBalance(api, b)),
-    ...getBalance(api, primary)
-  };
+    additional: additional.map((b) => getBalance(api, b))
+  }, getBalance(api, primary));
 }
 
 // old

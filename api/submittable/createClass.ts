@@ -4,15 +4,15 @@
 /* eslint-disable no-dupe-class-members */
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { Address, ApplyExtrinsicResult, Call, Extrinsic, ExtrinsicEra, ExtrinsicStatus, Hash, Header, Index, RuntimeDispatchInfo, SignerPayload } from 'https://deno.land/x/polkadot@0.0.8/types/interfaces/index.ts';
-import type { Callback, Codec, Constructor, IKeyringPair, ISubmittableResult, SignatureOptions } from 'https://deno.land/x/polkadot@0.0.8/types/types/index.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.0.8/types-codec/types/index.ts';
+import type { Address, ApplyExtrinsicResult, Call, Extrinsic, ExtrinsicEra, ExtrinsicStatus, Hash, Header, Index, RuntimeDispatchInfo, SignerPayload } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Callback, Codec, Constructor, ISubmittableResult, SignatureOptions } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { ApiInterfaceRx, ApiTypes, PromiseOrObs, SignerResult } from '../types/index.ts';
 import type { AddressOrPair, SignerOptions, SubmittableDryRunResult, SubmittableExtrinsic, SubmittablePaymentResult, SubmittableResultResult, SubmittableResultSubscription } from './types.ts';
 
 import { catchError, first, map, mapTo, mergeMap, of, switchMap, tap } from 'https://esm.sh/rxjs@7.5.6';
 
-import { isBn, isFunction, isNumber, isString, isU8a, objectSpread } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
+import { isBn, isFunction, isNumber, isString, isU8a, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { ApiBase } from '../base/index.ts';
 import { filterEvents, isKeyringPair } from '../util/index.ts';
@@ -170,17 +170,7 @@ export function createClass <ApiType extends ApiTypes> ({ api, apiType, blockHas
     }
 
     /**
-     * @description Sign a transaction, returning the this to allow chaining, i.e. .sign(...).send(). When options, e.g. nonce/blockHash are not specified, it will be inferred. To retrieve eg. nonce use `signAsync` (the preferred interface, this is provided for backwards compatibility)
-     * @deprecated
-     */
-    public override sign (account: IKeyringPair, partialOptions?: Partial<SignerOptions>): this {
-      super.sign(account, makeSignOptions(api, optionsOrNonce(partialOptions), {}));
-
-      return this;
-    }
-
-    /**
-     * @description Signs a transaction, returning `this` to allow chaining. E.g.: `sign(...).send()`. Like `.signAndSend` this will retrieve the nonce and blockHash to send the tx with.
+     * @description Signs a transaction, returning `this` to allow chaining. E.g.: `signAsync(...).send()`. Like `.signAndSend` this will retrieve the nonce and blockHash to send the tx with.
      */
     public signAsync (account: AddressOrPair, partialOptions?: Partial<SignerOptions>): PromiseOrObs<ApiType, this> {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call

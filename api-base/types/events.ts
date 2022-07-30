@@ -1,8 +1,8 @@
 // Copyright 2017-2022 @polkadot/api-base authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { IsEvent } from 'https://deno.land/x/polkadot@0.0.8/types/metadata/decorate/types.ts';
-import type { AnyTuple } from 'https://deno.land/x/polkadot@0.0.8/types/types/index.ts';
+import type { IsEvent } from 'https://deno.land/x/polkadot/types/metadata/decorate/types.ts';
+import type { AnyTuple } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { ApiTypes } from './base.ts';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

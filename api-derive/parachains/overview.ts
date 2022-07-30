@@ -2,11 +2,13 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { ParaId } from 'https://deno.land/x/polkadot@0.0.8/types/interfaces/index.ts';
+import type { ParaId } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { DeriveApi, DeriveParachain, DeriveParachainInfo } from '../types.ts';
 import type { DidUpdate, ParaInfoResult, PendingSwap, RelayDispatchQueueSize } from './types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.6';
+
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 import { didUpdateToBool } from './util.ts';
@@ -23,7 +25,7 @@ function parse ([ids, didUpdate, infos, pendingSwaps, relayDispatchQueueSizes]: 
   return ids.map((id, index): DeriveParachain => ({
     didUpdate: didUpdateToBool(didUpdate, id),
     id,
-    info: { id, ...infos[index].unwrapOr(null) } as DeriveParachainInfo,
+    info: objectSpread<DeriveParachainInfo>({ id }, infos[index].unwrapOr(null)),
     pendingSwapId: pendingSwaps[index].unwrapOr(null),
     relayDispatchQueueSize: relayDispatchQueueSizes[index][0].toNumber()
   }));

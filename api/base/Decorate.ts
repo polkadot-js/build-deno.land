@@ -2,27 +2,27 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { AugmentedCall, DeriveCustom, QueryableCalls } from 'https://deno.land/x/polkadot@0.0.8/api-base/types/index.ts';
-import type { RpcInterface } from 'https://deno.land/x/polkadot@0.0.8/rpc-core/types/index.ts';
-import type { Option, Raw, StorageKey, Text, u64 } from 'https://deno.land/x/polkadot@0.0.8/types/mod.ts';
-import type { Call, Hash, RuntimeVersion } from 'https://deno.land/x/polkadot@0.0.8/types/interfaces/index.ts';
-import type { DecoratedMeta } from 'https://deno.land/x/polkadot@0.0.8/types/metadata/decorate/types.ts';
-import type { StorageEntry } from 'https://deno.land/x/polkadot@0.0.8/types/primitive/types.ts';
-import type { AnyFunction, AnyTuple, CallFunction, Codec, DefinitionCallNamed, DefinitionRpc, DefinitionRpcSub, DefinitionsCall, DefinitionsCallEntry, DetectCodec, IMethod, IStorageKey, Registry, RegistryError, RegistryTypes } from 'https://deno.land/x/polkadot@0.0.8/types/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.8/util/types.ts';
+import type { AugmentedCall, DeriveCustom, QueryableCalls } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { RpcInterface } from 'https://deno.land/x/polkadot/rpc-core/types/index.ts';
+import type { StorageKey, Text, u64 } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Call, Hash, RuntimeVersion } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { DecoratedMeta } from 'https://deno.land/x/polkadot/types/metadata/decorate/types.ts';
+import type { StorageEntry } from 'https://deno.land/x/polkadot/types/primitive/types.ts';
+import type { AnyFunction, AnyTuple, CallFunction, Codec, DefinitionCallNamed, DefinitionRpc, DefinitionRpcSub, DefinitionsCall, DefinitionsCallEntry, DetectCodec, IMethod, IStorageKey, Registry, RegistryError, RegistryTypes } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { SubmittableExtrinsic } from '../submittable/types.ts';
 import type { ApiDecoration, ApiInterfaceRx, ApiOptions, ApiTypes, AugmentedQuery, DecoratedErrors, DecoratedEvents, DecoratedRpc, DecorateMethod, GenericStorageEntryFunction, PaginationOptions, QueryableConsts, QueryableStorage, QueryableStorageEntry, QueryableStorageEntryAt, QueryableStorageMulti, QueryableStorageMultiArg, SubmittableExtrinsicFunction, SubmittableExtrinsics } from '../types/index.ts';
 import type { VersionedRegistry } from './types.ts';
 
 import { BehaviorSubject, combineLatest, from, map, of, switchMap, tap, toArray } from 'https://esm.sh/rxjs@7.5.6';
 
-import { getAvailableDerives } from 'https://deno.land/x/polkadot@0.0.8/api-derive/mod.ts';
-import { memo, RpcCore } from 'https://deno.land/x/polkadot@0.0.8/rpc-core/mod.ts';
-import { WsProvider } from 'https://deno.land/x/polkadot@0.0.8/rpc-provider/mod.ts';
-import { expandMetadata, Metadata, typeDefinitions, TypeRegistry, unwrapStorageType } from 'https://deno.land/x/polkadot@0.0.8/types/mod.ts';
-import { getSpecRuntime } from 'https://deno.land/x/polkadot@0.0.8/types-known/mod.ts';
-import { arrayChunk, arrayFlatten, assertReturn, BN, compactStripLength, lazyMethod, lazyMethods, logger, nextTick, objectSpread, stringCamelCase, stringUpperFirst, u8aConcatStrict, u8aToHex } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
-import { blake2AsHex } from 'https://deno.land/x/polkadot@0.0.8/util-crypto/mod.ts';
+import { getAvailableDerives } from 'https://deno.land/x/polkadot/api-derive/mod.ts';
+import { memo, RpcCore } from 'https://deno.land/x/polkadot/rpc-core/mod.ts';
+import { WsProvider } from 'https://deno.land/x/polkadot/rpc-provider/mod.ts';
+import { expandMetadata, Metadata, typeDefinitions, TypeRegistry } from 'https://deno.land/x/polkadot/types/mod.ts';
+import { getSpecRuntime } from 'https://deno.land/x/polkadot/types-known/mod.ts';
+import { arrayChunk, arrayFlatten, assertReturn, BN, compactStripLength, lazyMethod, lazyMethods, logger, nextTick, objectSpread, stringCamelCase, stringUpperFirst, u8aConcatStrict, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { blake2AsHex } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { createSubmittable } from '../submittable/index.ts';
 import { augmentObject } from '../util/augmentObject.ts';
@@ -108,6 +108,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
   protected _runtimeVersion?: RuntimeVersion;
 
   protected _rx: ApiInterfaceRx = {
+    call: {} as QueryableCalls<'rxjs'>,
     consts: {} as QueryableConsts<'rxjs'>,
     query: {} as QueryableStorage<'rxjs'>,
     tx: {} as SubmittableExtrinsics<'rxjs'>
@@ -142,7 +143,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
    * <BR>
    *
    * ```javascript
-   * import Api from 'https://deno.land/x/polkadot@0.0.8/api/promise/index.ts';
+   * import Api from 'https://deno.land/x/polkadot/api/promise/index.ts';
    *
    * const api = new Api().isReady();
    *
@@ -220,6 +221,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
       query: {},
       registry,
       rx: {
+        call: {},
         query: {}
       },
       tx: createSubmittable(this._type, this._rx, this._decorateMethod, registry, blockHash)
@@ -236,8 +238,9 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
     }
 
     const runtime = this._decorateCalls(registry, this._decorateMethod, blockHash);
+    const runtimeRx = this._decorateCalls<'rxjs'>(registry, this._rxDecorateMethod, blockHash);
     const storage = this._decorateStorage(registry.decoratedMeta, this._decorateMethod, blockHash);
-    const storageRx = this._decorateStorage(registry.decoratedMeta, this._rxDecorateMethod, blockHash);
+    const storageRx = this._decorateStorage<'rxjs'>(registry.decoratedMeta, this._rxDecorateMethod, blockHash);
 
     augmentObject('consts', registry.decoratedMeta.consts, decoratedApi.consts, fromEmpty);
     augmentObject('errors', registry.decoratedMeta.errors, decoratedApi.errors, fromEmpty);
@@ -245,6 +248,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
     augmentObject('query', storage, decoratedApi.query, fromEmpty);
     augmentObject('query', storageRx, decoratedApi.rx.query, fromEmpty);
     augmentObject('call', runtime, decoratedApi.call, fromEmpty);
+    augmentObject('call', runtimeRx, decoratedApi.rx.call, fromEmpty);
 
     decoratedApi.findCall = (callIndex: Uint8Array | string): CallFunction =>
       findCall(registry.registry, callIndex);
@@ -274,6 +278,8 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
     this._errors = decoratedApi.errors;
     this._events = decoratedApi.events;
     this._query = decoratedApi.query;
+
+    this._rx.call = decoratedApi.rx.call;
     this._rx.query = decoratedApi.rx.query;
 
     const tx = this._decorateExtrinsics(decoratedMeta, this._decorateMethod);
@@ -488,7 +494,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
   }
 
   // pre-metadata decoration
-  protected _decorateCalls<ApiType extends ApiTypes> ({ registry, runtimeVersion: { apis, specName } }: VersionedRegistry<ApiType>, decorateMethod: DecorateMethod<ApiType>, blockHash?: Uint8Array | string | null): QueryableCalls<ApiType> {
+  protected _decorateCalls<ApiType extends ApiTypes> ({ registry, runtimeVersion: { apis, specName } }: VersionedRegistry<any>, decorateMethod: DecorateMethod<ApiType>, blockHash?: Uint8Array | string | null): QueryableCalls<ApiType> {
     const result = {} as QueryableCalls<ApiType>;
     const named: Record<string, Record<string, DefinitionCallNamed>> = {};
     const hashes: Record<HexString, boolean> = {};
@@ -703,9 +709,6 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
     decorated.keyPrefix = (...args: unknown[]): string =>
       u8aToHex(creator.keyPrefix(...args));
 
-    decorated.range = decorateMethod((range: [Hash, Hash?], ...args: unknown[]): Observable<[Hash, Codec][]> =>
-      this._decorateStorageRange(decorated, args, range));
-
     decorated.size = decorateMethod((...args: unknown[]): Observable<u64> =>
       this._rpcCore.state.getStorageSize(getArgs(args)));
 
@@ -877,19 +880,6 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
       overrideNoSub: (...args: unknown[]) =>
         this._queueStorage(extractStorageArgs(this.#registry, creator, args), this.#storageGetQ)
     });
-  }
-
-  private _decorateStorageRange<ApiType extends ApiTypes> (decorated: QueryableStorageEntry<ApiType>, args: unknown[], range: [Hash, Hash?]): Observable<[Hash, Codec][]> {
-    const outputType = unwrapStorageType(this.#registry, decorated.creator.meta.type, decorated.creator.meta.modifier.isOptional);
-
-    return this._rpcCore.state
-      .queryStorage<[Option<Raw>]>([decorated.key(...args)], ...range)
-      .pipe(map((result: [Hash, [Option<Raw>]][]): [Hash, Codec][] =>
-        result.map(([blockHash, [value]]) => [
-          blockHash,
-          this.createType<Codec>(outputType, value.isSome ? value.unwrap().toHex() : undefined)
-        ])
-      ));
   }
 
   // retrieve a set of values for a specific set of keys - here we chunk the keys into PAGE_SIZE sizes

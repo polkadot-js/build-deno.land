@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.8/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { CodecClass, Inspect, ISet, IU8a, Registry } from '../types/index.ts';
 
-import { BN, bnToBn, bnToU8a, isBn, isNumber, isString, isU8a, isUndefined, objectProperties, stringify, stringPascalCase, u8aToBn, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
+import { BN, bnToBn, bnToU8a, isBn, isNumber, isString, isU8a, isUndefined, objectProperties, stringify, stringPascalCase, u8aToBn, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { compareArray } from '../utils/index.ts';
 
@@ -109,18 +109,22 @@ export class CodecSet extends Set<string> implements ISet<string> {
   }
 
   public static with (values: SetValues, bitLength?: number): CodecClass<CodecSet> {
-    const keys = Object.keys(values);
-    const isKeys = new Array<string>(keys.length);
-
-    for (let i = 0; i < keys.length; i++) {
-      isKeys[i] = `is${stringPascalCase(keys[i])}`;
-    }
-
     return class extends CodecSet {
+      static {
+        const keys = Object.keys(values);
+        const isKeys = new Array<string>(keys.length);
+
+        for (let i = 0; i < keys.length; i++) {
+          isKeys[i] = `is${stringPascalCase(keys[i])}`;
+        }
+
+        objectProperties(this.prototype, isKeys, (_: string, i: number, self: CodecSet) =>
+          self.strings.includes(keys[i])
+        );
+      }
+
       constructor (registry: Registry, value?: string[] | Set<string> | Uint8Array | BN | number | string) {
         super(registry, values, value, bitLength);
-
-        objectProperties(this, isKeys, (_, i) => this.strings.includes(keys[i]));
       }
     };
   }

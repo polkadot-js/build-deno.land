@@ -1,22 +1,22 @@
 // Copyright 2017-2022 @polkadot/api-contract authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot@0.0.8/api/submittable/types.ts';
-import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot@0.0.8/api/types/index.ts';
-import type { Bytes } from 'https://deno.land/x/polkadot@0.0.8/types/mod.ts';
-import type { AccountId, ContractExecResult, EventRecord, Weight } from 'https://deno.land/x/polkadot@0.0.8/types/interfaces/index.ts';
-import type { ISubmittableResult } from 'https://deno.land/x/polkadot@0.0.8/types/types/index.ts';
+import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot/api/submittable/types.ts';
+import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot/api/types/index.ts';
+import type { Bytes } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, ContractExecResult, EventRecord, Weight } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { ISubmittableResult } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { AbiMessage, ContractCallOutcome, ContractOptions, DecodedEvent } from '../types.ts';
 import type { ContractCallResult, ContractCallSend, ContractQuery, ContractTx, MapMessageQuery, MapMessageTx } from './types.ts';
 
 import { map } from 'https://esm.sh/rxjs@7.5.6';
 
-import { SubmittableResult } from 'https://deno.land/x/polkadot@0.0.8/api/mod.ts';
-import { ApiBase } from 'https://deno.land/x/polkadot@0.0.8/api/base/index.ts';
-import { BN, BN_HUNDRED, BN_ONE, BN_ZERO, bnToBn, isFunction, isUndefined, logger } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
+import { SubmittableResult } from 'https://deno.land/x/polkadot/api/mod.ts';
+import { ApiBase } from 'https://deno.land/x/polkadot/api/base/index.ts';
+import { BN, BN_HUNDRED, BN_ONE, BN_ZERO, bnToBn, isUndefined, logger } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Abi } from '../Abi/index.ts';
-import { applyOnEvent, extractOptions, isOptions } from '../util.ts';
+import { applyOnEvent } from '../util.ts';
 import { Base } from './Base.ts';
 import { withMeta } from './util.ts';
 
@@ -26,23 +26,18 @@ export interface ContractConstructor<ApiType extends ApiTypes> {
 
 // As per Rust, 5 * GAS_PER_SEC
 const MAX_CALL_GAS = new BN(5_000_000_000_000).isub(BN_ONE);
-const ERROR_NO_CALL = 'Your node does not expose the contracts.call RPC. This is most probably due to a runtime configuration.';
 
 const l = logger('Contract');
 
 function createQuery <ApiType extends ApiTypes> (meta: AbiMessage, fn: (origin: string | AccountId | Uint8Array, options: ContractOptions, params: unknown[]) => ContractCallResult<ApiType, ContractCallOutcome>): ContractQuery<ApiType> {
-  return withMeta(meta, (origin: string | AccountId | Uint8Array, options: bigint | string | number | BN | ContractOptions, ...params: unknown[]): ContractCallResult<ApiType, ContractCallOutcome> =>
-    isOptions(options)
-      ? fn(origin, options, params)
-      : fn(origin, ...extractOptions<ContractOptions>(options, params))
+  return withMeta(meta, (origin: string | AccountId | Uint8Array, options: ContractOptions, ...params: unknown[]): ContractCallResult<ApiType, ContractCallOutcome> =>
+    fn(origin, options, params)
   );
 }
 
 function createTx <ApiType extends ApiTypes> (meta: AbiMessage, fn: (options: ContractOptions, params: unknown[]) => SubmittableExtrinsic<ApiType>): ContractTx<ApiType> {
-  return withMeta(meta, (options: bigint | string | number | BN | ContractOptions, ...params: unknown[]): SubmittableExtrinsic<ApiType> =>
-    isOptions(options)
-      ? fn(options, params)
-      : fn(...extractOptions<ContractOptions>(options, params))
+  return withMeta(meta, (options: ContractOptions, ...params: unknown[]): SubmittableExtrinsic<ApiType> =>
+    fn(options, params)
   );
 }
 
@@ -82,15 +77,7 @@ export class Contract<ApiType extends ApiTypes> extends Base<ApiType> {
     });
   }
 
-  public get hasRpcContractsCall (): boolean {
-    return isFunction(this.api.rx.rpc.contracts?.call);
-  }
-
   public get query (): MapMessageQuery<ApiType> {
-    if (!this.hasRpcContractsCall) {
-      throw new Error(ERROR_NO_CALL);
-    }
-
     return this.#query;
   }
 
@@ -112,64 +99,52 @@ export class Contract<ApiType extends ApiTypes> extends Base<ApiType> {
   };
 
   #exec = (messageOrId: AbiMessage | string | number, { gasLimit = BN_ZERO, storageDepositLimit = null, value = BN_ZERO }: ContractOptions, params: unknown[]): SubmittableExtrinsic<ApiType> => {
-    const hasStorageDeposit = this.api.tx.contracts.call.meta.args.length === 5;
     const gas = this.#getGas(gasLimit);
     const encParams = this.abi.findMessage(messageOrId).toU8a(params);
-    const tx = hasStorageDeposit
-      ? this.api.tx.contracts.call(this.address, value, gas, storageDepositLimit, encParams)
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore old style without storage deposit
-      : this.api.tx.contracts.call(this.address, value, gas, encParams);
 
-    return tx.withResultTransform((result: ISubmittableResult) =>
-    // ContractEmitted is the current generation, ContractExecution is the previous generation
-      new ContractSubmittableResult(result, applyOnEvent(result, ['ContractEmitted', 'ContractExecution'], (records: EventRecord[]) =>
-        records
-          .map(({ event: { data: [, data] } }): DecodedEvent | null => {
-            try {
-              return this.abi.decodeEvent(data as Bytes);
-            } catch (error) {
-              l.error(`Unable to decode contract event: ${(error as Error).message}`);
+    return this.api.tx.contracts
+      .call(this.address, value, gas, storageDepositLimit, encParams)
+      .withResultTransform((result: ISubmittableResult) =>
+        // ContractEmitted is the current generation, ContractExecution is the previous generation
+        new ContractSubmittableResult(result, applyOnEvent(result, ['ContractEmitted', 'ContractExecution'], (records: EventRecord[]) =>
+          records
+            .map(({ event: { data: [, data] } }): DecodedEvent | null => {
+              try {
+                return this.abi.decodeEvent(data as Bytes);
+              } catch (error) {
+                l.error(`Unable to decode contract event: ${(error as Error).message}`);
 
-              return null;
-            }
-          })
-          .filter((decoded): decoded is DecodedEvent => !!decoded)
-      ))
-    );
+                return null;
+              }
+            })
+            .filter((decoded): decoded is DecodedEvent => !!decoded)
+        ))
+      );
   };
 
   #read = (messageOrId: AbiMessage | string | number, { gasLimit = BN_ZERO, storageDepositLimit = null, value = BN_ZERO }: ContractOptions, params: unknown[]): ContractCallSend<ApiType> => {
-    if (!this.hasRpcContractsCall) {
-      throw new Error(ERROR_NO_CALL);
-    }
-
     const message = this.abi.findMessage(messageOrId);
 
     return {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      send: this._decorateMethod((origin: string | AccountId | Uint8Array) => {
-        const hasStorageDeposit = this.api.tx.contracts.call.meta.args.length === 5;
-        const inputData = message.toU8a(params);
-        const rpc = hasStorageDeposit
-          ? this.api.rx.rpc.contracts.call({ dest: this.address, gasLimit: this.#getGas(gasLimit, true), inputData, origin, storageDepositLimit, value })
-          : this.api.rx.rpc.contracts.call({ dest: this.address, gasLimit: this.#getGas(gasLimit, true), inputData, origin, value });
-
-        const mapFn = ({ debugMessage, gasConsumed, gasRequired, result, storageDeposit }: ContractExecResult): ContractCallOutcome => ({
-          debugMessage,
-          gasConsumed,
-          gasRequired: gasRequired && !gasRequired.isZero()
-            ? gasRequired
-            : gasConsumed,
-          output: result.isOk && message.returnType
-            ? this.abi.registry.createTypeUnsafe(message.returnType.lookupName || message.returnType.type, [result.asOk.data.toU8a(true)], { isPedantic: true })
-            : null,
-          result,
-          storageDeposit
-        });
-
-        return rpc.pipe(map(mapFn));
-      })
+      send: this._decorateMethod((origin: string | AccountId | Uint8Array) =>
+        this.api.rx.call.contractsApi
+          .call<ContractExecResult>(origin, this.address, value, this.#getGas(gasLimit, true), storageDepositLimit, message.toU8a(params))
+          .pipe(
+            map(({ debugMessage, gasConsumed, gasRequired, result, storageDeposit }): ContractCallOutcome => ({
+              debugMessage,
+              gasConsumed,
+              gasRequired: gasRequired && !gasRequired.isZero()
+                ? gasRequired
+                : gasConsumed,
+              output: result.isOk && message.returnType
+                ? this.abi.registry.createTypeUnsafe(message.returnType.lookupName || message.returnType.type, [result.asOk.data.toU8a(true)], { isPedantic: true })
+                : null,
+              result,
+              storageDeposit
+            }))
+          )
+      )
     };
   };
 }

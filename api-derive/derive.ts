@@ -1,9 +1,10 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyFunction } from 'https://deno.land/x/polkadot@0.0.8/types/types/index.ts';
+import type { AnyFunction } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 import * as accounts from './accounts/index.ts';
+import * as alliance from './alliance/index.ts';
 import * as bagsList from './bagsList/index.ts';
 import * as balances from './balances/index.ts';
 import * as bounties from './bounties/index.ts';
@@ -23,7 +24,7 @@ import * as technicalCommittee from './technicalCommittee/index.ts';
 import * as treasury from './treasury/index.ts';
 import * as tx from './tx/index.ts';
 
-export const derive = { accounts, bagsList, balances, bounties, chain, contracts, council, crowdloan, democracy, elections, imOnline, membership, parachains, session, society, staking, technicalCommittee, treasury, tx };
+export const derive = { accounts, alliance, bagsList, balances, bounties, chain, contracts, council, crowdloan, democracy, elections, imOnline, membership, parachains, session, society, staking, technicalCommittee, treasury, tx };
 
 type DeriveSection<Section> = {
   [M in keyof Section]: Section[M] extends AnyFunction

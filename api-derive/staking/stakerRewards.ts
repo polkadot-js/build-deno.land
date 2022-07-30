@@ -2,15 +2,15 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { AccountId, EraIndex } from 'https://deno.land/x/polkadot@0.0.8/types/interfaces/index.ts';
-import type { PalletStakingStakingLedger } from 'https://deno.land/x/polkadot@0.0.8/types/lookup.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
+import type { AccountId, EraIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletStakingStakingLedger } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { DeriveApi, DeriveEraPoints, DeriveEraPrefs, DeriveEraRewards, DeriveEraValPoints, DeriveEraValPrefs, DeriveStakerExposure, DeriveStakerReward, DeriveStakerRewardValidator } from '../types.ts';
 import type { DeriveStakingQuery } from './types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.6';
 
-import { BN_BILLION, BN_ZERO } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
+import { BN_BILLION, BN_ZERO, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { firstMemo, memo } from '../util/index.ts';
 
@@ -125,10 +125,11 @@ function filterRewards (eras: EraIndex[], valInfo: [string, DeriveStakingQuery][
       return true;
     })
     .filter(({ validators }) => Object.keys(validators).length !== 0)
-    .map((reward) => ({
-      ...reward,
-      nominators: reward.nominating.filter((n) => reward.validators[n.validatorId])
-    }));
+    .map((reward) =>
+      objectSpread({}, reward, {
+        nominators: reward.nominating.filter((n) => reward.validators[n.validatorId])
+      })
+    );
 }
 
 export function _stakerRewardsEras (instanceId: string, api: DeriveApi): (eras: EraIndex[], withActive?: boolean) => Observable<ErasResult> {

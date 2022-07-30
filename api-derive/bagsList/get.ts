@@ -2,15 +2,15 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { Option, u64 } from 'https://deno.land/x/polkadot@0.0.8/types/mod.ts';
-import type { PalletBagsListListBag } from 'https://deno.land/x/polkadot@0.0.8/types/lookup.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
+import type { Option, u64 } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { PalletBagsListListBag } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { DeriveApi } from '../types.ts';
 import type { Bag } from './types.ts';
 
 import { map, of, switchMap } from 'https://esm.sh/rxjs@7.5.6';
 
-import { BN_ZERO, bnToBn } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
+import { BN_ZERO, bnToBn, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 
@@ -21,20 +21,17 @@ function orderBags (ids: BN[], bags: Option<PalletBagsListListBag>[]): Bag[] {
       id,
       key: id.toString()
     }))
-    .sort((a, b) => b.id.cmp(a.id))
-    .map((base, index): Bag => ({
-      ...base,
-      bagLower: BN_ZERO,
-      bagUpper: base.id,
-      index
-    }));
+    .sort((a, b) => b.id.cmp(a.id));
   const max = sorted.length - 1;
 
-  return sorted.map((entry, index) =>
-    index === max
-      ? entry
-      // We could probably use a .add(BN_ONE) here
-      : { ...entry, bagLower: sorted[index + 1].bagUpper }
+  return sorted.map((entry, index): Bag =>
+    objectSpread(entry, {
+      bagLower: index === max
+        ? BN_ZERO
+        : sorted[index + 1].id,
+      bagUpper: entry.id,
+      index
+    })
   );
 }
 

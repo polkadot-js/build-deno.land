@@ -6,6 +6,8 @@ import type { DeriveApi, DeriveSessionInfo } from '../types.ts';
 
 import { map } from 'https://esm.sh/rxjs@7.5.6';
 
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+
 import { memo } from '../util/index.ts';
 
 /**
@@ -18,13 +20,12 @@ export function info (instanceId: string, api: DeriveApi): () => Observable<Deri
         const sessionLength = api.consts?.babe?.epochDuration || api.registry.createType('u64', 1);
         const sessionsPerEra = api.consts?.staking?.sessionsPerEra || api.registry.createType('SessionIndex', 1);
 
-        return {
-          ...indexes,
+        return objectSpread({
           eraLength: api.registry.createType('BlockNumber', sessionsPerEra.mul(sessionLength)),
           isEpoch: !!api.query.babe,
           sessionLength,
           sessionsPerEra
-        };
+        }, indexes);
       })
     )
   );

@@ -2,10 +2,12 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { BN } from 'https://deno.land/x/polkadot@0.0.8/util/mod.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { DeriveApi, DeriveOwnContributions } from '../types.ts';
 
 import { combineLatest, EMPTY, map, of, startWith, switchMap } from 'https://esm.sh/rxjs@7.5.6';
+
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 import { extractContributed } from './util.ts';
@@ -21,10 +23,8 @@ function _getValues (api: DeriveApi, childKey: string, keys: string[]): Observab
             ? api.registry.createType('Balance', o.unwrap())
             : api.registry.createType('Balance')
         )
-        .reduce((all: DeriveOwnContributions, b, index): DeriveOwnContributions => ({
-          ...all,
-          [keys[index]]: b
-        }), {})
+        .reduce((all: DeriveOwnContributions, b, index): DeriveOwnContributions =>
+          objectSpread(all, { [keys[index]]: b }), {})
     )
   );
 }
@@ -51,10 +51,9 @@ function _contributions (api: DeriveApi, paraId: string | number | BN, childKey:
     _getValues(api, childKey, keys),
     _watchOwnChanges(api, paraId, childKey, keys)
   ]).pipe(
-    map(([all, latest]) => ({
-      ...all,
-      ...latest
-    }))
+    map(([all, latest]) =>
+      objectSpread({}, all, latest)
+    )
   );
 }
 

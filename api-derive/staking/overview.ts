@@ -6,6 +6,8 @@ import type { DeriveApi, DeriveStakingOverview } from '../types.ts';
 
 import { combineLatest, map } from 'https://esm.sh/rxjs@7.5.6';
 
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+
 import { memo } from '../util/index.ts';
 
 /**
@@ -17,10 +19,11 @@ export function overview (instanceId: string, api: DeriveApi): () => Observable<
       api.derive.session.indexes(),
       api.derive.staking.validators()
     ]).pipe(
-      map(([indexes, { nextElected, validators }]): DeriveStakingOverview => ({
-        ...indexes,
-        nextElected,
-        validators
-      }))
+      map(([indexes, { nextElected, validators }]): DeriveStakingOverview =>
+        objectSpread({}, indexes, {
+          nextElected,
+          validators
+        })
+      )
     ));
 }

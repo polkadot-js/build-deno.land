@@ -1,12 +1,12 @@
 // Copyright 2017-2022 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { RpcInterface } from 'https://deno.land/x/polkadot@0.0.8/rpc-core/types/index.ts';
-import type { ProviderInterface } from 'https://deno.land/x/polkadot@0.0.8/rpc-provider/types.ts';
-import type { Text } from 'https://deno.land/x/polkadot@0.0.8/types/mod.ts';
-import type { Hash, RuntimeVersion } from 'https://deno.land/x/polkadot@0.0.8/types/interfaces/index.ts';
-import type { Metadata } from 'https://deno.land/x/polkadot@0.0.8/types/metadata/index.ts';
-import type { CallFunction, RegistryError } from 'https://deno.land/x/polkadot@0.0.8/types/types/index.ts';
+import type { RpcInterface } from 'https://deno.land/x/polkadot/rpc-core/types/index.ts';
+import type { ProviderInterface } from 'https://deno.land/x/polkadot/rpc-provider/types.ts';
+import type { Text } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Hash, RuntimeVersion } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Metadata } from 'https://deno.land/x/polkadot/types/metadata/index.ts';
+import type { CallFunction, RegistryError } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { ApiDecoration, ApiInterfaceRx, ApiTypes, DecoratedErrors, DecoratedEvents, DecoratedRpc, QueryableCalls, QueryableConsts, QueryableStorage, QueryableStorageMulti, SubmittableExtrinsics } from '../types/index.ts';
 
 import { packageInfo } from '../packageInfo.ts';
@@ -194,8 +194,8 @@ export abstract class Getters<ApiType extends ApiTypes> extends Init<ApiType> im
   /**
    * @description The underlying Rx API interface
    */
-  public get rx (): Pick<ApiInterfaceRx, 'tx' | 'rpc' | 'query'> {
-    return assertResult(this._rx as Pick<ApiInterfaceRx, 'tx' | 'rpc' | 'query'>);
+  public get rx (): Pick<ApiInterfaceRx, 'tx' | 'rpc' | 'query' | 'call'> {
+    return assertResult(this._rx as Pick<ApiInterfaceRx, 'tx' | 'rpc' | 'query' | 'call'>);
   }
 
   /**

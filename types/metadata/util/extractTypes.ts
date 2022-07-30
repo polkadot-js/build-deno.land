@@ -1,9 +1,9 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { TypeDef } from 'https://deno.land/x/polkadot@0.0.8/types-create/types/index.ts';
+import type { TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 
-import { getTypeDef, TypeDefInfo } from 'https://deno.land/x/polkadot@0.0.8/types-create/mod.ts';
+import { getTypeDef, TypeDefInfo } from 'https://deno.land/x/polkadot/types-create/mod.ts';
 
 type Extracted = string | Extracted[];
 
