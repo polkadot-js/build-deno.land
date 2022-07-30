@@ -1,10 +1,10 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Bytes, Struct, U8aFixed, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { AccountId, Hash, Perbill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
-import type { IdentificationTuple, SessionIndex } from 'https://deno.land/x/polkadot/types/interfaces/session/index.ts';
+import type { Bytes, Struct, U8aFixed, Vec } from 'https://deno.land/x/polkadot@0.0.9/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.0.9/types-codec/types/index.ts';
+import type { AccountId, Hash, Perbill } from 'https://deno.land/x/polkadot@0.0.9/types/interfaces/runtime/index.ts';
+import type { IdentificationTuple, SessionIndex } from 'https://deno.land/x/polkadot@0.0.9/types/interfaces/session/index.ts';
 
 /** @name DeferredOffenceOf */
 export interface DeferredOffenceOf extends ITuple<[Vec<OffenceDetails>, Vec<Perbill>, SessionIndex]> {}

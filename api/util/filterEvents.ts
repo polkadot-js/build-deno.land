@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { EventRecord, ExtrinsicStatus, H256, SignedBlock } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { EventRecord, ExtrinsicStatus, H256, SignedBlock } from 'https://deno.land/x/polkadot@0.0.9/types/interfaces/index.ts';
 
 import { l } from './logging.ts';
 
