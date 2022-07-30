@@ -12,7 +12,7 @@ import type { HexString } from '../types.ts';
  * <BR>
  *
  * ```javascript
- * import { hexToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { hexToU8a } from 'https://deno.land/x/polkadot@0.0.9/util/mod.ts';
  *
  * hexToU8a('0x80001f'); // Uint8Array([0x80, 0x00, 0x1f])
  * hexToU8a('0x80001f', 32); // Uint8Array([0x00, 0x80, 0x00, 0x1f])
