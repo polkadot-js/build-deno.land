@@ -1,9 +1,9 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.9/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 
-import { assert, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.0.9/util/mod.ts';
+import { u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { keccakAsU8a } from '../keccak/index.ts';
 import { secp256k1Expand } from '../secp256k1/index.ts';
@@ -23,7 +23,9 @@ export function ethereumEncode (addressOrPublic?: HexString | string | Uint8Arra
 
   const u8aAddress = u8aToU8a(addressOrPublic);
 
-  assert([20, 32, 33, 65].includes(u8aAddress.length), 'Invalid address or publicKey passed');
+  if (![20, 32, 33, 65].includes(u8aAddress.length)) {
+    throw new Error('Invalid address or publicKey passed');
+  }
 
   const address = u8aToHex(getH160(u8aAddress), -1, false);
   const hash = u8aToHex(keccakAsU8a(address), -1, false);

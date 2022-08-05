@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.9/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { HashType } from '../secp256k1/types.ts';
 import type { Prefix } from './types.ts';
 
-import { assert, u8aConcat } from 'https://deno.land/x/polkadot@0.0.9/util/mod.ts';
+import { u8aConcat } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { hasher } from '../secp256k1/hasher.ts';
 import { encodeAddress } from './encode.ts';
@@ -17,7 +17,9 @@ import { encodeAddress } from './encode.ts';
 export function evmToAddress (evmAddress: HexString | string | Uint8Array, ss58Format?: Prefix, hashType: HashType = 'blake2'): string {
   const message = u8aConcat('evm:', evmAddress);
 
-  assert(message.length === 24, () => `Converting ${evmAddress as string}: Invalid evm address length`);
+  if (message.length !== 24) {
+    throw new Error(`Converting ${evmAddress as string}: Invalid evm address length`);
+  }
 
   return encodeAddress(hasher(hashType, message), ss58Format);
 }

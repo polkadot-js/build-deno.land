@@ -1,12 +1,12 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { U8aLike } from 'https://deno.land/x/polkadot@0.0.9/util/types.ts';
+import type { U8aLike } from 'https://deno.land/x/polkadot/util/types.ts';
 
-import { assert, u8aToU8a } from 'https://deno.land/x/polkadot@0.0.9/util/mod.ts';
+import { u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 // re-export the type so *.d.ts files don't have ../src imports
-export type { U8aLike } from 'https://deno.land/x/polkadot@0.0.9/util/types.ts';
+export type { U8aLike } from 'https://deno.land/x/polkadot/util/types.ts';
 
 interface Coder {
   decode: (value: string) => Uint8Array;
@@ -65,22 +65,23 @@ export function createIs (validate: ValidateFn): ValidateFn {
 /** @internal */
 export function createValidate ({ chars, ipfs, type }: Config): ValidateFn {
   return (value?: unknown, ipfsCompat?: boolean): value is string => {
-    assert(value && typeof value === 'string', () => `Expected non-null, non-empty ${type} string input`);
+    if (!value || typeof value !== 'string') {
+      throw new Error(`Expected non-null, non-empty ${type} string input`);
+    }
 
-    if (ipfs && ipfsCompat) {
-      assert(value[0] === ipfs, () => `Expected ipfs-compatible ${type} to start with '${ipfs}'`);
+    if (ipfs && ipfsCompat && value[0] !== ipfs) {
+      throw new Error(`Expected ipfs-compatible ${type} to start with '${ipfs}'`);
     }
 
     for (let i = (ipfsCompat ? 1 : 0); i < value.length; i++) {
-      assert(
-        chars.includes(value[i]) || (
-          value[i] === '=' && (
-            (i === value.length - 1) ||
-            !chars.includes(value[i + 1])
-          )
-        ),
-        () => `Invalid ${type} character "${value[i]}" (0x${value.charCodeAt(i).toString(16)}) at index ${i}`
-      );
+      if (!(chars.includes(value[i]) || (
+        value[i] === '=' && (
+          (i === value.length - 1) ||
+          !chars.includes(value[i + 1])
+        )
+      ))) {
+        throw new Error(`Invalid ${type} character "${value[i]}" (0x${value.charCodeAt(i).toString(16)}) at index ${i}`);
+      }
     }
 
     return true;

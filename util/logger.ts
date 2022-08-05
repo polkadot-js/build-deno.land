@@ -18,7 +18,7 @@ declare const process: { env: Record<string, string> };
 type ConsoleType = 'error' | 'log' | 'warn';
 type LogType = ConsoleType | 'debug';
 
-const logTo = {
+const logTo = <const> {
   debug: 'log',
   error: 'error',
   log: 'log',
@@ -72,7 +72,7 @@ function apply (log: LogType, type: string, values: Logger$Data, maxSize = -1): 
     return apply(log, type, Array.isArray(fnResult) ? fnResult : [fnResult], maxSize);
   }
 
-  console[logTo[log] as 'log'](
+  console[logTo[log]](
     formatDate(new Date()),
     type,
     ...values
@@ -144,7 +144,7 @@ function parseEnv (type: string): [boolean, number] {
  * <BR>
  *
  * ```javascript
- * import { logger } from 'https://deno.land/x/polkadot@0.0.9/util/mod.ts';
+ * import { logger } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * const l = logger('test');
  * ```

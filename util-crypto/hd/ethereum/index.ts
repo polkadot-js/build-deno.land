@@ -3,7 +3,7 @@
 
 import type { Keypair } from '../../types.ts';
 
-import { assert, bnToU8a, stringToU8a, u8aConcat } from 'https://deno.land/x/polkadot@0.0.9/util/mod.ts';
+import { bnToU8a, stringToU8a, u8aConcat } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { BN_BE_32_OPTS } from '../../bn.ts';
 import { hmacShaAsU8a } from '../../hmac/index.ts';
@@ -51,7 +51,9 @@ export function hdEthereum (seed: Uint8Array, path = ''): Keypair {
     return hd;
   }
 
-  assert(hdValidatePath(path), 'Invalid derivation path');
+  if (!hdValidatePath(path)) {
+    throw new Error('Invalid derivation path');
+  }
 
   const parts = path.split('/').slice(1);
 

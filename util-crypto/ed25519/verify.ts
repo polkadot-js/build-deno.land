@@ -1,12 +1,12 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.9/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 
 import nacl from 'https://esm.sh/tweetnacl@1.0.3';
 
-import { assert, u8aToU8a } from 'https://deno.land/x/polkadot@0.0.9/util/mod.ts';
-import { ed25519Verify as wasmVerify, isReady } from 'https://deno.land/x/polkadot@0.0.9/wasm-crypto/mod.ts';
+import { u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { ed25519Verify as wasmVerify, isReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 /**
  * @name ed25519Sign
@@ -17,7 +17,7 @@ import { ed25519Verify as wasmVerify, isReady } from 'https://deno.land/x/polkad
  * <BR>
  *
  * ```javascript
- * import { ed25519Verify } from 'https://deno.land/x/polkadot@0.0.9/util-crypto/mod.ts';
+ * import { ed25519Verify } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
  *
  * ed25519Verify([...], [...], [...]); // => true/false
  * ```
@@ -27,8 +27,11 @@ export function ed25519Verify (message: HexString | Uint8Array | string, signatu
   const publicKeyU8a = u8aToU8a(publicKey);
   const signatureU8a = u8aToU8a(signature);
 
-  assert(publicKeyU8a.length === 32, () => `Invalid publicKey, received ${publicKeyU8a.length}, expected 32`);
-  assert(signatureU8a.length === 64, () => `Invalid signature, received ${signatureU8a.length} bytes, expected 64`);
+  if (publicKeyU8a.length !== 32) {
+    throw new Error(`Invalid publicKey, received ${publicKeyU8a.length}, expected 32`);
+  } else if (signatureU8a.length !== 64) {
+    throw new Error(`Invalid signature, received ${signatureU8a.length} bytes, expected 64`);
+  }
 
   return !onlyJs && isReady()
     ? wasmVerify(signatureU8a, messageU8a, publicKeyU8a)

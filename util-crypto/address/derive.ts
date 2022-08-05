@@ -1,11 +1,9 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.9/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { DeriveJunction } from '../key/DeriveJunction.ts';
 import type { Prefix } from './types.ts';
-
-import { assert } from 'https://deno.land/x/polkadot@0.0.9/util/mod.ts';
 
 import { keyExtractPath } from '../key/index.ts';
 import { sr25519DerivePublic } from '../sr25519/index.ts';
@@ -25,7 +23,9 @@ function filterHard ({ isHard }: DeriveJunction): boolean {
 export function deriveAddress (who: HexString | Uint8Array | string, suri: string, ss58Format?: Prefix): string {
   const { path } = keyExtractPath(suri);
 
-  assert(path.length && !path.every(filterHard), 'Expected suri to contain a combination of non-hard paths');
+  if (!path.length || path.every(filterHard)) {
+    throw new Error('Expected suri to contain a combination of non-hard paths');
+  }
 
   let publicKey = decodeAddress(who);
 
