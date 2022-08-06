@@ -2,21 +2,21 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable, Subscription } from 'https://esm.sh/rxjs@7.5.6';
-import type { Text } from 'https://deno.land/x/polkadot@0.0.9/types/mod.ts';
-import type { ExtDef } from 'https://deno.land/x/polkadot@0.0.9/types/extrinsic/signedExtensions/types.ts';
-import type { ChainProperties, Hash, HeaderPartial, RuntimeVersion, RuntimeVersionPartial } from 'https://deno.land/x/polkadot@0.0.9/types/interfaces/index.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.0.9/types/types/index.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.0.9/util/mod.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.9/util/types.ts';
+import type { Text } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { ExtDef } from 'https://deno.land/x/polkadot/types/extrinsic/signedExtensions/types.ts';
+import type { ChainProperties, Hash, HeaderPartial, RuntimeVersion, RuntimeVersionPartial } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { ApiBase, ApiDecoration, ApiOptions, ApiTypes, DecorateMethod } from '../types/index.ts';
 import type { VersionedRegistry } from './types.ts';
 
 import { firstValueFrom, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.6';
 
-import { Metadata, TypeRegistry } from 'https://deno.land/x/polkadot@0.0.9/types/mod.ts';
-import { getSpecAlias, getSpecExtensions, getSpecHasher, getSpecRpc, getSpecTypes, getUpgradeVersion } from 'https://deno.land/x/polkadot@0.0.9/types-known/mod.ts';
-import { assertReturn, BN_ZERO, isUndefined, logger, objectSpread, u8aEq, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.0.9/util/mod.ts';
-import { cryptoWaitReady } from 'https://deno.land/x/polkadot@0.0.9/util-crypto/mod.ts';
+import { Metadata, TypeRegistry } from 'https://deno.land/x/polkadot/types/mod.ts';
+import { getSpecAlias, getSpecExtensions, getSpecHasher, getSpecRpc, getSpecTypes, getUpgradeVersion } from 'https://deno.land/x/polkadot/types-known/mod.ts';
+import { assertReturn, BN_ZERO, isUndefined, logger, objectSpread, u8aEq, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { cryptoWaitReady } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { Decorate } from './Decorate.ts';
 
@@ -29,6 +29,8 @@ function textToString (t: Text): string {
 }
 
 export abstract class Init<ApiType extends ApiTypes> extends Decorate<ApiType> {
+  #atLast: [string, ApiDecoration<ApiType>] | null = null;
+
   #healthTimer: ReturnType<typeof setInterval> | null = null;
 
   #registries: VersionedRegistry<ApiType>[] = [];
@@ -70,7 +72,7 @@ export abstract class Init<ApiType extends ApiTypes> extends Decorate<ApiType> {
       this._rpcCore.provider.on('disconnected', () => this.#onProviderDisconnect());
       this._rpcCore.provider.on('error', (e: Error) => this.#onProviderError(e));
       this._rpcCore.provider.on('connected', () => this.#onProviderConnect());
-    } else {
+    } else if (!this._options.noInitWarn) {
       l.warn('Api will be available in a limited mode since the provider does not support subscriptions');
     }
 
@@ -113,11 +115,16 @@ export abstract class Init<ApiType extends ApiTypes> extends Decorate<ApiType> {
    */
   public async at (blockHash: Uint8Array | string, knownVersion?: RuntimeVersion): Promise<ApiDecoration<ApiType>> {
     const u8aHash = u8aToU8a(blockHash);
+    const u8aHex = u8aToHex(u8aHash);
     const registry = await this.getBlockRegistry(u8aHash, knownVersion);
 
-    // always create a new decoration - since we are pointing to a specific hash, this
-    // means that all queries needs to use that hash (not a previous one already existing)
-    return this._createDecorated(registry, true, null, u8aHash).decoratedApi;
+    if (!this.#atLast || this.#atLast[0] !== u8aHex) {
+      // always create a new decoration - since we are pointing to a specific hash, this
+      // means that all queries needs to use that hash (not a previous one already existing)
+      this.#atLast = [u8aHex, this._createDecorated(registry, true, null, u8aHash).decoratedApi];
+    }
+
+    return this.#atLast[1];
   }
 
   private async _createBlockRegistry (blockHash: Uint8Array, header: HeaderPartial, version: RuntimeVersionPartial): Promise<VersionedRegistry<ApiType>> {
@@ -129,7 +136,7 @@ export abstract class Init<ApiType extends ApiTypes> extends Decorate<ApiType> {
     this._initRegistry(registry, this._runtimeChain as Text, version, metadata);
 
     // add our new registry
-    const result = { lastBlockHash: blockHash, metadata, registry, runtimeVersion: version };
+    const result = { counter: 0, lastBlockHash: blockHash, metadata, registry, runtimeVersion: version };
 
     this.#registries.push(result);
 
@@ -168,6 +175,7 @@ export abstract class Init<ApiType extends ApiTypes> extends Decorate<ApiType> {
       );
 
       if (existingViaVersion) {
+        existingViaVersion.counter++;
         existingViaVersion.lastBlockHash = blockHash;
 
         return existingViaVersion;
@@ -337,7 +345,7 @@ export abstract class Init<ApiType extends ApiTypes> extends Decorate<ApiType> {
 
     // setup the initial registry, when we have none
     if (!this.#registries.length) {
-      this.#registries.push({ isDefault: true, metadata, registry: this.registry, runtimeVersion });
+      this.#registries.push({ counter: 0, isDefault: true, metadata, registry: this.registry, runtimeVersion });
     }
 
     // get unique types & validate

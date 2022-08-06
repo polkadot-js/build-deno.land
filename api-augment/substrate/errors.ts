@@ -3,13 +3,13 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.0.9/api-base/types/errors.ts';
+import 'https://deno.land/x/polkadot/api-base/types/errors.ts';
 
-import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot@0.0.9/api-base/types/index.ts';
+import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 
 export type __AugmentedError<ApiType extends ApiTypes> = AugmentedError<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.0.9/api-base/types/errors.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
   interface AugmentedErrors<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -2085,6 +2085,12 @@ declare module 'https://deno.land/x/polkadot@0.0.9/api-base/types/errors.ts' {
        * The provided max supply is less to the amount of items a collection already has.
        **/
       MaxSupplyTooSmall: AugmentedError<ApiType>;
+      /**
+       * The `CollectionId` in `NextCollectionId` is not being used.
+       * 
+       * This means that you can directly proceed to call `create`.
+       **/
+      NextIdNotUsed: AugmentedError<ApiType>;
       /**
        * There is no delegate approved.
        **/

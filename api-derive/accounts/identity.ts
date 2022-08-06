@@ -2,16 +2,16 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { Data } from 'https://deno.land/x/polkadot@0.0.9/types/mod.ts';
-import type { AccountId } from 'https://deno.land/x/polkadot@0.0.9/types/interfaces/index.ts';
-import type { PalletIdentityIdentityInfo, PalletIdentityRegistration } from 'https://deno.land/x/polkadot@0.0.9/types/lookup.ts';
-import type { Option } from 'https://deno.land/x/polkadot@0.0.9/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.0.9/types-codec/types/index.ts';
+import type { Data } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletIdentityIdentityInfo, PalletIdentityRegistration } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { Option } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { DeriveAccountRegistration, DeriveApi, DeriveHasIdentity } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.6';
 
-import { isHex, u8aToString } from 'https://deno.land/x/polkadot@0.0.9/util/mod.ts';
+import { isHex, u8aToString } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { firstMemo, memo } from '../util/index.ts';
 

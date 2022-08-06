@@ -2,9 +2,9 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { Option } from 'https://deno.land/x/polkadot@0.0.9/types/mod.ts';
-import type { AccountId } from 'https://deno.land/x/polkadot@0.0.9/types/interfaces/index.ts';
-import type { NodeRuntimeSessionKeys } from 'https://deno.land/x/polkadot@0.0.9/types/lookup.ts';
+import type { Option } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { KitchensinkRuntimeSessionKeys } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { DeriveApi } from '../types.ts';
 import type { DeriveStakingKeys } from './types.ts';
 
@@ -12,7 +12,7 @@ import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.6';
 
 import { firstMemo, memo } from '../util/index.ts';
 
-function extractsIds (stashId: Uint8Array | string, queuedKeys: [AccountId, NodeRuntimeSessionKeys | AccountId[]][], nextKeys: Option<NodeRuntimeSessionKeys>): DeriveStakingKeys {
+function extractsIds (stashId: Uint8Array | string, queuedKeys: [AccountId, KitchensinkRuntimeSessionKeys | AccountId[]][], nextKeys: Option<KitchensinkRuntimeSessionKeys>): DeriveStakingKeys {
   const sessionIds = (queuedKeys.find(([currentId]) => currentId.eq(stashId)) || [undefined, [] as AccountId[]])[1];
   const nextSessionIds = nextKeys.unwrapOr([] as AccountId[]);
 

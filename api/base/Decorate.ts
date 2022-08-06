@@ -2,27 +2,27 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { AugmentedCall, DeriveCustom, QueryableCalls } from 'https://deno.land/x/polkadot@0.0.9/api-base/types/index.ts';
-import type { RpcInterface } from 'https://deno.land/x/polkadot@0.0.9/rpc-core/types/index.ts';
-import type { StorageKey, Text, u64 } from 'https://deno.land/x/polkadot@0.0.9/types/mod.ts';
-import type { Call, Hash, RuntimeVersion } from 'https://deno.land/x/polkadot@0.0.9/types/interfaces/index.ts';
-import type { DecoratedMeta } from 'https://deno.land/x/polkadot@0.0.9/types/metadata/decorate/types.ts';
-import type { StorageEntry } from 'https://deno.land/x/polkadot@0.0.9/types/primitive/types.ts';
-import type { AnyFunction, AnyTuple, CallFunction, Codec, DefinitionCallNamed, DefinitionRpc, DefinitionRpcSub, DefinitionsCall, DefinitionsCallEntry, DetectCodec, IMethod, IStorageKey, Registry, RegistryError, RegistryTypes } from 'https://deno.land/x/polkadot@0.0.9/types/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.0.9/util/types.ts';
+import type { AugmentedCall, DeriveCustom, QueryableCalls } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { RpcInterface } from 'https://deno.land/x/polkadot/rpc-core/types/index.ts';
+import type { StorageKey, Text, u64 } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Call, Hash, RuntimeVersion } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { DecoratedMeta } from 'https://deno.land/x/polkadot/types/metadata/decorate/types.ts';
+import type { StorageEntry } from 'https://deno.land/x/polkadot/types/primitive/types.ts';
+import type { AnyFunction, AnyTuple, CallFunction, Codec, DefinitionCallNamed, DefinitionRpc, DefinitionRpcSub, DefinitionsCall, DefinitionsCallEntry, DetectCodec, IMethod, IStorageKey, Registry, RegistryError, RegistryTypes } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { SubmittableExtrinsic } from '../submittable/types.ts';
 import type { ApiDecoration, ApiInterfaceRx, ApiOptions, ApiTypes, AugmentedQuery, DecoratedErrors, DecoratedEvents, DecoratedRpc, DecorateMethod, GenericStorageEntryFunction, PaginationOptions, QueryableConsts, QueryableStorage, QueryableStorageEntry, QueryableStorageEntryAt, QueryableStorageMulti, QueryableStorageMultiArg, SubmittableExtrinsicFunction, SubmittableExtrinsics } from '../types/index.ts';
 import type { VersionedRegistry } from './types.ts';
 
 import { BehaviorSubject, combineLatest, from, map, of, switchMap, tap, toArray } from 'https://esm.sh/rxjs@7.5.6';
 
-import { getAvailableDerives } from 'https://deno.land/x/polkadot@0.0.9/api-derive/mod.ts';
-import { memo, RpcCore } from 'https://deno.land/x/polkadot@0.0.9/rpc-core/mod.ts';
-import { WsProvider } from 'https://deno.land/x/polkadot@0.0.9/rpc-provider/mod.ts';
-import { expandMetadata, Metadata, typeDefinitions, TypeRegistry } from 'https://deno.land/x/polkadot@0.0.9/types/mod.ts';
-import { getSpecRuntime } from 'https://deno.land/x/polkadot@0.0.9/types-known/mod.ts';
-import { arrayChunk, arrayFlatten, assertReturn, BN, compactStripLength, lazyMethod, lazyMethods, logger, nextTick, objectSpread, stringCamelCase, stringUpperFirst, u8aConcatStrict, u8aToHex } from 'https://deno.land/x/polkadot@0.0.9/util/mod.ts';
-import { blake2AsHex } from 'https://deno.land/x/polkadot@0.0.9/util-crypto/mod.ts';
+import { getAvailableDerives } from 'https://deno.land/x/polkadot/api-derive/mod.ts';
+import { memo, RpcCore } from 'https://deno.land/x/polkadot/rpc-core/mod.ts';
+import { WsProvider } from 'https://deno.land/x/polkadot/rpc-provider/mod.ts';
+import { expandMetadata, Metadata, typeDefinitions, TypeRegistry } from 'https://deno.land/x/polkadot/types/mod.ts';
+import { getSpecRuntime } from 'https://deno.land/x/polkadot/types-known/mod.ts';
+import { arrayChunk, arrayFlatten, assertReturn, BN, compactStripLength, lazyMethod, lazyMethods, logger, nextTick, objectSpread, stringCamelCase, stringUpperFirst, u8aConcatStrict, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { blake2AsHex } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { createSubmittable } from '../submittable/index.ts';
 import { augmentObject } from '../util/augmentObject.ts';
@@ -40,6 +40,7 @@ interface MetaDecoration {
 }
 
 interface FullDecoration<ApiType extends ApiTypes> {
+  createdAt?: Uint8Array;
   decoratedApi: ApiDecoration<ApiType>;
   decoratedMeta: DecoratedMeta;
 }
@@ -61,6 +62,8 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
   readonly #instanceId: string;
 
   #registry: Registry;
+
+  readonly #runtimeLog: Record<string, boolean> = {};
 
   #storageGetQ: [Observable<Codec[]>, [StorageEntry, unknown[]][]][] = [];
 
@@ -143,7 +146,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
    * <BR>
    *
    * ```javascript
-   * import Api from 'https://deno.land/x/polkadot@0.0.9/api/promise/index.ts';
+   * import Api from 'https://deno.land/x/polkadot/api/promise/index.ts';
    *
    * const api = new Api().isReady();
    *
@@ -260,6 +263,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
     decoratedApi.runtimeVersion = registry.runtimeVersion;
 
     return {
+      createdAt: blockHash,
       decoratedApi,
       decoratedMeta: registry.decoratedMeta
     };
@@ -303,7 +307,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
    * backwards compatible endpoint for metadata injection, may be removed in the future (However, it is still useful for testing injection)
    */
   public injectMetadata (metadata: Metadata, fromEmpty?: boolean, registry?: Registry): void {
-    this._injectMetadata({ metadata, registry: registry || this.#registry, runtimeVersion: this.#registry.createType('RuntimeVersionPartial') }, fromEmpty);
+    this._injectMetadata({ counter: 0, metadata, registry: registry || this.#registry, runtimeVersion: this.#registry.createType('RuntimeVersionPartial') }, fromEmpty);
   }
 
   private _decorateFunctionMeta (input: MetaDecoration, output: MetaDecoration): MetaDecoration {
@@ -385,7 +389,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
     const filterKey = (k: string) => !allKeys.includes(k);
     const unknown = exposed.filter(filterKey);
 
-    if (unknown.length) {
+    if (unknown.length && !this._options.noInitWarn) {
       l.warn(`RPC methods not decorated: ${unknown.join(', ')}`);
     }
 
@@ -494,12 +498,16 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
   }
 
   // pre-metadata decoration
-  protected _decorateCalls<ApiType extends ApiTypes> ({ registry, runtimeVersion: { apis, specName } }: VersionedRegistry<any>, decorateMethod: DecorateMethod<ApiType>, blockHash?: Uint8Array | string | null): QueryableCalls<ApiType> {
+  protected _decorateCalls<ApiType extends ApiTypes> ({ registry, runtimeVersion: { apis, specName, specVersion } }: VersionedRegistry<any>, decorateMethod: DecorateMethod<ApiType>, blockHash?: Uint8Array | string | null): QueryableCalls<ApiType> {
     const result = {} as QueryableCalls<ApiType>;
     const named: Record<string, Record<string, DefinitionCallNamed>> = {};
     const hashes: Record<HexString, boolean> = {};
     const sections = this._getRuntimeDefs(registry, specName, this._runtimeChain);
     const older: string[] = [];
+    const implName = `${specName.toString()}/${specVersion.toString()}`;
+    const hasLogged = this.#runtimeLog[implName] || false;
+
+    this.#runtimeLog[implName] = true;
 
     for (let i = 0; i < sections.length; i++) {
       const [_section, secs] = sections[i];
@@ -540,12 +548,14 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
       .filter(([a]) => !hashes[a])
       .map(([a, v]) => `${this._runtimeMap[a] || a}/${v}`);
 
-    if (older.length) {
-      l.warn(`Not decorating runtime apis without matching versions: ${older.join(', ')}`);
-    }
+    if (!this._options.noInitWarn && !hasLogged) {
+      if (older.length) {
+        l.warn(`${implName}: Not decorating runtime apis without matching versions: ${older.join(', ')}`);
+      }
 
-    if (notFound.length) {
-      l.warn(`Not decorating unknown runtime apis: ${notFound.join(', ')}`);
+      if (notFound.length) {
+        l.warn(`${implName}: Not decorating unknown runtime apis: ${notFound.join(', ')}`);
+      }
     }
 
     const stateCall = blockHash
