@@ -1,9 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Bytes, Enum, Struct, Vec, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { BlockHash } from 'https://deno.land/x/polkadot/types/interfaces/chain/index.ts';
-import type { Hash } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { Bytes, Enum, Struct, Vec, u64 } from 'https://deno.land/x/polkadot@0.1.0/types-codec/mod.ts';
+import type { BlockHash } from 'https://deno.land/x/polkadot@0.1.0/types/interfaces/chain/index.ts';
+import type { Hash } from 'https://deno.land/x/polkadot@0.1.0/types/interfaces/runtime/index.ts';
 
 /** @name MmrBatchProof */
 export interface MmrBatchProof extends Struct {

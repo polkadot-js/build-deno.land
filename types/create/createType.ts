@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Codec, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Codec, Registry } from 'https://deno.land/x/polkadot@0.1.0/types-codec/types/index.ts';
 import type { DetectCodec } from '../types/index.ts';
 
-import { createTypeUnsafe } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { createTypeUnsafe } from 'https://deno.land/x/polkadot@0.1.0/types-create/mod.ts';
 
 /**
  * Create an instance of a `type` with a given `params`.

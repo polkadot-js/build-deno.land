@@ -1,12 +1,12 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyJson, AnyTuple, AnyU8a, ArgsDef, Codec, IMethod, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { AnyJson, AnyTuple, AnyU8a, ArgsDef, Codec, IMethod, Registry } from 'https://deno.land/x/polkadot@0.1.0/types-codec/types/index.ts';
 import type { FunctionMetadataLatest } from '../interfaces/metadata/index.ts';
 import type { CallBase, CallFunction, InterfaceTypes } from '../types/index.ts';
 
-import { Struct, U8aFixed } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import { isHex, isObject, isU8a, objectSpread, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { Struct, U8aFixed } from 'https://deno.land/x/polkadot@0.1.0/types-codec/mod.ts';
+import { isHex, isObject, isU8a, objectSpread, u8aToU8a } from 'https://deno.land/x/polkadot@0.1.0/util/mod.ts';
 
 interface DecodeMethodInput {
   args: unknown;
