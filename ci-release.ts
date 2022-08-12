@@ -140,11 +140,11 @@ async function createModTs (version: string): Promise<void> {
   await Deno.writeTextFile('mod.ts', `// Copyright 2017-${new Date().getFullYear()} @polkadot/deno authors & contributors\n// SPDX-License-Identifier: Apache-2.0\n\n// auto-generated via ci-release.ts, do not edit\n\n${imports.sort().join('\n')}\n`);
   await Deno.writeTextFile('import_map.json', `${JSON.stringify({
     imports: {
-      // deno tries to download types from incorrect location
-      'https://esm.sh/v90/@types/bn.js@~5.2/index.d.ts': 'https://esm.sh/v90/@types/bn.js@5.1.0/index.d.ts',
       // we construct the urls here, we don't want to regex to catch it
       [`${DENO_X}/polkadot/`]: './',
-      [`${DENO_X}/polkadot@${version}/`]: './'
+      [`${DENO_X}/polkadot@${version}/`]: './',
+      // deno tries to download types from incorrect location
+      'https://esm.sh/v90/@types/bn.js@~5.2/index.d.ts': 'https://esm.sh/v90/@types/bn.js@5.1.0/index.d.ts'
     }
   }, null, 2)}\n`);
 }
