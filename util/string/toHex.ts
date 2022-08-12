@@ -15,7 +15,7 @@ import { stringToU8a } from './toU8a.ts';
  * <BR>
  *
  * ```javascript
- * import { stringToHex } from 'https://deno.land/x/polkadot@0.1.0/util/mod.ts';
+ * import { stringToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * stringToU8a('hello'); // 0x68656c6c6f
  * ```

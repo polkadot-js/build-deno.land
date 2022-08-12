@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master
+
+- hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 10.1.4
+
 ## 0.1.0 Aug 7, 2022
 
 - phishing 0.18.4

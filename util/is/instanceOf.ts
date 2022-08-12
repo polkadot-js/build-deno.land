@@ -10,7 +10,7 @@
  * <BR>
  *
  * ```javascript
- * import { isInstanceOf } from 'https://deno.land/x/polkadot@0.1.0/util/mod.ts';
+ * import { isInstanceOf } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * console.log('isInstanceOf', isInstanceOf(new Array(0), Array)); // => true
  * ```
