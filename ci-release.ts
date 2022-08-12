@@ -142,7 +142,9 @@ async function createModTs (version: string): Promise<void> {
     imports: {
       // we construct the urls here, we don't want to regex to catch it
       [`${DENO_X}/polkadot/`]: './',
-      [`${DENO_X}/polkadot@${version}/`]: './'
+      [`${DENO_X}/polkadot@${version}/`]: './',
+      // deno tries to download types from incorrect location
+      'https://esm.sh/v90/@types/bn.js@~5.2/index.d.ts': 'https://esm.sh/v90/@types/bn.js@5.1.0/index.d.ts'
     }
   }, null, 2)}\n`);
 }
