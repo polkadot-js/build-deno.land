@@ -1,15 +1,15 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Option, Text, Type, Vec } from 'https://deno.land/x/polkadot@0.1.0/types-codec/mod.ts';
-import type { AnyString, Registry } from 'https://deno.land/x/polkadot@0.1.0/types-codec/types/index.ts';
-import type { ILookup, TypeDef } from 'https://deno.land/x/polkadot@0.1.0/types-create/types/index.ts';
+import type { Option, Text, Type, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { AnyString, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { ILookup, TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 import type { PortableType } from '../../interfaces/metadata/index.ts';
 import type { SiField, SiLookupTypeId, SiPath, SiType, SiTypeDefArray, SiTypeDefBitSequence, SiTypeDefCompact, SiTypeDefComposite, SiTypeDefSequence, SiTypeDefTuple, SiTypeDefVariant, SiTypeParameter, SiVariant } from '../../interfaces/scaleInfo/index.ts';
 
-import { sanitize, Struct, u32 } from 'https://deno.land/x/polkadot@0.1.0/types-codec/mod.ts';
-import { getTypeDef, TypeDefInfo, withTypeString } from 'https://deno.land/x/polkadot@0.1.0/types-create/mod.ts';
-import { assertUnreachable, isNumber, isString, logger, objectSpread, stringCamelCase, stringify, stringPascalCase } from 'https://deno.land/x/polkadot@0.1.0/util/mod.ts';
+import { sanitize, Struct, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { getTypeDef, TypeDefInfo, withTypeString } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { assertUnreachable, isNumber, isString, logger, objectSpread, stringCamelCase, stringify, stringPascalCase } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const l = logger('PortableRegistry');
 
@@ -707,35 +707,53 @@ export class PortableRegistry extends Struct implements ILookup {
   }
 
   #extractComposite (lookupIndex: number, { params, path }: SiType, { fields }: SiTypeDefComposite): TypeDef {
-    const pathFirst = path[0].toString();
-    const pathLast = path[path.length - 1].toString();
+    if (path.length) {
+      const pathFirst = path[0].toString();
+      const pathLast = path[path.length - 1].toString();
 
-    if (path.length === 1 && pathFirst === 'BTreeMap') {
-      return withTypeString(this.registry, {
-        info: TypeDefInfo.BTreeMap,
-        sub: params.map(({ type }) => this.#createSiDef(type.unwrap()))
-      });
-    } else if (path.length === 1 && pathFirst === 'BTreeSet') {
-      return withTypeString(this.registry, {
-        info: TypeDefInfo.BTreeSet,
-        sub: this.#createSiDef(params[0].type.unwrap())
-      });
-    } else if (['Range', 'RangeInclusive'].includes(pathFirst)) {
-      return withTypeString(this.registry, {
-        info: pathFirst === 'Range'
-          ? TypeDefInfo.Range
-          : TypeDefInfo.RangeInclusive,
-        sub: this.#createSiDef(params[0].type.unwrap()),
-        type: pathFirst
-      });
-    } else if (['WrapperKeepOpaque', 'WrapperOpaque'].includes(pathLast)) {
-      return withTypeString(this.registry, {
-        info: pathLast === 'WrapperKeepOpaque'
-          ? TypeDefInfo.WrapperKeepOpaque
-          : TypeDefInfo.WrapperOpaque,
-        sub: this.#createSiDef(params[0].type.unwrap()),
-        type: pathLast
-      });
+      if (path.length === 1 && pathFirst === 'BTreeMap') {
+        if (params.length !== 2) {
+          throw new Error(`BTreeMap requires 2 parameters, found ${params.length}`);
+        }
+
+        return withTypeString(this.registry, {
+          info: TypeDefInfo.BTreeMap,
+          sub: params.map(({ type }) => this.#createSiDef(type.unwrap()))
+        });
+      } else if (path.length === 1 && pathFirst === 'BTreeSet') {
+        if (params.length !== 1) {
+          throw new Error(`BTreeSet requires 1 parameter, found ${params.length}`);
+        }
+
+        return withTypeString(this.registry, {
+          info: TypeDefInfo.BTreeSet,
+          sub: this.#createSiDef(params[0].type.unwrap())
+        });
+      } else if (['Range', 'RangeInclusive'].includes(pathFirst)) {
+        if (params.length !== 1) {
+          throw new Error(`Range requires 1 parameter, found ${params.length}`);
+        }
+
+        return withTypeString(this.registry, {
+          info: pathFirst === 'Range'
+            ? TypeDefInfo.Range
+            : TypeDefInfo.RangeInclusive,
+          sub: this.#createSiDef(params[0].type.unwrap()),
+          type: pathFirst
+        });
+      } else if (['WrapperKeepOpaque', 'WrapperOpaque'].includes(pathLast)) {
+        if (params.length !== 1) {
+          throw new Error(`WrapperOpaque requires 1 parameter, found ${params.length}`);
+        }
+
+        return withTypeString(this.registry, {
+          info: pathLast === 'WrapperKeepOpaque'
+            ? TypeDefInfo.WrapperKeepOpaque
+            : TypeDefInfo.WrapperOpaque,
+          sub: this.#createSiDef(params[0].type.unwrap()),
+          type: pathLast
+        });
+      }
     }
 
     return PATHS_SET.some((p) => matchParts(p, path))
@@ -916,33 +934,43 @@ export class PortableRegistry extends Struct implements ILookup {
   }
 
   #extractVariant (lookupIndex: number, { params, path }: SiType, { variants }: SiTypeDefVariant): TypeDef {
-    const specialVariant = path[0].toString();
+    if (path.length) {
+      const specialVariant = path[0].toString();
 
-    if (specialVariant === 'Option') {
-      const sub = this.#createSiDef(params[0].type.unwrap());
+      if (specialVariant === 'Option') {
+        if (params.length !== 1) {
+          throw new Error(`Option requires 1 parameter, found ${params.length}`);
+        }
 
-      // NOTE This is opt-in (unhandled), not by default
-      // if (sub.type === 'bool') {
-      //   return withTypeString(this.registry, {
-      //     info: TypeDefInfo.Plain,
-      //     type: 'OptionBool'
-      //   });
-      // }
+        // NOTE This is opt-in (unhandled), not by default
+        // if (sub.type === 'bool') {
+        //   return withTypeString(this.registry, {
+        //     info: TypeDefInfo.Plain,
+        //     type: 'OptionBool'
+        //   });
+        // }
 
-      return withTypeString(this.registry, {
-        info: TypeDefInfo.Option,
-        sub
-      });
-    } else if (specialVariant === 'Result') {
-      return withTypeString(this.registry, {
-        info: TypeDefInfo.Result,
-        sub: params.map(({ type }, index) =>
-          objectSpread({
-            name: ['Ok', 'Error'][index]
-          }, this.#createSiDef(type.unwrap()))
-        )
-      });
-    } else if (variants.length === 0) {
+        return withTypeString(this.registry, {
+          info: TypeDefInfo.Option,
+          sub: this.#createSiDef(params[0].type.unwrap())
+        });
+      } else if (specialVariant === 'Result') {
+        if (params.length !== 2) {
+          throw new Error(`Result requires 2 parameters, found ${params.length}`);
+        }
+
+        return withTypeString(this.registry, {
+          info: TypeDefInfo.Result,
+          sub: params.map(({ type }, index) =>
+            objectSpread({
+              name: ['Ok', 'Error'][index]
+            }, this.#createSiDef(type.unwrap()))
+          )
+        });
+      }
+    }
+
+    if (variants.length === 0) {
       return {
         info: TypeDefInfo.Null,
         type: 'Null'

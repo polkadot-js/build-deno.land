@@ -3,7 +3,7 @@
 
 // Shamelessly copied from @polkadot/util/test
 
-import { formatDecimal, formatNumber } from 'https://deno.land/x/polkadot@0.1.0/util/mod.ts';
+import { formatDecimal, formatNumber } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ExecFn = (...params: any[]) => unknown;

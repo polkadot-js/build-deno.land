@@ -1,14 +1,14 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ICompact, Inspect, INumber } from 'https://deno.land/x/polkadot@0.1.0/types-codec/types/index.ts';
+import type { ICompact, Inspect, INumber } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { StorageEntryMetadataLatest, StorageHasher } from '../../../interfaces/metadata/index.ts';
 import type { StorageEntry, StorageEntryIterator } from '../../../primitive/types.ts';
 import type { Registry } from '../../../types/index.ts';
 
-import { Raw } from 'https://deno.land/x/polkadot@0.1.0/types-codec/mod.ts';
-import { compactAddLength, compactStripLength, isUndefined, objectSpread, stringCamelCase, u8aConcat, u8aToU8a } from 'https://deno.land/x/polkadot@0.1.0/util/mod.ts';
-import { xxhashAsU8a } from 'https://deno.land/x/polkadot@0.1.0/util-crypto/mod.ts';
+import { Raw } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { compactAddLength, compactStripLength, isUndefined, objectSpread, stringCamelCase, u8aConcat, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { xxhashAsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { StorageKey } from '../../../primitive/index.ts';
 import { getSiName } from '../../util/index.ts';
@@ -219,8 +219,8 @@ function extendPrefixedMap (registry: Registry, itemFn: CreateItemFn, storageFn:
   const { meta: { type }, method, section } = itemFn;
 
   storageFn.iterKey = extendHeadMeta(registry, itemFn, storageFn, (...args: unknown[]): Raw => {
-    if (args.length && (type.isPlain || (args.length > type.asMap.hashers.length))) {
-      throw new Error(`Iteration ${stringCamelCase(section || 'unknown')}.${stringCamelCase(method || 'unknown')} needs arguments to be at least one less than the full arguments, found [${args.join(', ')}]`);
+    if (args.length && (type.isPlain || (args.length >= type.asMap.hashers.length))) {
+      throw new Error(`Iteration of ${stringCamelCase(section || 'unknown')}.${stringCamelCase(method || 'unknown')} needs arguments to be at least one less than the full arguments, found [${args.join(', ')}]`);
     }
 
     if (args.length) {

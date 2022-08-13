@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { PalletDemocracyReferendumInfo } from 'https://deno.land/x/polkadot@0.1.0/types/lookup.ts';
+import type { PalletDemocracyReferendumInfo } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { DeriveApi } from '../types.ts';
 
 import { map, switchMap } from 'https://esm.sh/rxjs@7.5.6';

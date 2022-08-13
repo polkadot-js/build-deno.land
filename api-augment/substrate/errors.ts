@@ -3,13 +3,13 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.1.0/api-base/types/errors.ts';
+import 'https://deno.land/x/polkadot/api-base/types/errors.ts';
 
-import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot@0.1.0/api-base/types/index.ts';
+import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 
 export type __AugmentedError<ApiType extends ApiTypes> = AugmentedError<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.1.0/api-base/types/errors.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
   interface AugmentedErrors<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -1791,7 +1791,11 @@ declare module 'https://deno.land/x/polkadot@0.1.0/api-base/types/errors.ts' {
     };
     stateTrieMigration: {
       /**
-       * bad witness data provided.
+       * Bad child root provided.
+       **/
+      BadChildRoot: AugmentedError<ApiType>;
+      /**
+       * Bad witness data provided.
        **/
       BadWitness: AugmentedError<ApiType>;
       /**
@@ -1805,7 +1809,7 @@ declare module 'https://deno.land/x/polkadot@0.1.0/api-base/types/errors.ts' {
        **/
       KeyTooLong: AugmentedError<ApiType>;
       /**
-       * max signed limits not respected.
+       * Max signed limits not respected.
        **/
       MaxSignedLimits: AugmentedError<ApiType>;
       /**
@@ -1816,10 +1820,6 @@ declare module 'https://deno.land/x/polkadot@0.1.0/api-base/types/errors.ts' {
        * Signed migration is not allowed because the maximum limit is not set yet.
        **/
       SignedMigrationNotAllowed: AugmentedError<ApiType>;
-      /**
-       * upper bound of size is exceeded,
-       **/
-      SizeUpperBoundExceeded: AugmentedError<ApiType>;
       /**
        * Generic error
        **/

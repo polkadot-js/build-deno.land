@@ -5,7 +5,7 @@
 
 import type { DefinitionsRpc } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.1.0/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 // We use aliasSection here to override since these are in another namespace
 const netRpc: DefinitionsRpc = {
@@ -19,13 +19,13 @@ const netRpc: DefinitionsRpc = {
     aliasSection: 'net',
     description: 'Returns number of peers connected to node.',
     params: [],
-    type: 'String'
+    type: 'Text'
   },
   version: {
     aliasSection: 'net',
     description: 'Returns protocol version.',
     params: [],
-    type: 'String'
+    type: 'Text'
   }
 };
 const web3Rpc: DefinitionsRpc = {
@@ -33,7 +33,7 @@ const web3Rpc: DefinitionsRpc = {
     aliasSection: 'web3',
     description: 'Returns current client version.',
     params: [],
-    type: 'String'
+    type: 'Text'
   },
   sha3: {
     aliasSection: 'web3',
