@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/types-create authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Codec, CodecClass, IU8a, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Codec, CodecClass, IU8a, Registry } from 'https://deno.land/x/polkadot@0.2.0/types-codec/types/index.ts';
 import type { CreateOptions } from '../types/index.ts';
 
-import { Bytes, Option } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import { isHex, isU8a, u8aEq, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { Bytes, Option } from 'https://deno.land/x/polkadot@0.2.0/types-codec/mod.ts';
+import { isHex, isU8a, u8aEq, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.0/util/mod.ts';
 
 import { createClassUnsafe } from './class.ts';
 

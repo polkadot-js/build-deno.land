@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/types-create authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Codec, CodecClass, Registry, U8aBitLength, UIntBitLength } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Codec, CodecClass, Registry, U8aBitLength, UIntBitLength } from 'https://deno.land/x/polkadot@0.2.0/types-codec/types/index.ts';
 import type { TypeDef } from '../types/index.ts';
 
-import { BTreeMap, BTreeSet, Bytes, CodecSet, Compact, DoNotConstruct, Enum, HashMap, Int, Null, Option, Range, RangeInclusive, Result, Struct, Tuple, U8aFixed, UInt, Vec, VecFixed, WrapperKeepOpaque, WrapperOpaque } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import { isNumber, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { BTreeMap, BTreeSet, Bytes, CodecSet, Compact, DoNotConstruct, Enum, HashMap, Int, Null, Option, Range, RangeInclusive, Result, Struct, Tuple, U8aFixed, UInt, Vec, VecFixed, WrapperKeepOpaque, WrapperOpaque } from 'https://deno.land/x/polkadot@0.2.0/types-codec/mod.ts';
+import { isNumber, stringify } from 'https://deno.land/x/polkadot@0.2.0/util/mod.ts';
 
 import { TypeDefInfo } from '../types/index.ts';
 import { getTypeDef } from '../util/getTypeDef.ts';

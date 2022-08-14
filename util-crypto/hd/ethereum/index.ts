@@ -3,7 +3,7 @@
 
 import type { Keypair } from '../../types.ts';
 
-import { bnToU8a, stringToU8a, u8aConcat } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { bnToU8a, stringToU8a, u8aConcat } from 'https://deno.land/x/polkadot@0.2.0/util/mod.ts';
 
 import { BN_BE_32_OPTS } from '../../bn.ts';
 import { hmacShaAsU8a } from '../../hmac/index.ts';

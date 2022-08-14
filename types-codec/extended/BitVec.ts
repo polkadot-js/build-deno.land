@@ -3,7 +3,7 @@
 
 import type { AnyU8a, Inspect, Registry } from '../types/index.ts';
 
-import { compactFromU8aLim, compactToU8a, isString, u8aConcatStrict, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { compactFromU8aLim, compactToU8a, isString, u8aConcatStrict, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.0/util/mod.ts';
 
 import { Raw } from '../native/Raw.ts';
 
