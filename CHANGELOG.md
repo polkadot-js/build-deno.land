@@ -1,16 +1,18 @@
 # CHANGELOG
 
-## master
+## 0.2.0 Aug 14, 2022
 
 - phishing 0.18.5
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 9.2.1
 - hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 10.1.4
+
 
 ## 0.1.0 Aug 7, 2022
 
 - phishing 0.18.4
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 9.1.1
 - hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 10.1.3
+
 
 ## 0.0.9 Jul 30, 2022
 
