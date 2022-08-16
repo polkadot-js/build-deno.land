@@ -5,7 +5,7 @@ import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
 
 import { catchError, distinctUntilChanged, publishReplay, refCount, tap } from 'https://esm.sh/rxjs@7.5.6';
 
-import { logger, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { logger, stringify } from 'https://deno.land/x/polkadot@0.2.1/util/mod.ts';
 
 import { refCountDelay } from './refCountDelay.ts';
 

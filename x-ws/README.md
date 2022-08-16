@@ -5,7 +5,7 @@ A cross-environment WebSocket.
 Install it via `yarn add @polkadot/x-ws`
 
 ```js
-import { WebSocket } from 'https://deno.land/x/polkadot@0.2.0/x-ws/mod.ts';
+import { WebSocket } from 'https://deno.land/x/polkadot@0.2.1/x-ws/mod.ts';
 
 ...
 const ws = new WebSocket('wss://example.com');
