@@ -3,13 +3,13 @@
 
 // Simple non-runnable checks to test type definitions in the editor itself
 
-import 'https://deno.land/x/polkadot@0.2.0/api-augment/mod.ts';
+import 'https://deno.land/x/polkadot/api-augment/mod.ts';
 
-import { ApiPromise } from 'https://deno.land/x/polkadot@0.2.0/api/mod.ts';
-import { BlueprintPromise, ContractPromise } from 'https://deno.land/x/polkadot@0.2.0/api-contract/mod.ts';
-import { createTestPairs, TestKeyringMap } from 'https://deno.land/x/polkadot@0.2.0/keyring/testingPairs.ts';
+import { ApiPromise } from 'https://deno.land/x/polkadot/api/mod.ts';
+import { BlueprintPromise, ContractPromise } from 'https://deno.land/x/polkadot/api-contract/mod.ts';
+import { createTestPairs, TestKeyringMap } from 'https://deno.land/x/polkadot/keyring/testingPairs.ts';
 
-import abiIncrementer from './test/contracts/ink/v0/incrementer.json' assert { type: 'json.ts' };
+import abiIncrementer from './test/contracts/ink/v0/incrementer.json' assert { type: 'json' };
 
 async function checkBlueprint (api: ApiPromise, pairs: TestKeyringMap): Promise<void> {
   const blueprint = new BlueprintPromise(api, abiIncrementer as Record<string, unknown>, '0x1234');

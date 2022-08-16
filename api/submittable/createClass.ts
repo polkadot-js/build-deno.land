@@ -4,15 +4,15 @@
 /* eslint-disable no-dupe-class-members */
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { Address, ApplyExtrinsicResult, Call, Extrinsic, ExtrinsicEra, ExtrinsicStatus, Hash, Header, Index, RuntimeDispatchInfo, SignerPayload } from 'https://deno.land/x/polkadot@0.2.0/types/interfaces/index.ts';
-import type { Callback, Codec, Constructor, ISubmittableResult, SignatureOptions } from 'https://deno.land/x/polkadot@0.2.0/types/types/index.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.0/types-codec/types/index.ts';
+import type { Address, ApplyExtrinsicResult, Call, Extrinsic, ExtrinsicEra, ExtrinsicStatus, Hash, Header, Index, RuntimeDispatchInfo, SignerPayload } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Callback, Codec, Constructor, ISubmittableResult, SignatureOptions } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { ApiInterfaceRx, ApiTypes, PromiseOrObs, SignerResult } from '../types/index.ts';
 import type { AddressOrPair, SignerOptions, SubmittableDryRunResult, SubmittableExtrinsic, SubmittablePaymentResult, SubmittableResultResult, SubmittableResultSubscription } from './types.ts';
 
 import { catchError, first, map, mapTo, mergeMap, of, switchMap, tap } from 'https://esm.sh/rxjs@7.5.6';
 
-import { isBn, isFunction, isNumber, isString, isU8a, objectSpread } from 'https://deno.land/x/polkadot@0.2.0/util/mod.ts';
+import { isBn, isFunction, isNumber, isString, isU8a, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { ApiBase } from '../base/index.ts';
 import { filterEvents, isKeyringPair } from '../util/index.ts';
@@ -102,6 +102,10 @@ export function createClass <ApiType extends ApiTypes> ({ api, apiType, blockHas
 
     // dry run an extrinsic
     public dryRun (account: AddressOrPair, optionsOrHash?: Partial<SignerOptions> | Uint8Array | string): SubmittableDryRunResult<ApiType> {
+      if (!api.rpc.system || !api.rpc.system.dryRun) {
+        throw new Error('The system.dryRun RPC call is not available in your environment');
+      }
+
       if (blockHash || isString(optionsOrHash) || isU8a(optionsOrHash)) {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         return decorateMethod(
@@ -120,11 +124,21 @@ export function createClass <ApiType extends ApiTypes> ({ api, apiType, blockHas
 
     // calculate the payment info for this transaction (if signed and submitted)
     public paymentInfo (account: AddressOrPair, optionsOrHash?: Partial<SignerOptions> | Uint8Array | string): SubmittablePaymentResult<ApiType> {
+      if (!api.call.transactionPaymentApi || !api.call.transactionPaymentApi.queryInfo) {
+        throw new Error('The transactionPaymentApi.queryInfo runtime call is not available in your environment');
+      }
+
       if (blockHash || isString(optionsOrHash) || isU8a(optionsOrHash)) {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         return decorateMethod(
           (): Observable<RuntimeDispatchInfo> =>
-            api.rpc.payment.queryInfo(this.toHex(), blockHash || optionsOrHash as string)
+            api.callAt(blockHash || optionsOrHash as string).pipe(
+              switchMap((callAt): Observable<RuntimeDispatchInfo> => {
+                const u8a = this.toU8a();
+
+                return callAt.transactionPaymentApi.queryInfo(u8a, u8a.length);
+              })
+            )
         );
       }
 
@@ -140,12 +154,11 @@ export function createClass <ApiType extends ApiTypes> ({ api, apiType, blockHas
               // setup our options (same way as in signAndSend)
               const eraOptions = makeEraOptions(api, this.registry, allOptions, signingInfo);
               const signOptions = makeSignOptions(api, eraOptions, {});
+              const u8a = this.isSigned
+                ? api.tx(this).signFake(address, signOptions).toU8a()
+                : this.signFake(address, signOptions).toU8a();
 
-              return api.rpc.payment.queryInfo(
-                this.isSigned
-                  ? api.tx(this).signFake(address, signOptions).toHex()
-                  : this.signFake(address, signOptions).toHex()
-              );
+              return api.call.transactionPaymentApi.queryInfo(u8a, u8a.length);
             })
           )
       )();

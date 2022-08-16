@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/api-contract authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ContractMetadataV0, ContractMetadataV1 } from 'https://deno.land/x/polkadot@0.2.0/types/interfaces/index.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.0/types/types/index.ts';
+import type { ContractMetadataV0, ContractMetadataV1 } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import { convertSiV0toV1 } from 'https://deno.land/x/polkadot@0.2.0/types/mod.ts';
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.0/util/mod.ts';
+import { convertSiV0toV1 } from 'https://deno.land/x/polkadot/types/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 interface Named {
   name: unknown;

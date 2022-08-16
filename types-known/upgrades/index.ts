@@ -1,17 +1,13 @@
 // Copyright 2017-2022 @polkadot/types-known authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ChainUpgrades } from 'https://deno.land/x/polkadot@0.2.0/types/types/index.ts';
-import type { ChainUpgradesRaw } from './types.ts';
+import type { ChainUpgrades } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { ChainUpgradesGenerated } from './types.ts';
 
-import { selectableNetworks } from 'https://deno.land/x/polkadot@0.2.0/networks/mod.ts';
-import { BN, hexToU8a, stringify } from 'https://deno.land/x/polkadot@0.2.0/util/mod.ts';
+import { selectableNetworks } from 'https://deno.land/x/polkadot/networks/mod.ts';
+import { BN, hexToU8a, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
 
-import kusama from './kusama.ts';
-import polkadot from './polkadot.ts';
-import westend from './westend.ts';
-
-const allKnown = { kusama, polkadot, westend };
+import * as allKnown from './e2e/index.ts';
 
 // testnets are not available in the networks map
 const NET_EXTRA: Record<string, { genesisHash: string[] }> = {
@@ -21,7 +17,7 @@ const NET_EXTRA: Record<string, { genesisHash: string[] }> = {
 };
 
 /** @internal */
-function checkOrder (network: string, versions: ChainUpgradesRaw): [number, number][] {
+function checkOrder (network: string, versions: ChainUpgradesGenerated): ChainUpgradesGenerated {
   const ooo = versions.filter((curr, index): boolean => {
     const prev = versions[index - 1];
 
@@ -38,7 +34,7 @@ function checkOrder (network: string, versions: ChainUpgradesRaw): [number, numb
 }
 
 /** @internal */
-function mapRaw ([network, versions]: [string, ChainUpgradesRaw]): ChainUpgrades {
+function mapRaw ([network, versions]: [string, ChainUpgradesGenerated]): ChainUpgrades {
   const chain = selectableNetworks.find((n) => n.network === network) || NET_EXTRA[network];
 
   if (!chain) {
@@ -48,7 +44,8 @@ function mapRaw ([network, versions]: [string, ChainUpgradesRaw]): ChainUpgrades
   return {
     genesisHash: hexToU8a(chain.genesisHash[0]),
     network,
-    versions: checkOrder(network, versions).map(([blockNumber, specVersion]) => ({
+    versions: checkOrder(network, versions).map(([blockNumber, specVersion, apis]) => ({
+      apis,
       blockNumber: new BN(blockNumber),
       specVersion: new BN(specVersion)
     }))
@@ -56,6 +53,6 @@ function mapRaw ([network, versions]: [string, ChainUpgradesRaw]): ChainUpgrades
 }
 
 // Type overrides for specific spec types & versions as given in runtimeVersion
-const upgrades = Object.entries(allKnown).map(mapRaw);
+const upgrades = Object.entries<ChainUpgradesGenerated>(allKnown).map(mapRaw);
 
 export default upgrades;
