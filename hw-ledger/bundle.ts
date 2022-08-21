@@ -1,11 +1,14 @@
 // Copyright 2017-2022 @polkadot/hw-ledger authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ResponseBase, SubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.34.0';
+import type { SubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.35.4';
+import type { ResponseBase } from 'https://esm.sh/@zondax/ledger-substrate@0.35.4/dist/common.js';
 import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerTypes, LedgerVersion } from './types.ts';
 
-import { transports } from 'https://deno.land/x/polkadot@0.2.1/hw-ledger-transports/mod.ts';
-import { u8aToBuffer } from 'https://deno.land/x/polkadot@0.2.1/util/mod.ts';
+import { newSubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.35.4';
+
+import { transports } from 'https://deno.land/x/polkadot/hw-ledger-transports/mod.ts';
+import { u8aToBuffer } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { LEDGER_DEFAULT_ACCOUNT, LEDGER_DEFAULT_CHANGE, LEDGER_DEFAULT_INDEX, LEDGER_SUCCESS_CODE } from './constants.ts';
 import { ledgerApps } from './defaults.ts';
@@ -80,7 +83,7 @@ export class Ledger {
 
       const transport = await def.create();
 
-      this.#app = ledgerApps[this.#chain](transport);
+      this.#app = newSubstrateApp(transport, ledgerApps[this.#chain]);
     }
 
     return this.#app;
