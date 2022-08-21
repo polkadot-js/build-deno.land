@@ -3,17 +3,17 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts';
+import 'https://deno.land/x/polkadot/types/lookup.ts';
 
-import type { Data } from 'https://deno.land/x/polkadot@0.2.1/types/mod.ts';
-import type { BTreeMap, Bytes, Compact, Enum, Null, Option, Result, Set, Struct, Text, U8aFixed, Vec, WrapperKeepOpaque, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.1/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.1/types-codec/types/index.ts';
-import type { Vote } from 'https://deno.land/x/polkadot@0.2.1/types/interfaces/elections/index.ts';
-import type { OpaqueMultiaddr, OpaquePeerId } from 'https://deno.land/x/polkadot@0.2.1/types/interfaces/imOnline/index.ts';
-import type { AccountId32, Call, H256, MultiAddress, PerU16, Perbill, Percent, Perquintill } from 'https://deno.land/x/polkadot@0.2.1/types/interfaces/runtime/index.ts';
-import type { Event } from 'https://deno.land/x/polkadot@0.2.1/types/interfaces/system/index.ts';
+import type { Data } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { BTreeMap, Bytes, Compact, Enum, Null, Option, Result, Set, Struct, Text, U8aFixed, Vec, WrapperKeepOpaque, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Vote } from 'https://deno.land/x/polkadot/types/interfaces/elections/index.ts';
+import type { OpaqueMultiaddr, OpaquePeerId } from 'https://deno.land/x/polkadot/types/interfaces/imOnline/index.ts';
+import type { AccountId32, Call, H256, MultiAddress, PerU16, Perbill, Percent, Perquintill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { Event } from 'https://deno.land/x/polkadot/types/interfaces/system/index.ts';
 
-declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
+declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
   /** @name FrameSystemAccountInfo (3) */
   interface FrameSystemAccountInfo extends Struct {
     readonly nonce: u32;
@@ -1413,10 +1413,6 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
       readonly collection: u32;
       readonly maxSupply: u32;
     } & Struct;
-    readonly isNextCollectionIdIncremented: boolean;
-    readonly asNextCollectionIdIncremented: {
-      readonly nextId: u32;
-    } & Struct;
     readonly isItemPriceSet: boolean;
     readonly asItemPriceSet: {
       readonly collection: u32;
@@ -1437,7 +1433,7 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
       readonly seller: AccountId32;
       readonly buyer: AccountId32;
     } & Struct;
-    readonly type: 'Created' | 'ForceCreated' | 'Destroyed' | 'Issued' | 'Transferred' | 'Burned' | 'Frozen' | 'Thawed' | 'CollectionFrozen' | 'CollectionThawed' | 'OwnerChanged' | 'TeamChanged' | 'ApprovedTransfer' | 'ApprovalCancelled' | 'ItemStatusChanged' | 'CollectionMetadataSet' | 'CollectionMetadataCleared' | 'MetadataSet' | 'MetadataCleared' | 'Redeposited' | 'AttributeSet' | 'AttributeCleared' | 'OwnershipAcceptanceChanged' | 'CollectionMaxSupplySet' | 'NextCollectionIdIncremented' | 'ItemPriceSet' | 'ItemPriceRemoved' | 'ItemBought';
+    readonly type: 'Created' | 'ForceCreated' | 'Destroyed' | 'Issued' | 'Transferred' | 'Burned' | 'Frozen' | 'Thawed' | 'CollectionFrozen' | 'CollectionThawed' | 'OwnerChanged' | 'TeamChanged' | 'ApprovedTransfer' | 'ApprovalCancelled' | 'ItemStatusChanged' | 'CollectionMetadataSet' | 'CollectionMetadataCleared' | 'MetadataSet' | 'MetadataCleared' | 'Redeposited' | 'AttributeSet' | 'AttributeCleared' | 'OwnershipAcceptanceChanged' | 'CollectionMaxSupplySet' | 'ItemPriceSet' | 'ItemPriceRemoved' | 'ItemBought';
   }
 
   /** @name PalletTransactionStorageEvent (101) */
@@ -2104,7 +2100,7 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
     } & Struct;
     readonly isTransfer: boolean;
     readonly asTransfer: {
-      readonly new_: AccountId32;
+      readonly new_: MultiAddress;
       readonly index: u32;
     } & Struct;
     readonly isFree: boolean;
@@ -2113,7 +2109,7 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
     } & Struct;
     readonly isForceTransfer: boolean;
     readonly asForceTransfer: {
-      readonly new_: AccountId32;
+      readonly new_: MultiAddress;
       readonly index: u32;
       readonly freeze: bool;
     } & Struct;
@@ -2124,7 +2120,7 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
     readonly type: 'Claim' | 'Transfer' | 'Free' | 'ForceTransfer' | 'Freeze';
   }
 
-  /** @name PalletBalancesCall (172) */
+  /** @name PalletBalancesCall (174) */
   interface PalletBalancesCall extends Enum {
     readonly isTransfer: boolean;
     readonly asTransfer: {
@@ -2465,7 +2461,7 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
     } & Struct;
     readonly isDelegate: boolean;
     readonly asDelegate: {
-      readonly to: AccountId32;
+      readonly to: MultiAddress;
       readonly conviction: PalletDemocracyConviction;
       readonly balance: u128;
     } & Struct;
@@ -2494,7 +2490,7 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
     } & Struct;
     readonly isUnlock: boolean;
     readonly asUnlock: {
-      readonly target: AccountId32;
+      readonly target: MultiAddress;
     } & Struct;
     readonly isRemoveVote: boolean;
     readonly asRemoveVote: {
@@ -2502,7 +2498,7 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
     } & Struct;
     readonly isRemoveOtherVote: boolean;
     readonly asRemoveOtherVote: {
-      readonly target: AccountId32;
+      readonly target: MultiAddress;
       readonly index: u32;
     } & Struct;
     readonly isEnactProposal: boolean;
@@ -2616,16 +2612,16 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
   interface PalletMembershipCall extends Enum {
     readonly isAddMember: boolean;
     readonly asAddMember: {
-      readonly who: AccountId32;
+      readonly who: MultiAddress;
     } & Struct;
     readonly isRemoveMember: boolean;
     readonly asRemoveMember: {
-      readonly who: AccountId32;
+      readonly who: MultiAddress;
     } & Struct;
     readonly isSwapMember: boolean;
     readonly asSwapMember: {
-      readonly remove: AccountId32;
-      readonly add: AccountId32;
+      readonly remove: MultiAddress;
+      readonly add: MultiAddress;
     } & Struct;
     readonly isResetMembers: boolean;
     readonly asResetMembers: {
@@ -2633,11 +2629,11 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
     } & Struct;
     readonly isChangeKey: boolean;
     readonly asChangeKey: {
-      readonly new_: AccountId32;
+      readonly new_: MultiAddress;
     } & Struct;
     readonly isSetPrime: boolean;
     readonly asSetPrime: {
-      readonly who: AccountId32;
+      readonly who: MultiAddress;
     } & Struct;
     readonly isClearPrime: boolean;
     readonly type: 'AddMember' | 'RemoveMember' | 'SwapMember' | 'ResetMembers' | 'ChangeKey' | 'SetPrime' | 'ClearPrime';
@@ -2842,7 +2838,7 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
   interface PalletIdentityCall extends Enum {
     readonly isAddRegistrar: boolean;
     readonly asAddRegistrar: {
-      readonly account: AccountId32;
+      readonly account: MultiAddress;
     } & Struct;
     readonly isSetIdentity: boolean;
     readonly asSetIdentity: {
@@ -2870,7 +2866,7 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
     readonly isSetAccountId: boolean;
     readonly asSetAccountId: {
       readonly index: Compact<u32>;
-      readonly new_: AccountId32;
+      readonly new_: MultiAddress;
     } & Struct;
     readonly isSetFields: boolean;
     readonly asSetFields: {
@@ -2968,7 +2964,7 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
     } & Struct;
     readonly isVouch: boolean;
     readonly asVouch: {
-      readonly who: AccountId32;
+      readonly who: MultiAddress;
       readonly value: u128;
       readonly tip: u128;
     } & Struct;
@@ -2988,19 +2984,19 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
     readonly isPayout: boolean;
     readonly isFound: boolean;
     readonly asFound: {
-      readonly founder: AccountId32;
+      readonly founder: MultiAddress;
       readonly maxMembers: u32;
       readonly rules: Bytes;
     } & Struct;
     readonly isUnfound: boolean;
     readonly isJudgeSuspendedMember: boolean;
     readonly asJudgeSuspendedMember: {
-      readonly who: AccountId32;
+      readonly who: MultiAddress;
       readonly forgive: bool;
     } & Struct;
     readonly isJudgeSuspendedCandidate: boolean;
     readonly asJudgeSuspendedCandidate: {
-      readonly who: AccountId32;
+      readonly who: MultiAddress;
       readonly judgement: PalletSocietyJudgement;
     } & Struct;
     readonly isSetMaxMembers: boolean;
@@ -3022,13 +3018,13 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
   interface PalletRecoveryCall extends Enum {
     readonly isAsRecovered: boolean;
     readonly asAsRecovered: {
-      readonly account: AccountId32;
+      readonly account: MultiAddress;
       readonly call: Call;
     } & Struct;
     readonly isSetRecovered: boolean;
     readonly asSetRecovered: {
-      readonly lost: AccountId32;
-      readonly rescuer: AccountId32;
+      readonly lost: MultiAddress;
+      readonly rescuer: MultiAddress;
     } & Struct;
     readonly isCreateRecovery: boolean;
     readonly asCreateRecovery: {
@@ -3038,25 +3034,25 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
     } & Struct;
     readonly isInitiateRecovery: boolean;
     readonly asInitiateRecovery: {
-      readonly account: AccountId32;
+      readonly account: MultiAddress;
     } & Struct;
     readonly isVouchRecovery: boolean;
     readonly asVouchRecovery: {
-      readonly lost: AccountId32;
-      readonly rescuer: AccountId32;
+      readonly lost: MultiAddress;
+      readonly rescuer: MultiAddress;
     } & Struct;
     readonly isClaimRecovery: boolean;
     readonly asClaimRecovery: {
-      readonly account: AccountId32;
+      readonly account: MultiAddress;
     } & Struct;
     readonly isCloseRecovery: boolean;
     readonly asCloseRecovery: {
-      readonly rescuer: AccountId32;
+      readonly rescuer: MultiAddress;
     } & Struct;
     readonly isRemoveRecovery: boolean;
     readonly isCancelRecovered: boolean;
     readonly asCancelRecovered: {
-      readonly account: AccountId32;
+      readonly account: MultiAddress;
     } & Struct;
     readonly type: 'AsRecovered' | 'SetRecovered' | 'CreateRecovery' | 'InitiateRecovery' | 'VouchRecovery' | 'ClaimRecovery' | 'CloseRecovery' | 'RemoveRecovery' | 'CancelRecovered';
   }
@@ -3172,19 +3168,19 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
   interface PalletProxyCall extends Enum {
     readonly isProxy: boolean;
     readonly asProxy: {
-      readonly real: AccountId32;
+      readonly real: MultiAddress;
       readonly forceProxyType: Option<KitchensinkRuntimeProxyType>;
       readonly call: Call;
     } & Struct;
     readonly isAddProxy: boolean;
     readonly asAddProxy: {
-      readonly delegate: AccountId32;
+      readonly delegate: MultiAddress;
       readonly proxyType: KitchensinkRuntimeProxyType;
       readonly delay: u32;
     } & Struct;
     readonly isRemoveProxy: boolean;
     readonly asRemoveProxy: {
-      readonly delegate: AccountId32;
+      readonly delegate: MultiAddress;
       readonly proxyType: KitchensinkRuntimeProxyType;
       readonly delay: u32;
     } & Struct;
@@ -3197,7 +3193,7 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
     } & Struct;
     readonly isKillAnonymous: boolean;
     readonly asKillAnonymous: {
-      readonly spawner: AccountId32;
+      readonly spawner: MultiAddress;
       readonly proxyType: KitchensinkRuntimeProxyType;
       readonly index: u16;
       readonly height: Compact<u32>;
@@ -3205,23 +3201,23 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
     } & Struct;
     readonly isAnnounce: boolean;
     readonly asAnnounce: {
-      readonly real: AccountId32;
+      readonly real: MultiAddress;
       readonly callHash: H256;
     } & Struct;
     readonly isRemoveAnnouncement: boolean;
     readonly asRemoveAnnouncement: {
-      readonly real: AccountId32;
+      readonly real: MultiAddress;
       readonly callHash: H256;
     } & Struct;
     readonly isRejectAnnouncement: boolean;
     readonly asRejectAnnouncement: {
-      readonly delegate: AccountId32;
+      readonly delegate: MultiAddress;
       readonly callHash: H256;
     } & Struct;
     readonly isProxyAnnounced: boolean;
     readonly asProxyAnnounced: {
-      readonly delegate: AccountId32;
-      readonly real: AccountId32;
+      readonly delegate: MultiAddress;
+      readonly real: MultiAddress;
       readonly forceProxyType: Option<KitchensinkRuntimeProxyType>;
       readonly call: Call;
     } & Struct;
@@ -3313,7 +3309,7 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
     readonly isReportAwesome: boolean;
     readonly asReportAwesome: {
       readonly reason: Bytes;
-      readonly who: AccountId32;
+      readonly who: MultiAddress;
     } & Struct;
     readonly isRetractTip: boolean;
     readonly asRetractTip: {
@@ -3322,7 +3318,7 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
     readonly isTipNew: boolean;
     readonly asTipNew: {
       readonly reason: Bytes;
-      readonly who: AccountId32;
+      readonly who: MultiAddress;
       readonly tipValue: Compact<u128>;
     } & Struct;
     readonly isTip: boolean;
@@ -3547,14 +3543,15 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
   interface PalletUniquesCall extends Enum {
     readonly isCreate: boolean;
     readonly asCreate: {
+      readonly collection: u32;
       readonly admin: MultiAddress;
     } & Struct;
     readonly isForceCreate: boolean;
     readonly asForceCreate: {
+      readonly collection: u32;
       readonly owner: MultiAddress;
       readonly freeHolding: bool;
     } & Struct;
-    readonly isTryIncrementId: boolean;
     readonly isDestroy: boolean;
     readonly asDestroy: {
       readonly collection: u32;
@@ -3692,7 +3689,7 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
       readonly item: u32;
       readonly bidPrice: u128;
     } & Struct;
-    readonly type: 'Create' | 'ForceCreate' | 'TryIncrementId' | 'Destroy' | 'Mint' | 'Burn' | 'Transfer' | 'Redeposit' | 'Freeze' | 'Thaw' | 'FreezeCollection' | 'ThawCollection' | 'TransferOwnership' | 'SetTeam' | 'ApproveTransfer' | 'CancelApproval' | 'ForceItemStatus' | 'SetAttribute' | 'ClearAttribute' | 'SetMetadata' | 'ClearMetadata' | 'SetCollectionMetadata' | 'ClearCollectionMetadata' | 'SetAcceptOwnership' | 'SetCollectionMaxSupply' | 'SetPrice' | 'BuyItem';
+    readonly type: 'Create' | 'ForceCreate' | 'Destroy' | 'Mint' | 'Burn' | 'Transfer' | 'Redeposit' | 'Freeze' | 'Thaw' | 'FreezeCollection' | 'ThawCollection' | 'TransferOwnership' | 'SetTeam' | 'ApproveTransfer' | 'CancelApproval' | 'ForceItemStatus' | 'SetAttribute' | 'ClearAttribute' | 'SetMetadata' | 'ClearMetadata' | 'SetCollectionMetadata' | 'ClearCollectionMetadata' | 'SetAcceptOwnership' | 'SetCollectionMaxSupply' | 'SetPrice' | 'BuyItem';
   }
 
   /** @name PalletUniquesDestroyWitness (339) */
@@ -3730,11 +3727,11 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
   interface PalletBagsListCall extends Enum {
     readonly isRebag: boolean;
     readonly asRebag: {
-      readonly dislocated: AccountId32;
+      readonly dislocated: MultiAddress;
     } & Struct;
     readonly isPutInFrontOf: boolean;
     readonly asPutInFrontOf: {
-      readonly lighter: AccountId32;
+      readonly lighter: MultiAddress;
     } & Struct;
     readonly type: 'Rebag' | 'PutInFrontOf';
   }
@@ -3941,7 +3938,7 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
     readonly isDelegate: boolean;
     readonly asDelegate: {
       readonly class: u16;
-      readonly to: AccountId32;
+      readonly to: MultiAddress;
       readonly conviction: PalletConvictionVotingConviction;
       readonly balance: u128;
     } & Struct;
@@ -3952,7 +3949,7 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
     readonly isUnlock: boolean;
     readonly asUnlock: {
       readonly class: u16;
-      readonly target: AccountId32;
+      readonly target: MultiAddress;
     } & Struct;
     readonly isRemoveVote: boolean;
     readonly asRemoveVote: {
@@ -3961,7 +3958,7 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
     } & Struct;
     readonly isRemoveOtherVote: boolean;
     readonly asRemoveOtherVote: {
-      readonly target: AccountId32;
+      readonly target: MultiAddress;
       readonly class: u16;
       readonly index: u32;
     } & Struct;
@@ -4099,7 +4096,7 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
     readonly isClaimPayout: boolean;
     readonly isUnbond: boolean;
     readonly asUnbond: {
-      readonly memberAccount: AccountId32;
+      readonly memberAccount: MultiAddress;
       readonly unbondingPoints: Compact<u128>;
     } & Struct;
     readonly isPoolWithdrawUnbonded: boolean;
@@ -4109,15 +4106,15 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
     } & Struct;
     readonly isWithdrawUnbonded: boolean;
     readonly asWithdrawUnbonded: {
-      readonly memberAccount: AccountId32;
+      readonly memberAccount: MultiAddress;
       readonly numSlashingSpans: u32;
     } & Struct;
     readonly isCreate: boolean;
     readonly asCreate: {
       readonly amount: Compact<u128>;
-      readonly root: AccountId32;
-      readonly nominator: AccountId32;
-      readonly stateToggler: AccountId32;
+      readonly root: MultiAddress;
+      readonly nominator: MultiAddress;
+      readonly stateToggler: MultiAddress;
     } & Struct;
     readonly isNominate: boolean;
     readonly asNominate: {
@@ -4195,19 +4192,19 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
   interface PalletRankedCollectiveCall extends Enum {
     readonly isAddMember: boolean;
     readonly asAddMember: {
-      readonly who: AccountId32;
+      readonly who: MultiAddress;
     } & Struct;
     readonly isPromoteMember: boolean;
     readonly asPromoteMember: {
-      readonly who: AccountId32;
+      readonly who: MultiAddress;
     } & Struct;
     readonly isDemoteMember: boolean;
     readonly asDemoteMember: {
-      readonly who: AccountId32;
+      readonly who: MultiAddress;
     } & Struct;
     readonly isRemoveMember: boolean;
     readonly asRemoveMember: {
-      readonly who: AccountId32;
+      readonly who: MultiAddress;
       readonly minRank: u16;
     } & Struct;
     readonly isVote: boolean;
@@ -5468,11 +5465,10 @@ declare module 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts' {
     readonly isMaxSupplyReached: boolean;
     readonly isMaxSupplyAlreadySet: boolean;
     readonly isMaxSupplyTooSmall: boolean;
-    readonly isNextIdNotUsed: boolean;
     readonly isUnknownItem: boolean;
     readonly isNotForSale: boolean;
     readonly isBidTooLow: boolean;
-    readonly type: 'NoPermission' | 'UnknownCollection' | 'AlreadyExists' | 'WrongOwner' | 'BadWitness' | 'InUse' | 'Frozen' | 'WrongDelegate' | 'NoDelegate' | 'Unapproved' | 'Unaccepted' | 'Locked' | 'MaxSupplyReached' | 'MaxSupplyAlreadySet' | 'MaxSupplyTooSmall' | 'NextIdNotUsed' | 'UnknownItem' | 'NotForSale' | 'BidTooLow';
+    readonly type: 'NoPermission' | 'UnknownCollection' | 'AlreadyExists' | 'WrongOwner' | 'BadWitness' | 'InUse' | 'Frozen' | 'WrongDelegate' | 'NoDelegate' | 'Unapproved' | 'Unaccepted' | 'Locked' | 'MaxSupplyReached' | 'MaxSupplyAlreadySet' | 'MaxSupplyTooSmall' | 'UnknownItem' | 'NotForSale' | 'BidTooLow';
   }
 
   /** @name PalletTransactionStorageTransactionInfo (594) */

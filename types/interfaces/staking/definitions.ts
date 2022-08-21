@@ -6,7 +6,7 @@
 
 import type { Definitions } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.1/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const deprecated = {
   Points: 'u32',
@@ -256,6 +256,7 @@ export default {
       unlocking: 'Vec<UnlockChunk>'
     },
     StakingLedgerTo240: {
+      _fallback: 'StakingLedgerTo223',
       stash: 'AccountId',
       total: 'Compact<Balance>',
       active: 'Compact<Balance>',

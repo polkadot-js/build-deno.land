@@ -1,15 +1,15 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyJson, AnyTuple, Codec } from 'https://deno.land/x/polkadot@0.2.1/types-codec/types/index.ts';
+import type { AnyJson, AnyTuple, Codec } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { StorageEntryMetadataLatest, StorageEntryTypeLatest, StorageHasher } from '../interfaces/metadata/index.ts';
 import type { AllHashers } from '../interfaces/metadata/definitions.ts';
 import type { SiLookupTypeId } from '../interfaces/scaleInfo/index.ts';
 import type { InterfaceTypes, IStorageKey, Registry } from '../types/index.ts';
 import type { StorageEntry } from './types.ts';
 
-import { Bytes } from 'https://deno.land/x/polkadot@0.2.1/types-codec/mod.ts';
-import { isFunction, isString, isU8a } from 'https://deno.land/x/polkadot@0.2.1/util/mod.ts';
+import { Bytes } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { isFunction, isString, isU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { getSiName } from '../metadata/util/index.ts';
 

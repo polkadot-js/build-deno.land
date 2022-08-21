@@ -2,10 +2,10 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { Option } from 'https://deno.land/x/polkadot@0.2.1/types/mod.ts';
-import type { H256 } from 'https://deno.land/x/polkadot@0.2.1/types/interfaces/index.ts';
-import type { PalletDemocracyVoteThreshold } from 'https://deno.land/x/polkadot@0.2.1/types/lookup.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.1/types/types/index.ts';
+import type { Option } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { H256 } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletDemocracyVoteThreshold } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DeriveApi, DeriveProposalExternal } from '../types.ts';
 
 import { map, of, switchMap } from 'https://esm.sh/rxjs@7.5.6';

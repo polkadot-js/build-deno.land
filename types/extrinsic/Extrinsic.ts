@@ -1,8 +1,8 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyJson, AnyTuple, AnyU8a, ArgsDef, IMethod, Inspect } from 'https://deno.land/x/polkadot@0.2.1/types-codec/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.1/util/types.ts';
+import type { AnyJson, AnyTuple, AnyU8a, ArgsDef, IMethod, Inspect } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { EcdsaSignature, Ed25519Signature, ExtrinsicUnknown, ExtrinsicV4, Sr25519Signature } from '../interfaces/extrinsics/index.ts';
 import type { FunctionMetadataLatest } from '../interfaces/metadata/index.ts';
 import type { Address, Call, CodecHash } from '../interfaces/runtime/index.ts';
@@ -10,9 +10,10 @@ import type { CallBase, ExtrinsicPayloadValue, ICompact, IExtrinsic, IKeyringPai
 import type { GenericExtrinsicEra } from './ExtrinsicEra.ts';
 import type { ExtrinsicValueV4 } from './v4/Extrinsic.ts';
 
-import { AbstractBase } from 'https://deno.land/x/polkadot@0.2.1/types-codec/mod.ts';
-import { compactAddLength, compactFromU8a, compactToU8a, isHex, isU8a, objectProperty, objectSpread, u8aConcat, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.1/util/mod.ts';
+import { AbstractBase } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { compactAddLength, compactFromU8a, compactToU8a, isHex, isU8a, objectProperty, objectSpread, u8aConcat, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
+import { EXTRINSIC_VERSION as LATEST_EXTRINSIC_VERSION } from './v4/Extrinsic.ts';
 import { BIT_SIGNED, BIT_UNSIGNED, DEFAULT_VERSION, UNMASK_VERSION } from './constants.ts';
 
 interface CreateOptions {
@@ -33,7 +34,7 @@ const VERSIONS = [
   'ExtrinsicV4'
 ];
 
-export { EXTRINSIC_VERSION as LATEST_EXTRINSIC_VERSION } from './v4/Extrinsic.ts';
+export { LATEST_EXTRINSIC_VERSION };
 
 /** @internal */
 function newFromValue (registry: Registry, value: any, version: number): ExtrinsicVx | ExtrinsicUnknown {
@@ -234,6 +235,8 @@ abstract class ExtrinsicBase<A extends AnyTuple> extends AbstractBase<ExtrinsicV
  */
 export class GenericExtrinsic<A extends AnyTuple = AnyTuple> extends ExtrinsicBase<A> implements IExtrinsic<A> {
   #hashCache?: CodecHash;
+
+  static LATEST_EXTRINSIC_VERSION = LATEST_EXTRINSIC_VERSION;
 
   constructor (registry: Registry, value?: GenericExtrinsic | ExtrinsicValue | AnyU8a | Call, { version }: CreateOptions = {}) {
     super(registry, decodeExtrinsic(registry, value, version));
