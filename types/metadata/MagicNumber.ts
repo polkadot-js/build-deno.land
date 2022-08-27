@@ -1,9 +1,9 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyNumber, Registry } from 'https://deno.land/x/polkadot@0.2.2/types-codec/types/index.ts';
+import type { AnyNumber, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 
-import { U32 } from 'https://deno.land/x/polkadot@0.2.2/types-codec/mod.ts';
+import { U32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 
 export const MAGIC_NUMBER = 0x6174656d; // `meta`, reversed for Little Endian encoding
 

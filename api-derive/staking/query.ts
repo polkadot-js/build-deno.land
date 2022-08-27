@@ -2,9 +2,9 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { Option } from 'https://deno.land/x/polkadot@0.2.2/types/mod.ts';
-import type { AccountId, EraIndex } from 'https://deno.land/x/polkadot@0.2.2/types/interfaces/index.ts';
-import type { PalletStakingExposure, PalletStakingNominations, PalletStakingRewardDestination, PalletStakingStakingLedger, PalletStakingValidatorPrefs } from 'https://deno.land/x/polkadot@0.2.2/types/lookup.ts';
+import type { Option } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, EraIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletStakingExposure, PalletStakingNominations, PalletStakingRewardDestination, PalletStakingStakingLedger, PalletStakingValidatorPrefs } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { DeriveApi, DeriveStakingQuery, StakingQueryFlags } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.6';
@@ -99,14 +99,14 @@ export const query = firstMemo(
 
 export function queryMulti (instanceId: string, api: DeriveApi): (accountIds: (Uint8Array | string)[], flags: StakingQueryFlags) => Observable<DeriveStakingQuery[]> {
   return memo(instanceId, (accountIds: (Uint8Array | string)[], flags: StakingQueryFlags): Observable<DeriveStakingQuery[]> =>
-    accountIds.length
-      ? api.derive.session.indexes().pipe(
-        switchMap(({ activeEra }): Observable<DeriveStakingQuery[]> => {
-          const stashIds = accountIds.map((accountId) => api.registry.createType('AccountId', accountId));
+    api.derive.session.indexes().pipe(
+      switchMap(({ activeEra }): Observable<DeriveStakingQuery[]> => {
+        const stashIds = accountIds.map((a) => api.registry.createType('AccountId', a));
 
-          return getBatch(api, activeEra, stashIds, flags);
-        })
-      )
-      : of([])
+        return stashIds.length
+          ? getBatch(api, activeEra, stashIds, flags)
+          : of([]);
+      })
+    )
   );
 }

@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyFunction } from 'https://deno.land/x/polkadot@0.2.2/types/types/index.ts';
+import type { AnyFunction } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 import * as accounts from './accounts/index.ts';
 import * as alliance from './alliance/index.ts';

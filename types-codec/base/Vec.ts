@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.2/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { Codec, CodecClass, Registry } from '../types/index.ts';
 
-import { compactFromU8aLim, isU8a, logger, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.2/util/mod.ts';
+import { compactFromU8aLim, isU8a, logger, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { AbstractArray } from '../abstract/Array.ts';
 import { decodeU8aVec, typeToConstructor } from '../utils/index.ts';
@@ -42,6 +42,8 @@ export function decodeVec<T extends Codec> (registry: Registry, result: T[], val
     const count = result.length;
 
     for (let i = 0; i < count; i++) {
+      // 26/08/2022 this is actually a false positive - after recent eslint upgdates
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const entry = value[i];
 
       try {

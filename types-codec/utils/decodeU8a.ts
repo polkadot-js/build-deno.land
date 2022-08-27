@@ -3,7 +3,7 @@
 
 import type { Codec, CodecClass, Registry } from '../types/index.ts';
 
-import { u8aToHex } from 'https://deno.land/x/polkadot@0.2.2/util/mod.ts';
+import { u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 /** @internal */
 function formatFailure (registry: Registry, result: unknown[], { message }: Error, u8a: Uint8Array, i: number, count: number, Type: CodecClass, key?: string): string {

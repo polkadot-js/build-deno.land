@@ -1,18 +1,20 @@
 // Copyright 2017-2022 @polkadot/types-create authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.2/types-codec/types/index.ts';
-import type { TypeDef } from 'https://deno.land/x/polkadot@0.2.2/types-create/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 
-import { isNumber, isUndefined, objectSpread, stringify } from 'https://deno.land/x/polkadot@0.2.2/util/mod.ts';
+import { isNumber, isUndefined, objectSpread, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { TypeDefInfo } from '../types/index.ts';
 
-const stringIdentity = <T extends { toString: () => string }> (value: T): string => value.toString();
+type ToString = { toString: () => string };
+
+const stringIdentity = <T extends ToString> (value: T): string => value.toString();
 
 const INFO_WRAP = ['BTreeMap', 'BTreeSet', 'Compact', 'HashMap', 'Option', 'Result', 'Vec'];
 
-export function paramsNotation <T> (outer: string, inner?: T | T[], transform: (_: T) => string = stringIdentity): string {
+export function paramsNotation <T extends ToString> (outer: string, inner?: T | T[], transform: (_: T) => string = stringIdentity): string {
   return `${outer}${
     inner
       ? `<${(Array.isArray(inner) ? inner : [inner]).map(transform).join(', ')}>`
