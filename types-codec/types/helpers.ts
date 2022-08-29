@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { BN } from 'https://deno.land/x/polkadot@0.2.3/util/mod.ts';
 import type { Codec } from './codec.ts';
 
 export type AnyJson = string | number | boolean | null | undefined | AnyJson[] | { [index: string]: AnyJson };
