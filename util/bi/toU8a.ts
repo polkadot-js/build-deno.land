@@ -4,7 +4,7 @@
 import type { BN } from '../bn/bn.ts';
 import type { NumberOptions, ToBigInt, ToBn } from '../types.ts';
 
-import { BigInt } from 'https://deno.land/x/polkadot@0.2.3/x-bigint/mod.ts';
+import { BigInt } from 'https://deno.land/x/polkadot/x-bigint/mod.ts';
 
 import { _0n, _1n } from './consts.ts';
 import { nToBigInt } from './toBigInt.ts';
