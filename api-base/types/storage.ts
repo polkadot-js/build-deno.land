@@ -2,10 +2,10 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { StorageKey, u64 } from 'https://deno.land/x/polkadot/types/mod.ts';
-import type { Hash } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
-import type { StorageEntry } from 'https://deno.land/x/polkadot/types/primitive/types.ts';
-import type { AnyFunction, AnyTuple, Callback, Codec, IStorageKey } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { StorageKey, u64 } from 'https://deno.land/x/polkadot@0.2.4/types/mod.ts';
+import type { Hash } from 'https://deno.land/x/polkadot@0.2.4/types/interfaces/index.ts';
+import type { StorageEntry } from 'https://deno.land/x/polkadot@0.2.4/types/primitive/types.ts';
+import type { AnyFunction, AnyTuple, Callback, Codec, IStorageKey } from 'https://deno.land/x/polkadot@0.2.4/types/types/index.ts';
 import type { ApiTypes, DropLast, MethodResult, PaginationOptions, PromiseOrObs, ReturnCodec, UnsubscribePromise } from './base.ts';
 
 interface StorageEntryObservableMulti<R extends Codec = Codec> {

@@ -3,7 +3,7 @@
 
 import type { ExtDef, ExtInfo, ExtTypes } from './types.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.2.4/util/mod.ts';
 
 import { polkadot } from './polkadot.ts';
 import { shell } from './shell.ts';

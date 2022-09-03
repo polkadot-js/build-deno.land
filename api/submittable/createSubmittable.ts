@@ -1,8 +1,8 @@
 // Copyright 2017-2022 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Call, Extrinsic } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
-import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Call, Extrinsic } from 'https://deno.land/x/polkadot@0.2.4/types/interfaces/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.2.4/types-codec/types/index.ts';
 import type { ApiInterfaceRx, ApiTypes } from '../types/index.ts';
 import type { SubmittableExtrinsic } from './types.ts';
 

@@ -6,7 +6,7 @@ import type { DeriveApi, DeriveReferendumExt } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.6';
 
-import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.2.4/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 

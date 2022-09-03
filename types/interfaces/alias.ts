@@ -3,7 +3,7 @@
 
 import type { OverrideModuleType, Registry } from '../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.2.4/util/mod.ts';
 
 // type overrides for modules (where duplication between modules exist)
 const typesAlias: Record<string, OverrideModuleType> = {
