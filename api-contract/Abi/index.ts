@@ -1,14 +1,14 @@
 // Copyright 2017-2022 @polkadot/api-contract authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Bytes } from 'https://deno.land/x/polkadot@0.2.3/types/mod.ts';
-import type { ChainProperties, ContractConstructorSpecLatest, ContractEventSpecLatest, ContractMessageParamSpecLatest, ContractMessageSpecLatest, ContractMetadata, ContractMetadataLatest, ContractProjectInfo } from 'https://deno.land/x/polkadot@0.2.3/types/interfaces/index.ts';
-import type { Codec, Registry } from 'https://deno.land/x/polkadot@0.2.3/types/types/index.ts';
+import type { Bytes } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { ChainProperties, ContractConstructorSpecLatest, ContractEventSpecLatest, ContractMessageParamSpecLatest, ContractMessageSpecLatest, ContractMetadata, ContractMetadataLatest, ContractProjectInfo } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Codec, Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { AbiConstructor, AbiEvent, AbiMessage, AbiParam, DecodedEvent, DecodedMessage } from '../types.ts';
 
-import { TypeRegistry } from 'https://deno.land/x/polkadot@0.2.3/types/mod.ts';
-import { TypeDefInfo } from 'https://deno.land/x/polkadot@0.2.3/types-create/mod.ts';
-import { assertReturn, compactAddLength, compactStripLength, isNumber, isObject, isString, logger, stringCamelCase, stringify, u8aConcat, u8aToHex } from 'https://deno.land/x/polkadot@0.2.3/util/mod.ts';
+import { TypeRegistry } from 'https://deno.land/x/polkadot/types/mod.ts';
+import { TypeDefInfo } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { assertReturn, compactAddLength, compactStripLength, isNumber, isObject, isString, logger, stringCamelCase, stringify, u8aConcat, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { convertVersions, enumVersions } from './toLatest.ts';
 
@@ -27,12 +27,23 @@ function findMessage <T extends AbiMessage> (list: T[], messageOrId: T | string 
 }
 
 function getLatestMeta (registry: Registry, json: Record<string, unknown>): ContractMetadataLatest {
+  // this is for V1, V2, V3
   const vx = enumVersions.find((v) => isObject(json[v]));
-  const metadata = registry.createType('ContractMetadata',
+
+  // this was added in V4
+  const jsonVersion = json.version as string;
+
+  if (!vx && jsonVersion && !enumVersions.find((v) => v === `V${jsonVersion}`)) {
+    throw new Error(`Unable to handle version ${jsonVersion}`);
+  }
+
+  const metadata = registry.createType<ContractMetadata>('ContractMetadata',
     vx
       ? { [vx]: json[vx] }
-      : { V0: json }
-  ) as unknown as ContractMetadata;
+      : jsonVersion
+        ? { [`V${jsonVersion}`]: json }
+        : { V0: json }
+  );
   const converter = convertVersions.find(([v]) => metadata[`is${v}`]);
 
   if (!converter) {

@@ -3,14 +3,14 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.3/types/lookup.ts';
+import 'https://deno.land/x/polkadot/types/lookup.ts';
 
-import type { BitVec, Bytes, Compact, Enum, Null, Option, Result, Struct, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.3/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.3/types-codec/types/index.ts';
-import type { EthereumAddress } from 'https://deno.land/x/polkadot@0.2.3/types/interfaces/eth/index.ts';
-import type { AccountId32, H256, PerU16 } from 'https://deno.land/x/polkadot@0.2.3/types/interfaces/runtime/index.ts';
+import type { BitVec, Bytes, Compact, Enum, Null, Option, Result, Struct, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { EthereumAddress } from 'https://deno.land/x/polkadot/types/interfaces/eth/index.ts';
+import type { AccountId32, H256, PerU16 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
-declare module 'https://deno.land/x/polkadot@0.2.3/types/lookup.ts' {
+declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
   /** @name PolkadotRuntimeCommonClaimsPalletEvent (72) */
   interface PolkadotRuntimeCommonClaimsPalletEvent extends Enum {
     readonly isClaimed: boolean;

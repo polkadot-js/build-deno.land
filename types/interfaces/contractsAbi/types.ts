@@ -1,10 +1,10 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { BTreeMap, Bytes, Enum, Option, Raw, Struct, Text, U8aFixed, Vec, bool, u32, u64 } from 'https://deno.land/x/polkadot@0.2.3/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.3/types-codec/types/index.ts';
-import type { PortableType } from 'https://deno.land/x/polkadot@0.2.3/types/interfaces/metadata/index.ts';
-import type { Si0Type, SiLookupTypeId, SiPath } from 'https://deno.land/x/polkadot@0.2.3/types/interfaces/scaleInfo/index.ts';
+import type { BTreeMap, Bytes, Enum, Option, Raw, Struct, Text, U8aFixed, Vec, bool, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { PortableType } from 'https://deno.land/x/polkadot/types/interfaces/metadata/index.ts';
+import type { Si0Type, SiLookupTypeId, SiPath } from 'https://deno.land/x/polkadot/types/interfaces/scaleInfo/index.ts';
 
 /** @name ContractConstructorSpecLatest */
 export interface ContractConstructorSpecLatest extends ContractConstructorSpecV3 {}
@@ -73,6 +73,9 @@ export interface ContractContractSpecV3 extends Struct {
   readonly events: Vec<ContractEventSpecV2>;
   readonly docs: Vec<Text>;
 }
+
+/** @name ContractContractSpecV4 */
+export interface ContractContractSpecV4 extends ContractContractSpecV3 {}
 
 /** @name ContractCryptoHasher */
 export interface ContractCryptoHasher extends Enum {
@@ -240,14 +243,17 @@ export interface ContractMetadata extends Enum {
   readonly asV2: ContractMetadataV2;
   readonly isV3: boolean;
   readonly asV3: ContractMetadataV3;
-  readonly type: 'V0' | 'V1' | 'V2' | 'V3';
+  readonly isV4: boolean;
+  readonly asV4: ContractMetadataV4;
+  readonly type: 'V0' | 'V1' | 'V2' | 'V3' | 'V4';
 }
 
 /** @name ContractMetadataLatest */
-export interface ContractMetadataLatest extends ContractMetadataV3 {}
+export interface ContractMetadataLatest extends ContractMetadataV4 {}
 
 /** @name ContractMetadataV0 */
 export interface ContractMetadataV0 extends Struct {
+  readonly metadataVersion: Text;
   readonly types: Vec<Si0Type>;
   readonly spec: ContractContractSpecV0;
 }
@@ -266,6 +272,12 @@ export interface ContractMetadataV2 extends Struct {
 
 /** @name ContractMetadataV3 */
 export interface ContractMetadataV3 extends Struct {
+  readonly types: Vec<PortableType>;
+  readonly spec: ContractContractSpecV3;
+}
+
+/** @name ContractMetadataV4 */
+export interface ContractMetadataV4 extends Struct {
   readonly types: Vec<PortableType>;
   readonly spec: ContractContractSpecV3;
 }

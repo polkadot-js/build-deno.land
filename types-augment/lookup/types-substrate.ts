@@ -3,17 +3,17 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.3/types/lookup.ts';
+import 'https://deno.land/x/polkadot/types/lookup.ts';
 
-import type { Data } from 'https://deno.land/x/polkadot@0.2.3/types/mod.ts';
-import type { BTreeMap, Bytes, Compact, Enum, Null, Option, Result, Set, Struct, Text, U8aFixed, Vec, WrapperKeepOpaque, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.3/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.3/types-codec/types/index.ts';
-import type { Vote } from 'https://deno.land/x/polkadot@0.2.3/types/interfaces/elections/index.ts';
-import type { OpaqueMultiaddr, OpaquePeerId } from 'https://deno.land/x/polkadot@0.2.3/types/interfaces/imOnline/index.ts';
-import type { AccountId32, Call, H256, MultiAddress, PerU16, Perbill, Percent, Perquintill } from 'https://deno.land/x/polkadot@0.2.3/types/interfaces/runtime/index.ts';
-import type { Event } from 'https://deno.land/x/polkadot@0.2.3/types/interfaces/system/index.ts';
+import type { Data } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { BTreeMap, Bytes, Compact, Enum, Null, Option, Result, Set, Struct, Text, U8aFixed, Vec, WrapperKeepOpaque, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Vote } from 'https://deno.land/x/polkadot/types/interfaces/elections/index.ts';
+import type { OpaqueMultiaddr, OpaquePeerId } from 'https://deno.land/x/polkadot/types/interfaces/imOnline/index.ts';
+import type { AccountId32, Call, H256, MultiAddress, PerU16, Perbill, Percent, Perquintill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { Event } from 'https://deno.land/x/polkadot/types/interfaces/system/index.ts';
 
-declare module 'https://deno.land/x/polkadot@0.2.3/types/lookup.ts' {
+declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
   /** @name FrameSystemAccountInfo (3) */
   interface FrameSystemAccountInfo extends Struct {
     readonly nonce: u32;
@@ -1691,6 +1691,10 @@ declare module 'https://deno.land/x/polkadot@0.2.3/types/lookup.ts' {
     readonly asAllyElevated: {
       readonly ally: AccountId32;
     } & Struct;
+    readonly isMemberRetirementPeriodStarted: boolean;
+    readonly asMemberRetirementPeriodStarted: {
+      readonly member: AccountId32;
+    } & Struct;
     readonly isMemberRetired: boolean;
     readonly asMemberRetired: {
       readonly member: AccountId32;
@@ -1709,7 +1713,7 @@ declare module 'https://deno.land/x/polkadot@0.2.3/types/lookup.ts' {
     readonly asUnscrupulousItemRemoved: {
       readonly items: Vec<PalletAllianceUnscrupulousItem>;
     } & Struct;
-    readonly type: 'NewRuleSet' | 'Announced' | 'AnnouncementRemoved' | 'MembersInitialized' | 'NewAllyJoined' | 'AllyElevated' | 'MemberRetired' | 'MemberKicked' | 'UnscrupulousItemAdded' | 'UnscrupulousItemRemoved';
+    readonly type: 'NewRuleSet' | 'Announced' | 'AnnouncementRemoved' | 'MembersInitialized' | 'NewAllyJoined' | 'AllyElevated' | 'MemberRetirementPeriodStarted' | 'MemberRetired' | 'MemberKicked' | 'UnscrupulousItemAdded' | 'UnscrupulousItemRemoved';
   }
 
   /** @name PalletAllianceCid (118) */
@@ -4066,6 +4070,7 @@ declare module 'https://deno.land/x/polkadot@0.2.3/types/lookup.ts' {
     readonly asElevateAlly: {
       readonly ally: MultiAddress;
     } & Struct;
+    readonly isGiveRetirementNotice: boolean;
     readonly isRetire: boolean;
     readonly isKickMember: boolean;
     readonly asKickMember: {
@@ -4079,7 +4084,7 @@ declare module 'https://deno.land/x/polkadot@0.2.3/types/lookup.ts' {
     readonly asRemoveUnscrupulousItems: {
       readonly items: Vec<PalletAllianceUnscrupulousItem>;
     } & Struct;
-    readonly type: 'Propose' | 'Vote' | 'Veto' | 'Close' | 'InitMembers' | 'SetRule' | 'Announce' | 'RemoveAnnouncement' | 'JoinAlliance' | 'NominateAlly' | 'ElevateAlly' | 'Retire' | 'KickMember' | 'AddUnscrupulousItems' | 'RemoveUnscrupulousItems';
+    readonly type: 'Propose' | 'Vote' | 'Veto' | 'Close' | 'InitMembers' | 'SetRule' | 'Announce' | 'RemoveAnnouncement' | 'JoinAlliance' | 'NominateAlly' | 'ElevateAlly' | 'GiveRetirementNotice' | 'Retire' | 'KickMember' | 'AddUnscrupulousItems' | 'RemoveUnscrupulousItems';
   }
 
   /** @name PalletNominationPoolsCall (368) */
@@ -5698,7 +5703,8 @@ declare module 'https://deno.land/x/polkadot@0.2.3/types/lookup.ts' {
     readonly isFounder: boolean;
     readonly isFellow: boolean;
     readonly isAlly: boolean;
-    readonly type: 'Founder' | 'Fellow' | 'Ally';
+    readonly isRetiring: boolean;
+    readonly type: 'Founder' | 'Fellow' | 'Ally' | 'Retiring';
   }
 
   /** @name PalletAllianceError (639) */
@@ -5709,7 +5715,6 @@ declare module 'https://deno.land/x/polkadot@0.2.3/types/lookup.ts' {
     readonly isNotMember: boolean;
     readonly isNotAlly: boolean;
     readonly isNotFounder: boolean;
-    readonly isUpForKicking: boolean;
     readonly isNoVotingRights: boolean;
     readonly isAlreadyElevated: boolean;
     readonly isAlreadyUnscrupulous: boolean;
@@ -5725,7 +5730,10 @@ declare module 'https://deno.land/x/polkadot@0.2.3/types/lookup.ts' {
     readonly isMissingAnnouncement: boolean;
     readonly isTooManyMembers: boolean;
     readonly isTooManyAnnouncements: boolean;
-    readonly type: 'AllianceAlreadyInitialized' | 'AllianceNotYetInitialized' | 'AlreadyMember' | 'NotMember' | 'NotAlly' | 'NotFounder' | 'UpForKicking' | 'NoVotingRights' | 'AlreadyElevated' | 'AlreadyUnscrupulous' | 'AccountNonGrata' | 'NotListedAsUnscrupulous' | 'TooManyUnscrupulousItems' | 'TooLongWebsiteUrl' | 'InsufficientFunds' | 'WithoutIdentityDisplayAndWebsite' | 'WithoutGoodIdentityJudgement' | 'MissingProposalHash' | 'NotVetoableProposal' | 'MissingAnnouncement' | 'TooManyMembers' | 'TooManyAnnouncements';
+    readonly isAlreadyRetiring: boolean;
+    readonly isRetirementNoticeNotGiven: boolean;
+    readonly isRetirementPeriodNotPassed: boolean;
+    readonly type: 'AllianceAlreadyInitialized' | 'AllianceNotYetInitialized' | 'AlreadyMember' | 'NotMember' | 'NotAlly' | 'NotFounder' | 'NoVotingRights' | 'AlreadyElevated' | 'AlreadyUnscrupulous' | 'AccountNonGrata' | 'NotListedAsUnscrupulous' | 'TooManyUnscrupulousItems' | 'TooLongWebsiteUrl' | 'InsufficientFunds' | 'WithoutIdentityDisplayAndWebsite' | 'WithoutGoodIdentityJudgement' | 'MissingProposalHash' | 'NotVetoableProposal' | 'MissingAnnouncement' | 'TooManyMembers' | 'TooManyAnnouncements' | 'AlreadyRetiring' | 'RetirementNoticeNotGiven' | 'RetirementPeriodNotPassed';
   }
 
   /** @name PalletNominationPoolsPoolMember (640) */

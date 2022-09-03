@@ -1,8 +1,8 @@
 // Copyright 2017-2022 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-// import type { SignOptions } from 'https://deno.land/x/polkadot@0.2.3/keyring/types.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.3/util/mod.ts';
+// import type { SignOptions } from 'https://deno.land/x/polkadot/keyring/types.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { ArgsDef, Codec } from './codec.ts';
 import type { AnyTuple } from './helpers.ts';
 

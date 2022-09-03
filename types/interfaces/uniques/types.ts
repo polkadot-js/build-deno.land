@@ -1,8 +1,8 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Bytes, Compact, Option, Struct, bool, u32 } from 'https://deno.land/x/polkadot@0.2.3/types-codec/mod.ts';
-import type { AccountId, Balance } from 'https://deno.land/x/polkadot@0.2.3/types/interfaces/runtime/index.ts';
+import type { Bytes, Compact, Option, Struct, bool, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { AccountId, Balance } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 /** @name ClassDetails */
 export interface ClassDetails extends Struct {

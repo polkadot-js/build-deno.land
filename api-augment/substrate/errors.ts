@@ -3,13 +3,13 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.3/api-base/types/errors.ts';
+import 'https://deno.land/x/polkadot/api-base/types/errors.ts';
 
-import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot@0.2.3/api-base/types/index.ts';
+import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 
 export type __AugmentedError<ApiType extends ApiTypes> = AugmentedError<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.3/api-base/types/errors.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
   interface AugmentedErrors<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -33,6 +33,10 @@ declare module 'https://deno.land/x/polkadot@0.2.3/api-base/types/errors.ts' {
        * Account is already a member.
        **/
       AlreadyMember: AugmentedError<ApiType>;
+      /**
+       * Account already gave retirement notice
+       **/
+      AlreadyRetiring: AugmentedError<ApiType>;
       /**
        * Item is already listed as unscrupulous.
        **/
@@ -74,6 +78,14 @@ declare module 'https://deno.land/x/polkadot@0.2.3/api-base/types/errors.ts' {
        **/
       NoVotingRights: AugmentedError<ApiType>;
       /**
+       * Account did not give a retirement notice required to retire.
+       **/
+      RetirementNoticeNotGiven: AugmentedError<ApiType>;
+      /**
+       * Retirement period has not passed.
+       **/
+      RetirementPeriodNotPassed: AugmentedError<ApiType>;
+      /**
        * Length of website URL exceeds `MaxWebsiteUrlLength`.
        **/
       TooLongWebsiteUrl: AugmentedError<ApiType>;
@@ -89,10 +101,6 @@ declare module 'https://deno.land/x/polkadot@0.2.3/api-base/types/errors.ts' {
        * The number of unscrupulous items exceeds `MaxUnscrupulousItems`.
        **/
       TooManyUnscrupulousItems: AugmentedError<ApiType>;
-      /**
-       * This member is up for being kicked from the Alliance and cannot perform this operation.
-       **/
-      UpForKicking: AugmentedError<ApiType>;
       /**
        * The account's identity has no good judgement.
        **/

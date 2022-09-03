@@ -6,7 +6,7 @@
 
 import type { Definitions } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.3/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { runtime } from './runtime.ts';
 
@@ -53,7 +53,8 @@ export default {
   types: objectSpread({}, numberTypes, {
     AccountId: 'AccountId32',
     AccountId20: 'GenericEthereumAccountId',
-    AccountId32: 'GenericAccountId',
+    AccountId32: 'GenericAccountId32',
+    AccountId33: 'GenericAccountId33',
     AccountIdOf: 'AccountId',
     AccountIndex: 'GenericAccountIndex',
     Address: 'MultiAddress',
