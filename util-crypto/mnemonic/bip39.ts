@@ -14,7 +14,7 @@
 //   - Remove mnemonicToSeed (we only use the sync variant)
 //   - generateMnemonic takes number of words (instead of strength)
 
-import { stringToU8a, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.4/util/mod.ts';
+import { stringToU8a, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.5/util/mod.ts';
 
 import { pbkdf2Encode } from '../pbkdf2/index.ts';
 import { randomAsU8a } from '../random/index.ts';

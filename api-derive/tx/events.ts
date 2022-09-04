@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { EventRecord, Hash, SignedBlock } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { EventRecord, Hash, SignedBlock } from 'https://deno.land/x/polkadot@0.2.5/types/interfaces/index.ts';
 import type { DeriveApi } from '../types.ts';
 
 import { combineLatest, map, switchMap } from 'https://esm.sh/rxjs@7.5.6';

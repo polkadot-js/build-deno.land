@@ -3,7 +3,7 @@
 
 import type { ToBnOptions } from '../types.ts';
 
-import { BigInt } from 'https://deno.land/x/polkadot@0.2.4/x-bigint/mod.ts';
+import { BigInt } from 'https://deno.land/x/polkadot@0.2.5/x-bigint/mod.ts';
 
 import { _1n } from '../bi/consts.ts';
 

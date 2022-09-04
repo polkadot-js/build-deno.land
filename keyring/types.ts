@@ -1,8 +1,8 @@
 // Copyright 2017-2022 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.4/util/types.ts';
-import type { EncryptedJson, Keypair, KeypairType, Prefix } from 'https://deno.land/x/polkadot@0.2.4/util-crypto/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.5/util/types.ts';
+import type { EncryptedJson, Keypair, KeypairType, Prefix } from 'https://deno.land/x/polkadot@0.2.5/util-crypto/types.ts';
 
 export interface KeyringOptions {
   /**
