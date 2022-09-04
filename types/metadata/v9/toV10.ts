@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.4/types-codec/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { MetadataV9, MetadataV10, ModuleMetadataV9, ModuleMetadataV10, StorageEntryMetadataV9, StorageEntryTypeV9, StorageHasherV9, StorageHasherV10 } from '../../interfaces/metadata/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.4/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 // migrate a storage hasher type
 // see https://github.com/paritytech/substrate/pull/4462

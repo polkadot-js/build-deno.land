@@ -2,10 +2,10 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { BitVec, Bool, bool, Bytes, F32, f32, F64, f64, I8, i8, I16, i16, I32, i32, I64, i64, I128, i128, I256, i256, Json, Null, OptionBool, Raw, Text, Type, U8, u8, U16, u16, U32, u32, U64, u64, U128, u128, U256, u256, USize, usize } from 'https://deno.land/x/polkadot@0.2.4/types-codec/mod.ts';
-import type { RegistryTypes } from 'https://deno.land/x/polkadot@0.2.4/types-codec/types/index.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.4/util/mod.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.4/util/types.ts';
+import type { BitVec, Bool, bool, Bytes, F32, f32, F64, f64, I8, i8, I16, i16, I32, i32, I64, i64, I128, i128, I256, i256, Json, Null, OptionBool, Raw, Text, Type, U8, u8, U16, u16, U32, u32, U64, u64, U128, u128, U256, u256, USize, usize } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { RegistryTypes } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { GenericExtrinsic, GenericExtrinsicEra, GenericExtrinsicPayload, GenericSignerPayload } from '../extrinsic/index.ts';
 import type { ExtDef } from '../extrinsic/signedExtensions/types.ts';
 import type { GenericCall } from '../generic/index.ts';
@@ -15,7 +15,7 @@ import type { Metadata, PortableRegistry } from '../metadata/index.ts';
 import type { Data, StorageKey } from '../primitive/index.ts';
 import type { DefinitionRpc, DefinitionRpcSub, DefinitionsCall } from './definitions.ts';
 
-export type { Registry, RegistryError, RegistryTypes } from 'https://deno.land/x/polkadot@0.2.4/types-codec/types/index.ts';
+export type { Registry, RegistryError, RegistryTypes } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 
 export interface InterfaceTypes {
   // base codec

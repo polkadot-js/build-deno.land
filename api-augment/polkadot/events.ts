@@ -3,18 +3,18 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.4/api-base/types/events.ts';
+import 'https://deno.land/x/polkadot/api-base/types/events.ts';
 
-import type { ApiTypes, AugmentedEvent } from 'https://deno.land/x/polkadot@0.2.4/api-base/types/index.ts';
-import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.4/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.4/types-codec/types/index.ts';
-import type { EthereumAddress } from 'https://deno.land/x/polkadot@0.2.4/types/interfaces/eth/index.ts';
-import type { AccountId32, H256 } from 'https://deno.land/x/polkadot@0.2.4/types/interfaces/runtime/index.ts';
-import type { FrameSupportScheduleLookupError, FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNominationPoolsPoolState, PalletStakingExposure, PalletStakingValidatorPrefs, PolkadotParachainPrimitivesHrmpChannelId, PolkadotPrimitivesV2CandidateReceipt, PolkadotRuntimeParachainsDisputesDisputeLocation, PolkadotRuntimeParachainsDisputesDisputeResult, PolkadotRuntimeProxyType, SpFinalityGrandpaAppPublic, SpRuntimeDispatchError, XcmV1MultiLocation, XcmV2Response, XcmV2TraitsError, XcmV2TraitsOutcome, XcmV2Xcm, XcmVersionedMultiAssets, XcmVersionedMultiLocation } from 'https://deno.land/x/polkadot@0.2.4/types/lookup.ts';
+import type { ApiTypes, AugmentedEvent } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { EthereumAddress } from 'https://deno.land/x/polkadot/types/interfaces/eth/index.ts';
+import type { AccountId32, H256, Weight } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportScheduleLookupError, FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNominationPoolsPoolState, PalletStakingExposure, PalletStakingValidatorPrefs, PolkadotParachainPrimitivesHrmpChannelId, PolkadotPrimitivesV2CandidateReceipt, PolkadotRuntimeParachainsDisputesDisputeLocation, PolkadotRuntimeParachainsDisputesDisputeResult, PolkadotRuntimeProxyType, SpFinalityGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, XcmV1MultiLocation, XcmV2Response, XcmV2TraitsError, XcmV2TraitsOutcome, XcmV2Xcm, XcmVersionedMultiAssets, XcmVersionedMultiLocation } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedEvent<ApiType extends ApiTypes> = AugmentedEvent<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.4/api-base/types/events.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
   interface AugmentedEvents<ApiType extends ApiTypes> {
     auctions: {
       /**
@@ -338,10 +338,15 @@ declare module 'https://deno.land/x/polkadot@0.2.4/api-base/types/events.ts' {
     };
     electionProviderMultiPhase: {
       /**
-       * The election has been finalized, with `Some` of the given computation, or else if the
-       * election failed, `None`.
+       * An election failed.
+       * 
+       * Not much can be said about which computes failed in the process.
        **/
-      ElectionFinalized: AugmentedEvent<ApiType, [electionCompute: Option<PalletElectionProviderMultiPhaseElectionCompute>], { electionCompute: Option<PalletElectionProviderMultiPhaseElectionCompute> }>;
+      ElectionFailed: AugmentedEvent<ApiType, []>;
+      /**
+       * The election has been finalized, with the given computation and score.
+       **/
+      ElectionFinalized: AugmentedEvent<ApiType, [compute: PalletElectionProviderMultiPhaseElectionCompute, score: SpNposElectionsElectionScore], { compute: PalletElectionProviderMultiPhaseElectionCompute, score: SpNposElectionsElectionScore }>;
       /**
        * An account has been rewarded for their signed submission being finalized.
        **/
@@ -362,7 +367,7 @@ declare module 'https://deno.land/x/polkadot@0.2.4/api-base/types/events.ts' {
        * 
        * The `bool` is `true` when a previous solution was ejected to make room for this one.
        **/
-      SolutionStored: AugmentedEvent<ApiType, [electionCompute: PalletElectionProviderMultiPhaseElectionCompute, prevEjected: bool], { electionCompute: PalletElectionProviderMultiPhaseElectionCompute, prevEjected: bool }>;
+      SolutionStored: AugmentedEvent<ApiType, [compute: PalletElectionProviderMultiPhaseElectionCompute, prevEjected: bool], { compute: PalletElectionProviderMultiPhaseElectionCompute, prevEjected: bool }>;
       /**
        * The unsigned phase of the given round has started.
        **/
@@ -1088,14 +1093,14 @@ declare module 'https://deno.land/x/polkadot@0.2.4/api-base/types/events.ts' {
        * 
        * \[ para, id, overweight_index, required \]
        **/
-      OverweightEnqueued: AugmentedEvent<ApiType, [u32, U8aFixed, u64, u64]>;
+      OverweightEnqueued: AugmentedEvent<ApiType, [u32, U8aFixed, u64, Weight]>;
       /**
        * Upward message from the overweight queue was executed with the given actual weight
        * used.
        * 
        * \[ overweight_index, used \]
        **/
-      OverweightServiced: AugmentedEvent<ApiType, [u64, u64]>;
+      OverweightServiced: AugmentedEvent<ApiType, [u64, Weight]>;
       /**
        * Upward message is unsupported version of XCM.
        * \[ id \]
@@ -1110,7 +1115,7 @@ declare module 'https://deno.land/x/polkadot@0.2.4/api-base/types/events.ts' {
        * The weight limit for handling upward messages was reached.
        * \[ id, remaining, required \]
        **/
-      WeightExhausted: AugmentedEvent<ApiType, [U8aFixed, u64, u64]>;
+      WeightExhausted: AugmentedEvent<ApiType, [U8aFixed, Weight, Weight]>;
       /**
        * Generic event
        **/
@@ -1238,7 +1243,7 @@ declare module 'https://deno.land/x/polkadot@0.2.4/api-base/types/events.ts' {
        * 
        * \[ id, pallet index, call index, actual weight, max budgeted weight \]
        **/
-      NotifyOverweight: AugmentedEvent<ApiType, [u64, u8, u8, u64, u64]>;
+      NotifyOverweight: AugmentedEvent<ApiType, [u64, u8, u8, Weight, Weight]>;
       /**
        * A given location which had a version change subscription was dropped owing to an error
        * migrating the location to our new XCM format.
