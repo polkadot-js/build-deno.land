@@ -1,9 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Option, Struct, U8aFixed, Vec, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { HeadData, OutboundHrmpMessage, RelayBlockNumber, UpwardMessage, ValidationCode } from 'https://deno.land/x/polkadot/types/interfaces/parachains/index.ts';
-import type { Weight } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { Option, Struct, U8aFixed, Vec, u32, u64 } from 'https://deno.land/x/polkadot@0.2.6/types-codec/mod.ts';
+import type { HeadData, OutboundHrmpMessage, RelayBlockNumber, UpwardMessage, ValidationCode } from 'https://deno.land/x/polkadot@0.2.6/types/interfaces/parachains/index.ts';
+import type { Weight } from 'https://deno.land/x/polkadot@0.2.6/types/interfaces/runtime/index.ts';
 
 /** @name CollationInfo */
 export interface CollationInfo extends Struct {

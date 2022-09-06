@@ -3,8 +3,8 @@
 
 import type { PairInfo } from './types.ts';
 
-import { u8aConcat } from 'https://deno.land/x/polkadot@0.2.5/util/mod.ts';
-import { naclEncrypt, scryptEncode, scryptToU8a } from 'https://deno.land/x/polkadot@0.2.5/util-crypto/mod.ts';
+import { u8aConcat } from 'https://deno.land/x/polkadot@0.2.6/util/mod.ts';
+import { naclEncrypt, scryptEncode, scryptToU8a } from 'https://deno.land/x/polkadot@0.2.6/util-crypto/mod.ts';
 
 import { PKCS8_DIVIDER, PKCS8_HEADER } from './defaults.ts';
 

@@ -1,8 +1,8 @@
 // Copyright 2017-2022 @polkadot/rpc-contract authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { SubmittableResult } from 'https://deno.land/x/polkadot/api/mod.ts';
-import type { EventRecord } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { SubmittableResult } from 'https://deno.land/x/polkadot@0.2.6/api/mod.ts';
+import type { EventRecord } from 'https://deno.land/x/polkadot@0.2.6/types/interfaces/index.ts';
 
 type ContractEvents = 'CodeStored' | 'ContractEmitted' | 'ContractExecution' | 'Instantiated';
 

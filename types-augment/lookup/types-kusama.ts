@@ -3,13 +3,13 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot/types/lookup.ts';
+import 'https://deno.land/x/polkadot@0.2.6/types/lookup.ts';
 
-import type { Compact, Enum, Null, Struct, Vec, u16, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { PerU16 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { Compact, Enum, Null, Struct, Vec, u16, u32 } from 'https://deno.land/x/polkadot@0.2.6/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.2.6/types-codec/types/index.ts';
+import type { PerU16 } from 'https://deno.land/x/polkadot@0.2.6/types/interfaces/runtime/index.ts';
 
-declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
+declare module 'https://deno.land/x/polkadot@0.2.6/types/lookup.ts' {
   /** @name KusamaRuntimeProxyType (81) */
   interface KusamaRuntimeProxyType extends Enum {
     readonly isAny: boolean;
