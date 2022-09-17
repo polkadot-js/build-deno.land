@@ -5,7 +5,7 @@
 
 import type { DefinitionsRpc } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.6/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 // We use aliasSection here to override since these are in another namespace
 const netRpc: DefinitionsRpc = {

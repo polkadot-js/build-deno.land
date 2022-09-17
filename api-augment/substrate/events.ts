@@ -3,23 +3,23 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.6/api-base/types/events.ts';
+import 'https://deno.land/x/polkadot/api-base/types/events.ts';
 
-import type { ApiTypes, AugmentedEvent } from 'https://deno.land/x/polkadot@0.2.6/api-base/types/index.ts';
-import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.6/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.6/types-codec/types/index.ts';
-import type { AccountId32, H256 } from 'https://deno.land/x/polkadot@0.2.6/types/interfaces/runtime/index.ts';
-import type { FrameSupportScheduleLookupError, FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, FrameSupportWeightsPostDispatchInfo, KitchensinkRuntimeProxyType, PalletAllianceCid, PalletAllianceUnscrupulousItem, PalletConvictionVotingTally, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNominationPoolsPoolState, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord, PalletStakingExposure, PalletStakingValidatorPrefs, PalletStateTrieMigrationError, PalletStateTrieMigrationMigrationCompute, SpFinalityGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, SpRuntimeDispatchErrorWithPostInfo } from 'https://deno.land/x/polkadot@0.2.6/types/lookup.ts';
+import type { ApiTypes, AugmentedEvent } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { AccountId32, H256 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportDispatchDispatchInfo, FrameSupportDispatchPostDispatchInfo, FrameSupportScheduleLookupError, FrameSupportTokensMiscBalanceStatus, KitchensinkRuntimeProxyType, PalletAllianceCid, PalletAllianceUnscrupulousItem, PalletConvictionVotingTally, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNominationPoolsPoolState, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord, PalletStakingExposure, PalletStakingValidatorPrefs, PalletStateTrieMigrationError, PalletStateTrieMigrationMigrationCompute, SpFinalityGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, SpRuntimeDispatchErrorWithPostInfo } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedEvent<ApiType extends ApiTypes> = AugmentedEvent<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.6/api-base/types/events.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
   interface AugmentedEvents<ApiType extends ApiTypes> {
     alliance: {
       /**
-       * Alliance disbanded.
+       * Alliance disbanded. Includes number deleted members and unreserved deposits.
        **/
-      AllianceDisbanded: AugmentedEvent<ApiType, [members: Vec<AccountId32>, proposals: Vec<H256>], { members: Vec<AccountId32>, proposals: Vec<H256> }>;
+      AllianceDisbanded: AugmentedEvent<ApiType, [votingMembers: u32, allyMembers: u32, unreserved: u32], { votingMembers: u32, allyMembers: u32, unreserved: u32 }>;
       /**
        * An ally has been elevated to Fellow.
        **/
@@ -315,6 +315,16 @@ declare module 'https://deno.land/x/polkadot@0.2.6/api-base/types/events.ts' {
     };
     contracts: {
       /**
+       * A contract was called either by a plain account or another contract.
+       * 
+       * # Note
+       * 
+       * Please keep in mind that like all events this is only emitted for successful
+       * calls. This is because on failure all storage changes including events are
+       * rolled back.
+       **/
+      Called: AugmentedEvent<ApiType, [caller: AccountId32, contract: AccountId32], { caller: AccountId32, contract: AccountId32 }>;
+      /**
        * A code with the specified hash was removed.
        **/
       CodeRemoved: AugmentedEvent<ApiType, [codeHash: H256], { codeHash: H256 }>;
@@ -330,6 +340,16 @@ declare module 'https://deno.land/x/polkadot@0.2.6/api-base/types/events.ts' {
        * A custom event emitted by the contract.
        **/
       ContractEmitted: AugmentedEvent<ApiType, [contract: AccountId32, data: Bytes], { contract: AccountId32, data: Bytes }>;
+      /**
+       * A contract delegate called a code hash.
+       * 
+       * # Note
+       * 
+       * Please keep in mind that like all events this is only emitted for successful
+       * calls. This is because on failure all storage changes including events are
+       * rolled back.
+       **/
+      DelegateCalled: AugmentedEvent<ApiType, [contract: AccountId32, codeHash: H256], { contract: AccountId32, codeHash: H256 }>;
       /**
        * Contract deployed by address at the specified address.
        **/
@@ -1249,11 +1269,11 @@ declare module 'https://deno.land/x/polkadot@0.2.6/api-base/types/events.ts' {
       /**
        * An extrinsic failed.
        **/
-      ExtrinsicFailed: AugmentedEvent<ApiType, [dispatchError: SpRuntimeDispatchError, dispatchInfo: FrameSupportWeightsDispatchInfo], { dispatchError: SpRuntimeDispatchError, dispatchInfo: FrameSupportWeightsDispatchInfo }>;
+      ExtrinsicFailed: AugmentedEvent<ApiType, [dispatchError: SpRuntimeDispatchError, dispatchInfo: FrameSupportDispatchDispatchInfo], { dispatchError: SpRuntimeDispatchError, dispatchInfo: FrameSupportDispatchDispatchInfo }>;
       /**
        * An extrinsic completed successfully.
        **/
-      ExtrinsicSuccess: AugmentedEvent<ApiType, [dispatchInfo: FrameSupportWeightsDispatchInfo], { dispatchInfo: FrameSupportWeightsDispatchInfo }>;
+      ExtrinsicSuccess: AugmentedEvent<ApiType, [dispatchInfo: FrameSupportDispatchDispatchInfo], { dispatchInfo: FrameSupportDispatchDispatchInfo }>;
       /**
        * An account was reaped.
        **/
@@ -1594,7 +1614,7 @@ declare module 'https://deno.land/x/polkadot@0.2.6/api-base/types/events.ts' {
     };
     whitelist: {
       CallWhitelisted: AugmentedEvent<ApiType, [callHash: H256], { callHash: H256 }>;
-      WhitelistedCallDispatched: AugmentedEvent<ApiType, [callHash: H256, result: Result<FrameSupportWeightsPostDispatchInfo, SpRuntimeDispatchErrorWithPostInfo>], { callHash: H256, result: Result<FrameSupportWeightsPostDispatchInfo, SpRuntimeDispatchErrorWithPostInfo> }>;
+      WhitelistedCallDispatched: AugmentedEvent<ApiType, [callHash: H256, result: Result<FrameSupportDispatchPostDispatchInfo, SpRuntimeDispatchErrorWithPostInfo>], { callHash: H256, result: Result<FrameSupportDispatchPostDispatchInfo, SpRuntimeDispatchErrorWithPostInfo> }>;
       WhitelistedCallRemoved: AugmentedEvent<ApiType, [callHash: H256], { callHash: H256 }>;
       /**
        * Generic event

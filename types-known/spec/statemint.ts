@@ -3,10 +3,10 @@
 
 /* eslint-disable sort-keys */
 
-import type { OverrideVersionedType } from 'https://deno.land/x/polkadot@0.2.6/types/types/index.ts';
+import type { OverrideVersionedType } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import { mapXcmTypes } from 'https://deno.land/x/polkadot@0.2.6/types-create/mod.ts';
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.6/util/mod.ts';
+import { mapXcmTypes } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const sharedTypes = {
   DispatchErrorModule: 'DispatchErrorModuleU8',
@@ -21,7 +21,8 @@ const sharedTypes = {
       'AssetManager',
       'Staking'
     ]
-  }
+  },
+  Weight: 'u64'
 };
 
 // these are override types for Statemine, Statemint, Westmint

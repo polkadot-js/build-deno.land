@@ -3,10 +3,10 @@
 
 /* eslint-disable sort-keys */
 
-import type { OverrideVersionedType } from 'https://deno.land/x/polkadot@0.2.6/types/types/index.ts';
+import type { OverrideVersionedType } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import { mapXcmTypes } from 'https://deno.land/x/polkadot@0.2.6/types-create/mod.ts';
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.6/util/mod.ts';
+import { mapXcmTypes } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const sharedTypes = {
   // 16 validators
@@ -17,7 +17,8 @@ const sharedTypes = {
   Keys: 'SessionKeys6',
   ProxyType: {
     _enum: ['Any', 'NonTransfer', 'Staking', 'SudoBalances', 'IdentityJudgement', 'CancelProxy']
-  }
+  },
+  Weight: 'u64'
 };
 
 const addrAccountIdTypes = {
