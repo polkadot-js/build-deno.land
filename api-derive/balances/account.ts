@@ -2,14 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { QueryableStorageEntry } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
-import type { AccountData, AccountId, AccountIndex, AccountInfo, Address, Balance, Index } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { QueryableStorageEntry } from 'https://deno.land/x/polkadot@0.2.7/api-base/types/index.ts';
+import type { AccountData, AccountId, AccountIndex, AccountInfo, Address, Balance, Index } from 'https://deno.land/x/polkadot@0.2.7/types/interfaces/index.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.2.7/types/types/index.ts';
 import type { DeriveApi, DeriveBalancesAccount, DeriveBalancesAccountData } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.6';
 
-import { isFunction, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isFunction, objectSpread } from 'https://deno.land/x/polkadot@0.2.7/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 
