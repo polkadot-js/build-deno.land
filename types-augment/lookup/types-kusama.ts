@@ -3,13 +3,13 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.7/types/lookup.ts';
+import 'https://deno.land/x/polkadot/types/lookup.ts';
 
-import type { Compact, Enum, Null, Struct, Vec, u16, u32 } from 'https://deno.land/x/polkadot@0.2.7/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.7/types-codec/types/index.ts';
-import type { PerU16 } from 'https://deno.land/x/polkadot@0.2.7/types/interfaces/runtime/index.ts';
+import type { Compact, Enum, Null, Struct, Vec, u16, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { PerU16 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
-declare module 'https://deno.land/x/polkadot@0.2.7/types/lookup.ts' {
+declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
   /** @name KusamaRuntimeProxyType (81) */
   interface KusamaRuntimeProxyType extends Enum {
     readonly isAny: boolean;
@@ -23,7 +23,7 @@ declare module 'https://deno.land/x/polkadot@0.2.7/types/lookup.ts' {
     readonly type: 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'IdentityJudgement' | 'CancelProxy' | 'Auction' | 'Society';
   }
 
-  /** @name KusamaRuntimeSessionKeys (263) */
+  /** @name KusamaRuntimeSessionKeys (264) */
   interface KusamaRuntimeSessionKeys extends Struct {
     readonly grandpa: SpFinalityGrandpaAppPublic;
     readonly babe: SpConsensusBabeAppPublic;
@@ -33,7 +33,7 @@ declare module 'https://deno.land/x/polkadot@0.2.7/types/lookup.ts' {
     readonly authorityDiscovery: SpAuthorityDiscoveryAppPublic;
   }
 
-  /** @name KusamaRuntimeOriginCaller (338) */
+  /** @name KusamaRuntimeOriginCaller (339) */
   interface KusamaRuntimeOriginCaller extends Enum {
     readonly isSystem: boolean;
     readonly asSystem: FrameSupportDispatchRawOrigin;
@@ -49,7 +49,7 @@ declare module 'https://deno.land/x/polkadot@0.2.7/types/lookup.ts' {
     readonly type: 'System' | 'Void' | 'Council' | 'TechnicalCommittee' | 'ParachainsOrigin' | 'XcmPallet';
   }
 
-  /** @name KusamaRuntimeNposCompactSolution24 (404) */
+  /** @name KusamaRuntimeNposCompactSolution24 (405) */
   interface KusamaRuntimeNposCompactSolution24 extends Struct {
     readonly votes1: Vec<ITuple<[Compact<u32>, Compact<u16>]>>;
     readonly votes2: Vec<ITuple<[Compact<u32>, ITuple<[Compact<u16>, Compact<PerU16>]>, Compact<u16>]>>;
@@ -77,7 +77,7 @@ declare module 'https://deno.land/x/polkadot@0.2.7/types/lookup.ts' {
     readonly votes24: Vec<ITuple<[Compact<u32>, Vec<ITuple<[Compact<u16>, Compact<PerU16>]>>, Compact<u16>]>>;
   }
 
-  /** @name KusamaRuntimeRuntime (779) */
+  /** @name KusamaRuntimeRuntime (780) */
   type KusamaRuntimeRuntime = Null;
 
 } // declare module

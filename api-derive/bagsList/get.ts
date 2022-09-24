@@ -2,17 +2,18 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { Option, u64 } from 'https://deno.land/x/polkadot@0.2.7/types/mod.ts';
-import type { PalletBagsListListBag } from 'https://deno.land/x/polkadot@0.2.7/types/lookup.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.7/util/mod.ts';
+import type { Option, u64 } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { PalletBagsListListBag } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { DeriveApi } from '../types.ts';
 import type { Bag } from './types.ts';
 
 import { map, of, switchMap } from 'https://esm.sh/rxjs@7.5.6';
 
-import { BN_ZERO, bnToBn, objectSpread } from 'https://deno.land/x/polkadot@0.2.7/util/mod.ts';
+import { BN_ZERO, bnToBn, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
+import { getQueryInterface } from './util.ts';
 
 function orderBags (ids: BN[], bags: Option<PalletBagsListListBag>[]): Bag[] {
   const sorted = ids
@@ -36,11 +37,13 @@ function orderBags (ids: BN[], bags: Option<PalletBagsListListBag>[]): Bag[] {
 }
 
 export function _getIds (instanceId: string, api: DeriveApi): (ids: (BN | number)[]) => Observable<Bag[]> {
+  const query = getQueryInterface(api);
+
   return memo(instanceId, (_ids: (BN | number)[]): Observable<Bag[]> => {
     const ids = _ids.map((id) => bnToBn(id));
 
     return ids.length
-      ? (api.query.voterList || api.query.bagsList).listBags.multi<Option<PalletBagsListListBag>>(ids).pipe(
+      ? query.listBags.multi<Option<PalletBagsListListBag>>(ids).pipe(
         map((bags) => orderBags(ids, bags))
       )
       : of([]);
@@ -48,8 +51,10 @@ export function _getIds (instanceId: string, api: DeriveApi): (ids: (BN | number
 }
 
 export function all (instanceId: string, api: DeriveApi): () => Observable<Bag[]> {
+  const query = getQueryInterface(api);
+
   return memo(instanceId, (): Observable<Bag[]> =>
-    (api.query.voterList || api.query.bagsList).listBags.keys<[u64]>().pipe(
+    query.listBags.keys<[u64]>().pipe(
       switchMap((keys) =>
         api.derive.bagsList._getIds(keys.map(({ args: [id] }) => id))
       ),

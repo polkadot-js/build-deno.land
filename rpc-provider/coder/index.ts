@@ -3,7 +3,7 @@
 
 import type { JsonRpcRequest, JsonRpcResponse, JsonRpcResponseBaseError } from '../types.ts';
 
-import { isNumber, isString, isUndefined, stringify } from 'https://deno.land/x/polkadot@0.2.7/util/mod.ts';
+import { isNumber, isString, isUndefined, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import RpcError from './error.ts';
 

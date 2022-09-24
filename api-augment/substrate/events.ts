@@ -3,17 +3,17 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.7/api-base/types/events.ts';
+import 'https://deno.land/x/polkadot/api-base/types/events.ts';
 
-import type { ApiTypes, AugmentedEvent } from 'https://deno.land/x/polkadot@0.2.7/api-base/types/index.ts';
-import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.7/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.7/types-codec/types/index.ts';
-import type { AccountId32, H256 } from 'https://deno.land/x/polkadot@0.2.7/types/interfaces/runtime/index.ts';
-import type { FrameSupportDispatchDispatchInfo, FrameSupportDispatchPostDispatchInfo, FrameSupportScheduleLookupError, FrameSupportTokensMiscBalanceStatus, KitchensinkRuntimeProxyType, PalletAllianceCid, PalletAllianceUnscrupulousItem, PalletConvictionVotingTally, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNominationPoolsPoolState, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord, PalletStakingExposure, PalletStakingValidatorPrefs, PalletStateTrieMigrationError, PalletStateTrieMigrationMigrationCompute, SpFinalityGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, SpRuntimeDispatchErrorWithPostInfo } from 'https://deno.land/x/polkadot@0.2.7/types/lookup.ts';
+import type { ApiTypes, AugmentedEvent } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { AccountId32, H256 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportDispatchDispatchInfo, FrameSupportDispatchPostDispatchInfo, FrameSupportScheduleLookupError, FrameSupportTokensMiscBalanceStatus, KitchensinkRuntimeProxyType, PalletAllianceCid, PalletAllianceUnscrupulousItem, PalletConvictionVotingTally, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNominationPoolsPoolState, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord, PalletStakingExposure, PalletStakingValidatorPrefs, PalletStateTrieMigrationError, PalletStateTrieMigrationMigrationCompute, SpFinalityGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, SpRuntimeDispatchErrorWithPostInfo } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedEvent<ApiType extends ApiTypes> = AugmentedEvent<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.7/api-base/types/events.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
   interface AugmentedEvents<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -190,20 +190,6 @@ declare module 'https://deno.land/x/polkadot@0.2.7/api-base/types/events.ts' {
        * has been paid by `who` in an asset `asset_id`.
        **/
       AssetTxFeePaid: AugmentedEvent<ApiType, [who: AccountId32, actualFee: u128, tip: u128, assetId: Option<u32>], { who: AccountId32, actualFee: u128, tip: u128, assetId: Option<u32> }>;
-      /**
-       * Generic event
-       **/
-      [key: string]: AugmentedEvent<ApiType>;
-    };
-    bagsList: {
-      /**
-       * Moved an account from one bag to another.
-       **/
-      Rebagged: AugmentedEvent<ApiType, [who: AccountId32, from: u64, to: u64], { who: AccountId32, from: u64, to: u64 }>;
-      /**
-       * Updated the score of some account to the given amount.
-       **/
-      ScoreUpdated: AugmentedEvent<ApiType, [who: AccountId32, newScore: u64], { who: AccountId32, newScore: u64 }>;
       /**
        * Generic event
        **/
@@ -588,6 +574,33 @@ declare module 'https://deno.land/x/polkadot@0.2.7/api-base/types/events.ts' {
        **/
       [key: string]: AugmentedEvent<ApiType>;
     };
+    fastUnstake: {
+      /**
+       * A staker was partially checked for the given eras, but the process did not finish.
+       **/
+      Checking: AugmentedEvent<ApiType, [stash: AccountId32, eras: Vec<u32>], { stash: AccountId32, eras: Vec<u32> }>;
+      /**
+       * Some internal error happened while migrating stash. They are removed as head as a
+       * consequence.
+       **/
+      Errored: AugmentedEvent<ApiType, [stash: AccountId32], { stash: AccountId32 }>;
+      /**
+       * An internal error happened. Operations will be paused now.
+       **/
+      InternalError: AugmentedEvent<ApiType, []>;
+      /**
+       * A staker was slashed for requesting fast-unstake whilst being exposed.
+       **/
+      Slashed: AugmentedEvent<ApiType, [stash: AccountId32, amount: u128], { stash: AccountId32, amount: u128 }>;
+      /**
+       * A staker was unstaked.
+       **/
+      Unstaked: AugmentedEvent<ApiType, [stash: AccountId32, maybePoolId: Option<u32>, result: Result<Null, SpRuntimeDispatchError>], { stash: AccountId32, maybePoolId: Option<u32>, result: Result<Null, SpRuntimeDispatchError> }>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
     gilt: {
       /**
        * A bid was successfully placed.
@@ -859,11 +872,6 @@ declare module 'https://deno.land/x/polkadot@0.2.7/api-base/types/events.ts' {
        **/
       Announced: AugmentedEvent<ApiType, [real: AccountId32, proxy: AccountId32, callHash: H256], { real: AccountId32, proxy: AccountId32, callHash: H256 }>;
       /**
-       * Anonymous account has been created by new proxy with given
-       * disambiguation index and proxy type.
-       **/
-      AnonymousCreated: AugmentedEvent<ApiType, [anonymous: AccountId32, who: AccountId32, proxyType: KitchensinkRuntimeProxyType, disambiguationIndex: u16], { anonymous: AccountId32, who: AccountId32, proxyType: KitchensinkRuntimeProxyType, disambiguationIndex: u16 }>;
-      /**
        * A proxy was added.
        **/
       ProxyAdded: AugmentedEvent<ApiType, [delegator: AccountId32, delegatee: AccountId32, proxyType: KitchensinkRuntimeProxyType, delay: u32], { delegator: AccountId32, delegatee: AccountId32, proxyType: KitchensinkRuntimeProxyType, delay: u32 }>;
@@ -875,6 +883,11 @@ declare module 'https://deno.land/x/polkadot@0.2.7/api-base/types/events.ts' {
        * A proxy was removed.
        **/
       ProxyRemoved: AugmentedEvent<ApiType, [delegator: AccountId32, delegatee: AccountId32, proxyType: KitchensinkRuntimeProxyType, delay: u32], { delegator: AccountId32, delegatee: AccountId32, proxyType: KitchensinkRuntimeProxyType, delay: u32 }>;
+      /**
+       * A pure account has been created by new proxy with given
+       * disambiguation index and proxy type.
+       **/
+      PureCreated: AugmentedEvent<ApiType, [pure: AccountId32, who: AccountId32, proxyType: KitchensinkRuntimeProxyType, disambiguationIndex: u16], { pure: AccountId32, who: AccountId32, proxyType: KitchensinkRuntimeProxyType, disambiguationIndex: u16 }>;
       /**
        * Generic event
        **/
@@ -1190,8 +1203,8 @@ declare module 'https://deno.land/x/polkadot@0.2.7/api-base/types/events.ts' {
        **/
       Rewarded: AugmentedEvent<ApiType, [AccountId32, u128]>;
       /**
-       * One validator (and its nominators) has been slashed by the given amount.
-       * \[validator, amount\]
+       * One staker (and potentially its nominators) has been slashed by the given amount.
+       * \[staker, amount\]
        **/
       Slashed: AugmentedEvent<ApiType, [AccountId32, u128]>;
       /**
@@ -1607,6 +1620,20 @@ declare module 'https://deno.land/x/polkadot@0.2.7/api-base/types/events.ts' {
        * The balance given is the amount which is left unvested (and thus locked).
        **/
       VestingUpdated: AugmentedEvent<ApiType, [account: AccountId32, unvested: u128], { account: AccountId32, unvested: u128 }>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    voterBagsList: {
+      /**
+       * Moved an account from one bag to another.
+       **/
+      Rebagged: AugmentedEvent<ApiType, [who: AccountId32, from: u64, to: u64], { who: AccountId32, from: u64, to: u64 }>;
+      /**
+       * Updated the score of some account to the given amount.
+       **/
+      ScoreUpdated: AugmentedEvent<ApiType, [who: AccountId32, newScore: u64], { who: AccountId32, newScore: u64 }>;
       /**
        * Generic event
        **/

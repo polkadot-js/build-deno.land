@@ -7,9 +7,9 @@ import type { JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, Pro
 
 import EventEmitter from 'https://esm.sh/eventemitter3@4.0.7';
 
-import { isChildClass, isNull, isUndefined, logger, objectSpread } from 'https://deno.land/x/polkadot@0.2.7/util/mod.ts';
-import { xglobal } from 'https://deno.land/x/polkadot@0.2.7/x-global/mod.ts';
-import { WebSocket } from 'https://deno.land/x/polkadot@0.2.7/x-ws/mod.ts';
+import { isChildClass, isNull, isUndefined, logger, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
+import { WebSocket } from 'https://deno.land/x/polkadot/x-ws/mod.ts';
 
 import { RpcCoder } from '../coder/index.ts';
 import defaults from '../defaults.ts';
@@ -70,8 +70,8 @@ function eraseRecord<T> (record: Record<string, T>, cb?: (item: T) => void): voi
  * <BR>
  *
  * ```javascript
- * import Api from 'https://deno.land/x/polkadot@0.2.7/api/promise/index.ts';
- * import { WsProvider } from 'https://deno.land/x/polkadot@0.2.7/rpc-provider/ws/index.ts';
+ * import Api from 'https://deno.land/x/polkadot/api/promise/index.ts';
+ * import { WsProvider } from 'https://deno.land/x/polkadot/rpc-provider/ws/index.ts';
  *
  * const provider = new WsProvider('ws://127.0.0.1:9944');
  * const api = new Api(provider);

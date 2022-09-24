@@ -1,18 +1,20 @@
 // Copyright 2017-2022 @polkadot/rpc-provider authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Config as ScConfig } from 'https://esm.sh/@substrate/connect@0.7.13';
+import type { Config as ScConfig } from 'https://esm.sh/@substrate/connect@0.7.14';
 import type { JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, ProviderInterfaceEmitCb, ProviderInterfaceEmitted } from '../types.ts';
 
-import { Chain, createScClient, ScClient, WellKnownChain } from 'https://esm.sh/@substrate/connect@0.7.13';
+import { Chain, createScClient, ScClient, WellKnownChain } from 'https://esm.sh/@substrate/connect@0.7.14';
 import EventEmitter from 'https://esm.sh/eventemitter3@4.0.7';
 
-import { isError, objectSpread } from 'https://deno.land/x/polkadot@0.2.7/util/mod.ts';
+import { isError, logger, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { RpcCoder } from '../coder/index.ts';
 import { healthChecker } from './Health.ts';
 
 type ResponseCallback = (response: string | Error) => void
+
+const l = logger('api-substrate-connect');
 
 // These methods have been taken from:
 // https://github.com/paritytech/smoldot/blob/17425040ddda47d539556eeaf62b88c4240d1d42/src/json_rpc/methods.rs#L338-L462
@@ -37,11 +39,19 @@ const scClients = new WeakMap<ScProvider, ScClient>();
 
 export { WellKnownChain };
 
+interface ActiveSubs {
+  type: string,
+  method: string,
+  params: any[],
+  callback: ProviderInterfaceCallback
+}
+
 export class ScProvider implements ProviderInterface {
   readonly #coder: RpcCoder = new RpcCoder();
   readonly #spec: string | WellKnownChain;
   readonly #sharedSandbox?: ScProvider;
   readonly #subscriptions: Map<string, [ResponseCallback, { unsubscribeMethod: string; id: string | number }]> = new Map();
+  readonly #resubscribeMethods: Map<string, ActiveSubs> = new Map();
   readonly #requests: Map<number, ResponseCallback> = new Map();
   readonly #eventemitter: EventEmitter = new EventEmitter();
   #chain: Promise<Chain> | null = null;
@@ -207,11 +217,17 @@ export class ScProvider implements ProviderInterface {
             staleSubscriptions.push(s[1]);
           });
           cleanup();
+
+          this.#eventemitter.emit('disconnected');
         } else {
           killStaleSubscriptions();
-        }
 
-        this.#eventemitter.emit(isReady ? 'connected' : 'disconnected');
+          this.#eventemitter.emit('connected');
+
+          if (this.#resubscribeMethods.size) {
+            this.#resubscribe();
+          }
+        }
       });
 
       return objectSpread({}, chain, {
@@ -232,6 +248,32 @@ export class ScProvider implements ProviderInterface {
       throw e;
     }
   }
+
+  #resubscribe = (): void => {
+    const promises: any[] = [];
+
+    this.#resubscribeMethods.forEach((subDetails: ActiveSubs): void => {
+      // only re-create subscriptions which are not in author (only area where
+      // transactions are created, i.e. submissions such as 'author_submitAndWatchExtrinsic'
+      // are not included (and will not be re-broadcast)
+      if (subDetails.type.startsWith('author_')) {
+        return;
+      }
+
+      try {
+        const promise: Promise<void> = new Promise((resolve) => {
+          this.subscribe(subDetails.type, subDetails.method, subDetails.params, subDetails.callback).catch((error) => console.log(error));
+          resolve();
+        });
+
+        promises.push(promise);
+      } catch (error) {
+        l.error(error);
+      }
+    });
+
+    Promise.all(promises).catch((err) => l.log(err));
+  };
 
   async disconnect (): Promise<void> {
     if (!this.#chain) {
@@ -322,6 +364,8 @@ export class ScProvider implements ProviderInterface {
       throw new Error('Invalid unsubscribe method found');
     }
 
+    this.#resubscribeMethods.set(subscriptionId, { callback, method, params, type });
+
     this.#subscriptions.set(subscriptionId, [cb, { id, unsubscribeMethod }]);
 
     return id;
@@ -340,6 +384,7 @@ export class ScProvider implements ProviderInterface {
       );
     }
 
+    this.#resubscribeMethods.delete(subscriptionId);
     this.#subscriptions.delete(subscriptionId);
 
     return this.send(method, [id]);

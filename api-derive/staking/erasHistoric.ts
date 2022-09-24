@@ -2,22 +2,24 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { Option, u32 } from 'https://deno.land/x/polkadot@0.2.7/types/mod.ts';
-import type { ActiveEraInfo, EraIndex } from 'https://deno.land/x/polkadot@0.2.7/types/interfaces/index.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.7/util/mod.ts';
+import type { u32 } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { EraIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { DeriveApi } from '../types.ts';
 
-import { map } from 'https://esm.sh/rxjs@7.5.6';
+import { combineLatest, map, of } from 'https://esm.sh/rxjs@7.5.6';
 
-import { BN_ONE, BN_ZERO } from 'https://deno.land/x/polkadot@0.2.7/util/mod.ts';
+import { BN_ONE, BN_ZERO } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 
 export function erasHistoric (instanceId: string, api: DeriveApi): (withActive?: boolean) => Observable<EraIndex[]> {
   return memo(instanceId, (withActive?: boolean): Observable<EraIndex[]> =>
-    api.queryMulti<[Option<ActiveEraInfo>, u32]>([
-      api.query.staking.activeEra,
-      api.query.staking.historyDepth
+    combineLatest([
+      api.query.staking.activeEra(),
+      api.consts.staking.historyDepth
+        ? of(api.consts.staking.historyDepth)
+        : api.query.staking.historyDepth<u32>()
     ]).pipe(
       map(([activeEraOpt, historyDepth]): EraIndex[] => {
         const result: EraIndex[] = [];
