@@ -3,7 +3,7 @@
 
 import type { AnyU8a, CodecClass, Registry, U8aBitLength } from '../types/index.ts';
 
-import { isU8a, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isU8a, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.8/util/mod.ts';
 
 import { Raw } from '../native/Raw.ts';
 

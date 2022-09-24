@@ -2,14 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { AccountId, ReferendumInfoTo239, Vote } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
-import type { PalletDemocracyReferendumInfo, PalletDemocracyVoteVoting } from 'https://deno.land/x/polkadot/types/lookup.ts';
-import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { AccountId, ReferendumInfoTo239, Vote } from 'https://deno.land/x/polkadot@0.2.8/types/interfaces/index.ts';
+import type { PalletDemocracyReferendumInfo, PalletDemocracyVoteVoting } from 'https://deno.land/x/polkadot@0.2.8/types/lookup.ts';
+import type { BN } from 'https://deno.land/x/polkadot@0.2.8/util/mod.ts';
 import type { DeriveApi, DeriveDemocracyLock } from '../types.ts';
 
 import { map, of, switchMap } from 'https://esm.sh/rxjs@7.5.6';
 
-import { BN_ZERO, isUndefined } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { BN_ZERO, isUndefined } from 'https://deno.land/x/polkadot@0.2.8/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 
