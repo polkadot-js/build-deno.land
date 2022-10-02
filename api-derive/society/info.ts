@@ -1,13 +1,13 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { Option, u32, Vec } from 'https://deno.land/x/polkadot@0.2.8/types/mod.ts';
-import type { AccountId, BalanceOf } from 'https://deno.land/x/polkadot@0.2.8/types/interfaces/index.ts';
-import type { PalletSocietyBid } from 'https://deno.land/x/polkadot@0.2.8/types/lookup.ts';
+import type { Observable } from 'https://esm.sh/rxjs@7.5.7';
+import type { Option, u32, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, BalanceOf } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletSocietyBid } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { DeriveApi, DeriveSociety } from '../types.ts';
 
-import { map } from 'https://esm.sh/rxjs@7.5.6';
+import { map } from 'https://esm.sh/rxjs@7.5.7';
 
 import { memo } from '../util/index.ts';
 

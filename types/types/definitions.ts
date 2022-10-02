@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.8/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 
 export type DefinitionTypeType = string;
 
@@ -28,6 +28,7 @@ export interface DefinitionRpcParam {
 export interface DefinitionRpc {
   alias?: string[];
   aliasSection?: string;
+  deprecated?: string;
   description: string;
   endpoint?: string;
   isSigned?: boolean;

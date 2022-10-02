@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
-import type { PalletDemocracyReferendumInfo } from 'https://deno.land/x/polkadot@0.2.8/types/lookup.ts';
+import type { Observable } from 'https://esm.sh/rxjs@7.5.7';
+import type { PalletDemocracyReferendumInfo } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { DeriveApi } from '../types.ts';
 
-import { map, switchMap } from 'https://esm.sh/rxjs@7.5.6';
+import { map, switchMap } from 'https://esm.sh/rxjs@7.5.7';
 
 import { memo } from '../util/index.ts';
 

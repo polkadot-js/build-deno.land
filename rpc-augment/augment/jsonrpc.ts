@@ -3,36 +3,36 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.8/rpc-core/types/jsonrpc.ts';
+import 'https://deno.land/x/polkadot/rpc-core/types/jsonrpc.ts';
 
-import type { AugmentedRpc } from 'https://deno.land/x/polkadot@0.2.8/rpc-core/types/index.ts';
-import type { Metadata, StorageKey } from 'https://deno.land/x/polkadot@0.2.8/types/mod.ts';
-import type { Bytes, HashMap, Json, Null, Option, Text, U256, U64, Vec, bool, f64, u32, u64 } from 'https://deno.land/x/polkadot@0.2.8/types-codec/mod.ts';
-import type { AnyNumber, Codec } from 'https://deno.land/x/polkadot@0.2.8/types-codec/types/index.ts';
-import type { ExtrinsicOrHash, ExtrinsicStatus } from 'https://deno.land/x/polkadot@0.2.8/types/interfaces/author/index.ts';
-import type { EpochAuthorship } from 'https://deno.land/x/polkadot@0.2.8/types/interfaces/babe/index.ts';
-import type { BeefySignedCommitment } from 'https://deno.land/x/polkadot@0.2.8/types/interfaces/beefy/index.ts';
-import type { BlockHash } from 'https://deno.land/x/polkadot@0.2.8/types/interfaces/chain/index.ts';
-import type { PrefixedStorageKey } from 'https://deno.land/x/polkadot@0.2.8/types/interfaces/childstate/index.ts';
-import type { AuthorityId } from 'https://deno.land/x/polkadot@0.2.8/types/interfaces/consensus/index.ts';
-import type { CodeUploadRequest, CodeUploadResult, ContractCallRequest, ContractExecResult, ContractInstantiateResult, InstantiateRequest } from 'https://deno.land/x/polkadot@0.2.8/types/interfaces/contracts/index.ts';
-import type { BlockStats } from 'https://deno.land/x/polkadot@0.2.8/types/interfaces/dev/index.ts';
-import type { CreatedBlock } from 'https://deno.land/x/polkadot@0.2.8/types/interfaces/engine/index.ts';
-import type { EthAccount, EthCallRequest, EthFeeHistory, EthFilter, EthFilterChanges, EthLog, EthReceipt, EthRichBlock, EthSubKind, EthSubParams, EthSyncStatus, EthTransaction, EthTransactionRequest, EthWork } from 'https://deno.land/x/polkadot@0.2.8/types/interfaces/eth/index.ts';
-import type { Extrinsic } from 'https://deno.land/x/polkadot@0.2.8/types/interfaces/extrinsics/index.ts';
-import type { EncodedFinalityProofs, JustificationNotification, ReportedRoundStates } from 'https://deno.land/x/polkadot@0.2.8/types/interfaces/grandpa/index.ts';
-import type { MmrLeafBatchProof, MmrLeafProof } from 'https://deno.land/x/polkadot@0.2.8/types/interfaces/mmr/index.ts';
-import type { StorageKind } from 'https://deno.land/x/polkadot@0.2.8/types/interfaces/offchain/index.ts';
-import type { FeeDetails, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot@0.2.8/types/interfaces/payment/index.ts';
-import type { RpcMethods } from 'https://deno.land/x/polkadot@0.2.8/types/interfaces/rpc/index.ts';
-import type { AccountId, BlockNumber, H160, H256, H64, Hash, Header, Index, Justification, KeyValue, SignedBlock, StorageData } from 'https://deno.land/x/polkadot@0.2.8/types/interfaces/runtime/index.ts';
-import type { MigrationStatusResult, ReadProof, RuntimeVersion, TraceBlockResponse } from 'https://deno.land/x/polkadot@0.2.8/types/interfaces/state/index.ts';
-import type { ApplyExtrinsicResult, ChainProperties, ChainType, Health, NetworkState, NodeRole, PeerInfo, SyncState } from 'https://deno.land/x/polkadot@0.2.8/types/interfaces/system/index.ts';
-import type { IExtrinsic, Observable } from 'https://deno.land/x/polkadot@0.2.8/types/types/index.ts';
+import type { AugmentedRpc } from 'https://deno.land/x/polkadot/rpc-core/types/index.ts';
+import type { Metadata, StorageKey } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Bytes, HashMap, Json, Null, Option, Text, U256, U64, Vec, bool, f64, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { AnyNumber, Codec } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { ExtrinsicOrHash, ExtrinsicStatus } from 'https://deno.land/x/polkadot/types/interfaces/author/index.ts';
+import type { EpochAuthorship } from 'https://deno.land/x/polkadot/types/interfaces/babe/index.ts';
+import type { BeefySignedCommitment } from 'https://deno.land/x/polkadot/types/interfaces/beefy/index.ts';
+import type { BlockHash } from 'https://deno.land/x/polkadot/types/interfaces/chain/index.ts';
+import type { PrefixedStorageKey } from 'https://deno.land/x/polkadot/types/interfaces/childstate/index.ts';
+import type { AuthorityId } from 'https://deno.land/x/polkadot/types/interfaces/consensus/index.ts';
+import type { CodeUploadRequest, CodeUploadResult, ContractCallRequest, ContractExecResult, ContractInstantiateResult, InstantiateRequest } from 'https://deno.land/x/polkadot/types/interfaces/contracts/index.ts';
+import type { BlockStats } from 'https://deno.land/x/polkadot/types/interfaces/dev/index.ts';
+import type { CreatedBlock } from 'https://deno.land/x/polkadot/types/interfaces/engine/index.ts';
+import type { EthAccount, EthCallRequest, EthFeeHistory, EthFilter, EthFilterChanges, EthLog, EthReceipt, EthRichBlock, EthSubKind, EthSubParams, EthSyncStatus, EthTransaction, EthTransactionRequest, EthWork } from 'https://deno.land/x/polkadot/types/interfaces/eth/index.ts';
+import type { Extrinsic } from 'https://deno.land/x/polkadot/types/interfaces/extrinsics/index.ts';
+import type { EncodedFinalityProofs, JustificationNotification, ReportedRoundStates } from 'https://deno.land/x/polkadot/types/interfaces/grandpa/index.ts';
+import type { MmrLeafBatchProof, MmrLeafProof } from 'https://deno.land/x/polkadot/types/interfaces/mmr/index.ts';
+import type { StorageKind } from 'https://deno.land/x/polkadot/types/interfaces/offchain/index.ts';
+import type { FeeDetails, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot/types/interfaces/payment/index.ts';
+import type { RpcMethods } from 'https://deno.land/x/polkadot/types/interfaces/rpc/index.ts';
+import type { AccountId, BlockNumber, H160, H256, H64, Hash, Header, Index, Justification, KeyValue, SignedBlock, StorageData } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { MigrationStatusResult, ReadProof, RuntimeVersion, TraceBlockResponse } from 'https://deno.land/x/polkadot/types/interfaces/state/index.ts';
+import type { ApplyExtrinsicResult, ChainProperties, ChainType, Health, NetworkState, NodeRole, PeerInfo, SyncState } from 'https://deno.land/x/polkadot/types/interfaces/system/index.ts';
+import type { IExtrinsic, Observable } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 export type __AugmentedRpc = AugmentedRpc<() => unknown>;
 
-declare module 'https://deno.land/x/polkadot@0.2.8/rpc-core/types/jsonrpc.ts' {
+declare module 'https://deno.land/x/polkadot/rpc-core/types/jsonrpc.ts' {
   interface RpcInterface {
     author: {
       /**
@@ -142,22 +142,27 @@ declare module 'https://deno.land/x/polkadot@0.2.8/rpc-core/types/jsonrpc.ts' {
     };
     contracts: {
       /**
+       * @deprecated Use the runtime interface `api.call.contractsApi.call` instead
        * Executes a call to a contract
        **/
       call: AugmentedRpc<(callRequest: ContractCallRequest | { origin?: any; dest?: any; value?: any; gasLimit?: any; storageDepositLimit?: any; inputData?: any } | string | Uint8Array, at?: BlockHash | string | Uint8Array) => Observable<ContractExecResult>>;
       /**
+       * @deprecated Use the runtime interface `api.call.contractsApi.getStorage` instead
        * Returns the value under a specified storage key in a contract
        **/
       getStorage: AugmentedRpc<(address: AccountId | string | Uint8Array, key: H256 | string | Uint8Array, at?: BlockHash | string | Uint8Array) => Observable<Option<Bytes>>>;
       /**
+       * @deprecated Use the runtime interface `api.call.contractsApi.instantiate` instead
        * Instantiate a new contract
        **/
       instantiate: AugmentedRpc<(request: InstantiateRequest | { origin?: any; value?: any; gasLimit?: any; storageDepositLimit?: any; code?: any; data?: any; salt?: any } | string | Uint8Array, at?: BlockHash | string | Uint8Array) => Observable<ContractInstantiateResult>>;
       /**
+       * @deprecated Not available in newer versions of the contracts interfaces
        * Returns the projected time a given contract will be able to sustain paying its rent
        **/
       rentProjection: AugmentedRpc<(address: AccountId | string | Uint8Array, at?: BlockHash | string | Uint8Array) => Observable<Option<BlockNumber>>>;
       /**
+       * @deprecated Use the runtime interface `api.call.contractsApi.uploadCode` instead
        * Upload new code without instantiating a contract from it
        **/
       uploadCode: AugmentedRpc<(uploadRequest: CodeUploadRequest | { origin?: any; code?: any; storageDepositLimit?: any } | string | Uint8Array, at?: BlockHash | string | Uint8Array) => Observable<CodeUploadResult>>;
@@ -442,6 +447,7 @@ declare module 'https://deno.land/x/polkadot@0.2.8/rpc-core/types/jsonrpc.ts' {
        **/
       getChildStorageSize: AugmentedRpc<(childStorageKey: StorageKey | string | Uint8Array | any, childDefinition: StorageKey | string | Uint8Array | any, childType: u32 | AnyNumber | Uint8Array, key: StorageKey | string | Uint8Array | any, at?: BlockHash | string | Uint8Array) => Observable<u64>>;
       /**
+       * @deprecated Use `api.rpc.state.getKeysPaged` to retrieve keys
        * Retrieves the keys with a certain prefix
        **/
       getKeys: AugmentedRpc<(key: StorageKey | string | Uint8Array | any, at?: BlockHash | string | Uint8Array) => Observable<Vec<StorageKey>>>;
@@ -454,6 +460,7 @@ declare module 'https://deno.land/x/polkadot@0.2.8/rpc-core/types/jsonrpc.ts' {
        **/
       getMetadata: AugmentedRpc<(at?: BlockHash | string | Uint8Array) => Observable<Metadata>>;
       /**
+       * @deprecated Use `api.rpc.state.getKeysPaged` to retrieve keys
        * Returns the keys with prefix, leave empty to get all the keys (deprecated: Use getKeysPaged)
        **/
       getPairs: AugmentedRpc<(prefix: StorageKey | string | Uint8Array | any, at?: BlockHash | string | Uint8Array) => Observable<Vec<KeyValue>>>;

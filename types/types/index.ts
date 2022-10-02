@@ -6,10 +6,10 @@ import './augmentLookup.ts';
 import './augmentRegistry.ts';
 
 // augmented exports
-export * from 'https://deno.land/x/polkadot@0.2.8/types/types/registry.ts';
+export * from 'https://deno.land/x/polkadot/types/types/registry.ts';
 
 // used inside augmented definitions
-export type { Observable } from 'https://esm.sh/rxjs@7.5.6';
+export type { Observable } from 'https://esm.sh/rxjs@7.5.7';
 
 // other exports
 export * from '../create/types.ts';

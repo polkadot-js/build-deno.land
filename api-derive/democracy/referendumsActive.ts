@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://esm.sh/rxjs@7.5.6';
+import type { Observable } from 'https://esm.sh/rxjs@7.5.7';
 import type { DeriveApi, DeriveReferendum } from '../types.ts';
 
-import { of, switchMap } from 'https://esm.sh/rxjs@7.5.6';
+import { of, switchMap } from 'https://esm.sh/rxjs@7.5.7';
 
 import { memo } from '../util/index.ts';
 
