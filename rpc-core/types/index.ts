@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 // augmented, do an augmentation export
-export * from 'https://deno.land/x/polkadot/rpc-core/types/jsonrpc.ts';
+export * from 'https://deno.land/x/polkadot@0.2.9/rpc-core/types/jsonrpc.ts';
 
 // normal exports
 export * from './base.ts';

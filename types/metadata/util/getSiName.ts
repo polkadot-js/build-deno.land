@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ILookup } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
+import type { ILookup } from 'https://deno.land/x/polkadot@0.2.9/types-create/types/index.ts';
 import type { SiLookupTypeId } from '../../interfaces/index.ts';
 
 export function getSiName (lookup: ILookup, type: SiLookupTypeId): string {

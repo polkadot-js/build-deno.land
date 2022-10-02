@@ -3,7 +3,7 @@
 
 import type { EncryptedJson } from './types.ts';
 
-import { u8aConcat } from 'https://deno.land/x/polkadot@0.2.8/util/mod.ts';
+import { u8aConcat } from 'https://deno.land/x/polkadot@0.2.9/util/mod.ts';
 
 import { naclEncrypt } from '../nacl/index.ts';
 import { scryptEncode, scryptToU8a } from '../scrypt/index.ts';
