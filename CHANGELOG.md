@@ -2,6 +2,7 @@
 
 ## master
 
+- phishing 0.18.10
 - hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 10.1.10
 
 ## 0.2.9 Oct 2, 2022
