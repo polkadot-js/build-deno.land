@@ -4,7 +4,7 @@
 import type { BN } from '../bn/bn.ts';
 import type { NumberOptions, ToBigInt, ToBn } from '../types.ts';
 
-import { BigInt } from 'https://deno.land/x/polkadot@0.2.9/x-bigint/mod.ts';
+import { BigInt } from 'https://deno.land/x/polkadot/x-bigint/mod.ts';
 
 import { _0n, _1n } from './consts.ts';
 import { nToBigInt } from './toBigInt.ts';
@@ -48,7 +48,7 @@ export function nToU8a <ExtToBn extends ToBn | ToBigInt> (value?: ExtToBn | BN |
 
   if (valueBi === _0n) {
     return bitLength === -1
-      ? new Uint8Array()
+      ? new Uint8Array(1)
       : new Uint8Array(Math.ceil((bitLength || 0) / 8));
   }
 

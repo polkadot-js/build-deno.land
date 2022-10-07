@@ -7,8 +7,6 @@ import type { BN } from './bn.ts';
 import { u8aToHex } from '../u8a/index.ts';
 import { bnToU8a } from './toU8a.ts';
 
-const ZERO_STR = '0x00';
-
 /**
  * @name bnToHex
  * @summary Creates a hex value from a BN.js bignumber object.
@@ -19,13 +17,11 @@ const ZERO_STR = '0x00';
  *
  * ```javascript
  * import BN from 'https://esm.sh/bn.js@5.2.1';
- * import { bnToHex } from 'https://deno.land/x/polkadot@0.2.9/util/mod.ts';
+ * import { bnToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * bnToHex(new BN(0x123456)); // => '0x123456'
  * ```
  */
 export function bnToHex <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null, { bitLength = -1, isLe = false, isNegative = false }: NumberOptions = {}): HexString {
-  return !value
-    ? ZERO_STR
-    : u8aToHex(bnToU8a(value, { bitLength, isLe, isNegative }));
+  return u8aToHex(bnToU8a(value, { bitLength, isLe, isNegative }));
 }

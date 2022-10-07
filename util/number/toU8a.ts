@@ -13,15 +13,13 @@ import { numberToHex } from './toHex.ts';
  * <BR>
  *
  * ```javascript
- * import { numberToU8a } from 'https://deno.land/x/polkadot@0.2.9/util/mod.ts';
+ * import { numberToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * numberToU8a(0x1234); // => [0x12, 0x34]
  * ```
  */
 export function numberToU8a (value?: number | null, bitLength = -1): Uint8Array {
-  return value === undefined || value === null || isNaN(value)
-    ? new Uint8Array()
-    : hexToU8a(
-      numberToHex(value, bitLength)
-    );
+  return hexToU8a(
+    numberToHex(value, bitLength)
+  );
 }

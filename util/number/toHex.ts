@@ -14,18 +14,14 @@ import { hexFixLength } from '../hex/fixLength.ts';
  * <BR>
  *
  * ```javascript
- * import { numberToHex } from 'https://deno.land/x/polkadot@0.2.9/util/mod.ts';
+ * import { numberToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * numberToHex(0x1234); // => '0x1234'
  * numberToHex(0x1234, 32); // => 0x00001234
  * ```
  */
 export function numberToHex (value?: number | null, bitLength = -1): HexString {
-  if (value === undefined || value === null || isNaN(value)) {
-    return '0x';
-  }
-
-  const hex = value.toString(16);
+  const hex = (!value || Number.isNaN(value) ? 0 : value).toString(16);
 
   return hexFixLength(hex.length % 2 ? `0${hex}` : hex, bitLength, true);
 }
