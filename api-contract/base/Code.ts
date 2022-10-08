@@ -1,24 +1,24 @@
 // Copyright 2017-2022 @polkadot/api-contract authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot@0.2.9/api/submittable/types.ts';
-import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot@0.2.9/api/types/index.ts';
-import type { AccountId, EventRecord } from 'https://deno.land/x/polkadot@0.2.9/types/interfaces/index.ts';
-import type { ISubmittableResult } from 'https://deno.land/x/polkadot@0.2.9/types/types/index.ts';
-import type { Codec } from 'https://deno.land/x/polkadot@0.2.9/types-codec/types/index.ts';
-import type { AbiConstructor, BlueprintOptions } from '../types.ts';
+import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot/api/submittable/types.ts';
+import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot/api/types/index.ts';
+import type { AccountId, EventRecord } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { ISubmittableResult } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { Codec } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { AbiConstructor, BlueprintOptions, WeightAll } from '../types.ts';
 import type { MapConstructorExec } from './types.ts';
 
-import { SubmittableResult } from 'https://deno.land/x/polkadot@0.2.9/api/mod.ts';
-import { ApiBase } from 'https://deno.land/x/polkadot@0.2.9/api/base/index.ts';
-import { BN_ZERO, compactAddLength, isUndefined, isWasm, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.9/util/mod.ts';
+import { SubmittableResult } from 'https://deno.land/x/polkadot/api/mod.ts';
+import { ApiBase } from 'https://deno.land/x/polkadot/api/base/index.ts';
+import { BN_ZERO, compactAddLength, isUndefined, isWasm, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Abi } from '../Abi/index.ts';
 import { applyOnEvent } from '../util.ts';
 import { Base } from './Base.ts';
 import { Blueprint } from './Blueprint.ts';
 import { Contract } from './Contract.ts';
-import { createBluePrintTx, encodeSalt } from './util.ts';
+import { convertWeight, createBluePrintTx, encodeSalt } from './util.ts';
 
 export interface CodeConstructor<ApiType extends ApiTypes> {
   new(api: ApiBase<ApiType>, abi: string | Record<string, unknown> | Abi, wasm: Uint8Array | string | Buffer | null | undefined): Code<ApiType>;
@@ -64,23 +64,27 @@ export class Code<ApiType extends ApiTypes> extends Base<ApiType> {
   }
 
   #instantiate = (constructorOrId: AbiConstructor | string | number, { gasLimit = BN_ZERO, salt, storageDepositLimit = null, value = BN_ZERO }: BlueprintOptions, params: unknown[]): SubmittableExtrinsic<ApiType, CodeSubmittableResult<ApiType>> => {
-    const encCode = compactAddLength(this.code);
-    const encParams = this.abi.findConstructor(constructorOrId).toU8a(params);
-    const encSalt = encodeSalt(salt);
-
-    return this.api.tx.contracts
-      .instantiateWithCode(value, gasLimit, storageDepositLimit, encCode, encParams, encSalt)
-      .withResultTransform((result: ISubmittableResult) =>
-        new CodeSubmittableResult(result, ...(applyOnEvent(result, ['CodeStored', 'Instantiated'], (records: EventRecord[]) =>
-          records.reduce<[Blueprint<ApiType>?, Contract<ApiType>?]>(([blueprint, contract], { event }) =>
-            this.api.events.contracts.Instantiated.is(event)
-              ? [blueprint, new Contract<ApiType>(this.api, this.abi, (event as unknown as { data: [Codec, AccountId] }).data[1], this._decorateMethod)]
-              : this.api.events.contracts.CodeStored.is(event)
-                ? [new Blueprint<ApiType>(this.api, this.abi, (event as unknown as { data: [AccountId] }).data[0], this._decorateMethod), contract]
-                : [blueprint, contract],
-          [])
-        ) || []))
-      );
+    return this.api.tx.contracts.instantiateWithCode(
+      value,
+      this._isOldWeight
+        // jiggle v1 weights, metadata points to latest
+        ? convertWeight(gasLimit).v1Weight as unknown as WeightAll['v2Weight']
+        : convertWeight(gasLimit).v2Weight,
+      storageDepositLimit,
+      compactAddLength(this.code),
+      this.abi.findConstructor(constructorOrId).toU8a(params),
+      encodeSalt(salt)
+    ).withResultTransform((result: ISubmittableResult) =>
+      new CodeSubmittableResult(result, ...(applyOnEvent(result, ['CodeStored', 'Instantiated'], (records: EventRecord[]) =>
+        records.reduce<[Blueprint<ApiType>?, Contract<ApiType>?]>(([blueprint, contract], { event }) =>
+          this.api.events.contracts.Instantiated.is(event)
+            ? [blueprint, new Contract<ApiType>(this.api, this.abi, (event as unknown as { data: [Codec, AccountId] }).data[1], this._decorateMethod)]
+            : this.api.events.contracts.CodeStored.is(event)
+              ? [new Blueprint<ApiType>(this.api, this.abi, (event as unknown as { data: [AccountId] }).data[0], this._decorateMethod), contract]
+              : [blueprint, contract],
+        [])
+      ) || []))
+    );
   };
 }
 

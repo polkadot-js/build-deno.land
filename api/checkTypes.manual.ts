@@ -3,17 +3,17 @@
 
 // Simple non-runnable checks to test type definitions in the editor itself
 
-import 'https://deno.land/x/polkadot@0.2.9/api-augment/mod.ts';
+import 'https://deno.land/x/polkadot/api-augment/mod.ts';
 
-import type { HeaderExtended } from 'https://deno.land/x/polkadot@0.2.9/api-derive/types.ts';
-import type { StorageKey } from 'https://deno.land/x/polkadot@0.2.9/types/mod.ts';
-import type { AccountId, Balance, DispatchErrorModule, Event, Header, Index } from 'https://deno.land/x/polkadot@0.2.9/types/interfaces/index.ts';
-import type { FrameSystemAccountInfo } from 'https://deno.land/x/polkadot@0.2.9/types/lookup.ts';
-import type { AnyTuple, IExtrinsic, IMethod } from 'https://deno.land/x/polkadot@0.2.9/types/types/index.ts';
+import type { HeaderExtended } from 'https://deno.land/x/polkadot/api-derive/types.ts';
+import type { StorageKey } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, Balance, DispatchErrorModule, Event, Header, Index } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { FrameSystemAccountInfo } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { AnyTuple, IExtrinsic, IMethod } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import { ApiPromise } from 'https://deno.land/x/polkadot@0.2.9/api/mod.ts';
-import { createTestPairs, TestKeyringMap } from 'https://deno.land/x/polkadot@0.2.9/keyring/testingPairs.ts';
-import { createTypeUnsafe, TypeRegistry } from 'https://deno.land/x/polkadot@0.2.9/types/create/index.ts';
+import { ApiPromise } from 'https://deno.land/x/polkadot/api/mod.ts';
+import { createTestPairs, TestKeyringMap } from 'https://deno.land/x/polkadot/keyring/testingPairs.ts';
+import { createTypeUnsafe, TypeRegistry } from 'https://deno.land/x/polkadot/types/create/index.ts';
 
 import { SubmittableResult } from './/index.ts';
 
@@ -38,7 +38,7 @@ function consts (api: ApiPromise): void {
     api.consts.foo.bar,
     api.consts.balances.existentialDeposit.toNumber(),
     api.consts.balances.existentialDeposit.meta.docs.map((s) => s.toString()).join(''),
-    api.consts.system.blockWeights.maxBlock.divn(123).toNumber()
+    api.consts.system.blockWeights.maxBlock.refTime.toNumber()
   );
 }
 

@@ -3,13 +3,13 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.9/api-base/types/errors.ts';
+import 'https://deno.land/x/polkadot/api-base/types/errors.ts';
 
-import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot@0.2.9/api-base/types/index.ts';
+import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 
 export type __AugmentedError<ApiType extends ApiTypes> = AugmentedError<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.9/api-base/types/errors.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
   interface AugmentedErrors<ApiType extends ApiTypes> {
     auctions: {
       /**
@@ -565,6 +565,38 @@ declare module 'https://deno.land/x/polkadot@0.2.9/api-base/types/errors.ts' {
        * The signed submission consumes too much weight
        **/
       SignedTooMuchWeight: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    fastUnstake: {
+      /**
+       * The provided un-staker is already in Head, and cannot deregister.
+       **/
+      AlreadyHead: AugmentedError<ApiType>;
+      /**
+       * The bonded account has already been queued.
+       **/
+      AlreadyQueued: AugmentedError<ApiType>;
+      /**
+       * The call is not allowed at this point because the pallet is not active.
+       **/
+      CallNotAllowed: AugmentedError<ApiType>;
+      /**
+       * The provided Controller account was not found.
+       * 
+       * This means that the given account is not bonded.
+       **/
+      NotController: AugmentedError<ApiType>;
+      /**
+       * The bonded account has active unlocking chunks.
+       **/
+      NotFullyBonded: AugmentedError<ApiType>;
+      /**
+       * The provided un-staker is not in the `Queue`.
+       **/
+      NotQueued: AugmentedError<ApiType>;
       /**
        * Generic error
        **/

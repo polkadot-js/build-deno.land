@@ -3,10 +3,10 @@
 
 /* eslint-disable sort-keys */
 
-import type { OverrideVersionedType } from 'https://deno.land/x/polkadot@0.2.9/types/types/index.ts';
+import type { OverrideVersionedType } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import { mapXcmTypes } from 'https://deno.land/x/polkadot@0.2.9/types-create/mod.ts';
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.9/util/mod.ts';
+import { mapXcmTypes } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const sharedTypes = {
   // 16 validators
@@ -18,7 +18,7 @@ const sharedTypes = {
   ProxyType: {
     _enum: ['Any', 'NonTransfer', 'Staking', 'SudoBalances', 'IdentityJudgement', 'CancelProxy']
   },
-  Weight: 'u64'
+  Weight: 'WeightV1'
 };
 
 const addrAccountIdTypes = {
@@ -93,8 +93,18 @@ const versioned: OverrideVersionedType[] = [
   {
     // metadata v14
     minmax: [9106, undefined],
-    types: {}
+    types: {
+      Weight: 'WeightV1'
+    }
   }
+  // ,
+  // {
+  //   // weight v2 introduction
+  //   minmax: [9300, undefined],
+  //   types: {
+  //     Weight: 'WeightV2'
+  //   }
+  // }
 ];
 
 export default versioned;

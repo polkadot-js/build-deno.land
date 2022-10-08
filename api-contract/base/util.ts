@@ -1,15 +1,17 @@
 // Copyright 2017-2022 @polkadot/api-contract authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { SubmittableResult } from 'https://deno.land/x/polkadot@0.2.9/api/mod.ts';
-import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot@0.2.9/api/submittable/types.ts';
-import type { ApiTypes } from 'https://deno.land/x/polkadot@0.2.9/api/types/index.ts';
-import type { AbiConstructor, AbiMessage, BlueprintOptions } from '../types.ts';
+import type { SubmittableResult } from 'https://deno.land/x/polkadot/api/mod.ts';
+import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot/api/submittable/types.ts';
+import type { ApiTypes } from 'https://deno.land/x/polkadot/api/types/index.ts';
+import type { WeightV1, WeightV2 } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { AbiConstructor, AbiMessage, BlueprintOptions, WeightAll } from '../types.ts';
 import type { BlueprintDeploy, ContractGeneric } from './types.ts';
 
-import { Bytes } from 'https://deno.land/x/polkadot@0.2.9/types/mod.ts';
-import { compactAddLength, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.9/util/mod.ts';
-import { randomAsU8a } from 'https://deno.land/x/polkadot@0.2.9/util-crypto/mod.ts';
+import { Bytes } from 'https://deno.land/x/polkadot/types/mod.ts';
+import { bnToBn, compactAddLength, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { randomAsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 export const EMPTY_SALT = new Uint8Array();
 
@@ -36,4 +38,15 @@ export function encodeSalt (salt: Uint8Array | string | null = randomAsU8a()): U
     : salt && salt.length
       ? compactAddLength(u8aToU8a(salt))
       : EMPTY_SALT;
+}
+
+export function convertWeight (orig: WeightV1 | WeightV2 | bigint | string | number | BN): WeightAll {
+  const refTime = (orig as WeightV2).proofSize
+    ? (orig as WeightV2).refTime.toBn()
+    : bnToBn(orig as BN);
+
+  return {
+    v1Weight: refTime,
+    v2Weight: { refTime }
+  };
 }

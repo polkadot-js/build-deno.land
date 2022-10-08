@@ -3,10 +3,10 @@
 
 /* eslint-disable sort-keys */
 
-import type { OverrideVersionedType } from 'https://deno.land/x/polkadot@0.2.9/types/types/index.ts';
+import type { OverrideVersionedType } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import { mapXcmTypes } from 'https://deno.land/x/polkadot@0.2.9/types-create/mod.ts';
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.9/util/mod.ts';
+import { mapXcmTypes } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const sharedTypes = {
   DispatchErrorModule: 'DispatchErrorModuleU8',
@@ -22,7 +22,7 @@ const sharedTypes = {
       'Staking'
     ]
   },
-  Weight: 'u64'
+  Weight: 'WeightV1'
 };
 
 // these are override types for Statemine, Statemint, Westmint
@@ -42,8 +42,18 @@ const versioned: OverrideVersionedType[] = [
   {
     // metadata V14
     minmax: [500, undefined],
-    types: {}
+    types: {
+      Weight: 'WeightV1'
+    }
   }
+  // ,
+  // {
+  //   // weight v2 introduction
+  //   minmax: [9300, undefined],
+  //   types: {
+  //     Weight: 'WeightV2'
+  //   }
+  // }
 ];
 
 export default versioned;

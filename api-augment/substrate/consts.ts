@@ -3,17 +3,17 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.9/api-base/types/consts.ts';
+import 'https://deno.land/x/polkadot/api-base/types/consts.ts';
 
-import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot@0.2.9/api-base/types/index.ts';
-import type { Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.9/types-codec/mod.ts';
-import type { Codec, ITuple } from 'https://deno.land/x/polkadot@0.2.9/types-codec/types/index.ts';
-import type { Perbill, Percent, Permill, Weight } from 'https://deno.land/x/polkadot@0.2.9/types/interfaces/runtime/index.ts';
-import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, PalletContractsSchedule, PalletReferendaTrackInfo, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight } from 'https://deno.land/x/polkadot@0.2.9/types/lookup.ts';
+import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Codec, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Perbill, Percent, Permill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, PalletContractsSchedule, PalletReferendaTrackInfo, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedConst<ApiType extends ApiTypes> = AugmentedConst<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.9/api-base/types/consts.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
   interface AugmentedConsts<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -211,7 +211,7 @@ declare module 'https://deno.land/x/polkadot@0.2.9/api-base/types/consts.ts' {
        * 
        * This is only relevant for parachains. Set to zero in case of a standalone chain.
        **/
-      contractAccessWeight: Weight & AugmentedConst<ApiType>;
+      contractAccessWeight: SpWeightsWeightV2Weight & AugmentedConst<ApiType>;
       /**
        * The maximum number of contracts that can be pending for deletion.
        * 
@@ -238,7 +238,7 @@ declare module 'https://deno.land/x/polkadot@0.2.9/api-base/types/consts.ts' {
        * weight that is left for transactions. See [`Self::DeletionQueueDepth`] for more
        * information about the deletion queue.
        **/
-      deletionWeightLimit: Weight & AugmentedConst<ApiType>;
+      deletionWeightLimit: SpWeightsWeightV2Weight & AugmentedConst<ApiType>;
       /**
        * The amount of balance a caller has to pay for each byte of storage.
        * 
@@ -369,7 +369,7 @@ declare module 'https://deno.land/x/polkadot@0.2.9/api-base/types/consts.ts' {
       maxElectingVoters: u32 & AugmentedConst<ApiType>;
       minerMaxLength: u32 & AugmentedConst<ApiType>;
       minerMaxVotesPerVoter: u32 & AugmentedConst<ApiType>;
-      minerMaxWeight: Weight & AugmentedConst<ApiType>;
+      minerMaxWeight: SpWeightsWeightV2Weight & AugmentedConst<ApiType>;
       /**
        * The priority of the unsigned transaction submitted in the unsigned-phase
        **/
@@ -414,7 +414,7 @@ declare module 'https://deno.land/x/polkadot@0.2.9/api-base/types/consts.ts' {
        * this pallet), then [`MinerConfig::solution_weight`] is used to compare against
        * this value.
        **/
-      signedMaxWeight: Weight & AugmentedConst<ApiType>;
+      signedMaxWeight: SpWeightsWeightV2Weight & AugmentedConst<ApiType>;
       /**
        * Duration of the signed phase.
        **/
@@ -818,7 +818,7 @@ declare module 'https://deno.land/x/polkadot@0.2.9/api-base/types/consts.ts' {
        * The maximum weight that may be scheduled per block for any dispatchables of less
        * priority than `schedule::HARD_DEADLINE`.
        **/
-      maximumWeight: Weight & AugmentedConst<ApiType>;
+      maximumWeight: SpWeightsWeightV2Weight & AugmentedConst<ApiType>;
       /**
        * The maximum number of scheduled calls in the queue for a single block.
        * Not strictly enforced, but used for weight estimation.
@@ -896,8 +896,9 @@ declare module 'https://deno.land/x/polkadot@0.2.9/api-base/types/consts.ts' {
        * 
        * Note: `HistoryDepth` is used as the upper bound for the `BoundedVec`
        * item `StakingLedger.claimed_rewards`. Setting this value lower than
-       * the existing value can lead to inconsistencies and will need to be
-       * handled properly in a migration.
+       * the existing value can lead to inconsistencies in the
+       * `StakingLedger` and will need to be handled properly in a migration.
+       * The test `reducing_history_depth_abrupt` shows this effect.
        **/
       historyDepth: u32 & AugmentedConst<ApiType>;
       /**
@@ -912,8 +913,16 @@ declare module 'https://deno.land/x/polkadot@0.2.9/api-base/types/consts.ts' {
        **/
       maxNominatorRewardedPerValidator: u32 & AugmentedConst<ApiType>;
       /**
-       * The maximum number of `unlocking` chunks a [`StakingLedger`] can have. Effectively
-       * determines how many unique eras a staker may be unbonding in.
+       * The maximum number of `unlocking` chunks a [`StakingLedger`] can
+       * have. Effectively determines how many unique eras a staker may be
+       * unbonding in.
+       * 
+       * Note: `MaxUnlockingChunks` is used as the upper bound for the
+       * `BoundedVec` item `StakingLedger.unlocking`. Setting this value
+       * lower than the existing value can lead to inconsistencies in the
+       * `StakingLedger` and will need to be handled properly in a runtime
+       * migration. The test `reducing_max_unlocking_chunks_abrupt` shows
+       * this effect.
        **/
       maxUnlockingChunks: u32 & AugmentedConst<ApiType>;
       /**

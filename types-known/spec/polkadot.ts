@@ -3,9 +3,9 @@
 
 /* eslint-disable sort-keys */
 
-import type { OverrideVersionedType } from 'https://deno.land/x/polkadot@0.2.9/types/types/index.ts';
+import type { OverrideVersionedType } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.9/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const sharedTypes = {
   CompactAssignments: 'CompactAssignmentsWith16',
@@ -24,7 +24,7 @@ const sharedTypes = {
       Auction: 7
     }
   },
-  Weight: 'u64'
+  Weight: 'WeightV1'
 };
 
 const addrAccountIdTypes = {
@@ -76,8 +76,18 @@ const versioned: OverrideVersionedType[] = [
   {
     // metadata v14
     minmax: [9110, undefined],
-    types: {}
+    types: {
+      Weight: 'WeightV1'
+    }
   }
+  // ,
+  // {
+  //   // weight v2 introduction
+  //   minmax: [9300, undefined],
+  //   types: {
+  //     Weight: 'WeightV2'
+  //   }
+  // }
 ];
 
 export default versioned;

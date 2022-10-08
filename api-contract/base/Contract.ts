@@ -1,24 +1,24 @@
 // Copyright 2017-2022 @polkadot/api-contract authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot@0.2.9/api/submittable/types.ts';
-import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot@0.2.9/api/types/index.ts';
-import type { Bytes } from 'https://deno.land/x/polkadot@0.2.9/types/mod.ts';
-import type { AccountId, ContractExecResult, EventRecord, Weight } from 'https://deno.land/x/polkadot@0.2.9/types/interfaces/index.ts';
-import type { ISubmittableResult } from 'https://deno.land/x/polkadot@0.2.9/types/types/index.ts';
-import type { AbiMessage, ContractCallOutcome, ContractOptions, DecodedEvent } from '../types.ts';
+import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot/api/submittable/types.ts';
+import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot/api/types/index.ts';
+import type { Bytes } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, ContractExecResult, EventRecord, Weight, WeightV2 } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { ISubmittableResult } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { AbiMessage, ContractCallOutcome, ContractOptions, DecodedEvent, WeightAll } from '../types.ts';
 import type { ContractCallResult, ContractCallSend, ContractQuery, ContractTx, MapMessageQuery, MapMessageTx } from './types.ts';
 
 import { map } from 'https://esm.sh/rxjs@7.5.7';
 
-import { SubmittableResult } from 'https://deno.land/x/polkadot@0.2.9/api/mod.ts';
-import { ApiBase } from 'https://deno.land/x/polkadot@0.2.9/api/base/index.ts';
-import { BN, BN_HUNDRED, BN_ONE, BN_ZERO, bnToBn, isUndefined, logger } from 'https://deno.land/x/polkadot@0.2.9/util/mod.ts';
+import { SubmittableResult } from 'https://deno.land/x/polkadot/api/mod.ts';
+import { ApiBase } from 'https://deno.land/x/polkadot/api/base/index.ts';
+import { BN, BN_HUNDRED, BN_ONE, BN_ZERO, isUndefined, logger } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Abi } from '../Abi/index.ts';
 import { applyOnEvent } from '../util.ts';
 import { Base } from './Base.ts';
-import { withMeta } from './util.ts';
+import { convertWeight, withMeta } from './util.ts';
 
 export interface ContractConstructor<ApiType extends ApiTypes> {
   new(api: ApiBase<ApiType>, abi: string | Record<string, unknown> | Abi, address: string | AccountId): Contract<ApiType>;
@@ -85,41 +85,50 @@ export class Contract<ApiType extends ApiTypes> extends Base<ApiType> {
     return this.#tx;
   }
 
-  #getGas = (_gasLimit: bigint | BN | string | number, isCall = false): BN => {
-    const gasLimit = bnToBn(_gasLimit);
+  #getGas = (_gasLimit: bigint | BN | string | number | WeightV2, isCall = false): WeightAll => {
+    const weight = convertWeight(_gasLimit);
 
-    return gasLimit.lte(BN_ZERO)
-      ? isCall
+    if (weight.v1Weight.gt(BN_ZERO)) {
+      return weight;
+    }
+
+    return convertWeight(
+      isCall
         ? MAX_CALL_GAS
-        : (this.api.consts.system.blockWeights
-          ? (this.api.consts.system.blockWeights as unknown as { maxBlock: Weight }).maxBlock
-          : this.api.consts.system.maximumBlockWeight as Weight
-        ).muln(64).div(BN_HUNDRED)
-      : gasLimit;
+        : convertWeight(
+          this.api.consts.system.blockWeights
+            ? (this.api.consts.system.blockWeights as unknown as { maxBlock: WeightV2 }).maxBlock
+            : this.api.consts.system.maximumBlockWeight as Weight
+        ).v1Weight.muln(64).div(BN_HUNDRED)
+    );
   };
 
   #exec = (messageOrId: AbiMessage | string | number, { gasLimit = BN_ZERO, storageDepositLimit = null, value = BN_ZERO }: ContractOptions, params: unknown[]): SubmittableExtrinsic<ApiType> => {
-    const gas = this.#getGas(gasLimit);
-    const encParams = this.abi.findMessage(messageOrId).toU8a(params);
+    return this.api.tx.contracts.call(
+      this.address,
+      value,
+      this._isOldWeight
+        // jiggle v1 weights, metadata points to latest
+        ? convertWeight(gasLimit).v1Weight as unknown as WeightAll['v2Weight']
+        : convertWeight(gasLimit).v2Weight,
+      storageDepositLimit,
+      this.abi.findMessage(messageOrId).toU8a(params)
+    ).withResultTransform((result: ISubmittableResult) =>
+      // ContractEmitted is the current generation, ContractExecution is the previous generation
+      new ContractSubmittableResult(result, applyOnEvent(result, ['ContractEmitted', 'ContractExecution'], (records: EventRecord[]) =>
+        records
+          .map(({ event: { data: [, data] } }): DecodedEvent | null => {
+            try {
+              return this.abi.decodeEvent(data as Bytes);
+            } catch (error) {
+              l.error(`Unable to decode contract event: ${(error as Error).message}`);
 
-    return this.api.tx.contracts
-      .call(this.address, value, gas, storageDepositLimit, encParams)
-      .withResultTransform((result: ISubmittableResult) =>
-        // ContractEmitted is the current generation, ContractExecution is the previous generation
-        new ContractSubmittableResult(result, applyOnEvent(result, ['ContractEmitted', 'ContractExecution'], (records: EventRecord[]) =>
-          records
-            .map(({ event: { data: [, data] } }): DecodedEvent | null => {
-              try {
-                return this.abi.decodeEvent(data as Bytes);
-              } catch (error) {
-                l.error(`Unable to decode contract event: ${(error as Error).message}`);
-
-                return null;
-              }
-            })
-            .filter((decoded): decoded is DecodedEvent => !!decoded)
-        ))
-      );
+              return null;
+            }
+          })
+          .filter((decoded): decoded is DecodedEvent => !!decoded)
+      ))
+    );
   };
 
   #read = (messageOrId: AbiMessage | string | number, { gasLimit = BN_ZERO, storageDepositLimit = null, value = BN_ZERO }: ContractOptions, params: unknown[]): ContractCallSend<ApiType> => {
@@ -128,22 +137,28 @@ export class Contract<ApiType extends ApiTypes> extends Base<ApiType> {
     return {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       send: this._decorateMethod((origin: string | AccountId | Uint8Array) =>
-        this.api.rx.call.contractsApi
-          .call<ContractExecResult>(origin, this.address, value, this.#getGas(gasLimit, true), storageDepositLimit, message.toU8a(params))
-          .pipe(
-            map(({ debugMessage, gasConsumed, gasRequired, result, storageDeposit }): ContractCallOutcome => ({
-              debugMessage,
-              gasConsumed,
-              gasRequired: gasRequired && !gasRequired.isZero()
-                ? gasRequired
-                : gasConsumed,
-              output: result.isOk && message.returnType
-                ? this.abi.registry.createTypeUnsafe(message.returnType.lookupName || message.returnType.type, [result.asOk.data.toU8a(true)], { isPedantic: true })
-                : null,
-              result,
-              storageDeposit
-            }))
-          )
+        this.api.rx.call.contractsApi.call<ContractExecResult>(
+          origin,
+          this.address,
+          value,
+          // the runtime interface still used u64 inputs
+          this.#getGas(gasLimit, true).v1Weight,
+          storageDepositLimit,
+          message.toU8a(params)
+        ).pipe(
+          map(({ debugMessage, gasConsumed, gasRequired, result, storageDeposit }): ContractCallOutcome => ({
+            debugMessage,
+            gasConsumed,
+            gasRequired: gasRequired && !gasRequired.isZero()
+              ? gasRequired
+              : gasConsumed,
+            output: result.isOk && message.returnType
+              ? this.abi.registry.createTypeUnsafe(message.returnType.lookupName || message.returnType.type, [result.asOk.data.toU8a(true)], { isPedantic: true })
+              : null,
+            result,
+            storageDeposit
+          }))
+        )
       )
     };
   };

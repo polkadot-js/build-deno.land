@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { lazyMethods, logger, objectClear } from 'https://deno.land/x/polkadot@0.2.9/util/mod.ts';
+import { lazyMethods, logger, objectClear } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 type Sections <T> = Record<string, Methods<T>>;
 
