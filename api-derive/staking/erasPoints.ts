@@ -2,13 +2,13 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.7';
-import type { EraIndex } from 'https://deno.land/x/polkadot@0.2.10/types/interfaces/index.ts';
-import type { PalletStakingEraRewardPoints } from 'https://deno.land/x/polkadot@0.2.10/types/lookup.ts';
+import type { EraIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletStakingEraRewardPoints } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { DeriveApi, DeriveEraPoints, DeriveEraValPoints } from '../types.ts';
 
 import { map, of } from 'https://esm.sh/rxjs@7.5.7';
 
-import { BN_ZERO } from 'https://deno.land/x/polkadot@0.2.10/util/mod.ts';
+import { BN_ZERO } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 import { filterCachedEras, getEraMultiCache, setEraMultiCache } from './cache.ts';
