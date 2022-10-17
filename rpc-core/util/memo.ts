@@ -2,11 +2,11 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observer, TeardownLogic } from 'https://esm.sh/rxjs@7.5.7';
-import type { Memoized } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { Memoized } from 'https://deno.land/x/polkadot@0.2.11/util/types.ts';
 
 import { Observable } from 'https://esm.sh/rxjs@7.5.7';
 
-import { memoize } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { memoize } from 'https://deno.land/x/polkadot@0.2.11/util/mod.ts';
 
 import { drr } from './drr.ts';
 

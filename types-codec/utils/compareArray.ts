@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { isUndefined } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isUndefined } from 'https://deno.land/x/polkadot@0.2.11/util/mod.ts';
 
 import { hasEq } from './util.ts';
 
