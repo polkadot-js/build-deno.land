@@ -3,14 +3,21 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.11/types/lookup.ts';
+import 'https://deno.land/x/polkadot/types/lookup.ts';
 
-import type { BitVec, Bytes, Compact, Enum, Null, Option, Result, Struct, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.11/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.11/types-codec/types/index.ts';
-import type { EthereumAddress } from 'https://deno.land/x/polkadot@0.2.11/types/interfaces/eth/index.ts';
-import type { AccountId32, H256, PerU16, Weight } from 'https://deno.land/x/polkadot@0.2.11/types/interfaces/runtime/index.ts';
+import type { BitVec, Bytes, Compact, Enum, Null, Option, Result, Struct, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { EthereumAddress } from 'https://deno.land/x/polkadot/types/interfaces/eth/index.ts';
+import type { AccountId32, Call, H256, PerU16, Weight } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
-declare module 'https://deno.land/x/polkadot@0.2.11/types/lookup.ts' {
+declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
+  /** @name FrameSupportScheduleLookupError (33) */
+  interface FrameSupportScheduleLookupError extends Enum {
+    readonly isUnknown: boolean;
+    readonly isBadFormat: boolean;
+    readonly type: 'Unknown' | 'BadFormat';
+  }
+
   /** @name PolkadotRuntimeCommonClaimsPalletEvent (73) */
   interface PolkadotRuntimeCommonClaimsPalletEvent extends Enum {
     readonly isClaimed: boolean;
@@ -829,6 +836,24 @@ declare module 'https://deno.land/x/polkadot@0.2.11/types/lookup.ts' {
     readonly isV1: boolean;
     readonly asV1: XcmV1MultiLocation;
     readonly type: 'V0' | 'V1';
+  }
+
+  /** @name PalletSchedulerScheduledV3 (181) */
+  interface PalletSchedulerScheduledV3 extends Struct {
+    readonly maybeId: Option<Bytes>;
+    readonly priority: u8;
+    readonly call: FrameSupportScheduleMaybeHashed;
+    readonly maybePeriodic: Option<ITuple<[u32, u32]>>;
+    readonly origin: PolkadotRuntimeOriginCaller;
+  }
+
+  /** @name FrameSupportScheduleMaybeHashed (182) */
+  interface FrameSupportScheduleMaybeHashed extends Enum {
+    readonly isValue: boolean;
+    readonly asValue: Call;
+    readonly isHash: boolean;
+    readonly asHash: H256;
+    readonly type: 'Value' | 'Hash';
   }
 
   /** @name PolkadotRuntimeSessionKeys (213) */
@@ -1811,6 +1836,27 @@ declare module 'https://deno.land/x/polkadot@0.2.11/types/lookup.ts' {
     readonly isVersion: boolean;
     readonly asVersion: u32;
     readonly type: 'Assets' | 'Version';
+  }
+
+  /** @name PalletDemocracyPreimageStatus (530) */
+  interface PalletDemocracyPreimageStatus extends Enum {
+    readonly isMissing: boolean;
+    readonly asMissing: u32;
+    readonly isAvailable: boolean;
+    readonly asAvailable: {
+      readonly data: Bytes;
+      readonly provider: AccountId32;
+      readonly deposit: u128;
+      readonly since: u32;
+      readonly expiry: Option<u32>;
+    } & Struct;
+    readonly type: 'Missing' | 'Available';
+  }
+
+  /** @name PalletDemocracyReleases (541) */
+  interface PalletDemocracyReleases extends Enum {
+    readonly isV1: boolean;
+    readonly type: 'V1';
   }
 
   /** @name PolkadotRuntimeCommonClaimsPalletError (560) */

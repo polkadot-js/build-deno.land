@@ -2,27 +2,28 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.7';
-import type { Option } from 'https://deno.land/x/polkadot@0.2.11/types/mod.ts';
-import type { H256 } from 'https://deno.land/x/polkadot@0.2.11/types/interfaces/index.ts';
-import type { PalletDemocracyVoteThreshold } from 'https://deno.land/x/polkadot@0.2.11/types/lookup.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.11/types/types/index.ts';
+import type { Option } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { H256 } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { FrameSupportPreimagesBounded, PalletDemocracyVoteThreshold } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DeriveApi, DeriveProposalExternal } from '../types.ts';
 
 import { map, of, switchMap } from 'https://esm.sh/rxjs@7.5.7';
 
 import { memo } from '../util/index.ts';
+import { getImageHashBounded } from './util.ts';
 
-function withImage (api: DeriveApi, nextOpt: Option<ITuple<[H256, PalletDemocracyVoteThreshold]>>): Observable<DeriveProposalExternal | null> {
+function withImage (api: DeriveApi, nextOpt: Option<ITuple<[H256 | FrameSupportPreimagesBounded, PalletDemocracyVoteThreshold]>>): Observable<DeriveProposalExternal | null> {
   if (nextOpt.isNone) {
     return of(null);
   }
 
-  const [imageHash, threshold] = nextOpt.unwrap();
+  const [hash, threshold] = nextOpt.unwrap();
 
-  return api.derive.democracy.preimage(imageHash).pipe(
+  return api.derive.democracy.preimage(hash).pipe(
     map((image): DeriveProposalExternal => ({
       image,
-      imageHash,
+      imageHash: getImageHashBounded(hash),
       threshold
     }))
   );

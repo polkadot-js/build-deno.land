@@ -2,18 +2,18 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.7';
-import type { Option, Vec } from 'https://deno.land/x/polkadot@0.2.11/types/mod.ts';
-import type { AccountId, ReferendumInfoTo239, Vote } from 'https://deno.land/x/polkadot@0.2.11/types/interfaces/index.ts';
-import type { PalletDemocracyReferendumInfo, PalletDemocracyVoteVoting } from 'https://deno.land/x/polkadot@0.2.11/types/lookup.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.11/util/mod.ts';
+import type { Option, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, Hash, ReferendumInfoTo239, Vote } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletDemocracyReferendumInfo, PalletDemocracyReferendumStatus, PalletDemocracyVoteVoting } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { DeriveApi, DeriveBalancesAccount, DeriveReferendum, DeriveReferendumVote, DeriveReferendumVotes } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.7';
 
-import { isFunction, objectSpread } from 'https://deno.land/x/polkadot@0.2.11/util/mod.ts';
+import { isFunction, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
-import { calcVotes, getStatus } from './util.ts';
+import { calcVotes, getImageHash, getStatus } from './util.ts';
 
 type VotingDelegating = PalletDemocracyVoteVoting['asDelegating'];
 type VotingDirect = PalletDemocracyVoteVoting['asDirect'];
@@ -133,10 +133,13 @@ export function _referendumInfo (instanceId: string, api: DeriveApi): (index: BN
     const status = getStatus(info);
 
     return status
-      ? api.derive.democracy.preimage(status.proposalHash).pipe(
+      ? api.derive.democracy.preimage(
+        (status as PalletDemocracyReferendumStatus).proposal ||
+        (status as unknown as { proposalHash: Hash }).proposalHash
+      ).pipe(
         map((image): DeriveReferendum => ({
           image,
-          imageHash: status.proposalHash,
+          imageHash: getImageHash(status),
           index: api.registry.createType('ReferendumIndex', index),
           status
         }))
@@ -157,7 +160,7 @@ export function referendumsInfo (instanceId: string, api: DeriveApi): (ids: BN[]
           )
         ),
         map((infos) =>
-          infos.filter((referendum): referendum is DeriveReferendum => !!referendum)
+          infos.filter((r): r is DeriveReferendum => !!r)
         )
       )
       : of([])

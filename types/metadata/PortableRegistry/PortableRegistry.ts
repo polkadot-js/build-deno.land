@@ -1,15 +1,15 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Option, Text, Type, Vec } from 'https://deno.land/x/polkadot@0.2.11/types-codec/mod.ts';
-import type { AnyString, Registry } from 'https://deno.land/x/polkadot@0.2.11/types-codec/types/index.ts';
-import type { ILookup, TypeDef } from 'https://deno.land/x/polkadot@0.2.11/types-create/types/index.ts';
+import type { Option, Text, Type, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { AnyString, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { ILookup, TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 import type { PortableType } from '../../interfaces/metadata/index.ts';
 import type { SiField, SiLookupTypeId, SiType, SiTypeDefArray, SiTypeDefBitSequence, SiTypeDefCompact, SiTypeDefComposite, SiTypeDefSequence, SiTypeDefTuple, SiTypeDefVariant, SiTypeParameter, SiVariant } from '../../interfaces/scaleInfo/index.ts';
 
-import { sanitize, Struct, u32 } from 'https://deno.land/x/polkadot@0.2.11/types-codec/mod.ts';
-import { getTypeDef, TypeDefInfo, withTypeString } from 'https://deno.land/x/polkadot@0.2.11/types-create/mod.ts';
-import { assertUnreachable, isNumber, isString, logger, objectSpread, stringCamelCase, stringify, stringPascalCase } from 'https://deno.land/x/polkadot@0.2.11/util/mod.ts';
+import { sanitize, Struct, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { getTypeDef, TypeDefInfo, withTypeString } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { assertUnreachable, isNumber, isString, logger, objectSpread, stringCamelCase, stringify, stringPascalCase } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const l = logger('PortableRegistry');
 
@@ -430,12 +430,13 @@ function registerTypes (lookup: PortableRegistry, lookups: Record<string, string
 
     const weightDef = lookup.getTypeDef(`Lookup${weight[0]}`);
 
-    // we have a complex structure
-    if (Array.isArray(weightDef.sub) && weightDef.sub.length !== 1) {
-      lookup.registry.register({
-        Weight: 'SpWeightsWeightV2Weight'
-      });
-    }
+    lookup.registry.register({
+      Weight: Array.isArray(weightDef.sub) && weightDef.sub.length !== 1
+        // we have a complex structure
+        ? 'SpWeightsWeightV2Weight'
+        // single entry, fallback to weight V1
+        : 'WeightV1'
+    });
   }
 }
 

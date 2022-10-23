@@ -3,7 +3,7 @@
 
 import type { DefinitionsCall, DefinitionsCallEntry } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.11/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const GRANDPA_V2_V3: DefinitionsCallEntry['methods'] = {
   generate_key_ownership_proof: {

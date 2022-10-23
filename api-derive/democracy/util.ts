@@ -1,12 +1,13 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ReferendumInfoTo239, Tally } from 'https://deno.land/x/polkadot@0.2.11/types/interfaces/index.ts';
-import type { PalletDemocracyReferendumInfo, PalletDemocracyReferendumStatus, PalletDemocracyVoteThreshold } from 'https://deno.land/x/polkadot@0.2.11/types/lookup.ts';
-import type { Option } from 'https://deno.land/x/polkadot@0.2.11/types-codec/mod.ts';
+import type { Hash, ReferendumInfoTo239, Tally } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { FrameSupportPreimagesBounded, PalletDemocracyReferendumInfo, PalletDemocracyReferendumStatus, PalletDemocracyVoteThreshold } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { Option } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { DeriveReferendum, DeriveReferendumVote, DeriveReferendumVotes, DeriveReferendumVoteState } from '../types.ts';
 
-import { BN, bnSqrt, objectSpread } from 'https://deno.land/x/polkadot@0.2.11/util/mod.ts';
+import { BN, bnSqrt, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 interface ApproxState {
   votedAye: BN;
@@ -138,4 +139,22 @@ export function getStatus (info: Option<PalletDemocracyReferendumInfo | Referend
       ? unwrapped.asOngoing
       // done, we don't include it here... only currently active
       : null;
+}
+
+export function getImageHashBounded (hash: Hash | FrameSupportPreimagesBounded): HexString {
+  return (hash as FrameSupportPreimagesBounded).isLegacy
+    ? (hash as FrameSupportPreimagesBounded).asLegacy.hash_.toHex()
+    : (hash as FrameSupportPreimagesBounded).isLookup
+      ? (hash as FrameSupportPreimagesBounded).asLookup.hash_.toHex()
+      // for inline, use the actual Bytes hash
+      : (hash as FrameSupportPreimagesBounded).isInline
+        ? (hash as FrameSupportPreimagesBounded).asInline.hash.toHex()
+        : hash.toHex();
+}
+
+export function getImageHash (status: PalletDemocracyReferendumStatus | ReferendumInfoTo239): HexString {
+  return getImageHashBounded(
+    (status as PalletDemocracyReferendumStatus).proposal ||
+    (status as ReferendumInfoTo239).proposalHash
+  );
 }

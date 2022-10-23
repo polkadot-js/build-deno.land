@@ -1,14 +1,14 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ICompact, Inspect, INumber } from 'https://deno.land/x/polkadot@0.2.11/types-codec/types/index.ts';
+import type { ICompact, Inspect, INumber } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { StorageEntryMetadataLatest, StorageHasher } from '../../../interfaces/metadata/index.ts';
 import type { StorageEntry, StorageEntryIterator } from '../../../primitive/types.ts';
 import type { Registry } from '../../../types/index.ts';
 
-import { Raw } from 'https://deno.land/x/polkadot@0.2.11/types-codec/mod.ts';
-import { compactAddLength, compactStripLength, isUndefined, objectSpread, stringCamelCase, u8aConcat, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.11/util/mod.ts';
-import { xxhashAsU8a } from 'https://deno.land/x/polkadot@0.2.11/util-crypto/mod.ts';
+import { Raw } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { compactAddLength, compactStripLength, isUndefined, objectSpread, stringCamelCase, u8aConcat, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { xxhashAsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { StorageKey } from '../../../primitive/index.ts';
 import { getSiName } from '../../util/index.ts';
@@ -45,6 +45,11 @@ export const NO_RAW_ARGS: RawArgs = {
   hashers: [],
   keys: []
 };
+
+/** @internal */
+function filterDefined (a: unknown): boolean {
+  return !isUndefined(a);
+}
 
 /** @internal */
 function assertArgs ({ method, section }: CreateItemFn, { args, keys }: RawArgs): void {
@@ -110,11 +115,6 @@ export function createKeyRaw (registry: Registry, itemFn: CreateItemBase, args: 
     ...prefix,
     ...extra
   );
-}
-
-/** @internal */
-function filterDefined (a: unknown): boolean {
-  return !isUndefined(a);
 }
 
 /** @internal */

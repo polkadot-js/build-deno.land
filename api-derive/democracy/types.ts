@@ -1,13 +1,14 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Vec } from 'https://deno.land/x/polkadot@0.2.11/types/mod.ts';
-import type { AccountId, Balance, BlockNumber, Hash, PropIndex, Proposal, ReferendumIndex, ReferendumInfoTo239, Vote } from 'https://deno.land/x/polkadot@0.2.11/types/interfaces/index.ts';
-import type { PalletDemocracyReferendumStatus, PalletDemocracyVoteThreshold } from 'https://deno.land/x/polkadot@0.2.11/types/lookup.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.11/util/mod.ts';
+import type { Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, Balance, Call, Hash, PropIndex, ReferendumIndex, ReferendumInfoTo239, Vote } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletDemocracyReferendumStatus, PalletDemocracyVoteThreshold } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 
 export interface AtBlock {
-  at: BlockNumber;
+  at: BN;
 }
 
 export interface DeriveDemocracyLock {
@@ -22,13 +23,15 @@ export interface DeriveDemocracyLock {
 
 export interface DeriveProposalImage extends AtBlock {
   balance: Balance;
-  proposal?: Proposal;
+  proposal?: Call;
+  proposalHash?: HexString;
+  proposalLen?: number;
   proposer: AccountId;
 }
 
 export interface DeriveDispatch extends AtBlock {
   index: ReferendumIndex;
-  imageHash: Hash;
+  imageHash: HexString;
   image?: DeriveProposalImage;
 }
 
@@ -43,14 +46,14 @@ export interface DeriveProposal {
 
 export interface DeriveProposalExternal {
   image?: DeriveProposalImage;
-  imageHash: Hash;
+  imageHash: HexString;
   threshold: PalletDemocracyVoteThreshold;
 }
 
 export interface DeriveReferendum {
   index: ReferendumIndex;
   image?: DeriveProposalImage;
-  imageHash: Hash;
+  imageHash: HexString;
   status: PalletDemocracyReferendumStatus | ReferendumInfoTo239;
 }
 
