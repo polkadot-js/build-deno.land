@@ -3,21 +3,21 @@
 
 /* eslint-disable camelcase */
 
-import type { Header } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
-import type { Codec, Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { Header } from 'https://deno.land/x/polkadot@0.2.12/types/interfaces/index.ts';
+import type { Codec, Registry } from 'https://deno.land/x/polkadot@0.2.12/types/types/index.ts';
 import type { ProviderInterface, ProviderInterfaceEmitCb, ProviderInterfaceEmitted } from '../types.ts';
 import type { MockStateDb, MockStateSubscriptionCallback, MockStateSubscriptions } from './types.ts';
 
 import EventEmitter from 'https://esm.sh/eventemitter3@4.0.7';
 
-import { createTestKeyring } from 'https://deno.land/x/polkadot/keyring/testing.ts';
-import { decorateStorage, Metadata } from 'https://deno.land/x/polkadot/types/mod.ts';
-import jsonrpc from 'https://deno.land/x/polkadot/types/interfaces/jsonrpc.ts';
-import rpcHeader from 'https://deno.land/x/polkadot/types-support/json/Header.004.json' assert { type: 'json' };
-import rpcSignedBlock from 'https://deno.land/x/polkadot/types-support/json/SignedBlock.004.immortal.json' assert { type: 'json' };
-import rpcMetadata from 'https://deno.land/x/polkadot/types-support/metadata/static-substrate.ts';
-import { BN, bnToU8a, logger, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
-import { randomAsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
+import { createTestKeyring } from 'https://deno.land/x/polkadot@0.2.12/keyring/testing.ts';
+import { decorateStorage, Metadata } from 'https://deno.land/x/polkadot@0.2.12/types/mod.ts';
+import jsonrpc from 'https://deno.land/x/polkadot@0.2.12/types/interfaces/jsonrpc.ts';
+import rpcHeader from 'https://deno.land/x/polkadot@0.2.12/types-support/json/Header.004.json' assert { type: 'json' };
+import rpcSignedBlock from 'https://deno.land/x/polkadot@0.2.12/types-support/json/SignedBlock.004.immortal.json' assert { type: 'json' };
+import rpcMetadata from 'https://deno.land/x/polkadot@0.2.12/types-support/metadata/static-substrate.ts';
+import { BN, bnToU8a, logger, u8aToHex } from 'https://deno.land/x/polkadot@0.2.12/util/mod.ts';
+import { randomAsU8a } from 'https://deno.land/x/polkadot@0.2.12/util-crypto/mod.ts';
 
 const INTERVAL = 1000;
 const SUBSCRIPTIONS: string[] = Array.prototype.concat.apply(

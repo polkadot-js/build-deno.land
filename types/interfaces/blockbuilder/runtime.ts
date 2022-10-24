@@ -3,7 +3,7 @@
 
 import type { DefinitionsCall, DefinitionsCallEntry } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.2.12/util/mod.ts';
 
 const BB_V2_TO_V4: DefinitionsCallEntry['methods'] = {
   // this was removed after V4
