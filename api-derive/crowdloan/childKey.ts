@@ -2,15 +2,15 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.7';
-import type { Option, u32 } from 'https://deno.land/x/polkadot@0.2.12/types/mod.ts';
-import type { PolkadotRuntimeCommonCrowdloanFundInfo } from 'https://deno.land/x/polkadot@0.2.12/types/lookup.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.12/util/mod.ts';
+import type { Option, u32 } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { PolkadotRuntimeCommonCrowdloanFundInfo } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { DeriveApi } from '../types.ts';
 
 import { map } from 'https://esm.sh/rxjs@7.5.7';
 
-import { u8aConcat, u8aToHex } from 'https://deno.land/x/polkadot@0.2.12/util/mod.ts';
-import { blake2AsU8a } from 'https://deno.land/x/polkadot@0.2.12/util-crypto/mod.ts';
+import { u8aConcat, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { blake2AsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { memo } from '../util/index.ts';
 

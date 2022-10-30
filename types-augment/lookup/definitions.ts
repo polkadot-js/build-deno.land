@@ -1,9 +1,9 @@
 // Copyright 2017-2022 @polkadot/types-lookup authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Definitions } from 'https://deno.land/x/polkadot@0.2.12/types/types/index.ts';
+import type { Definitions } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.12/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import kusama from './kusama.ts';
 import polkadot from './polkadot.ts';

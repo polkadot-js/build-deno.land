@@ -3,10 +3,10 @@
 
 /* eslint-disable sort-keys */
 
-import type { OverrideVersionedType } from 'https://deno.land/x/polkadot@0.2.12/types/types/index.ts';
+import type { OverrideVersionedType } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import { mapXcmTypes } from 'https://deno.land/x/polkadot@0.2.12/types-create/mod.ts';
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.12/util/mod.ts';
+import { mapXcmTypes } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const sharedTypes = {
   DispatchErrorModule: 'DispatchErrorModuleU8',
@@ -37,7 +37,10 @@ const versioned: OverrideVersionedType[] = [
   },
   {
     minmax: [4, 5],
-    types: objectSpread({}, sharedTypes, mapXcmTypes('V1'))
+    types: objectSpread({
+      // As above, see https://github.com/polkadot-js/api/issues/5301
+      DispatchError: 'DispatchErrorPre6First'
+    }, sharedTypes, mapXcmTypes('V1'))
   },
   {
     // metadata V14
