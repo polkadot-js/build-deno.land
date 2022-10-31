@@ -3,7 +3,7 @@
 
 import util from 'https://deno.land/std@0.148.0/node/util.ts';
 
-import { extractGlobal } from 'https://deno.land/x/polkadot@0.2.12/x-global/mod.ts';
+import { extractGlobal } from 'https://deno.land/x/polkadot@0.2.13/x-global/mod.ts';
 
 export { packageInfo } from './packageInfo.ts';
 

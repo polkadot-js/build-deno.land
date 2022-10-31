@@ -14,7 +14,7 @@ import { hexHasPrefix } from './hasPrefix.ts';
  * <BR>
  *
  * ```javascript
- * import { hexAddPrefix } from 'https://deno.land/x/polkadot@0.2.12/util/mod.ts';
+ * import { hexAddPrefix } from 'https://deno.land/x/polkadot@0.2.13/util/mod.ts';
  *
  * console.log('With prefix', hexAddPrefix('0a0b12')); // => 0x0a0b12
  * ```

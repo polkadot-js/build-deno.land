@@ -1,13 +1,13 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.12/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.13/util/types.ts';
 import type { HashType } from './types.ts';
 
 import { recoverPublicKey, Signature } from 'https://esm.sh/@noble/secp256k1@1.7.0';
 
-import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.12/util/mod.ts';
-import { isReady, secp256k1Recover as wasm } from 'https://deno.land/x/polkadot@0.2.12/wasm-crypto/mod.ts';
+import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.13/util/mod.ts';
+import { isReady, secp256k1Recover as wasm } from 'https://deno.land/x/polkadot@0.2.13/wasm-crypto/mod.ts';
 
 import { secp256k1Compress } from './compress.ts';
 import { secp256k1Expand } from './expand.ts';

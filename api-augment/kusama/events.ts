@@ -3,18 +3,18 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot/api-base/types/events.ts';
+import 'https://deno.land/x/polkadot@0.2.13/api-base/types/events.ts';
 
-import type { ApiTypes, AugmentedEvent } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
-import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { EthereumAddress } from 'https://deno.land/x/polkadot/types/interfaces/eth/index.ts';
-import type { AccountId32, H256, Weight } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
-import type { FrameSupportDispatchDispatchInfo, FrameSupportScheduleLookupError, FrameSupportTokensMiscBalanceStatus, KusamaRuntimeProxyType, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNominationPoolsPoolState, PalletStakingExposure, PalletStakingValidatorPrefs, PolkadotParachainPrimitivesHrmpChannelId, PolkadotPrimitivesV2CandidateReceipt, PolkadotRuntimeParachainsDisputesDisputeLocation, PolkadotRuntimeParachainsDisputesDisputeResult, SpFinalityGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, XcmV1MultiLocation, XcmV2Response, XcmV2TraitsError, XcmV2TraitsOutcome, XcmV2Xcm, XcmVersionedMultiAssets, XcmVersionedMultiLocation } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { ApiTypes, AugmentedEvent } from 'https://deno.land/x/polkadot@0.2.13/api-base/types/index.ts';
+import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.13/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.2.13/types-codec/types/index.ts';
+import type { EthereumAddress } from 'https://deno.land/x/polkadot@0.2.13/types/interfaces/eth/index.ts';
+import type { AccountId32, H256, Weight } from 'https://deno.land/x/polkadot@0.2.13/types/interfaces/runtime/index.ts';
+import type { FrameSupportDispatchDispatchInfo, FrameSupportScheduleLookupError, FrameSupportTokensMiscBalanceStatus, KusamaRuntimeProxyType, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNominationPoolsPoolState, PalletStakingExposure, PalletStakingValidatorPrefs, PolkadotParachainPrimitivesHrmpChannelId, PolkadotPrimitivesV2CandidateReceipt, PolkadotRuntimeParachainsDisputesDisputeLocation, PolkadotRuntimeParachainsDisputesDisputeResult, SpFinalityGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, XcmV1MultiLocation, XcmV2Response, XcmV2TraitsError, XcmV2TraitsOutcome, XcmV2Xcm, XcmVersionedMultiAssets, XcmVersionedMultiLocation } from 'https://deno.land/x/polkadot@0.2.13/types/lookup.ts';
 
 export type __AugmentedEvent<ApiType extends ApiTypes> = AugmentedEvent<ApiType>;
 
-declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
+declare module 'https://deno.land/x/polkadot@0.2.13/api-base/types/events.ts' {
   interface AugmentedEvents<ApiType extends ApiTypes> {
     auctions: {
       /**

@@ -3,17 +3,17 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot/api-base/types/consts.ts';
+import 'https://deno.land/x/polkadot@0.2.13/api-base/types/consts.ts';
 
-import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
-import type { Bytes, Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { Codec } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { Perbill, Percent, Permill, Weight } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
-import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot@0.2.13/api-base/types/index.ts';
+import type { Bytes, Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.13/types-codec/mod.ts';
+import type { Codec } from 'https://deno.land/x/polkadot@0.2.13/types-codec/types/index.ts';
+import type { Perbill, Percent, Permill, Weight } from 'https://deno.land/x/polkadot@0.2.13/types/interfaces/runtime/index.ts';
+import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight } from 'https://deno.land/x/polkadot@0.2.13/types/lookup.ts';
 
 export type __AugmentedConst<ApiType extends ApiTypes> = AugmentedConst<ApiType>;
 
-declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
+declare module 'https://deno.land/x/polkadot@0.2.13/api-base/types/consts.ts' {
   interface AugmentedConsts<ApiType extends ApiTypes> {
     auctions: {
       /**

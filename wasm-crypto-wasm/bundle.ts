@@ -1,7 +1,7 @@
 // Copyright 2019-2022 @polkadot/wasm-crypto-wasm authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { base64Decode, unzlibSync } from 'https://deno.land/x/polkadot@0.2.12/wasm-util/mod.ts';
+import { base64Decode, unzlibSync } from 'https://deno.land/x/polkadot@0.2.13/wasm-util/mod.ts';
 
 import { bytes, lenIn, lenOut } from './deno/bytes.js';
 
