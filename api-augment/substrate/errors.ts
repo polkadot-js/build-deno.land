@@ -3,13 +3,13 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.13/api-base/types/errors.ts';
+import 'https://deno.land/x/polkadot/api-base/types/errors.ts';
 
-import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot@0.2.13/api-base/types/index.ts';
+import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 
 export type __AugmentedError<ApiType extends ApiTypes> = AugmentedError<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.13/api-base/types/errors.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
   interface AugmentedErrors<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -458,6 +458,10 @@ declare module 'https://deno.land/x/polkadot@0.2.13/api-base/types/errors.ts' {
        * The topics passed to `seal_deposit_events` contains at least one duplicate.
        **/
       DuplicateTopics: AugmentedError<ApiType>;
+      /**
+       * An indetermistic code was used in a context where this is not permitted.
+       **/
+      Indeterministic: AugmentedError<ApiType>;
       /**
        * `seal_call` forwarded this contracts input. It therefore is no longer available.
        **/
@@ -1007,6 +1011,10 @@ declare module 'https://deno.land/x/polkadot@0.2.13/api-base/types/errors.ts' {
        **/
       JudgementGiven: AugmentedError<ApiType>;
       /**
+       * Error that occurs when there is an issue paying for judgement.
+       **/
+      JudgementPaymentFailed: AugmentedError<ApiType>;
+      /**
        * No identity found.
        **/
       NoIdentity: AugmentedError<ApiType>;
@@ -1212,6 +1220,10 @@ declare module 'https://deno.land/x/polkadot@0.2.13/api-base/types/errors.ts' {
        **/
       FullyUnbonding: AugmentedError<ApiType>;
       /**
+       * Pool id provided is not correct/usable.
+       **/
+      InvalidPoolId: AugmentedError<ApiType>;
+      /**
        * Too many members in the pool or system.
        **/
       MaxPoolMembers: AugmentedError<ApiType>;
@@ -1260,6 +1272,10 @@ declare module 'https://deno.land/x/polkadot@0.2.13/api-base/types/errors.ts' {
        * Partial unbonding now allowed permissionlessly.
        **/
       PartialUnbondNotAllowedPermissionlessly: AugmentedError<ApiType>;
+      /**
+       * Pool id currently in use.
+       **/
+      PoolIdInUse: AugmentedError<ApiType>;
       /**
        * An account is not a member.
        **/
@@ -1401,7 +1417,7 @@ declare module 'https://deno.land/x/polkadot@0.2.13/api-base/types/errors.ts' {
        **/
       BadTrack: AugmentedError<ApiType>;
       /**
-       * There are already a full complement of referendums in progress for this track.
+       * There are already a full complement of referenda in progress for this track.
        **/
       Full: AugmentedError<ApiType>;
       /**
@@ -1521,7 +1537,7 @@ declare module 'https://deno.land/x/polkadot@0.2.13/api-base/types/errors.ts' {
        **/
       BadTrack: AugmentedError<ApiType>;
       /**
-       * There are already a full complement of referendums in progress for this track.
+       * There are already a full complement of referenda in progress for this track.
        **/
       Full: AugmentedError<ApiType>;
       /**

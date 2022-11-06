@@ -2,11 +2,11 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.7';
-import type { AnyFunction, Callback, DefinitionRpc } from 'https://deno.land/x/polkadot@0.2.13/types/types/index.ts';
+import type { AnyFunction, AnyJson, Callback, DefinitionRpc } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 import { ApiTypes, PromiseResult, Push, RxResult, UnsubscribePromise } from './base.ts';
 
-export type { AugmentedRpc } from 'https://deno.land/x/polkadot@0.2.13/rpc-core/types/index.ts';
+export type { AugmentedRpc } from 'https://deno.land/x/polkadot/rpc-core/types/index.ts';
 
 export interface RxRpcResult<F extends AnyFunction> extends RxResult<F> {
   raw <T> (...args: Parameters<F>): Observable<T>;
@@ -29,6 +29,8 @@ export type DecoratedRpcSection<ApiType extends ApiTypes, Section> = {
     : never
 }
 
+export type RawRpcType<ApiType extends ApiTypes> = (method: string, ...params: unknown[]) => ApiType extends 'rxjs' ? Observable<AnyJson> : Promise<AnyJson>;
+
 export type DecoratedRpc<ApiType extends ApiTypes, AllSections> = {
   [S in keyof AllSections]: DecoratedRpcSection<ApiType, AllSections[S]>
-}
+} & RawRpcType<ApiType>

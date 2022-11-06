@@ -2,27 +2,27 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.7';
-import type { AugmentedCall, DeriveCustom, QueryableCalls } from 'https://deno.land/x/polkadot@0.2.13/api-base/types/index.ts';
-import type { RpcInterface } from 'https://deno.land/x/polkadot@0.2.13/rpc-core/types/index.ts';
-import type { StorageKey, Text, u64 } from 'https://deno.land/x/polkadot@0.2.13/types/mod.ts';
-import type { Call, Hash, RuntimeVersion } from 'https://deno.land/x/polkadot@0.2.13/types/interfaces/index.ts';
-import type { DecoratedMeta } from 'https://deno.land/x/polkadot@0.2.13/types/metadata/decorate/types.ts';
-import type { StorageEntry } from 'https://deno.land/x/polkadot@0.2.13/types/primitive/types.ts';
-import type { AnyFunction, AnyTuple, CallFunction, Codec, DefinitionCallNamed, DefinitionRpc, DefinitionRpcSub, DefinitionsCall, DefinitionsCallEntry, DetectCodec, IMethod, IStorageKey, Registry, RegistryError, RegistryTypes } from 'https://deno.land/x/polkadot@0.2.13/types/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.13/util/types.ts';
+import type { AugmentedCall, DeriveCustom, QueryableCalls } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { RpcInterface } from 'https://deno.land/x/polkadot/rpc-core/types/index.ts';
+import type { StorageKey, Text, u64 } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Call, Hash, RuntimeVersion } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { DecoratedMeta } from 'https://deno.land/x/polkadot/types/metadata/decorate/types.ts';
+import type { StorageEntry } from 'https://deno.land/x/polkadot/types/primitive/types.ts';
+import type { AnyFunction, AnyJson, AnyTuple, CallFunction, Codec, DefinitionCallNamed, DefinitionRpc, DefinitionRpcSub, DefinitionsCall, DefinitionsCallEntry, DetectCodec, IMethod, IStorageKey, Registry, RegistryError, RegistryTypes } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { SubmittableExtrinsic } from '../submittable/types.ts';
 import type { ApiDecoration, ApiInterfaceRx, ApiOptions, ApiTypes, AugmentedQuery, DecoratedErrors, DecoratedEvents, DecoratedRpc, DecorateMethod, GenericStorageEntryFunction, PaginationOptions, QueryableConsts, QueryableStorage, QueryableStorageEntry, QueryableStorageEntryAt, QueryableStorageMulti, QueryableStorageMultiArg, SubmittableExtrinsicFunction, SubmittableExtrinsics } from '../types/index.ts';
 import type { VersionedRegistry } from './types.ts';
 
 import { BehaviorSubject, combineLatest, from, map, of, switchMap, tap, toArray } from 'https://esm.sh/rxjs@7.5.7';
 
-import { getAvailableDerives } from 'https://deno.land/x/polkadot@0.2.13/api-derive/mod.ts';
-import { memo, RpcCore } from 'https://deno.land/x/polkadot@0.2.13/rpc-core/mod.ts';
-import { WsProvider } from 'https://deno.land/x/polkadot@0.2.13/rpc-provider/mod.ts';
-import { expandMetadata, GenericExtrinsic, Metadata, typeDefinitions, TypeRegistry } from 'https://deno.land/x/polkadot@0.2.13/types/mod.ts';
-import { getSpecRuntime } from 'https://deno.land/x/polkadot@0.2.13/types-known/mod.ts';
-import { arrayChunk, arrayFlatten, assertReturn, BN, compactStripLength, lazyMethod, lazyMethods, logger, nextTick, objectSpread, stringCamelCase, stringUpperFirst, u8aConcatStrict, u8aToHex } from 'https://deno.land/x/polkadot@0.2.13/util/mod.ts';
-import { blake2AsHex } from 'https://deno.land/x/polkadot@0.2.13/util-crypto/mod.ts';
+import { getAvailableDerives } from 'https://deno.land/x/polkadot/api-derive/mod.ts';
+import { memo, RpcCore } from 'https://deno.land/x/polkadot/rpc-core/mod.ts';
+import { WsProvider } from 'https://deno.land/x/polkadot/rpc-provider/mod.ts';
+import { expandMetadata, GenericExtrinsic, Metadata, typeDefinitions, TypeRegistry } from 'https://deno.land/x/polkadot/types/mod.ts';
+import { getSpecRuntime } from 'https://deno.land/x/polkadot/types-known/mod.ts';
+import { arrayChunk, arrayFlatten, assertReturn, BN, compactStripLength, lazyMethod, lazyMethods, logger, nextTick, objectSpread, stringCamelCase, stringify, stringUpperFirst, u8aConcatStrict, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { blake2AsHex } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { createSubmittable } from '../submittable/index.ts';
 import { augmentObject } from '../util/augmentObject.ts';
@@ -146,7 +146,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
    * <BR>
    *
    * ```javascript
-   * import Api from 'https://deno.land/x/polkadot@0.2.13/api/promise/index.ts';
+   * import Api from 'https://deno.land/x/polkadot/api/promise/index.ts';
    *
    * const api = new Api().isReady();
    *
@@ -167,7 +167,9 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
     this._rx.registry = this.#registry;
 
     const thisProvider = options.source
-      ? options.source._rpcCore.provider.clone()
+      ? options.source._rpcCore.provider.isClonable
+        ? options.source._rpcCore.provider.clone()
+        : options.source._rpcCore.provider
       : (options.provider || new WsProvider());
 
     this._decorateMethod = decorateMethod;
@@ -401,15 +403,23 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
       const [k, { method, section }] = allKnown[i];
 
       if (hasResults && !exposed.includes(k) && k !== 'rpc_methods') {
-        if ((this._rpc as Record<string, Record<string, unknown>>)[section]) {
-          delete (this._rpc as Record<string, Record<string, unknown>>)[section][method];
-          delete (this._rx.rpc as Record<string, Record<string, unknown>>)[section][method];
+        if ((this._rpc as unknown as Record<string, Record<string, unknown>>)[section]) {
+          delete (this._rpc as unknown as Record<string, Record<string, unknown>>)[section][method];
+          delete (this._rx.rpc as unknown as Record<string, Record<string, unknown>>)[section][method];
         }
       }
     }
   }
 
-  protected _decorateRpc<ApiType extends ApiTypes> (rpc: RpcCore & RpcInterface, decorateMethod: DecorateMethod<ApiType>, input: Partial<DecoratedRpc<ApiType, RpcInterface>> = {}): DecoratedRpc<ApiType, RpcInterface> {
+  private _rpcSubmitter<ApiType extends ApiTypes> (decorateMethod: DecorateMethod<ApiType>): DecoratedRpc<ApiType, RpcInterface> {
+    const method = (method: string, ...params: any[]) => {
+      return from(this._rpcCore.provider.send<AnyJson>(method, params.map((p) => stringify(p))));
+    };
+
+    return decorateMethod(method) as DecoratedRpc<ApiType, RpcInterface>;
+  }
+
+  protected _decorateRpc<ApiType extends ApiTypes> (rpc: RpcCore & RpcInterface, decorateMethod: DecorateMethod<ApiType>, input: Partial<DecoratedRpc<ApiType, RpcInterface>> = this._rpcSubmitter(decorateMethod)): DecoratedRpc<ApiType, RpcInterface> {
     const out: Record<string, Record<string, unknown>> = input;
 
     const decorateFn = (section: string, method: string): unknown => {
@@ -446,7 +456,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
       }
     }
 
-    return out as DecoratedRpc<ApiType, RpcInterface>;
+    return out as unknown as DecoratedRpc<ApiType, RpcInterface>;
   }
 
   // add all definition entries

@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { SiLookupTypeId } from 'https://deno.land/x/polkadot@0.2.13/types/interfaces/index.ts';
-import type { StorageEntry } from 'https://deno.land/x/polkadot@0.2.13/types/primitive/types.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.13/types/types/index.ts';
+import type { SiLookupTypeId } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { StorageEntry } from 'https://deno.land/x/polkadot/types/primitive/types.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import { isUndefined } from 'https://deno.land/x/polkadot@0.2.13/util/mod.ts';
+import { isUndefined } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 function sig ({ lookup }: Registry, { method, section }: StorageEntry, args: SiLookupTypeId[]): string {
   return `${section}.${method}(${args.map((a) => lookup.getTypeDef(a).type).join(', ')})`;
