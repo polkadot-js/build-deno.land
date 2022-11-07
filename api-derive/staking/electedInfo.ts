@@ -2,12 +2,12 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.7';
-import type { AccountId } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { AccountId } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/index.ts';
 import type { DeriveApi, DeriveStakingElected, StakingQueryFlags } from '../types.ts';
 
 import { map, switchMap } from 'https://esm.sh/rxjs@7.5.7';
 
-import { arrayFlatten } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { arrayFlatten } from 'https://deno.land/x/polkadot@0.2.14/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 

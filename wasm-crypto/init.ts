@@ -1,11 +1,11 @@
 // Copyright 2019-2022 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { InitFn } from 'https://deno.land/x/polkadot@0.2.13/wasm-bridge/types.ts';
-import type { WasmCryptoInstance } from 'https://deno.land/x/polkadot@0.2.13/wasm-crypto-init/types.ts';
+import type { InitFn } from 'https://deno.land/x/polkadot@0.2.14/wasm-bridge/types.ts';
+import type { WasmCryptoInstance } from 'https://deno.land/x/polkadot@0.2.14/wasm-crypto-init/types.ts';
 
-import { Bridge } from 'https://deno.land/x/polkadot@0.2.13/wasm-bridge/mod.ts';
-import { createWasm } from 'https://deno.land/x/polkadot@0.2.13/wasm-crypto-init/mod.ts';
+import { Bridge } from 'https://deno.land/x/polkadot@0.2.14/wasm-bridge/mod.ts';
+import { createWasm } from 'https://deno.land/x/polkadot@0.2.14/wasm-crypto-init/mod.ts';
 
 /**
  * @name bridge

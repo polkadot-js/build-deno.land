@@ -43,7 +43,7 @@ function hex (value: Uint8Array, result: HexString): HexString {
  * <BR>
  *
  * ```javascript
- * import { u8aToHex } from 'https://deno.land/x/polkadot@0.2.13/util/mod.ts';
+ * import { u8aToHex } from 'https://deno.land/x/polkadot@0.2.14/util/mod.ts';
  *
  * u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
  * ```

@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/hw-ledger authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.13/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.14/util/types.ts';
 
 export type LedgerTypes = 'hid' | 'u2f' | 'webusb';
 
