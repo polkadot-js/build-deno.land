@@ -3,17 +3,17 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.14/api-base/types/events.ts';
+import 'https://deno.land/x/polkadot/api-base/types/events.ts';
 
-import type { ApiTypes, AugmentedEvent } from 'https://deno.land/x/polkadot@0.2.14/api-base/types/index.ts';
-import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.14/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.14/types-codec/types/index.ts';
-import type { AccountId32, H256 } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/runtime/index.ts';
-import type { FrameSupportDispatchDispatchInfo, FrameSupportDispatchPostDispatchInfo, FrameSupportPreimagesBounded, FrameSupportTokensMiscBalanceStatus, KitchensinkRuntimeProxyType, PalletAllianceCid, PalletAllianceUnscrupulousItem, PalletConvictionVotingTally, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNominationPoolsPoolState, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord, PalletStakingExposure, PalletStakingValidatorPrefs, PalletStateTrieMigrationError, PalletStateTrieMigrationMigrationCompute, SpFinalityGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, SpRuntimeDispatchErrorWithPostInfo } from 'https://deno.land/x/polkadot@0.2.14/types/lookup.ts';
+import type { ApiTypes, AugmentedEvent } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { AccountId32, H256 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportDispatchDispatchInfo, FrameSupportDispatchPostDispatchInfo, FrameSupportPreimagesBounded, FrameSupportTokensMiscBalanceStatus, KitchensinkRuntimeProxyType, PalletAllianceCid, PalletAllianceUnscrupulousItem, PalletConvictionVotingTally, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNominationPoolsPoolState, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord, PalletStakingExposure, PalletStakingValidatorPrefs, PalletStateTrieMigrationError, PalletStateTrieMigrationMigrationCompute, SpFinalityGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, SpRuntimeDispatchErrorWithPostInfo } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedEvent<ApiType extends ApiTypes> = AugmentedEvent<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.14/api-base/types/events.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
   interface AugmentedEvents<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -552,9 +552,16 @@ declare module 'https://deno.land/x/polkadot@0.2.14/api-base/types/events.ts' {
     };
     fastUnstake: {
       /**
-       * A staker was partially checked for the given eras, but the process did not finish.
+       * A batch was partially checked for the given eras, but the process did not finish.
        **/
-      Checking: AugmentedEvent<ApiType, [stash: AccountId32, eras: Vec<u32>], { stash: AccountId32, eras: Vec<u32> }>;
+      BatchChecked: AugmentedEvent<ApiType, [eras: Vec<u32>], { eras: Vec<u32> }>;
+      /**
+       * A batch was terminated.
+       * 
+       * This is always follows by a number of `Unstaked` or `Slashed` events, marking the end
+       * of the batch. A new batch will be created upon next block.
+       **/
+      BatchFinished: AugmentedEvent<ApiType, []>;
       /**
        * Some internal error happened while migrating stash. They are removed as head as a
        * consequence.

@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.7';
-import type { AccountId, Address, ApplyExtrinsicResult, Call, DispatchError, DispatchInfo, EventRecord, Extrinsic, ExtrinsicStatus, Hash, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/index.ts';
-import type { AnyFunction, AnyNumber, AnyTuple, Callback, CallBase, Codec, IExtrinsicEra, IKeyringPair, ISubmittableResult, Signer } from 'https://deno.land/x/polkadot@0.2.14/types/types/index.ts';
+import type { AccountId, Address, ApplyExtrinsicResult, Call, DispatchError, DispatchInfo, EventRecord, Extrinsic, ExtrinsicStatus, Hash, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { AnyFunction, AnyNumber, AnyTuple, Callback, CallBase, Codec, IExtrinsicEra, IKeyringPair, ISubmittableResult, Signer } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { ApiTypes, PromiseOrObs } from './base.ts';
 
 export type AugmentedSubmittable<T extends AnyFunction, A extends AnyTuple = AnyTuple> = T & CallBase<A>;
@@ -50,6 +50,11 @@ export interface SubmittableResultValue {
 }
 
 export interface SubmittableExtrinsic<ApiType extends ApiTypes, R extends ISubmittableResult = ISubmittableResult> extends Extrinsic {
+  /** true if api.rpc.system.dryRun is available, enabling dryRun(...) */
+  hasDryRun: boolean;
+  /** true if api.call.transactionPaymentApi.queryInfo is available, enabling paymentInfo(...)  */
+  hasPaymentInfo: boolean;
+
   dryRun (account: AddressOrPair, options?: Partial<SignerOptions>): SubmittableDryRunResult<ApiType>;
 
   paymentInfo (account: AddressOrPair, options?: Partial<SignerOptions>): SubmittablePaymentResult<ApiType>;

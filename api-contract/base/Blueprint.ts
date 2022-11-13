@@ -1,16 +1,16 @@
 // Copyright 2017-2022 @polkadot/api-contract authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot@0.2.14/api/submittable/types.ts';
-import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot@0.2.14/api/types/index.ts';
-import type { AccountId, EventRecord, Hash } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/index.ts';
-import type { ISubmittableResult } from 'https://deno.land/x/polkadot@0.2.14/types/types/index.ts';
-import type { AbiConstructor, BlueprintOptions, WeightAll } from '../types.ts';
+import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot/api/submittable/types.ts';
+import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot/api/types/index.ts';
+import type { AccountId, EventRecord, Hash } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { ISubmittableResult } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { AbiConstructor, BlueprintOptions } from '../types.ts';
 import type { MapConstructorExec } from './types.ts';
 
-import { SubmittableResult } from 'https://deno.land/x/polkadot@0.2.14/api/mod.ts';
-import { ApiBase } from 'https://deno.land/x/polkadot@0.2.14/api/base/index.ts';
-import { BN_ZERO, isUndefined } from 'https://deno.land/x/polkadot@0.2.14/util/mod.ts';
+import { SubmittableResult } from 'https://deno.land/x/polkadot/api/mod.ts';
+import { ApiBase } from 'https://deno.land/x/polkadot/api/base/index.ts';
+import { BN_ZERO, isUndefined } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Abi } from '../Abi/index.ts';
 import { applyOnEvent } from '../util.ts';
@@ -59,9 +59,10 @@ export class Blueprint<ApiType extends ApiTypes> extends Base<ApiType> {
   #deploy = (constructorOrId: AbiConstructor | string | number, { gasLimit = BN_ZERO, salt, storageDepositLimit = null, value = BN_ZERO }: BlueprintOptions, params: unknown[]): SubmittableExtrinsic<ApiType, BlueprintSubmittableResult<ApiType>> => {
     return this.api.tx.contracts.instantiate(
       value,
-      this._isOldWeight
-        // jiggle v1 weights, metadata points to latest
-        ? convertWeight(gasLimit).v1Weight as unknown as WeightAll['v2Weight']
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore jiggle v1 weights, metadata points to latest
+      this._isWeightV1
+        ? convertWeight(gasLimit).v1Weight
         : convertWeight(gasLimit).v2Weight,
       storageDepositLimit,
       this.codeHash,

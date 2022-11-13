@@ -1,10 +1,8 @@
 // Copyright 2017-2022 @polkadot/types-known authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.14/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 
-export type ChainUpgradesRaw = [number, number][];
+export type ChainUpgradesRaw = [blockNumber: number, specVersion: number][];
 
-export type ChainUpgradesGenerated = [number, number, [HexString, number][]][];
-
-export type ChainUpgradesManual = [number, number][];
+export type ChainUpgradesExpanded = [blockNumber: number, specVersion: number, runtimeApis: [apiHash: HexString, apiVersion: number][]][];

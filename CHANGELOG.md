@@ -2,6 +2,7 @@
 
 ## master
 
+- api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 9.8.1
 - hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 10.1.12
 
 ## 0.2.14 Nov 7, 2022

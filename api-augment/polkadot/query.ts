@@ -3,21 +3,21 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.14/api-base/types/storage.ts';
+import 'https://deno.land/x/polkadot/api-base/types/storage.ts';
 
-import type { ApiTypes, AugmentedQuery, QueryableStorageEntry } from 'https://deno.land/x/polkadot@0.2.14/api-base/types/index.ts';
-import type { Data } from 'https://deno.land/x/polkadot@0.2.14/types/mod.ts';
-import type { BTreeMap, Bytes, Null, Option, U8aFixed, Vec, WrapperKeepOpaque, WrapperOpaque, bool, u128, u32, u64 } from 'https://deno.land/x/polkadot@0.2.14/types-codec/mod.ts';
-import type { AnyNumber, ITuple } from 'https://deno.land/x/polkadot@0.2.14/types-codec/types/index.ts';
-import type { EthereumAddress } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/eth/index.ts';
-import type { AccountId32, Call, H256, Perbill, Percent } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/runtime/index.ts';
-import type { FrameSupportDispatchPerDispatchClassWeight, FrameSystemAccountInfo, FrameSystemEventRecord, FrameSystemLastRuntimeUpgradeInfo, FrameSystemPhase, PalletAuthorshipUncleEntryItem, PalletBagsListListBag, PalletBagsListListNode, PalletBalancesAccountData, PalletBalancesBalanceLock, PalletBalancesReleases, PalletBalancesReserveData, PalletBountiesBounty, PalletChildBountiesChildBounty, PalletCollectiveVotes, PalletDemocracyPreimageStatus, PalletDemocracyReferendumInfo, PalletDemocracyReleases, PalletDemocracyVoteThreshold, PalletDemocracyVoteVoting, PalletElectionProviderMultiPhasePhase, PalletElectionProviderMultiPhaseReadySolution, PalletElectionProviderMultiPhaseRoundSnapshot, PalletElectionProviderMultiPhaseSignedSignedSubmission, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletElectionsPhragmenSeatHolder, PalletElectionsPhragmenVoter, PalletFastUnstakeUnstakeRequest, PalletGrandpaStoredPendingChange, PalletGrandpaStoredState, PalletIdentityRegistrarInfo, PalletIdentityRegistration, PalletImOnlineBoundedOpaqueNetworkState, PalletImOnlineSr25519AppSr25519Public, PalletMultisigMultisig, PalletNominationPoolsBondedPoolInner, PalletNominationPoolsPoolMember, PalletNominationPoolsRewardPool, PalletNominationPoolsSubPools, PalletPreimageRequestStatus, PalletProxyAnnouncement, PalletProxyProxyDefinition, PalletSchedulerScheduledV3, PalletStakingActiveEraInfo, PalletStakingEraRewardPoints, PalletStakingExposure, PalletStakingForcing, PalletStakingNominations, PalletStakingReleases, PalletStakingRewardDestination, PalletStakingSlashingSlashingSpans, PalletStakingSlashingSpanRecord, PalletStakingStakingLedger, PalletStakingUnappliedSlash, PalletStakingValidatorPrefs, PalletTipsOpenTip, PalletTransactionPaymentReleases, PalletTreasuryProposal, PalletVestingReleases, PalletVestingVestingInfo, PalletXcmQueryStatus, PalletXcmVersionMigrationStage, PolkadotCorePrimitivesInboundDownwardMessage, PolkadotCorePrimitivesInboundHrmpMessage, PolkadotParachainPrimitivesHrmpChannelId, PolkadotPrimitivesV2AssignmentAppPublic, PolkadotPrimitivesV2CandidateCommitments, PolkadotPrimitivesV2CoreOccupied, PolkadotPrimitivesV2DisputeState, PolkadotPrimitivesV2ScrapedOnChainVotes, PolkadotPrimitivesV2SessionInfo, PolkadotPrimitivesV2UpgradeGoAhead, PolkadotPrimitivesV2UpgradeRestriction, PolkadotPrimitivesV2ValidatorAppPublic, PolkadotRuntimeCommonClaimsStatementKind, PolkadotRuntimeCommonCrowdloanFundInfo, PolkadotRuntimeCommonParasRegistrarParaInfo, PolkadotRuntimeParachainsConfigurationHostConfiguration, PolkadotRuntimeParachainsHrmpHrmpChannel, PolkadotRuntimeParachainsHrmpHrmpOpenChannelRequest, PolkadotRuntimeParachainsInclusionAvailabilityBitfieldRecord, PolkadotRuntimeParachainsInclusionCandidatePendingAvailability, PolkadotRuntimeParachainsInitializerBufferedSessionChange, PolkadotRuntimeParachainsParasParaGenesisArgs, PolkadotRuntimeParachainsParasParaLifecycle, PolkadotRuntimeParachainsParasParaPastCodeMeta, PolkadotRuntimeParachainsParasPvfCheckActiveVoteState, PolkadotRuntimeParachainsSchedulerCoreAssignment, PolkadotRuntimeParachainsSchedulerParathreadClaimQueue, PolkadotRuntimeSessionKeys, SpConsensusBabeAppPublic, SpConsensusBabeBabeEpochConfiguration, SpConsensusBabeDigestsNextConfigDescriptor, SpConsensusBabeDigestsPreDigest, SpCoreCryptoKeyTypeId, SpNposElectionsElectionScore, SpRuntimeDigest, SpStakingOffenceOffenceDetails, XcmVersionedMultiLocation } from 'https://deno.land/x/polkadot@0.2.14/types/lookup.ts';
-import type { Observable } from 'https://deno.land/x/polkadot@0.2.14/types/types/index.ts';
+import type { ApiTypes, AugmentedQuery, QueryableStorageEntry } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Data } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Bytes, Null, Option, U8aFixed, Vec, WrapperOpaque, bool, u128, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { AnyNumber, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { EthereumAddress } from 'https://deno.land/x/polkadot/types/interfaces/eth/index.ts';
+import type { AccountId32, Call, H256, Perbill, Percent } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportDispatchPerDispatchClassWeight, FrameSupportPreimagesBounded, FrameSystemAccountInfo, FrameSystemEventRecord, FrameSystemLastRuntimeUpgradeInfo, FrameSystemPhase, PalletAuthorshipUncleEntryItem, PalletBagsListListBag, PalletBagsListListNode, PalletBalancesAccountData, PalletBalancesBalanceLock, PalletBalancesReleases, PalletBalancesReserveData, PalletBountiesBounty, PalletChildBountiesChildBounty, PalletCollectiveVotes, PalletDemocracyReferendumInfo, PalletDemocracyVoteThreshold, PalletDemocracyVoteVoting, PalletElectionProviderMultiPhasePhase, PalletElectionProviderMultiPhaseReadySolution, PalletElectionProviderMultiPhaseRoundSnapshot, PalletElectionProviderMultiPhaseSignedSignedSubmission, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletElectionsPhragmenSeatHolder, PalletElectionsPhragmenVoter, PalletFastUnstakeUnstakeRequest, PalletGrandpaStoredPendingChange, PalletGrandpaStoredState, PalletIdentityRegistrarInfo, PalletIdentityRegistration, PalletImOnlineBoundedOpaqueNetworkState, PalletImOnlineSr25519AppSr25519Public, PalletMultisigMultisig, PalletNominationPoolsBondedPoolInner, PalletNominationPoolsPoolMember, PalletNominationPoolsRewardPool, PalletNominationPoolsSubPools, PalletPreimageRequestStatus, PalletProxyAnnouncement, PalletProxyProxyDefinition, PalletSchedulerScheduled, PalletStakingActiveEraInfo, PalletStakingEraRewardPoints, PalletStakingExposure, PalletStakingForcing, PalletStakingNominations, PalletStakingReleases, PalletStakingRewardDestination, PalletStakingSlashingSlashingSpans, PalletStakingSlashingSpanRecord, PalletStakingStakingLedger, PalletStakingUnappliedSlash, PalletStakingValidatorPrefs, PalletTipsOpenTip, PalletTransactionPaymentReleases, PalletTreasuryProposal, PalletVestingReleases, PalletVestingVestingInfo, PalletXcmQueryStatus, PalletXcmVersionMigrationStage, PolkadotCorePrimitivesInboundDownwardMessage, PolkadotCorePrimitivesInboundHrmpMessage, PolkadotParachainPrimitivesHrmpChannelId, PolkadotPrimitivesV2AssignmentAppPublic, PolkadotPrimitivesV2CandidateCommitments, PolkadotPrimitivesV2CoreOccupied, PolkadotPrimitivesV2DisputeState, PolkadotPrimitivesV2ScrapedOnChainVotes, PolkadotPrimitivesV2SessionInfo, PolkadotPrimitivesV2UpgradeGoAhead, PolkadotPrimitivesV2UpgradeRestriction, PolkadotPrimitivesV2ValidatorAppPublic, PolkadotRuntimeCommonClaimsStatementKind, PolkadotRuntimeCommonCrowdloanFundInfo, PolkadotRuntimeCommonParasRegistrarParaInfo, PolkadotRuntimeParachainsConfigurationHostConfiguration, PolkadotRuntimeParachainsHrmpHrmpChannel, PolkadotRuntimeParachainsHrmpHrmpOpenChannelRequest, PolkadotRuntimeParachainsInclusionAvailabilityBitfieldRecord, PolkadotRuntimeParachainsInclusionCandidatePendingAvailability, PolkadotRuntimeParachainsInitializerBufferedSessionChange, PolkadotRuntimeParachainsParasParaGenesisArgs, PolkadotRuntimeParachainsParasParaLifecycle, PolkadotRuntimeParachainsParasParaPastCodeMeta, PolkadotRuntimeParachainsParasPvfCheckActiveVoteState, PolkadotRuntimeParachainsSchedulerCoreAssignment, PolkadotRuntimeParachainsSchedulerParathreadClaimQueue, PolkadotRuntimeSessionKeys, SpConsensusBabeAppPublic, SpConsensusBabeBabeEpochConfiguration, SpConsensusBabeDigestsNextConfigDescriptor, SpConsensusBabeDigestsPreDigest, SpCoreCryptoKeyTypeId, SpNposElectionsElectionScore, SpRuntimeDigest, SpStakingOffenceOffenceDetails, XcmVersionedMultiLocation } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { Observable } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 export type __AugmentedQuery<ApiType extends ApiTypes> = AugmentedQuery<ApiType, () => unknown>;
 export type __QueryableStorageEntry<ApiType extends ApiTypes> = QueryableStorageEntry<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.14/api-base/types/storage.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
   interface AugmentedQueries<ApiType extends ApiTypes> {
     auctions: {
       /**
@@ -402,20 +402,15 @@ declare module 'https://deno.land/x/polkadot@0.2.14/api-base/types/storage.ts' {
        * - `LastTabledWasExternal` is `false`; or
        * - `PublicProps` is empty.
        **/
-      nextExternal: AugmentedQuery<ApiType, () => Observable<Option<ITuple<[H256, PalletDemocracyVoteThreshold]>>>, []> & QueryableStorageEntry<ApiType, []>;
-      /**
-       * Map of hashes to the proposal preimage, along with who registered it and their deposit.
-       * The block number is the block at which it was deposited.
-       **/
-      preimages: AugmentedQuery<ApiType, (arg: H256 | string | Uint8Array) => Observable<Option<PalletDemocracyPreimageStatus>>, [H256]> & QueryableStorageEntry<ApiType, [H256]>;
+      nextExternal: AugmentedQuery<ApiType, () => Observable<Option<ITuple<[FrameSupportPreimagesBounded, PalletDemocracyVoteThreshold]>>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * The number of (public) proposals that have been made so far.
        **/
       publicPropCount: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * The public proposals. Unsorted. The second item is the proposal's hash.
+       * The public proposals. Unsorted. The second item is the proposal.
        **/
-      publicProps: AugmentedQuery<ApiType, () => Observable<Vec<ITuple<[u32, H256, AccountId32]>>>, []> & QueryableStorageEntry<ApiType, []>;
+      publicProps: AugmentedQuery<ApiType, () => Observable<Vec<ITuple<[u32, FrameSupportPreimagesBounded, AccountId32]>>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * The next free referendum index, aka the number of referenda started so far.
        **/
@@ -426,12 +421,6 @@ declare module 'https://deno.land/x/polkadot@0.2.14/api-base/types/storage.ts' {
        * TWOX-NOTE: SAFE as indexes are not under an attacker’s control.
        **/
       referendumInfoOf: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Option<PalletDemocracyReferendumInfo>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
-      /**
-       * Storage version of the pallet.
-       * 
-       * New networks start with last version.
-       **/
-      storageVersion: AugmentedQuery<ApiType, () => Observable<Option<PalletDemocracyReleases>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * All votes for a particular voter. We store the balance for the number of votes that we
        * have recorded. The second item is the total amount of delegations, that will be added.
@@ -496,14 +485,14 @@ declare module 'https://deno.land/x/polkadot@0.2.14/api-base/types/storage.ts' {
        **/
       round: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * A sorted, bounded set of `(score, index)`, where each `index` points to a value in
-       * `SignedSubmissions`.
+       * A sorted, bounded vector of `(score, block_number, index)`, where each `index` points to a
+       * value in `SignedSubmissions`.
        * 
        * We never need to process more than a single signed submission at a time. Signed submissions
        * can be quite large, so we're willing to pay the cost of multiple database accesses to access
        * them one at a time instead of reading and decoding all of them at once.
        **/
-      signedSubmissionIndices: AugmentedQuery<ApiType, () => Observable<BTreeMap<SpNposElectionsElectionScore, u32>>, []> & QueryableStorageEntry<ApiType, []>;
+      signedSubmissionIndices: AugmentedQuery<ApiType, () => Observable<Vec<ITuple<[SpNposElectionsElectionScore, u32, u32]>>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * The next index to be assigned to an incoming signed submission.
        * 
@@ -792,7 +781,6 @@ declare module 'https://deno.land/x/polkadot@0.2.14/api-base/types/storage.ts' {
       [key: string]: QueryableStorageEntry<ApiType>;
     };
     multisig: {
-      calls: AugmentedQuery<ApiType, (arg: U8aFixed | string | Uint8Array) => Observable<Option<ITuple<[WrapperKeepOpaque<Call>, AccountId32, u128]>>>, [U8aFixed]> & QueryableStorageEntry<ApiType, [U8aFixed]>;
       /**
        * The set of open multisig operations.
        **/
@@ -1262,10 +1250,7 @@ declare module 'https://deno.land/x/polkadot@0.2.14/api-base/types/storage.ts' {
       [key: string]: QueryableStorageEntry<ApiType>;
     };
     preimage: {
-      /**
-       * The preimages stored by this pallet.
-       **/
-      preimageFor: AugmentedQuery<ApiType, (arg: H256 | string | Uint8Array) => Observable<Option<Bytes>>, [H256]> & QueryableStorageEntry<ApiType, [H256]>;
+      preimageFor: AugmentedQuery<ApiType, (arg: ITuple<[H256, u32]> | [H256 | string | Uint8Array, u32 | AnyNumber | Uint8Array]) => Observable<Option<Bytes>>, [ITuple<[H256, u32]>]> & QueryableStorageEntry<ApiType, [ITuple<[H256, u32]>]>;
       /**
        * The request status of a given hash.
        **/
@@ -1315,11 +1300,15 @@ declare module 'https://deno.land/x/polkadot@0.2.14/api-base/types/storage.ts' {
       /**
        * Items to be executed, indexed by the block number that they should be executed on.
        **/
-      agenda: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Vec<Option<PalletSchedulerScheduledV3>>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
+      agenda: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Vec<Option<PalletSchedulerScheduled>>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
+      incompleteSince: AugmentedQuery<ApiType, () => Observable<Option<u32>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * Lookup from identity to the block number and index of the task.
+       * Lookup from a name to the block number and index of the task.
+       * 
+       * For v3 -> v4 the previously unbounded identities are Blake2-256 hashed to form the v4
+       * identities.
        **/
-      lookup: AugmentedQuery<ApiType, (arg: Bytes | string | Uint8Array) => Observable<Option<ITuple<[u32, u32]>>>, [Bytes]> & QueryableStorageEntry<ApiType, [Bytes]>;
+      lookup: AugmentedQuery<ApiType, (arg: U8aFixed | string | Uint8Array) => Observable<Option<ITuple<[u32, u32]>>>, [U8aFixed]> & QueryableStorageEntry<ApiType, [U8aFixed]>;
       /**
        * Generic query
        **/
@@ -1605,7 +1594,7 @@ declare module 'https://deno.land/x/polkadot@0.2.14/api-base/types/storage.ts' {
        **/
       unappliedSlashes: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Vec<PalletStakingUnappliedSlash>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
       /**
-       * The ideal number of staking participants.
+       * The ideal number of active validators.
        **/
       validatorCount: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
       /**

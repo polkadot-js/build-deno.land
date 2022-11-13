@@ -1,11 +1,12 @@
 // Copyright 2017-2022 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot@0.2.14/api/types/index.ts';
-import type { INumber, Registry } from 'https://deno.land/x/polkadot@0.2.14/types/types/index.ts';
+import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot/api/types/index.ts';
+import type { WeightV2 } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import { ApiBase } from 'https://deno.land/x/polkadot@0.2.14/api/base/index.ts';
-import { isFunction } from 'https://deno.land/x/polkadot@0.2.14/util/mod.ts';
+import { ApiBase } from 'https://deno.land/x/polkadot/api/base/index.ts';
+import { isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Abi } from '../Abi/index.ts';
 
@@ -16,7 +17,7 @@ export abstract class Base<ApiType extends ApiTypes> {
 
   protected readonly _decorateMethod: DecorateMethod<ApiType>;
 
-  protected readonly _isOldWeight: boolean;
+  protected readonly _isWeightV1: boolean;
 
   constructor (api: ApiBase<ApiType>, abi: string | Record<string, unknown> | Abi, decorateMethod: DecorateMethod<ApiType>) {
     if (!api || !api.isConnected || !api.tx) {
@@ -32,7 +33,7 @@ export abstract class Base<ApiType extends ApiTypes> {
       : new Abi(abi, api.registry.getChainProperties());
     this.api = api;
     this._decorateMethod = decorateMethod;
-    this._isOldWeight = isFunction(api.registry.createType<INumber>('Weight').toBn);
+    this._isWeightV1 = !api.registry.createType<WeightV2>('Weight').proofSize;
   }
 
   public get registry (): Registry {

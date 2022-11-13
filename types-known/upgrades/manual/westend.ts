@@ -1,9 +1,9 @@
 // Copyright 2017-2022 @polkadot/types-known authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ChainUpgradesManual } from '../types.ts';
+import type { ChainUpgradesRaw } from '../types.ts';
 
-const upgrades: ChainUpgradesManual = [
+const upgrades: ChainUpgradesRaw = [
   [214356, 4], [392764, 7], [409740, 8], [809976, 20], [877581, 24],
   [879238, 25], [889472, 26], [902937, 27], [932751, 28], [991142, 29],
   [1030162, 31], [1119657, 32], [1199282, 33], [1342534, 34], [1392263, 35],
@@ -16,7 +16,7 @@ const upgrades: ChainUpgradesManual = [
   [9406726, 9160], [9921066, 9170], [10007115, 9180], [10480973, 9190], [10578091, 9200],
   [10678509, 9210], [10811001, 9220], [11096116, 9230], [11409279, 9250], [11584820, 9251],
   [11716837, 9260], [11876919, 9261], [11987927, 9270], [12077324, 9271], [12301871, 9280],
-  [12604343, 9290], [12841034, 9300]
+  [12604343, 9290], [12841034, 9300], [13128237, 9310], [13272363, 9320]
 ];
 
 export default upgrades;

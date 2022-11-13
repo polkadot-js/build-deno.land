@@ -3,33 +3,33 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.14/api-base/types/calls.ts';
+import 'https://deno.land/x/polkadot/api-base/types/calls.ts';
 
-import type { ApiTypes, AugmentedCall, DecoratedCallBase } from 'https://deno.land/x/polkadot@0.2.14/api-base/types/index.ts';
-import type { Bytes, Null, Option, Result, Vec, bool, u32 } from 'https://deno.land/x/polkadot@0.2.14/types-codec/mod.ts';
-import type { AnyNumber, IMethod, ITuple } from 'https://deno.land/x/polkadot@0.2.14/types-codec/types/index.ts';
-import type { BabeEquivocationProof, BabeGenesisConfiguration, Epoch, OpaqueKeyOwnershipProof } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/babe/index.ts';
-import type { ValidatorSet } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/beefy/index.ts';
-import type { CheckInherentsResult, InherentData } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/blockbuilder/index.ts';
-import type { BlockHash } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/chain/index.ts';
-import type { AuthorityId } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/consensus/index.ts';
-import type { Extrinsic } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/extrinsics/index.ts';
-import type { AuthorityList, GrandpaEquivocationProof, SetId } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/grandpa/index.ts';
-import type { OpaqueMetadata } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/metadata/index.ts';
-import type { MmrBatchProof, MmrEncodableOpaqueLeaf, MmrError, MmrLeafIndex, MmrProof } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/mmr/index.ts';
-import type { CandidateCommitments, CandidateEvent, CommittedCandidateReceipt, CoreState, GroupRotationInfo, InboundDownwardMessage, InboundHrmpMessage, OccupiedCoreAssumption, ParaId, ParaValidatorIndex, PersistedValidationData, PvfCheckStatement, ScrapedOnChainVotes, SessionInfo, ValidationCode, ValidationCodeHash, ValidatorSignature } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/parachains/index.ts';
-import type { FeeDetails, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/payment/index.ts';
-import type { AccountId, Balance, Block, Call, Hash, Header, Index, KeyTypeId, Slot, ValidatorId } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/runtime/index.ts';
-import type { SessionIndex } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/session/index.ts';
-import type { RuntimeVersion } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/state/index.ts';
-import type { ApplyExtrinsicResult } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/system/index.ts';
-import type { TransactionSource, TransactionValidity } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/txqueue/index.ts';
-import type { IExtrinsic, Observable } from 'https://deno.land/x/polkadot@0.2.14/types/types/index.ts';
+import type { ApiTypes, AugmentedCall, DecoratedCallBase } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Bytes, Null, Option, Result, Vec, bool, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { AnyNumber, IMethod, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { BabeEquivocationProof, BabeGenesisConfiguration, Epoch, OpaqueKeyOwnershipProof } from 'https://deno.land/x/polkadot/types/interfaces/babe/index.ts';
+import type { ValidatorSet } from 'https://deno.land/x/polkadot/types/interfaces/beefy/index.ts';
+import type { CheckInherentsResult, InherentData } from 'https://deno.land/x/polkadot/types/interfaces/blockbuilder/index.ts';
+import type { BlockHash } from 'https://deno.land/x/polkadot/types/interfaces/chain/index.ts';
+import type { AuthorityId } from 'https://deno.land/x/polkadot/types/interfaces/consensus/index.ts';
+import type { Extrinsic } from 'https://deno.land/x/polkadot/types/interfaces/extrinsics/index.ts';
+import type { AuthorityList, GrandpaEquivocationProof, SetId } from 'https://deno.land/x/polkadot/types/interfaces/grandpa/index.ts';
+import type { OpaqueMetadata } from 'https://deno.land/x/polkadot/types/interfaces/metadata/index.ts';
+import type { MmrBatchProof, MmrEncodableOpaqueLeaf, MmrError, MmrLeafIndex, MmrProof } from 'https://deno.land/x/polkadot/types/interfaces/mmr/index.ts';
+import type { CandidateCommitments, CandidateEvent, CommittedCandidateReceipt, CoreState, GroupRotationInfo, InboundDownwardMessage, InboundHrmpMessage, OccupiedCoreAssumption, ParaId, ParaValidatorIndex, PersistedValidationData, PvfCheckStatement, ScrapedOnChainVotes, SessionInfo, ValidationCode, ValidationCodeHash, ValidatorSignature } from 'https://deno.land/x/polkadot/types/interfaces/parachains/index.ts';
+import type { FeeDetails, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot/types/interfaces/payment/index.ts';
+import type { AccountId, Balance, Block, Call, Hash, Header, Index, KeyTypeId, Slot, ValidatorId } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { SessionIndex } from 'https://deno.land/x/polkadot/types/interfaces/session/index.ts';
+import type { RuntimeVersion } from 'https://deno.land/x/polkadot/types/interfaces/state/index.ts';
+import type { ApplyExtrinsicResult } from 'https://deno.land/x/polkadot/types/interfaces/system/index.ts';
+import type { TransactionSource, TransactionValidity } from 'https://deno.land/x/polkadot/types/interfaces/txqueue/index.ts';
+import type { IExtrinsic, Observable } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 export type __AugmentedCall<ApiType extends ApiTypes> = AugmentedCall<ApiType>;
 export type __DecoratedCallBase<ApiType extends ApiTypes> = DecoratedCallBase<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.14/api-base/types/calls.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
   interface AugmentedCalls<ApiType extends ApiTypes> {
     /** 0xbc9d89904f5b923f/1 */
     accountNonceApi: {
@@ -333,7 +333,7 @@ declare module 'https://deno.land/x/polkadot@0.2.14/api-base/types/calls.ts' {
        **/
       [key: string]: DecoratedCallBase<ApiType>;
     };
-    /** 0x37c8bb1350a9a2a8/1 */
+    /** 0x37c8bb1350a9a2a8/2 */
     transactionPaymentApi: {
       /**
        * The transaction fee details
@@ -348,7 +348,7 @@ declare module 'https://deno.land/x/polkadot@0.2.14/api-base/types/calls.ts' {
        **/
       [key: string]: DecoratedCallBase<ApiType>;
     };
-    /** 0xf3ff14d5ab527059/1 */
+    /** 0xf3ff14d5ab527059/2 */
     transactionPaymentCallApi: {
       /**
        * The call fee details

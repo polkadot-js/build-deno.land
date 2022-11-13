@@ -2,22 +2,39 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.7';
-import type { Option, Vec } from 'https://deno.land/x/polkadot@0.2.14/types/mod.ts';
-import type { BlockNumber, Call, Hash, ReferendumIndex, Scheduled } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/index.ts';
-import type { FrameSupportPreimagesBounded, FrameSupportScheduleMaybeHashed, PalletSchedulerScheduled, PalletSchedulerScheduledV3 } from 'https://deno.land/x/polkadot@0.2.14/types/lookup.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.14/types/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.14/util/types.ts';
+import type { Bytes, Option, u8, u32, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { BlockNumber, Call, Hash, ReferendumIndex, Scheduled } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { FrameSupportPreimagesBounded, PalletSchedulerScheduled } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { Codec, ITuple } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { DeriveApi, DeriveDispatch, DeriveProposalImage } from '../types.ts';
 
 import { catchError, combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.7';
 
-import { Enum } from 'https://deno.land/x/polkadot@0.2.14/types/mod.ts';
-import { isFunction, objectSpread, stringToHex } from 'https://deno.land/x/polkadot@0.2.14/util/mod.ts';
+import { Enum } from 'https://deno.land/x/polkadot/types/mod.ts';
+import { isFunction, objectSpread, stringToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 import { getImageHashBounded } from './util.ts';
 
 const DEMOCRACY_ID = stringToHex('democrac');
+
+// included here for backwards compat
+interface PalletSchedulerScheduledV3 extends Codec {
+  maybeId: Option<Bytes>;
+  priority: u8;
+  call: FrameSupportScheduleMaybeHashed;
+  maybePeriodic: Option<ITuple<[u32, u32]>>;
+  origin: Codec;
+}
+
+// included here for backwards compat
+interface FrameSupportScheduleMaybeHashed extends Codec {
+  isHash: boolean;
+  isValue: boolean;
+  asValue: Call;
+  asHash: Hash;
+}
 
 interface SchedulerInfo {
   at: BlockNumber;

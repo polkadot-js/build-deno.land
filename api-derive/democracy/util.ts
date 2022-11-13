@@ -1,13 +1,13 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Hash, ReferendumInfoTo239, Tally } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/index.ts';
-import type { FrameSupportPreimagesBounded, PalletDemocracyReferendumInfo, PalletDemocracyReferendumStatus, PalletDemocracyVoteThreshold } from 'https://deno.land/x/polkadot@0.2.14/types/lookup.ts';
-import type { Option } from 'https://deno.land/x/polkadot@0.2.14/types-codec/mod.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.14/util/types.ts';
+import type { Hash, ReferendumInfoTo239, Tally } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { FrameSupportPreimagesBounded, PalletDemocracyReferendumInfo, PalletDemocracyReferendumStatus, PalletDemocracyVoteThreshold } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { Option } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { DeriveReferendum, DeriveReferendumVote, DeriveReferendumVotes, DeriveReferendumVoteState } from '../types.ts';
 
-import { BN, bnSqrt, objectSpread } from 'https://deno.land/x/polkadot@0.2.14/util/mod.ts';
+import { BN, bnSqrt, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 interface ApproxState {
   votedAye: BN;

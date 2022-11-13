@@ -3,20 +3,20 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.14/api-base/types/submittable.ts';
+import 'https://deno.land/x/polkadot/api-base/types/submittable.ts';
 
-import type { ApiTypes, AugmentedSubmittable, SubmittableExtrinsic, SubmittableExtrinsicFunction } from 'https://deno.land/x/polkadot@0.2.14/api-base/types/index.ts';
-import type { Data } from 'https://deno.land/x/polkadot@0.2.14/types/mod.ts';
-import type { Bytes, Compact, Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.14/types-codec/mod.ts';
-import type { AnyNumber, IMethod, ITuple } from 'https://deno.land/x/polkadot@0.2.14/types-codec/types/index.ts';
-import type { AccountId32, Call, H256, MultiAddress, Perbill, Percent, Perquintill } from 'https://deno.land/x/polkadot@0.2.14/types/interfaces/runtime/index.ts';
-import type { FrameSupportPreimagesBounded, FrameSupportScheduleDispatchTime, KitchensinkRuntimeOriginCaller, KitchensinkRuntimeProxyType, KitchensinkRuntimeSessionKeys, PalletAllianceCid, PalletAllianceDisbandWitness, PalletAllianceUnscrupulousItem, PalletAssetsDestroyWitness, PalletContractsWasmDeterminism, PalletConvictionVotingConviction, PalletConvictionVotingVoteAccountVote, PalletDemocracyConviction, PalletDemocracyVoteAccountVote, PalletElectionProviderMultiPhaseRawSolution, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletElectionsPhragmenRenouncing, PalletIdentityBitFlags, PalletIdentityIdentityInfo, PalletIdentityJudgement, PalletImOnlineHeartbeat, PalletImOnlineSr25519AppSr25519Signature, PalletMultisigTimepoint, PalletNominationPoolsBondExtra, PalletNominationPoolsConfigOpAccountId32, PalletNominationPoolsConfigOpU128, PalletNominationPoolsConfigOpU32, PalletNominationPoolsPoolState, PalletSocietyJudgement, PalletStakingPalletConfigOpPerbill, PalletStakingPalletConfigOpPercent, PalletStakingPalletConfigOpU128, PalletStakingPalletConfigOpU32, PalletStakingRewardDestination, PalletStakingValidatorPrefs, PalletStateTrieMigrationMigrationLimits, PalletStateTrieMigrationMigrationTask, PalletStateTrieMigrationProgress, PalletUniquesDestroyWitness, PalletVestingVestingInfo, SpConsensusBabeDigestsNextConfigDescriptor, SpConsensusSlotsEquivocationProof, SpFinalityGrandpaEquivocationProof, SpNposElectionsElectionScore, SpNposElectionsSupport, SpRuntimeHeader, SpSessionMembershipProof, SpTransactionStorageProofTransactionStorageProof, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot@0.2.14/types/lookup.ts';
+import type { ApiTypes, AugmentedSubmittable, SubmittableExtrinsic, SubmittableExtrinsicFunction } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Data } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Bytes, Compact, Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { AnyNumber, IMethod, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { AccountId32, Call, H256, MultiAddress, Perbill, Percent, Perquintill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportPreimagesBounded, FrameSupportScheduleDispatchTime, KitchensinkRuntimeOriginCaller, KitchensinkRuntimeProxyType, KitchensinkRuntimeSessionKeys, PalletAllianceCid, PalletAllianceDisbandWitness, PalletAllianceUnscrupulousItem, PalletAssetsDestroyWitness, PalletContractsWasmDeterminism, PalletConvictionVotingConviction, PalletConvictionVotingVoteAccountVote, PalletDemocracyConviction, PalletDemocracyVoteAccountVote, PalletElectionProviderMultiPhaseRawSolution, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletElectionsPhragmenRenouncing, PalletIdentityBitFlags, PalletIdentityIdentityInfo, PalletIdentityJudgement, PalletImOnlineHeartbeat, PalletImOnlineSr25519AppSr25519Signature, PalletMultisigTimepoint, PalletNominationPoolsBondExtra, PalletNominationPoolsConfigOpAccountId32, PalletNominationPoolsConfigOpU128, PalletNominationPoolsConfigOpU32, PalletNominationPoolsPoolState, PalletSocietyJudgement, PalletStakingPalletConfigOpPerbill, PalletStakingPalletConfigOpPercent, PalletStakingPalletConfigOpU128, PalletStakingPalletConfigOpU32, PalletStakingRewardDestination, PalletStakingValidatorPrefs, PalletStateTrieMigrationMigrationLimits, PalletStateTrieMigrationMigrationTask, PalletStateTrieMigrationProgress, PalletUniquesDestroyWitness, PalletVestingVestingInfo, SpConsensusBabeDigestsNextConfigDescriptor, SpConsensusSlotsEquivocationProof, SpFinalityGrandpaEquivocationProof, SpNposElectionsElectionScore, SpNposElectionsSupport, SpRuntimeHeader, SpSessionMembershipProof, SpTransactionStorageProofTransactionStorageProof, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedSubmittable = AugmentedSubmittable<() => unknown>;
 export type __SubmittableExtrinsic<ApiType extends ApiTypes> = SubmittableExtrinsic<ApiType>;
 export type __SubmittableExtrinsicFunction<ApiType extends ApiTypes> = SubmittableExtrinsicFunction<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.14/api-base/types/submittable.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
   interface AugmentedSubmittables<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -383,7 +383,7 @@ declare module 'https://deno.land/x/polkadot@0.2.14/api-base/types/submittable.t
        * 
        * This new asset class has no assets initially and its owner is the origin.
        * 
-       * The origin must be Signed and the sender must have sufficient funds free.
+       * The origin must conform to the configured `CreateOrigin` and have sufficient funds free.
        * 
        * Funds of sender are reserved by `AssetDeposit`.
        * 
@@ -4047,7 +4047,8 @@ declare module 'https://deno.land/x/polkadot@0.2.14/api-base/types/submittable.t
        **/
       forceUnstake: AugmentedSubmittable<(stash: AccountId32 | string | Uint8Array, numSlashingSpans: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId32, u32]>;
       /**
-       * Increments the ideal number of validators.
+       * Increments the ideal number of validators upto maximum of
+       * `ElectionProviderBase::MaxWinners`.
        * 
        * The dispatch origin must be Root.
        * 
@@ -4136,7 +4137,8 @@ declare module 'https://deno.land/x/polkadot@0.2.14/api-base/types/submittable.t
        **/
       rebond: AugmentedSubmittable<(value: Compact<u128> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u128>]>;
       /**
-       * Scale up the ideal number of validators by a factor.
+       * Scale up the ideal number of validators by a factor upto maximum of
+       * `ElectionProviderBase::MaxWinners`.
        * 
        * The dispatch origin must be Root.
        * 
@@ -5098,7 +5100,7 @@ declare module 'https://deno.land/x/polkadot@0.2.14/api-base/types/submittable.t
        * 
        * This new collection has no items initially and its owner is the origin.
        * 
-       * The origin must be Signed and the sender must have sufficient funds free.
+       * The origin must conform to the configured `CreateOrigin` and have sufficient funds free.
        * 
        * `ItemDeposit` funds of sender are reserved.
        * 

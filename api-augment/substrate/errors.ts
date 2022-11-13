@@ -3,13 +3,13 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.14/api-base/types/errors.ts';
+import 'https://deno.land/x/polkadot/api-base/types/errors.ts';
 
-import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot@0.2.14/api-base/types/index.ts';
+import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 
 export type __AugmentedError<ApiType extends ApiTypes> = AugmentedError<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.14/api-base/types/errors.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
   interface AugmentedErrors<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -306,7 +306,7 @@ declare module 'https://deno.land/x/polkadot@0.2.14/api-base/types/errors.ts' {
        **/
       ExistingVestingSchedule: AugmentedError<ApiType>;
       /**
-       * Balance too low to send value
+       * Balance too low to send value.
        **/
       InsufficientBalance: AugmentedError<ApiType>;
       /**
@@ -744,6 +744,10 @@ declare module 'https://deno.land/x/polkadot@0.2.14/api-base/types/errors.ts' {
     };
     electionProviderMultiPhase: {
       /**
+       * Some bound not met
+       **/
+      BoundNotMet: AugmentedError<ApiType>;
+      /**
        * The call is not allowed at this point.
        **/
       CallNotAllowed: AugmentedError<ApiType>;
@@ -791,6 +795,10 @@ declare module 'https://deno.land/x/polkadot@0.2.14/api-base/types/errors.ts' {
        * The signed submission consumes too much weight
        **/
       SignedTooMuchWeight: AugmentedError<ApiType>;
+      /**
+       * Submitted solution has too many winners
+       **/
+      TooManyWinners: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -1822,8 +1830,8 @@ declare module 'https://deno.land/x/polkadot@0.2.14/api-base/types/errors.ts' {
        **/
       TooManyTargets: AugmentedError<ApiType>;
       /**
-       * There are too many validators in the system. Governance needs to adjust the staking
-       * settings to keep things safe for the runtime.
+       * There are too many validator candidates in the system. Governance needs to adjust the
+       * staking settings to keep things safe for the runtime.
        **/
       TooManyValidators: AugmentedError<ApiType>;
       /**
