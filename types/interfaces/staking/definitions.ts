@@ -6,7 +6,7 @@
 
 import type { Definitions } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.2.15/util/mod.ts';
 
 const deprecated = {
   Points: 'u32',

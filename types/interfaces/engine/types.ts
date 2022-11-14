@@ -1,8 +1,8 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Struct, bool } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { BlockHash } from 'https://deno.land/x/polkadot/types/interfaces/chain/index.ts';
+import type { Struct, bool } from 'https://deno.land/x/polkadot@0.2.15/types-codec/mod.ts';
+import type { BlockHash } from 'https://deno.land/x/polkadot@0.2.15/types/interfaces/chain/index.ts';
 
 /** @name CreatedBlock */
 export interface CreatedBlock extends Struct {

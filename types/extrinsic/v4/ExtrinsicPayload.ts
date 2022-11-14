@@ -1,15 +1,15 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { SignOptions } from 'https://deno.land/x/polkadot/keyring/types.ts';
-import type { Inspect, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { SignOptions } from 'https://deno.land/x/polkadot@0.2.15/keyring/types.ts';
+import type { Inspect, Registry } from 'https://deno.land/x/polkadot@0.2.15/types-codec/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.15/util/types.ts';
 import type { ExtrinsicEra } from '../../interfaces/extrinsics/index.ts';
 import type { Hash } from '../../interfaces/runtime/index.ts';
 import type { ExtrinsicPayloadValue, ICompact, IKeyringPair, INumber, IOption } from '../../types/index.ts';
 
-import { Bytes, Enum, Struct } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { Bytes, Enum, Struct } from 'https://deno.land/x/polkadot@0.2.15/types-codec/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.2.15/util/mod.ts';
 
 import { sign } from '../util.ts';
 
