@@ -1,9 +1,9 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { FrameSystemEventRecord } from 'https://deno.land/x/polkadot/types/lookup.ts';
-import type { Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { FrameSystemEventRecord } from 'https://deno.land/x/polkadot@0.2.16/types/lookup.ts';
+import type { Vec } from 'https://deno.land/x/polkadot@0.2.16/types-codec/mod.ts';
+import type { BN } from 'https://deno.land/x/polkadot@0.2.16/util/mod.ts';
 
 interface Changes {
   added: string[];

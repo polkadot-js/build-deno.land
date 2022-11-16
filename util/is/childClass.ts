@@ -12,7 +12,7 @@ import type { Constructor } from '../types.ts';
  * <BR>
  *
  * ```javascript
- * import { isChildClass } from 'https://deno.land/x/polkadot@0.2.15/util/mod.ts';
+ * import { isChildClass } from 'https://deno.land/x/polkadot@0.2.16/util/mod.ts';
  *
  * console.log('isChildClass', isChildClass(BN, BN); // => true
  * console.log('isChildClass', isChildClass(BN, Uint8Array); // => false
