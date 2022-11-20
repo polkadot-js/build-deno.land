@@ -3,13 +3,13 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.16/api-base/types/errors.ts';
+import 'https://deno.land/x/polkadot/api-base/types/errors.ts';
 
-import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot@0.2.16/api-base/types/index.ts';
+import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 
 export type __AugmentedError<ApiType extends ApiTypes> = AugmentedError<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.16/api-base/types/errors.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
   interface AugmentedErrors<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -174,6 +174,10 @@ declare module 'https://deno.land/x/polkadot@0.2.16/api-base/types/errors.ts' {
        **/
       AlreadyExists: AugmentedError<ApiType>;
       /**
+       * The asset is not live, and likely being destroyed.
+       **/
+      AssetNotLive: AugmentedError<ApiType>;
+      /**
        * Invalid metadata given.
        **/
       BadMetadata: AugmentedError<ApiType>;
@@ -190,9 +194,18 @@ declare module 'https://deno.land/x/polkadot@0.2.16/api-base/types/errors.ts' {
        **/
       Frozen: AugmentedError<ApiType>;
       /**
+       * The asset status is not the expected status.
+       **/
+      IncorrectStatus: AugmentedError<ApiType>;
+      /**
        * The asset ID is already taken.
        **/
       InUse: AugmentedError<ApiType>;
+      /**
+       * The asset is a live asset and is actively being used. Usually emit for operations such
+       * as `start_destroy` which require the asset to be in a destroying state.
+       **/
+      LiveAsset: AugmentedError<ApiType>;
       /**
        * Minimum balance should be non-zero.
        **/
@@ -215,6 +228,10 @@ declare module 'https://deno.land/x/polkadot@0.2.16/api-base/types/errors.ts' {
        * maximum number of consumers has been reached.
        **/
       NoProvider: AugmentedError<ApiType>;
+      /**
+       * The asset should be frozen before the given operation.
+       **/
+      NotFrozen: AugmentedError<ApiType>;
       /**
        * No approval exists that would allow the transfer.
        **/

@@ -1,13 +1,13 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.16/types-codec/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.16/util/types.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { Address, Call, ExtrinsicEra, Hash } from '../interfaces/index.ts';
 import type { Codec, ICompact, INumber, IRuntimeVersion, ISignerPayload, SignerPayloadJSON, SignerPayloadRaw } from '../types/index.ts';
 
-import { Option, Struct, Text, Vec } from 'https://deno.land/x/polkadot@0.2.16/types-codec/mod.ts';
-import { objectProperty, objectSpread, u8aToHex } from 'https://deno.land/x/polkadot@0.2.16/util/mod.ts';
+import { Option, Struct, Text, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { objectProperty, objectSpread, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 export interface SignerPayloadType extends Codec {
   address: Address;

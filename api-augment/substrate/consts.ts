@@ -3,17 +3,17 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.16/api-base/types/consts.ts';
+import 'https://deno.land/x/polkadot/api-base/types/consts.ts';
 
-import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot@0.2.16/api-base/types/index.ts';
-import type { Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.16/types-codec/mod.ts';
-import type { Codec, ITuple } from 'https://deno.land/x/polkadot@0.2.16/types-codec/types/index.ts';
-import type { Perbill, Percent, Permill } from 'https://deno.land/x/polkadot@0.2.16/types/interfaces/runtime/index.ts';
-import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, PalletContractsSchedule, PalletReferendaTrackInfo, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot@0.2.16/types/lookup.ts';
+import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Codec, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Perbill, Percent, Permill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, PalletContractsSchedule, PalletReferendaTrackInfo, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedConst<ApiType extends ApiTypes> = AugmentedConst<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.16/api-base/types/consts.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
   interface AugmentedConsts<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -65,6 +65,12 @@ declare module 'https://deno.land/x/polkadot@0.2.16/api-base/types/consts.ts' {
        * metadata.
        **/
       metadataDepositPerByte: u128 & AugmentedConst<ApiType>;
+      /**
+       * Max number of items to destroy per `destroy_accounts` and `destroy_approvals` call.
+       * 
+       * Must be configured to result in a weight that makes each call fit in a block.
+       **/
+      removeItemsLimit: u32 & AugmentedConst<ApiType>;
       /**
        * The maximum length of a name or symbol stored on-chain.
        **/
@@ -471,6 +477,17 @@ declare module 'https://deno.land/x/polkadot@0.2.16/api-base/types/consts.ts' {
        * The amount of bond that need to be locked for each vote (32 bytes).
        **/
       votingBondFactor: u128 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
+    fastUnstake: {
+      /**
+       * Deposit to take for unstaking, to make sure we're able to slash the it in order to cover
+       * the costs of resources on unsuccessful unstake.
+       **/
+      deposit: u128 & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/

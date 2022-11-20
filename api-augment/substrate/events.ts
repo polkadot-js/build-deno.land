@@ -3,17 +3,17 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.16/api-base/types/events.ts';
+import 'https://deno.land/x/polkadot/api-base/types/events.ts';
 
-import type { ApiTypes, AugmentedEvent } from 'https://deno.land/x/polkadot@0.2.16/api-base/types/index.ts';
-import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.16/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.16/types-codec/types/index.ts';
-import type { AccountId32, H256 } from 'https://deno.land/x/polkadot@0.2.16/types/interfaces/runtime/index.ts';
-import type { FrameSupportDispatchDispatchInfo, FrameSupportDispatchPostDispatchInfo, FrameSupportPreimagesBounded, FrameSupportTokensMiscBalanceStatus, KitchensinkRuntimeProxyType, PalletAllianceCid, PalletAllianceUnscrupulousItem, PalletConvictionVotingTally, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNominationPoolsPoolState, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord, PalletStakingExposure, PalletStakingValidatorPrefs, PalletStateTrieMigrationError, PalletStateTrieMigrationMigrationCompute, SpFinalityGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, SpRuntimeDispatchErrorWithPostInfo } from 'https://deno.land/x/polkadot@0.2.16/types/lookup.ts';
+import type { ApiTypes, AugmentedEvent } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { AccountId32, H256 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportDispatchDispatchInfo, FrameSupportDispatchPostDispatchInfo, FrameSupportPreimagesBounded, FrameSupportTokensMiscBalanceStatus, KitchensinkRuntimeProxyType, PalletAllianceCid, PalletAllianceUnscrupulousItem, PalletConvictionVotingTally, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNominationPoolsPoolState, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord, PalletStakingExposure, PalletStakingValidatorPrefs, PalletStateTrieMigrationError, PalletStateTrieMigrationMigrationCompute, SpFinalityGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, SpRuntimeDispatchErrorWithPostInfo } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedEvent<ApiType extends ApiTypes> = AugmentedEvent<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.16/api-base/types/events.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
   interface AugmentedEvents<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -107,9 +107,17 @@ declare module 'https://deno.land/x/polkadot@0.2.16/api-base/types/events.ts' {
     };
     assets: {
       /**
+       * Accounts were destroyed for given asset.
+       **/
+      AccountsDestroyed: AugmentedEvent<ApiType, [assetId: u32, accountsDestroyed: u32, accountsRemaining: u32], { assetId: u32, accountsDestroyed: u32, accountsRemaining: u32 }>;
+      /**
        * An approval for account `delegate` was cancelled by `owner`.
        **/
       ApprovalCancelled: AugmentedEvent<ApiType, [assetId: u32, owner: AccountId32, delegate: AccountId32], { assetId: u32, owner: AccountId32, delegate: AccountId32 }>;
+      /**
+       * Approvals were destroyed for given asset.
+       **/
+      ApprovalsDestroyed: AugmentedEvent<ApiType, [assetId: u32, approvalsDestroyed: u32, approvalsRemaining: u32], { assetId: u32, approvalsDestroyed: u32, approvalsRemaining: u32 }>;
       /**
        * (Additional) funds have been approved for transfer to a destination account.
        **/
@@ -138,6 +146,10 @@ declare module 'https://deno.land/x/polkadot@0.2.16/api-base/types/events.ts' {
        * An asset class was destroyed.
        **/
       Destroyed: AugmentedEvent<ApiType, [assetId: u32], { assetId: u32 }>;
+      /**
+       * An asset class is in the process of being destroyed.
+       **/
+      DestructionStarted: AugmentedEvent<ApiType, [assetId: u32], { assetId: u32 }>;
       /**
        * Some asset class was force-created.
        **/
@@ -562,11 +574,6 @@ declare module 'https://deno.land/x/polkadot@0.2.16/api-base/types/events.ts' {
        * of the batch. A new batch will be created upon next block.
        **/
       BatchFinished: AugmentedEvent<ApiType, []>;
-      /**
-       * Some internal error happened while migrating stash. They are removed as head as a
-       * consequence.
-       **/
-      Errored: AugmentedEvent<ApiType, [stash: AccountId32], { stash: AccountId32 }>;
       /**
        * An internal error happened. Operations will be paused now.
        **/
