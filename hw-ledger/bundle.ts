@@ -6,8 +6,8 @@ import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerTypes, Ledge
 
 import { newSubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.40.1';
 
-import { transports } from 'https://deno.land/x/polkadot/hw-ledger-transports/mod.ts';
-import { hexAddPrefix, u8aToBuffer } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { transports } from 'https://deno.land/x/polkadot@0.2.17/hw-ledger-transports/mod.ts';
+import { hexAddPrefix, u8aToBuffer } from 'https://deno.land/x/polkadot@0.2.17/util/mod.ts';
 
 import { LEDGER_DEFAULT_ACCOUNT, LEDGER_DEFAULT_CHANGE, LEDGER_DEFAULT_INDEX, LEDGER_SUCCESS_CODE } from './constants.ts';
 import { ledgerApps } from './defaults.ts';
