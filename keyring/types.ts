@@ -1,8 +1,8 @@
 // Copyright 2017-2022 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.16/util/types.ts';
-import type { EncryptedJson, Keypair, KeypairType, Prefix } from 'https://deno.land/x/polkadot@0.2.16/util-crypto/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { EncryptedJson, Keypair, KeypairType, Prefix } from 'https://deno.land/x/polkadot/util-crypto/types.ts';
 
 export interface KeyringOptions {
   /**
@@ -18,7 +18,9 @@ export interface KeyringOptions {
 export type KeyringPair$Meta = Record<string, unknown>;
 
 export interface KeyringPair$Json extends EncryptedJson {
+  /** The ss58 encoded address or the hex-encoded version (the latter is for ETH-compat chains) */
   address: string | HexString;
+  /** The underlying metadata associated with the keypair */
   meta: KeyringPair$Meta;
 }
 

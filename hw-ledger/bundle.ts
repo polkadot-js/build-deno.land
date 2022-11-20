@@ -1,14 +1,13 @@
 // Copyright 2017-2022 @polkadot/hw-ledger authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { SubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.39.0';
-import type { ResponseBase } from 'https://esm.sh/@zondax/ledger-substrate@0.39.0/dist/common.js';
+import type { SubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.40.1';
 import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerTypes, LedgerVersion } from './types.ts';
 
-import { newSubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.39.0';
+import { newSubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.40.1';
 
-import { transports } from 'https://deno.land/x/polkadot@0.2.16/hw-ledger-transports/mod.ts';
-import { u8aToBuffer } from 'https://deno.land/x/polkadot@0.2.16/util/mod.ts';
+import { transports } from 'https://deno.land/x/polkadot/hw-ledger-transports/mod.ts';
+import { hexAddPrefix, u8aToBuffer } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { LEDGER_DEFAULT_ACCOUNT, LEDGER_DEFAULT_CHANGE, LEDGER_DEFAULT_INDEX, LEDGER_SUCCESS_CODE } from './constants.ts';
 import { ledgerApps } from './defaults.ts';
@@ -17,7 +16,10 @@ export { packageInfo } from './packageInfo.ts';
 
 type Chain = keyof typeof ledgerApps;
 
-async function wrapError <T extends ResponseBase> (promise: Promise<T>): Promise<T> {
+type WrappedResult = Awaited<ReturnType<SubstrateApp['getAddress' | 'getVersion' | 'sign']>>;
+
+/** @internal Wraps a SubstrateApp call, checking the result for any errors which result in a rejection */
+async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promise<T> {
   const result = await promise;
 
   if (result.return_code !== LEDGER_SUCCESS_CODE) {
@@ -55,7 +57,7 @@ export class Ledger {
 
       return {
         address,
-        publicKey: `0x${pubKey}`
+        publicKey: hexAddPrefix(pubKey)
       };
     });
   }
@@ -78,7 +80,7 @@ export class Ledger {
       const { signature } = await wrapError(app.sign(account + accountOffset, change, addressIndex + addressOffset, buffer));
 
       return {
-        signature: `0x${signature.toString('hex')}`
+        signature: hexAddPrefix(signature.toString('hex'))
       };
     });
   }
