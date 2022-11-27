@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.17/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { HashType } from '../secp256k1/types.ts';
 import type { Prefix } from './types.ts';
 
-import { u8aConcat } from 'https://deno.land/x/polkadot@0.2.17/util/mod.ts';
+import { u8aConcat } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { hasher } from '../secp256k1/hasher.ts';
 import { encodeAddress } from './encode.ts';
