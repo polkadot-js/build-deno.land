@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyJson, Registry } from 'https://deno.land/x/polkadot@0.2.17/types-codec/types/index.ts';
+import type { AnyJson, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { MetadataLatest, PalletCallMetadataLatest } from '../../interfaces/metadata/index.ts';
 
-import { Option, Text, u8 } from 'https://deno.land/x/polkadot@0.2.17/types-codec/mod.ts';
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.17/util/mod.ts';
+import { Option, Text, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 interface ModuleMetadataTrimmed {
   calls: Option<PalletCallMetadataLatest>;

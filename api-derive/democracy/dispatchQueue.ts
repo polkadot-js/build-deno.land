@@ -2,17 +2,17 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.7';
-import type { Bytes, Option, u8, u32, Vec } from 'https://deno.land/x/polkadot@0.2.17/types/mod.ts';
-import type { BlockNumber, Call, Hash, ReferendumIndex, Scheduled } from 'https://deno.land/x/polkadot@0.2.17/types/interfaces/index.ts';
-import type { FrameSupportPreimagesBounded, PalletSchedulerScheduled } from 'https://deno.land/x/polkadot@0.2.17/types/lookup.ts';
-import type { Codec, ITuple } from 'https://deno.land/x/polkadot@0.2.17/types/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.17/util/types.ts';
+import type { Bytes, Option, u8, u32, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { BlockNumber, Call, Hash, ReferendumIndex, Scheduled } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { FrameSupportPreimagesBounded, PalletSchedulerScheduled } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { Codec, ITuple } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { DeriveApi, DeriveDispatch, DeriveProposalImage } from '../types.ts';
 
 import { catchError, combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.7';
 
-import { Enum } from 'https://deno.land/x/polkadot@0.2.17/types/mod.ts';
-import { isFunction, objectSpread, stringToHex } from 'https://deno.land/x/polkadot@0.2.17/util/mod.ts';
+import { Enum } from 'https://deno.land/x/polkadot/types/mod.ts';
+import { isFunction, objectSpread, stringToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 import { getImageHashBounded } from './util.ts';

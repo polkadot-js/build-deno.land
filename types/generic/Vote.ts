@@ -1,13 +1,13 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyJson, Registry } from 'https://deno.land/x/polkadot@0.2.17/types-codec/types/index.ts';
+import type { AnyJson, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { Conviction } from '../interfaces/democracy/index.ts';
 import type { AllConvictions } from '../interfaces/democracy/definitions.ts';
 import type { ArrayElementType } from '../types/index.ts';
 
-import { Bool, U8aFixed } from 'https://deno.land/x/polkadot@0.2.17/types-codec/mod.ts';
-import { isBoolean, isNumber, isU8a, isUndefined } from 'https://deno.land/x/polkadot@0.2.17/util/mod.ts';
+import { Bool, U8aFixed } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { isBoolean, isNumber, isU8a, isUndefined } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 interface VoteType {
   aye: boolean;
