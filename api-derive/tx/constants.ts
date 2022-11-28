@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { BN } from 'https://deno.land/x/polkadot@0.2.18/util/mod.ts';
+import { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 export const FALLBACK_MAX_HASH_COUNT = 250;
 

@@ -1,13 +1,13 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Hash, ReferendumInfoTo239, Tally } from 'https://deno.land/x/polkadot@0.2.18/types/interfaces/index.ts';
-import type { FrameSupportPreimagesBounded, PalletDemocracyReferendumInfo, PalletDemocracyReferendumStatus, PalletDemocracyVoteThreshold } from 'https://deno.land/x/polkadot@0.2.18/types/lookup.ts';
-import type { Option } from 'https://deno.land/x/polkadot@0.2.18/types-codec/mod.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.18/util/types.ts';
+import type { Hash, ReferendumInfoTo239, Tally } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { FrameSupportPreimagesBounded, PalletDemocracyReferendumInfo, PalletDemocracyReferendumStatus, PalletDemocracyVoteThreshold } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { Option } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { DeriveReferendum, DeriveReferendumVote, DeriveReferendumVotes, DeriveReferendumVoteState } from '../types.ts';
 
-import { BN, bnSqrt, objectSpread } from 'https://deno.land/x/polkadot@0.2.18/util/mod.ts';
+import { BN, bnSqrt, isHex, isString, isU8a, objectSpread, stringToHex, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 interface ApproxState {
   votedAye: BN;
@@ -141,7 +141,7 @@ export function getStatus (info: Option<PalletDemocracyReferendumInfo | Referend
       : null;
 }
 
-export function getImageHashBounded (hash: Hash | FrameSupportPreimagesBounded): HexString {
+export function getImageHashBounded (hash: Uint8Array | string | Hash | FrameSupportPreimagesBounded): HexString {
   return (hash as FrameSupportPreimagesBounded).isLegacy
     ? (hash as FrameSupportPreimagesBounded).asLegacy.hash_.toHex()
     : (hash as FrameSupportPreimagesBounded).isLookup
@@ -149,7 +149,13 @@ export function getImageHashBounded (hash: Hash | FrameSupportPreimagesBounded):
       // for inline, use the actual Bytes hash
       : (hash as FrameSupportPreimagesBounded).isInline
         ? (hash as FrameSupportPreimagesBounded).asInline.hash.toHex()
-        : hash.toHex();
+        : isString(hash)
+          ? isHex(hash)
+            ? hash
+            : stringToHex(hash)
+          : isU8a(hash)
+            ? u8aToHex(hash)
+            : hash.toHex();
 }
 
 export function getImageHash (status: PalletDemocracyReferendumStatus | ReferendumInfoTo239): HexString {

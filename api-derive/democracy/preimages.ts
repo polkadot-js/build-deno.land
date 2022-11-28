@@ -2,16 +2,16 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.7';
-import type { AccountId, Balance, BlockNumber, Call, Hash, PreimageStatus } from 'https://deno.land/x/polkadot@0.2.18/types/interfaces/index.ts';
-import type { FrameSupportPreimagesBounded, PalletPreimageRequestStatus } from 'https://deno.land/x/polkadot@0.2.18/types/lookup.ts';
-import type { Bytes, Option } from 'https://deno.land/x/polkadot@0.2.18/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.18/types-codec/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.18/util/types.ts';
+import type { AccountId, Balance, BlockNumber, Call, Hash, PreimageStatus } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { FrameSupportPreimagesBounded, PalletPreimageRequestStatus } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { Bytes, Option } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { DeriveApi, DeriveProposalImage } from '../types.ts';
 
 import { map, of, switchMap } from 'https://esm.sh/rxjs@7.5.7';
 
-import { BN_ZERO, isFunction } from 'https://deno.land/x/polkadot@0.2.18/util/mod.ts';
+import { BN_ZERO, isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { firstMemo, memo } from '../util/index.ts';
 import { getImageHashBounded } from './util.ts';
@@ -84,7 +84,7 @@ function getDemocracyImages (api: DeriveApi, hashes: (Hash | Uint8Array | string
   );
 }
 
-function getImages (api: DeriveApi, bounded: FrameSupportPreimagesBounded[]): Observable<(DeriveProposalImage | undefined)[]> {
+function getImages (api: DeriveApi, bounded: (FrameSupportPreimagesBounded | Uint8Array | string)[]): Observable<(DeriveProposalImage | undefined)[]> {
   const hashes = bounded.map((b) => getImageHashBounded(b));
 
   return api.query.preimage.statusFor.multi(hashes).pipe(
@@ -123,7 +123,7 @@ export function preimages (instanceId: string, api: DeriveApi): (hashes: (Hash |
       ? isFunction(api.query.democracy.preimages)
         ? getDemocracyImages(api, hashes as string[])
         : isFunction(api.query.preimage.preimageFor)
-          ? getImages(api, hashes as FrameSupportPreimagesBounded[])
+          ? getImages(api, hashes)
           : of([])
       : of([])
   );

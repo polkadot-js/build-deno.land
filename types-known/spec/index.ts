@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/types-known authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { OverrideVersionedType } from 'https://deno.land/x/polkadot@0.2.18/types/types/index.ts';
+import type { OverrideVersionedType } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 import centrifugeChain from './centrifuge-chain.ts';
 import kusama from './kusama.ts';
