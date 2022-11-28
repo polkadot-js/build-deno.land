@@ -10,7 +10,7 @@ import { compactFromU8a } from './fromU8a.ts';
  * <BR>
  *
  * ```javascript
- * import { compactStripLength } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { compactStripLength } from 'https://deno.land/x/polkadot@0.2.18/util/mod.ts';
  *
  * console.log(compactStripLength(new Uint8Array([2 << 2, 0xde, 0xad]))); // [2, Uint8Array[0xde, 0xad]]
  * ```

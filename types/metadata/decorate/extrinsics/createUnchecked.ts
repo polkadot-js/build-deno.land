@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyJson, AnyTuple, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { AnyJson, AnyTuple, Registry } from 'https://deno.land/x/polkadot@0.2.18/types-codec/types/index.ts';
 import type { Call, FunctionMetadataLatest } from '../../../interfaces/index.ts';
 import type { CallFunction, IMethod } from '../../../types/index.ts';
 
-import { stringCamelCase } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { stringCamelCase } from 'https://deno.land/x/polkadot@0.2.18/util/mod.ts';
 
 function isTx <A extends AnyTuple> (tx: IMethod<AnyTuple>, callIndex: Uint8Array): tx is IMethod<A> {
   return tx.callIndex[0] === callIndex[0] && tx.callIndex[1] === callIndex[1];
