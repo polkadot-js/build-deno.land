@@ -1,11 +1,11 @@
 // Copyright 2019-2022 @polkadot/wasm-crypto-init authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { InitFn } from 'https://deno.land/x/polkadot@0.2.18/wasm-bridge/types.ts';
+import type { InitFn } from 'https://deno.land/x/polkadot/wasm-bridge/types.ts';
 import type { WasmCryptoInstance } from './types.ts';
 
-import { createWasmFn } from 'https://deno.land/x/polkadot@0.2.18/wasm-bridge/mod.ts';
-import { wasmBytes } from 'https://deno.land/x/polkadot@0.2.18/wasm-crypto-wasm/mod.ts';
+import { createWasmFn } from 'https://deno.land/x/polkadot/wasm-bridge/mod.ts';
+import { wasmBytes } from 'https://deno.land/x/polkadot/wasm-crypto-wasm/mod.ts';
 
 export { packageInfo } from './packageInfo.ts';
 
@@ -14,4 +14,4 @@ export { packageInfo } from './packageInfo.ts';
  * @description
  * Creates an interface using only WASM
  */
-export const createWasm: InitFn<WasmCryptoInstance> = createWasmFn('crypto', wasmBytes, null);
+export const createWasm: InitFn<WasmCryptoInstance> = /*#__PURE__*/ createWasmFn('crypto', wasmBytes, null);
