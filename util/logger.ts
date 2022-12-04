@@ -3,6 +3,8 @@
 
 import type { Logger, Logger$Data } from './types.ts';
 
+import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
+
 import { formatDate } from './format/formatDate.ts';
 import { isBn } from './is/bn.ts';
 import { isBuffer } from './is/buffer.ts';
@@ -12,8 +14,6 @@ import { isU8a } from './is/u8a.ts';
 import { u8aToHex } from './u8a/toHex.ts';
 import { u8aToU8a } from './u8a/toU8a.ts';
 import { hasProcess } from './has.ts';
-
-declare const process: { env: Record<string, string> };
 
 type ConsoleType = 'error' | 'log' | 'warn';
 type LogType = ConsoleType | 'debug';
@@ -124,7 +124,7 @@ function getDebugFlag (env: readonly string[], type: string): boolean {
 }
 
 function parseEnv (type: string): [boolean, number] {
-  const env = (hasProcess ? process : {}).env || {};
+  const env = (hasProcess ? xglobal.process as { env: Record<string, string> } : {}).env || {};
   const maxSize = parseInt(env.DEBUG_MAX || '-1', 10);
 
   return [
@@ -144,7 +144,7 @@ function parseEnv (type: string): [boolean, number] {
  * <BR>
  *
  * ```javascript
- * import { logger } from 'https://deno.land/x/polkadot@0.2.18/util/mod.ts';
+ * import { logger } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * const l = logger('test');
  * ```

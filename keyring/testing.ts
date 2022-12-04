@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.18/util/types.ts';
-import type { KeypairType } from 'https://deno.land/x/polkadot@0.2.18/util-crypto/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { KeypairType } from 'https://deno.land/x/polkadot/util-crypto/types.ts';
 import type { KeyringInstance, KeyringOptions } from './types.ts';
 
-import { hexToU8a } from 'https://deno.land/x/polkadot@0.2.18/util/mod.ts';
+import { hexToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Keyring } from './keyring.ts';
 import { createPair } from './pair/index.ts';

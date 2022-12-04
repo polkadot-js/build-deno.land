@@ -22,12 +22,12 @@ function converter (map: readonly string[]): (value?: AnyString | null) => strin
  * <BR>
  *
  * ```javascript
- * import { stringLowerFirst } from 'https://deno.land/x/polkadot@0.2.18/util/mod.ts';
+ * import { stringLowerFirst } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * stringLowerFirst('ABC'); // => 'aBC'
  * ```
  */
-export const stringLowerFirst = converter(CC_TO_LO);
+export const stringLowerFirst = /*#__PURE__*/ converter(CC_TO_LO);
 
 /**
  * @name stringUpperFirst
@@ -38,9 +38,9 @@ export const stringLowerFirst = converter(CC_TO_LO);
  * <BR>
  *
  * ```javascript
- * import { stringUpperFirst } from 'https://deno.land/x/polkadot@0.2.18/util/mod.ts';
+ * import { stringUpperFirst } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * stringUpperFirst('abc'); // => 'Abc'
  * ```
  */
-export const stringUpperFirst = converter(CC_TO_UP);
+export const stringUpperFirst = /*#__PURE__*/ converter(CC_TO_UP);

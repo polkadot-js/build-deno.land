@@ -3,7 +3,7 @@
 
 import { keccak_256 as keccak256Js, keccak_512 as keccak512Js } from 'https://esm.sh/@noble/hashes@1.1.3/sha3.js';
 
-import { keccak256, keccak512 } from 'https://deno.land/x/polkadot@0.2.18/wasm-crypto/mod.ts';
+import { keccak256, keccak512 } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 import { createAsHex, createBitHasher, createDualHasher } from '../helpers.ts';
 
@@ -16,13 +16,12 @@ import { createAsHex, createBitHasher, createDualHasher } from '../helpers.ts';
  * <BR>
  *
  * ```javascript
- * import { keccakAsU8a } from 'https://deno.land/x/polkadot@0.2.18/util-crypto/mod.ts';
+ * import { keccakAsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
  *
  * keccakAsU8a('123'); // => Uint8Array
  * ```
  */
-
-export const keccakAsU8a = createDualHasher(
+export const keccakAsU8a = /*#__PURE__*/ createDualHasher(
   { 256: keccak256, 512: keccak512 },
   { 256: keccak256Js, 512: keccak512Js }
 );
@@ -31,13 +30,13 @@ export const keccakAsU8a = createDualHasher(
  * @name keccak256AsU8a
  * @description Creates a keccak256 Uint8Array from the input.
  */
-export const keccak256AsU8a = createBitHasher(256, keccakAsU8a);
+export const keccak256AsU8a = /*#__PURE__*/ createBitHasher(256, keccakAsU8a);
 
 /**
  * @name keccak512AsU8a
  * @description Creates a keccak512 Uint8Array from the input.
  */
-export const keccak512AsU8a = createBitHasher(512, keccakAsU8a);
+export const keccak512AsU8a = /*#__PURE__*/ createBitHasher(512, keccakAsU8a);
 
 /**
  * @name keccakAsHex
