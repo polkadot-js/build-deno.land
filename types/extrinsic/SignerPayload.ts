@@ -3,7 +3,7 @@
 
 import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
-import type { Address, Call, ExtrinsicEra, Hash } from '../interfaces/index.ts';
+import type { Address, BlockHash, Call, ExtrinsicEra, Hash } from '../interfaces/index.ts';
 import type { Codec, ICompact, INumber, IRuntimeVersion, ISignerPayload, SignerPayloadJSON, SignerPayloadRaw } from '../types/index.ts';
 
 import { Option, Struct, Text, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
@@ -67,7 +67,7 @@ export class GenericSignerPayload extends Struct implements ISignerPayload, Sign
     return this.getT('address');
   }
 
-  get blockHash (): Hash {
+  get blockHash (): BlockHash {
     return this.getT('blockHash');
   }
 
@@ -79,7 +79,7 @@ export class GenericSignerPayload extends Struct implements ISignerPayload, Sign
     return this.getT('era');
   }
 
-  get genesisHash (): Hash {
+  get genesisHash (): BlockHash {
     return this.getT('genesisHash');
   }
 

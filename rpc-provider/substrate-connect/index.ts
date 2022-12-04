@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/rpc-provider authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Config as ScConfig } from 'https://esm.sh/@substrate/connect@0.7.17';
+import type { Chain, Config as ScConfig, ScClient } from 'https://esm.sh/@substrate/connect@0.7.17';
 import type { JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, ProviderInterfaceEmitCb, ProviderInterfaceEmitted } from '../types.ts';
 
-import { Chain, createScClient, ScClient, WellKnownChain } from 'https://esm.sh/@substrate/connect@0.7.17';
+import { createScClient, WellKnownChain } from 'https://esm.sh/@substrate/connect@0.7.17';
 import EventEmitter from 'https://esm.sh/eventemitter3@4.0.7';
 
 import { isError, logger, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
@@ -36,8 +36,6 @@ const subscriptionUnsubscriptionMethods = new Map<string, string>([
 
 const wellKnownChains = new Set(Object.values(WellKnownChain));
 const scClients = new WeakMap<ScProvider, ScClient>();
-
-export { WellKnownChain };
 
 interface ActiveSubs {
   type: string,
