@@ -1,13 +1,12 @@
 # CHANGELOG
 
-## master
+## 0.2.19 Dec 4, 2022
 
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 9.10.1
 - phishing 0.18.12
 - hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 10.2.1
 - wasm-{bridge, crypto, crypto-{asmjs, init, wasm}, util} 6.4.1
-- api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 9.9.4
-- api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 9.9.3
+
 
 ## 0.2.18 Nov 28, 2022
 
