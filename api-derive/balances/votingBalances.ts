@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.5.7';
-import type { AccountId, AccountIndex, Address } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { AccountId, AccountIndex, Address } from 'https://deno.land/x/polkadot@0.2.19/types/interfaces/index.ts';
 import type { DeriveApi, DeriveBalancesAccount } from '../types.ts';
 
 import { combineLatest, of } from 'https://esm.sh/rxjs@7.5.7';
