@@ -1,15 +1,15 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://esm.sh/rxjs@7.5.7';
-import type { Option, Vec } from 'https://deno.land/x/polkadot@0.2.19/types/mod.ts';
-import type { AccountId, Balance, BalanceLockTo212, BlockNumber, VestingSchedule } from 'https://deno.land/x/polkadot@0.2.19/types/interfaces/index.ts';
-import type { PalletBalancesBalanceLock, PalletBalancesReserveData, PalletVestingVestingInfo } from 'https://deno.land/x/polkadot@0.2.19/types/lookup.ts';
+import type { Observable } from 'https://esm.sh/rxjs@7.6.0';
+import type { Option, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, Balance, BalanceLockTo212, BlockNumber, VestingSchedule } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletBalancesBalanceLock, PalletBalancesReserveData, PalletVestingVestingInfo } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { DeriveApi, DeriveBalancesAccount, DeriveBalancesAccountData, DeriveBalancesAll, DeriveBalancesAllAccountData, DeriveBalancesAllVesting } from '../types.ts';
 
-import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.5.7';
+import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.6.0';
 
-import { BN, BN_ZERO, bnMax, bnMin, isFunction, objectSpread } from 'https://deno.land/x/polkadot@0.2.19/util/mod.ts';
+import { BN, BN_ZERO, bnMax, bnMin, isFunction, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 
@@ -58,7 +58,7 @@ function calcShared (api: DeriveApi, bestNumber: BlockNumber, data: DeriveBalanc
   const { allLocked, lockedBalance, lockedBreakdown, vestingLocked } = calcLocked(api, bestNumber, locks);
 
   return objectSpread({}, data, {
-    availableBalance: api.registry.createType('Balance', allLocked ? 0 : bnMax(new BN(0), data.freeBalance.sub(lockedBalance))),
+    availableBalance: api.registry.createType('Balance', allLocked ? 0 : bnMax(new BN(0), data?.freeBalance ? data.freeBalance.sub(lockedBalance) : new BN(0))),
     lockedBalance,
     lockedBreakdown,
     vestingLocked
@@ -98,7 +98,8 @@ function calcVesting (bestNumber: BlockNumber, shared: DeriveBalancesAllAccountD
   };
 }
 
-function calcBalances (api: DeriveApi, [data, [vesting, allLocks, namedReserves], bestNumber]: Result): DeriveBalancesAll {
+function calcBalances (api: DeriveApi, result: Result): DeriveBalancesAll {
+  const [data, [vesting, allLocks, namedReserves], bestNumber] = result;
   const shared = calcShared(api, bestNumber, data, allLocks[0]);
 
   return objectSpread(shared, calcVesting(bestNumber, shared, vesting), {

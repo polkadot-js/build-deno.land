@@ -1,8 +1,8 @@
 // Copyright 2017-2022 @polkadot/rpc-core authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://esm.sh/rxjs@7.5.7';
-import type { AnyFunction, Codec, DefinitionRpc } from 'https://deno.land/x/polkadot@0.2.19/types/types/index.ts';
+import type { Observable } from 'https://esm.sh/rxjs@7.6.0';
+import type { AnyFunction, Codec, DefinitionRpc } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 export interface RpcInterfaceMethod {
   <T extends Codec> (...params: unknown[]): Observable<T>;

@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-export { drr, memo } from 'https://deno.land/x/polkadot@0.2.19/rpc-core/mod.ts';
+export { drr, memo } from 'https://deno.land/x/polkadot/rpc-core/mod.ts';
 
 export * from './approvalFlagsToBools.ts';
 export * from './blockNumber.ts';

@@ -4,8 +4,8 @@
 import type { StorageHasher } from '../../../interfaces/index.ts';
 import type { AllHashers } from '../../../interfaces/metadata/definitions.ts';
 
-import { u8aConcat, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.19/util/mod.ts';
-import { blake2AsU8a, xxhashAsU8a } from 'https://deno.land/x/polkadot@0.2.19/util-crypto/mod.ts';
+import { u8aConcat, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { blake2AsU8a, xxhashAsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 export type HasherInput = string | Buffer | Uint8Array;
 

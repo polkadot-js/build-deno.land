@@ -1,13 +1,13 @@
 // Copyright 2017-2022 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://esm.sh/rxjs@7.5.7';
-import type { Callback, Codec } from 'https://deno.land/x/polkadot@0.2.19/types/types/index.ts';
+import type { Observable } from 'https://esm.sh/rxjs@7.6.0';
+import type { Callback, Codec } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DecorateFn, DecorateMethodOptions, ObsInnerType, StorageEntryPromiseOverloads, UnsubscribePromise, VoidFn } from '../types/index.ts';
 
-import { catchError, EMPTY, Subscription, tap } from 'https://esm.sh/rxjs@7.5.7';
+import { catchError, EMPTY, Subscription, tap } from 'https://esm.sh/rxjs@7.6.0';
 
-import { isFunction, nextTick } from 'https://deno.land/x/polkadot@0.2.19/util/mod.ts';
+import { isFunction, nextTick } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 interface Tracker<T> {
   reject: (value: Error) => Observable<never>;
