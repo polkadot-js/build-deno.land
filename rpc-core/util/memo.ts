@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observer, TeardownLogic } from 'https://esm.sh/rxjs@7.6.0';
+import type { Observer, TeardownLogic } from 'https://esm.sh/rxjs@7.8.0';
 import type { Memoized } from 'https://deno.land/x/polkadot/util/types.ts';
 
-import { Observable } from 'https://esm.sh/rxjs@7.6.0';
+import { Observable } from 'https://esm.sh/rxjs@7.8.0';
 
 import { memoize } from 'https://deno.land/x/polkadot/util/mod.ts';
 

@@ -1,13 +1,13 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://esm.sh/rxjs@7.6.0';
+import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { ObsInnerType } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 import type { EraIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { ExactDerive } from '../derive.ts';
 import type { DeriveApi } from '../types.ts';
 
-import { BehaviorSubject, combineLatest, map, of, switchMap, tap, toArray } from 'https://esm.sh/rxjs@7.6.0';
+import { BehaviorSubject, combineLatest, map, of, switchMap, tap, toArray } from 'https://esm.sh/rxjs@7.8.0';
 
 import { arrayChunk, arrayFlatten, nextTick } from 'https://deno.land/x/polkadot/util/mod.ts';
 

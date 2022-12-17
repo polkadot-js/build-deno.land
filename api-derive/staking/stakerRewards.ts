@@ -1,14 +1,14 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://esm.sh/rxjs@7.6.0';
+import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { AccountId, EraIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { PalletStakingStakingLedger } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { DeriveApi, DeriveEraPoints, DeriveEraPrefs, DeriveEraRewards, DeriveEraValPoints, DeriveEraValPrefs, DeriveStakerExposure, DeriveStakerReward, DeriveStakerRewardValidator } from '../types.ts';
 import type { DeriveStakingQuery } from './types.ts';
 
-import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.6.0';
+import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.0';
 
 import { BN_BILLION, BN_ZERO, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 

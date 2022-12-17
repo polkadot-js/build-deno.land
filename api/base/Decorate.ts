@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://esm.sh/rxjs@7.6.0';
+import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { AugmentedCall, DeriveCustom, QueryableCalls } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 import type { RpcInterface } from 'https://deno.land/x/polkadot/rpc-core/types/index.ts';
 import type { StorageKey, Text, u64 } from 'https://deno.land/x/polkadot/types/mod.ts';
@@ -14,7 +14,7 @@ import type { SubmittableExtrinsic } from '../submittable/types.ts';
 import type { ApiDecoration, ApiInterfaceRx, ApiOptions, ApiTypes, AugmentedQuery, DecoratedErrors, DecoratedEvents, DecoratedRpc, DecorateMethod, GenericStorageEntryFunction, PaginationOptions, QueryableConsts, QueryableStorage, QueryableStorageEntry, QueryableStorageEntryAt, QueryableStorageMulti, QueryableStorageMultiArg, SubmittableExtrinsicFunction, SubmittableExtrinsics } from '../types/index.ts';
 import type { VersionedRegistry } from './types.ts';
 
-import { BehaviorSubject, combineLatest, from, map, of, switchMap, tap, toArray } from 'https://esm.sh/rxjs@7.6.0';
+import { BehaviorSubject, combineLatest, from, map, of, switchMap, tap, toArray } from 'https://esm.sh/rxjs@7.8.0';
 
 import { getAvailableDerives } from 'https://deno.land/x/polkadot/api-derive/mod.ts';
 import { memo, RpcCore } from 'https://deno.land/x/polkadot/rpc-core/mod.ts';
@@ -714,6 +714,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
 
     decorated.creator = creator;
 
+    // eslint-disable-next-line deprecation/deprecation
     decorated.at = decorateMethod((blockHash: Hash, ...args: unknown[]): Observable<Codec> =>
       getQueryAt(blockHash).pipe(
         switchMap((q) => q(...args))));
@@ -734,6 +735,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
     decorated.size = decorateMethod((...args: unknown[]): Observable<u64> =>
       this._rpcCore.state.getStorageSize(getArgs(args)));
 
+    // eslint-disable-next-line deprecation/deprecation
     decorated.sizeAt = decorateMethod((blockHash: Hash | Uint8Array | string, ...args: unknown[]): Observable<u64> =>
       getQueryAt(blockHash).pipe(
         switchMap((q) =>
@@ -745,6 +747,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
         memo(this.#instanceId, (...args: unknown[]): Observable<[StorageKey, Codec][]> =>
           this._retrieveMapEntries(creator, null, args)));
 
+      // eslint-disable-next-line deprecation/deprecation
       decorated.entriesAt = decorateMethod(
         memo(this.#instanceId, (blockHash: Hash | Uint8Array | string, ...args: unknown[]): Observable<[StorageKey, Codec][]> =>
           getQueryAt(blockHash).pipe(
@@ -758,6 +761,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
         memo(this.#instanceId, (...args: unknown[]): Observable<StorageKey[]> =>
           this._retrieveMapKeys(creator, null, args)));
 
+      // eslint-disable-next-line deprecation/deprecation
       decorated.keysAt = decorateMethod(
         memo(this.#instanceId, (blockHash: Hash | Uint8Array | string, ...args: unknown[]): Observable<StorageKey[]> =>
           getQueryAt(blockHash).pipe(

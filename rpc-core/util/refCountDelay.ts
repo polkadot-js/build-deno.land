@@ -1,9 +1,9 @@
 // Copyright 2017-2022 @polkadot/rpc-core authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ConnectableObservable, MonoTypeOperatorFunction, TeardownLogic } from 'https://esm.sh/rxjs@7.6.0';
+import type { ConnectableObservable, MonoTypeOperatorFunction, TeardownLogic } from 'https://esm.sh/rxjs@7.8.0';
 
-import { asapScheduler, Observable, Subscription } from 'https://esm.sh/rxjs@7.6.0';
+import { asapScheduler, Observable, Subscription } from 'https://esm.sh/rxjs@7.8.0';
 
 /** @internal */
 export function refCountDelay <T> (delay = 1750): MonoTypeOperatorFunction<T> {
@@ -18,6 +18,7 @@ export function refCountDelay <T> (delay = 1750): MonoTypeOperatorFunction<T> {
         if (state === 1) {
           scheduler.unsubscribe();
         } else {
+          // eslint-disable-next-line deprecation/deprecation
           connection = (source as ConnectableObservable<T>).connect();
         }
 

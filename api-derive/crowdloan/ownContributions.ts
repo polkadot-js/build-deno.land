@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://esm.sh/rxjs@7.6.0';
+import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { DeriveApi, DeriveOwnContributions } from '../types.ts';
 
-import { combineLatest, EMPTY, map, of, startWith, switchMap } from 'https://esm.sh/rxjs@7.6.0';
+import { combineLatest, EMPTY, map, of, startWith, switchMap } from 'https://esm.sh/rxjs@7.8.0';
 
 import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 

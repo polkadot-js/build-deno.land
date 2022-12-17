@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/api-base authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://esm.sh/rxjs@7.6.0';
+import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { AnyFunction, AnyJson, Callback, DefinitionRpc } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 import { ApiTypes, PromiseResult, Push, RxResult, UnsubscribePromise } from './base.ts';

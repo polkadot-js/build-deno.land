@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/rpc-core authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observer } from 'https://esm.sh/rxjs@7.6.0';
+import type { Observer } from 'https://esm.sh/rxjs@7.8.0';
 import type { ProviderInterface, ProviderInterfaceCallback } from 'https://deno.land/x/polkadot/rpc-provider/types.ts';
 import type { StorageKey, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
 import type { Hash } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
@@ -9,7 +9,7 @@ import type { AnyJson, AnyNumber, Codec, DefinitionRpc, DefinitionRpcExt, Defini
 import type { Memoized } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { RpcInterfaceMethod } from './types/index.ts';
 
-import { Observable, publishReplay, refCount } from 'https://esm.sh/rxjs@7.6.0';
+import { Observable, publishReplay, refCount } from 'https://esm.sh/rxjs@7.8.0';
 
 import { rpcDefinitions } from 'https://deno.land/x/polkadot/types/mod.ts';
 import { hexToU8a, isFunction, isNull, isUndefined, lazyMethod, logger, memoize, objectSpread, u8aConcat, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
@@ -263,9 +263,11 @@ export class RpcCore {
           }
         };
       }).pipe(
+        // eslint-disable-next-line deprecation/deprecation
         publishReplay(1), // create a Replay(1)
         isDelayed
           ? refCountDelay() // Unsubscribe after delay
+          // eslint-disable-next-line deprecation/deprecation
           : refCount()
       );
     };

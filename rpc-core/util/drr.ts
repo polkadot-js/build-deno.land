@@ -1,9 +1,9 @@
 // Copyright 2017-2022 @polkadot/rpc-core authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://esm.sh/rxjs@7.6.0';
+import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 
-import { catchError, distinctUntilChanged, publishReplay, refCount, tap } from 'https://esm.sh/rxjs@7.6.0';
+import { catchError, distinctUntilChanged, publishReplay, refCount, tap } from 'https://esm.sh/rxjs@7.8.0';
 
 import { stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
 
@@ -42,8 +42,10 @@ export function drr ({ delay, skipChange = false, skipTimeout = false }: Options
       skipChange
         ? tap(NOOP)
         : distinctUntilChanged<T>(CMP),
+      // eslint-disable-next-line deprecation/deprecation
       publishReplay(1),
       skipTimeout
+        // eslint-disable-next-line deprecation/deprecation
         ? refCount()
         : refCountDelay(delay)
     );

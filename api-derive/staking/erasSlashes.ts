@@ -1,13 +1,13 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://esm.sh/rxjs@7.6.0';
+import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { Option, StorageKey } from 'https://deno.land/x/polkadot/types/mod.ts';
 import type { BalanceOf, EraIndex, Perbill } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { ITuple } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DeriveApi, DeriveEraSlashes, DeriveEraValSlash } from '../types.ts';
 
-import { combineLatest, map, of } from 'https://esm.sh/rxjs@7.6.0';
+import { combineLatest, map, of } from 'https://esm.sh/rxjs@7.8.0';
 
 import { memo } from '../util/index.ts';
 import { getEraCache, setEraCache } from './cache.ts';

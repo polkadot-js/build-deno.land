@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://esm.sh/rxjs@7.6.0';
+import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { AccountId, Balance, BlockNumber, Call, Hash, PreimageStatus } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { FrameSupportPreimagesBounded, PalletPreimageRequestStatus } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { Bytes, Option } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
@@ -9,7 +9,7 @@ import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/inde
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { DeriveApi, DeriveProposalImage } from '../types.ts';
 
-import { map, of, switchMap } from 'https://esm.sh/rxjs@7.6.0';
+import { map, of, switchMap } from 'https://esm.sh/rxjs@7.8.0';
 
 import { BN_ZERO, isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
 

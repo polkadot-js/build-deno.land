@@ -1,11 +1,11 @@
 // Copyright 2017-2022 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Observable } from 'https://esm.sh/rxjs@7.6.0';
+import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { EraIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { DeriveApi, DeriveStakerPrefs } from '../types.ts';
 
-import { map } from 'https://esm.sh/rxjs@7.6.0';
+import { map } from 'https://esm.sh/rxjs@7.8.0';
 
 import { memo } from '../util/index.ts';
 import { erasHistoricApplyAccount } from './util.ts';

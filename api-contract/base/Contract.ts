@@ -9,7 +9,7 @@ import type { ISubmittableResult } from 'https://deno.land/x/polkadot/types/type
 import type { AbiMessage, ContractCallOutcome, ContractOptions, DecodedEvent, WeightAll } from '../types.ts';
 import type { ContractCallResult, ContractCallSend, ContractQuery, ContractTx, MapMessageQuery, MapMessageTx } from './types.ts';
 
-import { map } from 'https://esm.sh/rxjs@7.6.0';
+import { map } from 'https://esm.sh/rxjs@7.8.0';
 
 import { SubmittableResult } from 'https://deno.land/x/polkadot/api/mod.ts';
 import { ApiBase } from 'https://deno.land/x/polkadot/api/base/index.ts';
