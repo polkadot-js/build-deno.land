@@ -1,10 +1,9 @@
 # CHANGELOG
 
-## master
+## 0.2.20 Dec 26, 2022
 
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 9.10.4
-- api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 9.10.3
-- api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 9.10.2
+
 
 ## 0.2.19 Dec 4, 2022
 
