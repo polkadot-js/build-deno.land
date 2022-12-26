@@ -1,10 +1,10 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.19/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.20/util/types.ts';
 
-import { isU8a, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.19/util/mod.ts';
-import { sr25519DerivePublicSoft } from 'https://deno.land/x/polkadot@0.2.19/wasm-crypto/mod.ts';
+import { isU8a, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+import { sr25519DerivePublicSoft } from 'https://deno.land/x/polkadot@0.2.20/wasm-crypto/mod.ts';
 
 export function sr25519DerivePublic (publicKey: HexString | Uint8Array | string, chainCode: Uint8Array): Uint8Array {
   const publicKeyU8a = u8aToU8a(publicKey);

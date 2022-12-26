@@ -2,9 +2,9 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { Bytes, Option } from 'https://deno.land/x/polkadot/types/mod.ts';
-import type { BountyIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
-import type { PalletBountiesBounty } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { Bytes, Option } from 'https://deno.land/x/polkadot@0.2.20/types/mod.ts';
+import type { BountyIndex } from 'https://deno.land/x/polkadot@0.2.20/types/interfaces/index.ts';
+import type { PalletBountiesBounty } from 'https://deno.land/x/polkadot@0.2.20/types/lookup.ts';
 import type { DeriveApi, DeriveBounties, DeriveCollectiveProposal } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.0';
