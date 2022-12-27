@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { Option, u32 } from 'https://deno.land/x/polkadot@0.2.20/types/mod.ts';
-import type { ActiveEraInfo, EraIndex, Moment, SessionIndex } from 'https://deno.land/x/polkadot@0.2.20/types/interfaces/index.ts';
+import type { Option, u32 } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { ActiveEraInfo, EraIndex, Moment, SessionIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { DeriveApi, DeriveSessionIndexes } from '../types.ts';
 
 import { map, of } from 'https://esm.sh/rxjs@7.8.0';

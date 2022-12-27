@@ -1,12 +1,12 @@
 // Copyright 2017-2022 @polkadot/types-known authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ChainUpgrades } from 'https://deno.land/x/polkadot@0.2.20/types/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.20/util/types.ts';
+import type { ChainUpgrades } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { ChainUpgradesExpanded } from './types.ts';
 
-import { selectableNetworks } from 'https://deno.land/x/polkadot@0.2.20/networks/mod.ts';
-import { BN, hexToU8a } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+import { selectableNetworks } from 'https://deno.land/x/polkadot/networks/mod.ts';
+import { BN, hexToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import * as allKnown from './e2e/index.ts';
 

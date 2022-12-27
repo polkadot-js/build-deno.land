@@ -1,9 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Option, Struct } from 'https://deno.land/x/polkadot@0.2.20/types-codec/mod.ts';
-import type { Balance, Weight, WeightV1, WeightV2 } from 'https://deno.land/x/polkadot@0.2.20/types/interfaces/runtime/index.ts';
-import type { DispatchClass } from 'https://deno.land/x/polkadot@0.2.20/types/interfaces/system/index.ts';
+import type { Option, Struct } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Balance, Weight, WeightV1, WeightV2 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { DispatchClass } from 'https://deno.land/x/polkadot/types/interfaces/system/index.ts';
 
 /** @name FeeDetails */
 export interface FeeDetails extends Struct {
@@ -26,7 +26,6 @@ export interface RuntimeDispatchInfo extends Struct {
 
 /** @name RuntimeDispatchInfoV1 */
 export interface RuntimeDispatchInfoV1 extends Struct {
-  readonly __fallback: RuntimeDispatchInfoV2;
   readonly weight: WeightV1;
   readonly class: DispatchClass;
   readonly partialFee: Balance;
