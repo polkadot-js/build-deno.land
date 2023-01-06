@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import nacl from 'https://esm.sh/tweetnacl@1.0.3';
@@ -12,7 +12,7 @@ import nacl from 'https://esm.sh/tweetnacl@1.0.3';
  * <BR>
  *
  * ```javascript
- * import { naclOpen } from 'https://deno.land/x/polkadot@0.2.20/util-crypto/mod.ts';
+ * import { naclOpen } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
  *
  * naclOpen([...], [...], [...]); // => [...]
  * ```

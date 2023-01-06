@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Keypair } from '../types.ts';
@@ -6,8 +6,8 @@ import type { HashType } from './types.ts';
 
 import { Signature, signSync } from 'https://esm.sh/@noble/secp256k1@1.7.0';
 
-import { bnToU8a, hasBigInt, u8aConcat } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
-import { isReady, secp256k1Sign as wasm } from 'https://deno.land/x/polkadot@0.2.20/wasm-crypto/mod.ts';
+import { bnToU8a, hasBigInt, u8aConcat } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isReady, secp256k1Sign as wasm } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 import { BN_BE_256_OPTS } from '../bn.ts';
 import { hasher } from './hasher.ts';

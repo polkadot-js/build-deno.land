@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/networks authors & contributors
+// Copyright 2017-2023 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { KnownLedger } from '../types.ts';
@@ -26,7 +26,7 @@ export const knownLedger: KnownLedger = {
   karura: 0x000002ae,
   khala: 0x000001b2,
   kusama: 0x000001b2,
-  'nodle-para': 0x000003eb,
+  nodle: 0x000003eb,
   origintrail: 0x00000162,
   parallel: 0x00000162,
   phala: 0x00000162,

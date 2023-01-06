@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
+// Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '../types.ts';
@@ -15,7 +15,7 @@ import { hexStripPrefix } from './stripPrefix.ts';
  * <BR>
  *
  * ```javascript
- * import { hexFixLength } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+ * import { hexFixLength } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * console.log('fixed', hexFixLength('0x12', 16)); // => 0x12
  * console.log('fixed', hexFixLength('0x12', 16, true)); // => 0x0012

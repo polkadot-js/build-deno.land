@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
+// Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { AnyString } from '../types.ts';
@@ -12,7 +12,7 @@ import type { AnyString } from '../types.ts';
  * <BR>
  *
  * ```javascript
- * import { stringShorten } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+ * import { stringShorten } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * stringShorten('1234567890', 2); // => 12..90
  * ```

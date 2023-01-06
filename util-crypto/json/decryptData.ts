@@ -1,9 +1,9 @@
-// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { EncryptedJsonEncoding } from './types.ts';
 
-import { stringToU8a, u8aFixLength } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+import { stringToU8a, u8aFixLength } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { naclDecrypt } from '../nacl/index.ts';
 import { scryptEncode, scryptFromU8a } from '../scrypt/index.ts';

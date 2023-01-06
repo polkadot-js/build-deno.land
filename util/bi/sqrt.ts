@@ -1,10 +1,10 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
+// Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '../bn/index.ts';
 import type { ToBigInt, ToBn } from '../types.ts';
 
-import { BigInt } from 'https://deno.land/x/polkadot@0.2.20/x-bigint/mod.ts';
+import { BigInt } from 'https://deno.land/x/polkadot/x-bigint/mod.ts';
 
 import { _0n, _1n, _2pow53n } from './consts.ts';
 import { nToBigInt } from './toBigInt.ts';

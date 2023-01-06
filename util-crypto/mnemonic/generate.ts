@@ -1,8 +1,8 @@
-// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { hasBigInt } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
-import { bip39Generate, isReady } from 'https://deno.land/x/polkadot@0.2.20/wasm-crypto/mod.ts';
+import { hasBigInt } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { bip39Generate, isReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 import { generateMnemonic } from './bip39.ts';
 
@@ -13,7 +13,7 @@ import { generateMnemonic } from './bip39.ts';
  * <BR>
  *
  * ```javascript
- * import { mnemonicGenerate } from 'https://deno.land/x/polkadot@0.2.20/util-crypto/mod.ts';
+ * import { mnemonicGenerate } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
  *
  * const mnemonic = mnemonicGenerate(); // => string
  * ```

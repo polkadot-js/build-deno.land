@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
+// Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { AnyString } from '../types.ts';
@@ -22,7 +22,7 @@ function converter (map: readonly string[]): (value?: AnyString | null) => strin
  * <BR>
  *
  * ```javascript
- * import { stringLowerFirst } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+ * import { stringLowerFirst } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * stringLowerFirst('ABC'); // => 'aBC'
  * ```
@@ -38,7 +38,7 @@ export const stringLowerFirst = /*#__PURE__*/ converter(CC_TO_LO);
  * <BR>
  *
  * ```javascript
- * import { stringUpperFirst } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+ * import { stringUpperFirst } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * stringUpperFirst('abc'); // => 'Abc'
  * ```

@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 export { addressToEvm } from './addressToEvm.ts';
@@ -14,6 +14,8 @@ export { encodeMultiAddress } from './encodeMulti.ts';
 export { evmToAddress } from './evmToAddress.ts';
 export { addressEq } from './eq.ts';
 export { isAddress } from './is.ts';
-export { setSS58Format } from './setSS58Format.ts';
 export { sortAddresses } from './sort.ts';
 export { validateAddress } from './validate.ts';
+
+// eslint-disable-next-line deprecation/deprecation
+export { setSS58Format } from './setSS58Format.ts';

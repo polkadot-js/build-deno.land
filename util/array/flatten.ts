@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
+// Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // This is supposed to be a faster concat...
@@ -13,7 +13,7 @@
  * <BR>
  *
  * ```javascript
- * import { arrayFlatten } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+ * import { arrayFlatten } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * arrayFlatten([[1, 2], [3, 4], [5]]); // [1, 2, 3, 4, 5]
  * ```

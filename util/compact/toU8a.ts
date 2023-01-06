@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
+// Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { BN, BN_ONE, BN_TWO, bnToBn, bnToU8a } from '../bn/index.ts';
@@ -17,7 +17,7 @@ const BL_32 = { bitLength: 32 };
  * <BR>
  *
  * ```javascript
- * import { compactToU8a } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+ * import { compactToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * console.log(compactToU8a(511, 32)); // Uint8Array([0b11111101, 0b00000111])
  * ```

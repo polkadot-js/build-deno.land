@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
+// Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { hasBuffer } from '../has.ts';
@@ -13,7 +13,7 @@ import { isFunction } from './function.ts';
  * <BR>
  *
  * ```javascript
- * import { isBuffer } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+ * import { isBuffer } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * console.log('isBuffer', isBuffer(Buffer.from([]))); // => true
  * ```

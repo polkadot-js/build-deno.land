@@ -1,9 +1,9 @@
-// Copyright 2017-2022 @polkadot/networks authors & contributors
+// Copyright 2017-2023 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { KnownSubstrate, Network, SubstrateNetwork } from './types.ts';
 
-import knownSubstrate from 'https://esm.sh/@substrate/ss58-registry@1.35.0';
+import knownSubstrate from 'https://esm.sh/@substrate/ss58-registry@1.36.0';
 
 import { knownGenesis, knownIcon, knownLedger, knownTestnet } from './defaults/index.ts';
 

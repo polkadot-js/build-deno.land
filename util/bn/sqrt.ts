@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
+// Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { ToBn } from '../types.ts';
@@ -18,7 +18,7 @@ export const SQRT_MAX_SAFE_INTEGER = new BN(94906265);
  *
  * ```javascript
  * import BN from 'https://esm.sh/bn.js@5.2.1';
- * import { bnSqrt } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+ * import { bnSqrt } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * bnSqrt(new BN(16)).toString(); // => '4'
  * ```

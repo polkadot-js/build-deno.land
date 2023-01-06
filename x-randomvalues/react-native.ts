@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/x-randomvalues authors & contributors
+// Copyright 2017-2023 @polkadot/x-randomvalues authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // Adapted from https://github.com/LinusU/react-native-get-random-values/blob/85f48393821c23b83b89a8177f56d3a81dc8b733/index.js
@@ -7,7 +7,7 @@
 
 import { NativeModules } from 'https://esm.sh/react-native';
 
-import { xglobal } from 'https://deno.land/x/polkadot@0.2.20/x-global/mod.ts';
+import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
 
 import { base64Decode } from './base64.ts';
 import { getRandomValues as getRandomValuesGlobal } from './browser.ts';

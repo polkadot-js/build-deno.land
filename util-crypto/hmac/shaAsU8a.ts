@@ -1,12 +1,12 @@
-// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { hmac } from 'https://esm.sh/@noble/hashes@1.1.3/hmac.js';
-import { sha256 } from 'https://esm.sh/@noble/hashes@1.1.3/sha256.js';
-import { sha512 } from 'https://esm.sh/@noble/hashes@1.1.3/sha512.js';
+import { hmac } from 'https://esm.sh/@noble/hashes@1.1.5/hmac.js';
+import { sha256 } from 'https://esm.sh/@noble/hashes@1.1.5/sha256.js';
+import { sha512 } from 'https://esm.sh/@noble/hashes@1.1.5/sha512.js';
 
-import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
-import { hmacSha256, hmacSha512, isReady } from 'https://deno.land/x/polkadot@0.2.20/wasm-crypto/mod.ts';
+import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { hmacSha256, hmacSha512, isReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 const JS_HASH = {
   256: sha256,

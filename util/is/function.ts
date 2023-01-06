@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
+// Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // eslint-disable-next-line @typescript-eslint/ban-types
@@ -13,7 +13,7 @@ type FnType = Function;
  * <BR>
  *
  * ```javascript
- * import { isFunction } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+ * import { isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * isFunction(() => false); // => true
  * ```

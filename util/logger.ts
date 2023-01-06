@@ -1,9 +1,9 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
+// Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Logger, Logger$Data } from './types.ts';
 
-import { xglobal } from 'https://deno.land/x/polkadot@0.2.20/x-global/mod.ts';
+import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
 
 import { formatDate } from './format/formatDate.ts';
 import { isBn } from './is/bn.ts';
@@ -144,7 +144,7 @@ function parseEnv (type: string): [boolean, number] {
  * <BR>
  *
  * ```javascript
- * import { logger } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+ * import { logger } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * const l = logger('test');
  * ```

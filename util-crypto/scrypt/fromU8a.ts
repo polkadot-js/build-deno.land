@@ -1,9 +1,9 @@
-// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Params } from './types.ts';
 
-import { u8aToBn } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+import { u8aToBn } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { BN_LE_OPTS } from '../bn.ts';
 import { DEFAULT_PARAMS } from './defaults.ts';

@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
+// Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // The regex patterns below were copied as-is from the ip-regex package 5.0.0,
@@ -39,7 +39,7 @@ const v6exact = new RegExp(`^${v6}$`);
  * <BR>
  *
  * ```javascript
- * import { isIp } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+ * import { isIp } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * isIp('192.168.0.1')); // => true
  * isIp('1:2:3:4:5:6:7:8'); // => true
