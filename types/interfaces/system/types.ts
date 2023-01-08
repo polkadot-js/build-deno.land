@@ -1,11 +1,11 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { GenericChainProperties, GenericEvent } from 'https://deno.land/x/polkadot/types/mod.ts';
-import type { Bytes, Compact, Enum, HashMap, Option, Result, Struct, Text, U8aFixed, Vec, bool, i32, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { AccountData } from 'https://deno.land/x/polkadot/types/interfaces/balances/index.ts';
-import type { AccountId, BlockNumber, Digest, Hash, Index, Pays, Weight } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { GenericChainProperties, GenericEvent } from 'https://deno.land/x/polkadot@0.2.21/types/mod.ts';
+import type { Bytes, Compact, Enum, HashMap, Option, Result, Struct, Text, U8aFixed, Vec, bool, i32, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.21/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.2.21/types-codec/types/index.ts';
+import type { AccountData } from 'https://deno.land/x/polkadot@0.2.21/types/interfaces/balances/index.ts';
+import type { AccountId, BlockNumber, Digest, Hash, Index, Pays, Weight } from 'https://deno.land/x/polkadot@0.2.21/types/interfaces/runtime/index.ts';
 
 /** @name AccountInfo */
 export interface AccountInfo extends AccountInfoWithTripleRefCount {}
