@@ -45,8 +45,9 @@ console.log('latest block Hash', hash);
 Instantiating a Provider for the Polkadot Relay Chain:
 ```javascript
 import { ScProvider } from 'https://deno.land/x/polkadot/rpc-provider/mod.ts';
+import * as Sc from 'https://esm.sh/@substrate/connect@0.7.18';
 
-const provider = new ScProvider(ScProvider.WellKnownChain.polkadot);
+const provider = new ScProvider(Sc, Sc.WellKnownChain.polkadot);
 
 await provider.connect();
 
@@ -56,9 +57,10 @@ const version = await provider.send('chain_getBlockHash', []);
 Instantiating a Provider for a Polkadot parachain:
 ```javascript
 import { ScProvider } from 'https://deno.land/x/polkadot/rpc-provider/mod.ts';
+import * as Sc from 'https://esm.sh/@substrate/connect@0.7.18';
 
-const polkadotProvider = new ScProvider(ScProvider.WellKnownChain.polkadot);
-const parachainProvider = new ScProvider(parachainSpec, polkadotProvider);
+const polkadotProvider = new ScProvider(Sc, Sc.WellKnownChain.polkadot);
+const parachainProvider = new ScProvider(Sc, parachainSpec, polkadotProvider);
 
 await parachainProvider.connect();
 

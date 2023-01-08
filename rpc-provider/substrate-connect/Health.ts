@@ -1,21 +1,9 @@
-// Copyright 2017-2022 @polkadot/rpc-provider authors & contributors
+// Copyright 2017-2023 @polkadot/rpc-provider authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HealthChecker, SmoldotHealth } from './types.ts';
+
 import { stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
-
-export interface SmoldotHealth {
-  isSyncing: boolean
-  peers: number
-  shouldHavePeers: boolean
-}
-
-export interface HealthChecker {
-  setSendJsonRpc(sendRequest: (request: string) => void): void
-  start(healthCallback: (health: SmoldotHealth) => void): void
-  stop(): void
-  sendJsonRpc(request: string): void
-  responsePassThrough(response: string): string | null
-}
 
 interface JSONRequest {
   id: string;
