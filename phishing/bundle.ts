@@ -1,10 +1,10 @@
-// Copyright 2020-2022 @polkadot/phishing authors & contributors
+// Copyright 2020-2023 @polkadot/phishing authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { AddressList, HostList } from './types.ts';
 
-import { u8aEq } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
-import { decodeAddress } from 'https://deno.land/x/polkadot@0.2.20/util-crypto/mod.ts';
+import { u8aEq } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { decodeAddress } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { fetchJson } from './fetch.ts';
 
