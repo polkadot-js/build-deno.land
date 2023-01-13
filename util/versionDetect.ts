@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { xglobal } from 'https://deno.land/x/polkadot@0.2.21/x-global/mod.ts';
+import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
 
 import { isFunction } from './is/function.ts';
 

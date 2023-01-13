@@ -4,7 +4,7 @@
 import { Keyring } from './keyring.ts';
 
 // eslint-disable-next-line deprecation/deprecation
-export { decodeAddress, encodeAddress, setSS58Format } from 'https://deno.land/x/polkadot@0.2.21/util-crypto/mod.ts';
+export { decodeAddress, encodeAddress, setSS58Format } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 export * from './defaults.ts';
 export { createPair } from './pair/index.ts';
