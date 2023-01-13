@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyNumber, Registry } from 'https://deno.land/x/polkadot@0.2.21/types-codec/types/index.ts';
+import type { AnyNumber, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 
-import { u32 } from 'https://deno.land/x/polkadot@0.2.21/types-codec/mod.ts';
-import { BN, bnToBn, isBigInt, isBn, isHex, isNumber, isU8a } from 'https://deno.land/x/polkadot@0.2.21/util/mod.ts';
-import { decodeAddress, encodeAddress } from 'https://deno.land/x/polkadot@0.2.21/util-crypto/mod.ts';
+import { u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { BN, bnToBn, isBigInt, isBn, isHex, isNumber, isU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { decodeAddress, encodeAddress } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 const PREFIX_1BYTE = 0xef;
 const PREFIX_2BYTE = 0xfc;

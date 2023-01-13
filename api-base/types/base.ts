@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { AnyFunction, Callback, Codec } from 'https://deno.land/x/polkadot@0.2.21/types/types/index.ts';
+import type { AnyFunction, Callback, Codec } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 export type Push<T extends readonly unknown[], V> = [...T, V]
 

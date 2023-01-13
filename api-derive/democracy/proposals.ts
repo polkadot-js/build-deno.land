@@ -2,15 +2,15 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { Option, Vec } from 'https://deno.land/x/polkadot@0.2.21/types/mod.ts';
-import type { AccountId, Balance, Hash, PropIndex } from 'https://deno.land/x/polkadot@0.2.21/types/interfaces/index.ts';
-import type { FrameSupportPreimagesBounded } from 'https://deno.land/x/polkadot@0.2.21/types/lookup.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.21/types/types/index.ts';
+import type { Option, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, Balance, Hash, PropIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { FrameSupportPreimagesBounded } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DeriveApi, DeriveProposal, DeriveProposalImage } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.0';
 
-import { isFunction, objectSpread } from 'https://deno.land/x/polkadot@0.2.21/util/mod.ts';
+import { isFunction, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 import { getImageHashBounded } from './util.ts';
@@ -51,14 +51,14 @@ function parse ([proposals, images, optDepositors]: Result): DeriveProposal[] {
 
 export function proposals (instanceId: string, api: DeriveApi): () => Observable<DeriveProposal[]> {
   return memo(instanceId, (): Observable<DeriveProposal[]> =>
-    isFunction(api.query.democracy?.publicProps) && isFunction(api.query.democracy?.preimages)
+    isFunction(api.query.democracy?.publicProps)
       ? api.query.democracy.publicProps().pipe(
         switchMap((proposals) =>
           proposals.length
             ? combineLatest([
               of(proposals),
               api.derive.democracy.preimages(
-                proposals.map(([, hash]) => hash as unknown as Uint8Array)
+                proposals.map(([, hash]) => hash)
               ),
               api.query.democracy.depositOf.multi(
                 proposals.map(([index]) => index)
