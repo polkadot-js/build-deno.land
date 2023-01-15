@@ -6,7 +6,7 @@ import type { JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, Pro
 
 import EventEmitter from 'https://esm.sh/eventemitter3@4.0.7';
 
-import { isError, isFunction, isObject, logger, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isError, isFunction, isObject, logger, objectSpread } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
 
 import { RpcCoder } from '../coder/index.ts';
 import { healthChecker } from './Health.ts';

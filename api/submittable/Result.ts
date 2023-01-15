@@ -1,8 +1,8 @@
 // Copyright 2017-2023 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BlockNumber, DispatchError, DispatchInfo, EventRecord, ExtrinsicStatus, Hash } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
-import type { AnyJson, ISubmittableResult } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { BlockNumber, DispatchError, DispatchInfo, EventRecord, ExtrinsicStatus, Hash } from 'https://deno.land/x/polkadot@0.2.22/types/interfaces/index.ts';
+import type { AnyJson, ISubmittableResult } from 'https://deno.land/x/polkadot@0.2.22/types/types/index.ts';
 import type { SubmittableResultValue } from './types.ts';
 
 const recordIdentity = (record: EventRecord) => record;
