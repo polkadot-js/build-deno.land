@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/rpc-provider authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type ScType from 'https://esm.sh/@substrate/connect@0.7.18';
+import type ScType from 'https://esm.sh/@substrate/connect@0.7.19';
 import type { JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, ProviderInterfaceEmitCb, ProviderInterfaceEmitted } from '../types.ts';
 
 import EventEmitter from 'https://esm.sh/eventemitter3@4.0.7';
