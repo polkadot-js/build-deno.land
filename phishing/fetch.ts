@@ -1,7 +1,7 @@
 // Copyright 2020-2023 @polkadot/phishing authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { fetch } from 'https://deno.land/x/polkadot@0.2.22/x-fetch/mod.ts';
+import { fetch } from 'https://deno.land/x/polkadot@0.2.23/x-fetch/mod.ts';
 
 // this is also in @polkadot/apps-config - we may want to expose it
 // inside x-fetch at some point in the future...

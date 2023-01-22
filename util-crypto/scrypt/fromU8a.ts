@@ -3,7 +3,7 @@
 
 import type { Params } from './types.ts';
 
-import { u8aToBn } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
+import { u8aToBn } from 'https://deno.land/x/polkadot@0.2.23/util/mod.ts';
 
 import { BN_LE_OPTS } from '../bn.ts';
 import { DEFAULT_PARAMS } from './defaults.ts';

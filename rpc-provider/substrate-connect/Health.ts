@@ -3,7 +3,7 @@
 
 import type { HealthChecker, SmoldotHealth } from './types.ts';
 
-import { stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { stringify } from 'https://deno.land/x/polkadot@0.2.23/util/mod.ts';
 
 interface JSONRequest {
   id: string;

@@ -10,7 +10,7 @@
  * <BR>
  *
  * ```javascript
- * import { isBigInt } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
+ * import { isBigInt } from 'https://deno.land/x/polkadot@0.2.23/util/mod.ts';
  *
  * console.log('isBigInt', isBigInt(123_456n)); // => true
  * ```

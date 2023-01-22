@@ -1,8 +1,8 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { BigInt } from 'https://deno.land/x/polkadot@0.2.22/x-bigint/mod.ts';
-import { xglobal } from 'https://deno.land/x/polkadot@0.2.22/x-global/mod.ts';
+import { BigInt } from 'https://deno.land/x/polkadot@0.2.23/x-bigint/mod.ts';
+import { xglobal } from 'https://deno.land/x/polkadot@0.2.23/x-global/mod.ts';
 
 // Since we run in very different environments, we have to ensure we have all
 // the types used here for detection (some of these may require Node definitions,
