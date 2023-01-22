@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.22/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, Codec, Inspect, IU8a, IVec, Registry } from '../types/index.ts';
 
-import { compactToU8a, u8aConcatStrict, u8aToHex } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
+import { compactToU8a, u8aConcatStrict, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { compareArray } from '../utils/compareArray.ts';
 
@@ -16,9 +16,11 @@ import { compareArray } from '../utils/compareArray.ts';
  * @noInheritDoc
  */
 export abstract class AbstractArray<T extends Codec> extends Array<T> implements IVec<T> {
-  public readonly registry: Registry;
+  readonly registry: Registry;
 
   public createdAtHash?: IU8a;
+  public initialU8aLength?: number;
+  public isStorageFallback?: boolean;
 
   /**
    * @description This ensures that operators such as clice, filter, map, etc. return

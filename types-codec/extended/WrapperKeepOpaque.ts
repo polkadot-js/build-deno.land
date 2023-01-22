@@ -3,7 +3,7 @@
 
 import type { AnyJson, AnyU8a, Codec, CodecClass, Inspect, Registry } from '../types/index.ts';
 
-import { compactAddLength, compactStripLength, compactToU8a, isHex, isU8a, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
+import { compactAddLength, compactStripLength, compactToU8a, isHex, isU8a, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Raw } from '../native/Raw.ts';
 import { typeToConstructor } from '../utils/index.ts';
@@ -39,9 +39,7 @@ function decodeRaw<T extends Codec> (registry: Registry, typeName: CodecClass<T>
 
 export class WrapperKeepOpaque<T extends Codec> extends Bytes {
   readonly #Type: CodecClass<T>;
-
   readonly #decoded: T | null;
-
   readonly #opaqueName: OpaqueName;
 
   constructor (registry: Registry, typeName: CodecClass<T> | string, value?: unknown, { opaqueName = 'WrapperKeepOpaque' }: Options = {}) {

@@ -1,9 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { GenericVote } from 'https://deno.land/x/polkadot@0.2.22/types/mod.ts';
-import type { Compact, Enum, Struct, u32 } from 'https://deno.land/x/polkadot@0.2.22/types-codec/mod.ts';
-import type { AccountId, Balance } from 'https://deno.land/x/polkadot@0.2.22/types/interfaces/runtime/index.ts';
+import type { GenericVote } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Compact, Enum, Struct, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { AccountId, Balance } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 /** @name ApprovalFlag */
 export interface ApprovalFlag extends u32 {}

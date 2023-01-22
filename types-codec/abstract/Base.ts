@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.22/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, BareOpts, Codec, Inspect, IU8a, Registry } from '../types/index.ts';
 
 /**
@@ -9,17 +9,17 @@ import type { AnyJson, BareOpts, Codec, Inspect, IU8a, Registry } from '../types
  * @description A type extends the Base class, when it holds a value
  */
 export abstract class AbstractBase<T extends Codec> implements Codec {
+  readonly registry: Registry;
+
   public createdAtHash?: IU8a;
-
-  public readonly initialU8aLength?: number;
-
-  public readonly registry: Registry;
+  public initialU8aLength?: number;
+  public isStorageFallback?: boolean;
 
   readonly #raw: T;
 
   protected constructor (registry: Registry, value: T, initialU8aLength?: number) {
-    this.#raw = value;
     this.initialU8aLength = initialU8aLength;
+    this.#raw = value;
     this.registry = registry;
   }
 

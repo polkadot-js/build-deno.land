@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.22/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyFloat, CodecClass, IFloat, Inspect, IU8a, Registry } from '../types/index.ts';
 
-import { floatToU8a, isHex, isU8a, u8aToFloat, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
+import { floatToU8a, isHex, isU8a, u8aToFloat, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 interface Options {
   bitLength?: 32 | 64;
@@ -19,15 +19,14 @@ interface Options {
  * in some eth_* RPCs
  */
 export class Float extends Number implements IFloat {
-  readonly #bitLength: 32 | 64;
+  readonly encodedLength: number;
+  readonly registry: Registry;
 
   public createdAtHash?: IU8a;
+  public initialU8aLength?: number;
+  public isStorageFallback?: boolean;
 
-  readonly encodedLength: number;
-
-  readonly initialU8aLength?: number;
-
-  readonly registry: Registry;
+  readonly #bitLength: 32 | 64;
 
   constructor (registry: Registry, value?: AnyFloat, { bitLength = 32 }: Options = {}) {
     super(

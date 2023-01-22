@@ -1,16 +1,16 @@
 // Copyright 2017-2023 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyString, Codec, CodecClass, IU8a } from 'https://deno.land/x/polkadot@0.2.22/types-codec/types/index.ts';
-import type { CreateOptions, TypeDef } from 'https://deno.land/x/polkadot@0.2.22/types-create/types/index.ts';
+import type { AnyString, Codec, CodecClass, IU8a } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { CreateOptions, TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 import type { ExtDef } from '../extrinsic/signedExtensions/types.ts';
 import type { ChainProperties, DispatchErrorModule, DispatchErrorModuleU8, DispatchErrorModuleU8a, EventMetadataLatest, Hash, MetadataLatest, SiField, SiLookupTypeId, SiVariant } from '../interfaces/types.ts';
 import type { CallFunction, CodecHasher, Definitions, DetectCodec, RegisteredTypes, Registry, RegistryError, RegistryTypes } from '../types/index.ts';
 
-import { DoNotConstruct, Json, Raw } from 'https://deno.land/x/polkadot@0.2.22/types-codec/mod.ts';
-import { constructTypeClass, createClassUnsafe, createTypeUnsafe } from 'https://deno.land/x/polkadot@0.2.22/types-create/mod.ts';
-import { assertReturn, BN_ZERO, formatBalance, isFunction, isNumber, isString, isU8a, lazyMethod, logger, objectSpread, stringCamelCase, stringify } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
-import { blake2AsU8a } from 'https://deno.land/x/polkadot@0.2.22/util-crypto/mod.ts';
+import { DoNotConstruct, Json, Raw } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { constructTypeClass, createClassUnsafe, createTypeUnsafe } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { assertReturn, BN_ZERO, formatBalance, isFunction, isNumber, isString, isU8a, lazyMethod, logger, objectSpread, stringCamelCase, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { blake2AsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { expandExtensionTypes, fallbackExtensions, findUnknownExtensions } from '../extrinsic/signedExtensions/index.ts';
 import { GenericEventData } from '../generic/Event.ts';
@@ -166,41 +166,25 @@ function extractProperties (registry: TypeRegistry, metadata: Metadata): ChainPr
 }
 
 export class TypeRegistry implements Registry {
-  #classes = new Map<string, CodecClass>();
-
-  #definitions = new Map<string, string>();
-
-  #firstCallIndex: Uint8Array | null = null;
-
-  #lookup?: PortableRegistry;
-
-  #metadata?: MetadataLatest;
-
-  #metadataVersion = 0;
-
-  readonly #metadataCalls: Record<string, Record<string, CallFunction>> = {};
-
-  readonly #metadataErrors: Record<string, Record<string, RegistryError>> = {};
-
-  readonly #metadataEvents: Record<string, Record<string, CodecClass<GenericEventData>>> = {};
-
-  readonly #moduleMap: Record<string, string[]> = {};
-
-  #unknownTypes = new Map<string, boolean>();
-
   #chainProperties?: ChainProperties;
-
+  #classes = new Map<string, CodecClass>();
+  #definitions = new Map<string, string>();
+  #firstCallIndex: Uint8Array | null = null;
   #hasher: (data: Uint8Array) => Uint8Array = blake2AsU8a;
+  #knownTypes: RegisteredTypes = {};
+  #lookup?: PortableRegistry;
+  #metadata?: MetadataLatest;
+  #metadataVersion = 0;
+  #signedExtensions: string[] = fallbackExtensions;
+  #unknownTypes = new Map<string, boolean>();
+  #userExtensions?: ExtDef;
 
   readonly #knownDefaults: Record<string, CodecClass>;
-
   readonly #knownDefinitions: Record<string, Definitions>;
-
-  #knownTypes: RegisteredTypes = {};
-
-  #signedExtensions: string[] = fallbackExtensions;
-
-  #userExtensions?: ExtDef;
+  readonly #metadataCalls: Record<string, Record<string, CallFunction>> = {};
+  readonly #metadataErrors: Record<string, Record<string, RegistryError>> = {};
+  readonly #metadataEvents: Record<string, Record<string, CodecClass<GenericEventData>>> = {};
+  readonly #moduleMap: Record<string, string[]> = {};
 
   public createdAtHash?: Hash;
 
@@ -215,7 +199,7 @@ export class TypeRegistry implements Registry {
     }
 
     if (createdAtHash) {
-      this.createdAtHash = this.createType('Hash', createdAtHash);
+      this.createdAtHash = this.createType('BlockHash', createdAtHash);
     }
   }
 

@@ -3,17 +3,17 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.22/api-base/types/consts.ts';
+import 'https://deno.land/x/polkadot/api-base/types/consts.ts';
 
-import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot@0.2.22/api-base/types/index.ts';
-import type { Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.22/types-codec/mod.ts';
-import type { Codec, ITuple } from 'https://deno.land/x/polkadot@0.2.22/types-codec/types/index.ts';
-import type { Perbill, Percent, Permill, Perquintill } from 'https://deno.land/x/polkadot@0.2.22/types/interfaces/runtime/index.ts';
-import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, PalletContractsSchedule, PalletReferendaTrackInfo, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot@0.2.22/types/lookup.ts';
+import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Codec, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Perbill, Percent, Permill, Perquintill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, PalletContractsSchedule, PalletReferendaTrackInfo, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedConst<ApiType extends ApiTypes> = AugmentedConst<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.22/api-base/types/consts.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
   interface AugmentedConsts<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -243,6 +243,10 @@ declare module 'https://deno.land/x/polkadot@0.2.22/api-base/types/consts.ts' {
        * The maximum length of a contract code in bytes. This limit applies to the instrumented
        * version of the code. Therefore `instantiate_with_code` can fail even when supplying
        * a wasm binary below this maximum size.
+       * 
+       * The value should be chosen carefully taking into the account the overall memory limit
+       * your runtime has, as well as the [maximum allowed callstack
+       * depth](#associatedtype.CallStack). Look into the `integrity_test()` for some insights.
        **/
       maxCodeLen: u32 & AugmentedConst<ApiType>;
       /**
@@ -771,6 +775,10 @@ declare module 'https://deno.land/x/polkadot@0.2.22/api-base/types/consts.ts' {
        * this value multiplied by `Period`.
        **/
       queueCount: u32 & AugmentedConst<ApiType>;
+      /**
+       * The name for the reserve ID.
+       **/
+      reserveId: U8aFixed & AugmentedConst<ApiType>;
       /**
        * The maximum proportion which may be thawed and the period over which it is reset.
        **/

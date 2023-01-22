@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { ApiPromise } from 'https://deno.land/x/polkadot@0.2.22/api/mod.ts';
-import { Option, StorageKey } from 'https://deno.land/x/polkadot@0.2.22/types/mod.ts';
-import { Bounty, BountyIndex } from 'https://deno.land/x/polkadot@0.2.22/types/interfaces/index.ts';
-import { Codec, Constructor, InterfaceTypes, Registry } from 'https://deno.land/x/polkadot@0.2.22/types/types/index.ts';
+import { ApiPromise } from 'https://deno.land/x/polkadot/api/mod.ts';
+import { Option, StorageKey } from 'https://deno.land/x/polkadot/types/mod.ts';
+import { Bounty, BountyIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import { Codec, Constructor, InterfaceTypes, Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 export class BountyFactory {
   readonly #api: ApiPromise;

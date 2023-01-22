@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.22/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, Codec, CodecClass, IMap, Inspect, IU8a, Registry } from '../types/index.ts';
 
-import { compactFromU8aLim, compactToU8a, isHex, isObject, isU8a, logger, stringify, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
+import { compactFromU8aLim, compactToU8a, isHex, isObject, isU8a, logger, stringify, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { AbstractArray } from '../abstract/Array.ts';
 import { Enum } from '../base/Enum.ts';
@@ -94,16 +94,14 @@ function decodeMap<K extends Codec, V extends Codec> (registry: Registry, keyTyp
 }
 
 export class CodecMap<K extends Codec = Codec, V extends Codec = Codec> extends Map<K, V> implements IMap<K, V> {
-  public readonly registry: Registry;
+  readonly registry: Registry;
 
   public createdAtHash?: IU8a;
+  public initialU8aLength?: number;
+  public isStorageFallback?: boolean;
 
   readonly #KeyClass: CodecClass<K>;
-
   readonly #ValClass: CodecClass<V>;
-
-  readonly initialU8aLength?: number;
-
   readonly #type: string;
 
   constructor (registry: Registry, keyType: CodecClass<K> | string, valType: CodecClass<V> | string, rawValue: Uint8Array | string | Map<any, any> | undefined, type: 'BTreeMap' | 'HashMap' = 'HashMap') {

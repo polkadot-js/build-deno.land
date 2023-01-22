@@ -3,13 +3,13 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.22/api-base/types/errors.ts';
+import 'https://deno.land/x/polkadot/api-base/types/errors.ts';
 
-import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot@0.2.22/api-base/types/index.ts';
+import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 
 export type __AugmentedError<ApiType extends ApiTypes> = AugmentedError<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.22/api-base/types/errors.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
   interface AugmentedErrors<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -1361,6 +1361,18 @@ declare module 'https://deno.land/x/polkadot@0.2.22/api-base/types/errors.ts' {
     };
     nis: {
       /**
+       * The receipt is already communal.
+       **/
+      AlreadyCommunal: AugmentedError<ApiType>;
+      /**
+       * There are enough funds for what is required.
+       **/
+      AlreadyFunded: AugmentedError<ApiType>;
+      /**
+       * The receipt is already private.
+       **/
+      AlreadyPrivate: AugmentedError<ApiType>;
+      /**
        * The amount of the bid is less than the minimum allowed.
        **/
       AmountTooSmall: AugmentedError<ApiType>;
@@ -1378,10 +1390,6 @@ declare module 'https://deno.land/x/polkadot@0.2.22/api-base/types/errors.ts' {
        **/
       DurationTooSmall: AugmentedError<ApiType>;
       /**
-       * There are enough funds for what is required.
-       **/
-      Funded: AugmentedError<ApiType>;
-      /**
        * The operation would result in a receipt worth an insignficant value.
        **/
       MakesDust: AugmentedError<ApiType>;
@@ -1390,29 +1398,29 @@ declare module 'https://deno.land/x/polkadot@0.2.22/api-base/types/errors.ts' {
        **/
       NotExpired: AugmentedError<ApiType>;
       /**
-       * The given bid for retraction is not found.
-       **/
-      NotFound: AugmentedError<ApiType>;
-      /**
        * Not the owner of the receipt.
        **/
       NotOwner: AugmentedError<ApiType>;
+      /**
+       * The portion supplied is beyond the value of the receipt.
+       **/
+      PortionTooBig: AugmentedError<ApiType>;
       /**
        * The thaw throttle has been reached for this period.
        **/
       Throttled: AugmentedError<ApiType>;
       /**
-       * The portion supplied is beyond the value of the receipt.
-       **/
-      TooMuch: AugmentedError<ApiType>;
-      /**
        * Not enough funds are held to pay out.
        **/
       Unfunded: AugmentedError<ApiType>;
       /**
-       * Bond index is unknown.
+       * The given bid for retraction is not found.
        **/
-      Unknown: AugmentedError<ApiType>;
+      UnknownBid: AugmentedError<ApiType>;
+      /**
+       * Receipt index is unknown.
+       **/
+      UnknownReceipt: AugmentedError<ApiType>;
       /**
        * Generic error
        **/

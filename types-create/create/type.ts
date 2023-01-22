@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/types-create authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Codec, CodecClass, IU8a, Registry } from 'https://deno.land/x/polkadot@0.2.22/types-codec/types/index.ts';
+import type { Codec, CodecClass, IU8a, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { CreateOptions } from '../types/index.ts';
 
-import { Bytes, Option } from 'https://deno.land/x/polkadot@0.2.22/types-codec/mod.ts';
-import { isHex, isU8a, u8aEq, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
+import { Bytes, Option } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { isHex, isU8a, u8aEq, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { createClassUnsafe } from './class.ts';
 
@@ -44,13 +44,21 @@ function checkPedantic (created: Codec, [value]: unknown[]): void {
 
 // Initializes a type with a value. This also checks for fallbacks and in the cases
 // where isPedantic is specified (storage decoding), also check the format/structure
-function initType<T extends Codec> (registry: Registry, Type: CodecClass, params: unknown[] = [], { blockHash, isOptional, isPedantic }: CreateOptions = {}): T {
-  const created = new (isOptional ? Option.with(Type) : Type)(registry, ...params);
+function initType<T extends Codec> (registry: Registry, Type: CodecClass, params: unknown[] = [], { blockHash, isFallback, isOptional, isPedantic }: CreateOptions = {}): T {
+  const created = new (
+    isOptional
+      ? Option.with(Type)
+      : Type
+  )(registry, ...params);
 
   isPedantic && checkPedantic(created, params);
 
   if (blockHash) {
-    created.createdAtHash = createTypeUnsafe<IU8a>(registry, 'Hash', [blockHash]);
+    created.createdAtHash = createTypeUnsafe<IU8a>(registry, 'BlockHash', [blockHash]);
+  }
+
+  if (isFallback) {
+    created.isStorageFallback = true;
   }
 
   return created as T;

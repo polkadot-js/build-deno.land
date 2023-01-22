@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.22/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { Codec, CodecClass, Registry } from '../types/index.ts';
 
-import { compactFromU8aLim, isU8a, logger, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
+import { compactFromU8aLim, isHex, isU8a, logger, stringify, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { AbstractArray } from '../abstract/Array.ts';
 import { decodeU8aVec, typeToConstructor } from '../utils/index.ts';
@@ -22,22 +22,26 @@ function noopSetDefinition <T extends Codec> (d: CodecClass<T>): CodecClass<T> {
   return d;
 }
 
-function decodeVecLength (value: Uint8Array | HexString | unknown[]): [Uint8Array | unknown[], number, number] {
+function decodeVecLength (value: Uint8Array | HexString | unknown[]): [Uint8Array | unknown[] | null, number, number] {
   if (Array.isArray(value)) {
     return [value, value.length, 0];
+  } else if (isU8a(value) || isHex(value)) {
+    const u8a = u8aToU8a(value);
+    const [startAt, length] = compactFromU8aLim(u8a);
+
+    if (length > MAX_LENGTH) {
+      throw new Error(`Vec length ${length.toString()} exceeds ${MAX_LENGTH}`);
+    }
+
+    return [u8a, length, startAt];
+  } else if (!value) {
+    return [null, 0, 0];
   }
 
-  const u8a = u8aToU8a(value);
-  const [startAt, length] = compactFromU8aLim(u8a);
-
-  if (length > MAX_LENGTH) {
-    throw new Error(`Vec length ${length.toString()} exceeds ${MAX_LENGTH}`);
-  }
-
-  return [u8a, length, startAt];
+  throw new Error(`Expected array/hex input to Vec<*> decoding, found ${typeof value}: ${stringify(value)}`);
 }
 
-export function decodeVec<T extends Codec> (registry: Registry, result: T[], value: Uint8Array | HexString | unknown[], startAt: number, Type: CodecClass<T>): [number, number] {
+export function decodeVec<T extends Codec> (registry: Registry, result: T[], value: Uint8Array | HexString | unknown[] | null, startAt: number, Type: CodecClass<T>): [number, number] {
   if (Array.isArray(value)) {
     const count = result.length;
 
@@ -58,8 +62,11 @@ export function decodeVec<T extends Codec> (registry: Registry, result: T[], val
     }
 
     return [0, 0];
+  } else if (!value) {
+    return [0, 0];
   }
 
+  // we don't need more checks, we already limited it via the length decoding
   return decodeU8aVec(registry, result, u8aToU8a(value), startAt, Type);
 }
 
@@ -71,8 +78,6 @@ export function decodeVec<T extends Codec> (registry: Registry, result: T[], val
  * specific encoding/decoding on top of the base type.
  */
 export class Vec<T extends Codec> extends AbstractArray<T> {
-  readonly initialU8aLength?: number;
-
   #Type: CodecClass<T>;
 
   constructor (registry: Registry, Type: CodecClass<T> | string, value: Uint8Array | HexString | unknown[] = [], { definition, setDefinition = noopSetDefinition }: Options<T> = {}) {
@@ -82,11 +87,17 @@ export class Vec<T extends Codec> extends AbstractArray<T> {
 
     this.#Type = definition || setDefinition(typeToConstructor<T>(registry, Type));
 
-    this.initialU8aLength = (
-      isU8a(decodeFrom)
-        ? decodeU8aVec(registry, this, decodeFrom, startAt, this.#Type)
-        : decodeVec(registry, this, decodeFrom, startAt, this.#Type)
-    )[0];
+    try {
+      this.initialU8aLength = (
+        isU8a(decodeFrom)
+          ? decodeU8aVec(registry, this, decodeFrom, startAt, this.#Type)
+          : decodeVec(registry, this, decodeFrom, startAt, this.#Type)
+      )[0];
+    } catch (e) {
+      console.error(decodeFrom, length, startAt);
+
+      throw e;
+    }
   }
 
   public static with<O extends Codec> (Type: CodecClass<O> | string): CodecClass<Vec<O>> {

@@ -1,14 +1,14 @@
 // Copyright 2017-2023 @polkadot/api-contract authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Bytes } from 'https://deno.land/x/polkadot@0.2.22/types/mod.ts';
-import type { ChainProperties, ContractConstructorSpecLatest, ContractEventSpecLatest, ContractMessageParamSpecLatest, ContractMessageSpecLatest, ContractMetadata, ContractMetadataLatest, ContractProjectInfo } from 'https://deno.land/x/polkadot@0.2.22/types/interfaces/index.ts';
-import type { Codec, Registry } from 'https://deno.land/x/polkadot@0.2.22/types/types/index.ts';
+import type { Bytes } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { ChainProperties, ContractConstructorSpecLatest, ContractEventSpecLatest, ContractMessageParamSpecLatest, ContractMessageSpecLatest, ContractMetadata, ContractMetadataLatest, ContractProjectInfo } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Codec, Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { AbiConstructor, AbiEvent, AbiMessage, AbiParam, DecodedEvent, DecodedMessage } from '../types.ts';
 
-import { TypeRegistry } from 'https://deno.land/x/polkadot@0.2.22/types/mod.ts';
-import { TypeDefInfo } from 'https://deno.land/x/polkadot@0.2.22/types-create/mod.ts';
-import { assertReturn, compactAddLength, compactStripLength, isNumber, isObject, isString, logger, stringCamelCase, stringify, u8aConcat, u8aToHex } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
+import { TypeRegistry } from 'https://deno.land/x/polkadot/types/mod.ts';
+import { TypeDefInfo } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { assertReturn, compactAddLength, compactStripLength, isNumber, isObject, isString, logger, stringCamelCase, stringify, u8aConcat, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { convertVersions, enumVersions } from './toLatest.ts';
 
@@ -75,19 +75,13 @@ function parseJson (json: Record<string, unknown>, chainProperties?: ChainProper
 }
 
 export class Abi {
-  public readonly events: AbiEvent[];
-
-  public readonly constructors: AbiConstructor[];
-
-  public readonly info: ContractProjectInfo;
-
-  public readonly json: Record<string, unknown>;
-
-  public readonly messages: AbiMessage[];
-
-  public readonly metadata: ContractMetadataLatest;
-
-  public readonly registry: Registry;
+  readonly events: AbiEvent[];
+  readonly constructors: AbiConstructor[];
+  readonly info: ContractProjectInfo;
+  readonly json: Record<string, unknown>;
+  readonly messages: AbiMessage[];
+  readonly metadata: ContractMetadataLatest;
+  readonly registry: Registry;
 
   constructor (abiJson: Record<string, unknown> | string, chainProperties?: ChainProperties) {
     [this.json, this.registry, this.metadata, this.info] = parseJson(

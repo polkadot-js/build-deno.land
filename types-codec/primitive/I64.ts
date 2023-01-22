@@ -10,5 +10,5 @@ import { Int } from '../base/Int.ts';
  */
 export class i64 extends Int.with(64) {
   // NOTE without this, we cannot properly determine extensions
-  public readonly __IntType = 'i64';
+  readonly __IntType = 'i64';
 }

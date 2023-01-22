@@ -7,9 +7,9 @@ import type { JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, Pro
 
 import EventEmitter from 'https://esm.sh/eventemitter3@4.0.7';
 
-import { isChildClass, isNull, isUndefined, logger, objectSpread } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
-import { xglobal } from 'https://deno.land/x/polkadot@0.2.22/x-global/mod.ts';
-import { WebSocket } from 'https://deno.land/x/polkadot@0.2.22/x-ws/mod.ts';
+import { isChildClass, isNull, isUndefined, logger, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
+import { WebSocket } from 'https://deno.land/x/polkadot/x-ws/mod.ts';
 
 import { RpcCoder } from '../coder/index.ts';
 import defaults from '../defaults.ts';
@@ -70,8 +70,8 @@ function eraseRecord<T> (record: Record<string, T>, cb?: (item: T) => void): voi
  * <BR>
  *
  * ```javascript
- * import Api from 'https://deno.land/x/polkadot@0.2.22/api/promise/index.ts';
- * import { WsProvider } from 'https://deno.land/x/polkadot@0.2.22/rpc-provider/ws/index.ts';
+ * import Api from 'https://deno.land/x/polkadot/api/promise/index.ts';
+ * import { WsProvider } from 'https://deno.land/x/polkadot/rpc-provider/ws/index.ts';
  *
  * const provider = new WsProvider('ws://127.0.0.1:9944');
  * const api = new Api(provider);
@@ -81,35 +81,21 @@ function eraseRecord<T> (record: Record<string, T>, cb?: (item: T) => void): voi
  */
 export class WsProvider implements ProviderInterface {
   readonly #callCache = new LRUCache();
-
   readonly #coder: RpcCoder;
-
   readonly #endpoints: string[];
-
   readonly #headers: Record<string, string>;
-
   readonly #eventemitter: EventEmitter;
-
   readonly #handlers: Record<string, WsStateAwaiting> = {};
-
   readonly #isReadyPromise: Promise<WsProvider>;
-
   readonly #stats: ProviderStats;
-
   readonly #waitingForId: Record<string, JsonRpcResponse> = {};
 
   #autoConnectMs: number;
-
   #endpointIndex: number;
-
   #isConnected = false;
-
   #subscriptions: Record<string, WsStateSubscription> = {};
-
   #timeoutId?: ReturnType<typeof setInterval> | null = null;
-
   #websocket: WebSocket | null;
-
   #timeout: number;
 
   /**

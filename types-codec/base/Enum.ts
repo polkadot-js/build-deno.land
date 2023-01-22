@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.22/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, Codec, CodecClass, IEnum, Inspect, IU8a, Registry } from '../types/index.ts';
 
-import { isHex, isNumber, isObject, isString, isU8a, objectProperties, stringCamelCase, stringify, stringPascalCase, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
+import { isHex, isNumber, isObject, isString, isU8a, objectProperties, stringCamelCase, stringify, stringPascalCase, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { mapToTypeMap, typesToMap } from '../utils/index.ts';
 import { Null } from './Null.ts';
@@ -183,22 +183,17 @@ function decodeEnum (registry: Registry, def: TypesDef, value?: unknown, index?:
  * an extension to enum where the value type is determined by the actual index.
  */
 export class Enum implements IEnum {
-  public readonly registry: Registry;
+  readonly registry: Registry;
 
   public createdAtHash?: IU8a;
+  public initialU8aLength?: number;
+  public isStorageFallback?: boolean;
 
   readonly #def: TypesDef;
-
   readonly #entryIndex: number;
-
-  readonly initialU8aLength?: number;
-
   readonly #indexes: number[];
-
   readonly #isBasic: boolean;
-
   readonly #isIndexed: boolean;
-
   readonly #raw: Codec;
 
   constructor (registry: Registry, Types: Record<string, string | CodecClass> | Record<string, number> | string[], value?: unknown, index?: number, { definition, setDefinition = noopSetDefinition }: Options = {}) {

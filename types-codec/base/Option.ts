@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.22/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, Codec, CodecClass, Inspect, IOption, IU8a, Registry } from '../types/index.ts';
 
-import { isCodec, isNull, isU8a, isUndefined, u8aToHex } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
+import { isCodec, isNull, isU8a, isUndefined, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { typeToConstructor } from '../utils/index.ts';
 import { Null } from './Null.ts';
@@ -66,14 +66,13 @@ function decodeOption (registry: Registry, Type: CodecClass, value?: unknown): C
  * with a value if/as required/found.
  */
 export class Option<T extends Codec> implements IOption<T> {
-  public readonly registry: Registry;
+  readonly registry: Registry;
 
   public createdAtHash?: IU8a;
-
   public initialU8aLength?: number;
+  public isStorageFallback?: boolean;
 
   readonly #Type: CodecClass<T>;
-
   readonly #raw: T;
 
   constructor (registry: Registry, typeName: CodecClass<T> | string, value?: unknown, { definition, setDefinition = noopSetDefinition }: Options<T> = {}) {
@@ -88,7 +87,7 @@ export class Option<T extends Codec> implements IOption<T> {
     this.#Type = Type;
     this.#raw = decoded as T;
 
-    if (decoded && decoded.initialU8aLength) {
+    if (decoded?.initialU8aLength) {
       this.initialU8aLength = 1 + decoded.initialU8aLength;
     }
   }

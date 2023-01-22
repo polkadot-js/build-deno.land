@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.22/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, Codec, CodecClass, Inspect, ISet, IU8a, Registry } from '../types/index.ts';
 
-import { compactFromU8aLim, compactToU8a, isHex, isU8a, logger, stringify, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
+import { compactFromU8aLim, compactToU8a, isHex, isU8a, logger, stringify, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { compareSet, decodeU8aVec, sortSet, typeToConstructor } from '../utils/index.ts';
 
@@ -70,11 +70,11 @@ function decodeSet<V extends Codec> (registry: Registry, valType: CodecClass<V> 
 }
 
 export class BTreeSet<V extends Codec = Codec> extends Set<V> implements ISet<V> {
-  public readonly registry: Registry;
+  readonly registry: Registry;
 
   public createdAtHash?: IU8a;
-
-  readonly initialU8aLength?: number;
+  public initialU8aLength?: number;
+  public isStorageFallback?: boolean;
 
   readonly #ValClass: CodecClass<V>;
 

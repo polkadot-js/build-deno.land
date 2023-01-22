@@ -2,21 +2,21 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable, Subscription } from 'https://esm.sh/rxjs@7.8.0';
-import type { Text } from 'https://deno.land/x/polkadot@0.2.22/types/mod.ts';
-import type { ExtDef } from 'https://deno.land/x/polkadot@0.2.22/types/extrinsic/signedExtensions/types.ts';
-import type { ChainProperties, Hash, HeaderPartial, RuntimeVersion, RuntimeVersionPartial } from 'https://deno.land/x/polkadot@0.2.22/types/interfaces/index.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.22/types/types/index.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.22/util/types.ts';
+import type { Text } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { ExtDef } from 'https://deno.land/x/polkadot/types/extrinsic/signedExtensions/types.ts';
+import type { ChainProperties, Hash, HeaderPartial, RuntimeVersion, RuntimeVersionPartial } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { ApiBase, ApiDecoration, ApiOptions, ApiTypes, DecorateMethod } from '../types/index.ts';
 import type { VersionedRegistry } from './types.ts';
 
 import { firstValueFrom, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.0';
 
-import { Metadata, TypeRegistry } from 'https://deno.land/x/polkadot@0.2.22/types/mod.ts';
-import { getSpecAlias, getSpecExtensions, getSpecHasher, getSpecRpc, getSpecTypes, getUpgradeVersion } from 'https://deno.land/x/polkadot@0.2.22/types-known/mod.ts';
-import { assertReturn, BN_ZERO, isUndefined, logger, objectSpread, u8aEq, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
-import { cryptoWaitReady } from 'https://deno.land/x/polkadot@0.2.22/util-crypto/mod.ts';
+import { Metadata, TypeRegistry } from 'https://deno.land/x/polkadot/types/mod.ts';
+import { getSpecAlias, getSpecExtensions, getSpecHasher, getSpecRpc, getSpecTypes, getUpgradeVersion } from 'https://deno.land/x/polkadot/types-known/mod.ts';
+import { assertReturn, BN_ZERO, isUndefined, logger, objectSpread, u8aEq, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { cryptoWaitReady } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { Decorate } from './Decorate.ts';
 
@@ -31,13 +31,9 @@ function textToString (t: Text): string {
 
 export abstract class Init<ApiType extends ApiTypes> extends Decorate<ApiType> {
   #atLast: [string, ApiDecoration<ApiType>] | null = null;
-
   #healthTimer: ReturnType<typeof setInterval> | null = null;
-
   #registries: VersionedRegistry<ApiType>[] = [];
-
   #updateSub?: Subscription | null = null;
-
   #waitingRegistries: Record<HexString, Promise<VersionedRegistry<ApiType>>> = {};
 
   constructor (options: ApiOptions, type: ApiTypes, decorateMethod: DecorateMethod<ApiType>) {

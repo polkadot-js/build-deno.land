@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.22/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyString, AnyU8a, Inspect, IText, IU8a, Registry } from '../types/index.ts';
 
-import { compactAddLength, compactFromU8aLim, compactToU8a, hexToU8a, isHex, isString, isU8a, stringToU8a, u8aToHex, u8aToString } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
+import { compactAddLength, compactFromU8aLim, compactToU8a, hexToU8a, isHex, isString, isU8a, stringToU8a, u8aToHex, u8aToString } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Raw } from './Raw.ts';
 
@@ -49,11 +49,11 @@ function decodeText (value?: null | AnyString | AnyU8a | { toString: () => strin
  * @noInheritDoc
  */
 export class Text extends String implements IText {
+  readonly registry: Registry;
+
   public createdAtHash?: IU8a;
-
-  public readonly initialU8aLength?: number;
-
-  public readonly registry: Registry;
+  public initialU8aLength?: number;
+  public isStorageFallback?: boolean;
 
   #override: string | null = null;
 

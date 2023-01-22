@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.22/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, Codec, Inspect, IU8a, Registry } from '../types/index.ts';
 
-import { isFunction, objectProperties, stringify } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
+import { isFunction, objectProperties, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { compareMap } from '../utils/index.ts';
 
@@ -22,9 +22,11 @@ function decodeJson (value?: Record<string, unknown> | null): [string, any][] {
  * @noInheritDoc
  */
 export class Json extends Map<string, any> implements Codec {
-  public readonly registry: Registry;
+  readonly registry: Registry;
 
   public createdAtHash?: IU8a;
+  public initialU8aLength?: number;
+  public isStorageFallback?: boolean;
 
   constructor (registry: Registry, value?: Record<string, unknown> | null) {
     const decoded = decodeJson(value);

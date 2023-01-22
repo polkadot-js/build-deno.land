@@ -3,7 +3,7 @@
 
 import type { DefinitionRpcExt, DefinitionRpcSub } from '../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import * as defs from './definitions.ts';
 

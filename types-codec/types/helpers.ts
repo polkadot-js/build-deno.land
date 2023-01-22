@@ -1,7 +1,8 @@
 // Copyright 2017-2023 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BN } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { Codec } from './codec.ts';
 
 export type AnyJson = string | number | boolean | null | undefined | AnyJson[] | { [index: string]: AnyJson };
@@ -31,4 +32,4 @@ export type UIntBitLength = 8 | 16 | 32 | 64 | 128 | 256;
 // as a result of the Polkadot claims module. (Technically we don't need the 520 in here)
 export type U8aBitLength = 8 | 16 | 32 | 64 | 128 | 160 | 256 | 264 | 512 | 520 | 1024 | 2048;
 
-export type AnyTupleValue = AnyU8a | (Codec | AnyU8a | AnyNumber | AnyString | undefined | null)[];
+export type AnyTupleValue = Exclude<AnyU8a, string> | HexString | (Codec | AnyU8a | AnyNumber | AnyString | undefined | null)[];

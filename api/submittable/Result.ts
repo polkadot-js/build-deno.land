@@ -1,8 +1,8 @@
 // Copyright 2017-2023 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BlockNumber, DispatchError, DispatchInfo, EventRecord, ExtrinsicStatus, Hash } from 'https://deno.land/x/polkadot@0.2.22/types/interfaces/index.ts';
-import type { AnyJson, ISubmittableResult } from 'https://deno.land/x/polkadot@0.2.22/types/types/index.ts';
+import type { BlockNumber, DispatchError, DispatchInfo, EventRecord, ExtrinsicStatus, Hash } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { AnyJson, ISubmittableResult } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { SubmittableResultValue } from './types.ts';
 
 const recordIdentity = (record: EventRecord) => record;
@@ -35,21 +35,21 @@ function extractInfo (events: EventRecord[] = []): DispatchInfo | undefined {
 }
 
 export class SubmittableResult implements ISubmittableResult {
-  public readonly dispatchError?: DispatchError;
+  readonly dispatchError?: DispatchError;
 
-  public readonly dispatchInfo?: DispatchInfo;
+  readonly dispatchInfo?: DispatchInfo;
 
-  public readonly internalError?: Error;
+  readonly internalError?: Error;
 
-  public readonly events: EventRecord[];
+  readonly events: EventRecord[];
 
-  public readonly status: ExtrinsicStatus;
+  readonly status: ExtrinsicStatus;
 
-  public readonly txHash: Hash;
+  readonly txHash: Hash;
 
-  public readonly txIndex?: number;
+  readonly txIndex?: number;
 
-  public readonly blockNumber?: BlockNumber;
+  readonly blockNumber?: BlockNumber;
 
   constructor ({ blockNumber, dispatchError, dispatchInfo, events, internalError, status, txHash, txIndex }: SubmittableResultValue) {
     this.dispatchError = dispatchError || extractError(events);

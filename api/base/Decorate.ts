@@ -2,27 +2,27 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { AugmentedCall, DeriveCustom, QueryableCalls } from 'https://deno.land/x/polkadot@0.2.22/api-base/types/index.ts';
-import type { RpcInterface } from 'https://deno.land/x/polkadot@0.2.22/rpc-core/types/index.ts';
-import type { StorageKey, Text, u64 } from 'https://deno.land/x/polkadot@0.2.22/types/mod.ts';
-import type { Call, Hash, RuntimeVersion } from 'https://deno.land/x/polkadot@0.2.22/types/interfaces/index.ts';
-import type { DecoratedMeta } from 'https://deno.land/x/polkadot@0.2.22/types/metadata/decorate/types.ts';
-import type { StorageEntry } from 'https://deno.land/x/polkadot@0.2.22/types/primitive/types.ts';
-import type { AnyFunction, AnyJson, AnyTuple, CallFunction, Codec, DefinitionCallNamed, DefinitionRpc, DefinitionRpcSub, DefinitionsCall, DefinitionsCallEntry, DetectCodec, IMethod, IStorageKey, Registry, RegistryError, RegistryTypes } from 'https://deno.land/x/polkadot@0.2.22/types/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.22/util/types.ts';
+import type { AugmentedCall, DeriveCustom, QueryableCalls } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { RpcInterface } from 'https://deno.land/x/polkadot/rpc-core/types/index.ts';
+import type { StorageKey, Text, u64 } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Call, Hash, RuntimeVersion } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { DecoratedMeta } from 'https://deno.land/x/polkadot/types/metadata/decorate/types.ts';
+import type { StorageEntry } from 'https://deno.land/x/polkadot/types/primitive/types.ts';
+import type { AnyFunction, AnyJson, AnyTuple, CallFunction, Codec, DefinitionCallNamed, DefinitionRpc, DefinitionRpcSub, DefinitionsCall, DefinitionsCallEntry, DetectCodec, IMethod, IStorageKey, Registry, RegistryError, RegistryTypes } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { SubmittableExtrinsic } from '../submittable/types.ts';
 import type { ApiDecoration, ApiInterfaceRx, ApiOptions, ApiTypes, AugmentedQuery, DecoratedErrors, DecoratedEvents, DecoratedRpc, DecorateMethod, GenericStorageEntryFunction, PaginationOptions, QueryableConsts, QueryableStorage, QueryableStorageEntry, QueryableStorageEntryAt, QueryableStorageMulti, QueryableStorageMultiArg, SubmittableExtrinsicFunction, SubmittableExtrinsics } from '../types/index.ts';
 import type { VersionedRegistry } from './types.ts';
 
 import { BehaviorSubject, combineLatest, from, map, of, switchMap, tap, toArray } from 'https://esm.sh/rxjs@7.8.0';
 
-import { getAvailableDerives } from 'https://deno.land/x/polkadot@0.2.22/api-derive/mod.ts';
-import { memo, RpcCore } from 'https://deno.land/x/polkadot@0.2.22/rpc-core/mod.ts';
-import { WsProvider } from 'https://deno.land/x/polkadot@0.2.22/rpc-provider/mod.ts';
-import { expandMetadata, GenericExtrinsic, Metadata, typeDefinitions, TypeRegistry } from 'https://deno.land/x/polkadot@0.2.22/types/mod.ts';
-import { getSpecRuntime } from 'https://deno.land/x/polkadot@0.2.22/types-known/mod.ts';
-import { arrayChunk, arrayFlatten, assertReturn, BN, compactStripLength, lazyMethod, lazyMethods, logger, nextTick, objectSpread, stringCamelCase, stringUpperFirst, u8aConcatStrict, u8aToHex } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
-import { blake2AsHex } from 'https://deno.land/x/polkadot@0.2.22/util-crypto/mod.ts';
+import { getAvailableDerives } from 'https://deno.land/x/polkadot/api-derive/mod.ts';
+import { memo, RpcCore } from 'https://deno.land/x/polkadot/rpc-core/mod.ts';
+import { WsProvider } from 'https://deno.land/x/polkadot/rpc-provider/mod.ts';
+import { expandMetadata, GenericExtrinsic, Metadata, typeDefinitions, TypeRegistry } from 'https://deno.land/x/polkadot/types/mod.ts';
+import { getSpecRuntime } from 'https://deno.land/x/polkadot/types-known/mod.ts';
+import { arrayChunk, arrayFlatten, assertReturn, BN, compactStripLength, lazyMethod, lazyMethods, logger, nextTick, objectSpread, stringCamelCase, stringUpperFirst, u8aConcatStrict, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { blake2AsHex } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { createSubmittable } from '../submittable/index.ts';
 import { augmentObject } from '../util/augmentObject.ts';
@@ -60,64 +60,37 @@ function getAtQueryFn<ApiType extends ApiTypes> (api: ApiDecoration<ApiType>, { 
 
 export abstract class Decorate<ApiType extends ApiTypes> extends Events {
   readonly #instanceId: string;
-
-  #registry: Registry;
-
   readonly #runtimeLog: Record<string, boolean> = {};
 
+  #registry: Registry;
   #storageGetQ: [Observable<Codec[]>, [StorageEntry, unknown[]][]][] = [];
-
   #storageSubQ: [Observable<Codec[]>, [StorageEntry, unknown[]][]][] = [];
 
   // HACK Use BN import so decorateDerive works... yes, wtf.
   protected __phantom = new BN(0);
 
+  protected _type: ApiTypes;
   protected _call: QueryableCalls<ApiType> = {} as QueryableCalls<ApiType>;
-
   protected _consts: QueryableConsts<ApiType> = {} as QueryableConsts<ApiType>;
-
   protected _derive?: ReturnType<Decorate<ApiType>['_decorateDerive']>;
-
   protected _errors: DecoratedErrors<ApiType> = {} as DecoratedErrors<ApiType>;
-
   protected _events: DecoratedEvents<ApiType> = {} as DecoratedEvents<ApiType>;
-
   protected _extrinsics?: SubmittableExtrinsics<ApiType>;
-
   protected _extrinsicType = GenericExtrinsic.LATEST_EXTRINSIC_VERSION;
-
   protected _genesisHash?: Hash;
-
   protected _isConnected: BehaviorSubject<boolean>;
-
   protected _isReady = false;
+  protected _query: QueryableStorage<ApiType> = {} as QueryableStorage<ApiType>;
+  protected _queryMulti?: QueryableStorageMulti<ApiType>;
+  protected _rpc?: DecoratedRpc<ApiType, RpcInterface>;
+  protected _rpcCore: RpcCore & RpcInterface;
+  protected _runtimeMap: Record<HexString, string> = {};
+  protected _runtimeChain?: Text;
+  protected _runtimeMetadata?: Metadata;
+  protected _runtimeVersion?: RuntimeVersion;
+  protected _rx: ApiInterfaceRx = { call: {} as QueryableCalls<'rxjs'>, consts: {} as QueryableConsts<'rxjs'>, query: {} as QueryableStorage<'rxjs'>, tx: {} as SubmittableExtrinsics<'rxjs'> } as ApiInterfaceRx;
 
   protected readonly _options: ApiOptions;
-
-  protected _query: QueryableStorage<ApiType> = {} as QueryableStorage<ApiType>;
-
-  protected _queryMulti?: QueryableStorageMulti<ApiType>;
-
-  protected _rpc?: DecoratedRpc<ApiType, RpcInterface>;
-
-  protected _rpcCore: RpcCore & RpcInterface;
-
-  protected _runtimeMap: Record<HexString, string> = {};
-
-  protected _runtimeChain?: Text;
-
-  protected _runtimeMetadata?: Metadata;
-
-  protected _runtimeVersion?: RuntimeVersion;
-
-  protected _rx: ApiInterfaceRx = {
-    call: {} as QueryableCalls<'rxjs'>,
-    consts: {} as QueryableConsts<'rxjs'>,
-    query: {} as QueryableStorage<'rxjs'>,
-    tx: {} as SubmittableExtrinsics<'rxjs'>
-  } as ApiInterfaceRx;
-
-  protected _type: ApiTypes;
 
   /**
    * This is the one and only method concrete children classes need to implement.
@@ -146,7 +119,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
    * <BR>
    *
    * ```javascript
-   * import Api from 'https://deno.land/x/polkadot@0.2.22/api/promise/index.ts';
+   * import Api from 'https://deno.land/x/polkadot/api/promise/index.ts';
    *
    * const api = new Api().isReady();
    *
@@ -614,39 +587,44 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
   protected _decorateMulti<ApiType extends ApiTypes> (decorateMethod: DecorateMethod<ApiType>): QueryableStorageMulti<ApiType> {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return decorateMethod((keys: QueryableStorageMultiArg<ApiType>[]): Observable<Codec[]> =>
-      (this.hasSubscriptions
-        ? this._rpcCore.state.subscribeStorage
-        : this._rpcCore.state.queryStorageAt
-      )(keys.map((args: QueryableStorageMultiArg<ApiType>): [StorageEntry, ...unknown[]] =>
-        Array.isArray(args)
-          ? args[0].creator.meta.type.isPlain
-            ? [args[0].creator]
-            : args[0].creator.meta.type.asMap.hashers.length === 1
-              ? [args[0].creator, args.slice(1)]
-              : [args[0].creator, ...args.slice(1)]
-          : [args.creator]
-      ))
+      keys.length
+        ? (this.hasSubscriptions
+          ? this._rpcCore.state.subscribeStorage
+          : this._rpcCore.state.queryStorageAt
+        )(keys.map((args: QueryableStorageMultiArg<ApiType>): [StorageEntry, ...unknown[]] =>
+          Array.isArray(args)
+            ? args[0].creator.meta.type.isPlain
+              ? [args[0].creator]
+              : args[0].creator.meta.type.asMap.hashers.length === 1
+                ? [args[0].creator, args.slice(1)]
+                : [args[0].creator, ...args.slice(1)]
+            : [args.creator]
+        ))
+        : of([])
     );
   }
 
   protected _decorateMultiAt<ApiType extends ApiTypes> (atApi: ApiDecoration<ApiType>, decorateMethod: DecorateMethod<ApiType>, blockHash: Uint8Array | string): QueryableStorageMulti<ApiType> {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return decorateMethod((calls: QueryableStorageMultiArg<ApiType>[]): Observable<Codec[]> =>
-      this._rpcCore.state.queryStorageAt(
-        calls.map((args: QueryableStorageMultiArg<ApiType>) => {
-          if (Array.isArray(args)) {
-            const { creator } = getAtQueryFn(atApi, args[0].creator);
+      calls.length
+        ? this._rpcCore.state.queryStorageAt(
+          calls.map((args: QueryableStorageMultiArg<ApiType>) => {
+            if (Array.isArray(args)) {
+              const { creator } = getAtQueryFn(atApi, args[0].creator);
 
-            return creator.meta.type.isPlain
-              ? [creator]
-              : creator.meta.type.asMap.hashers.length === 1
-                ? [creator, args.slice(1)]
-                : [creator, ...args.slice(1)];
-          }
+              return creator.meta.type.isPlain
+                ? [creator]
+                : creator.meta.type.asMap.hashers.length === 1
+                  ? [creator, args.slice(1)]
+                  : [creator, ...args.slice(1)];
+            }
 
-          return [getAtQueryFn(atApi, args.creator).creator];
-        }),
-        blockHash));
+            return [getAtQueryFn(atApi, args.creator).creator];
+          }),
+          blockHash)
+        : of([])
+    );
   }
 
   protected _decorateExtrinsics<ApiType extends ApiTypes> ({ tx }: DecoratedMeta, decorateMethod: DecorateMethod<ApiType>): SubmittableExtrinsics<ApiType> {
@@ -869,7 +847,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
           nextTick((): void => {
             // get all the calls in this instance, resolve with it
             // and then clear the queue so we don't add more
-            // (anyhting after this will be added to a new queue)
+            // (anything after this will be added to a new queue)
             const calls = queue[queueIdx][1];
 
             delete queue[queueIdx];
@@ -898,7 +876,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
   // Decorate the base storage call. In the case or rxjs or promise-without-callback (await)
   // we make a subscription, alternatively we push this through a single-shot query
   private _decorateStorageCall<ApiType extends ApiTypes> (creator: StorageEntry, decorateMethod: DecorateMethod<ApiType>): ReturnType<DecorateMethod<ApiType>> {
-    return decorateMethod((...args: unknown[]): Observable<Codec> => {
+    const memoed = memo(this.#instanceId, (...args: unknown[]): Observable<Codec> => {
       const call = extractStorageArgs(this.#registry, creator, args);
 
       if (!this.hasSubscriptions) {
@@ -906,7 +884,9 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
       }
 
       return this._queueStorage(call, this.#storageSubQ);
-    }, {
+    });
+
+    return decorateMethod(memoed, {
       methodName: creator.method,
       overrideNoSub: (...args: unknown[]) =>
         this._queueStorage(extractStorageArgs(this.#registry, creator, args), this.#storageGetQ)

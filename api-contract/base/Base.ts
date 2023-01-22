@@ -1,22 +1,20 @@
 // Copyright 2017-2023 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot@0.2.22/api/types/index.ts';
-import type { WeightV2 } from 'https://deno.land/x/polkadot@0.2.22/types/interfaces/index.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.22/types/types/index.ts';
+import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot/api/types/index.ts';
+import type { WeightV2 } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import { ApiBase } from 'https://deno.land/x/polkadot@0.2.22/api/base/index.ts';
-import { isFunction } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
+import { ApiBase } from 'https://deno.land/x/polkadot/api/base/index.ts';
+import { isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Abi } from '../Abi/index.ts';
 
 export abstract class Base<ApiType extends ApiTypes> {
-  public readonly abi: Abi;
-
-  public readonly api: ApiBase<ApiType>;
+  readonly abi: Abi;
+  readonly api: ApiBase<ApiType>;
 
   protected readonly _decorateMethod: DecorateMethod<ApiType>;
-
   protected readonly _isWeightV1: boolean;
 
   constructor (api: ApiBase<ApiType>, abi: string | Record<string, unknown> | Abi, decorateMethod: DecorateMethod<ApiType>) {

@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.22/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyBool, Codec, Inspect, IU8a, Registry } from '../types/index.ts';
 
-import { isU8a, u8aToHex } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
+import { isU8a, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 /**
  * @name bool
@@ -13,9 +13,11 @@ import { isU8a, u8aToHex } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts
  * @noInheritDoc
  */
 export class bool extends Boolean implements Codec {
-  public readonly registry: Registry;
+  readonly registry: Registry;
 
   public createdAtHash?: IU8a;
+  public initialU8aLength = 1;
+  public isStorageFallback?: boolean;
 
   constructor (registry: Registry, value: bool | AnyBool | Uint8Array | number = false) {
     super(

@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.22/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyNumber, Inspect, INumber, IU8a, Registry, UIntBitLength } from '../types/index.ts';
 
-import { BN, BN_BILLION, BN_HUNDRED, BN_MILLION, BN_QUINTILL, bnToBn, bnToHex, bnToU8a, formatBalance, formatNumber, hexToBn, isBn, isFunction, isHex, isNumber, isObject, isString, isU8a, u8aToBn, u8aToNumber } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
+import { BN, BN_BILLION, BN_HUNDRED, BN_MILLION, BN_QUINTILL, bnToBn, bnToHex, bnToU8a, formatBalance, formatNumber, hexToBn, isBn, isFunction, isHex, isNumber, isObject, isString, isU8a, u8aToBn, u8aToNumber } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 export const DEFAULT_UINT_BITS = 64;
 
@@ -72,13 +72,13 @@ function decodeAbstractInt (value: Exclude<AnyNumber, Uint8Array> | Record<strin
  * @noInheritDoc
  */
 export abstract class AbstractInt extends BN implements INumber {
-  public readonly registry: Registry;
+  readonly registry: Registry;
+  readonly encodedLength: number;
+  readonly isUnsigned: boolean;
 
   public createdAtHash?: IU8a;
-
-  public readonly encodedLength: number;
-
-  public readonly isUnsigned: boolean;
+  public initialU8aLength?: number;
+  public isStorageFallback?: boolean;
 
   readonly #bitLength: UIntBitLength;
 
@@ -98,6 +98,7 @@ export abstract class AbstractInt extends BN implements INumber {
     this.registry = registry;
     this.#bitLength = bitLength;
     this.encodedLength = this.#bitLength / 8;
+    this.initialU8aLength = this.#bitLength / 8;
     this.isUnsigned = !isSigned;
 
     const isNegative = this.isNeg();

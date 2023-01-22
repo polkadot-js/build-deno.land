@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BN } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.22/util/types.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, AnyNumber, CodecClass, ICompact, Inspect, INumber, IU8a, Registry } from '../types/index.ts';
 
-import { compactFromU8a, compactFromU8aLim, compactToU8a, isU8a } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
+import { compactFromU8a, compactFromU8aLim, compactToU8a, isU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { typeToConstructor } from '../utils/index.ts';
 
@@ -47,14 +47,13 @@ function decodeCompact<T extends INumber> (registry: Registry, Type: CodecClass<
  * a number and making the compact representation thereof
  */
 export class Compact<T extends INumber> implements ICompact<T> {
-  public readonly registry: Registry;
+  readonly registry: Registry;
 
   public createdAtHash?: IU8a;
-
-  readonly initialU8aLength?: number;
+  public initialU8aLength?: number;
+  public isStorageFallback?: boolean;
 
   readonly #Type: CodecClass<T>;
-
   readonly #raw: T;
 
   constructor (registry: Registry, Type: CodecClass<T> | string, value: Compact<T> | AnyNumber = 0, { definition, setDefinition = noopSetDefinition }: Options<T> = {}) {

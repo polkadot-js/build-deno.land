@@ -3,13 +3,13 @@
 
 // import type lookup before we augment - in some environments
 // this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.22/api-base/types/errors.ts';
+import 'https://deno.land/x/polkadot/api-base/types/errors.ts';
 
-import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot@0.2.22/api-base/types/index.ts';
+import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 
 export type __AugmentedError<ApiType extends ApiTypes> = AugmentedError<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.22/api-base/types/errors.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
   interface AugmentedErrors<ApiType extends ApiTypes> {
     auctions: {
       /**
@@ -1838,6 +1838,10 @@ declare module 'https://deno.land/x/polkadot@0.2.22/api-base/types/errors.ts' {
     };
     xcmPallet: {
       /**
+       * The given account is not an identifiable sovereign account for any location.
+       **/
+      AccountNotSovereign: AugmentedError<ApiType>;
+      /**
        * The location is invalid since it already has a subscription from us.
        **/
       AlreadySubscribed: AugmentedError<ApiType>;
@@ -1863,13 +1867,33 @@ declare module 'https://deno.land/x/polkadot@0.2.22/api-base/types/errors.ts' {
        **/
       Empty: AugmentedError<ApiType>;
       /**
+       * The operation required fees to be paid which the initiator could not meet.
+       **/
+      FeesNotMet: AugmentedError<ApiType>;
+      /**
        * The message execution fails the filter.
        **/
       Filtered: AugmentedError<ApiType>;
       /**
+       * The unlock operation cannot succeed because there are still users of the lock.
+       **/
+      InUse: AugmentedError<ApiType>;
+      /**
+       * Invalid asset for the operation.
+       **/
+      InvalidAsset: AugmentedError<ApiType>;
+      /**
        * Origin is invalid for sending.
        **/
       InvalidOrigin: AugmentedError<ApiType>;
+      /**
+       * A remote lock with the corresponding data could not be found.
+       **/
+      LockNotFound: AugmentedError<ApiType>;
+      /**
+       * The owner does not own (all) of the asset that they wish to do the operation on.
+       **/
+      LowBalance: AugmentedError<ApiType>;
       /**
        * The referenced subscription could not be found.
        **/
@@ -1883,6 +1907,10 @@ declare module 'https://deno.land/x/polkadot@0.2.22/api-base/types/errors.ts' {
        * Too many assets have been attempted for transfer.
        **/
       TooManyAssets: AugmentedError<ApiType>;
+      /**
+       * The asset owner has too many locks on the asset.
+       **/
+      TooManyLocks: AugmentedError<ApiType>;
       /**
        * The desired destination was unreachable, generally because there is a no way of routing
        * to it.

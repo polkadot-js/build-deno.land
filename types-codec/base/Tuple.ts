@@ -3,7 +3,7 @@
 
 import type { AnyTupleValue, Codec, CodecClass, Inspect, ITuple, Registry } from '../types/index.ts';
 
-import { isFunction, isHex, isString, isU8a, stringify, u8aConcatStrict, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.22/util/mod.ts';
+import { isFunction, isHex, isString, isU8a, stringify, u8aConcatStrict, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { AbstractArray } from '../abstract/Array.ts';
 import { decodeU8a, mapToTypeMap, typeToConstructor } from '../utils/index.ts';
@@ -27,25 +27,35 @@ function noopSetDefinition (d: Definition): Definition {
 
 /** @internal */
 function decodeTuple (registry: Registry, result: Codec[], value: Exclude<AnyTupleValue, Uint8Array> | undefined, Classes: Definition): [Codec[], number] {
-  if (isU8a(value) || isHex(value)) {
-    return decodeU8a(registry, result, u8aToU8a(value), Classes);
-  }
+  if (Array.isArray(value)) {
+    const Types = Classes[0];
 
-  const Types = Classes[0];
+    for (let i = 0; i < Types.length; i++) {
+      try {
+        const entry = value?.[i];
 
-  for (let i = 0; i < Types.length; i++) {
-    try {
-      const entry = value?.[i];
-
-      result[i] = entry instanceof Types[i]
-        ? entry
-        : new Types[i](registry, entry);
-    } catch (error) {
-      throw new Error(`Tuple: failed on ${i}:: ${(error as Error).message}`);
+        result[i] = entry instanceof Types[i]
+          ? entry
+          : new Types[i](registry, entry);
+      } catch (error) {
+        throw new Error(`Tuple: failed on ${i}:: ${(error as Error).message}`);
+      }
     }
+
+    return [result, 0];
+  } else if (isHex(value)) {
+    return decodeU8a(registry, result, u8aToU8a(value), Classes);
+  } else if (!value || !result.length) {
+    const Types = Classes[0];
+
+    for (let i = 0; i < Types.length; i++) {
+      result[i] = new Types[i](registry);
+    }
+
+    return [result, 0];
   }
 
-  return [result, 0];
+  throw new Error(`Expected array input to Tuple decoding, found ${typeof value}: ${stringify(value)}`);
 }
 
 /**
@@ -55,8 +65,6 @@ function decodeTuple (registry: Registry, result: Codec[], value: Exclude<AnyTup
  * own type. It extends the base JS `Array` object.
  */
 export class Tuple extends AbstractArray<Codec> implements ITuple<Codec[]> {
-  readonly initialU8aLength?: number;
-
   #Types: Definition;
 
   constructor (registry: Registry, Types: TupleTypes | TupleType, value?: AnyTupleValue, { definition, setDefinition = noopSetDefinition }: Options = {}) {
