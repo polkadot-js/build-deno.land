@@ -4,13 +4,10 @@
 import type { BN } from '../bn/index.ts';
 import type { ToBigInt, ToBn } from '../types.ts';
 
-import { BigInt } from 'https://deno.land/x/polkadot@0.2.23/x-bigint/mod.ts';
+import { BigInt } from 'https://deno.land/x/polkadot/x-bigint/mod.ts';
 
-import { _0n, _1n, _2pow53n } from './consts.ts';
+import { _0n, _1n, _2pow53n, _sqrt2pow53n } from './consts.ts';
 import { nToBigInt } from './toBigInt.ts';
-
-/** @internal */
-export const SQRT_MAX_SAFE_INTEGER = BigInt(94906265);
 
 /**
  * @name nSqrt
@@ -32,7 +29,7 @@ export function nSqrt <ExtToBn extends ToBn | ToBigInt> (value: ExtToBn | BN | b
 
   // Use sqrt(MAX_SAFE_INTEGER) as starting point. since we already know the
   // output will be larger than this, we expect this to be a safe start
-  let x0 = SQRT_MAX_SAFE_INTEGER;
+  let x0 = _sqrt2pow53n;
 
   while (true) {
     const x1 = ((n / x0) + x0) >> _1n;

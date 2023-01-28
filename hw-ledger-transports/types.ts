@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/hw-ledger authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import Transport from 'https://esm.sh/@ledgerhq/hw-transport@6.27.9';
+import Transport from 'https://esm.sh/@ledgerhq/hw-transport@6.27.10';
 
 export type LedgerTypes = 'hid' | 'u2f' | 'webusb';
 
