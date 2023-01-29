@@ -1,8 +1,8 @@
 // Copyright 2017-2023 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.23/util/types.ts';
-import type { AnyJson } from './helpers.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { AnyJson, ToString } from './helpers.ts';
 import type { IU8a } from './interfaces.ts';
 import type { Registry } from './registry.ts';
 
@@ -125,6 +125,12 @@ export interface CodecClass<T = Codec> {
   // NOTE: We need the any[] here, unknown[] does not work as expected
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   new(registry: Registry, ...args: any[]): T;
+}
+
+export interface CodecObject<T extends ToString> extends Codec {
+  readonly $: T;
+
+  valueOf (): T;
 }
 
 export type CodecTo = 'toHex' | 'toJSON' | 'toPrimitive' | 'toString' | 'toU8a';

@@ -1,16 +1,16 @@
 // Copyright 2017-2023 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyString, Codec, CodecClass, IU8a } from 'https://deno.land/x/polkadot@0.2.23/types-codec/types/index.ts';
-import type { CreateOptions, TypeDef } from 'https://deno.land/x/polkadot@0.2.23/types-create/types/index.ts';
+import type { AnyString, Codec, CodecClass, IU8a, LookupString } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { CreateOptions, TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 import type { ExtDef } from '../extrinsic/signedExtensions/types.ts';
-import type { ChainProperties, DispatchErrorModule, DispatchErrorModuleU8, DispatchErrorModuleU8a, EventMetadataLatest, Hash, MetadataLatest, SiField, SiLookupTypeId, SiVariant } from '../interfaces/types.ts';
+import type { ChainProperties, DispatchErrorModule, DispatchErrorModuleU8, DispatchErrorModuleU8a, EventMetadataLatest, Hash, MetadataLatest, SiField, SiLookupTypeId, SiVariant, WeightV2 } from '../interfaces/types.ts';
 import type { CallFunction, CodecHasher, Definitions, DetectCodec, RegisteredTypes, Registry, RegistryError, RegistryTypes } from '../types/index.ts';
 
-import { DoNotConstruct, Json, Raw } from 'https://deno.land/x/polkadot@0.2.23/types-codec/mod.ts';
-import { constructTypeClass, createClassUnsafe, createTypeUnsafe } from 'https://deno.land/x/polkadot@0.2.23/types-create/mod.ts';
-import { assertReturn, BN_ZERO, formatBalance, isFunction, isNumber, isString, isU8a, lazyMethod, logger, objectSpread, stringCamelCase, stringify } from 'https://deno.land/x/polkadot@0.2.23/util/mod.ts';
-import { blake2AsU8a } from 'https://deno.land/x/polkadot@0.2.23/util-crypto/mod.ts';
+import { DoNotConstruct, Json, Raw } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { constructTypeClass, createClassUnsafe, createTypeUnsafe } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { assertReturn, BN_ZERO, formatBalance, isFunction, isNumber, isString, isU8a, lazyMethod, logger, objectSpread, stringCamelCase, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { blake2AsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { expandExtensionTypes, fallbackExtensions, findUnknownExtensions } from '../extrinsic/signedExtensions/index.ts';
 import { GenericEventData } from '../generic/Event.ts';
@@ -240,15 +240,15 @@ export class TypeRegistry implements Registry {
   /**
    * @description Returns true if the type is in a Compat format
    */
-  public isLookupType (value: string): boolean {
+  public isLookupType (value: string): value is LookupString {
     return /Lookup\d+$/.test(value);
   }
 
   /**
    * @description Creates a lookup string from the supplied id
    */
-  public createLookupType (lookupId: SiLookupTypeId | number): string {
-    return `Lookup${lookupId.toString()}`;
+  public createLookupType (lookupId: SiLookupTypeId | number): LookupString {
+    return `Lookup${typeof lookupId === 'number' ? lookupId : lookupId.toNumber()}`;
   }
 
   public get knownTypes (): RegisteredTypes {
@@ -256,7 +256,7 @@ export class TypeRegistry implements Registry {
   }
 
   public get lookup (): PortableRegistry {
-    return assertReturn(this.#lookup, 'Lookup has not been set on this registry');
+    return assertReturn(this.#lookup, 'PortableRegistry has not been set on this registry');
   }
 
   public get metadata (): MetadataLatest {
@@ -421,11 +421,11 @@ export class TypeRegistry implements Registry {
     return this.#knownTypes?.typesBundle?.spec?.[specName.toString()]?.instances?.[moduleName] || this.#moduleMap[moduleName];
   }
 
-  public getOrThrow <T extends Codec = Codec, K extends string = string, R = DetectCodec<T, K>> (name: K, msg?: string): CodecClass<R> {
+  public getOrThrow <T extends Codec = Codec, K extends string = string, R = DetectCodec<T, K>> (name: K): CodecClass<R> {
     const Clazz = this.get<T, K>(name);
 
     if (!Clazz) {
-      throw new Error(msg || `type ${name} not found`);
+      throw new Error(`type ${name} not found`);
     }
 
     return Clazz as unknown as CodecClass<R>;
@@ -478,11 +478,11 @@ export class TypeRegistry implements Registry {
 
       this.#classes.set(arg1, arg2);
     } else {
-      this._registerObject(arg1);
+      this.#registerObject(arg1);
     }
   }
 
-  private _registerObject (obj: RegistryTypes): void {
+  #registerObject = (obj: RegistryTypes): void => {
     const entries = Object.entries(obj);
 
     for (let e = 0; e < entries.length; e++) {
@@ -508,7 +508,7 @@ export class TypeRegistry implements Registry {
         this.#definitions.set(name, def);
       }
     }
-  }
+  };
 
   // sets the chain properties
   public setChainProperties (properties?: ChainProperties): void {
@@ -532,14 +532,38 @@ export class TypeRegistry implements Registry {
     lookup.register();
   }
 
+  // register alias types alongside the portable/lookup setup
+  // (we don't combine this into setLookup since that would/could
+  // affect stand-along lookups, such as ABIs which don't have
+  // actual on-chain metadata)
+  #registerLookup = (lookup: PortableRegistry): void => {
+    // attach the lookup before we register any types
+    this.setLookup(lookup);
+
+    // default to V1 - this includes 1.5 (with single field)
+    let weightType = 'WeightV1';
+    const Clazz = this.get<WeightV2>('SpWeightsWeightV2Weight');
+
+    // detection for WeightV2 type
+    if (Clazz) {
+      const weight = new Clazz(this);
+
+      if (weight.refTime && weight.proofSize) {
+        weightType = 'SpWeightsWeightV2Weight';
+      }
+    }
+
+    this.register({ Weight: weightType });
+  };
+
   // sets the metadata
   public setMetadata (metadata: Metadata, signedExtensions?: string[], userExtensions?: ExtDef): void {
     this.#metadata = metadata.asLatest;
     this.#metadataVersion = metadata.version;
     this.#firstCallIndex = null;
 
-    // attach the lookup at this point (before injecting)
-    this.setLookup(this.#metadata.lookup);
+    // attach the lookup at this point and register relevant types (before injecting)
+    this.#registerLookup(this.#metadata.lookup);
 
     injectExtrinsics(this, this.#metadata, this.#metadataVersion, this.#metadataCalls, this.#moduleMap);
     injectErrors(this, this.#metadata, this.#metadataVersion, this.#metadataErrors);

@@ -1,32 +1,32 @@
 // Copyright 2017-2023 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ApiTypes, DeriveCustom, QueryableStorageMulti } from 'https://deno.land/x/polkadot@0.2.23/api-base/types/index.ts';
-import type { ApiInterfaceRx as ApiInterfaceBase } from 'https://deno.land/x/polkadot@0.2.23/api-base/types/api.ts';
-import type { QueryableCalls } from 'https://deno.land/x/polkadot@0.2.23/api-base/types/calls.ts';
-import type { QueryableConsts } from 'https://deno.land/x/polkadot@0.2.23/api-base/types/consts.ts';
-import type { DecoratedErrors } from 'https://deno.land/x/polkadot@0.2.23/api-base/types/errors.ts';
-import type { DecoratedEvents } from 'https://deno.land/x/polkadot@0.2.23/api-base/types/events.ts';
-import type { QueryableStorage } from 'https://deno.land/x/polkadot@0.2.23/api-base/types/storage.ts';
-import type { ProviderInterface, ProviderInterfaceEmitted } from 'https://deno.land/x/polkadot@0.2.23/rpc-provider/types.ts';
-import type { ExtDef } from 'https://deno.land/x/polkadot@0.2.23/types/extrinsic/signedExtensions/types.ts';
-import type { Call, Extrinsic, Hash, RuntimeVersionPartial } from 'https://deno.land/x/polkadot@0.2.23/types/interfaces/index.ts';
-import type { CallFunction, DefinitionRpc, DefinitionRpcSub, DefinitionsCall, RegisteredTypes, Registry, RegistryError, SignatureOptions, Signer } from 'https://deno.land/x/polkadot@0.2.23/types/types/index.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.23/util/mod.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.23/util/types.ts';
+import type { ApiTypes, DeriveCustom, QueryableStorageMulti } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { ApiInterfaceRx as ApiInterfaceBase } from 'https://deno.land/x/polkadot/api-base/types/api.ts';
+import type { QueryableCalls } from 'https://deno.land/x/polkadot/api-base/types/calls.ts';
+import type { QueryableConsts } from 'https://deno.land/x/polkadot/api-base/types/consts.ts';
+import type { DecoratedErrors } from 'https://deno.land/x/polkadot/api-base/types/errors.ts';
+import type { DecoratedEvents } from 'https://deno.land/x/polkadot/api-base/types/events.ts';
+import type { QueryableStorage } from 'https://deno.land/x/polkadot/api-base/types/storage.ts';
+import type { ProviderInterface, ProviderInterfaceEmitted } from 'https://deno.land/x/polkadot/rpc-provider/types.ts';
+import type { ExtDef } from 'https://deno.land/x/polkadot/types/extrinsic/signedExtensions/types.ts';
+import type { Call, Extrinsic, Hash, RuntimeVersionPartial } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { CallFunction, DefinitionRpc, DefinitionRpcSub, DefinitionsCall, RegisteredTypes, Registry, RegistryError, SignatureOptions, Signer } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { ApiBase } from '../base/index.ts';
 import type { SubmittableExtrinsic } from '../types/submittable.ts';
 import type { AllDerives } from '../util/decorate.ts';
 
-export * from 'https://deno.land/x/polkadot@0.2.23/api-base/types/index.ts';
-export * from 'https://deno.land/x/polkadot@0.2.23/api/types/calls.ts';
-export * from 'https://deno.land/x/polkadot@0.2.23/api/types/consts.ts';
-export * from 'https://deno.land/x/polkadot@0.2.23/api/types/errors.ts';
-export * from 'https://deno.land/x/polkadot@0.2.23/api/types/events.ts';
-export * from 'https://deno.land/x/polkadot@0.2.23/api/types/storage.ts';
-export * from 'https://deno.land/x/polkadot@0.2.23/api/types/submittable.ts';
+export * from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+export * from 'https://deno.land/x/polkadot/api/types/calls.ts';
+export * from 'https://deno.land/x/polkadot/api/types/consts.ts';
+export * from 'https://deno.land/x/polkadot/api/types/errors.ts';
+export * from 'https://deno.land/x/polkadot/api/types/events.ts';
+export * from 'https://deno.land/x/polkadot/api/types/storage.ts';
+export * from 'https://deno.land/x/polkadot/api/types/submittable.ts';
 
-export type { Signer, SignerResult } from 'https://deno.land/x/polkadot@0.2.23/types/types/index.ts';
+export type { Signer, SignerResult } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 export { ApiBase } from '../base/index.ts';
 

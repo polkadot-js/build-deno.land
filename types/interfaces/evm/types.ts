@@ -1,8 +1,8 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Bytes, Enum, Struct, Text, U256, Vec, u256 } from 'https://deno.land/x/polkadot@0.2.23/types-codec/mod.ts';
-import type { H160, H256 } from 'https://deno.land/x/polkadot@0.2.23/types/interfaces/runtime/index.ts';
+import type { Bytes, Enum, Struct, Text, U256, Vec, u256 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { H160, H256 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 /** @name EvmAccount */
 export interface EvmAccount extends Struct {

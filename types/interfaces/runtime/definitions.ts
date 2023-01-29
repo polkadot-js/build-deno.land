@@ -6,7 +6,7 @@
 
 import type { Definitions } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.23/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { runtime } from './runtime.ts';
 
@@ -217,7 +217,7 @@ export default {
       refTime: 'Compact<u64>',
       proofSize: 'Compact<u64>'
     },
-    Weight: 'WeightV1',
+    Weight: 'WeightV2',
     WeightMultiplier: 'Fixed64',
 
     // digest

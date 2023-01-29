@@ -1,15 +1,15 @@
 // Copyright 2017-2023 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Option, Text, Type, Vec } from 'https://deno.land/x/polkadot@0.2.23/types-codec/mod.ts';
-import type { AnyString, Registry } from 'https://deno.land/x/polkadot@0.2.23/types-codec/types/index.ts';
-import type { ILookup, TypeDef } from 'https://deno.land/x/polkadot@0.2.23/types-create/types/index.ts';
+import type { Option, Text, Type, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { AnyString, LookupString, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { ILookup, TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 import type { PortableType } from '../../interfaces/metadata/index.ts';
 import type { SiField, SiLookupTypeId, SiType, SiTypeDefArray, SiTypeDefBitSequence, SiTypeDefCompact, SiTypeDefComposite, SiTypeDefSequence, SiTypeDefTuple, SiTypeDefVariant, SiTypeParameter, SiVariant } from '../../interfaces/scaleInfo/index.ts';
 
-import { sanitize, Struct, u32 } from 'https://deno.land/x/polkadot@0.2.23/types-codec/mod.ts';
-import { getTypeDef, TypeDefInfo, withTypeString } from 'https://deno.land/x/polkadot@0.2.23/types-create/mod.ts';
-import { assertUnreachable, isNumber, isString, logger, objectSpread, stringCamelCase, stringify, stringPascalCase } from 'https://deno.land/x/polkadot@0.2.23/util/mod.ts';
+import { sanitize, Struct, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { getTypeDef, TypeDefInfo, withTypeString } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { assertUnreachable, isNumber, isString, logger, objectSpread, stringCamelCase, stringify, stringPascalCase } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const l = logger('PortableRegistry');
 
@@ -25,7 +25,7 @@ interface Extract extends ExtractBase {
 }
 
 interface TypeInfo {
-  lookups: Record<string, string>;
+  lookups: Record<string, LookupString>;
   names: Record<number, string>;
   params: Record<string, SiTypeParameter[]>;
   types: Record<number, PortableType>;
@@ -94,7 +94,7 @@ const RESERVED = [
 // Remove these from all paths at index 1
 const PATH_RM_INDEX_1 = ['generic', 'misc', 'pallet', 'traits', 'types'];
 
-/** @internal */
+/** @internal Converts a Text[] into string[] (used as part of definitions) */
 function sanitizeDocs (docs: Text[]): string[] {
   const result = new Array<string>(docs.length);
 
@@ -105,7 +105,7 @@ function sanitizeDocs (docs: Text[]): string[] {
   return result;
 }
 
-/** @internal */
+/** @internal Split a namespace with :: into individual parts */
 function splitNamespace (values: string[]): string[][] {
   const result = new Array<string[]>(values.length);
 
@@ -116,7 +116,7 @@ function splitNamespace (values: string[]): string[][] {
   return result;
 }
 
-/** @internal */
+/** @internal Match a namespace based on parts (alongside wildcards) */
 function matchParts (first: string[], second: (string | Text)[]): boolean {
   return first.length === second.length && first.every((a, index) => {
     const b = second[index].toString();
@@ -151,8 +151,7 @@ function matchParts (first: string[], second: (string | Text)[]): boolean {
   });
 }
 
-// check if the path matches the PATHS_ALIAS (with wildcards)
-/** @internal */
+/** @internal check if the path matches the PATHS_ALIAS (with wildcards) */
 function getAliasPath ({ def, path }: SiType): string | null {
   // specific logic for weights - we only override when non-complex struct
   if (path.join('::') === 'sp_weights::weight_v2::Weight' && def.isComposite && def.asComposite.fields.length !== 1) {
@@ -165,7 +164,7 @@ function getAliasPath ({ def, path }: SiType): string | null {
     : null;
 }
 
-/** @internal */
+/** @internal Converts a type name into a JS-API compatible name */
 function extractNameFlat (portable: PortableType[], lookupIndex: number, params: SiTypeParameter[], path: AnyString[], isInternal = false): Extract | null {
   const count = path.length;
 
@@ -219,12 +218,12 @@ function extractNameFlat (portable: PortableType[], lookupIndex: number, params:
   return { lookupIndex, name, params };
 }
 
-/** @internal */
+/** @internal Alias for extractNameFlat with PortableType as a last parameter */
 function extractName (portable: PortableType[], lookupIndex: number, { type: { params, path } }: PortableType): Extract | null {
   return extractNameFlat(portable, lookupIndex, params, path);
 }
 
-/** @internal */
+/** @internal Check for dupes from a specific index onwards */
 function nextDupeMatches (name: string, startAt: number, names: Extract[]): Extract[] {
   const result = [names[startAt]];
 
@@ -239,7 +238,7 @@ function nextDupeMatches (name: string, startAt: number, names: Extract[]): Extr
   return result;
 }
 
-/** @internal */
+/** @internal Checks to see if a type is a full duplicate (with all params matching) */
 function rewriteDupes (input: ExtractBase[], rewrite: Record<number, string>): boolean {
   const count = input.length;
 
@@ -266,7 +265,7 @@ function rewriteDupes (input: ExtractBase[], rewrite: Record<number, string>): b
   return true;
 }
 
-/** @internal */
+/** @internal Find duplicates and adjust the names based on parameters */
 function removeDupeNames (lookup: PortableRegistry, portable: PortableType[], names: Extract[]): Extract[] {
   const rewrite: Record<number, string> = {};
 
@@ -385,7 +384,7 @@ function removeDupeNames (lookup: PortableRegistry, portable: PortableType[], na
     }));
 }
 
-/** @internal */
+/** @internal Detect on-chain types (AccountId/Signature) as set as the default */
 function registerTypes (lookup: PortableRegistry, lookups: Record<string, string>, names: Record<number, string>, params: Record<string, SiTypeParameter[]>): void {
   // Register the types we extracted
   lookup.registry.register(lookups);
@@ -422,32 +421,12 @@ function registerTypes (lookup: PortableRegistry, lookups: Record<string, string
         : names[sigParam.type.unwrap().toNumber()] || 'MultiSignature'
     });
   }
-
-  // handle weight overrides
-  if (params.SpWeightsWeightV2Weight) {
-    const weight = Object
-      .entries(names)
-      .find(([, n]) => n === 'SpWeightsWeightV2Weight');
-
-    if (!weight) {
-      throw new Error('Unable to extract weight type from SpWeightsWeightV2Weight');
-    }
-
-    const weightDef = lookup.getTypeDef(`Lookup${weight[0]}`);
-
-    lookup.registry.register({
-      Weight: Array.isArray(weightDef.sub) && weightDef.sub.length !== 1
-        // we have a complex structure
-        ? 'SpWeightsWeightV2Weight'
-        // single entry, fallback to weight V1
-        : 'WeightV1'
-    });
-  }
 }
 
-// this extracts aliases based on what we know the runtime config looks like in a
-// Substrate chain. Specifically we want to have access to the Call and Event params
-/** @internal */
+/**
+ * @internal Extracts aliases based on what we know the runtime config looks like in a
+ * Substrate chain. Specifically we want to have access to the Call and Event params
+ **/
 function extractAliases (params: Record<string, SiTypeParameter[]>, isContract?: boolean): Record<number, string> {
   const hasParams = Object.keys(params).some((k) => !k.startsWith('Pallet'));
   const alias: Record<number, string> = {};
@@ -473,7 +452,7 @@ function extractAliases (params: Record<string, SiTypeParameter[]>, isContract?:
   return alias;
 }
 
-/** @internal */
+/** @internal Extracts all the intreresting type information for this registry */
 function extractTypeInfo (lookup: PortableRegistry, portable: PortableType[]): TypeInfo {
   const nameInfo: Extract[] = [];
   const types: Record<number, PortableType> = {};
@@ -491,7 +470,7 @@ function extractTypeInfo (lookup: PortableRegistry, portable: PortableType[]): T
     types[lookupIndex] = type;
   }
 
-  const lookups: Record<string, string> = {};
+  const lookups: Record<string, LookupString> = {};
   const names: Record<number, string> = {};
   const params: Record<string, SiTypeParameter[]> = {};
   const dedup = removeDupeNames(lookup, portable, nameInfo);
@@ -510,7 +489,7 @@ function extractTypeInfo (lookup: PortableRegistry, portable: PortableType[]): T
 
 export class PortableRegistry extends Struct implements ILookup {
   #alias: Record<number, string>;
-  #lookups: Record<string, string>;
+  #lookups: Record<string, LookupString>;
   #names: Record<number, string>;
   #params: Record<string, SiTypeParameter[]>;
   #typeDefs: Record<number, TypeDef> = {};
@@ -534,6 +513,9 @@ export class PortableRegistry extends Struct implements ILookup {
     // console.log('PortableRegistry', `${(performance.now() - timeStart).toFixed(2)}ms`)
   }
 
+  /**
+   * @description Returns all the available type names for this chain
+   **/
   public get names (): string[] {
     return Object.values(this.#names).sort();
   }
@@ -545,6 +527,9 @@ export class PortableRegistry extends Struct implements ILookup {
     return this.getT('types');
   }
 
+  /**
+   * @description Register all available types into the registry (generally for internal usage)
+   */
   public register (): void {
     registerTypes(this, this.#lookups, this.#names, this.#params);
   }
@@ -552,14 +537,14 @@ export class PortableRegistry extends Struct implements ILookup {
   /**
    * @description Returns the name for a specific lookup
    */
-  public getName (lookupId: SiLookupTypeId | string | number): string | undefined {
+  public getName (lookupId: SiLookupTypeId | LookupString | number): string | undefined {
     return this.#names[this.#getLookupId(lookupId)];
   }
 
   /**
    * @description Finds a specific type in the registry
    */
-  public getSiType (lookupId: SiLookupTypeId | string | number): SiType {
+  public getSiType (lookupId: SiLookupTypeId | LookupString | number): SiType {
     // NOTE catch-22 - this may already be used as part of the constructor, so
     // ensure that we have actually initialized it correctly
     const found = (this.#types || this.types)[this.#getLookupId(lookupId)];
@@ -574,7 +559,7 @@ export class PortableRegistry extends Struct implements ILookup {
   /**
    * @description Lookup the type definition for the index
    */
-  public getTypeDef (lookupId: SiLookupTypeId | string | number): TypeDef {
+  public getTypeDef (lookupId: SiLookupTypeId | LookupString | number): TypeDef {
     const lookupIndex = this.#getLookupId(lookupId);
 
     if (!this.#typeDefs[lookupIndex]) {
@@ -615,6 +600,9 @@ export class PortableRegistry extends Struct implements ILookup {
     return this.#typeDefs[lookupIndex];
   }
 
+  /**
+   * @description For a specific field, perform adjustments to not have built-in conflicts
+   */
   public sanitizeField (name: Option<Text>): [string | null, string | null] {
     let nameField: string | null = null;
     let nameOrig: string | null = null;
@@ -634,6 +622,7 @@ export class PortableRegistry extends Struct implements ILookup {
     return [nameField, nameOrig];
   }
 
+  /** @internal Creates a TypeDef based on an internal lookupId */
   #createSiDef (lookupId: SiLookupTypeId): TypeDef {
     const typeDef = this.getTypeDef(lookupId);
     const lookupIndex = lookupId.toNumber();
@@ -650,10 +639,11 @@ export class PortableRegistry extends Struct implements ILookup {
       : typeDef;
   }
 
-  #getLookupId (lookupId: SiLookupTypeId | string | number): number {
+  /** @internal Converts a lookupId input to the actual lookup index */
+  #getLookupId (lookupId: SiLookupTypeId | LookupString | number): number {
     if (isString(lookupId)) {
       if (!this.registry.isLookupType(lookupId)) {
-        throw new Error(`PortableRegistry: Expected a lookup string type, found ${lookupId}`);
+        throw new Error(`PortableRegistry: Expected a lookup string type, found ${lookupId as string}`);
       }
 
       return parseInt(lookupId.replace('Lookup', ''), 10);
@@ -664,6 +654,7 @@ export class PortableRegistry extends Struct implements ILookup {
     return lookupId.toNumber();
   }
 
+  /** @internal Converts a type into a TypeDef for Codec usage */
   #extract (type: SiType, lookupIndex: number): TypeDef {
     const namespace = type.path.join('::');
     let typeDef: TypeDef;
@@ -696,6 +687,7 @@ export class PortableRegistry extends Struct implements ILookup {
     }, typeDef);
   }
 
+  /** @internal Extracts a ScaleInfo Array into TypeDef.VecFixed */
   #extractArray (_: number, { len, type }: SiTypeDefArray): TypeDef {
     const length = len.toNumber();
 
@@ -710,6 +702,7 @@ export class PortableRegistry extends Struct implements ILookup {
     });
   }
 
+  /** @internal Extracts a ScaleInfo BitSequence into TypeDef.Plain */
   #extractBitSequence (_: number, { bitOrderType, bitStoreType }: SiTypeDefBitSequence): TypeDef {
     // With the v3 of scale-info this swapped around, but obviously the decoder cannot determine
     // the order. With that in-mind, we apply a detection for LSb0/Msb and set accordingly
@@ -734,6 +727,7 @@ export class PortableRegistry extends Struct implements ILookup {
     };
   }
 
+  /** @internal Extracts a ScaleInfo Compact into TypeDef.Compact */
   #extractCompact (_: number, { type }: SiTypeDefCompact): TypeDef {
     return withTypeString(this.registry, {
       info: TypeDefInfo.Compact,
@@ -741,6 +735,7 @@ export class PortableRegistry extends Struct implements ILookup {
     });
   }
 
+  /** @internal Extracts a ScaleInfo Composite into TypeDef.{BTree*, Range*, Wrapper*} */
   #extractComposite (lookupIndex: number, { params, path }: SiType, { fields }: SiTypeDefComposite): TypeDef {
     if (path.length) {
       const pathFirst = path[0].toString();
@@ -796,6 +791,7 @@ export class PortableRegistry extends Struct implements ILookup {
       : this.#extractFields(lookupIndex, fields);
   }
 
+  /** @internal Extracts a ScaleInfo CompositeSet into TypeDef.Set */
   #extractCompositeSet (_: number, params: SiTypeParameter[], fields: SiField[]): TypeDef {
     if (params.length !== 1 || fields.length !== 1) {
       throw new Error('Set handling expects param/field as single entries');
@@ -814,6 +810,7 @@ export class PortableRegistry extends Struct implements ILookup {
     });
   }
 
+  /** @internal Extracts ScaleInfo enum/struct fields into TypeDef.{Struct, Tuple} */
   #extractFields (lookupIndex: number, fields: SiField[]): TypeDef {
     let isStruct = true;
     let isTuple = true;
@@ -874,6 +871,7 @@ export class PortableRegistry extends Struct implements ILookup {
     ));
   }
 
+  /** @internal Apply field aliassed (with no JS conflicts) */
   #extractFieldsAlias (fields: SiField[]): [TypeDef[], Map<string, string>] {
     const alias = new Map<string, string>();
     const sub = new Array<TypeDef>(fields.length);
@@ -907,6 +905,7 @@ export class PortableRegistry extends Struct implements ILookup {
     return [sub, alias];
   }
 
+  /** @internal Extracts an internal Historic (pre V14) type  */
   #extractHistoric (_: number, type: Type): TypeDef {
     return objectSpread({
       displayName: type.toString(),
@@ -914,6 +913,7 @@ export class PortableRegistry extends Struct implements ILookup {
     }, getTypeDef(type));
   }
 
+  /** @internal Extracts a ScaleInfo Primitive into TypeDef.Plain */
   #extractPrimitive (_: number, type: SiType): TypeDef {
     const typeStr = type.def.asPrimitive.type.toString();
 
@@ -923,6 +923,7 @@ export class PortableRegistry extends Struct implements ILookup {
     };
   }
 
+  /** @internal Applies an alias path onto the TypeDef */
   #extractAliasPath (_: number, type: string): TypeDef {
     return {
       info: TypeDefInfo.Plain,
@@ -930,6 +931,7 @@ export class PortableRegistry extends Struct implements ILookup {
     };
   }
 
+  /** @internal Extracts a ScaleInfo Sequence into TypeDef.Vec (with Bytes shortcut) */
   #extractSequence (lookupIndex: number, { type }: SiTypeDefSequence): TypeDef {
     const sub = this.#createSiDef(type);
 
@@ -948,6 +950,7 @@ export class PortableRegistry extends Struct implements ILookup {
     });
   }
 
+  /** @internal Extracts a ScaleInfo Tuple into TypeDef.Tuple */
   #extractTuple (lookupIndex: number, ids: SiTypeDefTuple): TypeDef {
     if (ids.length === 0) {
       return {
@@ -968,6 +971,7 @@ export class PortableRegistry extends Struct implements ILookup {
     });
   }
 
+  /** @internal Extracts a ScaleInfo Variant into TypeDef.{Option, Result, Enum} */
   #extractVariant (lookupIndex: number, { params, path }: SiType, { variants }: SiTypeDefVariant): TypeDef {
     if (path.length) {
       const specialVariant = path[0].toString();
@@ -1015,6 +1019,7 @@ export class PortableRegistry extends Struct implements ILookup {
     return this.#extractVariantEnum(lookupIndex, variants);
   }
 
+  /** @internal Extracts a ScaleInfo Variant into TypeDef.Enum */
   #extractVariantEnum (lookupIndex: number, variants: SiVariant[]): TypeDef {
     const sub: (TypeDef & { name: string })[] = [];
 

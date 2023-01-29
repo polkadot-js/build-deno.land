@@ -1,14 +1,14 @@
 // Copyright 2017-2023 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyJson, BareOpts, Registry } from 'https://deno.land/x/polkadot@0.2.23/types-codec/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.23/util/types.ts';
+import type { AnyJson, BareOpts, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { BlockHash } from '../interfaces/chain/index.ts';
 import type { ExtrinsicPayloadV4 } from '../interfaces/extrinsics/index.ts';
 import type { ExtrinsicPayloadValue, ICompact, IKeyringPair, INumber } from '../types/index.ts';
 
-import { AbstractBase, Bytes } from 'https://deno.land/x/polkadot@0.2.23/types-codec/mod.ts';
-import { u8aToHex } from 'https://deno.land/x/polkadot@0.2.23/util/mod.ts';
+import { AbstractBase, Bytes } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { DEFAULT_VERSION } from './constants.ts';
 import { GenericExtrinsicEra } from './ExtrinsicEra.ts';
@@ -142,6 +142,13 @@ export class GenericExtrinsicPayload extends AbstractBase<ExtrinsicPayloadVx> {
    */
   public override toJSON (): any {
     return this.toHex();
+  }
+
+  /**
+   * @description Returns the base runtime type name for this instance
+   */
+  public toRawType (): string {
+    return 'ExtrinsicPayload';
   }
 
   /**
