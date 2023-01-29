@@ -18,7 +18,7 @@ interface ObjectIndexed {
  * <BR>
  *
  * ```javascript
- * import { isJsonObject } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { isJsonObject } from 'https://deno.land/x/polkadot@0.2.24/util/mod.ts';
  *
  * isJsonObject({}); // => true
  * isJsonObject({

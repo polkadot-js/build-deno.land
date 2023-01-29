@@ -1,13 +1,13 @@
 // Copyright 2017-2023 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.2.24/types-codec/types/index.ts';
 import type { MetadataLatest, PalletMetadataLatest, SiVariant } from '../../../interfaces/index.ts';
 import type { PortableRegistry } from '../../../metadata/index.ts';
 import type { CallFunction } from '../../../types/index.ts';
 import type { Extrinsics } from '../types.ts';
 
-import { lazyMethod, objectSpread, stringCamelCase } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { lazyMethod, objectSpread, stringCamelCase } from 'https://deno.land/x/polkadot@0.2.24/util/mod.ts';
 
 import { lazyVariants } from '../../../create/lazy.ts';
 import { getSiName } from '../../util/index.ts';

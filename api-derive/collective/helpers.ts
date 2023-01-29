@@ -7,7 +7,7 @@ import type { Collective } from './types.ts';
 
 import { of } from 'https://esm.sh/rxjs@7.8.0';
 
-import { isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isFunction } from 'https://deno.land/x/polkadot@0.2.24/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 

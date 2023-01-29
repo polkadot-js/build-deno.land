@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { AnyFunction, Codec, DefinitionCallNamed } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { AnyFunction, Codec, DefinitionCallNamed } from 'https://deno.land/x/polkadot@0.2.24/types/types/index.ts';
 import type { ApiTypes, ReturnCodec } from './base.ts';
 
 export type DecoratedCallBase<ApiType extends ApiTypes, F extends AnyFunction = (...args: any[]) => Observable<Codec>> =
