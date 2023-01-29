@@ -1,10 +1,10 @@
 // Copyright 2017-2023 @polkadot/types-codec authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.24/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyNumber, Inspect, INumber, IU8a, Registry, ToBn, UIntBitLength } from '../types/index.ts';
 
-import { BN, BN_BILLION, BN_HUNDRED, BN_MILLION, BN_QUINTILL, bnToBn, bnToHex, bnToU8a, formatBalance, formatNumber, hexToBn, isBigInt, isBn, isFunction, isHex, isNumber, isObject, isString, isU8a, u8aToBn, u8aToNumber } from 'https://deno.land/x/polkadot@0.2.24/util/mod.ts';
+import { BN, BN_BILLION, BN_HUNDRED, BN_MILLION, BN_QUINTILL, bnToBn, bnToHex, bnToU8a, formatBalance, formatNumber, hexToBn, isBigInt, isBn, isFunction, isHex, isNumber, isObject, isString, isU8a, u8aToBn, u8aToNumber } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 export const DEFAULT_UINT_BITS = 64;
 
@@ -29,7 +29,7 @@ function toPercentage (value: BN, divisor: BN): string {
 }
 
 /** @internal */
-function decodeAbstractInt (value: Exclude<AnyNumber, Uint8Array> | Record<string, string> | ToBn, isNegative: boolean): string | number {
+function decodeAbstractInt (value: Exclude<AnyNumber, Uint8Array> | Record<string, string> | ToBn | null, isNegative: boolean): string | number {
   if (isNumber(value)) {
     if (!Number.isInteger(value) || value > Number.MAX_SAFE_INTEGER || value < Number.MIN_SAFE_INTEGER) {
       throw new Error('Number needs to be an integer <= Number.MAX_SAFE_INTEGER, i.e. 2 ^ 53 - 1');
@@ -63,6 +63,8 @@ function decodeAbstractInt (value: Exclude<AnyNumber, Uint8Array> | Record<strin
     }
 
     return decodeAbstractInt(value[keys[0]], isNegative);
+  } else if (!value) {
+    return 0;
   }
 
   throw new Error(`Unable to create BN from unknown type ${typeof value}`);
@@ -84,7 +86,7 @@ export abstract class AbstractInt extends BN implements INumber {
 
   readonly #bitLength: UIntBitLength;
 
-  constructor (registry: Registry, value: AnyNumber = 0, bitLength: UIntBitLength = DEFAULT_UINT_BITS, isSigned = false) {
+  constructor (registry: Registry, value: AnyNumber | null = 0, bitLength: UIntBitLength = DEFAULT_UINT_BITS, isSigned = false) {
     // Construct via a string/number, which will be passed in the BN constructor.
     // It would be ideal to actually return a BN, but there is an issue:
     // https://github.com/indutny/bn.js/issues/206

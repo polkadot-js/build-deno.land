@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyU8a, Registry } from 'https://deno.land/x/polkadot@0.2.24/types-codec/types/index.ts';
+import type { AnyU8a, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { AccountId, RawAuraPreDigest, RawBabePreDigestCompat } from '../interfaces/index.ts';
 
-import { Bytes, U8aFixed, u32 } from 'https://deno.land/x/polkadot@0.2.24/types-codec/mod.ts';
-import { BN, bnToU8a, isNumber, stringToU8a, u8aToHex, u8aToString } from 'https://deno.land/x/polkadot@0.2.24/util/mod.ts';
+import { Bytes, U8aFixed, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { BN, bnToU8a, isNumber, stringToU8a, u8aToHex, u8aToString } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 export const CID_AURA = stringToU8a('aura');
 export const CID_BABE = stringToU8a('BABE');

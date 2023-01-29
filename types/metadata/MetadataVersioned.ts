@@ -1,12 +1,12 @@
 // Copyright 2017-2023 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyJson } from 'https://deno.land/x/polkadot@0.2.24/types-codec/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.24/util/types.ts';
+import type { AnyJson } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { MetadataAll, MetadataLatest, MetadataV9, MetadataV10, MetadataV11, MetadataV12, MetadataV13, MetadataV14 } from '../interfaces/metadata/index.ts';
 import type { Registry } from '../types/index.ts';
 
-import { Struct } from 'https://deno.land/x/polkadot@0.2.24/types-codec/mod.ts';
+import { Struct } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 
 import { toV10 } from './v9/toV10.ts';
 import { toV11 } from './v10/toV11.ts';
