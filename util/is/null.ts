@@ -10,7 +10,7 @@
  * <BR>
  *
  * ```javascript
- * import { isNull } from 'https://deno.land/x/polkadot@0.2.24/util/mod.ts';
+ * import { isNull } from 'https://deno.land/x/polkadot@0.2.25/util/mod.ts';
  *
  * console.log('isNull', isNull(null)); // => true
  * ```

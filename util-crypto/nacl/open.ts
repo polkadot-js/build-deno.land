@@ -12,7 +12,7 @@ import nacl from 'https://esm.sh/tweetnacl@1.0.3';
  * <BR>
  *
  * ```javascript
- * import { naclOpen } from 'https://deno.land/x/polkadot@0.2.24/util-crypto/mod.ts';
+ * import { naclOpen } from 'https://deno.land/x/polkadot@0.2.25/util-crypto/mod.ts';
  *
  * naclOpen([...], [...], [...]); // => [...]
  * ```

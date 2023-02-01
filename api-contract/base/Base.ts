@@ -1,12 +1,12 @@
 // Copyright 2017-2023 @polkadot/api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot/api/types/index.ts';
-import type { WeightV2 } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
-import type { Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot@0.2.25/api/types/index.ts';
+import type { WeightV2 } from 'https://deno.land/x/polkadot@0.2.25/types/interfaces/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.2.25/types/types/index.ts';
 
-import { ApiBase } from 'https://deno.land/x/polkadot/api/base/index.ts';
-import { isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { ApiBase } from 'https://deno.land/x/polkadot@0.2.25/api/base/index.ts';
+import { isFunction } from 'https://deno.land/x/polkadot@0.2.25/util/mod.ts';
 
 import { Abi } from '../Abi/index.ts';
 

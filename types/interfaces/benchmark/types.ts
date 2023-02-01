@@ -1,8 +1,8 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Bytes, Enum, Struct, Text, Vec, bool, u128, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Bytes, Enum, Struct, Text, Vec, bool, u128, u32 } from 'https://deno.land/x/polkadot@0.2.25/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.2.25/types-codec/types/index.ts';
 
 /** @name BenchmarkBatch */
 export interface BenchmarkBatch extends Struct {
