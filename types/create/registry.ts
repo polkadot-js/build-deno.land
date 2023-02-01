@@ -4,12 +4,12 @@
 import type { AnyString, Codec, CodecClass, IU8a, LookupString } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { CreateOptions, TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 import type { ExtDef } from '../extrinsic/signedExtensions/types.ts';
-import type { ChainProperties, DispatchErrorModule, DispatchErrorModuleU8, DispatchErrorModuleU8a, EventMetadataLatest, Hash, MetadataLatest, SiField, SiLookupTypeId, SiVariant, WeightV2 } from '../interfaces/types.ts';
+import type { ChainProperties, DispatchErrorModule, DispatchErrorModuleU8, DispatchErrorModuleU8a, EventMetadataLatest, Hash, MetadataLatest, SiField, SiLookupTypeId, SiVariant, WeightV1, WeightV2 } from '../interfaces/types.ts';
 import type { CallFunction, CodecHasher, Definitions, DetectCodec, RegisteredTypes, Registry, RegistryError, RegistryTypes } from '../types/index.ts';
 
 import { DoNotConstruct, Json, Raw } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import { constructTypeClass, createClassUnsafe, createTypeUnsafe } from 'https://deno.land/x/polkadot/types-create/mod.ts';
-import { assertReturn, BN_ZERO, formatBalance, isFunction, isNumber, isString, isU8a, lazyMethod, logger, objectSpread, stringCamelCase, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { assertReturn, BN_ZERO, formatBalance, isBn, isFunction, isNumber, isString, isU8a, lazyMethod, logger, objectSpread, stringCamelCase, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { blake2AsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { expandExtensionTypes, fallbackExtensions, findUnknownExtensions } from '../extrinsic/signedExtensions/index.ts';
@@ -542,18 +542,23 @@ export class TypeRegistry implements Registry {
 
     // default to V1 - this includes 1.5 (with single field)
     let weightType = 'WeightV1';
-    const Clazz = this.get<WeightV2>('SpWeightsWeightV2Weight');
+    const WeightV2 = this.get<WeightV2>('SpWeightsWeightV2Weight');
 
     // detection for WeightV2 type
-    if (Clazz) {
-      const weight = new Clazz(this);
+    if (WeightV2) {
+      const weight = new WeightV2(this);
 
       if (weight.refTime && weight.proofSize) {
         weightType = 'SpWeightsWeightV2Weight';
       }
     }
 
-    this.register({ Weight: weightType });
+    if (weightType !== 'WeightV1' || !isBn(this.createType<WeightV1>('Weight'))) {
+      // where we have an already-supplied override, we don't clobber
+      // it with our detected value (This protects against pre-defines
+      // where Weight may be aliassed to WeightV0, e.g. in early Kusama chains)
+      this.register({ Weight: weightType });
+    }
   };
 
   // sets the metadata
