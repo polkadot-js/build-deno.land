@@ -1,8 +1,8 @@
 // Copyright 2017-2023 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyJson, AnyTuple, AnyU8a, ArgsDef, IMethod, Inspect } from 'https://deno.land/x/polkadot@0.2.25/types-codec/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.25/util/types.ts';
+import type { AnyJson, AnyTuple, AnyU8a, ArgsDef, IMethod, Inspect } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { EcdsaSignature, Ed25519Signature, ExtrinsicUnknown, ExtrinsicV4, Sr25519Signature } from '../interfaces/extrinsics/index.ts';
 import type { FunctionMetadataLatest } from '../interfaces/metadata/index.ts';
 import type { Address, Call, CodecHash } from '../interfaces/runtime/index.ts';
@@ -10,8 +10,8 @@ import type { CallBase, ExtrinsicPayloadValue, ICompact, IExtrinsic, IKeyringPai
 import type { GenericExtrinsicEra } from './ExtrinsicEra.ts';
 import type { ExtrinsicValueV4 } from './v4/Extrinsic.ts';
 
-import { AbstractBase } from 'https://deno.land/x/polkadot@0.2.25/types-codec/mod.ts';
-import { compactAddLength, compactFromU8a, compactToU8a, isHex, isU8a, objectProperty, objectSpread, u8aConcat, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.25/util/mod.ts';
+import { AbstractBase } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { compactAddLength, compactFromU8a, compactToU8a, isHex, isU8a, objectProperty, objectSpread, u8aConcat, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { EXTRINSIC_VERSION as LATEST_EXTRINSIC_VERSION } from './v4/Extrinsic.ts';
 import { BIT_SIGNED, BIT_UNSIGNED, DEFAULT_VERSION, UNMASK_VERSION } from './constants.ts';

@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { lazyMethod, lazyMethods } from 'https://deno.land/x/polkadot@0.2.25/util/mod.ts';
+import { lazyMethod, lazyMethods } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 type LazySection <T> = Record<string, T>;
 

@@ -1,16 +1,16 @@
 // Copyright 2017-2023 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyString, Codec, CodecClass, IU8a, LookupString } from 'https://deno.land/x/polkadot@0.2.25/types-codec/types/index.ts';
-import type { CreateOptions, TypeDef } from 'https://deno.land/x/polkadot@0.2.25/types-create/types/index.ts';
+import type { AnyString, Codec, CodecClass, IU8a, LookupString } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { CreateOptions, TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 import type { ExtDef } from '../extrinsic/signedExtensions/types.ts';
 import type { ChainProperties, DispatchErrorModule, DispatchErrorModuleU8, DispatchErrorModuleU8a, EventMetadataLatest, Hash, MetadataLatest, SiField, SiLookupTypeId, SiVariant, WeightV1, WeightV2 } from '../interfaces/types.ts';
 import type { CallFunction, CodecHasher, Definitions, DetectCodec, RegisteredTypes, Registry, RegistryError, RegistryTypes } from '../types/index.ts';
 
-import { DoNotConstruct, Json, Raw } from 'https://deno.land/x/polkadot@0.2.25/types-codec/mod.ts';
-import { constructTypeClass, createClassUnsafe, createTypeUnsafe } from 'https://deno.land/x/polkadot@0.2.25/types-create/mod.ts';
-import { assertReturn, BN_ZERO, formatBalance, isBn, isFunction, isNumber, isString, isU8a, lazyMethod, logger, objectSpread, stringCamelCase, stringify } from 'https://deno.land/x/polkadot@0.2.25/util/mod.ts';
-import { blake2AsU8a } from 'https://deno.land/x/polkadot@0.2.25/util-crypto/mod.ts';
+import { DoNotConstruct, Json, Raw } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { constructTypeClass, createClassUnsafe, createTypeUnsafe } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { assertReturn, BN_ZERO, formatBalance, isBn, isFunction, isNumber, isString, isU8a, lazyMethod, logger, objectSpread, stringCamelCase, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { blake2AsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { expandExtensionTypes, fallbackExtensions, findUnknownExtensions } from '../extrinsic/signedExtensions/index.ts';
 import { GenericEventData } from '../generic/Event.ts';
@@ -540,24 +540,28 @@ export class TypeRegistry implements Registry {
     // attach the lookup before we register any types
     this.setLookup(lookup);
 
-    // default to V1 - this includes 1.5 (with single field)
-    let weightType = 'WeightV1';
-    const WeightV2 = this.get<WeightV2>('SpWeightsWeightV2Weight');
+    // we detect based on runtime configuration
+    let Weight: string | null = null;
 
-    // detection for WeightV2 type
-    if (WeightV2) {
-      const weight = new WeightV2(this);
+    if (this.hasType('SpWeightsWeightV2Weight')) {
+      // detection for WeightV2 type based on latest naming
+      const weightv2 = this.createType<WeightV2>('SpWeightsWeightV2Weight');
 
-      if (weight.refTime && weight.proofSize) {
-        weightType = 'SpWeightsWeightV2Weight';
-      }
-    }
-
-    if (weightType !== 'WeightV1' || !isBn(this.createType<WeightV1>('Weight'))) {
-      // where we have an already-supplied override, we don't clobber
+      Weight = weightv2.refTime && weightv2.proofSize
+        // with both refTime & proofSize we use as-is (WeightV2)
+        ? 'SpWeightsWeightV2Weight'
+        // fallback to WeightV1 (WeightV1.5 is a struct, single field)
+        : 'WeightV1';
+    } else if (!isBn(this.createType<WeightV1>('Weight'))) {
+      // where we have an already-supplied BN override, we don't clobber
       // it with our detected value (This protects against pre-defines
       // where Weight may be aliassed to WeightV0, e.g. in early Kusama chains)
-      this.register({ Weight: weightType });
+      Weight = 'WeightV1';
+    }
+
+    if (Weight) {
+      // we have detected a version, adjust the definition
+      this.register({ Weight });
     }
   };
 
