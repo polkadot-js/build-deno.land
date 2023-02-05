@@ -275,7 +275,7 @@ declare module 'https://deno.land/x/polkadot/rpc-core/types/jsonrpc.ts' {
       /**
        * Returns the number of transactions sent from given address at given time (block number).
        **/
-      getTransactionCount: AugmentedRpc<(hash: H256 | string | Uint8Array, number?: BlockNumber | AnyNumber | Uint8Array) => Observable<U256>>;
+      getTransactionCount: AugmentedRpc<(address: H160 | string | Uint8Array, number?: BlockNumber | AnyNumber | Uint8Array) => Observable<U256>>;
       /**
        * Returns transaction receipt by transaction hash.
        **/
