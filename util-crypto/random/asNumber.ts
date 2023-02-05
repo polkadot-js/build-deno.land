@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { BN, hexToBn } from 'https://deno.land/x/polkadot@0.2.25/util/mod.ts';
+import { BN, hexToBn } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
 
 import { randomAsHex } from './asU8a.ts';
 
@@ -16,7 +16,7 @@ const BN_53 = new BN(0b11111111111111111111111111111111111111111111111111111);
  * <BR>
  *
  * ```javascript
- * import { randomAsNumber } from 'https://deno.land/x/polkadot@0.2.25/util-crypto/mod.ts';
+ * import { randomAsNumber } from 'https://deno.land/x/polkadot@0.2.26/util-crypto/mod.ts';
  *
  * randomAsNumber(); // => <random number>
  * ```

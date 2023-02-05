@@ -1,8 +1,8 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { arrayRange } from 'https://deno.land/x/polkadot@0.2.25/util/mod.ts';
-import { perf, perfCmp } from 'https://deno.land/x/polkadot@0.2.25/util/test/index.ts';
+import { arrayRange } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { perf, perfCmp } from 'https://deno.land/x/polkadot@0.2.26/util/test/index.ts';
 
 import { randomAsU8a } from '../index.ts';
 

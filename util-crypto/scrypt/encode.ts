@@ -1,13 +1,13 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.25/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.26/util/types.ts';
 import type { Params } from './types.ts';
 
 import { scrypt as scryptJs } from 'https://esm.sh/@noble/hashes@1.1.5/scrypt.js';
 
-import { hasBigInt, objectSpread, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.25/util/mod.ts';
-import { isReady, scrypt } from 'https://deno.land/x/polkadot@0.2.25/wasm-crypto/mod.ts';
+import { hasBigInt, objectSpread, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { isReady, scrypt } from 'https://deno.land/x/polkadot@0.2.26/wasm-crypto/mod.ts';
 
 import { randomAsU8a } from '../random/asU8a.ts';
 import { DEFAULT_PARAMS } from './defaults.ts';

@@ -4,7 +4,7 @@
 // execute with
 //   deno run --allow-read --allow-run --allow-write --allow-env ci-release.ts
 
-import { stringCamelCase } from 'https://deno.land/x/polkadot@0.2.25/util/mod.ts';
+import { stringCamelCase } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
 
 // tighter specification for git arguments
 type GitArgs =

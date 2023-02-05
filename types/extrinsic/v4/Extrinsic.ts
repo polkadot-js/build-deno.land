@@ -1,14 +1,14 @@
 // Copyright 2017-2023 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.26/util/types.ts';
 import type { ExtrinsicSignatureV4 } from '../../interfaces/extrinsics/index.ts';
 import type { Address, Call } from '../../interfaces/runtime/index.ts';
 import type { ExtrinsicPayloadValue, IExtrinsicImpl, IKeyringPair, Registry, SignatureOptions } from '../../types/index.ts';
 import type { ExtrinsicOptions } from '../types.ts';
 
-import { Struct } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import { isU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { Struct } from 'https://deno.land/x/polkadot@0.2.26/types-codec/mod.ts';
+import { isU8a } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
 
 export const EXTRINSIC_VERSION = 4;
 

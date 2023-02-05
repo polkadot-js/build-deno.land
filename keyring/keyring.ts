@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { EncryptedJsonEncoding, Keypair, KeypairType } from 'https://deno.land/x/polkadot@0.2.25/util-crypto/types.ts';
+import type { EncryptedJsonEncoding, Keypair, KeypairType } from 'https://deno.land/x/polkadot@0.2.26/util-crypto/types.ts';
 import type { KeyringInstance, KeyringOptions, KeyringPair, KeyringPair$Json, KeyringPair$Meta } from './types.ts';
 
-import { hexToU8a, isHex, stringToU8a } from 'https://deno.land/x/polkadot@0.2.25/util/mod.ts';
-import { base64Decode, decodeAddress, ed25519PairFromSeed as ed25519FromSeed, encodeAddress, ethereumEncode, hdEthereum, keyExtractSuri, keyFromPath, mnemonicToLegacySeed, mnemonicToMiniSecret, secp256k1PairFromSeed as secp256k1FromSeed, sr25519PairFromSeed as sr25519FromSeed } from 'https://deno.land/x/polkadot@0.2.25/util-crypto/mod.ts';
+import { hexToU8a, isHex, stringToU8a } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { base64Decode, decodeAddress, ed25519PairFromSeed as ed25519FromSeed, encodeAddress, ethereumEncode, hdEthereum, keyExtractSuri, keyFromPath, mnemonicToLegacySeed, mnemonicToMiniSecret, secp256k1PairFromSeed as secp256k1FromSeed, sr25519PairFromSeed as sr25519FromSeed } from 'https://deno.land/x/polkadot@0.2.26/util-crypto/mod.ts';
 
 import { DEV_PHRASE } from './defaults.ts';
 import { createPair } from './pair/index.ts';

@@ -3,7 +3,7 @@
 
 import ed2curve from 'https://esm.sh/ed2curve@0.3.0';
 
-import { assertReturn } from 'https://deno.land/x/polkadot@0.2.25/util/mod.ts';
+import { assertReturn } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
 
 export function convertSecretKeyToCurve25519 (secretKey: Uint8Array): Uint8Array {
   return ed2curve.convertSecretKey(secretKey);

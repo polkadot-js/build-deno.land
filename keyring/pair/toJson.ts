@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { KeypairType } from 'https://deno.land/x/polkadot@0.2.25/util-crypto/types.ts';
+import type { KeypairType } from 'https://deno.land/x/polkadot@0.2.26/util-crypto/types.ts';
 import type { KeyringPair$Json, KeyringPair$Meta } from '../types.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.25/util/mod.ts';
-import { jsonEncryptFormat } from 'https://deno.land/x/polkadot@0.2.25/util-crypto/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { jsonEncryptFormat } from 'https://deno.land/x/polkadot@0.2.26/util-crypto/mod.ts';
 
 interface PairStateJson {
   address: string;
