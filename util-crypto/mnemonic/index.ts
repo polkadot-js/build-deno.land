@@ -1,5 +1,3 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 /**
  * @summary Create valid mnemonic strings, validate them using BIP39, and convert them to valid seeds

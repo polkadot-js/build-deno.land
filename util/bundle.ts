@@ -1,5 +1,3 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 /**
  * @summary Utility methods for this package are split into groups

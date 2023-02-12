@@ -1,5 +1,3 @@
-// Copyright 2017-2023 @polkadot/networks authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { KnownSubstrate, Network, SubstrateNetwork } from './types.ts';
 
@@ -7,7 +5,6 @@ import knownSubstrate from 'https://esm.sh/@substrate/ss58-registry@1.38.0';
 
 import { knownGenesis, knownIcon, knownLedger, knownTestnet } from './defaults/index.ts';
 
-// These are known prefixes that are not sorted
 const UNSORTED = [0, 2, 42];
 const TESTNETS = ['testnet'];
 
@@ -59,14 +56,8 @@ function sortNetworks (a: Network, b: Network): number {
       : 1;
 }
 
-// This is all the Substrate networks with our additional information
 export const allNetworks = knownSubstrate.map(toExpanded);
 
-// The list of available/claimed prefixes
-//   - no testnets
-//   - we only include those where we have a standardAccount
-//   - sort by name, however we keep 0, 2, 42 first in the list
 export const availableNetworks = allNetworks.filter(filterAvailable).sort(sortNetworks);
 
-// A filtered list of those chains we have details about (genesisHashes)
 export const selectableNetworks = availableNetworks.filter(filterSelectable);

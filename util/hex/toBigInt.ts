@@ -1,9 +1,7 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { ToBnOptions } from '../types.ts';
 
-import { BigInt } from 'https://deno.land/x/polkadot@0.2.26/x-bigint/mod.ts';
+import { BigInt } from 'https://deno.land/x/polkadot/x-bigint/mod.ts';
 
 import { u8aToBigInt } from '../u8a/toBigInt.ts';
 import { hexToU8a } from './toU8a.ts';

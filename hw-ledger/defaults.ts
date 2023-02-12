@@ -1,8 +1,4 @@
-// Copyright 2017-2023 @polkadot/hw-ledger authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-// These match up with the keys of the knownLedger object in the @polkadot/networks/defaults/ledger.ts
-// and maps to the known name in the @zondax/ledger-substrate/supported_apps package
 export const ledgerApps: Record<string, string> = {
   acala: 'Acala',
   ajuna: 'Ajuna',
@@ -26,6 +22,7 @@ export const ledgerApps: Record<string, string> = {
   origintrail: 'OriginTrail',
   parallel: 'Parallel',
   phala: 'Phala',
+  picasso: 'Picasso',
   polkadex: 'Polkadex',
   polkadot: 'Polkadot',
   polymesh: 'Polymesh',

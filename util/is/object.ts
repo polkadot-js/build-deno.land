@@ -1,5 +1,3 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 interface ObjectIndexed {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -15,7 +13,7 @@ interface ObjectIndexed {
  * <BR>
  *
  * ```javascript
- * import { isObject } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+ * import { isObject } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * isObject({}); // => true
  * isObject('something'); // => false

@@ -1,12 +1,6 @@
-// Copyright 2017-2023 @polkadot/networks authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { KnownLedger } from '../types.ts';
 
-// These match up with the keys of the ledgerApps object in the @polkadot/hw-ledger/defaults.ts
-// and maps to the known slip44 (minus the `0x8` hard derivation flag)
-//
-// NOTE: Any network here needs to have a genesisHash attached in the ./genesis.ts config
 export const knownLedger: KnownLedger = {
   acala: 0x00000313,
   ajuna: 0x00000162,
@@ -30,6 +24,7 @@ export const knownLedger: KnownLedger = {
   origintrail: 0x00000162,
   parallel: 0x00000162,
   phala: 0x00000162,
+  picasso: 0x000001b2,
   polkadex: 0x0000031f,
   polkadot: 0x00000162,
   polymesh: 0x00000253,

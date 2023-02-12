@@ -1,12 +1,8 @@
-// Copyright 2017-2023 @polkadot/keyring authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta } from '../types.ts';
 
-// empty publicKey
 const publicKey = new Uint8Array(32);
 
-// pre-computed via encodeAddress(publicKey)
 const address = '5C4hrfjw9DjXZTzV3MwzrrAr9P1MJhSrvWGWqi1eSuyUpnhM';
 
 const meta = {

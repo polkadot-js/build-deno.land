@@ -1,5 +1,3 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import { REGEX_HEX_NOPREFIX, REGEX_HEX_PREFIXED } from '../is/hex.ts';
 
@@ -12,7 +10,7 @@ import { REGEX_HEX_NOPREFIX, REGEX_HEX_PREFIXED } from '../is/hex.ts';
  * <BR>
  *
  * ```javascript
- * import { hexStripPrefix } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+ * import { hexStripPrefix } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * console.log('stripped', hexStripPrefix('0x1234')); // => 1234
  * ```

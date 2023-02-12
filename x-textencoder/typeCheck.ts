@@ -1,5 +1,3 @@
-// Copyright 2017-2023 @polkadot/x-textencoder authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import { TextEncoder as BrowserTE } from './browser.ts';
 import { TextEncoder as NodeTE } from './node.ts';

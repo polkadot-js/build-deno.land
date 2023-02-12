@@ -1,13 +1,9 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import { xglobal } from 'https://deno.land/x/polkadot@0.2.26/x-global/mod.ts';
+import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
 
 import { hasBuffer } from '../has.ts';
 import { isFunction } from './function.ts';
 
-// We define these interfaces to not have the Buffer type
-// (doing this removes the need for node types being available)
 interface BufTyp { isBuffer: (value: unknown) => boolean }
 interface BufObj { readDoubleLE: (...args: unknown[]) => unknown }
 
@@ -20,7 +16,7 @@ interface BufObj { readDoubleLE: (...args: unknown[]) => unknown }
  * <BR>
  *
  * ```javascript
- * import { isBuffer } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+ * import { isBuffer } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * console.log('isBuffer', isBuffer(Buffer.from([]))); // => true
  * ```

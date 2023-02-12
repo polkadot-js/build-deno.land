@@ -1,5 +1,3 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 export { sr25519Agreement } from './agreement.ts';
 export { sr25519DeriveHard } from './deriveHard.ts';

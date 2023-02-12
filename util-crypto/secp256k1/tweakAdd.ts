@@ -1,13 +1,9 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import { _0n, BN, bnToU8a, hasBigInt, isU8a, nToU8a, u8aToBigInt } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
-import { BigInt } from 'https://deno.land/x/polkadot@0.2.26/x-bigint/mod.ts';
+import { _0n, BN, bnToU8a, hasBigInt, isU8a, nToU8a, u8aToBigInt } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { BigInt } from 'https://deno.land/x/polkadot/x-bigint/mod.ts';
 
 import { BN_BE_256_OPTS, BN_BE_OPTS } from '../bn.ts';
 
-// pre-defined curve param as lifted form elliptic
-// https://github.com/indutny/elliptic/blob/e71b2d9359c5fe9437fbf46f1f05096de447de57/lib/elliptic/curves.js#L182
 const N = 'ffffffff ffffffff ffffffff fffffffe baaedce6 af48a03b bfd25e8c d0364141'.replace(/ /g, '');
 const N_BI = BigInt(`0x${N}`);
 const N_BN = new BN(N, 'hex');

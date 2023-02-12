@@ -1,5 +1,3 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import { base58 } from 'https://esm.sh/@scure/base@1.1.1';
 

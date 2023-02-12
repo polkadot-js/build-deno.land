@@ -1,17 +1,10 @@
-// Copyright 2017-2023 @polkadot/x-fetch authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import { extractGlobal } from 'https://deno.land/x/polkadot@0.2.26/x-global/mod.ts';
+import { extractGlobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
 
 export { packageInfo } from './packageInfo.ts';
 
-// This is an ESM module, use the async import(...) syntax to pull it
-// in. Logically we would like it in nodeFetch(...) itself, however
-// while it is all-ok on Node itself, it does create issues in Jest,
-// possibly due to the Jest 28 need for --experimental-vm-modules
 const importFetch = import('https://esm.sh/node-fetch@3.3.0').catch(() => null);
 
-// keep track of the resolved import value
 let modFn: typeof fetch | null = null;
 
 async function nodeFetch (...args: Parameters<typeof fetch>): Promise<Response> {

@@ -1,5 +1,3 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import { u8aEq } from '../u8a/eq.ts';
 import { isU8a } from './u8a.ts';

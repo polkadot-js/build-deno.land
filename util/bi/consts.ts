@@ -1,7 +1,5 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import { BigInt } from 'https://deno.land/x/polkadot@0.2.26/x-bigint/mod.ts';
+import { BigInt } from 'https://deno.land/x/polkadot/x-bigint/mod.ts';
 
 /**
  * @name _0n

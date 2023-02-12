@@ -1,8 +1,6 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import type { BN } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.26/util/types.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { Prefix } from './types.ts';
 
 import { encodeAddress } from './encode.ts';

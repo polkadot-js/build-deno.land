@@ -1,5 +1,3 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { U8aLike } from '../types.ts';
 
@@ -13,7 +11,7 @@ import { u8aToBn, u8aToU8a } from '../u8a/index.ts';
  * <BR>
  *
  * ```javascript
- * import { compactFromU8a } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+ * import { compactFromU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * const [offset, length] = compactFromU8a(new Uint8Array([254, 255, 3, 0]));
  *

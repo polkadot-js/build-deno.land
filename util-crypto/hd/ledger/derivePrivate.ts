@@ -1,12 +1,9 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import { BN_EIGHT, bnToU8a, u8aConcat, u8aToBn } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { BN_EIGHT, bnToU8a, u8aConcat, u8aToBn } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { BN_LE_32_OPTS, BN_LE_512_OPTS, BN_LE_OPTS } from '../../bn.ts';
 import { hmacShaAsU8a } from '../../hmac/index.ts';
 
-// performs hard-only derivation on the xprv
 export function ledgerDerivePrivate (xprv: Uint8Array, index: number): Uint8Array {
   const kl = xprv.subarray(0, 32);
   const kr = xprv.subarray(32, 64);

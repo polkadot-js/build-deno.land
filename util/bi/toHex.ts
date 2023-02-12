@@ -1,5 +1,3 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '../bn/bn.ts';
 import type { HexString, NumberOptions, ToBigInt, ToBn } from '../types.ts';

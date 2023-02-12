@@ -1,5 +1,3 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '../bn/bn.ts';
 import type { SiDef, ToBn } from '../types.ts';
@@ -7,6 +5,7 @@ import type { SiDef, ToBn } from '../types.ts';
 import { bnToBn } from '../bn/toBn.ts';
 import { isBoolean } from '../is/boolean.ts';
 import { formatDecimal } from './formatDecimal.ts';
+import { getSeparator } from './getSeparator.ts';
 import { calcSi, findSi, SI, SI_MID } from './si.ts';
 
 interface Defaults {
@@ -48,6 +47,10 @@ interface Options {
    * @description Returns all trailing zeros, otherwise removes (default = true)
    */
   withZero?: boolean;
+  /**
+   * @description The locale to use
+   */
+  locale?: string;
 }
 
 interface BalanceFormatter {
@@ -65,8 +68,7 @@ const DEFAULT_UNIT = SI[SI_MID].text;
 let defaultDecimals = DEFAULT_DECIMALS;
 let defaultUnit = DEFAULT_UNIT;
 
-// Formats a string/number with <prefix>.<postfix><type> notation
-function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | bigint | ExtToBn, { decimals = defaultDecimals, forceUnit, withAll = false, withSi = true, withSiFull = false, withUnit = true, withZero = true }: Options = {}): string {
+function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | bigint | ExtToBn, { decimals = defaultDecimals, forceUnit, withAll = false, withSi = true, withSiFull = false, withUnit = true, withZero = true, locale = 'en' }: Options = {}): string {
   // we only work with string inputs here - convert anything
   // into the string-only value
   let text = bnToBn(input).toString();
@@ -127,7 +129,9 @@ function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | b
       : ` ${withSiFull ? `${si.text}${withUnit ? ' ' : ''}` : si.value}${withUnit ? unit : ''}`
     : '';
 
-  return `${sign}${formatDecimal(pre)}${post && `.${post}`}${units}`;
+  const { decimal, thousand } = getSeparator(locale);
+
+  return `${sign}${formatDecimal(pre, thousand)}${post && `${decimal}${post}`}${units}`;
 }
 
 export const formatBalance = _formatBalance as BalanceFormatter;
@@ -144,7 +148,6 @@ formatBalance.getDefaults = (): Defaults => {
   };
 };
 
-// get allowable options to display in a dropdown
 formatBalance.getOptions = (decimals: number = defaultDecimals): SiDef[] => {
   return SI.filter(({ power }): boolean =>
     power < 0
@@ -153,7 +156,6 @@ formatBalance.getOptions = (decimals: number = defaultDecimals): SiDef[] => {
   );
 };
 
-// Sets the default decimals to use for formatting (ui-wide)
 formatBalance.setDefaults = ({ decimals, unit }: SetDefaults): void => {
   defaultDecimals = decimals === undefined
     ? defaultDecimals

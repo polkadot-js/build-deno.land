@@ -1,5 +1,3 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { ToBnOptions } from '../types.ts';
 
@@ -19,7 +17,7 @@ import { hexStripPrefix } from './stripPrefix.ts';
  * <BR>
  *
  * ```javascript
- * import { hexToBn } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+ * import { hexToBn } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * hexToBn('0x123480001f'); // => BN(0x123480001f)
  * ```

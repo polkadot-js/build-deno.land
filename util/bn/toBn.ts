@@ -1,5 +1,3 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { HexString, ToBigInt, ToBn } from '../types.ts';
 
@@ -20,7 +18,7 @@ import { BN } from './bn.ts';
  *
  * ```javascript
  * import BN from 'https://esm.sh/bn.js@5.2.1';
- * import { bnToBn } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+ * import { bnToBn } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * bnToBn(0x1234); // => BN(0x1234)
  * bnToBn(new BN(0x1234)); // => BN(0x1234)

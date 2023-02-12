@@ -1,5 +1,3 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '../types.ts';
 
@@ -32,7 +30,7 @@ for (let i = 0; i < 256; i++) {
  * <BR>
  *
  * ```javascript
- * import { hexToU8a } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+ * import { hexToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * hexToU8a('0x80001f'); // Uint8Array([0x80, 0x00, 0x1f])
  * hexToU8a('0x80001f', 32); // Uint8Array([0x00, 0x80, 0x00, 0x1f])
