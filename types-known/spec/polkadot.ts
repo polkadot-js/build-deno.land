@@ -1,11 +1,9 @@
-// Copyright 2017-2023 @polkadot/types-known authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 /* eslint-disable sort-keys */
 
-import type { OverrideVersionedType } from 'https://deno.land/x/polkadot@0.2.26/types/types/index.ts';
+import type { OverrideVersionedType } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const sharedTypes = {
   CompactAssignments: 'CompactAssignmentsWith16',
@@ -36,7 +34,6 @@ const addrAccountIdTypes = {
   ValidatorPrefs: 'ValidatorPrefsWithCommission'
 };
 
-// these are override types for Polkadot
 const versioned: OverrideVersionedType[] = [
   {
     minmax: [0, 12],

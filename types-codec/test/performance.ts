@@ -1,11 +1,7 @@
-// Copyright 2017-2023 @polkadot/types-codec authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-// Shamelessly copied from @polkadot/util/test
 
-import { formatDecimal, formatNumber } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { formatDecimal, formatNumber } from 'https://deno.land/x/polkadot/util/mod.ts';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ExecFn = (...params: any[]) => unknown;
 
 const NUM_PAD = 16;

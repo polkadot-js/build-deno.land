@@ -1,5 +1,3 @@
-// Copyright 2017-2023 @polkadot/types-codec authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 export { f32, f32 as F32 } from './F32.ts';
 export { f64, f64 as F64 } from './F64.ts';

@@ -1,15 +1,13 @@
-// Copyright 2017-2023 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import type { Option, Text, Type, Vec } from 'https://deno.land/x/polkadot@0.2.26/types-codec/mod.ts';
-import type { AnyString, LookupString, Registry } from 'https://deno.land/x/polkadot@0.2.26/types-codec/types/index.ts';
-import type { ILookup, TypeDef } from 'https://deno.land/x/polkadot@0.2.26/types-create/types/index.ts';
+import type { Option, Text, Type, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { AnyString, LookupString, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { ILookup, TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 import type { PortableType } from '../../interfaces/metadata/index.ts';
 import type { SiField, SiLookupTypeId, SiType, SiTypeDefArray, SiTypeDefBitSequence, SiTypeDefCompact, SiTypeDefComposite, SiTypeDefSequence, SiTypeDefTuple, SiTypeDefVariant, SiTypeParameter, SiVariant } from '../../interfaces/scaleInfo/index.ts';
 
-import { sanitize, Struct, u32 } from 'https://deno.land/x/polkadot@0.2.26/types-codec/mod.ts';
-import { getTypeDef, TypeDefInfo, withTypeString } from 'https://deno.land/x/polkadot@0.2.26/types-create/mod.ts';
-import { assertUnreachable, isNumber, isString, logger, objectSpread, stringCamelCase, stringify, stringPascalCase } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { sanitize, Struct, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { getTypeDef, TypeDefInfo, withTypeString } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { assertUnreachable, isNumber, isString, logger, objectSpread, stringCamelCase, stringify, stringPascalCase } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const l = logger('PortableRegistry');
 
@@ -31,16 +29,13 @@ interface TypeInfo {
   types: Record<number, PortableType>;
 }
 
-// Just a placeholder for a type.unrwapOr()
 const TYPE_UNWRAP = { toNumber: () => -1 };
 
-// Alias the primitive enum with our known values
 const PRIMITIVE_ALIAS: Record<string, string> = {
   Char: 'u32', // Rust char is 4-bytes
   Str: 'Text'
 };
 
-// These are types where we have a specific decoding/encoding override + helpers
 const PATHS_ALIAS = splitNamespace([
   // full matching on exact names...
   // these are well-known types with additional encoding
@@ -66,25 +61,24 @@ const PATHS_ALIAS = splitNamespace([
   // shorten some well-known types
   'primitive_types::*',
   'sp_arithmetic::per_things::*',
+  // runtime
+  '*_runtime::RuntimeCall',
+  '*_runtime::RuntimeEvent',
   // ink!
   'ink_env::types::*',
   'ink_primitives::types::*'
 ]);
 
-// Mappings for types that should be converted to set via BitVec
 const PATHS_SET = splitNamespace([
   'pallet_identity::types::BitFlags'
 ]);
 
-// These are the set namespaces for BitVec definitions (the last 2 appear in types as well)
 const BITVEC_NS_LSB = ['bitvec::order::Lsb0', 'BitOrderLsb0'];
 const BITVEC_NS_MSB = ['bitvec::order::Msb0', 'BitOrderMsb0'];
 const BITVEC_NS = [...BITVEC_NS_LSB, ...BITVEC_NS_MSB];
 
-// These we never use these as top-level names, they are wrappers
 const WRAPPERS = ['BoundedBTreeMap', 'BoundedBTreeSet', 'BoundedVec', 'Box', 'BTreeMap', 'BTreeSet', 'Cow', 'Option', 'Range', 'RangeInclusive', 'Result', 'WeakBoundedVec', 'WrapperKeepOpaque', 'WrapperOpaque'];
 
-// These are reserved and/or conflicts with built-in Codec or JS definitions
 const RESERVED = [
   // JS reserved words
   'entries', 'keys', 'new', 'size',
@@ -92,7 +86,6 @@ const RESERVED = [
   'hash', 'registry'
 ];
 
-// Remove these from all paths at index 1
 const PATH_RM_INDEX_1 = ['generic', 'misc', 'pallet', 'traits', 'types'];
 
 /** @internal Converts a Text[] into string[] (used as part of definitions) */

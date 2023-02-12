@@ -1,9 +1,7 @@
-// Copyright 2017-2023 @polkadot/types-codec authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { AnyU8a, Inspect, Registry } from '../types/index.ts';
 
-import { compactFromU8aLim, compactToU8a, isString, u8aConcatStrict, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { compactFromU8aLim, compactToU8a, isString, u8aConcatStrict, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Raw } from '../native/Raw.ts';
 

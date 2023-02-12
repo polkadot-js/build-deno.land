@@ -1,8 +1,6 @@
-// Copyright 2017-2023 @polkadot/api-derive authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { BlockNumber } from 'https://deno.land/x/polkadot@0.2.26/types/interfaces/index.ts';
+import type { BlockNumber } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { DeriveApi } from '../types.ts';
 
 import { combineLatest, map } from 'https://esm.sh/rxjs@7.8.0';

@@ -1,5 +1,3 @@
-// Copyright 2017-2023 @polkadot/types-codec authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 export { BitVec } from './BitVec.ts';
 export { BTreeMap } from './BTreeMap.ts';

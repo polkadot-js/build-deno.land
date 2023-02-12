@@ -1,9 +1,7 @@
-// Copyright 2017-2023 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import type { InterfaceTypes } from 'https://deno.land/x/polkadot@0.2.26/types/types/index.ts';
-import type { bool, BTreeMap, BTreeSet, Bytes, CodecSet, Compact, Enum, HashMap, Linkage, Null, Option, OptionBool, Range, RangeInclusive, Result, Struct, u8, U8aFixed, Vec, VecFixed } from 'https://deno.land/x/polkadot@0.2.26/types-codec/mod.ts';
-import type { Codec, ICompact, IEnum, IMap, IMethod, INumber, IOption, IResult, ISet, IStruct, ITuple, IU8a, IVec } from 'https://deno.land/x/polkadot@0.2.26/types-codec/types/index.ts';
+import type { InterfaceTypes } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { bool, BTreeMap, BTreeSet, Bytes, CodecSet, Compact, Enum, HashMap, Linkage, Null, Option, OptionBool, Range, RangeInclusive, Result, Struct, u8, U8aFixed, Vec, VecFixed } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Codec, ICompact, IEnum, IMap, IMethod, INumber, IOption, IResult, ISet, IStruct, ITuple, IU8a, IVec } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 
 export type DetectCodec<T extends Codec, K extends string> =
   // This is weird - it looks the wrong way around (i.e. T check should be done first), however
@@ -19,7 +17,6 @@ export type __Codec<V extends Codec[]> =
     ? V[0]
     : Codec;
 
-// trim leading and trailing spaces and unused portions, e.g `...;<length>]`
 export type __Sanitize<K extends string> =
   K extends ` ${infer X}` | `${infer X} ` | ` ${infer X} `
     ? __Sanitize<X>
@@ -44,8 +41,6 @@ export type __MapWrapOne<C extends Codec> = {
   '[': C extends u8 ? U8aFixed : VecFixed<C>;
 };
 
-// FIXME We don't cater for Int< & UInt< here. These could be problematic, since it has
-// a variable number of inner arguments, better would be to just strip them inside the sanitize
 export type __MapWrapTwo<K extends Codec, V extends Codec> = {
   'BTreeMap<': BTreeMap<K, V>;
   'HashMap<': HashMap<K, V>;
@@ -106,7 +101,6 @@ export type __CombineInner<V extends __Value[], I extends string, X extends __Va
     ? [...V, X]
     : [I, ...V, X];
 
-// FIXME At this point enum/set/struct are empty, no field indicators, just type indicators
 export type __TokenizeStruct<T extends [__Value[], string], V extends __Value[], I extends string, R extends string> =
   __Tokenize<T[1], __CombineInner<V, I, R extends `"_set"${string}`
     ? { _set: true }
@@ -118,8 +112,6 @@ export type __TokenizeStruct<T extends [__Value[], string], V extends __Value[],
 export type __TokenizeTuple<T extends [__Value[], string], V extends __Value[], I extends string> =
   __Tokenize<T[1], __CombineInner<V, I, T[0]>>;
 
-// NOTE For recursion limits, it is more optimal to use __Sanitize with conjunction with __Tokenize
-// below, even while we do more matching (Number of characters iterated through is the most problematic)
 export type __Tokenize<K extends string, V extends __Value[] = [], I extends string = ''> =
   K extends '' | '>' | ')' | '}'
     ? [__Combine<V, I>, '']

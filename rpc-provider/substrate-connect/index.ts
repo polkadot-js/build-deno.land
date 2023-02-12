@@ -1,21 +1,16 @@
-// Copyright 2017-2023 @polkadot/rpc-provider authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type ScType from 'https://esm.sh/@substrate/connect@0.7.19';
 import type { JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, ProviderInterfaceEmitCb, ProviderInterfaceEmitted } from '../types.ts';
 
 import EventEmitter from 'https://esm.sh/eventemitter3@5.0.0';
 
-import { isError, isFunction, isObject, logger, objectSpread } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { isError, isFunction, isObject, logger, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { RpcCoder } from '../coder/index.ts';
 import { healthChecker } from './Health.ts';
 
 type ResponseCallback = (response: string | Error) => void;
 
-// We define the interface with items we use - this means that we don't really
-// need to be passed a full `import * as Sc from 'https://esm.sh/@ubstrate/connect'`, but can
-// also make do with a { WellKnownChain, createScClient } interface
 interface SubstrateConnect {
   WellKnownChain: typeof ScType['WellKnownChain'];
   createScClient: typeof ScType['createScClient'];
@@ -23,11 +18,6 @@ interface SubstrateConnect {
 
 const l = logger('api-substrate-connect');
 
-// These methods have been taken from:
-// https://github.com/paritytech/smoldot/blob/17425040ddda47d539556eeaf62b88c4240d1d42/src/json_rpc/methods.rs#L338-L462
-// It's important to take into account that smoldot is adding support to the new
-// json-rpc-interface https://paritytech.github.io/json-rpc-interface-spec/
-// However, at the moment this list only includes methods that belong to the "old" API
 const subscriptionUnsubscriptionMethods = new Map<string, string>([
   ['author_submitAndWatchExtrinsic', 'author_unwatchExtrinsic'],
   ['chain_subscribeAllHeads', 'chain_unsubscribeAllHeads'],

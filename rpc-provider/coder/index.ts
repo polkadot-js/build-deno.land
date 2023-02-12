@@ -1,9 +1,7 @@
-// Copyright 2017-2023 @polkadot/rpc-provider authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { JsonRpcRequest, JsonRpcResponse, JsonRpcResponseBaseError } from '../types.ts';
 
-import { isNumber, isString, isUndefined, stringify } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { isNumber, isString, isUndefined, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import RpcError from './error.ts';
 

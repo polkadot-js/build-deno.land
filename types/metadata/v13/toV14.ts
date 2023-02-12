@@ -1,12 +1,10 @@
-// Copyright 2017-2023 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import type { Text, Type } from 'https://deno.land/x/polkadot@0.2.26/types-codec/mod.ts';
+import type { Text, Type } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { ErrorMetadataV13, EventMetadataV13, ExtrinsicMetadataV13, ExtrinsicMetadataV14, FunctionMetadataV13, MetadataV13, MetadataV14, ModuleConstantMetadataV13, ModuleMetadataV13, PalletCallMetadataV14, PalletConstantMetadataV14, PalletErrorMetadataV14, PalletEventMetadataV14, PalletMetadataV14, PalletStorageMetadataV14, StorageEntryMetadataV14, StorageEntryTypeV14, StorageHasherV13, StorageMetadataV13 } from '../../interfaces/metadata/index.ts';
 import type { SiVariant } from '../../interfaces/scaleInfo/index.ts';
 import type { OverrideModuleType, Registry } from '../../types/index.ts';
 
-import { stringCamelCase } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { stringCamelCase } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { getAliasTypes } from '../../interfaces/alias.ts';
 import { knownOrigins } from '../../interfaces/runtime/definitions.ts';
@@ -174,7 +172,6 @@ function convertConstants (specs: TypeSpec[], registry: Registry, constants: Mod
  * Apply module-specific type overrides (always be done as part of toV14)
  * @internal
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function convertErrors (specs: TypeSpec[], registry: Registry, modName: Text, errors: ErrorMetadataV13[], _sectionTypes: OverrideModuleType): PalletErrorMetadataV14 {
   const variants = errors.map(({ docs, name }, index): SiVariant =>
     registry.createTypeUnsafe('SiVariant', [{
@@ -293,7 +290,6 @@ function convertStorage (specs: TypeSpec[], registry: Registry, { items, prefix 
 }
 
 /** @internal */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function convertExtrinsic (registry: Registry, { signedExtensions, version }: ExtrinsicMetadataV13): ExtrinsicMetadataV14 {
   return registry.createTypeUnsafe('ExtrinsicMetadataV14', [{
     signedExtensions: signedExtensions.map((identifier) => ({

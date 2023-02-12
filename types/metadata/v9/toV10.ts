@@ -1,13 +1,9 @@
-// Copyright 2017-2023 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.26/types-codec/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { MetadataV9, MetadataV10, ModuleMetadataV9, ModuleMetadataV10, StorageEntryMetadataV9, StorageEntryTypeV9, StorageHasherV9, StorageHasherV10 } from '../../interfaces/metadata/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
-// migrate a storage hasher type
-// see https://github.com/paritytech/substrate/pull/4462
 /** @internal */
 function createStorageHasher (registry: Registry, hasher: StorageHasherV9): StorageHasherV10 {
   // Blake2_128_Concat has been added at index 2, so we increment all the

@@ -1,5 +1,3 @@
-// Copyright 2017-2023 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 export { GenericExtrinsic } from './Extrinsic.ts';
 export { GenericExtrinsicEra, MortalEra as GenericMortalEra, ImmortalEra as GenericImmortalEra } from './ExtrinsicEra.ts';

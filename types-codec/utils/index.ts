@@ -1,5 +1,3 @@
-// Copyright 2017-2023 @polkadot/types-codec authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 export { compareArray } from './compareArray.ts';
 export { compareMap } from './compareMap.ts';

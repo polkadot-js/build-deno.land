@@ -1,16 +1,14 @@
-// Copyright 2017-2023 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import type { AnyString, Codec, CodecClass, IU8a, LookupString } from 'https://deno.land/x/polkadot@0.2.26/types-codec/types/index.ts';
-import type { CreateOptions, TypeDef } from 'https://deno.land/x/polkadot@0.2.26/types-create/types/index.ts';
+import type { AnyString, Codec, CodecClass, IU8a, LookupString } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { CreateOptions, TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 import type { ExtDef } from '../extrinsic/signedExtensions/types.ts';
 import type { ChainProperties, DispatchErrorModule, DispatchErrorModuleU8, DispatchErrorModuleU8a, EventMetadataLatest, Hash, MetadataLatest, SiField, SiLookupTypeId, SiVariant, WeightV1, WeightV2 } from '../interfaces/types.ts';
 import type { CallFunction, CodecHasher, Definitions, DetectCodec, RegisteredTypes, Registry, RegistryError, RegistryTypes } from '../types/index.ts';
 
-import { DoNotConstruct, Json, Raw } from 'https://deno.land/x/polkadot@0.2.26/types-codec/mod.ts';
-import { constructTypeClass, createClassUnsafe, createTypeUnsafe } from 'https://deno.land/x/polkadot@0.2.26/types-create/mod.ts';
-import { assertReturn, BN_ZERO, formatBalance, isBn, isFunction, isNumber, isString, isU8a, lazyMethod, logger, objectSpread, stringCamelCase, stringify } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
-import { blake2AsU8a } from 'https://deno.land/x/polkadot@0.2.26/util-crypto/mod.ts';
+import { DoNotConstruct, Json, Raw } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { constructTypeClass, createClassUnsafe, createTypeUnsafe } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { assertReturn, BN_ZERO, formatBalance, isBn, isFunction, isNumber, isString, isU8a, lazyMethod, logger, objectSpread, stringCamelCase, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { blake2AsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { expandExtensionTypes, fallbackExtensions, findUnknownExtensions } from '../extrinsic/signedExtensions/index.ts';
 import { GenericEventData } from '../generic/Event.ts';
@@ -56,7 +54,6 @@ function getVariantStringIdx ({ index }: SiVariant): string {
   return index.toString();
 }
 
-// create error mapping from metadata
 function injectErrors (_: TypeRegistry, { lookup, pallets }: MetadataLatest, version: number, result: Record<string, Record<string, RegistryError>>): void {
   clearRecord(result);
 
@@ -81,7 +78,6 @@ function injectErrors (_: TypeRegistry, { lookup, pallets }: MetadataLatest, ver
   }
 }
 
-// create event classes from metadata
 function injectEvents (registry: TypeRegistry, { lookup, pallets }: MetadataLatest, version: number, result: Record<string, Record<string, CodecClass<GenericEventData>>>): void {
   const filtered = pallets.filter(filterEventsSome);
 
@@ -104,7 +100,6 @@ function injectEvents (registry: TypeRegistry, { lookup, pallets }: MetadataLate
   }
 }
 
-// create extrinsic mapping from metadata
 function injectExtrinsics (registry: TypeRegistry, { lookup, pallets }: MetadataLatest, version: number, result: Record<string, Record<string, CallFunction>>, mapping: Record<string, string[]>): void {
   const filtered = pallets.filter(filterCallsSome);
 
@@ -150,7 +145,6 @@ function injectExtrinsics (registry: TypeRegistry, { lookup, pallets }: Metadata
   }
 }
 
-// extract additional properties from the metadata
 function extractProperties (registry: TypeRegistry, metadata: Metadata): ChainProperties | undefined {
   const original = registry.getChainProperties();
   const constants = decorateConstants(registry, metadata.asLatest, metadata.version);

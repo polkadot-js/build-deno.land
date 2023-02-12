@@ -1,19 +1,17 @@
-// Copyright 2017-2023 @polkadot/api-contract authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot@0.2.26/api/submittable/types.ts';
-import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot@0.2.26/api/types/index.ts';
-import type { Bytes } from 'https://deno.land/x/polkadot@0.2.26/types/mod.ts';
-import type { AccountId, ContractExecResult, EventRecord, Weight, WeightV2 } from 'https://deno.land/x/polkadot@0.2.26/types/interfaces/index.ts';
-import type { ISubmittableResult } from 'https://deno.land/x/polkadot@0.2.26/types/types/index.ts';
+import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot/api/submittable/types.ts';
+import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot/api/types/index.ts';
+import type { Bytes } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, ContractExecResult, EventRecord, Weight, WeightV2 } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { ISubmittableResult } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { AbiMessage, ContractCallOutcome, ContractOptions, DecodedEvent, WeightAll } from '../types.ts';
 import type { ContractCallResult, ContractCallSend, ContractQuery, ContractTx, MapMessageQuery, MapMessageTx } from './types.ts';
 
 import { map } from 'https://esm.sh/rxjs@7.8.0';
 
-import { SubmittableResult } from 'https://deno.land/x/polkadot@0.2.26/api/mod.ts';
-import { ApiBase } from 'https://deno.land/x/polkadot@0.2.26/api/base/index.ts';
-import { BN, BN_HUNDRED, BN_ONE, BN_ZERO, isUndefined, logger } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { SubmittableResult } from 'https://deno.land/x/polkadot/api/mod.ts';
+import { ApiBase } from 'https://deno.land/x/polkadot/api/base/index.ts';
+import { BN, BN_HUNDRED, BN_ONE, BN_ZERO, isUndefined, logger } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Abi } from '../Abi/index.ts';
 import { applyOnEvent } from '../util.ts';
@@ -24,7 +22,6 @@ export interface ContractConstructor<ApiType extends ApiTypes> {
   new(api: ApiBase<ApiType>, abi: string | Record<string, unknown> | Abi, address: string | AccountId): Contract<ApiType>;
 }
 
-// As per Rust, 5 * GAS_PER_SEC
 const MAX_CALL_GAS = new BN(5_000_000_000_000).isub(BN_ONE);
 
 const l = logger('Contract');

@@ -1,13 +1,10 @@
-// Copyright 2017-2023 @polkadot/api-contract authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-// Simple non-runnable checks to test type definitions in the editor itself
 
-import 'https://deno.land/x/polkadot@0.2.26/api-augment/mod.ts';
+import 'https://deno.land/x/polkadot/api-augment/mod.ts';
 
-import { ApiPromise } from 'https://deno.land/x/polkadot@0.2.26/api/mod.ts';
-import { BlueprintPromise, ContractPromise } from 'https://deno.land/x/polkadot@0.2.26/api-contract/mod.ts';
-import { createTestPairs, TestKeyringMap } from 'https://deno.land/x/polkadot@0.2.26/keyring/testingPairs.ts';
+import { ApiPromise } from 'https://deno.land/x/polkadot/api/mod.ts';
+import { BlueprintPromise, ContractPromise } from 'https://deno.land/x/polkadot/api-contract/mod.ts';
+import { createTestPairs, TestKeyringMap } from 'https://deno.land/x/polkadot/keyring/testingPairs.ts';
 
 import abiIncrementer from './test/contracts/ink/v0/incrementer.json' assert { type: 'json' };
 
@@ -41,5 +38,4 @@ async function main (): Promise<void> {
   ]);
 }
 
-// eslint-disable-next-line @typescript-eslint/unbound-method
 main().catch(console.error);

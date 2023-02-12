@@ -1,11 +1,10 @@
-// Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
 /* eslint-disable sort-keys */
 
 export default {
   /**
-   * Lookup108: kusama_runtime::SessionKeys
+   * Lookup107: kusama_runtime::SessionKeys
    **/
   KusamaRuntimeSessionKeys: {
     grandpa: 'SpFinalityGrandpaAppPublic',
@@ -164,7 +163,7 @@ export default {
     votes24: 'Vec<(Compact<u32>,[(Compact<u16>,Compact<PerU16>);23],Compact<u16>)>'
   },
   /**
-   * Lookup873: kusama_runtime::Runtime
+   * Lookup871: kusama_runtime::Runtime
    **/
   KusamaRuntimeRuntime: 'Null'
 };

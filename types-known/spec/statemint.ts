@@ -1,12 +1,10 @@
-// Copyright 2017-2023 @polkadot/types-known authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 /* eslint-disable sort-keys */
 
-import type { OverrideVersionedType } from 'https://deno.land/x/polkadot@0.2.26/types/types/index.ts';
+import type { OverrideVersionedType } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import { mapXcmTypes } from 'https://deno.land/x/polkadot@0.2.26/types-create/mod.ts';
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { mapXcmTypes } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const sharedTypes = {
   DispatchErrorModule: 'DispatchErrorModuleU8',
@@ -25,7 +23,6 @@ const sharedTypes = {
   Weight: 'WeightV1'
 };
 
-// these are override types for Statemine, Statemint, Westmint
 const versioned: OverrideVersionedType[] = [
   {
     minmax: [0, 3],

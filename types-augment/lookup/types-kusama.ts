@@ -1,16 +1,13 @@
-// Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-// import type lookup before we augment - in some environments
-// this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.26/types/lookup.ts';
+import 'https://deno.land/x/polkadot/types/lookup.ts';
 
-import type { Compact, Enum, Null, Struct, Vec, u16, u32 } from 'https://deno.land/x/polkadot@0.2.26/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.26/types-codec/types/index.ts';
-import type { PerU16 } from 'https://deno.land/x/polkadot@0.2.26/types/interfaces/runtime/index.ts';
+import type { Compact, Enum, Null, Struct, Vec, u16, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { PerU16 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
-declare module 'https://deno.land/x/polkadot@0.2.26/types/lookup.ts' {
-  /** @name KusamaRuntimeSessionKeys (108) */
+declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
+  /** @name KusamaRuntimeSessionKeys (107) */
   interface KusamaRuntimeSessionKeys extends Struct {
     readonly grandpa: SpFinalityGrandpaAppPublic;
     readonly babe: SpConsensusBabeAppPublic;
@@ -111,7 +108,7 @@ declare module 'https://deno.land/x/polkadot@0.2.26/types/lookup.ts' {
     readonly votes24: Vec<ITuple<[Compact<u32>, Vec<ITuple<[Compact<u16>, Compact<PerU16>]>>, Compact<u16>]>>;
   }
 
-  /** @name KusamaRuntimeRuntime (873) */
+  /** @name KusamaRuntimeRuntime (871) */
   type KusamaRuntimeRuntime = Null;
 
 } // declare module

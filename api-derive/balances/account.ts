@@ -1,15 +1,13 @@
-// Copyright 2017-2023 @polkadot/api-derive authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { QueryableStorageEntry } from 'https://deno.land/x/polkadot@0.2.26/api-base/types/index.ts';
-import type { AccountData, AccountId, AccountIndex, AccountInfo, Address, Balance, Index } from 'https://deno.land/x/polkadot@0.2.26/types/interfaces/index.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.26/types/types/index.ts';
+import type { QueryableStorageEntry } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { AccountData, AccountId, AccountIndex, AccountInfo, Address, Balance, Index } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DeriveApi, DeriveBalancesAccount, DeriveBalancesAccountData } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.0';
 
-import { isFunction, objectSpread } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { isFunction, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 
@@ -47,7 +45,6 @@ function calcBalances (api: DeriveApi, [accountId, [accountNonce, [primary, ...a
   }, getBalance(api, primary));
 }
 
-// old
 function queryBalancesFree (api: DeriveApi, accountId: AccountId): Observable<Result> {
   return combineLatest([
     api.query.balances.freeBalance<Balance>(accountId),

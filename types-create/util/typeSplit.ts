@@ -1,7 +1,4 @@
-// Copyright 2017-2023 @polkadot/types-create authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-// safely split a string on ', ' while taking care of any nested occurences
 export function typeSplit (type: string): string[] {
   const result: string[] = [];
 

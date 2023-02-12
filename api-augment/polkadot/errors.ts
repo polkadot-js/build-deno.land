@@ -1,15 +1,12 @@
-// Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-// import type lookup before we augment - in some environments
-// this is required to allow for ambient/previous definitions
-import 'https://deno.land/x/polkadot@0.2.26/api-base/types/errors.ts';
+import 'https://deno.land/x/polkadot/api-base/types/errors.ts';
 
-import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot@0.2.26/api-base/types/index.ts';
+import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 
 export type __AugmentedError<ApiType extends ApiTypes> = AugmentedError<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.26/api-base/types/errors.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
   interface AugmentedErrors<ApiType extends ApiTypes> {
     auctions: {
       /**
@@ -40,40 +37,6 @@ declare module 'https://deno.land/x/polkadot@0.2.26/api-base/types/errors.ts' {
        * Para is not registered
        **/
       ParaNotRegistered: AugmentedError<ApiType>;
-      /**
-       * Generic error
-       **/
-      [key: string]: AugmentedError<ApiType>;
-    };
-    authorship: {
-      /**
-       * The uncle is genesis.
-       **/
-      GenesisUncle: AugmentedError<ApiType>;
-      /**
-       * The uncle parent not in the chain.
-       **/
-      InvalidUncleParent: AugmentedError<ApiType>;
-      /**
-       * The uncle isn't recent enough to be included.
-       **/
-      OldUncle: AugmentedError<ApiType>;
-      /**
-       * The uncle is too high in chain.
-       **/
-      TooHighUncle: AugmentedError<ApiType>;
-      /**
-       * Too many uncles.
-       **/
-      TooManyUncles: AugmentedError<ApiType>;
-      /**
-       * The uncle is already included.
-       **/
-      UncleAlreadyIncluded: AugmentedError<ApiType>;
-      /**
-       * Uncles already set in the block.
-       **/
-      UnclesAlreadySet: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -454,6 +417,10 @@ declare module 'https://deno.land/x/polkadot@0.2.26/api-base/types/errors.ts' {
        * The given account did not vote on the referendum.
        **/
       NotVoter: AugmentedError<ApiType>;
+      /**
+       * The preimage does not exist.
+       **/
+      PreimageNotExist: AugmentedError<ApiType>;
       /**
        * Proposal still blacklisted
        **/
@@ -1223,11 +1190,19 @@ declare module 'https://deno.land/x/polkadot@0.2.26/api-base/types/errors.ts' {
        **/
       InvalidSignature: AugmentedError<ApiType>;
       /**
+       * A dispute vote from a malicious backer.
+       **/
+      MaliciousBacker: AugmentedError<ApiType>;
+      /**
+       * No backing votes were provides along dispute statements.
+       **/
+      MissingBackingVotes: AugmentedError<ApiType>;
+      /**
        * A dispute where there are only votes on one side.
        **/
       SingleSidedDispute: AugmentedError<ApiType>;
       /**
-       * Unconfirmed dispute statement sets provided
+       * Unconfirmed dispute statement sets provided.
        **/
       UnconfirmedDispute: AugmentedError<ApiType>;
       /**

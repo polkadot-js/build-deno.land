@@ -1,10 +1,7 @@
-// Copyright 2017-2023 @polkadot/rpc-provider authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import type { Server } from 'https://esm.sh/mock-socket@9.1.5';
-import type { Constructor } from 'https://deno.land/x/polkadot@0.2.26/types/types/index.ts';
+import type { Server } from 'https://esm.sh/mock-socket@9.2.0';
+import type { Constructor } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 export interface Global extends NodeJS.Global {
   WebSocket: Constructor<WebSocket>;
   fetch: any;

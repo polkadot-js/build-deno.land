@@ -1,21 +1,18 @@
-// Copyright 2017-2023 @polkadot/api-derive authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { u32, Vec } from 'https://deno.land/x/polkadot@0.2.26/types/mod.ts';
-import type { AccountId32, Balance, BlockNumber } from 'https://deno.land/x/polkadot@0.2.26/types/interfaces/index.ts';
-import type { PalletElectionsPhragmenSeatHolder } from 'https://deno.land/x/polkadot@0.2.26/types/lookup.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.26/types/types/index.ts';
+import type { u32, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId32, Balance, BlockNumber } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletElectionsPhragmenSeatHolder } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DeriveApi } from '../types.ts';
 import type { DeriveElectionsInfo } from './types.ts';
 
 import { combineLatest, map, of } from 'https://esm.sh/rxjs@7.8.0';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 
-// SeatHolder is current tuple is 2.x-era Substrate
 type Member = PalletElectionsPhragmenSeatHolder | ITuple<[AccountId32, Balance]>;
 
 type Candidate = AccountId32 | ITuple<[AccountId32, Balance]>;

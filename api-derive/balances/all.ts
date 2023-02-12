@@ -1,15 +1,13 @@
-// Copyright 2017-2023 @polkadot/api-derive authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { Option, Vec } from 'https://deno.land/x/polkadot@0.2.26/types/mod.ts';
-import type { AccountId, Balance, BalanceLockTo212, BlockNumber, VestingSchedule } from 'https://deno.land/x/polkadot@0.2.26/types/interfaces/index.ts';
-import type { PalletBalancesBalanceLock, PalletBalancesReserveData, PalletVestingVestingInfo } from 'https://deno.land/x/polkadot@0.2.26/types/lookup.ts';
+import type { Option, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, Balance, BalanceLockTo212, BlockNumber, VestingSchedule } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletBalancesBalanceLock, PalletBalancesReserveData, PalletVestingVestingInfo } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { DeriveApi, DeriveBalancesAccount, DeriveBalancesAccountData, DeriveBalancesAll, DeriveBalancesAllAccountData, DeriveBalancesAllVesting } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.0';
 
-import { BN, BN_ZERO, bnMax, bnMin, isFunction, objectSpread } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { BN, BN_ZERO, bnMax, bnMin, isFunction, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 
@@ -112,7 +110,6 @@ function calcBalances (api: DeriveApi, result: Result): DeriveBalancesAll {
   });
 }
 
-// old
 function queryOld (api: DeriveApi, accountId: AccountId | string): Observable<ResultBalance> {
   return combineLatest([
     api.query.balances.locks(accountId),
@@ -147,7 +144,6 @@ function createCalls <T> (calls: (((a: unknown) => Observable<T>) | null | undef
   ];
 }
 
-// current (balances, vesting)
 function queryCurrent (api: DeriveApi, accountId: AccountId | string, balanceInstances: string[] = ['balances']): Observable<ResultBalance> {
   const [lockEmpty, lockQueries] = createCalls<Vec<PalletBalancesBalanceLock>>(
     balanceInstances.map((m) =>

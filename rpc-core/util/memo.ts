@@ -1,22 +1,16 @@
-// Copyright 2017-2023 @polkadot/api-derive authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Observer, TeardownLogic } from 'https://esm.sh/rxjs@7.8.0';
-import type { Memoized } from 'https://deno.land/x/polkadot@0.2.26/util/types.ts';
+import type { Memoized } from 'https://deno.land/x/polkadot/util/types.ts';
 
 import { Observable } from 'https://esm.sh/rxjs@7.8.0';
 
-import { memoize } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { memoize } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { drr } from './drr.ts';
 
 type ObsFn <T> = (...params: unknown[]) => Observable<T>;
 
-// Wraps a derive, doing 2 things to optimize calls -
-//   1. creates a memo of the inner fn -> Observable, removing when unsubscribed
-//   2. wraps the observable in a drr() (which includes an unsub delay)
 /** @internal */
-// eslint-disable-next-line @typescript-eslint/ban-types
 export function memo <T> (instanceId: string, inner: Function): Memoized<ObsFn<T>> {
   const options = { getInstanceId: () => instanceId };
   const cached = memoize(

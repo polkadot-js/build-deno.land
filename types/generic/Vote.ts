@@ -1,23 +1,19 @@
-// Copyright 2017-2023 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import type { AnyJson, Registry } from 'https://deno.land/x/polkadot@0.2.26/types-codec/types/index.ts';
+import type { AnyJson, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { Conviction } from '../interfaces/democracy/index.ts';
 import type { AllConvictions } from '../interfaces/democracy/definitions.ts';
 import type { ArrayElementType } from '../types/index.ts';
 
-import { Bool, U8aFixed } from 'https://deno.land/x/polkadot@0.2.26/types-codec/mod.ts';
-import { isBoolean, isNumber, isU8a, isUndefined } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { Bool, U8aFixed } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { isBoolean, isNumber, isU8a, isUndefined } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 interface VoteType {
   aye: boolean;
   conviction?: number | ArrayElementType<typeof AllConvictions>;
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 type InputTypes = boolean | number | Boolean | Uint8Array | VoteType;
 
-// For votes, the topmost bit indicated aye/nay, the lower bits indicate the conviction
 const AYE_BITS = 0b10000000;
 const NAY_BITS = 0b00000000;
 const CON_MASK = 0b01111111;

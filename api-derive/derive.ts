@@ -1,7 +1,5 @@
-// Copyright 2017-2023 @polkadot/api-derive authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import type { AnyFunction } from 'https://deno.land/x/polkadot@0.2.26/types/types/index.ts';
+import type { AnyFunction } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 import * as accounts from './accounts/index.ts';
 import * as alliance from './alliance/index.ts';
@@ -35,7 +33,6 @@ type DeriveAllSections<AllSections> = {
   [S in keyof AllSections]: DeriveSection<AllSections[S]>
 };
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ExactDerive extends DeriveAllSections<typeof derive> {
   // keep empty, allows for augmentation
 }

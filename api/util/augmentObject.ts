@@ -1,7 +1,5 @@
-// Copyright 2017-2023 @polkadot/api authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import { lazyMethods, logger, objectClear } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { lazyMethods, logger, objectClear } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 type Sections <T> = Record<string, Methods<T>>;
 
@@ -23,7 +21,6 @@ function logValues (type: 'added' | 'removed', values: string[]): string {
     : '';
 }
 
-// log details to console
 function warn (prefix: string, type: 'calls' | 'modules', [added, removed]: StringsStrings): void {
   if (added.length || removed.length) {
     l.warn(`api.${prefix}: Found${logLength('added', added, removed)}${logLength('removed', removed)} ${type}:${logValues('added', added)}${logValues('removed', removed)}`);

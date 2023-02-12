@@ -1,12 +1,10 @@
-// Copyright 2017-2023 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import type { AnyU8a, Registry } from 'https://deno.land/x/polkadot@0.2.26/types-codec/types/index.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import type { AnyU8a, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { IExtrinsicEra, INumber } from '../types/index.ts';
 
-import { Enum, Raw, Tuple, U64 } from 'https://deno.land/x/polkadot@0.2.26/types-codec/mod.ts';
-import { bnToBn, formatNumber, hexToU8a, isHex, isObject, isU8a, u8aToBn, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { Enum, Raw, Tuple, U64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { bnToBn, formatNumber, hexToU8a, isHex, isObject, isU8a, u8aToBn, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { IMMORTAL_ERA } from './constants.ts';
 
@@ -84,7 +82,6 @@ function decodeMortalU8a (registry: Registry, value: Uint8Array): MortalEraValue
 }
 
 /** @internal */
-// eslint-disable-next-line @typescript-eslint/ban-types
 function decodeExtrinsicEra (value: IExtrinsicEra | MortalMethod | MortalEnumDef | ImmortalEnumDef | Uint8Array | string = new Uint8Array()): Uint8Array | Object | undefined {
   if (isU8a(value)) {
     return (!value.length || value[0] === 0)

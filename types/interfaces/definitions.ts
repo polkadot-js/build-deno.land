@@ -1,9 +1,6 @@
-// Copyright 2017-2023 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 export * from './essentials.ts';
 
-// substrate types
 export { default as assets } from './assets/definitions.ts';
 export { default as authorship } from './authorship/definitions.ts';
 export { default as aura } from './aura/definitions.ts';
@@ -48,7 +45,6 @@ export { default as uniques } from './uniques/definitions.ts';
 export { default as utility } from './utility/definitions.ts';
 export { default as vesting } from './vesting/definitions.ts';
 
-// polkadot-specific types
 export { default as attestations } from './attestations/definitions.ts';
 export { default as bridges } from './bridges/definitions.ts';
 export { default as claims } from './claims/definitions.ts';
@@ -60,19 +56,15 @@ export { default as poll } from './poll/definitions.ts';
 export { default as purchase } from './purchase/definitions.ts';
 export { default as xcm } from './xcm/definitions.ts';
 
-// other useful types
 export { default as contractsAbi } from './contractsAbi/definitions.ts';
 export { default as eth } from './eth/definitions.ts';
 
-// additional known/community definitions
 export { default as nimbus } from './nimbus/definitions.ts';
 export { default as ormlOracle } from './ormlOracle/definitions.ts';
 export { default as ormlTokens } from './ormlTokens/definitions.ts';
 
-// pull in rpc last, assuming that is uses info from above
 export { default as rpc } from './rpc/definitions.ts';
 
-// rpc-only definitions
 export { default as author } from './author/definitions.ts';
 export { default as chain } from './chain/definitions.ts';
 export { default as childstate } from './childstate/definitions.ts';

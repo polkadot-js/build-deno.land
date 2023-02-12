@@ -1,11 +1,9 @@
-// Copyright 2017-2023 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.26/types-codec/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { MetadataLatest, StorageEntryMetadataLatest } from '../../../interfaces/index.ts';
 import type { Storage } from '../types.ts';
 
-import { lazyMethod, lazyMethods, stringCamelCase } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { lazyMethod, lazyMethods, stringCamelCase } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { objectNameToCamel } from '../util.ts';
 import { createFunction, createKeyRaw, NO_RAW_ARGS } from './createFunction.ts';
@@ -17,7 +15,6 @@ const VERSION_KEY = ':__STORAGE_VERSION__:';
 const VERSION_DOCS = { docs: 'Returns the current pallet version from storage', type: 'u16' };
 
 /** @internal */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function decorateStorage (registry: Registry, { pallets }: MetadataLatest, _metaVersion: number): Storage {
   const result: Storage = getStorage(registry);
 

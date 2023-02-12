@@ -39,12 +39,10 @@ npm install --save @polkadot/api
 Subscribing to blocks via Promise-based API -
 
 ```javascript
-import { ApiPromise } from 'https://deno.land/x/polkadot@0.2.26/api/mod.ts';
+import { ApiPromise } from 'https://deno.land/x/polkadot/api/mod.ts';
 
-// initialise via static create
 const api = await ApiPromise.create();
 
-// make a call to retrieve the current network head
 api.rpc.chain.subscribeNewHeads((header) => {
   console.log(`Chain is at #${header.number}`);
 });
@@ -53,12 +51,10 @@ api.rpc.chain.subscribeNewHeads((header) => {
 Subscribing to blocks via RxJS-based API -
 
 ```javascript
-import { ApiRx } from 'https://deno.land/x/polkadot@0.2.26/api/mod.ts';
+import { ApiRx } from 'https://deno.land/x/polkadot/api/mod.ts';
 
-// initialise via static create
 const api = await ApiRx.create().toPromise();
 
-// make a call to retrieve the current network head
 api.rpc.chain.subscribeNewHeads().subscribe((header) => {
   console.log(`Chain is at #${header.number}`);
 });
@@ -69,9 +65,8 @@ api.rpc.chain.subscribeNewHeads().subscribe((header) => {
 Additional types used by runtime modules can be added when a new instance of the API is created. This is necessary if the runtime modules use types which are not available in the base Substrate runtime.
 
 ```javascript
-import { ApiPromise } from 'https://deno.land/x/polkadot@0.2.26/api/mod.ts';
+import { ApiPromise } from 'https://deno.land/x/polkadot/api/mod.ts';
 
-// initialise via static create and register custom types
 const api = await ApiPromise.create({
   types: {
     CustomTypesExample: {

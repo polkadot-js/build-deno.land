@@ -1,8 +1,7 @@
-// Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Bytes, Enum, Text, Vec } from 'https://deno.land/x/polkadot@0.2.26/types-codec/mod.ts';
-import type { Hash } from 'https://deno.land/x/polkadot@0.2.26/types/interfaces/runtime/index.ts';
+import type { Bytes, Enum, Text, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Hash } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 /** @name ExtrinsicOrHash */
 export interface ExtrinsicOrHash extends Enum {

@@ -1,16 +1,14 @@
-// Copyright 2017-2023 @polkadot/api-derive authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { Option, Vec } from 'https://deno.land/x/polkadot@0.2.26/types/mod.ts';
-import type { AccountId, Hash, ReferendumInfoTo239, Vote } from 'https://deno.land/x/polkadot@0.2.26/types/interfaces/index.ts';
-import type { PalletDemocracyReferendumInfo, PalletDemocracyReferendumStatus, PalletDemocracyVoteVoting } from 'https://deno.land/x/polkadot@0.2.26/types/lookup.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import type { Option, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, Hash, ReferendumInfoTo239, Vote } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletDemocracyReferendumInfo, PalletDemocracyReferendumStatus, PalletDemocracyVoteVoting } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { DeriveApi, DeriveBalancesAccount, DeriveReferendum, DeriveReferendumVote, DeriveReferendumVotes } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.0';
 
-import { isFunction, objectSpread } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { isFunction, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 import { calcVotes, getImageHash, getStatus } from './util.ts';

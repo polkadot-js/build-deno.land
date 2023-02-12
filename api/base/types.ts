@@ -1,10 +1,8 @@
-// Copyright 2017-2023 @polkadot/api authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import type { Metadata } from 'https://deno.land/x/polkadot@0.2.26/types/mod.ts';
-import type { RuntimeVersionPartial } from 'https://deno.land/x/polkadot@0.2.26/types/interfaces/index.ts';
-import type { DecoratedMeta } from 'https://deno.land/x/polkadot@0.2.26/types/metadata/decorate/types.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.26/types/types/index.ts';
+import type { Metadata } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { RuntimeVersionPartial } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { DecoratedMeta } from 'https://deno.land/x/polkadot/types/metadata/decorate/types.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { ApiDecoration, ApiTypes } from '../types/index.ts';
 
 export interface VersionedRegistry<ApiType extends ApiTypes> {

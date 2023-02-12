@@ -1,18 +1,14 @@
-// Copyright 2017-2023 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-// order important in structs... :)
 /* eslint-disable sort-keys */
 
 import type { Definitions } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.26/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import hrmpTypes from './hrmp.ts';
 import { runtime } from './runtime.ts';
 import slotTypes from './slots.ts';
 
-// proposeParachain
 const proposeTypes = {
   ParachainProposal: {
     proposer: 'AccountId',
