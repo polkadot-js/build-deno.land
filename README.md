@@ -1,6 +1,6 @@
 ## deno/polkadot
 
-**Experimental** This is the first release of the Deno interfaces for the polkadot-js family, as such it still needs a lot of testing and comes with no guarantee that it actually does what it says on the tin. Being brand new and not completely tested on end-to-end operation, unfound dragons probably do remain even with very basic operations. If you do try it out, let us know.
+**Experimental** This is the first release of the [Deno interfaces for the polkadot-js](https://deno.land/x/polkadot) family, as such it still needs a lot of testing and comes with no guarantee that it actually does what it says on the tin. Being brand new and not completely tested on end-to-end operation, unfound dragons probably do remain even with very basic operations. If you do try it out, let us know.
 
 Here you will find most of the utilities, generally available elsewhere for Node, the browser and RN in a consumable form for the Deno runtime.
 
