@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { AnyJson } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
@@ -17,8 +15,6 @@ import { toLatest } from './v14/toLatest.ts';
 import { MagicNumber } from './MagicNumber.ts';
 import { getUniqTypes, toCallsOnly } from './util/index.ts';
 
-// Use these to generate all the Meta* types below via template keys
-// NOTE: Keep from latest -> earliest, see the LATEST_VERSION 0 index
 const KNOWN_VERSIONS = <const> [14, 13, 12, 11, 10, 9];
 const LATEST_VERSION = KNOWN_VERSIONS[0];
 

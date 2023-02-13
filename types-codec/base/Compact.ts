@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types-codec authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
@@ -47,14 +45,13 @@ function decodeCompact<T extends INumber> (registry: Registry, Type: CodecClass<
  * a number and making the compact representation thereof
  */
 export class Compact<T extends INumber> implements ICompact<T> {
-  public readonly registry: Registry;
+  readonly registry: Registry;
 
   public createdAtHash?: IU8a;
-
-  readonly initialU8aLength?: number;
+  public initialU8aLength?: number;
+  public isStorageFallback?: boolean;
 
   readonly #Type: CodecClass<T>;
-
   readonly #raw: T;
 
   constructor (registry: Registry, Type: CodecClass<T> | string, value: Compact<T> | AnyNumber = 0, { definition, setDefinition = noopSetDefinition }: Options<T> = {}) {

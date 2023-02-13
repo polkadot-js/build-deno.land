@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-base authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { StorageKey, u64 } from 'https://deno.land/x/polkadot/types/mod.ts';
@@ -31,7 +29,6 @@ export interface StorageEntryPromiseOverloadsAt {
   <T extends Codec>(arg1?: unknown, arg2?: unknown, arg3?: unknown): Promise<T>;
 }
 
-// This is the most generic typings we can have for a storage entry function
 export type GenericStorageEntryFunction = (...args: unknown[]) => Observable<Codec>
 
 export type QueryableStorageEntry<ApiType extends ApiTypes, A extends AnyTuple = AnyTuple> =
@@ -109,12 +106,9 @@ export type AugmentedQuery<ApiType extends ApiTypes, F extends AnyFunction, A ex
 
 export type AugmentedQueryAt<ApiType extends ApiTypes, F extends AnyFunction, A extends AnyTuple = AnyTuple> = MethodResult<ApiType, F> & StorageEntryBaseAt<ApiType, F, A>;
 
-// backwards compatibility-only
 export type AugmentedQueryDoubleMap<ApiType extends ApiTypes, F extends AnyFunction, A extends AnyTuple = AnyTuple> = AugmentedQuery<ApiType, F, A>;
 
-// augmented interfaces
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-empty-interface
 export interface AugmentedQueries<ApiType extends ApiTypes> {
   // augmented
 }

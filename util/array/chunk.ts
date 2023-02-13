@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 /**
  * @name arrayChunk
@@ -10,7 +8,7 @@
  * <BR>
  *
  * ```javascript
- * import { arrayChunk } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+ * import { arrayChunk } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * arrayChunk([1, 2, 3, 4, 5]); // [[1, 2], [3, 4], [5]]
  * ```

@@ -1,7 +1,4 @@
-// Copyright 2017-2022 @polkadot/api-contract authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-// Simple non-runnable checks to test type definitions in the editor itself
 
 import 'https://deno.land/x/polkadot/api-augment/mod.ts';
 
@@ -41,5 +38,4 @@ async function main (): Promise<void> {
   ]);
 }
 
-// eslint-disable-next-line @typescript-eslint/unbound-method
 main().catch(console.error);

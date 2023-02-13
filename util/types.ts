@@ -1,12 +1,13 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from './bn/bn.ts';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface Constructor<T = any> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   new(...value: any[]): T;
+
+  hasOwnProperty (prop: string): boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  isPrototypeOf (other: any): boolean;
 }
 
 export interface ToBigInt {
@@ -69,12 +70,10 @@ export type Memoized<F> = F & {
   unmemoize: (...args: unknown[]) => void;
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export type AnyString = string | String;
 
 export type HexDigit = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | 'a' | 'b' | 'c' | 'd' | 'e' | 'f';
 
-// One day when template strings support regex, we can improve this
 export type HexString = `0x${string}`;
 
 export type U8aLike = HexString | number[] | Buffer | Uint8Array | AnyString;

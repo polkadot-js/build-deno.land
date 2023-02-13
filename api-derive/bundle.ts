@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-derive authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveCustom } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 import type { AnyFunction, AnyString } from 'https://deno.land/x/polkadot/types/types/index.ts';
@@ -20,7 +18,6 @@ interface Avail {
 
 export { lazyDeriveSection };
 
-// Enable derive only if some of these modules are available
 const checks: Record<string, Avail> = {
   allianceMotion: {
     instances: ['allianceMotion'],
@@ -129,8 +126,6 @@ function injectFunctions (instanceId: string, api: DeriveApi, derives: DeriveCus
   return result as ExactDerive;
 }
 
-// FIXME The return type of this function should be {...ExactDerive, ...DeriveCustom}
-// For now we just drop the custom derive typings
 /** @internal */
 export function getAvailableDerives (instanceId: string, api: DeriveApi, custom: DeriveCustom = {}): ExactDerive {
   return {

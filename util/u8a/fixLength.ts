@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 /**
  * @name u8aFixLength
@@ -10,7 +8,7 @@
  * <BR>
  *
  * ```javascript
- * import { u8aFixLength } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+ * import { u8aFixLength } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * u8aFixLength('0x12') // => 0x12
  * u8aFixLength('0x12', 16) // => 0x0012

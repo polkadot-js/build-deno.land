@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { SignOptions } from 'https://deno.land/x/polkadot/keyring/types.ts';
 import type { Inspect, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';

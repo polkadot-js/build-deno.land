@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types-codec authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, Codec, CodecClass, Inspect, IU8a, Registry } from '../types/index.ts';
@@ -10,9 +8,10 @@ import type { AnyJson, Codec, CodecClass, Inspect, IU8a, Registry } from '../typ
  * An unknown type that fails on construction with the type info
  */
 export class DoNotConstruct implements Codec {
-  public readonly registry: Registry;
+  readonly registry: Registry;
 
   public createdAtHash?: IU8a;
+  public isStorageFallback?: boolean;
 
   #neverError: Error;
 

@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-derive authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { Option } from 'https://deno.land/x/polkadot/types/mod.ts';
@@ -88,7 +86,6 @@ function getBatch (api: DeriveApi, activeEra: EraIndex, stashIds: AccountId[], f
   );
 }
 
-//
 /**
  * @description From a stash, retrieve the controllerId and all relevant details
  */

@@ -1,8 +1,5 @@
-// Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-// import type lookup before we augment - in some environments
-// this is required to allow for ambient/previous definitions
 import 'https://deno.land/x/polkadot/api-base/types/submittable.ts';
 
 import type { ApiTypes, AugmentedSubmittable, SubmittableExtrinsic, SubmittableExtrinsicFunction } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
@@ -10,8 +7,8 @@ import type { Data } from 'https://deno.land/x/polkadot/types/mod.ts';
 import type { Bytes, Compact, Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { AnyNumber, IMethod, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { EthereumAddress } from 'https://deno.land/x/polkadot/types/interfaces/eth/index.ts';
-import type { AccountId32, Call, H256, MultiAddress, Percent } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
-import type { FrameSupportPreimagesBounded, FrameSupportScheduleDispatchTime, KusamaRuntimeOriginCaller, KusamaRuntimeProxyType, KusamaRuntimeSessionKeys, PalletConvictionVotingConviction, PalletConvictionVotingVoteAccountVote, PalletDemocracyConviction, PalletDemocracyVoteAccountVote, PalletElectionProviderMultiPhaseRawSolution, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletElectionsPhragmenRenouncing, PalletIdentityBitFlags, PalletIdentityIdentityInfo, PalletIdentityJudgement, PalletImOnlineHeartbeat, PalletImOnlineSr25519AppSr25519Signature, PalletMultisigTimepoint, PalletNominationPoolsBondExtra, PalletNominationPoolsConfigOpAccountId32, PalletNominationPoolsConfigOpU128, PalletNominationPoolsConfigOpU32, PalletNominationPoolsPoolState, PalletSocietyJudgement, PalletStakingPalletConfigOpPerbill, PalletStakingPalletConfigOpPercent, PalletStakingPalletConfigOpU128, PalletStakingPalletConfigOpU32, PalletStakingRewardDestination, PalletStakingValidatorPrefs, PalletVestingVestingInfo, PolkadotParachainPrimitivesHrmpChannelId, PolkadotPrimitivesV2InherentData, PolkadotPrimitivesV2PvfCheckStatement, PolkadotPrimitivesV2ValidatorAppSignature, PolkadotRuntimeCommonClaimsEcdsaSignature, PolkadotRuntimeCommonClaimsStatementKind, SpConsensusBabeDigestsNextConfigDescriptor, SpConsensusSlotsEquivocationProof, SpFinalityGrandpaEquivocationProof, SpNposElectionsElectionScore, SpNposElectionsSupport, SpRuntimeHeader, SpRuntimeMultiSignature, SpRuntimeMultiSigner, SpSessionMembershipProof, SpWeightsWeightV2Weight, XcmV1MultiLocation, XcmV2WeightLimit, XcmVersionedMultiAssets, XcmVersionedMultiLocation, XcmVersionedXcm } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { AccountId32, Call, H256, MultiAddress, Perbill, Percent, Perquintill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportPreimagesBounded, FrameSupportScheduleDispatchTime, KusamaRuntimeOriginCaller, KusamaRuntimeProxyType, KusamaRuntimeSessionKeys, PalletConvictionVotingConviction, PalletConvictionVotingVoteAccountVote, PalletDemocracyConviction, PalletDemocracyMetadataOwner, PalletDemocracyVoteAccountVote, PalletElectionProviderMultiPhaseRawSolution, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletElectionsPhragmenRenouncing, PalletIdentityBitFlags, PalletIdentityIdentityInfo, PalletIdentityJudgement, PalletImOnlineHeartbeat, PalletImOnlineSr25519AppSr25519Signature, PalletMultisigTimepoint, PalletNominationPoolsBondExtra, PalletNominationPoolsConfigOpAccountId32, PalletNominationPoolsConfigOpU128, PalletNominationPoolsConfigOpU32, PalletNominationPoolsPoolState, PalletSocietyJudgement, PalletStakingPalletConfigOpPerbill, PalletStakingPalletConfigOpPercent, PalletStakingPalletConfigOpU128, PalletStakingPalletConfigOpU32, PalletStakingRewardDestination, PalletStakingValidatorPrefs, PalletVestingVestingInfo, PolkadotParachainPrimitivesHrmpChannelId, PolkadotPrimitivesV2InherentData, PolkadotPrimitivesV2PvfCheckStatement, PolkadotPrimitivesV2ValidatorAppSignature, PolkadotRuntimeCommonClaimsEcdsaSignature, PolkadotRuntimeCommonClaimsStatementKind, SpConsensusBabeDigestsNextConfigDescriptor, SpConsensusSlotsEquivocationProof, SpFinalityGrandpaEquivocationProof, SpNposElectionsElectionScore, SpNposElectionsSupport, SpRuntimeMultiSignature, SpRuntimeMultiSigner, SpSessionMembershipProof, SpWeightsWeightV2Weight, XcmV3MultiLocation, XcmV3WeightLimit, XcmVersionedMultiAssets, XcmVersionedMultiLocation, XcmVersionedXcm } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedSubmittable = AugmentedSubmittable<() => unknown>;
 export type __SubmittableExtrinsic<ApiType extends ApiTypes> = SubmittableExtrinsic<ApiType>;
@@ -53,16 +50,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * `lease_period_index` of the initial lease period of the four that are to be auctioned.
        **/
       newAuction: AugmentedSubmittable<(duration: Compact<u32> | AnyNumber | Uint8Array, leasePeriodIndex: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Compact<u32>]>;
-      /**
-       * Generic tx
-       **/
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
-    };
-    authorship: {
-      /**
-       * Provide a set of uncles.
-       **/
-      setUncles: AugmentedSubmittable<(newUncles: Vec<SpRuntimeHeader> | (SpRuntimeHeader | { parentHash?: any; number?: any; stateRoot?: any; extrinsicsRoot?: any; digest?: any } | string | Uint8Array)[]) => SubmittableExtrinsic<ApiType>, [Vec<SpRuntimeHeader>]>;
       /**
        * Generic tx
        **/
@@ -602,10 +589,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * Set the dispute conclusion by time out period.
        **/
       setDisputeConclusionByTimeOutPeriod: AugmentedSubmittable<(updated: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32]>;
-      /**
-       * Set the maximum number of dispute spam slots.
-       **/
-      setDisputeMaxSpamSlots: AugmentedSubmittable<(updated: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32]>;
       /**
        * Set the dispute period, in number of sessions to keep for disputes.
        **/
@@ -1370,6 +1353,24 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        **/
       second: AugmentedSubmittable<(proposal: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>]>;
       /**
+       * Set or clear a metadata of a proposal or a referendum.
+       * 
+       * Parameters:
+       * - `origin`: Must correspond to the `MetadataOwner`.
+       * - `ExternalOrigin` for an external proposal with the `SuperMajorityApprove`
+       * threshold.
+       * - `ExternalDefaultOrigin` for an external proposal with the `SuperMajorityAgainst`
+       * threshold.
+       * - `ExternalMajorityOrigin` for an external proposal with the `SimpleMajority`
+       * threshold.
+       * - `Signed` by a creator for a public proposal.
+       * - `Signed` to clear a metadata for a finished referendum.
+       * - `Root` to set a metadata for an ongoing referendum.
+       * - `owner`: an identifier of a metadata owner.
+       * - `maybe_hash`: The hash of an on-chain stored preimage. `None` to clear a metadata.
+       **/
+      setMetadata: AugmentedSubmittable<(owner: PalletDemocracyMetadataOwner | { External: any } | { Proposal: any } | { Referendum: any } | string | Uint8Array, maybeHash: Option<H256> | null | Uint8Array | H256 | string) => SubmittableExtrinsic<ApiType>, [PalletDemocracyMetadataOwner, Option<H256>]>;
+      /**
        * Undelegate the voting power of the sending account.
        * 
        * Tokens may be unlocked following once an amount of time consistent with the lock period
@@ -1494,7 +1495,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * 
        * Dispatch origin must be signed by the [`Config::ControlOrigin`].
        **/
-      control: AugmentedSubmittable<(uncheckedErasToCheck: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32]>;
+      control: AugmentedSubmittable<(erasToCheck: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32]>;
       /**
        * Deregister oneself from the fast-unstake.
        * 
@@ -1672,6 +1673,16 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * Emits `SubmissionDepositRefunded`.
        **/
       refundSubmissionDeposit: AugmentedSubmittable<(index: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32]>;
+      /**
+       * Set or clear metadata of a referendum.
+       * 
+       * Parameters:
+       * - `origin`: Must be `Signed` by a creator of a referendum or by anyone to clear a
+       * metadata of a finished referendum.
+       * - `index`:  The index of a referendum to set or clear metadata for.
+       * - `maybe_hash`: The hash of an on-chain stored preimage. `None` to clear a metadata.
+       **/
+      setMetadata: AugmentedSubmittable<(index: u32 | AnyNumber | Uint8Array, maybeHash: Option<H256> | null | Uint8Array | H256 | string) => SubmittableExtrinsic<ApiType>, [u32, Option<H256>]>;
       /**
        * Propose a referendum on a privileged action.
        * 
@@ -2365,6 +2376,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
     };
     nis: {
       /**
+       * Make a private receipt communal and create fungible counterparts for its owner.
+       **/
+      communify: AugmentedSubmittable<(index: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>]>;
+      /**
        * Ensure we have sufficient funding for all potential payouts.
        * 
        * - `origin`: Must be accepted by `FundOrigin`.
@@ -2385,6 +2400,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        **/
       placeBid: AugmentedSubmittable<(amount: Compact<u128> | AnyNumber | Uint8Array, duration: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u128>, u32]>;
       /**
+       * Make a communal receipt private and burn fungible counterparts from its owner.
+       **/
+      privatize: AugmentedSubmittable<(index: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>]>;
+      /**
        * Retract a previously placed bid.
        * 
        * Origin must be Signed, and the account should have previously issued a still-active bid
@@ -2398,13 +2417,22 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * Reduce or remove an outstanding receipt, placing the according proportion of funds into
        * the account of the owner.
        * 
+       * - `origin`: Must be Signed and the account must be the owner of the fungible counterpart
+       * for receipt `index`.
+       * - `index`: The index of the receipt.
+       **/
+      thawCommunal: AugmentedSubmittable<(index: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>]>;
+      /**
+       * Reduce or remove an outstanding receipt, placing the according proportion of funds into
+       * the account of the owner.
+       * 
        * - `origin`: Must be Signed and the account must be the owner of the receipt `index` as
        * well as any fungible counterpart.
        * - `index`: The index of the receipt.
        * - `portion`: If `Some`, then only the given portion of the receipt should be thawed. If
        * `None`, then all of it should be.
        **/
-      thaw: AugmentedSubmittable<(index: Compact<u32> | AnyNumber | Uint8Array, portion: Option<u128> | null | Uint8Array | u128 | AnyNumber) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Option<u128>]>;
+      thawPrivate: AugmentedSubmittable<(index: Compact<u32> | AnyNumber | Uint8Array, maybeProportion: Option<Perquintill> | null | Uint8Array | Perquintill | AnyNumber) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Option<Perquintill>]>;
       /**
        * Generic tx
        **/
@@ -2648,9 +2676,12 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * # Note
        * 
        * If there are too many unlocking chunks to unbond with the pool account,
-       * [`Call::pool_withdraw_unbonded`] can be called to try and minimize unlocking chunks. If
-       * there are too many unlocking chunks, the result of this call will likely be the
-       * `NoMoreChunks` error from the staking system.
+       * [`Call::pool_withdraw_unbonded`] can be called to try and minimize unlocking chunks.
+       * The [`StakingInterface::unbond`] will implicitly call [`Call::pool_withdraw_unbonded`]
+       * to try to free chunks if necessary (ie. if unbound was called and no unlocking chunks
+       * are available). However, it may not be possible to release the current unlocking chunks,
+       * in which case, the result of this call will likely be the `NoMoreChunks` error from the
+       * staking system.
        **/
       unbond: AugmentedSubmittable<(memberAccount: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, unbondingPoints: Compact<u128> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u128>]>;
       /**
@@ -2878,10 +2909,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * 
        * It is the responsibility of the caller to **NOT** place all of their balance into the
        * lock and keep some for further operations.
-       * 
-       * # <weight>
-       * We assume the maximum weight among all 3 cases: vote_equal, vote_more and vote_less.
-       * # </weight>
        **/
       vote: AugmentedSubmittable<(votes: Vec<AccountId32> | (AccountId32 | string | Uint8Array)[], value: Compact<u128> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Vec<AccountId32>, Compact<u128>]>;
       /**
@@ -2998,8 +3025,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
       /**
        * Dispatch the given `call` from an account that the sender is authorised for through
        * `add_proxy`.
-       * 
-       * Removes any corresponding announcement(s).
        * 
        * The dispatch origin for this call must be _Signed_.
        * 
@@ -3268,6 +3293,16 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * Emits `SubmissionDepositRefunded`.
        **/
       refundSubmissionDeposit: AugmentedSubmittable<(index: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32]>;
+      /**
+       * Set or clear metadata of a referendum.
+       * 
+       * Parameters:
+       * - `origin`: Must be `Signed` by a creator of a referendum or by anyone to clear a
+       * metadata of a finished referendum.
+       * - `index`:  The index of a referendum to set or clear metadata for.
+       * - `maybe_hash`: The hash of an on-chain stored preimage. `None` to clear a metadata.
+       **/
+      setMetadata: AugmentedSubmittable<(index: u32 | AnyNumber | Uint8Array, maybeHash: Option<H256> | null | Uint8Array | H256 | string) => SubmittableExtrinsic<ApiType>, [u32, Option<H256>]>;
       /**
        * Propose a referendum on a privileged action.
        * 
@@ -3858,7 +3893,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
       /**
        * Cancel enactment of a deferred slash.
        * 
-       * Can be called by the `T::SlashCancelOrigin`.
+       * Can be called by the `T::AdminOrigin`.
        * 
        * Parameters: era and indices of the slashes for that era to kill.
        **/
@@ -4094,6 +4129,13 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        **/
       setInvulnerables: AugmentedSubmittable<(invulnerables: Vec<AccountId32> | (AccountId32 | string | Uint8Array)[]) => SubmittableExtrinsic<ApiType>, [Vec<AccountId32>]>;
       /**
+       * Sets the minimum amount of commission that each validators must maintain.
+       * 
+       * This call has lower privilege requirements than `set_staking_config` and can be called
+       * by the `T::AdminOrigin`. Root can always call this.
+       **/
+      setMinCommission: AugmentedSubmittable<(updated: Perbill | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Perbill]>;
+      /**
        * (Re-)set the payment target for a controller.
        * 
        * Effects will be felt instantly (as soon as this function is completed successfully).
@@ -4154,8 +4196,8 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * the funds out of management ready for transfer.
        * 
        * No more than a limited number of unlocking chunks (see `MaxUnlockingChunks`)
-       * can co-exists at the same time. In that case, [`Call::withdraw_unbonded`] need
-       * to be called first to remove some of the chunks (if possible).
+       * can co-exists at the same time. If there are no unlocking chunks slots available
+       * [`Call::withdraw_unbonded`] is called to remove some of the chunks (if possible).
        * 
        * If a user encounters the `InsufficientBond` error when calling this extrinsic,
        * they should call `chill` first in order to free up their bonded funds.
@@ -5016,7 +5058,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * NOTE: A successful return to this does *not* imply that the `msg` was executed successfully
        * to completion; only that *some* of it was executed.
        **/
-      execute: AugmentedSubmittable<(message: XcmVersionedXcm | { V0: any } | { V1: any } | { V2: any } | string | Uint8Array, maxWeight: u64 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [XcmVersionedXcm, u64]>;
+      execute: AugmentedSubmittable<(message: XcmVersionedXcm | { V2: any } | { V3: any } | string | Uint8Array, maxWeight: SpWeightsWeightV2Weight | { refTime?: any; proofSize?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [XcmVersionedXcm, SpWeightsWeightV2Weight]>;
       /**
        * Set a safe XCM version (the version that XCM should be encoded with if the most recent
        * version a destination can accept is unknown).
@@ -5031,7 +5073,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * - `origin`: Must be Root.
        * - `location`: The location to which we should subscribe for XCM version notifications.
        **/
-      forceSubscribeVersionNotify: AugmentedSubmittable<(location: XcmVersionedMultiLocation | { V0: any } | { V1: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [XcmVersionedMultiLocation]>;
+      forceSubscribeVersionNotify: AugmentedSubmittable<(location: XcmVersionedMultiLocation | { V2: any } | { V3: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [XcmVersionedMultiLocation]>;
       /**
        * Require that a particular destination should no longer notify us regarding any XCM
        * version changes.
@@ -5040,7 +5082,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * - `location`: The location to which we are currently subscribed for XCM version
        * notifications which we no longer desire.
        **/
-      forceUnsubscribeVersionNotify: AugmentedSubmittable<(location: XcmVersionedMultiLocation | { V0: any } | { V1: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [XcmVersionedMultiLocation]>;
+      forceUnsubscribeVersionNotify: AugmentedSubmittable<(location: XcmVersionedMultiLocation | { V2: any } | { V3: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [XcmVersionedMultiLocation]>;
       /**
        * Extoll that a particular destination can be communicated with through a particular
        * version of XCM.
@@ -5049,7 +5091,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * - `location`: The destination that is being described.
        * - `xcm_version`: The latest version of XCM that `location` supports.
        **/
-      forceXcmVersion: AugmentedSubmittable<(location: XcmV1MultiLocation | { parents?: any; interior?: any } | string | Uint8Array, xcmVersion: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [XcmV1MultiLocation, u32]>;
+      forceXcmVersion: AugmentedSubmittable<(location: XcmV3MultiLocation | { parents?: any; interior?: any } | string | Uint8Array, xcmVersion: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [XcmV3MultiLocation, u32]>;
       /**
        * Transfer some assets from the local chain to the sovereign account of a destination
        * chain and forward a notification XCM.
@@ -5070,7 +5112,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * fees.
        * - `weight_limit`: The remote-side weight limit, if any, for the XCM fee purchase.
        **/
-      limitedReserveTransferAssets: AugmentedSubmittable<(dest: XcmVersionedMultiLocation | { V0: any } | { V1: any } | string | Uint8Array, beneficiary: XcmVersionedMultiLocation | { V0: any } | { V1: any } | string | Uint8Array, assets: XcmVersionedMultiAssets | { V0: any } | { V1: any } | string | Uint8Array, feeAssetItem: u32 | AnyNumber | Uint8Array, weightLimit: XcmV2WeightLimit | { Unlimited: any } | { Limited: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [XcmVersionedMultiLocation, XcmVersionedMultiLocation, XcmVersionedMultiAssets, u32, XcmV2WeightLimit]>;
+      limitedReserveTransferAssets: AugmentedSubmittable<(dest: XcmVersionedMultiLocation | { V2: any } | { V3: any } | string | Uint8Array, beneficiary: XcmVersionedMultiLocation | { V2: any } | { V3: any } | string | Uint8Array, assets: XcmVersionedMultiAssets | { V2: any } | { V3: any } | string | Uint8Array, feeAssetItem: u32 | AnyNumber | Uint8Array, weightLimit: XcmV3WeightLimit | { Unlimited: any } | { Limited: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [XcmVersionedMultiLocation, XcmVersionedMultiLocation, XcmVersionedMultiAssets, u32, XcmV3WeightLimit]>;
       /**
        * Teleport some assets from the local chain to some destination chain.
        * 
@@ -5090,7 +5132,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * fees.
        * - `weight_limit`: The remote-side weight limit, if any, for the XCM fee purchase.
        **/
-      limitedTeleportAssets: AugmentedSubmittable<(dest: XcmVersionedMultiLocation | { V0: any } | { V1: any } | string | Uint8Array, beneficiary: XcmVersionedMultiLocation | { V0: any } | { V1: any } | string | Uint8Array, assets: XcmVersionedMultiAssets | { V0: any } | { V1: any } | string | Uint8Array, feeAssetItem: u32 | AnyNumber | Uint8Array, weightLimit: XcmV2WeightLimit | { Unlimited: any } | { Limited: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [XcmVersionedMultiLocation, XcmVersionedMultiLocation, XcmVersionedMultiAssets, u32, XcmV2WeightLimit]>;
+      limitedTeleportAssets: AugmentedSubmittable<(dest: XcmVersionedMultiLocation | { V2: any } | { V3: any } | string | Uint8Array, beneficiary: XcmVersionedMultiLocation | { V2: any } | { V3: any } | string | Uint8Array, assets: XcmVersionedMultiAssets | { V2: any } | { V3: any } | string | Uint8Array, feeAssetItem: u32 | AnyNumber | Uint8Array, weightLimit: XcmV3WeightLimit | { Unlimited: any } | { Limited: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [XcmVersionedMultiLocation, XcmVersionedMultiLocation, XcmVersionedMultiAssets, u32, XcmV3WeightLimit]>;
       /**
        * Transfer some assets from the local chain to the sovereign account of a destination
        * chain and forward a notification XCM.
@@ -5109,8 +5151,8 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * - `fee_asset_item`: The index into `assets` of the item which should be used to pay
        * fees.
        **/
-      reserveTransferAssets: AugmentedSubmittable<(dest: XcmVersionedMultiLocation | { V0: any } | { V1: any } | string | Uint8Array, beneficiary: XcmVersionedMultiLocation | { V0: any } | { V1: any } | string | Uint8Array, assets: XcmVersionedMultiAssets | { V0: any } | { V1: any } | string | Uint8Array, feeAssetItem: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [XcmVersionedMultiLocation, XcmVersionedMultiLocation, XcmVersionedMultiAssets, u32]>;
-      send: AugmentedSubmittable<(dest: XcmVersionedMultiLocation | { V0: any } | { V1: any } | string | Uint8Array, message: XcmVersionedXcm | { V0: any } | { V1: any } | { V2: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [XcmVersionedMultiLocation, XcmVersionedXcm]>;
+      reserveTransferAssets: AugmentedSubmittable<(dest: XcmVersionedMultiLocation | { V2: any } | { V3: any } | string | Uint8Array, beneficiary: XcmVersionedMultiLocation | { V2: any } | { V3: any } | string | Uint8Array, assets: XcmVersionedMultiAssets | { V2: any } | { V3: any } | string | Uint8Array, feeAssetItem: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [XcmVersionedMultiLocation, XcmVersionedMultiLocation, XcmVersionedMultiAssets, u32]>;
+      send: AugmentedSubmittable<(dest: XcmVersionedMultiLocation | { V2: any } | { V3: any } | string | Uint8Array, message: XcmVersionedXcm | { V2: any } | { V3: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [XcmVersionedMultiLocation, XcmVersionedXcm]>;
       /**
        * Teleport some assets from the local chain to some destination chain.
        * 
@@ -5128,7 +5170,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * - `fee_asset_item`: The index into `assets` of the item which should be used to pay
        * fees.
        **/
-      teleportAssets: AugmentedSubmittable<(dest: XcmVersionedMultiLocation | { V0: any } | { V1: any } | string | Uint8Array, beneficiary: XcmVersionedMultiLocation | { V0: any } | { V1: any } | string | Uint8Array, assets: XcmVersionedMultiAssets | { V0: any } | { V1: any } | string | Uint8Array, feeAssetItem: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [XcmVersionedMultiLocation, XcmVersionedMultiLocation, XcmVersionedMultiAssets, u32]>;
+      teleportAssets: AugmentedSubmittable<(dest: XcmVersionedMultiLocation | { V2: any } | { V3: any } | string | Uint8Array, beneficiary: XcmVersionedMultiLocation | { V2: any } | { V3: any } | string | Uint8Array, assets: XcmVersionedMultiAssets | { V2: any } | { V3: any } | string | Uint8Array, feeAssetItem: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [XcmVersionedMultiLocation, XcmVersionedMultiLocation, XcmVersionedMultiAssets, u32]>;
       /**
        * Generic tx
        **/

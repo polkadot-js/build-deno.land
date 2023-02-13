@@ -1,16 +1,4 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-// The regex patterns below were copied as-is from the ip-regex package 5.0.0,
-// https://github.com/sindresorhus/ip-regex/blob/a2a44dfa7f776528158c2a5ff9d8a1be435ec1b9/index.js#L1
-//
-// MIT License
-// Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
-//
-// Changes made:
-//  - boundary support option has been dropped
-//  - only exact matching is used (isIp always passed exact: true)
-//  - the newest ip-regex is ESM-only, we compile to all platforms
 const v4 = '(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}';
 const v6s = '[a-fA-F\\d]{1,4}';
 const v6 = `
@@ -39,7 +27,7 @@ const v6exact = new RegExp(`^${v6}$`);
  * <BR>
  *
  * ```javascript
- * import { isIp } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+ * import { isIp } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * isIp('192.168.0.1')); // => true
  * isIp('1:2:3:4:5:6:7:8'); // => true

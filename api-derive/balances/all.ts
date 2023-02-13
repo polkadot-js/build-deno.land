@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-derive authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { Option, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
@@ -112,7 +110,6 @@ function calcBalances (api: DeriveApi, result: Result): DeriveBalancesAll {
   });
 }
 
-// old
 function queryOld (api: DeriveApi, accountId: AccountId | string): Observable<ResultBalance> {
   return combineLatest([
     api.query.balances.locks(accountId),
@@ -147,7 +144,6 @@ function createCalls <T> (calls: (((a: unknown) => Observable<T>) | null | undef
   ];
 }
 
-// current (balances, vesting)
 function queryCurrent (api: DeriveApi, accountId: AccountId | string, balanceInstances: string[] = ['balances']): Observable<ResultBalance> {
   const [lockEmpty, lockQueries] = createCalls<Vec<PalletBalancesBalanceLock>>(
     balanceInstances.map((m) =>

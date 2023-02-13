@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-base authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { AnyFunction, Callback, Codec } from 'https://deno.land/x/polkadot/types/types/index.ts';
@@ -10,7 +8,6 @@ export type DropLast<T extends readonly unknown[]> = T extends readonly [...infe
 
 export type ApiTypes = 'promise' | 'rxjs';
 
-// Returns the inner type of an Observable
 export type ObsInnerType<O extends Observable<any>> = O extends Observable<infer U> ? U : never;
 
 export type VoidFn = () => void;
@@ -27,14 +24,7 @@ export type MethodResult<ApiType extends ApiTypes, F extends AnyFunction> =
     ? RxResult<F>
     : PromiseResult<F>;
 
-// Here are the return types of these parts of the api:
-// - api.query.*.*: no exact typings
-// - api.tx.*.*: SubmittableExtrinsic<ApiType extends ApiTypes>
-// - api.derive.*.*: MethodResult<ApiType, F>
-// - api.rpc.*.*: no exact typings (for now, FIXME: should be  MethodResult<ApiType, F>, like in derive)
 
-// These are the types that don't lose type information (used for api.derive.*)
-// Also use these for api.rpc.* https://github.com/polkadot-js/api/issues/1009
 export interface RxResult<F extends AnyFunction> {
   (...args: Parameters<F>): Observable<ObsInnerType<ReturnType<F>>>;
   <T>(...args: Parameters<F>): Observable<T>;
@@ -47,8 +37,6 @@ export interface PromiseResult<F extends AnyFunction> {
   <T extends Codec | Codec[]>(...args: Push<Parameters<F>, Callback<T>>): UnsubscribePromise;
 }
 
-// In the abstract `decorateMethod` in Base.ts, we can also pass in some meta-
-// information. This describes it.
 export interface DecorateMethodOptions {
   methodName?: string;
   overrideNoSub?: (...args: unknown[]) => Observable<Codec>;
@@ -62,7 +50,6 @@ export interface PaginationOptions<A = unknown> {
   startKey?: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type DecorateMethod<ApiType extends ApiTypes, T = any> =
   <M extends (...args: any[]) => Observable<any>>(method: M, options?: DecorateMethodOptions) => T;
 

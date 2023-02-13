@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types-codec authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import { AnyString } from '../types/index.ts';
 
@@ -48,13 +46,11 @@ const mappings: Mapper[] = [
   trim()
 ];
 
-// given a string, trim it
 export function trim (): Mapper {
   return (value: string): string =>
     value.trim();
 }
 
-// given a starting index, find the closing >
 export function findClosing (value: string, start: number): number {
   let depth = 0;
 
@@ -138,7 +134,6 @@ function replaceTagWith (value: string, matcher: string, replacer: (inner: strin
   }
 }
 
-// remove the Bounded* or Weak* wrappers
 export function removeExtensions (type: string, isSized: boolean): Mapper {
   return (value: string): string => {
     for (let i = 0; i < BOUNDED.length; i++) {
@@ -219,7 +214,6 @@ export function removeGenerics (): Mapper {
   };
 }
 
-// remove the PairOf wrappers
 export function removePairOf (): Mapper {
   const replacer = (v: string) => `(${v},${v})`;
 
@@ -227,7 +221,6 @@ export function removePairOf (): Mapper {
     replaceTagWith(value, 'PairOf<', replacer);
 }
 
-// remove the type traits
 export function removeTraits (): Mapper {
   const from1 = /\s/g;
   const from2 = /(T|Self)::/g;
@@ -260,7 +253,6 @@ export function removeTraits (): Mapper {
   };
 }
 
-// remove wrapping values, i.e. Box<Proposal> -> Proposal
 export function removeWrap (check: string): Mapper {
   const replacer = (v: string) => v;
 

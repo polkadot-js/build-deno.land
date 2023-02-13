@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { ApiTypes, DeriveCustom, QueryableStorageMulti } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 import type { ApiInterfaceRx as ApiInterfaceBase } from 'https://deno.land/x/polkadot/api-base/types/api.ts';
@@ -30,7 +28,6 @@ export type { Signer, SignerResult } from 'https://deno.land/x/polkadot/types/ty
 
 export { ApiBase } from '../base/index.ts';
 
-// A smaller interface of ApiRx, used in derive and in SubmittableExtrinsic
 export interface ApiInterfaceRx extends ApiInterfaceBase {
   derive: AllDerives<'rxjs'>;
 }

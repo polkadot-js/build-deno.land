@@ -1,4 +1,3 @@
-// Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
 import type { BTreeMap, Compact, Enum, Option, Struct, Vec, bool, u128, u16, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';

@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-derive authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { QueryableModuleStorage } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
@@ -13,7 +11,6 @@ import { combineLatest, map, of } from 'https://esm.sh/rxjs@7.8.0';
 
 import { memo } from '../util/index.ts';
 
-// Voter is current tuple is 2.x-era
 type VoteEntry = PalletElectionsPhragmenVoter | ITuple<[Balance, Vec<AccountId>]>;
 
 function isVoter (value: VoteEntry): value is PalletElectionsPhragmenVoter {

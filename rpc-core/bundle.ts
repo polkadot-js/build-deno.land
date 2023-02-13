@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/rpc-core authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Observer } from 'https://esm.sh/rxjs@7.8.0';
 import type { ProviderInterface, ProviderInterfaceCallback } from 'https://deno.land/x/polkadot/rpc-provider/types.ts';
@@ -40,7 +38,6 @@ const EMPTY_META = {
   }
 };
 
-// utility method to create a nicely-formatted error
 /** @internal */
 function logErrorMessage (method: string, { noErrorLog, params, type }: DefinitionRpc, error: Error): void {
   if (noErrorLog) {
@@ -85,7 +82,6 @@ function isTreatAsHex (key: StorageKey): boolean {
  */
 export class RpcCore {
   #instanceId: string;
-
   #registryDefault: Registry;
 
   #getBlockRegistry?: (blockHash: Uint8Array) => Promise<{ registry: Registry }>;
@@ -93,11 +89,9 @@ export class RpcCore {
 
   readonly #storageCache = new Map<string, Codec>();
 
-  public readonly mapping = new Map<string, DefinitionRpcExt>();
-
-  public readonly provider: ProviderInterface;
-
-  public readonly sections: string[] = [];
+  readonly mapping = new Map<string, DefinitionRpcExt>();
+  readonly provider: ProviderInterface;
+  readonly sections: string[] = [];
 
   /**
    * @constructor
@@ -483,7 +477,7 @@ export class RpcCore {
           : meta.modifier.isOptional
             ? registry.createTypeUnsafe(type, [input], { blockHash, isPedantic: true })
             : input
-      ], { blockHash, isOptional: meta.modifier.isOptional, isPedantic: !meta.modifier.isOptional });
+      ], { blockHash, isFallback: isEmpty && !!meta.fallback, isOptional: meta.modifier.isOptional, isPedantic: !meta.modifier.isOptional });
     } catch (error) {
       throw new Error(`Unable to decode storage ${key.section || 'unknown'}.${key.method || 'unknown'}:${entryNum}: ${(error as Error).message}`);
     }

@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types-codec authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { AnyJson, AnyU8a, Codec, CodecClass, Inspect, Registry } from '../types/index.ts';
 
@@ -39,9 +37,7 @@ function decodeRaw<T extends Codec> (registry: Registry, typeName: CodecClass<T>
 
 export class WrapperKeepOpaque<T extends Codec> extends Bytes {
   readonly #Type: CodecClass<T>;
-
   readonly #decoded: T | null;
-
   readonly #opaqueName: OpaqueName;
 
   constructor (registry: Registry, typeName: CodecClass<T> | string, value?: unknown, { opaqueName = 'WrapperKeepOpaque' }: Options = {}) {

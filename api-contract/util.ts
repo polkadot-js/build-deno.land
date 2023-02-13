@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/rpc-contract authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { SubmittableResult } from 'https://deno.land/x/polkadot/api/mod.ts';
 import type { EventRecord } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';

@@ -1,9 +1,6 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import { formatDecimal, formatNumber } from '../index.ts';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ExecFn = (...params: any[]) => unknown;
 
 const NUM_PAD = 16;
@@ -36,7 +33,7 @@ export function formatOps (count: number, time: number): string {
 
   return `
 ${formatFixed(ops).padStart(NUM_PAD + PRE_PAD + 1)} ops/s
-${formatFixed(micro).padStart(NUM_PAD + PRE_PAD + 1)} μs/op`;
+${formatFixed(micro).padStart(NUM_PAD + PRE_PAD + 1)} us/op`; // μ
 }
 
 export function perf (name: string, count: number, inputs: readonly unknown[][], exec: ExecFn, withLog?: boolean): void {

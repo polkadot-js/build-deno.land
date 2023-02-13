@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-contract authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { ApiBase } from 'https://deno.land/x/polkadot/api/base/index.ts';
 import type { ApiTypes } from 'https://deno.land/x/polkadot/api/types/index.ts';

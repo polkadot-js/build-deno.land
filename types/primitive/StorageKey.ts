@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { AnyJson, AnyTuple, Codec } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { StorageEntryMetadataLatest, StorageEntryTypeLatest, StorageHasher } from '../interfaces/metadata/index.ts';
@@ -24,7 +22,6 @@ interface StorageKeyExtra {
   section: string;
 }
 
-// hasher type -> [initialHashLength, canDecodeKey]
 const HASHER_MAP: Record<keyof typeof AllHashers, [number, boolean]> = {
   // opaque
   Blake2_128: [16, false], // eslint-disable-line camelcase
@@ -172,13 +169,9 @@ export class StorageKey<A extends AnyTuple = AnyTuple> extends Bytes implements 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore This is assigned via this.decodeArgsFromMeta()
   #args: A;
-
   #meta?: StorageEntryMetadataLatest;
-
   #outputType: string;
-
   #method?: string;
-
   #section?: string;
 
   constructor (registry: Registry, value?: string | Uint8Array | StorageKey | StorageEntry | [StorageEntry, unknown[]?], override: Partial<StorageKeyExtra> = {}) {

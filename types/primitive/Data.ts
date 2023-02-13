@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { IU8a, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { H256 } from '../interfaces/runtime/index.ts';

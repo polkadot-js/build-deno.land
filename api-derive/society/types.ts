@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-derive authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { u32 } from 'https://deno.land/x/polkadot/types/mod.ts';
 import type { AccountId, Balance, BalanceOf, BlockNumber, StrikeCount } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';

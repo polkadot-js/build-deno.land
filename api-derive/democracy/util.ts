@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-derive authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Hash, ReferendumInfoTo239, Tally } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { FrameSupportPreimagesBounded, PalletDemocracyReferendumInfo, PalletDemocracyReferendumStatus, PalletDemocracyVoteThreshold } from 'https://deno.land/x/polkadot/types/lookup.ts';

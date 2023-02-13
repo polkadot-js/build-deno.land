@@ -1,4 +1,3 @@
-// Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
 import type { Hash } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';

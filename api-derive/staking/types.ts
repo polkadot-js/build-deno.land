@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-derive authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { AccountId, Balance, EraIndex, RewardPoint } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { PalletStakingExposure, PalletStakingRewardDestination, PalletStakingStakingLedger, PalletStakingValidatorPrefs } from 'https://deno.land/x/polkadot/types/lookup.ts';

@@ -1,11 +1,8 @@
-// Copyright 2017-2022 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Definitions } from '../../types/index.ts';
 
 import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
-// order important in structs... :)
 /* eslint-disable sort-keys */
 
 const layout = {

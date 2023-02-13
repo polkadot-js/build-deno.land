@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-derive authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { u32, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
@@ -15,7 +13,6 @@ import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 
-// SeatHolder is current tuple is 2.x-era Substrate
 type Member = PalletElectionsPhragmenSeatHolder | ITuple<[AccountId32, Balance]>;
 
 type Candidate = AccountId32 | ITuple<[AccountId32, Balance]>;

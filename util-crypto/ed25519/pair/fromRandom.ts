@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Keypair } from '../../types.ts';
 
@@ -15,7 +13,7 @@ import { ed25519PairFromSeed } from './fromSeed.ts';
  * <BR>
  *
  * ```javascript
- * import { ed25519PairFromRandom } from 'https://deno.land/x/polkadot@0.2.20/util-crypto/mod.ts';
+ * import { ed25519PairFromRandom } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
  *
  * ed25519PairFromRandom(); // => { secretKey: [...], publicKey: [...] }
  * ```

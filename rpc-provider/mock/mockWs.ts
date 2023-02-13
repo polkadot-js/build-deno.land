@@ -1,7 +1,5 @@
-// Copyright 2017-2022 @polkadot/rpc-provider authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import { Server, WebSocket } from 'https://esm.sh/mock-socket@9.1.5';
+import { Server, WebSocket } from 'https://esm.sh/mock-socket@9.2.0';
 
 import { stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
 
@@ -41,7 +39,6 @@ global.WebSocket = WebSocket as typeof global.WebSocket;
 
 export const TEST_WS_URL = 'ws://localhost:9955';
 
-// should be JSONRPC def return
 function createError ({ error: { code, message }, id }: ErrorDef): RpcError {
   return {
     error: {
@@ -53,7 +50,6 @@ function createError ({ error: { code, message }, id }: ErrorDef): RpcError {
   };
 }
 
-// should be JSONRPC def return
 function createReply ({ id, reply: { result } }: ReplyDef): RpcReply {
   return {
     id,
@@ -62,7 +58,6 @@ function createReply ({ id, reply: { result } }: ReplyDef): RpcReply {
   };
 }
 
-// scope definition returned
 export function mockWs (requests: Request[], wsUrl: string = TEST_WS_URL): Scope {
   const server = new Server(wsUrl);
 

@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-contract authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 export { default as delegator } from './delegator.json' assert { type: 'json' };
 export { default as dns } from './dns.json' assert { type: 'json' };

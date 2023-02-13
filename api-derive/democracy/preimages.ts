@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-derive authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { AccountId, Balance, BlockNumber, Call, Hash, PreimageStatus } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
@@ -76,7 +74,9 @@ function parseImage (api: DeriveApi, [proposalHash, status, bytes]: [HexString, 
   return { at: BN_ZERO, balance, proposal, proposalHash, proposer };
 }
 
-function getDemocracyImages (api: DeriveApi, hashes: (Hash | Uint8Array | string)[]): Observable<(DeriveProposalImage | undefined)[]> {
+function getDemocracyImages (api: DeriveApi, bounded: (Hash | Uint8Array | string | FrameSupportPreimagesBounded)[]): Observable<(DeriveProposalImage | undefined)[]> {
+  const hashes = bounded.map((b) => getImageHashBounded(b));
+
   return api.query.democracy.preimages.multi<Option<PreimageStatus>>(hashes).pipe(
     map((images): (DeriveProposalImage | undefined)[] =>
       images.map((imageOpt) => parseDemocracy(api, imageOpt))
@@ -86,6 +86,7 @@ function getDemocracyImages (api: DeriveApi, hashes: (Hash | Uint8Array | string
 
 function getImages (api: DeriveApi, bounded: (FrameSupportPreimagesBounded | Uint8Array | string)[]): Observable<(DeriveProposalImage | undefined)[]> {
   const hashes = bounded.map((b) => getImageHashBounded(b));
+  const bytesType = api.registry.lookup.getTypeDef(api.query.preimage.preimageFor.creator.meta.type.asMap.key).type;
 
   return api.query.preimage.statusFor.multi(hashes).pipe(
     switchMap((optStatus) => {
@@ -93,9 +94,13 @@ function getImages (api: DeriveApi, bounded: (FrameSupportPreimagesBounded | Uin
       const keys = statuses
         .map((s, i) =>
           s
-            ? s.isRequested
-              ? [hashes[i], s.asRequested.len.unwrapOr(0)]
-              : [hashes[i], s.asUnrequested.len]
+            ? bytesType === 'H256'
+              // first generation
+              ? hashes[i]
+              // current generation (H256,u32)
+              : s.isRequested
+                ? [hashes[i], s.asRequested.len.unwrapOr(0)]
+                : [hashes[i], s.asUnrequested.len]
             : null
         )
         .filter((p) => !!p);
@@ -121,7 +126,7 @@ export function preimages (instanceId: string, api: DeriveApi): (hashes: (Hash |
   return memo(instanceId, (hashes: (Hash | Uint8Array | string | FrameSupportPreimagesBounded)[]): Observable<(DeriveProposalImage | undefined)[]> =>
     hashes.length
       ? isFunction(api.query.democracy.preimages)
-        ? getDemocracyImages(api, hashes as string[])
+        ? getDemocracyImages(api, hashes)
         : isFunction(api.query.preimage.preimageFor)
           ? getImages(api, hashes)
           : of([])

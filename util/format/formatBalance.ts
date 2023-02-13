@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '../bn/bn.ts';
 import type { SiDef, ToBn } from '../types.ts';
@@ -7,6 +5,7 @@ import type { SiDef, ToBn } from '../types.ts';
 import { bnToBn } from '../bn/toBn.ts';
 import { isBoolean } from '../is/boolean.ts';
 import { formatDecimal } from './formatDecimal.ts';
+import { getSeparator } from './getSeparator.ts';
 import { calcSi, findSi, SI, SI_MID } from './si.ts';
 
 interface Defaults {
@@ -29,7 +28,11 @@ interface Options {
    */
   forceUnit?: string;
   /**
-   * @description Format with SI, i.e. m/M/etc.
+   * @description Returns value using all available decimals
+   */
+  withAll?: boolean;
+  /**
+   * @description Format with SI, i.e. m/M/etc. (default = true)
    */
   withSi?: boolean;
   /**
@@ -40,6 +43,14 @@ interface Options {
    * @description Add the unit (useful in Balance formats)
    */
   withUnit?: boolean | string;
+  /**
+   * @description Returns all trailing zeros, otherwise removes (default = true)
+   */
+  withZero?: boolean;
+  /**
+   * @description The locale to use
+   */
+  locale?: string;
 }
 
 interface BalanceFormatter {
@@ -57,35 +68,9 @@ const DEFAULT_UNIT = SI[SI_MID].text;
 let defaultDecimals = DEFAULT_DECIMALS;
 let defaultUnit = DEFAULT_UNIT;
 
-function getUnits (si: SiDef, withSi: boolean, withSiFull: boolean, withUnit: boolean | string): string {
-  const unit = isBoolean(withUnit)
-    ? SI[SI_MID].text
-    : withUnit;
-
-  return withSi || withSiFull
-    ? si.value === '-'
-      ? withUnit
-        ? ` ${unit}`
-        : ''
-      : ` ${withSiFull ? `${si.text}${withUnit ? ' ' : ''}` : si.value}${withUnit ? unit : ''}`
-    : '';
-}
-
-function getPrePost (text: string, decimals: number, forceUnit?: string): [SiDef, string, string] {
-  // NOTE We start at midpoint (8) minus 1 - this means that values display as
-  // 123.456 instead of 0.123k (so always 6 relevant). Additionally we use ceil
-  // so there are at most 3 decimal before the decimal separator
-  const si = calcSi(text, decimals, forceUnit);
-  const mid = text.length - (decimals + si.power);
-  const prefix = text.substring(0, mid);
-  const padding = mid < 0 ? 0 - mid : 0;
-  const postfix = `${`${new Array(padding + 1).join('0')}${text}`.substring(mid < 0 ? 0 : mid)}0000`.substring(0, 4);
-
-  return [si, prefix || '0', postfix];
-}
-
-// Formats a string/number with <prefix>.<postfix><type> notation
-function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | bigint | ExtToBn, { decimals = defaultDecimals, forceUnit, withSi = true, withSiFull = false, withUnit = true }: Options = {}): string {
+function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | bigint | ExtToBn, { decimals = defaultDecimals, forceUnit, withAll = false, withSi = true, withSiFull = false, withUnit = true, withZero = true, locale = 'en' }: Options = {}): string {
+  // we only work with string inputs here - convert anything
+  // into the string-only value
   let text = bnToBn(input).toString();
 
   if (text.length === 0 || text === '0') {
@@ -101,22 +86,61 @@ function _formatBalance <ExtToBn extends ToBn> (input?: number | string | BN | b
     text = text.substring(1);
   }
 
-  const [si, prefix, postfix] = getPrePost(text, decimals, forceUnit);
-  const units = getUnits(si, withSi, withSiFull, withUnit);
+  // We start at midpoint (8) minus 1 - this means that values display as
+  // 123.4567 instead of 0.1234 k (so we always have the most relevant).
+  const si = calcSi(text, decimals, forceUnit);
+  const mid = text.length - (decimals + si.power);
+  const pre = mid <= 0 ? '0' : text.substring(0, mid);
 
-  return `${sign}${formatDecimal(prefix)}.${postfix}${units}`;
+  // get the post from the midpoint onward and then first add max decimals
+  // before trimming to the correct (calculated) amount of decimals again
+  let post = text
+    .padStart(mid < 0 ? decimals : 1, '0')
+    .substring(mid < 0 ? 0 : mid)
+    .padEnd(withAll ? Math.max(decimals, 4) : 4, '0')
+    .substring(0, withAll ? Math.max(4, decimals + si.power) : 4);
+
+  // remove all trailing 0's (if required via flag)
+  if (!withZero) {
+    let end = post.length - 1;
+
+    // This looks inefficient, however it is better to do the checks and
+    // only make one final slice than it is to do it in multiples
+    do {
+      if (post[end] === '0') {
+        end--;
+      }
+    } while (post[end] === '0');
+
+    post = post.substring(0, end + 1);
+  }
+
+  // the display unit
+  const unit = isBoolean(withUnit)
+    ? SI[SI_MID].text
+    : withUnit;
+
+  // format the units for display based on the flags
+  const units = withSi || withSiFull
+    ? si.value === '-'
+      ? withUnit
+        ? ` ${unit}`
+        : ''
+      : ` ${withSiFull ? `${si.text}${withUnit ? ' ' : ''}` : si.value}${withUnit ? unit : ''}`
+    : '';
+
+  const { decimal, thousand } = getSeparator(locale);
+
+  return `${sign}${formatDecimal(pre, thousand)}${post && `${decimal}${post}`}${units}`;
 }
 
 export const formatBalance = _formatBalance as BalanceFormatter;
 
-// eslint-disable-next-line @typescript-eslint/unbound-method
 formatBalance.calcSi = (text: string, decimals: number = defaultDecimals): SiDef =>
   calcSi(text, decimals);
 
-// eslint-disable-next-line @typescript-eslint/unbound-method
 formatBalance.findSi = findSi;
 
-// eslint-disable-next-line @typescript-eslint/unbound-method
 formatBalance.getDefaults = (): Defaults => {
   return {
     decimals: defaultDecimals,
@@ -124,8 +148,6 @@ formatBalance.getDefaults = (): Defaults => {
   };
 };
 
-// get allowable options to display in a dropdown
-// eslint-disable-next-line @typescript-eslint/unbound-method
 formatBalance.getOptions = (decimals: number = defaultDecimals): SiDef[] => {
   return SI.filter(({ power }): boolean =>
     power < 0
@@ -134,8 +156,6 @@ formatBalance.getOptions = (decimals: number = defaultDecimals): SiDef[] => {
   );
 };
 
-// Sets the default decimals to use for formatting (ui-wide)
-// eslint-disable-next-line @typescript-eslint/unbound-method
 formatBalance.setDefaults = ({ decimals, unit }: SetDefaults): void => {
   defaultDecimals = decimals === undefined
     ? defaultDecimals

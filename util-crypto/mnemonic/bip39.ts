@@ -1,20 +1,6 @@
-// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-// Adapted from the bitcoinjs/bip39 source
-// https://github.com/bitcoinjs/bip39/blob/1d063b6a6aee4145b34d701037cd3e67f5446ff9/ts_src/index.ts
-// Copyright (c) 2014, Wei Lu <luwei.here@gmail.com> and Daniel Cousens <email@dcousens.com>
-// ISC Licence
-//
-// Change made in this version -
-//   - Adjust formatting (just eslint differences)
-//   - Only English wordlist (this aligns with the wasm-crypto implementation)
-//   - Use util-crypto randomAsU8a (instead of randombytes)
-//   - Remove setting of wordlist passing of wordlist in functions
-//   - Remove mnemonicToSeed (we only use the sync variant)
-//   - generateMnemonic takes number of words (instead of strength)
 
-import { stringToU8a, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+import { stringToU8a, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { pbkdf2Encode } from '../pbkdf2/index.ts';
 import { randomAsU8a } from '../random/index.ts';

@@ -1,10 +1,8 @@
-// Copyright 2017-2022 @polkadot/types-codec authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, BareOpts, Codec, CodecClass, Inspect, IStruct, IU8a, Registry } from '../types/index.ts';
 
-import { isBoolean, isFunction, isHex, isObject, isU8a, isUndefined, objectProperties, stringCamelCase, stringify, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isBoolean, isHex, isObject, isU8a, isUndefined, objectProperties, stringCamelCase, stringify, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { compareMap, decodeU8aStruct, mapToTypeMap, typesToMap } from '../utils/index.ts';
 
@@ -103,14 +101,13 @@ export class Struct<
   V extends { [K in keyof S]: any } = { [K in keyof S]: any },
   // type names, mapped by key, name of Class in S
   E extends { [K in keyof S]: string } = { [K in keyof S]: string }> extends Map<keyof S, Codec> implements IStruct<keyof S> {
+  readonly registry: Registry;
+
   public createdAtHash?: IU8a;
-
-  public readonly initialU8aLength?: number;
-
-  public readonly registry: Registry;
+  public initialU8aLength?: number;
+  public isStorageFallback?: boolean;
 
   readonly #jsonMap: Map<keyof S, string>;
-
   readonly #Types: Definition;
 
   constructor (registry: Registry, Types: S, value?: V | Map<unknown, unknown> | unknown[] | HexString | null, jsonMap = new Map<string, string>(), { definition, setDefinition = noopSetDefinition }: Options = {}) {
@@ -277,7 +274,7 @@ export class Struct<
     const json: Record<string, AnyJson> = {};
 
     for (const [k, v] of this.entries()) {
-      json[k as string] = v && v.toHuman(isExtended);
+      json[k as string] = v.toHuman(isExtended);
     }
 
     return json;
@@ -290,11 +287,9 @@ export class Struct<
     const json: Record<string, AnyJson> = {};
 
     for (const [k, v] of this.entries()) {
-      const jsonKey = this.#jsonMap.get(k) || k;
-
-      // We actually log inside the U8a decoding and use JSON.stringify(...), which
-      // means that the Vec may be partially populated (same applies to toHuman, same check)
-      json[jsonKey as string] = v && v.toJSON();
+      // Here we pull out the entry against the JSON mapping (if supplied)
+      // since this representation goes over RPC and needs to be correct
+      json[(this.#jsonMap.get(k) || k) as string] = v.toJSON();
     }
 
     return json;
@@ -307,11 +302,7 @@ export class Struct<
     const json: Record<string, AnyJson> = {};
 
     for (const [k, v] of this.entries()) {
-      const jsonKey = this.#jsonMap.get(k) || k;
-
-      // We actually log inside the U8a decoding and use JSON.stringify(...), which
-      // means that the Vec may be partially populated (same applies to toHuman, same check)
-      json[jsonKey as string] = v && v.toPrimitive();
+      json[k as string] = v.toPrimitive();
     }
 
     return json;
@@ -339,15 +330,13 @@ export class Struct<
     const encoded: Uint8Array[] = [];
 
     for (const [k, v] of this.entries()) {
-      if (v && isFunction(v.toU8a)) {
-        encoded.push(
-          v.toU8a(
-            !isBare || isBoolean(isBare)
-              ? isBare
-              : isBare[k]
-          )
-        );
-      }
+      encoded.push(
+        v.toU8a(
+          !isBare || isBoolean(isBare)
+            ? isBare
+            : isBare[k]
+        )
+      );
     }
 
     return u8aConcatStrict(encoded);

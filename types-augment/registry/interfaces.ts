@@ -1,8 +1,5 @@
-// Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-// import type lookup before we augment - in some environments
-// this is required to allow for ambient/previous definitions
 import 'https://deno.land/x/polkadot/types/types/registry.ts';
 
 import type { Data, StorageKey } from 'https://deno.land/x/polkadot/types/mod.ts';
@@ -52,7 +49,7 @@ import type { ProxyAnnouncement, ProxyDefinition, ProxyType } from 'https://deno
 import type { AccountStatus, AccountValidity } from 'https://deno.land/x/polkadot/types/interfaces/purchase/index.ts';
 import type { ActiveRecovery, RecoveryConfig } from 'https://deno.land/x/polkadot/types/interfaces/recovery/index.ts';
 import type { RpcMethods } from 'https://deno.land/x/polkadot/types/interfaces/rpc/index.ts';
-import type { AccountId, AccountId20, AccountId32, AccountId33, AccountIdOf, AccountIndex, Address, AssetId, Balance, BalanceOf, Block, BlockNumber, BlockNumberFor, BlockNumberOf, Call, CallHash, CallHashOf, ChangesTrieConfiguration, ChangesTrieSignal, CodecHash, Consensus, ConsensusEngineId, CrateVersion, Digest, DigestItem, EncodedJustification, ExtrinsicsWeight, Fixed128, Fixed64, FixedI128, FixedI64, FixedU128, FixedU64, H1024, H128, H160, H2048, H256, H32, H512, H64, Hash, Header, HeaderPartial, I32F32, Index, IndicesLookupSource, Justification, Justifications, KeyTypeId, KeyValue, LockIdentifier, LookupSource, LookupTarget, ModuleId, Moment, MultiAddress, MultiSigner, OpaqueCall, Origin, OriginCaller, PalletId, PalletVersion, PalletsOrigin, Pays, PerU16, Perbill, Percent, Permill, Perquintill, Phantom, PhantomData, PreRuntime, Releases, RuntimeDbWeight, Seal, SealV0, SignedBlock, SignedBlockWithJustification, SignedBlockWithJustifications, Slot, SlotDuration, StorageData, StorageInfo, StorageProof, TransactionInfo, TransactionLongevity, TransactionPriority, TransactionStorageProof, TransactionTag, U32F32, ValidatorId, ValidatorIdOf, Weight, WeightMultiplier, WeightV1, WeightV2 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { AccountId, AccountId20, AccountId32, AccountId33, AccountIdOf, AccountIndex, Address, AssetId, Balance, BalanceOf, Block, BlockNumber, BlockNumberFor, BlockNumberOf, Call, CallHash, CallHashOf, ChangesTrieConfiguration, ChangesTrieSignal, CodecHash, Consensus, ConsensusEngineId, CrateVersion, Digest, DigestItem, EncodedJustification, ExtrinsicsWeight, Fixed128, Fixed64, FixedI128, FixedI64, FixedU128, FixedU64, H1024, H128, H160, H2048, H256, H32, H512, H64, Hash, Header, HeaderPartial, I32F32, Index, IndicesLookupSource, Justification, Justifications, KeyTypeId, KeyValue, LockIdentifier, LookupSource, LookupTarget, ModuleId, Moment, MultiAddress, MultiSigner, OpaqueCall, Origin, OriginCaller, PalletId, PalletVersion, PalletsOrigin, Pays, PerU16, Perbill, Percent, Permill, Perquintill, Phantom, PhantomData, PreRuntime, Releases, RuntimeCall, RuntimeDbWeight, RuntimeEvent, Seal, SealV0, SignedBlock, SignedBlockWithJustification, SignedBlockWithJustifications, Slot, SlotDuration, StorageData, StorageInfo, StorageProof, TransactionInfo, TransactionLongevity, TransactionPriority, TransactionStorageProof, TransactionTag, U32F32, ValidatorId, ValidatorIdOf, Weight, WeightMultiplier, WeightV0, WeightV1, WeightV2 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 import type { Si0Field, Si0LookupTypeId, Si0Path, Si0Type, Si0TypeDef, Si0TypeDefArray, Si0TypeDefBitSequence, Si0TypeDefCompact, Si0TypeDefComposite, Si0TypeDefPhantom, Si0TypeDefPrimitive, Si0TypeDefSequence, Si0TypeDefTuple, Si0TypeDefVariant, Si0TypeParameter, Si0Variant, Si1Field, Si1LookupTypeId, Si1Path, Si1Type, Si1TypeDef, Si1TypeDefArray, Si1TypeDefBitSequence, Si1TypeDefCompact, Si1TypeDefComposite, Si1TypeDefPrimitive, Si1TypeDefSequence, Si1TypeDefTuple, Si1TypeDefVariant, Si1TypeParameter, Si1Variant, SiField, SiLookupTypeId, SiPath, SiType, SiTypeDef, SiTypeDefArray, SiTypeDefBitSequence, SiTypeDefCompact, SiTypeDefComposite, SiTypeDefPrimitive, SiTypeDefSequence, SiTypeDefTuple, SiTypeDefVariant, SiTypeParameter, SiVariant } from 'https://deno.land/x/polkadot/types/interfaces/scaleInfo/index.ts';
 import type { Period, Priority, SchedulePeriod, SchedulePriority, Scheduled, ScheduledTo254, TaskAddress } from 'https://deno.land/x/polkadot/types/interfaces/scheduler/index.ts';
 import type { BeefyKey, FullIdentification, IdentificationTuple, Keys, MembershipProof, SessionIndex, SessionKeys1, SessionKeys10, SessionKeys10B, SessionKeys2, SessionKeys3, SessionKeys4, SessionKeys5, SessionKeys6, SessionKeys6B, SessionKeys7, SessionKeys7B, SessionKeys8, SessionKeys8B, SessionKeys9, SessionKeys9B, ValidatorCount } from 'https://deno.land/x/polkadot/types/interfaces/session/index.ts';
@@ -875,10 +872,12 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     RoundSnapshot: RoundSnapshot;
     RoundState: RoundState;
     RpcMethods: RpcMethods;
+    RuntimeCall: RuntimeCall;
     RuntimeDbWeight: RuntimeDbWeight;
     RuntimeDispatchInfo: RuntimeDispatchInfo;
     RuntimeDispatchInfoV1: RuntimeDispatchInfoV1;
     RuntimeDispatchInfoV2: RuntimeDispatchInfoV2;
+    RuntimeEvent: RuntimeEvent;
     RuntimeVersion: RuntimeVersion;
     RuntimeVersionApi: RuntimeVersionApi;
     RuntimeVersionPartial: RuntimeVersionPartial;
@@ -1153,6 +1152,7 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     WeightMultiplier: WeightMultiplier;
     WeightPerClass: WeightPerClass;
     WeightToFeeCoefficient: WeightToFeeCoefficient;
+    WeightV0: WeightV0;
     WeightV1: WeightV1;
     WeightV2: WeightV2;
     WildFungibility: WildFungibility;

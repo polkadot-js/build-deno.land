@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '../types.ts';
 
@@ -14,7 +12,7 @@ import { hexHasPrefix } from './hasPrefix.ts';
  * <BR>
  *
  * ```javascript
- * import { hexAddPrefix } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+ * import { hexAddPrefix } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * console.log('With prefix', hexAddPrefix('0a0b12')); // => 0x0a0b12
  * ```

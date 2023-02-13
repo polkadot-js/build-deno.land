@@ -1,8 +1,5 @@
-// Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-// import type lookup before we augment - in some environments
-// this is required to allow for ambient/previous definitions
 import 'https://deno.land/x/polkadot/api-base/types/events.ts';
 
 import type { ApiTypes, AugmentedEvent } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
@@ -10,7 +7,7 @@ import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, 
 import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { EthereumAddress } from 'https://deno.land/x/polkadot/types/interfaces/eth/index.ts';
 import type { AccountId32, H256, Perbill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
-import type { FrameSupportDispatchDispatchInfo, FrameSupportTokensMiscBalanceStatus, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNominationPoolsPoolState, PalletStakingExposure, PalletStakingValidatorPrefs, PolkadotParachainPrimitivesHrmpChannelId, PolkadotPrimitivesV2CandidateReceipt, PolkadotRuntimeParachainsDisputesDisputeLocation, PolkadotRuntimeParachainsDisputesDisputeResult, PolkadotRuntimeProxyType, SpFinalityGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, SpWeightsWeightV2Weight, XcmV1MultiLocation, XcmV2Response, XcmV2TraitsError, XcmV2TraitsOutcome, XcmV2Xcm, XcmVersionedMultiAssets, XcmVersionedMultiLocation } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { FrameSupportDispatchDispatchInfo, FrameSupportTokensMiscBalanceStatus, PalletDemocracyMetadataOwner, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletElectionProviderMultiPhasePhase, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNominationPoolsPoolState, PalletStakingExposure, PalletStakingForcing, PalletStakingValidatorPrefs, PolkadotParachainPrimitivesHrmpChannelId, PolkadotPrimitivesV2CandidateReceipt, PolkadotRuntimeParachainsDisputesDisputeLocation, PolkadotRuntimeParachainsDisputesDisputeResult, PolkadotRuntimeProxyType, SpFinalityGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, SpWeightsWeightV2Weight, XcmV3MultiLocation, XcmV3MultiassetMultiAssets, XcmV3Response, XcmV3TraitsError, XcmV3TraitsOutcome, XcmV3Xcm, XcmVersionedMultiAssets, XcmVersionedMultiLocation } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedEvent<ApiType extends ApiTypes> = AugmentedEvent<ApiType>;
 
@@ -268,6 +265,18 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       ExternalTabled: AugmentedEvent<ApiType, []>;
       /**
+       * Metadata for a proposal or a referendum has been cleared.
+       **/
+      MetadataCleared: AugmentedEvent<ApiType, [owner: PalletDemocracyMetadataOwner, hash_: H256], { owner: PalletDemocracyMetadataOwner, hash_: H256 }>;
+      /**
+       * Metadata for a proposal or a referendum has been set.
+       **/
+      MetadataSet: AugmentedEvent<ApiType, [owner: PalletDemocracyMetadataOwner, hash_: H256], { owner: PalletDemocracyMetadataOwner, hash_: H256 }>;
+      /**
+       * Metadata has been transferred to new owner.
+       **/
+      MetadataTransferred: AugmentedEvent<ApiType, [prevOwner: PalletDemocracyMetadataOwner, owner: PalletDemocracyMetadataOwner, hash_: H256], { prevOwner: PalletDemocracyMetadataOwner, owner: PalletDemocracyMetadataOwner, hash_: H256 }>;
+      /**
        * A proposal has been rejected by referendum.
        **/
       NotPassed: AugmentedEvent<ApiType, [refIndex: u32], { refIndex: u32 }>;
@@ -324,13 +333,13 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       ElectionFinalized: AugmentedEvent<ApiType, [compute: PalletElectionProviderMultiPhaseElectionCompute, score: SpNposElectionsElectionScore], { compute: PalletElectionProviderMultiPhaseElectionCompute, score: SpNposElectionsElectionScore }>;
       /**
+       * There was a phase transition in a given round.
+       **/
+      PhaseTransitioned: AugmentedEvent<ApiType, [from: PalletElectionProviderMultiPhasePhase, to: PalletElectionProviderMultiPhasePhase, round: u32], { from: PalletElectionProviderMultiPhasePhase, to: PalletElectionProviderMultiPhasePhase, round: u32 }>;
+      /**
        * An account has been rewarded for their signed submission being finalized.
        **/
       Rewarded: AugmentedEvent<ApiType, [account: AccountId32, value: u128], { account: AccountId32, value: u128 }>;
-      /**
-       * The signed phase of the given round has started.
-       **/
-      SignedPhaseStarted: AugmentedEvent<ApiType, [round: u32], { round: u32 }>;
       /**
        * An account has been slashed for submitting an invalid signed submission.
        **/
@@ -338,16 +347,13 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
       /**
        * A solution was stored with the given compute.
        * 
-       * If the solution is signed, this means that it hasn't yet been processed. If the
-       * solution is unsigned, this means that it has also been processed.
-       * 
-       * The `bool` is `true` when a previous solution was ejected to make room for this one.
+       * The `origin` indicates the origin of the solution. If `origin` is `Some(AccountId)`,
+       * the stored solution was submited in the signed phase by a miner with the `AccountId`.
+       * Otherwise, the solution was stored either during the unsigned phase or by
+       * `T::ForceOrigin`. The `bool` is `true` when a previous solution was ejected to make
+       * room for this one.
        **/
-      SolutionStored: AugmentedEvent<ApiType, [compute: PalletElectionProviderMultiPhaseElectionCompute, prevEjected: bool], { compute: PalletElectionProviderMultiPhaseElectionCompute, prevEjected: bool }>;
-      /**
-       * The unsigned phase of the given round has started.
-       **/
-      UnsignedPhaseStarted: AugmentedEvent<ApiType, [round: u32], { round: u32 }>;
+      SolutionStored: AugmentedEvent<ApiType, [compute: PalletElectionProviderMultiPhaseElectionCompute, origin: Option<AccountId32>, prevEjected: bool], { compute: PalletElectionProviderMultiPhaseElectionCompute, origin: Option<AccountId32>, prevEjected: bool }>;
       /**
        * Generic event
        **/
@@ -359,12 +365,12 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       BatchChecked: AugmentedEvent<ApiType, [eras: Vec<u32>], { eras: Vec<u32> }>;
       /**
-       * A batch was terminated.
+       * A batch of a given size was terminated.
        * 
        * This is always follows by a number of `Unstaked` or `Slashed` events, marking the end
        * of the batch. A new batch will be created upon next block.
        **/
-      BatchFinished: AugmentedEvent<ApiType, []>;
+      BatchFinished: AugmentedEvent<ApiType, [size_: u32], { size_: u32 }>;
       /**
        * An internal error happened. Operations will be paused now.
        **/
@@ -872,6 +878,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       EraPaid: AugmentedEvent<ApiType, [eraIndex: u32, validatorPayout: u128, remainder: u128], { eraIndex: u32, validatorPayout: u128, remainder: u128 }>;
       /**
+       * A new force era mode was set.
+       **/
+      ForceEra: AugmentedEvent<ApiType, [mode: PalletStakingForcing], { mode: PalletStakingForcing }>;
+      /**
        * A nominator has been kicked from a validator.
        **/
       Kicked: AugmentedEvent<ApiType, [nominator: AccountId32, stash: AccountId32], { nominator: AccountId32, stash: AccountId32 }>;
@@ -1090,6 +1100,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       Spending: AugmentedEvent<ApiType, [budgetRemaining: u128], { budgetRemaining: u128 }>;
       /**
+       * The inactive funds of the pallet have been updated.
+       **/
+      UpdatedInactive: AugmentedEvent<ApiType, [reactivated: u128, deactivated: u128], { reactivated: u128, deactivated: u128 }>;
+      /**
        * Generic event
        **/
       [key: string]: AugmentedEvent<ApiType>;
@@ -1099,7 +1113,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * Upward message executed with the given outcome.
        * \[ id, outcome \]
        **/
-      ExecutedUpward: AugmentedEvent<ApiType, [U8aFixed, XcmV2TraitsOutcome]>;
+      ExecutedUpward: AugmentedEvent<ApiType, [U8aFixed, XcmV3TraitsOutcome]>;
       /**
        * Upward message is invalid XCM.
        * \[ id \]
@@ -1207,19 +1221,45 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * 
        * \[ hash, origin, assets \]
        **/
-      AssetsClaimed: AugmentedEvent<ApiType, [H256, XcmV1MultiLocation, XcmVersionedMultiAssets]>;
+      AssetsClaimed: AugmentedEvent<ApiType, [H256, XcmV3MultiLocation, XcmVersionedMultiAssets]>;
       /**
        * Some assets have been placed in an asset trap.
        * 
        * \[ hash, origin, assets \]
        **/
-      AssetsTrapped: AugmentedEvent<ApiType, [H256, XcmV1MultiLocation, XcmVersionedMultiAssets]>;
+      AssetsTrapped: AugmentedEvent<ApiType, [H256, XcmV3MultiLocation, XcmVersionedMultiAssets]>;
       /**
        * Execution of an XCM message was attempted.
        * 
        * \[ outcome \]
        **/
-      Attempted: AugmentedEvent<ApiType, [XcmV2TraitsOutcome]>;
+      Attempted: AugmentedEvent<ApiType, [XcmV3TraitsOutcome]>;
+      /**
+       * Fees were paid from a location for an operation (often for using `SendXcm`).
+       * 
+       * \[ paying location, fees \]
+       **/
+      FeesPaid: AugmentedEvent<ApiType, [XcmV3MultiLocation, XcmV3MultiassetMultiAssets]>;
+      /**
+       * Expected query response has been received but the querier location of the response does
+       * not match the expected. The query remains registered for a later, valid, response to
+       * be received and acted upon.
+       * 
+       * \[ origin location, id, expected querier, maybe actual querier \]
+       **/
+      InvalidQuerier: AugmentedEvent<ApiType, [XcmV3MultiLocation, u64, XcmV3MultiLocation, Option<XcmV3MultiLocation>]>;
+      /**
+       * Expected query response has been received but the expected querier location placed in
+       * storage by this runtime previously cannot be decoded. The query remains registered.
+       * 
+       * This is unexpected (since a location placed in storage in a previously executing
+       * runtime should be readable prior to query timeout) and dangerous since the possibly
+       * valid response will be dropped. Manual governance intervention is probably going to be
+       * needed.
+       * 
+       * \[ origin location, id \]
+       **/
+      InvalidQuerierVersion: AugmentedEvent<ApiType, [XcmV3MultiLocation, u64]>;
       /**
        * Expected query response has been received but the origin location of the response does
        * not match that expected. The query remains registered for a later, valid, response to
@@ -1227,7 +1267,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * 
        * \[ origin location, id, expected location \]
        **/
-      InvalidResponder: AugmentedEvent<ApiType, [XcmV1MultiLocation, u64, Option<XcmV1MultiLocation>]>;
+      InvalidResponder: AugmentedEvent<ApiType, [XcmV3MultiLocation, u64, Option<XcmV3MultiLocation>]>;
       /**
        * Expected query response has been received but the expected origin location placed in
        * storage by this runtime previously cannot be decoded. The query remains registered.
@@ -1239,7 +1279,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * 
        * \[ origin location, id \]
        **/
-      InvalidResponderVersion: AugmentedEvent<ApiType, [XcmV1MultiLocation, u64]>;
+      InvalidResponderVersion: AugmentedEvent<ApiType, [XcmV3MultiLocation, u64]>;
       /**
        * Query response has been received and query is removed. The registered notification has
        * been dispatched and executed successfully.
@@ -1283,14 +1323,14 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * 
        * \[ location, query ID, error \]
        **/
-      NotifyTargetSendFail: AugmentedEvent<ApiType, [XcmV1MultiLocation, u64, XcmV2TraitsError]>;
+      NotifyTargetSendFail: AugmentedEvent<ApiType, [XcmV3MultiLocation, u64, XcmV3TraitsError]>;
       /**
        * Query response has been received and is ready for taking with `take_response`. There is
        * no registered notification call.
        * 
        * \[ id, response \]
        **/
-      ResponseReady: AugmentedEvent<ApiType, [u64, XcmV2Response]>;
+      ResponseReady: AugmentedEvent<ApiType, [u64, XcmV3Response]>;
       /**
        * Received query response has been read and removed.
        * 
@@ -1302,14 +1342,14 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * 
        * \[ origin, destination, message \]
        **/
-      Sent: AugmentedEvent<ApiType, [XcmV1MultiLocation, XcmV1MultiLocation, XcmV2Xcm]>;
+      Sent: AugmentedEvent<ApiType, [XcmV3MultiLocation, XcmV3MultiLocation, XcmV3Xcm]>;
       /**
        * The supported version of a location has been changed. This might be through an
        * automatic notification or a manual intervention.
        * 
        * \[ location, XCM version \]
        **/
-      SupportedVersionChanged: AugmentedEvent<ApiType, [XcmV1MultiLocation, u32]>;
+      SupportedVersionChanged: AugmentedEvent<ApiType, [XcmV3MultiLocation, u32]>;
       /**
        * Query response received which does not match a registered query. This may be because a
        * matching query was never registered, it may be because it is a duplicate response, or
@@ -1317,13 +1357,34 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * 
        * \[ origin location, id \]
        **/
-      UnexpectedResponse: AugmentedEvent<ApiType, [XcmV1MultiLocation, u64]>;
+      UnexpectedResponse: AugmentedEvent<ApiType, [XcmV3MultiLocation, u64]>;
       /**
        * An XCM version change notification message has been attempted to be sent.
        * 
-       * \[ destination, result \]
+       * The cost of sending it (borne by the chain) is included.
+       * 
+       * \[ destination, result, cost \]
        **/
-      VersionChangeNotified: AugmentedEvent<ApiType, [XcmV1MultiLocation, u32]>;
+      VersionChangeNotified: AugmentedEvent<ApiType, [XcmV3MultiLocation, u32, XcmV3MultiassetMultiAssets]>;
+      /**
+       * We have requested that a remote chain sends us XCM version change notifications.
+       * 
+       * \[ destination location, cost \]
+       **/
+      VersionNotifyRequested: AugmentedEvent<ApiType, [XcmV3MultiLocation, XcmV3MultiassetMultiAssets]>;
+      /**
+       * A remote has requested XCM version change notification from us and we have honored it.
+       * A version information message is sent to them and its cost is included.
+       * 
+       * \[ destination location, cost \]
+       **/
+      VersionNotifyStarted: AugmentedEvent<ApiType, [XcmV3MultiLocation, XcmV3MultiassetMultiAssets]>;
+      /**
+       * We have requested that a remote chain stops sending us XCM version change notifications.
+       * 
+       * \[ destination location, cost \]
+       **/
+      VersionNotifyUnrequested: AugmentedEvent<ApiType, [XcmV3MultiLocation, XcmV3MultiassetMultiAssets]>;
       /**
        * Generic event
        **/

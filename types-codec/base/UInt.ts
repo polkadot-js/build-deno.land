@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types-codec authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { AnyNumber, CodecClass, Registry, UIntBitLength } from '../types/index.ts';
 
@@ -18,7 +16,7 @@ import { AbstractInt } from '../abstract/Int.ts';
 export class UInt extends AbstractInt {
   public static with (bitLength: UIntBitLength, typeName?: string): CodecClass<UInt> {
     return class extends UInt {
-      constructor (registry: Registry, value?: AnyNumber) {
+      constructor (registry: Registry, value?: AnyNumber | null) {
         super(registry, value, bitLength);
       }
 

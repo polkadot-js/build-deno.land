@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { AnyJson, AnyNumber, AnyTuple, AnyU8a, Codec } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';

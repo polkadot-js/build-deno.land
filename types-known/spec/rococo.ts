@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types-known authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 /* eslint-disable sort-keys */
 
@@ -8,7 +6,6 @@ import type { OverrideVersionedType } from 'https://deno.land/x/polkadot/types/t
 import { mapXcmTypes } from 'https://deno.land/x/polkadot/types-create/mod.ts';
 import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
-// structs need to be in order
 /* eslint-disable sort-keys */
 
 const sharedTypes = {

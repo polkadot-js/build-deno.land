@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-derive authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { ObsInnerType } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
@@ -15,9 +13,6 @@ import { memo } from '../util/index.ts';
 
 type ApplyReturn<T extends keyof ExactDerive['staking']> = ReturnType<ExactDerive['staking'][T]>;
 
-// only retrieve a maximum of 14 eras (84 / 6) at a time
-// (This is not empirically calculated. Rather smaller sizes take longer
-// time due to the serial nature, large sizes may tie up the RPCs)
 const ERA_CHUNK_SIZE = 14;
 
 function chunkEras <T> (eras: EraIndex[], fn: (eras: EraIndex[]) => Observable<T[]>): Observable<T[]> {

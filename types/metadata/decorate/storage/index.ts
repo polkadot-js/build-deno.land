@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { MetadataLatest, StorageEntryMetadataLatest } from '../../../interfaces/index.ts';
@@ -17,7 +15,6 @@ const VERSION_KEY = ':__STORAGE_VERSION__:';
 const VERSION_DOCS = { docs: 'Returns the current pallet version from storage', type: 'u16' };
 
 /** @internal */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function decorateStorage (registry: Registry, { pallets }: MetadataLatest, _metaVersion: number): Storage {
   const result: Storage = getStorage(registry);
 

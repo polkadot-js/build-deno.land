@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types-codec authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import { Int } from '../base/Int.ts';
 
@@ -10,5 +8,5 @@ import { Int } from '../base/Int.ts';
  */
 export class i256 extends Int.with(256) {
   // NOTE without this, we cannot properly determine extensions
-  public readonly __IntType = 'i256';
+  readonly __IntType = 'i256';
 }

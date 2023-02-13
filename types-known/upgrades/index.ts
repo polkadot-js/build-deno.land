@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types-known authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { ChainUpgrades } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
@@ -10,7 +8,6 @@ import { BN, hexToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import * as allKnown from './e2e/index.ts';
 
-// testnets are not available in the networks map
 const NET_EXTRA: Record<string, { genesisHash: HexString[] }> = {
   westend: {
     genesisHash: ['0xe143f23803ac50e8f6f8e62695d1ce9e4e1d68aa36c1cd2cfd15340213f3423e']
@@ -36,7 +33,6 @@ function mapRaw ([network, versions]: [string, ChainUpgradesExpanded]): ChainUpg
   };
 }
 
-// Type overrides for specific spec types & versions as given in runtimeVersion
 const upgrades = Object.entries<ChainUpgradesExpanded>(allKnown).map(mapRaw);
 
 export default upgrades;

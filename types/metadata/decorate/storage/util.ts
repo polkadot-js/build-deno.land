@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { PortableType } from '../../../interfaces/index.ts';
 import type { StorageEntry } from '../../../primitive/types.ts';
@@ -58,7 +56,6 @@ function findSiType (registry: Registry, orig: string): PortableType | undefined
   return portable;
 }
 
-// Small helper function to factorize code on this page.
 /** @internal */
 export function createRuntimeFunction ({ method, prefix, section }: ManualDefinition, key: Uint8Array | string, { docs, type }: ManualMetadata): (registry: Registry) => StorageEntry {
   return (registry: Registry): StorageEntry =>

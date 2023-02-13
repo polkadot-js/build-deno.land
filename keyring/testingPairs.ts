@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/keyring authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { KeyringOptions, KeyringPair } from './types.ts';
 

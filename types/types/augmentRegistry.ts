@@ -1,12 +1,8 @@
-// Copyright 2017-2022 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-// import type lookup before we augment - in some environments
-// this is required to allow for ambient/previous definitions
 import 'https://deno.land/x/polkadot/types-codec/types/registry.ts';
 import 'https://deno.land/x/polkadot/types-create/types/augmentRegistry.ts';
 
-import type { AnyString, Codec, CodecClass } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { AnyString, Codec, CodecClass, LookupString } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 import type { ExtDef } from '../extrinsic/signedExtensions/types.ts';
 import type { MetadataLatest } from '../interfaces/metadata/index.ts';
@@ -33,7 +29,7 @@ declare module 'https://deno.land/x/polkadot/types-codec/types/registry.ts' {
 
     clearCache (): void
 
-    createLookupType (lookupId: SiLookupTypeId | number): string;
+    createLookupType (lookupId: SiLookupTypeId | number): LookupString;
 
     createClass <T extends Codec = Codec, K extends string = string> (type: K): CodecClass<DetectCodec<T, K>>;
     createType <T extends Codec = Codec, K extends string = string> (type: K, ...params: unknown[]): DetectCodec<T, K>;

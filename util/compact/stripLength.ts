@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import { compactFromU8a } from './fromU8a.ts';
 
@@ -10,7 +8,7 @@ import { compactFromU8a } from './fromU8a.ts';
  * <BR>
  *
  * ```javascript
- * import { compactStripLength } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+ * import { compactStripLength } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * console.log(compactStripLength(new Uint8Array([2 << 2, 0xde, 0xad]))); // [2, Uint8Array[0xde, 0xad]]
  * ```

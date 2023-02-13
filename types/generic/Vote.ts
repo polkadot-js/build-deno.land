@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { AnyJson, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { Conviction } from '../interfaces/democracy/index.ts';
@@ -14,10 +12,8 @@ interface VoteType {
   conviction?: number | ArrayElementType<typeof AllConvictions>;
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 type InputTypes = boolean | number | Boolean | Uint8Array | VoteType;
 
-// For votes, the topmost bit indicated aye/nay, the lower bits indicate the conviction
 const AYE_BITS = 0b10000000;
 const NAY_BITS = 0b00000000;
 const CON_MASK = 0b01111111;
@@ -69,7 +65,6 @@ function decodeVote (registry: Registry, value?: InputTypes): Uint8Array {
  */
 export class GenericVote extends U8aFixed {
   #aye: boolean;
-
   #conviction: Conviction;
 
   constructor (registry: Registry, value?: InputTypes) {

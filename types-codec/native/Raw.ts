@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types-codec authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, AnyU8a, Inspect, IU8a, Registry } from '../types/index.ts';
@@ -16,11 +14,11 @@ import { isAscii, isUndefined, isUtf8, u8aToHex, u8aToString, u8aToU8a } from 'h
  * @noInheritDoc
  */
 export class Raw extends Uint8Array implements IU8a {
+  readonly registry: Registry;
+
   public createdAtHash?: IU8a;
-
-  public readonly initialU8aLength?: number;
-
-  public readonly registry: Registry;
+  public initialU8aLength?: number;
+  public isStorageFallback?: boolean;
 
   /**
    * @description This ensures that operators such as clice, filter, map, etc. return

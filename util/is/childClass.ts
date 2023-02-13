@@ -1,7 +1,7 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Constructor } from '../types.ts';
+
+import { isClass } from './class.ts';
 
 /**
  * @name isChildClass
@@ -12,7 +12,7 @@ import type { Constructor } from '../types.ts';
  * <BR>
  *
  * ```javascript
- * import { isChildClass } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+ * import { isChildClass } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * console.log('isChildClass', isChildClass(BN, BN); // => true
  * console.log('isChildClass', isChildClass(BN, Uint8Array); // => false
@@ -20,8 +20,8 @@ import type { Constructor } from '../types.ts';
  */
 export function isChildClass <P extends Constructor> (Parent: P, Child?: Constructor | null | unknown): Child is P {
   // https://stackoverflow.com/questions/30993434/check-if-a-constructor-inherits-another-in-es6/30993664
-  return Child
+  return isClass(Child) && isClass(Parent)
     // eslint-disable-next-line no-prototype-builtins
-    ? Parent === Child || Parent.isPrototypeOf(Child as Constructor)
+    ? Parent === Child || Parent.isPrototypeOf(Child)
     : false;
 }

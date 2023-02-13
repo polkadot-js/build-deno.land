@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types-create authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Codec, CodecClass, IU8a, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { CreateOptions } from '../types/index.ts';
@@ -9,8 +7,6 @@ import { isHex, isU8a, u8aEq, u8aToHex, u8aToU8a } from 'https://deno.land/x/pol
 
 import { createClassUnsafe } from './class.ts';
 
-// With isPedantic, actually check that the encoding matches that supplied. This
-// is much slower, but verifies that we have the correct types defined
 function checkInstance (created: Codec, matcher: Uint8Array): void {
   const u8a = created.toU8a();
   const rawType = created.toRawType();
@@ -42,23 +38,26 @@ function checkPedantic (created: Codec, [value]: unknown[]): void {
   }
 }
 
-// Initializes a type with a value. This also checks for fallbacks and in the cases
-// where isPedantic is specified (storage decoding), also check the format/structure
-function initType<T extends Codec> (registry: Registry, Type: CodecClass, params: unknown[] = [], { blockHash, isOptional, isPedantic }: CreateOptions = {}): T {
-  const created = new (isOptional ? Option.with(Type) : Type)(registry, ...params);
+function initType<T extends Codec> (registry: Registry, Type: CodecClass, params: unknown[] = [], { blockHash, isFallback, isOptional, isPedantic }: CreateOptions = {}): T {
+  const created = new (
+    isOptional
+      ? Option.with(Type)
+      : Type
+  )(registry, ...params);
 
   isPedantic && checkPedantic(created, params);
 
   if (blockHash) {
-    created.createdAtHash = createTypeUnsafe<IU8a>(registry, 'Hash', [blockHash]);
+    created.createdAtHash = createTypeUnsafe<IU8a>(registry, 'BlockHash', [blockHash]);
+  }
+
+  if (isFallback) {
+    created.isStorageFallback = true;
   }
 
   return created as T;
 }
 
-// An unsafe version of the `createType` below. It's unsafe because the `type`
-// argument here can be any string, which, when it cannot parse, will yield a
-// runtime error.
 export function createTypeUnsafe<T extends Codec = Codec, K extends string = string> (registry: Registry, type: K, params: unknown[] = [], options: CreateOptions = {}): T {
   let Clazz: CodecClass | null = null;
   let firstError: Error | null = null;

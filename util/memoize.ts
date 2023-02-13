@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Memoized } from './types.ts';
 
@@ -17,7 +15,6 @@ function defaultGetId (): string {
  * @name memoize
  * @description Memomize the function with a specific instanceId
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function memoize <T, F extends (...args: any[]) => T> (fn: F, { getInstanceId = defaultGetId }: Options = {}): Memoized<F> {
   const cache: Record<string, Record<string, T>> = {};
 

@@ -1,8 +1,5 @@
-// Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-// import type lookup before we augment - in some environments
-// this is required to allow for ambient/previous definitions
 import 'https://deno.land/x/polkadot/api-base/types/consts.ts';
 
 import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
@@ -74,18 +71,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        * The maximum length of a name or symbol stored on-chain.
        **/
       stringLimit: u32 & AugmentedConst<ApiType>;
-      /**
-       * Generic const
-       **/
-      [key: string]: Codec;
-    };
-    authorship: {
-      /**
-       * The number of blocks back we should accept uncles.
-       * This means that we will deal with uncle-parents that are
-       * `UncleGenerations + 1` before `now`.
-       **/
-      uncleGenerations: u32 & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/
@@ -243,6 +228,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        * The maximum length of a contract code in bytes. This limit applies to the instrumented
        * version of the code. Therefore `instantiate_with_code` can fail even when supplying
        * a wasm binary below this maximum size.
+       * 
+       * The value should be chosen carefully taking into the account the overall memory limit
+       * your runtime has, as well as the [maximum allowed callstack
+       * depth](#associatedtype.CallStack). Look into the `integrity_test()` for some insights.
        **/
       maxCodeLen: u32 & AugmentedConst<ApiType>;
       /**
@@ -469,18 +458,28 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
       /**
        * The maximum number of candidates in a phragmen election.
        * 
-       * Warning: The election happens onchain, and this value will determine
-       * the size of the election. When this limit is reached no more
-       * candidates are accepted in the election.
+       * Warning: This impacts the size of the election which is run onchain. Chose wisely, and
+       * consider how it will impact `T::WeightInfo::election_phragmen`.
+       * 
+       * When this limit is reached no more candidates are accepted in the election.
        **/
       maxCandidates: u32 & AugmentedConst<ApiType>;
       /**
        * The maximum number of voters to allow in a phragmen election.
        * 
-       * Warning: This impacts the size of the election which is run onchain.
+       * Warning: This impacts the size of the election which is run onchain. Chose wisely, and
+       * consider how it will impact `T::WeightInfo::election_phragmen`.
+       * 
        * When the limit is reached the new voters are ignored.
        **/
       maxVoters: u32 & AugmentedConst<ApiType>;
+      /**
+       * Maximum numbers of votes per voter.
+       * 
+       * Warning: This impacts the size of the election which is run onchain. Chose wisely, and
+       * consider how it will impact `T::WeightInfo::election_phragmen`.
+       **/
+      maxVotesPerVoter: u32 & AugmentedConst<ApiType>;
       /**
        * Identifier for the elections-phragmen pallet's lock
        **/
@@ -523,6 +522,15 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        * Max Authorities in use
        **/
       maxAuthorities: u32 & AugmentedConst<ApiType>;
+      /**
+       * The maximum number of entries to keep in the set id to session index mapping.
+       * 
+       * Since the `SetIdSession` map is only used for validating equivocations this
+       * value should relate to the bonding duration of whatever staking system is
+       * being used (if any). If equivocation handling is not enabled then this value
+       * can be zero.
+       **/
+      maxSetIdSessionEntries: u64 & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/
@@ -658,6 +666,65 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        **/
       [key: string]: Codec;
     };
+    nfts: {
+      /**
+       * The maximum approvals an item could have.
+       **/
+      approvalsLimit: u32 & AugmentedConst<ApiType>;
+      /**
+       * The basic amount of funds that must be reserved when adding an attribute to an item.
+       **/
+      attributeDepositBase: u128 & AugmentedConst<ApiType>;
+      /**
+       * The basic amount of funds that must be reserved for collection.
+       **/
+      collectionDeposit: u128 & AugmentedConst<ApiType>;
+      /**
+       * The additional funds that must be reserved for the number of bytes store in metadata,
+       * either "normal" metadata or attribute metadata.
+       **/
+      depositPerByte: u128 & AugmentedConst<ApiType>;
+      /**
+       * Disables some of pallet's features.
+       **/
+      features: u64 & AugmentedConst<ApiType>;
+      /**
+       * The maximum attributes approvals an item could have.
+       **/
+      itemAttributesApprovalsLimit: u32 & AugmentedConst<ApiType>;
+      /**
+       * The basic amount of funds that must be reserved for an item.
+       **/
+      itemDeposit: u128 & AugmentedConst<ApiType>;
+      /**
+       * The maximum length of an attribute key.
+       **/
+      keyLimit: u32 & AugmentedConst<ApiType>;
+      /**
+       * The max duration in blocks for deadlines.
+       **/
+      maxDeadlineDuration: u32 & AugmentedConst<ApiType>;
+      /**
+       * The max number of tips a user could send.
+       **/
+      maxTips: u32 & AugmentedConst<ApiType>;
+      /**
+       * The basic amount of funds that must be reserved when adding metadata to your item.
+       **/
+      metadataDepositBase: u128 & AugmentedConst<ApiType>;
+      /**
+       * The maximum length of data stored on-chain.
+       **/
+      stringLimit: u32 & AugmentedConst<ApiType>;
+      /**
+       * The maximum length of an attribute value.
+       **/
+      valueLimit: u32 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
     nis: {
       /**
        * The base period for the duration queues. This is the common multiple across all
@@ -712,6 +779,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        * this value multiplied by `Period`.
        **/
       queueCount: u32 & AugmentedConst<ApiType>;
+      /**
+       * The name for the reserve ID.
+       **/
+      reserveId: U8aFixed & AugmentedConst<ApiType>;
       /**
        * The maximum proportion which may be thawed and the period over which it is reset.
        **/

@@ -1,7 +1,5 @@
-// Copyright 2017-2022 @polkadot/types-create authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import type { Codec, CodecClass, Registry, U8aBitLength, UIntBitLength } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Codec, CodecClass, LookupString, Registry, U8aBitLength, UIntBitLength } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { TypeDef } from '../types/index.ts';
 
 import { BTreeMap, BTreeSet, Bytes, CodecSet, Compact, DoNotConstruct, Enum, HashMap, Int, Null, Option, Range, RangeInclusive, Result, Struct, Tuple, U8aFixed, UInt, Vec, VecFixed, WrapperKeepOpaque, WrapperOpaque } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
@@ -34,7 +32,6 @@ function getSubType (value: TypeDef): string {
   return getTypeDefType(getSubDef(value));
 }
 
-// create a maps of type string CodecClasss from the input
 function getTypeClassMap (value: TypeDef): Record<string, string> {
   const subs = getSubDefArray(value);
   const map: Record<string, string> = {};
@@ -46,7 +43,6 @@ function getTypeClassMap (value: TypeDef): Record<string, string> {
   return map;
 }
 
-// create an array of type string CodecClasss from the input
 function getTypeClassArray (value: TypeDef): string[] {
   return getSubDefArray(value).map(getTypeDefType);
 }
@@ -161,7 +157,7 @@ const infoMapping: Record<TypeDefInfo, (registry: Registry, value: TypeDef) => C
     ),
 
   [TypeDefInfo.Si]: (registry: Registry, value: TypeDef): CodecClass<Codec> =>
-    getTypeClass(registry, registry.lookup.getTypeDef(value.type)),
+    getTypeClass(registry, registry.lookup.getTypeDef(value.type as LookupString)),
 
   [TypeDefInfo.Struct]: (registry: Registry, value: TypeDef): CodecClass<Codec> =>
     Struct.with(getTypeClassMap(value), value.alias),
@@ -224,7 +220,6 @@ export function constructTypeClass<T extends Codec = Codec> (registry: Registry,
   }
 }
 
-// Returns the type Class for construction
 export function getTypeClass<T extends Codec = Codec> (registry: Registry, typeDef: TypeDef): CodecClass<T> {
   return registry.getUnsafe(typeDef.type, false, typeDef) as CodecClass<T>;
 }

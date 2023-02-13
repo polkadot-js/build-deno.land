@@ -9,7 +9,7 @@ jobs:
     name: ${{ matrix.step }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@7884fcad6b5d53d10323aee724dc68d8b9096a2e
+    - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
     - uses: denoland/setup-deno@d114c5eb74e48656e142e31d045a8f8cac283aee
       with:
         deno-version: vx.x.x

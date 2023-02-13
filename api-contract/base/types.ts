@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-contract authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot/api/submittable/types.ts';

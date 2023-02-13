@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-contract authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot/api/submittable/types.ts';
 import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot/api/types/index.ts';
@@ -23,7 +21,7 @@ export interface BlueprintConstructor<ApiType extends ApiTypes> {
 }
 
 export class BlueprintSubmittableResult<ApiType extends ApiTypes> extends SubmittableResult {
-  public readonly contract?: Contract<ApiType>;
+  readonly contract?: Contract<ApiType>;
 
   constructor (result: ISubmittableResult, contract?: Contract<ApiType>) {
     super(result);
@@ -36,7 +34,7 @@ export class Blueprint<ApiType extends ApiTypes> extends Base<ApiType> {
   /**
    * @description The on-chain code hash for this blueprint
    */
-  public readonly codeHash: Hash;
+  readonly codeHash: Hash;
 
   readonly #tx: MapConstructorExec<ApiType> = {};
 

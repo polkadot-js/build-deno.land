@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { AnyJson, AnyTuple, AnyU8a, ArgsDef, IMethod, Inspect } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
@@ -20,8 +18,6 @@ interface CreateOptions {
   version?: number;
 }
 
-// NOTE The following 2 types, as well as the VERSION structure and the latest export
-// is to be changed with the addition of a new extrinsic version
 
 type ExtrinsicVx = ExtrinsicV4;
 type ExtrinsicValue = ExtrinsicValueV4;

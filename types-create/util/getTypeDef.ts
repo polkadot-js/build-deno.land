@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types-create authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { AnyString } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
@@ -37,10 +35,6 @@ function isRustEnum (details: Record<string, string> | Record<string, number>): 
   return true;
 }
 
-// decode an enum of either of the following forms
-//  { _enum: ['A', 'B', 'C'] }
-//  { _enum: { A: AccountId, B: Balance, C: u32 } }
-//  { _enum: { A: 1, B: 2 } }
 function _decodeEnum (value: TypeDef, details: string[] | Record<string, string> | Record<string, number>, count: number, fallbackType?: string): TypeDef {
   value.info = TypeDefInfo.Enum;
   value.fallbackType = fallbackType;
@@ -69,8 +63,6 @@ function _decodeEnum (value: TypeDef, details: string[] | Record<string, string>
   return value;
 }
 
-// decode a set of the form
-//   { _set: { A: 0b0001, B: 0b0010, C: 0b0100 } }
 function _decodeSet (value: TypeDef, details: Record<string, number>, fallbackType: string | undefined): TypeDef {
   value.info = TypeDefInfo.Set;
   value.fallbackType = fallbackType;
@@ -88,8 +80,6 @@ function _decodeSet (value: TypeDef, details: Record<string, number>, fallbackTy
   return value;
 }
 
-// decode a struct, set or enum
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function _decodeStruct (value: TypeDef, type: string, _: string, count: number): TypeDef {
   const parsed = JSON.parse(type) as Record<string, unknown> & { _alias: string, _fallback?: string };
   const keys = Object.keys(parsed);
@@ -113,8 +103,6 @@ function _decodeStruct (value: TypeDef, type: string, _: string, count: number):
   return value;
 }
 
-// decode a fixed vector, e.g. [u8;32]
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function _decodeFixedVec (value: TypeDef, type: string, _: string, count: number): TypeDef {
   const max = type.length - 1;
   let index = -1;
@@ -163,7 +151,6 @@ function _decodeFixedVec (value: TypeDef, type: string, _: string, count: number
   return value;
 }
 
-// decode a tuple
 function _decodeTuple (value: TypeDef, _: string, subType: string, count: number): TypeDef {
   value.sub = subType.length === 0
     ? []
@@ -172,8 +159,6 @@ function _decodeTuple (value: TypeDef, _: string, subType: string, count: number
   return value;
 }
 
-// decode a Int/UInt<bitLength[, name]>
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function _decodeAnyInt (value: TypeDef, type: string, _: string, clazz: 'Int' | 'UInt'): TypeDef {
   const [strLength, displayName] = type.substring(clazz.length + 1, type.length - 1).split(',');
   const length = parseInt(strLength.trim(), 10);
@@ -196,7 +181,6 @@ function _decodeUInt (value: TypeDef, type: string, subType: string): TypeDef {
   return _decodeAnyInt(value, type, subType, 'UInt');
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function _decodeDoNotConstruct (value: TypeDef, type: string, _: string): TypeDef {
   const NAME_LENGTH = 'DoNotConstruct'.length;
 

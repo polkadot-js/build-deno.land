@@ -1,15 +1,11 @@
-// Copyright 2017-2022 @polkadot/types-codec authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
-import type { AnyNumber, Inspect, INumber, IU8a, Registry, UIntBitLength } from '../types/index.ts';
+import type { AnyNumber, Inspect, INumber, IU8a, Registry, ToBn, UIntBitLength } from '../types/index.ts';
 
-import { BN, BN_BILLION, BN_HUNDRED, BN_MILLION, BN_QUINTILL, bnToBn, bnToHex, bnToU8a, formatBalance, formatNumber, hexToBn, isBn, isFunction, isHex, isNumber, isObject, isString, isU8a, u8aToBn, u8aToNumber } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { BN, BN_BILLION, BN_HUNDRED, BN_MILLION, BN_QUINTILL, bnToBn, bnToHex, bnToU8a, formatBalance, formatNumber, hexToBn, isBigInt, isBn, isFunction, isHex, isNumber, isObject, isString, isU8a, u8aToBn, u8aToNumber } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 export const DEFAULT_UINT_BITS = 64;
 
-// Maximum allowed integer for JS is 2^53 - 1, set limit at 52
-// In this case however, we always print any >32 as hex
 const MAX_NUMBER_BITS = 52;
 const MUL_P = new BN(1_00_00);
 
@@ -20,12 +16,16 @@ const FORMATTERS: [string, BN][] = [
   ['Percent', BN_HUNDRED]
 ];
 
+function isToBn (value: unknown): value is ToBn {
+  return isFunction((value as ToBn).toBn);
+}
+
 function toPercentage (value: BN, divisor: BN): string {
   return `${(value.mul(MUL_P).div(divisor).toNumber() / 100).toFixed(2)}%`;
 }
 
 /** @internal */
-function decodeAbstractInt (value: Exclude<AnyNumber, Uint8Array> | Record<string, string>, isNegative: boolean): string | number {
+function decodeAbstractInt (value: Exclude<AnyNumber, Uint8Array> | Record<string, string> | ToBn | null, isNegative: boolean): string | number {
   if (isNumber(value)) {
     if (!Number.isInteger(value) || value > Number.MAX_SAFE_INTEGER || value < Number.MIN_SAFE_INTEGER) {
       throw new Error('Number needs to be an integer <= Number.MAX_SAFE_INTEGER, i.e. 2 ^ 53 - 1');
@@ -42,9 +42,13 @@ function decodeAbstractInt (value: Exclude<AnyNumber, Uint8Array> | Record<strin
     }
 
     return value;
-  } else if (isBn(value)) {
+  } else if (isBn(value) || isBigInt(value)) {
     return value.toString();
-  } else if (isObject(value) && !isFunction(value.toBn)) {
+  } else if (isObject(value)) {
+    if (isToBn(value)) {
+      return value.toBn().toString();
+    }
+
     // Allow the construction from an object with a single top-level key. This means that
     // single key objects can be treated equivalently to numbers, assuming they meet the
     // specific requirements. (This is useful in Weights 1.5 where Objects are compact)
@@ -54,16 +58,12 @@ function decodeAbstractInt (value: Exclude<AnyNumber, Uint8Array> | Record<strin
       throw new Error('Unable to construct number from multi-key object');
     }
 
-    const inner = value[keys[0]];
-
-    if (!isString(inner) && !isNumber(inner)) {
-      throw new Error('Unable to construct from object with non-string/non-number value');
-    }
-
-    return decodeAbstractInt(inner, isNegative);
+    return decodeAbstractInt(value[keys[0]], isNegative);
+  } else if (!value) {
+    return 0;
   }
 
-  return bnToBn(value as bigint).toString();
+  throw new Error(`Unable to create BN from unknown type ${typeof value}`);
 }
 
 /**
@@ -72,17 +72,17 @@ function decodeAbstractInt (value: Exclude<AnyNumber, Uint8Array> | Record<strin
  * @noInheritDoc
  */
 export abstract class AbstractInt extends BN implements INumber {
-  public readonly registry: Registry;
+  readonly registry: Registry;
+  readonly encodedLength: number;
+  readonly isUnsigned: boolean;
 
   public createdAtHash?: IU8a;
-
-  public readonly encodedLength: number;
-
-  public readonly isUnsigned: boolean;
+  public initialU8aLength?: number;
+  public isStorageFallback?: boolean;
 
   readonly #bitLength: UIntBitLength;
 
-  constructor (registry: Registry, value: AnyNumber = 0, bitLength: UIntBitLength = DEFAULT_UINT_BITS, isSigned = false) {
+  constructor (registry: Registry, value: AnyNumber | null = 0, bitLength: UIntBitLength = DEFAULT_UINT_BITS, isSigned = false) {
     // Construct via a string/number, which will be passed in the BN constructor.
     // It would be ideal to actually return a BN, but there is an issue:
     // https://github.com/indutny/bn.js/issues/206
@@ -98,6 +98,7 @@ export abstract class AbstractInt extends BN implements INumber {
     this.registry = registry;
     this.#bitLength = bitLength;
     this.encodedLength = this.#bitLength / 8;
+    this.initialU8aLength = this.#bitLength / 8;
     this.isUnsigned = !isSigned;
 
     const isNegative = this.isNeg();

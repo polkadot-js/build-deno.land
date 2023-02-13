@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { AnyJson, AnyTuple, AnyU8a, ArgsDef, Codec, IMethod, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { FunctionMetadataLatest } from '../interfaces/metadata/index.ts';

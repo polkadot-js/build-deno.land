@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 /**
  * @name arrayFilter
@@ -10,7 +8,7 @@
  * <BR>
  *
  * ```javascript
- * import { arrayFilter } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+ * import { arrayFilter } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * arrayFilter([0, void 0, true, null, false, '']); // [0, true, null, false, '']
  * arrayFilter([0, void 0, true, null, false, ''], false); // [0, true, false, '']

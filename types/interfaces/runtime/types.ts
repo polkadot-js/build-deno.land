@@ -1,4 +1,3 @@
-// Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
 import type { GenericAccountId32, GenericAccountId33, GenericAccountIndex, GenericBlock, GenericCall, GenericConsensusEngineId, GenericEthereumAccountId, GenericLookupSource, GenericMultiAddress, StorageKey } from 'https://deno.land/x/polkadot/types/mod.ts';
@@ -6,7 +5,7 @@ import type { Bytes, Compact, DoNotConstruct, Enum, Int, Null, Option, Struct, U
 import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { AuthorityId } from 'https://deno.land/x/polkadot/types/interfaces/consensus/index.ts';
 import type { Signature } from 'https://deno.land/x/polkadot/types/interfaces/extrinsics/index.ts';
-import type { SystemOrigin } from 'https://deno.land/x/polkadot/types/interfaces/system/index.ts';
+import type { Event, SystemOrigin } from 'https://deno.land/x/polkadot/types/interfaces/system/index.ts';
 
 /** @name AccountId */
 export interface AccountId extends AccountId32 {}
@@ -306,11 +305,17 @@ export interface Releases extends Enum {
   readonly type: 'V1' | 'V2' | 'V3' | 'V4' | 'V5' | 'V6' | 'V7' | 'V8' | 'V9' | 'V10';
 }
 
+/** @name RuntimeCall */
+export interface RuntimeCall extends Call {}
+
 /** @name RuntimeDbWeight */
 export interface RuntimeDbWeight extends Struct {
   readonly read: Weight;
   readonly write: Weight;
 }
+
+/** @name RuntimeEvent */
+export interface RuntimeEvent extends Event {}
 
 /** @name Seal */
 export interface Seal extends ITuple<[ConsensusEngineId, Bytes]> {}
@@ -389,10 +394,13 @@ export interface ValidatorId extends AccountId {}
 export interface ValidatorIdOf extends ValidatorId {}
 
 /** @name Weight */
-export interface Weight extends WeightV1 {}
+export interface Weight extends WeightV2 {}
 
 /** @name WeightMultiplier */
 export interface WeightMultiplier extends Fixed64 {}
+
+/** @name WeightV0 */
+export interface WeightV0 extends u32 {}
 
 /** @name WeightV1 */
 export interface WeightV1 extends u64 {}

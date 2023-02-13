@@ -1,4 +1,3 @@
-// Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
 import type { Bytes, Option, Struct, u32, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';

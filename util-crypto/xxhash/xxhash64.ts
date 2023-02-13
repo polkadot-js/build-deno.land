@@ -1,21 +1,7 @@
-// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import { _0n, _1n } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
-import { BigInt } from 'https://deno.land/x/polkadot@0.2.20/x-bigint/mod.ts';
+import { _0n, _1n } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { BigInt } from 'https://deno.land/x/polkadot/x-bigint/mod.ts';
 
-// Adapted from https://github.com/pierrec/js-xxhash/blob/0504e76f3d31a21ae8528a7f590c7289c9e431d2/lib/xxhash64.js
-//
-// xxHash64 implementation in pure Javascript
-// Copyright (C) 2016, Pierre Curto
-// MIT license
-//
-// Changes made:
-//   - converted to TypeScript
-//   - uses native JS BigInt (no external dependencies)
-//   - support only for Uint8Array inputs
-//   - no constructor function, straight fill & digest
-//   - update code removed, only called once, no streams
 
 interface State {
   seed: bigint;
@@ -33,10 +19,8 @@ const P64_3 = BigInt('1609587929392839161');
 const P64_4 = BigInt('9650029242287828579');
 const P64_5 = BigInt('2870177450012600261');
 
-// mask for a u64, all bits set
 const U64 = BigInt('0xffffffffffffffff');
 
-// various constants
 const _7n = BigInt(7);
 const _11n = BigInt(11);
 const _12n = BigInt(12);

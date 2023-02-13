@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { Callback, Codec } from 'https://deno.land/x/polkadot/types/types/index.ts';
@@ -21,8 +19,6 @@ type CodecReturnType<T extends (...args: unknown[]) => Observable<Codec>> =
       : never
     : never;
 
-// a Promise completion tracker, wrapping an isComplete variable that ensures
-// that the promise only resolves once
 export function promiseTracker<T> (resolve: (value: T) => void, reject: (value: Error) => void): Tracker<T> {
   let isCompleted = false;
 
@@ -46,7 +42,6 @@ export function promiseTracker<T> (resolve: (value: T) => void, reject: (value: 
   };
 }
 
-// extract the arguments and callback params from a value array possibly containing a callback
 function extractArgs (args: unknown[], needsCallback: boolean): [unknown[], Callback<Codec> | undefined] {
   const actualArgs = args.slice();
 
@@ -64,7 +59,6 @@ function extractArgs (args: unknown[], needsCallback: boolean): [unknown[], Call
   return [actualArgs, callback];
 }
 
-// Decorate a call for a single-shot result - retrieve and then immediate unsubscribe
 function decorateCall<M extends DecorateFn<CodecReturnType<M>>> (method: M, args: unknown[]): Promise<CodecReturnType<M>> {
   return new Promise((resolve, reject): void => {
     // single result tracker - either reject with Error or resolve with Codec result
@@ -83,7 +77,6 @@ function decorateCall<M extends DecorateFn<CodecReturnType<M>>> (method: M, args
   });
 }
 
-// Decorate a subscription where we have a result callback specified
 function decorateSubscribe<M extends DecorateFn<CodecReturnType<M>>> (method: M, args: unknown[], resultCb: Callback<Codec>): UnsubscribePromise {
   return new Promise<VoidFn>((resolve, reject): void => {
     // either reject with error or resolve with unsubscribe callback

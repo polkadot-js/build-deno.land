@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-derive authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { QueryableStorageEntry } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
@@ -47,7 +45,6 @@ function calcBalances (api: DeriveApi, [accountId, [accountNonce, [primary, ...a
   }, getBalance(api, primary));
 }
 
-// old
 function queryBalancesFree (api: DeriveApi, accountId: AccountId): Observable<Result> {
   return combineLatest([
     api.query.balances.freeBalance<Balance>(accountId),

@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-contract authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot/api/submittable/types.ts';
 import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot/api/types/index.ts';
@@ -24,7 +22,6 @@ export interface ContractConstructor<ApiType extends ApiTypes> {
   new(api: ApiBase<ApiType>, abi: string | Record<string, unknown> | Abi, address: string | AccountId): Contract<ApiType>;
 }
 
-// As per Rust, 5 * GAS_PER_SEC
 const MAX_CALL_GAS = new BN(5_000_000_000_000).isub(BN_ONE);
 
 const l = logger('Contract');
@@ -42,7 +39,7 @@ function createTx <ApiType extends ApiTypes> (meta: AbiMessage, fn: (options: Co
 }
 
 export class ContractSubmittableResult extends SubmittableResult {
-  public readonly contractEvents?: DecodedEvent[];
+  readonly contractEvents?: DecodedEvent[];
 
   constructor (result: ISubmittableResult, contractEvents?: DecodedEvent[]) {
     super(result);
@@ -55,10 +52,9 @@ export class Contract<ApiType extends ApiTypes> extends Base<ApiType> {
   /**
    * @description The on-chain address for this contract
    */
-  public readonly address: AccountId;
+  readonly address: AccountId;
 
   readonly #query: MapMessageQuery<ApiType> = {};
-
   readonly #tx: MapMessageTx<ApiType> = {};
 
   constructor (api: ApiBase<ApiType>, abi: string | Record<string, unknown> | Abi, address: string | AccountId, decorateMethod: DecorateMethod<ApiType>) {

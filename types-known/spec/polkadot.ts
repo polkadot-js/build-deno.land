@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types-known authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 /* eslint-disable sort-keys */
 
@@ -36,7 +34,6 @@ const addrAccountIdTypes = {
   ValidatorPrefs: 'ValidatorPrefsWithCommission'
 };
 
-// these are override types for Polkadot
 const versioned: OverrideVersionedType[] = [
   {
     minmax: [0, 12],

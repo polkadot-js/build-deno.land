@@ -1,8 +1,5 @@
-// Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-// import type lookup before we augment - in some environments
-// this is required to allow for ambient/previous definitions
 import 'https://deno.land/x/polkadot/api-base/types/errors.ts';
 
 import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
@@ -245,40 +242,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
-    authorship: {
-      /**
-       * The uncle is genesis.
-       **/
-      GenesisUncle: AugmentedError<ApiType>;
-      /**
-       * The uncle parent not in the chain.
-       **/
-      InvalidUncleParent: AugmentedError<ApiType>;
-      /**
-       * The uncle isn't recent enough to be included.
-       **/
-      OldUncle: AugmentedError<ApiType>;
-      /**
-       * The uncle is too high in chain.
-       **/
-      TooHighUncle: AugmentedError<ApiType>;
-      /**
-       * Too many uncles.
-       **/
-      TooManyUncles: AugmentedError<ApiType>;
-      /**
-       * The uncle is already included.
-       **/
-      UncleAlreadyIncluded: AugmentedError<ApiType>;
-      /**
-       * Uncles already set in the block.
-       **/
-      UnclesAlreadySet: AugmentedError<ApiType>;
-      /**
-       * Generic error
-       **/
-      [key: string]: AugmentedError<ApiType>;
-    };
     babe: {
       /**
        * A given equivocation report is valid but already previously reported.
@@ -449,11 +412,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       ContractTrapped: AugmentedError<ApiType>;
       /**
-       * The debug buffer size used during contract execution exceeded the limit determined by
-       * the `MaxDebugBufferLen` pallet config parameter.
-       **/
-      DebugBufferExhausted: AugmentedError<ApiType>;
-      /**
        * The debug message specified to `seal_debug_message` does contain invalid UTF-8.
        **/
       DebugMessageInvalidUTF8: AugmentedError<ApiType>;
@@ -473,10 +431,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        * A contract with the same AccountId already exists.
        **/
       DuplicateContract: AugmentedError<ApiType>;
-      /**
-       * The topics passed to `seal_deposit_events` contains at least one duplicate.
-       **/
-      DuplicateTopics: AugmentedError<ApiType>;
       /**
        * An indetermistic code was used in a context where this is not permitted.
        **/
@@ -723,6 +677,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        * The given account did not vote on the referendum.
        **/
       NotVoter: AugmentedError<ApiType>;
+      /**
+       * The preimage does not exist.
+       **/
+      PreimageNotExist: AugmentedError<ApiType>;
       /**
        * Proposal still blacklisted
        **/
@@ -1210,7 +1168,177 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
+    nfts: {
+      /**
+       * The provided Item was already used for claiming.
+       **/
+      AlreadyClaimed: AugmentedError<ApiType>;
+      /**
+       * The item ID has already been used for an item.
+       **/
+      AlreadyExists: AugmentedError<ApiType>;
+      /**
+       * The approval had a deadline that expired, so the approval isn't valid anymore.
+       **/
+      ApprovalExpired: AugmentedError<ApiType>;
+      /**
+       * The provided attribute can't be found.
+       **/
+      AttributeNotFound: AugmentedError<ApiType>;
+      /**
+       * The witness data given does not match the current state of the chain.
+       **/
+      BadWitness: AugmentedError<ApiType>;
+      /**
+       * The provided bid is too low.
+       **/
+      BidTooLow: AugmentedError<ApiType>;
+      /**
+       * Collection ID is already taken.
+       **/
+      CollectionIdInUse: AugmentedError<ApiType>;
+      /**
+       * The deadline has already expired.
+       **/
+      DeadlineExpired: AugmentedError<ApiType>;
+      /**
+       * Item's config already exists and should be equal to the provided one.
+       **/
+      InconsistentItemConfig: AugmentedError<ApiType>;
+      /**
+       * The provided data is incorrect.
+       **/
+      IncorrectData: AugmentedError<ApiType>;
+      /**
+       * The item is locked (non-transferable).
+       **/
+      ItemLocked: AugmentedError<ApiType>;
+      /**
+       * Items within that collection are non-transferable.
+       **/
+      ItemsNonTransferable: AugmentedError<ApiType>;
+      /**
+       * Collection's attributes are locked.
+       **/
+      LockedCollectionAttributes: AugmentedError<ApiType>;
+      /**
+       * Collection's metadata is locked.
+       **/
+      LockedCollectionMetadata: AugmentedError<ApiType>;
+      /**
+       * Item's attributes are locked.
+       **/
+      LockedItemAttributes: AugmentedError<ApiType>;
+      /**
+       * Item's metadata is locked.
+       **/
+      LockedItemMetadata: AugmentedError<ApiType>;
+      /**
+       * The max supply is locked and can't be changed.
+       **/
+      MaxSupplyLocked: AugmentedError<ApiType>;
+      /**
+       * All items have been minted.
+       **/
+      MaxSupplyReached: AugmentedError<ApiType>;
+      /**
+       * The provided max supply is less than the number of items a collection already has.
+       **/
+      MaxSupplyTooSmall: AugmentedError<ApiType>;
+      /**
+       * The given item has no metadata set.
+       **/
+      MetadataNotFound: AugmentedError<ApiType>;
+      /**
+       * The method is disabled by system settings.
+       **/
+      MethodDisabled: AugmentedError<ApiType>;
+      /**
+       * Mint has already ended.
+       **/
+      MintEnded: AugmentedError<ApiType>;
+      /**
+       * Mint has not started yet.
+       **/
+      MintNotStarted: AugmentedError<ApiType>;
+      /**
+       * Config for a collection or an item can't be found.
+       **/
+      NoConfig: AugmentedError<ApiType>;
+      /**
+       * The signing account has no permission to do the operation.
+       **/
+      NoPermission: AugmentedError<ApiType>;
+      /**
+       * The provided account is not a delegate.
+       **/
+      NotDelegate: AugmentedError<ApiType>;
+      /**
+       * Item is not for sale.
+       **/
+      NotForSale: AugmentedError<ApiType>;
+      /**
+       * The item has reached its approval limit.
+       **/
+      ReachedApprovalLimit: AugmentedError<ApiType>;
+      /**
+       * Some roles were not cleared.
+       **/
+      RolesNotCleared: AugmentedError<ApiType>;
+      /**
+       * The named owner has not signed ownership acceptance of the collection.
+       **/
+      Unaccepted: AugmentedError<ApiType>;
+      /**
+       * No approval exists that would allow the transfer.
+       **/
+      Unapproved: AugmentedError<ApiType>;
+      /**
+       * The given item ID is unknown.
+       **/
+      UnknownCollection: AugmentedError<ApiType>;
+      /**
+       * The given item ID is unknown.
+       **/
+      UnknownItem: AugmentedError<ApiType>;
+      /**
+       * Swap doesn't exist.
+       **/
+      UnknownSwap: AugmentedError<ApiType>;
+      /**
+       * The delegate turned out to be different to what was expected.
+       **/
+      WrongDelegate: AugmentedError<ApiType>;
+      /**
+       * The duration provided should be less than or equal to `MaxDeadlineDuration`.
+       **/
+      WrongDuration: AugmentedError<ApiType>;
+      /**
+       * The owner turned out to be different to what was expected.
+       **/
+      WrongOwner: AugmentedError<ApiType>;
+      /**
+       * The provided setting can't be set.
+       **/
+      WrongSetting: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
     nis: {
+      /**
+       * The receipt is already communal.
+       **/
+      AlreadyCommunal: AugmentedError<ApiType>;
+      /**
+       * There are enough funds for what is required.
+       **/
+      AlreadyFunded: AugmentedError<ApiType>;
+      /**
+       * The receipt is already private.
+       **/
+      AlreadyPrivate: AugmentedError<ApiType>;
       /**
        * The amount of the bid is less than the minimum allowed.
        **/
@@ -1229,10 +1357,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       DurationTooSmall: AugmentedError<ApiType>;
       /**
-       * There are enough funds for what is required.
-       **/
-      Funded: AugmentedError<ApiType>;
-      /**
        * The operation would result in a receipt worth an insignficant value.
        **/
       MakesDust: AugmentedError<ApiType>;
@@ -1241,29 +1365,29 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       NotExpired: AugmentedError<ApiType>;
       /**
-       * The given bid for retraction is not found.
-       **/
-      NotFound: AugmentedError<ApiType>;
-      /**
        * Not the owner of the receipt.
        **/
       NotOwner: AugmentedError<ApiType>;
+      /**
+       * The portion supplied is beyond the value of the receipt.
+       **/
+      PortionTooBig: AugmentedError<ApiType>;
       /**
        * The thaw throttle has been reached for this period.
        **/
       Throttled: AugmentedError<ApiType>;
       /**
-       * The portion supplied is beyond the value of the receipt.
-       **/
-      TooMuch: AugmentedError<ApiType>;
-      /**
        * Not enough funds are held to pay out.
        **/
       Unfunded: AugmentedError<ApiType>;
       /**
-       * Bond index is unknown.
+       * The given bid for retraction is not found.
        **/
-      Unknown: AugmentedError<ApiType>;
+      UnknownBid: AugmentedError<ApiType>;
+      /**
+       * Receipt index is unknown.
+       **/
+      UnknownReceipt: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -1527,6 +1651,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       NoTrack: AugmentedError<ApiType>;
       /**
+       * The preimage does not exist.
+       **/
+      PreimageNotExist: AugmentedError<ApiType>;
+      /**
        * The queue of the track is empty.
        **/
       QueueEmpty: AugmentedError<ApiType>;
@@ -1650,6 +1778,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        * No track exists for the proposal origin.
        **/
       NoTrack: AugmentedError<ApiType>;
+      /**
+       * The preimage does not exist.
+       **/
+      PreimageNotExist: AugmentedError<ApiType>;
       /**
        * The queue of the track is empty.
        **/

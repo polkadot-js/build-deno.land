@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot/api/types/index.ts';
 import type { WeightV2 } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
@@ -11,12 +9,10 @@ import { isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { Abi } from '../Abi/index.ts';
 
 export abstract class Base<ApiType extends ApiTypes> {
-  public readonly abi: Abi;
-
-  public readonly api: ApiBase<ApiType>;
+  readonly abi: Abi;
+  readonly api: ApiBase<ApiType>;
 
   protected readonly _decorateMethod: DecorateMethod<ApiType>;
-
   protected readonly _isWeightV1: boolean;
 
   constructor (api: ApiBase<ApiType>, abi: string | Record<string, unknown> | Abi, decorateMethod: DecorateMethod<ApiType>) {

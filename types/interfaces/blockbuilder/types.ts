@@ -1,4 +1,3 @@
-// Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
 import type { BTreeMap, Bytes, Struct, U8aFixed, bool } from 'https://deno.land/x/polkadot/types-codec/mod.ts';

@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types-codec authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import { isObject, isUndefined } from 'https://deno.land/x/polkadot/util/mod.ts';
 
@@ -25,8 +23,6 @@ function compareMapArray (a: Map<unknown, unknown>, b: [unknown, unknown][]): bo
   );
 }
 
-// NOTE These are used internally and when comparing objects, expects that
-// when the second is an Map<string, Codec> that the first has to be as well
 export function compareMap (a: Map<unknown, unknown>, b?: unknown): boolean {
   if (Array.isArray(b)) {
     return compareMapArray(a, b as [unknown, unknown][]);

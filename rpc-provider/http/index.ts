@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/rpc-provider authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, ProviderInterfaceEmitCb, ProviderInterfaceEmitted, ProviderStats } from '../types.ts';
 
@@ -36,13 +34,9 @@ const l = logger('api-http');
  */
 export class HttpProvider implements ProviderInterface {
   readonly #callCache = new LRUCache();
-
   readonly #coder: RpcCoder;
-
   readonly #endpoint: string;
-
   readonly #headers: Record<string, string>;
-
   readonly #stats: ProviderStats;
 
   /**

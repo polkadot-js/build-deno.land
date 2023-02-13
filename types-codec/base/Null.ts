@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types-codec authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { Codec, Inspect, IU8a, Registry } from '../types/index.ts';
@@ -12,16 +10,13 @@ import { isNull } from 'https://deno.land/x/polkadot/util/mod.ts';
  * Implements a type that does not contain anything (apart from `null`)
  */
 export class Null implements Codec {
-  public readonly encodedLength = 0;
-
-  public readonly isEmpty = true;
-
-  public readonly registry: Registry;
+  readonly encodedLength = 0;
+  readonly isEmpty = true;
+  readonly registry: Registry;
 
   public createdAtHash?: IU8a;
-
-  // Added for compatibility reasons, e.g. see Option
-  public readonly initialU8aLength = 0;
+  public initialU8aLength = 0;
+  public isStorageFallback?: boolean;
 
   constructor (registry: Registry) {
     this.registry = registry;

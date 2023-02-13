@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import { ApiPromise } from 'https://deno.land/x/polkadot/api/mod.ts';
 import { Option, StorageKey } from 'https://deno.land/x/polkadot/types/mod.ts';

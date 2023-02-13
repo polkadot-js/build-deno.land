@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { RpcInterface } from 'https://deno.land/x/polkadot/rpc-core/types/index.ts';
 import type { ProviderInterface } from 'https://deno.land/x/polkadot/rpc-provider/types.ts';

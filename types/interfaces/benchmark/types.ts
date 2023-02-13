@@ -1,4 +1,3 @@
-// Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
 import type { Bytes, Enum, Struct, Text, Vec, bool, u128, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';

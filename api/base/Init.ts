@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Observable, Subscription } from 'https://esm.sh/rxjs@7.8.0';
 import type { Text } from 'https://deno.land/x/polkadot/types/mod.ts';
@@ -31,13 +29,9 @@ function textToString (t: Text): string {
 
 export abstract class Init<ApiType extends ApiTypes> extends Decorate<ApiType> {
   #atLast: [string, ApiDecoration<ApiType>] | null = null;
-
   #healthTimer: ReturnType<typeof setInterval> | null = null;
-
   #registries: VersionedRegistry<ApiType>[] = [];
-
   #updateSub?: Subscription | null = null;
-
   #waitingRegistries: Record<HexString, Promise<VersionedRegistry<ApiType>>> = {};
 
   constructor (options: ApiOptions, type: ApiTypes, decorateMethod: DecorateMethod<ApiType>) {

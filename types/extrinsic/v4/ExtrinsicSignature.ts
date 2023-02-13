@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { EcdsaSignature, Ed25519Signature, ExtrinsicEra, ExtrinsicSignature, Sr25519Signature } from '../../interfaces/extrinsics/index.ts';
@@ -13,7 +11,6 @@ import { isU8a, isUndefined, objectProperties, objectSpread, stringify, u8aToHex
 import { EMPTY_U8A, IMMORTAL_ERA } from '../constants.ts';
 import { GenericExtrinsicPayloadV4 } from './ExtrinsicPayload.ts';
 
-// Ensure we have enough data for all types of signatures
 const FAKE_SIGNATURE = new Uint8Array(256).fill(1);
 
 function toAddress (registry: Registry, address: Address | Uint8Array | string): Address {

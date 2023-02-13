@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/x-textdecoder authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import { TextDecoder as BrowserTD } from './browser.ts';
 import { TextDecoder as NodeTD } from './node.ts';

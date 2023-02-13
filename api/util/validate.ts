@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { SiLookupTypeId } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { StorageEntry } from 'https://deno.land/x/polkadot/types/primitive/types.ts';
@@ -11,8 +9,6 @@ function sig ({ lookup }: Registry, { method, section }: StorageEntry, args: SiL
   return `${section}.${method}(${args.map((a) => lookup.getTypeDef(a).type).join(', ')})`;
 }
 
-// sets up the arguments in the form of [creator, args] ready to be used in a storage
-// call. Additionally, it verifies that the correct number of arguments have been passed
 export function extractStorageArgs (registry: Registry, creator: StorageEntry, _args: unknown[]): [StorageEntry, unknown[]] {
   const args = _args.filter((a) => !isUndefined(a));
 

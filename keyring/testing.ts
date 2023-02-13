@@ -1,11 +1,9 @@
-// Copyright 2017-2022 @polkadot/keyring authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.20/util/types.ts';
-import type { KeypairType } from 'https://deno.land/x/polkadot@0.2.20/util-crypto/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { KeypairType } from 'https://deno.land/x/polkadot/util-crypto/types.ts';
 import type { KeyringInstance, KeyringOptions } from './types.ts';
 
-import { hexToU8a } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+import { hexToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Keyring } from './keyring.ts';
 import { createPair } from './pair/index.ts';
@@ -18,10 +16,6 @@ interface PairDef {
   type: KeypairType
 }
 
-// NOTE This is not great since we have the secretKey here explicitly, but a testing
-// keyring is for testing - what happens is that in most cases the keyring is initialises
-// before anything else. Since the sr25519 crypto is async, this creates problems with
-// adding the keys when only the keyring is used.
 export const PAIRSSR25519: PairDef[] = [
   {
     p: '0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d',

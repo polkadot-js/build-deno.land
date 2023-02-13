@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types-codec authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { CodecClass, Inspect, ISet, IU8a, Registry } from '../types/index.ts';
@@ -92,12 +90,13 @@ function decodeSet (setValues: SetValues, value: string[] | Set<string> | Uint8A
  * a bitwise representation of the values.
  */
 export class CodecSet extends Set<string> implements ISet<string> {
-  public readonly registry: Registry;
+  readonly registry: Registry;
 
   public createdAtHash?: IU8a;
+  public initialU8aLength?: number;
+  public isStorageFallback?: boolean;
 
   readonly #allowed: SetValues;
-
   readonly #byteLength: number;
 
   constructor (registry: Registry, setValues: SetValues, value?: string[] | Set<string> | Uint8Array | BN | number | string, bitLength = 8) {

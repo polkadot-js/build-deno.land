@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { NumberOptions, ToBn } from '../types.ts';
 import type { BN } from './bn.ts';
@@ -17,7 +15,7 @@ const DEFAULT_OPTS: NumberOptions = { bitLength: -1, isLe: true, isNegative: fal
  * <BR>
  *
  * ```javascript
- * import { bnToU8a } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+ * import { bnToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * bnToU8a(new BN(0x1234)); // => [0x12, 0x34]
  * ```

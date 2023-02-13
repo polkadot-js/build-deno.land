@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Inspect, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
@@ -12,7 +10,6 @@ import { decodeAddress } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 import { GenericAccountId } from './AccountId.ts';
 import { GenericAccountIndex } from './AccountIndex.ts';
 
-// eslint-disable-next-line no-use-before-define
 type AnyAddress = bigint | BN | GenericLookupSource | GenericAccountId | GenericAccountIndex | number[] | Uint8Array | number | string;
 
 export const ACCOUNT_ID_PREFIX = new Uint8Array([0xff]);

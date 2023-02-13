@@ -1,9 +1,6 @@
-// Copyright 2017-2022 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { DefinitionsCall } from '../../types/index.ts';
 
-// implemented by chains bridging into the relay, not the relay itself
 const finalityV1 = {
   methods: {
     best_finalized: {

@@ -1,13 +1,8 @@
-// Copyright 2017-2022 @polkadot/rpc-provider authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-// Assuming all 1.5MB responses, we apply a default allowing for 192MB
-// cache space (depending on the historic queries this would vary, metadata
-// for Kusama/Polkadot/Substrate falls between 600-750K, 2x for estimate)
 const DEFAULT_CAPACITY = 128;
 
 class LRUNode {
-  public readonly key: string;
+  readonly key: string;
 
   public next: LRUNode;
   public prev: LRUNode;
@@ -18,9 +13,9 @@ class LRUNode {
   }
 }
 
-// https://en.wikipedia.org/wiki/Cache_replacement_policies#LRU
 export class LRUCache {
   readonly capacity: number;
+
   readonly #data: Map<string, unknown> = new Map();
   readonly #refs: Map<string, LRUNode> = new Map();
 

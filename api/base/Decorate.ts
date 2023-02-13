@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { AugmentedCall, DeriveCustom, QueryableCalls } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
@@ -45,7 +43,6 @@ interface FullDecoration<ApiType extends ApiTypes> {
   decoratedMeta: DecoratedMeta;
 }
 
-// the max amount of keys/values that we will retrieve at once
 const PAGE_SIZE_K = 1000; // limit aligned with the 1k on the node (trie lookups are heavy)
 const PAGE_SIZE_V = 250; // limited since the data may be > 16MB (e.g. misfiring elections)
 const PAGE_SIZE_Q = 50; // queue of pending storage queries (mapped together, next tick)
@@ -60,64 +57,37 @@ function getAtQueryFn<ApiType extends ApiTypes> (api: ApiDecoration<ApiType>, { 
 
 export abstract class Decorate<ApiType extends ApiTypes> extends Events {
   readonly #instanceId: string;
-
-  #registry: Registry;
-
   readonly #runtimeLog: Record<string, boolean> = {};
 
+  #registry: Registry;
   #storageGetQ: [Observable<Codec[]>, [StorageEntry, unknown[]][]][] = [];
-
   #storageSubQ: [Observable<Codec[]>, [StorageEntry, unknown[]][]][] = [];
 
   // HACK Use BN import so decorateDerive works... yes, wtf.
   protected __phantom = new BN(0);
 
+  protected _type: ApiTypes;
   protected _call: QueryableCalls<ApiType> = {} as QueryableCalls<ApiType>;
-
   protected _consts: QueryableConsts<ApiType> = {} as QueryableConsts<ApiType>;
-
   protected _derive?: ReturnType<Decorate<ApiType>['_decorateDerive']>;
-
   protected _errors: DecoratedErrors<ApiType> = {} as DecoratedErrors<ApiType>;
-
   protected _events: DecoratedEvents<ApiType> = {} as DecoratedEvents<ApiType>;
-
   protected _extrinsics?: SubmittableExtrinsics<ApiType>;
-
   protected _extrinsicType = GenericExtrinsic.LATEST_EXTRINSIC_VERSION;
-
   protected _genesisHash?: Hash;
-
   protected _isConnected: BehaviorSubject<boolean>;
-
   protected _isReady = false;
+  protected _query: QueryableStorage<ApiType> = {} as QueryableStorage<ApiType>;
+  protected _queryMulti?: QueryableStorageMulti<ApiType>;
+  protected _rpc?: DecoratedRpc<ApiType, RpcInterface>;
+  protected _rpcCore: RpcCore & RpcInterface;
+  protected _runtimeMap: Record<HexString, string> = {};
+  protected _runtimeChain?: Text;
+  protected _runtimeMetadata?: Metadata;
+  protected _runtimeVersion?: RuntimeVersion;
+  protected _rx: ApiInterfaceRx = { call: {} as QueryableCalls<'rxjs'>, consts: {} as QueryableConsts<'rxjs'>, query: {} as QueryableStorage<'rxjs'>, tx: {} as SubmittableExtrinsics<'rxjs'> } as ApiInterfaceRx;
 
   protected readonly _options: ApiOptions;
-
-  protected _query: QueryableStorage<ApiType> = {} as QueryableStorage<ApiType>;
-
-  protected _queryMulti?: QueryableStorageMulti<ApiType>;
-
-  protected _rpc?: DecoratedRpc<ApiType, RpcInterface>;
-
-  protected _rpcCore: RpcCore & RpcInterface;
-
-  protected _runtimeMap: Record<HexString, string> = {};
-
-  protected _runtimeChain?: Text;
-
-  protected _runtimeMetadata?: Metadata;
-
-  protected _runtimeVersion?: RuntimeVersion;
-
-  protected _rx: ApiInterfaceRx = {
-    call: {} as QueryableCalls<'rxjs'>,
-    consts: {} as QueryableConsts<'rxjs'>,
-    query: {} as QueryableStorage<'rxjs'>,
-    tx: {} as SubmittableExtrinsics<'rxjs'>
-  } as ApiInterfaceRx;
-
-  protected _type: ApiTypes;
 
   /**
    * This is the one and only method concrete children classes need to implement.
@@ -390,8 +360,10 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
       }
     }
 
-    const filterKey = (k: string) => !allKeys.includes(k);
-    const unknown = exposed.filter(filterKey);
+    const unknown = exposed.filter((k: string) =>
+      !allKeys.includes(k) &&
+      !k.includes('_unstable_')
+    );
 
     if (unknown.length && !this._options.noInitWarn) {
       l.warn(`RPC methods not decorated: ${unknown.join(', ')}`);
@@ -614,39 +586,44 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
   protected _decorateMulti<ApiType extends ApiTypes> (decorateMethod: DecorateMethod<ApiType>): QueryableStorageMulti<ApiType> {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return decorateMethod((keys: QueryableStorageMultiArg<ApiType>[]): Observable<Codec[]> =>
-      (this.hasSubscriptions
-        ? this._rpcCore.state.subscribeStorage
-        : this._rpcCore.state.queryStorageAt
-      )(keys.map((args: QueryableStorageMultiArg<ApiType>): [StorageEntry, ...unknown[]] =>
-        Array.isArray(args)
-          ? args[0].creator.meta.type.isPlain
-            ? [args[0].creator]
-            : args[0].creator.meta.type.asMap.hashers.length === 1
-              ? [args[0].creator, args.slice(1)]
-              : [args[0].creator, ...args.slice(1)]
-          : [args.creator]
-      ))
+      keys.length
+        ? (this.hasSubscriptions
+          ? this._rpcCore.state.subscribeStorage
+          : this._rpcCore.state.queryStorageAt
+        )(keys.map((args: QueryableStorageMultiArg<ApiType>): [StorageEntry, ...unknown[]] =>
+          Array.isArray(args)
+            ? args[0].creator.meta.type.isPlain
+              ? [args[0].creator]
+              : args[0].creator.meta.type.asMap.hashers.length === 1
+                ? [args[0].creator, args.slice(1)]
+                : [args[0].creator, ...args.slice(1)]
+            : [args.creator]
+        ))
+        : of([])
     );
   }
 
   protected _decorateMultiAt<ApiType extends ApiTypes> (atApi: ApiDecoration<ApiType>, decorateMethod: DecorateMethod<ApiType>, blockHash: Uint8Array | string): QueryableStorageMulti<ApiType> {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return decorateMethod((calls: QueryableStorageMultiArg<ApiType>[]): Observable<Codec[]> =>
-      this._rpcCore.state.queryStorageAt(
-        calls.map((args: QueryableStorageMultiArg<ApiType>) => {
-          if (Array.isArray(args)) {
-            const { creator } = getAtQueryFn(atApi, args[0].creator);
+      calls.length
+        ? this._rpcCore.state.queryStorageAt(
+          calls.map((args: QueryableStorageMultiArg<ApiType>) => {
+            if (Array.isArray(args)) {
+              const { creator } = getAtQueryFn(atApi, args[0].creator);
 
-            return creator.meta.type.isPlain
-              ? [creator]
-              : creator.meta.type.asMap.hashers.length === 1
-                ? [creator, args.slice(1)]
-                : [creator, ...args.slice(1)];
-          }
+              return creator.meta.type.isPlain
+                ? [creator]
+                : creator.meta.type.asMap.hashers.length === 1
+                  ? [creator, args.slice(1)]
+                  : [creator, ...args.slice(1)];
+            }
 
-          return [getAtQueryFn(atApi, args.creator).creator];
-        }),
-        blockHash));
+            return [getAtQueryFn(atApi, args.creator).creator];
+          }),
+          blockHash)
+        : of([])
+    );
   }
 
   protected _decorateExtrinsics<ApiType extends ApiTypes> ({ tx }: DecoratedMeta, decorateMethod: DecorateMethod<ApiType>): SubmittableExtrinsics<ApiType> {
@@ -869,7 +846,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
           nextTick((): void => {
             // get all the calls in this instance, resolve with it
             // and then clear the queue so we don't add more
-            // (anyhting after this will be added to a new queue)
+            // (anything after this will be added to a new queue)
             const calls = queue[queueIdx][1];
 
             delete queue[queueIdx];
@@ -898,7 +875,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
   // Decorate the base storage call. In the case or rxjs or promise-without-callback (await)
   // we make a subscription, alternatively we push this through a single-shot query
   private _decorateStorageCall<ApiType extends ApiTypes> (creator: StorageEntry, decorateMethod: DecorateMethod<ApiType>): ReturnType<DecorateMethod<ApiType>> {
-    return decorateMethod((...args: unknown[]): Observable<Codec> => {
+    const memoed = memo(this.#instanceId, (...args: unknown[]): Observable<Codec> => {
       const call = extractStorageArgs(this.#registry, creator, args);
 
       if (!this.hasSubscriptions) {
@@ -906,7 +883,9 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
       }
 
       return this._queueStorage(call, this.#storageSubQ);
-    }, {
+    });
+
+    return decorateMethod(memoed, {
       methodName: creator.method,
       overrideNoSub: (...args: unknown[]) =>
         this._queueStorage(extractStorageArgs(this.#registry, creator, args), this.#storageGetQ)

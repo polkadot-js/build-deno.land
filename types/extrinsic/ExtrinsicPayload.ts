@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { AnyJson, BareOpts, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
@@ -17,7 +15,6 @@ interface ExtrinsicPayloadOptions {
   version?: number;
 }
 
-// all our known types that can be returned
 type ExtrinsicPayloadVx = ExtrinsicPayloadV4;
 
 const VERSIONS = [
@@ -142,6 +139,13 @@ export class GenericExtrinsicPayload extends AbstractBase<ExtrinsicPayloadVx> {
    */
   public override toJSON (): any {
     return this.toHex();
+  }
+
+  /**
+   * @description Returns the base runtime type name for this instance
+   */
+  public toRawType (): string {
+    return 'ExtrinsicPayload';
   }
 
   /**

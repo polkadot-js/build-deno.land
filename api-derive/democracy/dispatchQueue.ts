@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-derive authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { Bytes, Option, u8, u32, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
@@ -19,7 +17,6 @@ import { getImageHashBounded } from './util.ts';
 
 const DEMOCRACY_ID = stringToHex('democrac');
 
-// included here for backwards compat
 interface PalletSchedulerScheduledV3 extends Codec {
   maybeId: Option<Bytes>;
   priority: u8;
@@ -28,7 +25,6 @@ interface PalletSchedulerScheduledV3 extends Codec {
   origin: Codec;
 }
 
-// included here for backwards compat
 interface FrameSupportScheduleMaybeHashed extends Codec {
   isHash: boolean;
   isValue: boolean;

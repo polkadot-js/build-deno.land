@@ -1,11 +1,9 @@
-// Copyright 2017-2022 @polkadot/rpc-provider authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 /* eslint-disable camelcase */
 
 import type { JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, ProviderInterfaceEmitCb, ProviderInterfaceEmitted, ProviderStats } from '../types.ts';
 
-import EventEmitter from 'https://esm.sh/eventemitter3@4.0.7';
+import EventEmitter from 'https://esm.sh/eventemitter3@5.0.0';
 
 import { isChildClass, isNull, isUndefined, logger, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
@@ -81,41 +79,28 @@ function eraseRecord<T> (record: Record<string, T>, cb?: (item: T) => void): voi
  */
 export class WsProvider implements ProviderInterface {
   readonly #callCache = new LRUCache();
-
   readonly #coder: RpcCoder;
-
   readonly #endpoints: string[];
-
   readonly #headers: Record<string, string>;
-
   readonly #eventemitter: EventEmitter;
-
   readonly #handlers: Record<string, WsStateAwaiting> = {};
-
   readonly #isReadyPromise: Promise<WsProvider>;
-
   readonly #stats: ProviderStats;
-
   readonly #waitingForId: Record<string, JsonRpcResponse> = {};
 
   #autoConnectMs: number;
-
   #endpointIndex: number;
-
   #isConnected = false;
-
   #subscriptions: Record<string, WsStateSubscription> = {};
-
   #timeoutId?: ReturnType<typeof setInterval> | null = null;
-
   #websocket: WebSocket | null;
-
   #timeout: number;
 
   /**
    * @param {string | string[]}  endpoint    The endpoint url. Usually `ws://ip:9944` or `wss://ip:9944`, may provide an array of endpoint strings.
-   * @param {boolean} autoConnect Whether to connect automatically or not.
-   * @param {number} [timeout] Custom timeout value
+   * @param {number | false} autoConnectMs Whether to connect automatically or not (default). Provided value is used as a delay between retries.
+   * @param {Record<string, string>} headers The headers provided to the underlying WebSocket
+   * @param {number} [timeout] Custom timeout value used per request . Defaults to `DEFAULT_TIMEOUT_MS`
    */
   constructor (endpoint: string | string[] = defaults.WS_URL, autoConnectMs: number | false = RETRY_DELAY, headers: Record<string, string> = {}, timeout?: number) {
     const endpoints = Array.isArray(endpoint)

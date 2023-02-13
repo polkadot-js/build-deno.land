@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-contract authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Text } from 'https://deno.land/x/polkadot/types/mod.ts';
 import type { ContractConstructorSpecV0, ContractEventSpecV0, ContractMessageSpecV0, ContractMetadataV1, ContractMetadataV2 } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';

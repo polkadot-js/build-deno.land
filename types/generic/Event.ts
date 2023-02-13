@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { AnyJson, Codec, CodecClass } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
@@ -42,13 +40,9 @@ function decodeEvent (registry: Registry, value?: Uint8Array): Decoded {
  */
 export class GenericEventData extends Tuple implements IEventData {
   readonly #meta: EventMetadataLatest;
-
   readonly #method: string;
-
   readonly #names: string[] | null = null;
-
   readonly #section: string;
-
   readonly #typeDef: TypeDef[];
 
   constructor (registry: Registry, value: Uint8Array, meta: EventMetadataLatest, section = '<unknown>', method = '<unknown>') {

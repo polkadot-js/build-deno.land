@@ -1,9 +1,7 @@
-// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Keypair } from '../types.ts';
 
-import { isU8a } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+import { isU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { sr25519PairFromU8a } from './pair/fromU8a.ts';
 import { sr25519KeypairToU8a } from './pair/toU8a.ts';

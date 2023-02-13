@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-derive authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { Option, u32 } from 'https://deno.land/x/polkadot/types/mod.ts';
@@ -10,7 +8,6 @@ import { map, of } from 'https://esm.sh/rxjs@7.8.0';
 
 import { memo } from '../util/index.ts';
 
-// parse into Indexes
 function parse ([currentIndex, activeEra, activeEraStart, currentEra, validatorCount]: [SessionIndex, EraIndex, Option<Moment>, EraIndex, u32]): DeriveSessionIndexes {
   return {
     activeEra,
@@ -21,7 +18,6 @@ function parse ([currentIndex, activeEra, activeEraStart, currentEra, validatorC
   };
 }
 
-// query based on latest
 function queryStaking (api: DeriveApi): Observable<DeriveSessionIndexes> {
   return api.queryMulti<[SessionIndex, Option<ActiveEraInfo>, Option<EraIndex>, u32]>([
     api.query.session.currentIndex,
@@ -43,7 +39,6 @@ function queryStaking (api: DeriveApi): Observable<DeriveSessionIndexes> {
   );
 }
 
-// query based on latest
 function querySession (api: DeriveApi): Observable<DeriveSessionIndexes> {
   return api.query.session.currentIndex().pipe(
     map((currentIndex): DeriveSessionIndexes => parse([
@@ -56,7 +51,6 @@ function querySession (api: DeriveApi): Observable<DeriveSessionIndexes> {
   );
 }
 
-// empty set when none is available
 function empty (api: DeriveApi): Observable<DeriveSessionIndexes> {
   return of(parse([
     api.registry.createType('SessionIndex', 1),

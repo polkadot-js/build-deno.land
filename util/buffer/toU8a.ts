@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 /**
  * @name bufferToU8a
@@ -10,7 +8,7 @@
  * <BR>
  *
  * ```javascript
- * import { bufferToU8a } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+ * import { bufferToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * bufferToU8a(Buffer.from([1, 2, 3]));
  * ```

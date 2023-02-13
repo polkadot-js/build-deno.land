@@ -1,11 +1,8 @@
-// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import './bundleInit.ts';
 
 export { packageInfo } from './packageInfo.ts';
 
-// all internal exports
 export * from './address/index.ts';
 export * from './base32/index.ts';
 export * from './base58/index.ts';

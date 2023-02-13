@@ -1,15 +1,13 @@
-// Copyright 2017-2022 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import type { AnyString, Codec, CodecClass, IU8a } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { AnyString, Codec, CodecClass, IU8a, LookupString } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { CreateOptions, TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 import type { ExtDef } from '../extrinsic/signedExtensions/types.ts';
-import type { ChainProperties, DispatchErrorModule, DispatchErrorModuleU8, DispatchErrorModuleU8a, EventMetadataLatest, Hash, MetadataLatest, SiField, SiLookupTypeId, SiVariant } from '../interfaces/types.ts';
+import type { ChainProperties, DispatchErrorModule, DispatchErrorModuleU8, DispatchErrorModuleU8a, EventMetadataLatest, Hash, MetadataLatest, SiField, SiLookupTypeId, SiVariant, WeightV1, WeightV2 } from '../interfaces/types.ts';
 import type { CallFunction, CodecHasher, Definitions, DetectCodec, RegisteredTypes, Registry, RegistryError, RegistryTypes } from '../types/index.ts';
 
 import { DoNotConstruct, Json, Raw } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import { constructTypeClass, createClassUnsafe, createTypeUnsafe } from 'https://deno.land/x/polkadot/types-create/mod.ts';
-import { assertReturn, BN_ZERO, formatBalance, isFunction, isNumber, isString, isU8a, lazyMethod, logger, objectSpread, stringCamelCase, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { assertReturn, BN_ZERO, formatBalance, isBn, isFunction, isNumber, isString, isU8a, lazyMethod, logger, objectSpread, stringCamelCase, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { blake2AsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { expandExtensionTypes, fallbackExtensions, findUnknownExtensions } from '../extrinsic/signedExtensions/index.ts';
@@ -56,7 +54,6 @@ function getVariantStringIdx ({ index }: SiVariant): string {
   return index.toString();
 }
 
-// create error mapping from metadata
 function injectErrors (_: TypeRegistry, { lookup, pallets }: MetadataLatest, version: number, result: Record<string, Record<string, RegistryError>>): void {
   clearRecord(result);
 
@@ -81,7 +78,6 @@ function injectErrors (_: TypeRegistry, { lookup, pallets }: MetadataLatest, ver
   }
 }
 
-// create event classes from metadata
 function injectEvents (registry: TypeRegistry, { lookup, pallets }: MetadataLatest, version: number, result: Record<string, Record<string, CodecClass<GenericEventData>>>): void {
   const filtered = pallets.filter(filterEventsSome);
 
@@ -104,7 +100,6 @@ function injectEvents (registry: TypeRegistry, { lookup, pallets }: MetadataLate
   }
 }
 
-// create extrinsic mapping from metadata
 function injectExtrinsics (registry: TypeRegistry, { lookup, pallets }: MetadataLatest, version: number, result: Record<string, Record<string, CallFunction>>, mapping: Record<string, string[]>): void {
   const filtered = pallets.filter(filterCallsSome);
 
@@ -150,7 +145,6 @@ function injectExtrinsics (registry: TypeRegistry, { lookup, pallets }: Metadata
   }
 }
 
-// extract additional properties from the metadata
 function extractProperties (registry: TypeRegistry, metadata: Metadata): ChainProperties | undefined {
   const original = registry.getChainProperties();
   const constants = decorateConstants(registry, metadata.asLatest, metadata.version);
@@ -166,41 +160,25 @@ function extractProperties (registry: TypeRegistry, metadata: Metadata): ChainPr
 }
 
 export class TypeRegistry implements Registry {
-  #classes = new Map<string, CodecClass>();
-
-  #definitions = new Map<string, string>();
-
-  #firstCallIndex: Uint8Array | null = null;
-
-  #lookup?: PortableRegistry;
-
-  #metadata?: MetadataLatest;
-
-  #metadataVersion = 0;
-
-  readonly #metadataCalls: Record<string, Record<string, CallFunction>> = {};
-
-  readonly #metadataErrors: Record<string, Record<string, RegistryError>> = {};
-
-  readonly #metadataEvents: Record<string, Record<string, CodecClass<GenericEventData>>> = {};
-
-  readonly #moduleMap: Record<string, string[]> = {};
-
-  #unknownTypes = new Map<string, boolean>();
-
   #chainProperties?: ChainProperties;
-
+  #classes = new Map<string, CodecClass>();
+  #definitions = new Map<string, string>();
+  #firstCallIndex: Uint8Array | null = null;
   #hasher: (data: Uint8Array) => Uint8Array = blake2AsU8a;
+  #knownTypes: RegisteredTypes = {};
+  #lookup?: PortableRegistry;
+  #metadata?: MetadataLatest;
+  #metadataVersion = 0;
+  #signedExtensions: string[] = fallbackExtensions;
+  #unknownTypes = new Map<string, boolean>();
+  #userExtensions?: ExtDef;
 
   readonly #knownDefaults: Record<string, CodecClass>;
-
   readonly #knownDefinitions: Record<string, Definitions>;
-
-  #knownTypes: RegisteredTypes = {};
-
-  #signedExtensions: string[] = fallbackExtensions;
-
-  #userExtensions?: ExtDef;
+  readonly #metadataCalls: Record<string, Record<string, CallFunction>> = {};
+  readonly #metadataErrors: Record<string, Record<string, RegistryError>> = {};
+  readonly #metadataEvents: Record<string, Record<string, CodecClass<GenericEventData>>> = {};
+  readonly #moduleMap: Record<string, string[]> = {};
 
   public createdAtHash?: Hash;
 
@@ -215,7 +193,7 @@ export class TypeRegistry implements Registry {
     }
 
     if (createdAtHash) {
-      this.createdAtHash = this.createType('Hash', createdAtHash);
+      this.createdAtHash = this.createType('BlockHash', createdAtHash);
     }
   }
 
@@ -256,15 +234,15 @@ export class TypeRegistry implements Registry {
   /**
    * @description Returns true if the type is in a Compat format
    */
-  public isLookupType (value: string): boolean {
+  public isLookupType (value: string): value is LookupString {
     return /Lookup\d+$/.test(value);
   }
 
   /**
    * @description Creates a lookup string from the supplied id
    */
-  public createLookupType (lookupId: SiLookupTypeId | number): string {
-    return `Lookup${lookupId.toString()}`;
+  public createLookupType (lookupId: SiLookupTypeId | number): LookupString {
+    return `Lookup${typeof lookupId === 'number' ? lookupId : lookupId.toNumber()}`;
   }
 
   public get knownTypes (): RegisteredTypes {
@@ -272,7 +250,7 @@ export class TypeRegistry implements Registry {
   }
 
   public get lookup (): PortableRegistry {
-    return assertReturn(this.#lookup, 'Lookup has not been set on this registry');
+    return assertReturn(this.#lookup, 'PortableRegistry has not been set on this registry');
   }
 
   public get metadata (): MetadataLatest {
@@ -437,11 +415,11 @@ export class TypeRegistry implements Registry {
     return this.#knownTypes?.typesBundle?.spec?.[specName.toString()]?.instances?.[moduleName] || this.#moduleMap[moduleName];
   }
 
-  public getOrThrow <T extends Codec = Codec, K extends string = string, R = DetectCodec<T, K>> (name: K, msg?: string): CodecClass<R> {
+  public getOrThrow <T extends Codec = Codec, K extends string = string, R = DetectCodec<T, K>> (name: K): CodecClass<R> {
     const Clazz = this.get<T, K>(name);
 
     if (!Clazz) {
-      throw new Error(msg || `type ${name} not found`);
+      throw new Error(`type ${name} not found`);
     }
 
     return Clazz as unknown as CodecClass<R>;
@@ -494,11 +472,11 @@ export class TypeRegistry implements Registry {
 
       this.#classes.set(arg1, arg2);
     } else {
-      this._registerObject(arg1);
+      this.#registerObject(arg1);
     }
   }
 
-  private _registerObject (obj: RegistryTypes): void {
+  #registerObject = (obj: RegistryTypes): void => {
     const entries = Object.entries(obj);
 
     for (let e = 0; e < entries.length; e++) {
@@ -524,7 +502,7 @@ export class TypeRegistry implements Registry {
         this.#definitions.set(name, def);
       }
     }
-  }
+  };
 
   // sets the chain properties
   public setChainProperties (properties?: ChainProperties): void {
@@ -548,14 +526,47 @@ export class TypeRegistry implements Registry {
     lookup.register();
   }
 
+  // register alias types alongside the portable/lookup setup
+  // (we don't combine this into setLookup since that would/could
+  // affect stand-along lookups, such as ABIs which don't have
+  // actual on-chain metadata)
+  #registerLookup = (lookup: PortableRegistry): void => {
+    // attach the lookup before we register any types
+    this.setLookup(lookup);
+
+    // we detect based on runtime configuration
+    let Weight: string | null = null;
+
+    if (this.hasType('SpWeightsWeightV2Weight')) {
+      // detection for WeightV2 type based on latest naming
+      const weightv2 = this.createType<WeightV2>('SpWeightsWeightV2Weight');
+
+      Weight = weightv2.refTime && weightv2.proofSize
+        // with both refTime & proofSize we use as-is (WeightV2)
+        ? 'SpWeightsWeightV2Weight'
+        // fallback to WeightV1 (WeightV1.5 is a struct, single field)
+        : 'WeightV1';
+    } else if (!isBn(this.createType<WeightV1>('Weight'))) {
+      // where we have an already-supplied BN override, we don't clobber
+      // it with our detected value (This protects against pre-defines
+      // where Weight may be aliassed to WeightV0, e.g. in early Kusama chains)
+      Weight = 'WeightV1';
+    }
+
+    if (Weight) {
+      // we have detected a version, adjust the definition
+      this.register({ Weight });
+    }
+  };
+
   // sets the metadata
   public setMetadata (metadata: Metadata, signedExtensions?: string[], userExtensions?: ExtDef): void {
     this.#metadata = metadata.asLatest;
     this.#metadataVersion = metadata.version;
     this.#firstCallIndex = null;
 
-    // attach the lookup at this point (before injecting)
-    this.setLookup(this.#metadata.lookup);
+    // attach the lookup at this point and register relevant types (before injecting)
+    this.#registerLookup(this.#metadata.lookup);
 
     injectExtrinsics(this, this.#metadata, this.#metadataVersion, this.#metadataCalls, this.#moduleMap);
     injectErrors(this, this.#metadata, this.#metadataVersion, this.#metadataErrors);

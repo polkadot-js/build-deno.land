@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { MetadataLatest, PalletConstantMetadataLatest } from '../../../interfaces/index.ts';
@@ -10,7 +8,6 @@ import { hexToU8a, lazyMethod, lazyMethods, stringCamelCase } from 'https://deno
 import { objectNameToCamel } from '../util.ts';
 
 /** @internal */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function decorateConstants (registry: Registry, { pallets }: MetadataLatest, _version: number): Constants {
   const result: Constants = {};
 

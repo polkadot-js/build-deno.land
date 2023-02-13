@@ -1,16 +1,13 @@
-// Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-// import type lookup before we augment - in some environments
-// this is required to allow for ambient/previous definitions
 import 'https://deno.land/x/polkadot/api-base/types/storage.ts';
 
 import type { ApiTypes, AugmentedQuery, QueryableStorageEntry } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 import type { Data } from 'https://deno.land/x/polkadot/types/mod.ts';
-import type { Bytes, Null, Option, U8aFixed, Vec, WrapperOpaque, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { BTreeSet, Bytes, Null, Option, U8aFixed, Vec, WrapperOpaque, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { AnyNumber, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { AccountId32, Call, H256, Perbill, Percent } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
-import type { FrameSupportDispatchPerDispatchClassWeight, FrameSupportPreimagesBounded, FrameSystemAccountInfo, FrameSystemEventRecord, FrameSystemLastRuntimeUpgradeInfo, FrameSystemPhase, KitchensinkRuntimeSessionKeys, PalletAllianceCid, PalletAllianceMemberRole, PalletAssetsApproval, PalletAssetsAssetAccount, PalletAssetsAssetDetails, PalletAssetsAssetMetadata, PalletAuthorshipUncleEntryItem, PalletBagsListListBag, PalletBagsListListNode, PalletBalancesAccountData, PalletBalancesBalanceLock, PalletBalancesReserveData, PalletBountiesBounty, PalletChildBountiesChildBounty, PalletCollectiveVotes, PalletContractsStorageContractInfo, PalletContractsStorageDeletedContract, PalletContractsWasmOwnerInfo, PalletContractsWasmPrefabWasmModule, PalletConvictionVotingVoteVoting, PalletDemocracyReferendumInfo, PalletDemocracyVoteThreshold, PalletDemocracyVoteVoting, PalletElectionProviderMultiPhasePhase, PalletElectionProviderMultiPhaseReadySolution, PalletElectionProviderMultiPhaseRoundSnapshot, PalletElectionProviderMultiPhaseSignedSignedSubmission, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletElectionsPhragmenSeatHolder, PalletElectionsPhragmenVoter, PalletFastUnstakeUnstakeRequest, PalletGrandpaStoredPendingChange, PalletGrandpaStoredState, PalletIdentityRegistrarInfo, PalletIdentityRegistration, PalletImOnlineBoundedOpaqueNetworkState, PalletImOnlineSr25519AppSr25519Public, PalletLotteryLotteryConfig, PalletMessageQueueBookState, PalletMessageQueueMockHelpersMessageOrigin, PalletMessageQueuePage, PalletMultisigMultisig, PalletNisBid, PalletNisReceiptRecord, PalletNisSummaryRecord, PalletNominationPoolsBondedPoolInner, PalletNominationPoolsPoolMember, PalletNominationPoolsRewardPool, PalletNominationPoolsSubPools, PalletPreimageRequestStatus, PalletProxyAnnouncement, PalletProxyProxyDefinition, PalletRankedCollectiveMemberRecord, PalletRankedCollectiveVoteRecord, PalletRecoveryActiveRecovery, PalletRecoveryRecoveryConfig, PalletReferendaReferendumInfoConvictionVotingTally, PalletReferendaReferendumInfoRankedCollectiveTally, PalletSchedulerScheduled, PalletSocietyBid, PalletSocietyBidKind, PalletSocietyVote, PalletSocietyVouchingStatus, PalletStakingActiveEraInfo, PalletStakingEraRewardPoints, PalletStakingExposure, PalletStakingForcing, PalletStakingNominations, PalletStakingReleases, PalletStakingRewardDestination, PalletStakingSlashingSlashingSpans, PalletStakingSlashingSpanRecord, PalletStakingStakingLedger, PalletStakingUnappliedSlash, PalletStakingValidatorPrefs, PalletStateTrieMigrationMigrationLimits, PalletStateTrieMigrationMigrationTask, PalletTipsOpenTip, PalletTransactionPaymentReleases, PalletTransactionStorageTransactionInfo, PalletTreasuryProposal, PalletUniquesCollectionDetails, PalletUniquesCollectionMetadata, PalletUniquesItemDetails, PalletUniquesItemMetadata, PalletVestingReleases, PalletVestingVestingInfo, SpAuthorityDiscoveryAppPublic, SpConsensusBabeAppPublic, SpConsensusBabeBabeEpochConfiguration, SpConsensusBabeDigestsNextConfigDescriptor, SpConsensusBabeDigestsPreDigest, SpCoreCryptoKeyTypeId, SpNposElectionsElectionScore, SpRuntimeDigest, SpStakingOffenceOffenceDetails } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { FrameSupportDispatchPerDispatchClassWeight, FrameSupportPreimagesBounded, FrameSupportTokensMiscAttributeNamespace, FrameSystemAccountInfo, FrameSystemEventRecord, FrameSystemLastRuntimeUpgradeInfo, FrameSystemPhase, KitchensinkRuntimeSessionKeys, PalletAllianceCid, PalletAllianceMemberRole, PalletAssetsApproval, PalletAssetsAssetAccount, PalletAssetsAssetDetails, PalletAssetsAssetMetadata, PalletBagsListListBag, PalletBagsListListNode, PalletBalancesAccountData, PalletBalancesBalanceLock, PalletBalancesReserveData, PalletBountiesBounty, PalletChildBountiesChildBounty, PalletCollectiveVotes, PalletContractsStorageContractInfo, PalletContractsStorageDeletedContract, PalletContractsWasmOwnerInfo, PalletContractsWasmPrefabWasmModule, PalletConvictionVotingVoteVoting, PalletDemocracyMetadataOwner, PalletDemocracyReferendumInfo, PalletDemocracyVoteThreshold, PalletDemocracyVoteVoting, PalletElectionProviderMultiPhasePhase, PalletElectionProviderMultiPhaseReadySolution, PalletElectionProviderMultiPhaseRoundSnapshot, PalletElectionProviderMultiPhaseSignedSignedSubmission, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletElectionsPhragmenSeatHolder, PalletElectionsPhragmenVoter, PalletFastUnstakeUnstakeRequest, PalletGrandpaStoredPendingChange, PalletGrandpaStoredState, PalletIdentityRegistrarInfo, PalletIdentityRegistration, PalletImOnlineBoundedOpaqueNetworkState, PalletImOnlineSr25519AppSr25519Public, PalletLotteryLotteryConfig, PalletMessageQueueBookState, PalletMessageQueueMockHelpersMessageOrigin, PalletMessageQueuePage, PalletMultisigMultisig, PalletNftsAttributeDeposit, PalletNftsCollectionConfig, PalletNftsCollectionDetails, PalletNftsCollectionMetadata, PalletNftsItemConfig, PalletNftsItemDetails, PalletNftsItemMetadata, PalletNftsPendingSwap, PalletNisBid, PalletNisReceiptRecord, PalletNisSummaryRecord, PalletNominationPoolsBondedPoolInner, PalletNominationPoolsPoolMember, PalletNominationPoolsRewardPool, PalletNominationPoolsSubPools, PalletPreimageRequestStatus, PalletProxyAnnouncement, PalletProxyProxyDefinition, PalletRankedCollectiveMemberRecord, PalletRankedCollectiveVoteRecord, PalletRecoveryActiveRecovery, PalletRecoveryRecoveryConfig, PalletReferendaReferendumInfoConvictionVotingTally, PalletReferendaReferendumInfoRankedCollectiveTally, PalletSchedulerScheduled, PalletSocietyBid, PalletSocietyBidKind, PalletSocietyVote, PalletSocietyVouchingStatus, PalletStakingActiveEraInfo, PalletStakingEraRewardPoints, PalletStakingExposure, PalletStakingForcing, PalletStakingNominations, PalletStakingRewardDestination, PalletStakingSlashingSlashingSpans, PalletStakingSlashingSpanRecord, PalletStakingStakingLedger, PalletStakingUnappliedSlash, PalletStakingValidatorPrefs, PalletStateTrieMigrationMigrationLimits, PalletStateTrieMigrationMigrationTask, PalletTipsOpenTip, PalletTransactionPaymentReleases, PalletTransactionStorageTransactionInfo, PalletTreasuryProposal, PalletUniquesCollectionDetails, PalletUniquesCollectionMetadata, PalletUniquesItemDetails, PalletUniquesItemMetadata, PalletVestingReleases, PalletVestingVestingInfo, SpAuthorityDiscoveryAppPublic, SpConsensusBabeAppPublic, SpConsensusBabeBabeEpochConfiguration, SpConsensusBabeDigestsNextConfigDescriptor, SpConsensusBabeDigestsPreDigest, SpCoreCryptoKeyTypeId, SpNposElectionsElectionScore, SpRuntimeDigest, SpStakingOffenceOffenceDetails } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { Observable } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 export type __AugmentedQuery<ApiType extends ApiTypes> = AugmentedQuery<ApiType, () => unknown>;
@@ -128,14 +125,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
        * Author of current block.
        **/
       author: AugmentedQuery<ApiType, () => Observable<Option<AccountId32>>, []> & QueryableStorageEntry<ApiType, []>;
-      /**
-       * Whether uncles were already set in this block.
-       **/
-      didSetUncles: AugmentedQuery<ApiType, () => Observable<bool>, []> & QueryableStorageEntry<ApiType, []>;
-      /**
-       * Uncles
-       **/
-      uncles: AugmentedQuery<ApiType, () => Observable<Vec<PalletAuthorshipUncleEntryItem>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Generic query
        **/
@@ -472,6 +461,15 @@ declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
        **/
       lowestUnbaked: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
       /**
+       * General information concerning any proposal or referendum.
+       * The `PreimageHash` refers to the preimage of the `Preimages` provider which can be a JSON
+       * dump or IPFS hash of a JSON file.
+       * 
+       * Consider a garbage collection for a metadata of finished referendums to `unrequest` (remove)
+       * large preimages.
+       **/
+      metadataOf: AugmentedQuery<ApiType, (arg: PalletDemocracyMetadataOwner | { External: any } | { Proposal: any } | { Referendum: any } | string | Uint8Array) => Observable<Option<H256>>, [PalletDemocracyMetadataOwner]> & QueryableStorageEntry<ApiType, [PalletDemocracyMetadataOwner]>;
+      /**
        * The referendum to be tabled whenever it would be valid to table an external proposal.
        * This happens when a referendum needs to be tabled and one of two conditions are met:
        * - `LastTabledWasExternal` is `false`; or
@@ -647,6 +645,8 @@ declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
        * The map of all accounts wishing to be unstaked.
        * 
        * Keeps track of `AccountId` wishing to unstake and it's corresponding deposit.
+       * 
+       * TWOX-NOTE: SAFE since `AccountId` is a secure hash.
        **/
       queue: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Option<u128>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
@@ -671,6 +671,12 @@ declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
       /**
        * A mapping from grandpa set ID to the index of the *most recent* session for which its
        * members were responsible.
+       * 
+       * This is only used for validating equivocation proofs. An equivocation proof must
+       * contains a key-ownership proof for a given session, therefore we need a way to tie
+       * together sessions and GRANDPA set ids, i.e. we need to validate that a validator
+       * was the owner of a given key on a given session, and what the active set ID was
+       * during that session.
        * 
        * TWOX-NOTE: `SetId` is not under user control.
        **/
@@ -844,6 +850,76 @@ declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
        **/
       [key: string]: QueryableStorageEntry<ApiType>;
     };
+    nfts: {
+      /**
+       * The items held by any given account; set out this way so that items owned by a single
+       * account can be enumerated.
+       **/
+      account: AugmentedQuery<ApiType, (arg1: AccountId32 | string | Uint8Array, arg2: u32 | AnyNumber | Uint8Array, arg3: u32 | AnyNumber | Uint8Array) => Observable<Option<Null>>, [AccountId32, u32, u32]> & QueryableStorageEntry<ApiType, [AccountId32, u32, u32]>;
+      /**
+       * Attributes of a collection.
+       **/
+      attribute: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: Option<u32> | null | Uint8Array | u32 | AnyNumber, arg3: FrameSupportTokensMiscAttributeNamespace | { Pallet: any } | { CollectionOwner: any } | { ItemOwner: any } | { Account: any } | string | Uint8Array, arg4: Bytes | string | Uint8Array) => Observable<Option<ITuple<[Bytes, PalletNftsAttributeDeposit]>>>, [u32, Option<u32>, FrameSupportTokensMiscAttributeNamespace, Bytes]> & QueryableStorageEntry<ApiType, [u32, Option<u32>, FrameSupportTokensMiscAttributeNamespace, Bytes]>;
+      /**
+       * Details of a collection.
+       **/
+      collection: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Option<PalletNftsCollectionDetails>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
+      /**
+       * The collections owned by any given account; set out this way so that collections owned by
+       * a single account can be enumerated.
+       **/
+      collectionAccount: AugmentedQuery<ApiType, (arg1: AccountId32 | string | Uint8Array, arg2: u32 | AnyNumber | Uint8Array) => Observable<Option<Null>>, [AccountId32, u32]> & QueryableStorageEntry<ApiType, [AccountId32, u32]>;
+      /**
+       * Config of a collection.
+       **/
+      collectionConfigOf: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Option<PalletNftsCollectionConfig>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
+      /**
+       * Metadata of a collection.
+       **/
+      collectionMetadataOf: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Option<PalletNftsCollectionMetadata>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
+      /**
+       * The items in existence and their ownership details.
+       * Stores collection roles as per account.
+       **/
+      collectionRoleOf: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: AccountId32 | string | Uint8Array) => Observable<Option<u8>>, [u32, AccountId32]> & QueryableStorageEntry<ApiType, [u32, AccountId32]>;
+      /**
+       * The items in existence and their ownership details.
+       **/
+      item: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: u32 | AnyNumber | Uint8Array) => Observable<Option<PalletNftsItemDetails>>, [u32, u32]> & QueryableStorageEntry<ApiType, [u32, u32]>;
+      /**
+       * Item attribute approvals.
+       **/
+      itemAttributesApprovalsOf: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: u32 | AnyNumber | Uint8Array) => Observable<BTreeSet<AccountId32>>, [u32, u32]> & QueryableStorageEntry<ApiType, [u32, u32]>;
+      /**
+       * Config of an item.
+       **/
+      itemConfigOf: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: u32 | AnyNumber | Uint8Array) => Observable<Option<PalletNftsItemConfig>>, [u32, u32]> & QueryableStorageEntry<ApiType, [u32, u32]>;
+      /**
+       * Metadata of an item.
+       **/
+      itemMetadataOf: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: u32 | AnyNumber | Uint8Array) => Observable<Option<PalletNftsItemMetadata>>, [u32, u32]> & QueryableStorageEntry<ApiType, [u32, u32]>;
+      /**
+       * A price of an item.
+       **/
+      itemPriceOf: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: u32 | AnyNumber | Uint8Array) => Observable<Option<ITuple<[u128, Option<AccountId32>]>>>, [u32, u32]> & QueryableStorageEntry<ApiType, [u32, u32]>;
+      /**
+       * Stores the `CollectionId` that is going to be used for the next collection.
+       * This gets incremented whenever a new collection is created.
+       **/
+      nextCollectionId: AugmentedQuery<ApiType, () => Observable<Option<u32>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * The collection, if any, of which an account is willing to take ownership.
+       **/
+      ownershipAcceptance: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Option<u32>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
+      /**
+       * Handles all the pending swaps.
+       **/
+      pendingSwapOf: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: u32 | AnyNumber | Uint8Array) => Observable<Option<PalletNftsPendingSwap>>, [u32, u32]> & QueryableStorageEntry<ApiType, [u32, u32]>;
+      /**
+       * Generic query
+       **/
+      [key: string]: QueryableStorageEntry<ApiType>;
+    };
     nis: {
       /**
        * The queues of bids. Indexed by duration (in `Period`s).
@@ -938,6 +1014,8 @@ declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
       minJoinBond: AugmentedQuery<ApiType, () => Observable<u128>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Active members.
+       * 
+       * TWOX-NOTE: SAFE since `AccountId` is a secure hash.
        **/
       poolMembers: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Option<PalletNominationPoolsPoolMember>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
@@ -980,6 +1058,38 @@ declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
        * different types are not supported at the moment so we are doing the manual serialization.
        **/
       reportsByKindIndex: AugmentedQuery<ApiType, (arg: U8aFixed | string | Uint8Array) => Observable<Bytes>, [U8aFixed]> & QueryableStorageEntry<ApiType, [U8aFixed]>;
+      /**
+       * Generic query
+       **/
+      [key: string]: QueryableStorageEntry<ApiType>;
+    };
+    pov: {
+      /**
+       * A value with a MEL bound of 32 byte.
+       **/
+      boundedValue: AugmentedQuery<ApiType, () => Observable<Option<Bytes>>, []> & QueryableStorageEntry<ApiType, []>;
+      doubleMap1M: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: u32 | AnyNumber | Uint8Array) => Observable<Option<u32>>, [u32, u32]> & QueryableStorageEntry<ApiType, [u32, u32]>;
+      /**
+       * 4MiB value.
+       **/
+      largeValue: AugmentedQuery<ApiType, () => Observable<Option<Bytes>>, []> & QueryableStorageEntry<ApiType, []>;
+      largeValue2: AugmentedQuery<ApiType, () => Observable<Option<Bytes>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * A map with a maximum of 16M entries.
+       **/
+      map16M: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Option<u32>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
+      /**
+       * A map with a maximum of 1M entries.
+       **/
+      map1M: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Option<u32>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
+      unboundedMap: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Option<Vec<u32>>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
+      unboundedMap2: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Option<Vec<u32>>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
+      /**
+       * A value without a MEL bound.
+       **/
+      unboundedValue: AugmentedQuery<ApiType, () => Observable<Option<Bytes>>, []> & QueryableStorageEntry<ApiType, []>;
+      value: AugmentedQuery<ApiType, () => Observable<Option<u32>>, []> & QueryableStorageEntry<ApiType, []>;
+      value2: AugmentedQuery<ApiType, () => Observable<Option<u32>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Generic query
        **/
@@ -1058,6 +1168,15 @@ declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
        **/
       decidingCount: AugmentedQuery<ApiType, (arg: u16 | AnyNumber | Uint8Array) => Observable<u32>, [u16]> & QueryableStorageEntry<ApiType, [u16]>;
       /**
+       * The metadata is a general information concerning the referendum.
+       * The `PreimageHash` refers to the preimage of the `Preimages` provider which can be a JSON
+       * dump or IPFS hash of a JSON file.
+       * 
+       * Consider a garbage collection for a metadata of finished referendums to `unrequest` (remove)
+       * large preimages.
+       **/
+      metadataOf: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Option<H256>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
+      /**
        * The next free referendum index, aka the number of referenda started so far.
        **/
       referendumCount: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
@@ -1105,6 +1224,15 @@ declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
        * The number of referenda being decided currently.
        **/
       decidingCount: AugmentedQuery<ApiType, (arg: u16 | AnyNumber | Uint8Array) => Observable<u32>, [u16]> & QueryableStorageEntry<ApiType, [u16]>;
+      /**
+       * The metadata is a general information concerning the referendum.
+       * The `PreimageHash` refers to the preimage of the `Preimages` provider which can be a JSON
+       * dump or IPFS hash of a JSON file.
+       * 
+       * Consider a garbage collection for a metadata of finished referendums to `unrequest` (remove)
+       * large preimages.
+       **/
+      metadataOf: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Option<H256>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
       /**
        * The next free referendum index, aka the number of referenda started so far.
        **/
@@ -1264,6 +1392,8 @@ declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
       activeEra: AugmentedQuery<ApiType, () => Observable<Option<PalletStakingActiveEraInfo>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Map from all locked "stash" accounts to the controller account.
+       * 
+       * TWOX-NOTE: SAFE since `AccountId` is a secure hash.
        **/
       bonded: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Option<AccountId32>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
@@ -1424,6 +1554,8 @@ declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
        * 
        * Lastly, if any of the nominators become non-decodable, they can be chilled immediately via
        * [`Call::chill_other`] dispatchable by anyone.
+       * 
+       * TWOX-NOTE: SAFE since `AccountId` is a secure hash.
        **/
       nominators: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Option<PalletStakingNominations>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
@@ -1444,6 +1576,8 @@ declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
       offendingValidators: AugmentedQuery<ApiType, () => Observable<Vec<ITuple<[u32, bool]>>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Where the reward payment should be made. Keyed by stash.
+       * 
+       * TWOX-NOTE: SAFE since `AccountId` is a secure hash.
        **/
       payee: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<PalletStakingRewardDestination>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
@@ -1462,13 +1596,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
        **/
       spanSlash: AugmentedQuery<ApiType, (arg: ITuple<[AccountId32, u32]> | [AccountId32 | string | Uint8Array, u32 | AnyNumber | Uint8Array]) => Observable<PalletStakingSlashingSpanRecord>, [ITuple<[AccountId32, u32]>]> & QueryableStorageEntry<ApiType, [ITuple<[AccountId32, u32]>]>;
       /**
-       * True if network has been upgraded to this version.
-       * Storage version of the pallet.
-       * 
-       * This is set to v7.0.0 for new networks.
-       **/
-      storageVersion: AugmentedQuery<ApiType, () => Observable<PalletStakingReleases>, []> & QueryableStorageEntry<ApiType, []>;
-      /**
        * All unapplied slashes that are queued for later.
        **/
       unappliedSlashes: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Vec<PalletStakingUnappliedSlash>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
@@ -1478,6 +1605,8 @@ declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
       validatorCount: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * The map from (wannabe) validator stash key to the preferences of that validator.
+       * 
+       * TWOX-NOTE: SAFE since `AccountId` is a secure hash.
        **/
       validators: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<PalletStakingValidatorPrefs>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
@@ -1734,7 +1863,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
       /**
        * The amount which has been reported as inactive to Currency.
        **/
-      inactive: AugmentedQuery<ApiType, () => Observable<u128>, []> & QueryableStorageEntry<ApiType, []>;
+      deactivated: AugmentedQuery<ApiType, () => Observable<u128>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Number of proposals that have been made.
        **/

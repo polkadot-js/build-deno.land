@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 export { secp256k1Compress } from './compress.ts';
 export { secp256k1Expand } from './expand.ts';

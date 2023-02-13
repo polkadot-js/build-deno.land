@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-derive authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Bytes, Option, u32, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
 import type { CollatorId, ParaId, ParaInfo, Retriable, UpwardMessage } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';

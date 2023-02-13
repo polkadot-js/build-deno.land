@@ -2,7 +2,43 @@
 
 ## master
 
-- api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 9.10.5
+- api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 9.14.1
+- hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 10.4.1
+
+## 0.2.26 Feb 5, 2023
+
+- api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 9.13.6
+
+
+## 0.2.25 Feb 1, 2023
+
+- api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 9.13.4
+
+
+## 0.2.24 Jan 29, 2023
+
+- phishing 0.19.1
+- api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 9.13.1
+- hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 10.3.1
+
+
+## 0.2.23 Jan 22, 2023
+
+- api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 9.12.1
+
+
+## 0.2.22 Jan 15, 2023
+
+- api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 9.11.3
+- hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 10.2.6
+
+
+## 0.2.21 Jan 8, 2023
+
+- api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 9.11.1
+- hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 10.2.3
+- phishing 0.18.13
+
 
 ## 0.2.20 Dec 26, 2022
 

@@ -1,11 +1,8 @@
-// Copyright 2017-2022 @polkadot/api authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { EventRecord } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 
 import { SubmittableResult } from '../index.ts';
 
-// log all events for the transfers, calling done() when finalized
 export const logEvents = (done: () => Record<string, unknown>): (r: SubmittableResult) => void =>
   ({ events, status }: SubmittableResult): void => {
     console.log('Transaction status:', status.type);

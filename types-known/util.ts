@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types-known authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { ExtDef } from 'https://deno.land/x/polkadot/types/extrinsic/signedExtensions/types.ts';
 import type { Hash } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';

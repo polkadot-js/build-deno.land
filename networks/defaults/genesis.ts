@@ -1,12 +1,6 @@
-// Copyright 2017-2022 @polkadot/networks authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { KnownGenesis } from '../types.ts';
 
-// NOTE: In the case where the network was hard-spooned and multiple genesisHashes
-// are provided, it needs to be in reverse order, i.e. most-recent first, oldest
-// last. This make lookups for the current a simple genesisHash[0]
-// (See Kusama as an example)
 export const knownGenesis: KnownGenesis = {
   acala: [
     '0xfc41b9bd8ef8fe53d58c7ea67c794c7ec9a73daf05e6d54b14ff6342c99ba64c'
@@ -76,7 +70,7 @@ export const knownGenesis: KnownGenesis = {
     '0xe3777fa922cafbff200cadeaea1a76bd7898ad5b89f7848999058b50e715f636', // Kusama CC2
     '0x3fd7b9eb6a00376e5be61f01abb429ffb0b104be05eaff4d458da48fcd425baf' // Kusama CC1
   ],
-  'nodle-para': [
+  nodle: [
     '0x97da7ede98d7bad4e36b4d734b6055425a3be036da2a332ea5a7037656427a21'
   ],
   origintrail: [
@@ -89,6 +83,7 @@ export const knownGenesis: KnownGenesis = {
     '0x1bb969d85965e4bb5a651abbedf21a54b6b31a21f66b5401cc3f1e286268d736'
   ],
   picasso: [
+    '0x6811a339673c9daa897944dcdac99c6e2939cc88245ed21951a0a3c9a2be75bc',
     '0xe8e7f0f4c4f5a00720b4821dbfddefea7490bcf0b19009961cc46957984e2c1c'
   ],
   polkadex: [
@@ -128,6 +123,9 @@ export const knownGenesis: KnownGenesis = {
   ],
   subsocial: [
     '0x0bd72c1c305172e1275278aaeb3f161e02eccb7a819e63f62d47bd53a28189f8'
+  ],
+  ternoa: [
+    '0x6859c81ca95ef624c9dfe4dc6e3381c33e5d6509e35e147092bfbc780f777c4e'
   ],
   unique: [
     '0x84322d9cddbf35088f1e54e9a85c967a41a56a4f43445768125e61af166c7d31'

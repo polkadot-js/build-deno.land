@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { AccountId, Address } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { IKeyringPair } from 'https://deno.land/x/polkadot/types/types/index.ts';

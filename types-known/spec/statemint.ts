@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types-known authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 /* eslint-disable sort-keys */
 
@@ -25,7 +23,6 @@ const sharedTypes = {
   Weight: 'WeightV1'
 };
 
-// these are override types for Statemine, Statemint, Westmint
 const versioned: OverrideVersionedType[] = [
   {
     minmax: [0, 3],

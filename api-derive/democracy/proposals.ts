@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-derive authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { Option, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
@@ -51,14 +49,14 @@ function parse ([proposals, images, optDepositors]: Result): DeriveProposal[] {
 
 export function proposals (instanceId: string, api: DeriveApi): () => Observable<DeriveProposal[]> {
   return memo(instanceId, (): Observable<DeriveProposal[]> =>
-    isFunction(api.query.democracy?.publicProps) && isFunction(api.query.democracy?.preimages)
+    isFunction(api.query.democracy?.publicProps)
       ? api.query.democracy.publicProps().pipe(
         switchMap((proposals) =>
           proposals.length
             ? combineLatest([
               of(proposals),
               api.derive.democracy.preimages(
-                proposals.map(([, hash]) => hash as unknown as Uint8Array)
+                proposals.map(([, hash]) => hash)
               ),
               api.query.democracy.depositOf.multi(
                 proposals.map(([index]) => index)

@@ -1,8 +1,6 @@
-// Copyright 2017-2022 @polkadot/api-base authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { AccountId, Address, ApplyExtrinsicResult, Call, DispatchError, DispatchInfo, EventRecord, Extrinsic, ExtrinsicStatus, Hash, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { AccountId, Address, ApplyExtrinsicResult, BlockNumber, Call, DispatchError, DispatchInfo, EventRecord, Extrinsic, ExtrinsicStatus, Hash, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { AnyFunction, AnyNumber, AnyTuple, Callback, CallBase, Codec, IExtrinsicEra, IKeyringPair, ISubmittableResult, Signer } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { ApiTypes, PromiseOrObs } from './base.ts';
 
@@ -47,6 +45,7 @@ export interface SubmittableResultValue {
   status: ExtrinsicStatus;
   txHash: Hash;
   txIndex?: number;
+  blockNumber?: BlockNumber;
 }
 
 export interface SubmittableExtrinsic<ApiType extends ApiTypes, R extends ISubmittableResult = ISubmittableResult> extends Extrinsic {
@@ -78,9 +77,7 @@ export interface SubmittableExtrinsicFunction<ApiType extends ApiTypes, A extend
   (...params: any[]): SubmittableExtrinsic<ApiType>;
 }
 
-// augmented interfaces
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-empty-interface
 export interface AugmentedSubmittables<ApiType extends ApiTypes> {
   // augmented
 }

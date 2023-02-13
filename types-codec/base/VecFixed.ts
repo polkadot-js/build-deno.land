@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types-codec authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { Codec, CodecClass, Inspect, Registry } from '../types/index.ts';
@@ -25,8 +23,6 @@ function noopSetDefinition <T extends Codec> (d: CodecClass<T>): CodecClass<T> {
  * This manages codec arrays of a fixed length
  */
 export class VecFixed<T extends Codec> extends AbstractArray<T> {
-  readonly initialU8aLength?: number;
-
   #Type: CodecClass<T>;
 
   constructor (registry: Registry, Type: CodecClass<T> | string, length: number, value: Uint8Array | HexString | unknown[] = [] as unknown[], { definition, setDefinition = noopSetDefinition }: Options<T> = {}) {

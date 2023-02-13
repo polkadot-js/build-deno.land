@@ -1,11 +1,6 @@
-// Copyright 2017-2022 @polkadot/x-global authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 export { packageInfo } from './packageInfo.ts';
 
-// Ensure that we are able to run this without any @types/node definitions
-// and without having lib: ['dom'] in our TypeScript configuration
-// (may not be available in all environments, e.g. Deno springs to mind)
 declare const global: unknown;
 declare const self: unknown;
 declare const window: unknown;

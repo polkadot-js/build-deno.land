@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 /**
  * @summary Type checking utilities
@@ -11,6 +9,7 @@ export { isBn } from './bn.ts';
 export { isBuffer } from './buffer.ts';
 export { isBoolean } from './boolean.ts';
 export { isChildClass } from './childClass.ts';
+export { isClass } from './class.ts';
 export { isCodec } from './codec.ts';
 export { isCompact } from './compact.ts';
 export { isError } from './error.ts';

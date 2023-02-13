@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 /**
  * @name promisify
@@ -16,7 +14,6 @@
  * await promisify(null, (cb) => cb(new Error('error!'))); // rejects with `error!`
  * ```
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function promisify <R = any> (self: unknown, fn: (...params: any) => any, ...params: any[]): Promise<R> {
   return new Promise((resolve, reject): void => {
     fn.apply(self, params.concat((error: Error | null, result?: R): void => {

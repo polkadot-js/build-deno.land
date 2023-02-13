@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-contract authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 export function createVersionedExport (versioned: Record<string, Record<string, unknown>>): Record<string, Record<string, unknown>> {
   const result: Record<string, Record<string, unknown>> = {};

@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types-codec authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyNumber, Inspect, INumber, IU8a, Registry, UIntBitLength } from '../types/index.ts';
@@ -34,9 +32,11 @@ function decodeDate (value: CodecDate | Date | AnyNumber): Date {
  * @noInheritDoc
  */
 export class CodecDate extends Date implements INumber {
-  public readonly registry: Registry;
+  readonly registry: Registry;
 
   public createdAtHash?: IU8a;
+  public initialU8aLength = BITLENGTH / 8;
+  public isStorageFallback?: boolean;
 
   constructor (registry: Registry, value: CodecDate | Date | AnyNumber = 0) {
     super(decodeDate(value));

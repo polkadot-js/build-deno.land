@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types-create authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
@@ -66,8 +64,6 @@ function encodeSubTypes (registry: Registry, sub: TypeDef[], asEnum?: boolean, e
   );
 }
 
-// We setup a record here to ensure we have comprehensive coverage (any item not covered will result
-// in a compile-time error with the missing index)
 const encoders: Record<TypeDefInfo, (registry: Registry, typeDef: TypeDef) => string> = {
   [TypeDefInfo.BTreeMap]: (registry: Registry, typeDef: TypeDef) =>
     encodeWithParams(registry, typeDef, 'BTreeMap'),

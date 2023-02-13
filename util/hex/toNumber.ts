@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import { hexToBn } from './toBn.ts';
 
@@ -12,7 +10,7 @@ import { hexToBn } from './toBn.ts';
  * <BR>
  *
  * ```javascript
- * import { hexToNumber } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+ * import { hexToNumber } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * hexToNumber('0x1234'); // => 0x1234
  * ```

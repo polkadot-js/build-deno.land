@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 
@@ -21,7 +19,6 @@ function unhandled (type: string, { info }: TypeDef): never {
   throw new Error(`Unhandled: Unable to create and validate type from ${type} (info=${TypeDefInfo[info]})`);
 }
 
-// we only handle the types with params here
 const mapping: Record<TypeDefInfo, (type: string, typeDef: TypeDef) => Extracted> = {
   [TypeDefInfo.BTreeMap]: extractSubArray,
   [TypeDefInfo.BTreeSet]: extractSubSingle,

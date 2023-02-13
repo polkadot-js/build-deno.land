@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types-codec authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, Codec, CodecClass, IEnum, Inspect, IU8a, Registry } from '../types/index.ts';
@@ -9,7 +7,6 @@ import { isHex, isNumber, isObject, isString, isU8a, objectProperties, stringCam
 import { mapToTypeMap, typesToMap } from '../utils/index.ts';
 import { Null } from './Null.ts';
 
-// export interface, this is used in Enum.with, so required as public by TS
 export interface EnumCodecClass<T = Codec> {
   new(registry: Registry, value?: any, index?: number): T;
 }
@@ -183,22 +180,17 @@ function decodeEnum (registry: Registry, def: TypesDef, value?: unknown, index?:
  * an extension to enum where the value type is determined by the actual index.
  */
 export class Enum implements IEnum {
-  public readonly registry: Registry;
+  readonly registry: Registry;
 
   public createdAtHash?: IU8a;
+  public initialU8aLength?: number;
+  public isStorageFallback?: boolean;
 
   readonly #def: TypesDef;
-
   readonly #entryIndex: number;
-
-  readonly initialU8aLength?: number;
-
   readonly #indexes: number[];
-
   readonly #isBasic: boolean;
-
   readonly #isIndexed: boolean;
-
   readonly #raw: Codec;
 
   constructor (registry: Registry, Types: Record<string, string | CodecClass> | Record<string, number> | string[], value?: unknown, index?: number, { definition, setDefinition = noopSetDefinition }: Options = {}) {

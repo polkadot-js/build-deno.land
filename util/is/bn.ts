@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import { BN } from '../bn/bn.ts';
 
@@ -13,7 +11,7 @@ import { BN } from '../bn/bn.ts';
  *
  * ```javascript
  * import BN from 'https://esm.sh/bn.js@5.2.1';
- * import { isBn } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+ * import { isBn } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * console.log('isBn', isBn(new BN(1))); // => true
  * ```

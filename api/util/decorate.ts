@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/api authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { ExactDerive } from 'https://deno.land/x/polkadot/api-derive/mod.ts';
 import type { AnyFunction } from 'https://deno.land/x/polkadot/types/types/index.ts';
@@ -9,15 +7,12 @@ import { lazyDeriveSection } from 'https://deno.land/x/polkadot/api-derive/mod.t
 
 type AnyDeriveSection = Record<string, AnyFunction>;
 
-// Most generic typings for `api.derive.*.*`
 type AnyDerive = Record<string, AnyDeriveSection>;
 
-// Exact typings for a particular section `api.derive.section.*`
 type DeriveSection<ApiType extends ApiTypes, Section extends AnyDeriveSection> = {
   [M in keyof Section]: MethodResult<ApiType, Section[M]>
 };
 
-// Exact typings for all sections `api.derive.*.*`
 export type AllDerives<ApiType extends ApiTypes> = {
   [S in keyof ExactDerive]: DeriveSection<ApiType, ExactDerive[S]>
 };

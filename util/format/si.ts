@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { SiDef } from '../types.ts';
 
@@ -27,7 +25,6 @@ export const SI: SiDef[] = [
   { power: 24, text: 'Yotta', value: 'Y' }
 ];
 
-// Given a SI type (e.g. k, m, Y) find the SI definition
 /** @internal */
 export function findSi (type: string): SiDef {
   // use a loop here, better RN support (which doesn't have [].find)

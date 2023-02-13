@@ -1,8 +1,5 @@
-// Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-// import type lookup before we augment - in some environments
-// this is required to allow for ambient/previous definitions
 import 'https://deno.land/x/polkadot/rpc-core/types/jsonrpc.ts';
 
 import type { AugmentedRpc } from 'https://deno.land/x/polkadot/rpc-core/types/index.ts';
@@ -275,7 +272,7 @@ declare module 'https://deno.land/x/polkadot/rpc-core/types/jsonrpc.ts' {
       /**
        * Returns the number of transactions sent from given address at given time (block number).
        **/
-      getTransactionCount: AugmentedRpc<(hash: H256 | string | Uint8Array, number?: BlockNumber | AnyNumber | Uint8Array) => Observable<U256>>;
+      getTransactionCount: AugmentedRpc<(address: H160 | string | Uint8Array, number?: BlockNumber | AnyNumber | Uint8Array) => Observable<U256>>;
       /**
        * Returns transaction receipt by transaction hash.
        **/

@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { StorageEntryMetadataLatest } from '../interfaces/metadata/index.ts';
 import type { Codec, Inspect } from '../types/index.ts';

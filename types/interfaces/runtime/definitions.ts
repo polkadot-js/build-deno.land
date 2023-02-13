@@ -1,7 +1,4 @@
-// Copyright 2017-2022 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-// order important in structs... :)
 /* eslint-disable sort-keys */
 
 import type { Definitions } from '../../types/index.ts';
@@ -26,8 +23,6 @@ const numberTypes = {
   Perquintill: 'UInt<64, Perquintill>'
 };
 
-// Since we don't have insight into the origin specification, we can only define what we know about
-// in a pure Substrate/Polkadot implementation, any other custom origins won't be handled at all
 export const knownOrigins: Record<string, string> = {
   //
   // (1) Defaults from Substrate
@@ -168,6 +163,8 @@ export default {
     Releases: {
       _enum: ['V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10']
     },
+    RuntimeCall: 'Call',
+    RuntimeEvent: 'Event',
     RuntimeDbWeight: {
       read: 'Weight',
       write: 'Weight'
@@ -212,12 +209,13 @@ export default {
     },
     ValidatorId: 'AccountId',
     ValidatorIdOf: 'ValidatorId',
+    WeightV0: 'u32',
     WeightV1: 'u64',
     WeightV2: {
       refTime: 'Compact<u64>',
       proofSize: 'Compact<u64>'
     },
-    Weight: 'WeightV1',
+    Weight: 'WeightV2',
     WeightMultiplier: 'Fixed64',
 
     // digest

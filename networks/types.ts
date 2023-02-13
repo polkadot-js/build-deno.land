@@ -1,7 +1,5 @@
-// Copyright 2017-2022 @polkadot/keyring authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import type { RegistryEntry } from 'https://esm.sh/@substrate/ss58-registry@1.35.0';
+import type { RegistryEntry } from 'https://esm.sh/@substrate/ss58-registry@1.38.0';
 
 export type Icon = 'beachball' | 'empty' | 'jdenticon' | 'polkadot' | 'substrate';
 

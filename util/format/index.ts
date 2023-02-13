@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 export { formatBalance } from './formatBalance.ts';
 export { formatDate } from './formatDate.ts';

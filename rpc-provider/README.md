@@ -21,7 +21,6 @@ WebSocket Initialization -
 ```javascript
 import { WsProvider } from 'https://deno.land/x/polkadot/rpc-provider/mod.ts';
 
-// this is the actual default endpoint
 const provider = new WsProvider('ws://127.0.0.1:9944');
 const version = await provider.send('client_version', []);
 
@@ -33,7 +32,6 @@ HTTP Initialization -
 ```javascript
 import { HttpProvider } from 'https://deno.land/x/polkadot/rpc-provider/mod.ts';
 
-// this is the actual default endpoint
 const provider = new HttpProvider('http://127.0.0.1:9933');
 const version = await provider.send('chain_getBlockHash', []);
 
@@ -45,8 +43,9 @@ console.log('latest block Hash', hash);
 Instantiating a Provider for the Polkadot Relay Chain:
 ```javascript
 import { ScProvider } from 'https://deno.land/x/polkadot/rpc-provider/mod.ts';
+import * as Sc from 'https://esm.sh/@substrate/connect@0.7.19';
 
-const provider = new ScProvider(ScProvider.WellKnownChain.polkadot);
+const provider = new ScProvider(Sc, Sc.WellKnownChain.polkadot);
 
 await provider.connect();
 
@@ -56,9 +55,10 @@ const version = await provider.send('chain_getBlockHash', []);
 Instantiating a Provider for a Polkadot parachain:
 ```javascript
 import { ScProvider } from 'https://deno.land/x/polkadot/rpc-provider/mod.ts';
+import * as Sc from 'https://esm.sh/@substrate/connect@0.7.19';
 
-const polkadotProvider = new ScProvider(ScProvider.WellKnownChain.polkadot);
-const parachainProvider = new ScProvider(parachainSpec, polkadotProvider);
+const polkadotProvider = new ScProvider(Sc, Sc.WellKnownChain.polkadot);
+const parachainProvider = new ScProvider(Sc, parachainSpec, polkadotProvider);
 
 await parachainProvider.connect();
 

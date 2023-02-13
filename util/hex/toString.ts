@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import { u8aToString } from '../u8a/toString.ts';
 import { hexToU8a } from './toU8a.ts';
@@ -13,7 +11,7 @@ import { hexToU8a } from './toU8a.ts';
  * <BR>
  *
  * ```javascript
- * import { hexToString } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+ * import { hexToString } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * hexToU8a('0x68656c6c6f'); // hello
  * ```

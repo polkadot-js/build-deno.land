@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { AnyTuple, CallBase as CallBaseBase, CallFunction as CallFunctionBase, IMethod } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { FunctionMetadataLatest } from '../interfaces/metadata/index.ts';

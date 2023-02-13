@@ -1,13 +1,11 @@
-// Copyright 2017-2022 @polkadot/hw-ledger authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import type { SubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.40.2';
+import type { SubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.40.4';
 import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerTypes, LedgerVersion } from './types.ts';
 
-import { newSubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.40.2';
+import { newSubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.40.4';
 
-import { transports } from 'https://deno.land/x/polkadot@0.2.20/hw-ledger-transports/mod.ts';
-import { hexAddPrefix, u8aToBuffer } from 'https://deno.land/x/polkadot@0.2.20/util/mod.ts';
+import { transports } from 'https://deno.land/x/polkadot/hw-ledger-transports/mod.ts';
+import { hexAddPrefix, u8aToBuffer } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { LEDGER_DEFAULT_ACCOUNT, LEDGER_DEFAULT_CHANGE, LEDGER_DEFAULT_INDEX, LEDGER_SUCCESS_CODE } from './constants.ts';
 import { ledgerApps } from './defaults.ts';
@@ -29,9 +27,6 @@ async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promis
   return result;
 }
 
-// A very basic wrapper for a ledger app -
-//  - it connects automatically, creating an app as required
-//  - Promises return errors (instead of wrapper errors)
 export class Ledger {
   #app: SubstrateApp | null = null;
 

@@ -1,5 +1,3 @@
-// Copyright 2017-2022 @polkadot/types-codec authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { Enum } from '../base/Enum.ts';
