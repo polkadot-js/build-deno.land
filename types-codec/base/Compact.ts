@@ -1,9 +1,9 @@
 
-import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
-import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { BN } from 'https://deno.land/x/polkadot@0.2.27/util/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.27/util/types.ts';
 import type { AnyJson, AnyNumber, CodecClass, ICompact, Inspect, INumber, IU8a, Registry } from '../types/index.ts';
 
-import { compactFromU8a, compactFromU8aLim, compactToU8a, isU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { compactFromU8a, compactFromU8aLim, compactToU8a, isU8a } from 'https://deno.land/x/polkadot@0.2.27/util/mod.ts';
 
 import { typeToConstructor } from '../utils/index.ts';
 

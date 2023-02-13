@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.27/util/types.ts';
 
-import { u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
-import { sr25519Agree } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
+import { u8aToU8a } from 'https://deno.land/x/polkadot@0.2.27/util/mod.ts';
+import { sr25519Agree } from 'https://deno.land/x/polkadot@0.2.27/wasm-crypto/mod.ts';
 
 /**
  * @name sr25519Agreement

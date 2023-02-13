@@ -1,7 +1,7 @@
 
 import type { DefinitionCall, DefinitionsCall } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.2.27/util/mod.ts';
 
 const V1_V2_V3_SHARED_PAY: Record<string, DefinitionCall> = {
   query_fee_details: {
