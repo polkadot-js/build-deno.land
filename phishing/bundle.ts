@@ -1,10 +1,8 @@
-// Copyright 2020-2023 @polkadot/phishing authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
 import type { AddressList, HostList } from './types.ts';
 
-import { u8aEq } from 'https://deno.land/x/polkadot@0.2.27/util/mod.ts';
-import { decodeAddress } from 'https://deno.land/x/polkadot@0.2.27/util-crypto/mod.ts';
+import { u8aEq } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { decodeAddress } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { fetchJson } from './fetch.ts';
 
@@ -23,10 +21,8 @@ interface CacheHostList extends Cache<HostList> {
   parts: string[][];
 }
 
-// Equivalent to https://raw.githubusercontent.com/polkadot-js/phishing/master/{address,all}.json
 const PHISHING = 'https://polkadot.js.org/phishing';
 const ADDRESS_JSON = `${PHISHING}/address.json`;
-// 45 minutes cache refresh
 const CACHE_TIMEOUT = 45 * 60 * 1000;
 
 const cacheAddr: CacheAddrList = {

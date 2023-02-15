@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master
+
+- phishing 0.19.2
+
 ## 0.2.27 Feb 13, 2023
 
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 9.14.1
