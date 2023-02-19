@@ -1,5 +1,5 @@
 
-import Transport from 'https://esm.sh/@ledgerhq/hw-transport@6.28.0';
+import Transport from 'https://esm.sh/@ledgerhq/hw-transport@6.28.1';
 
 export type LedgerTypes = 'hid' | 'u2f' | 'webusb';
 

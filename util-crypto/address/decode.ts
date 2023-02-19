@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.27/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { Prefix } from './types.ts';
 
-import { isHex, isU8a, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.27/util/mod.ts';
+import { isHex, isU8a, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { base58Decode } from '../base58/index.ts';
 import { checkAddressChecksum } from './checksum.ts';

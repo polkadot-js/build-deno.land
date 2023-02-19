@@ -16,7 +16,7 @@ import { stringToU8a } from '../string/toU8a.ts';
  * <BR>
  *
  * ```javascript
- * import { u8aToU8a } from 'https://deno.land/x/polkadot@0.2.27/util/mod.ts';
+ * import { u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * u8aToU8a(new Uint8Array([0x12, 0x34]); // => Uint8Array([0x12, 0x34])
  * u8aToU8a(0x1234); // => Uint8Array([0x12, 0x34])
@@ -24,10 +24,15 @@ import { stringToU8a } from '../string/toU8a.ts';
  */
 export function u8aToU8a (value?: U8aLike | null): Uint8Array {
   return isU8a(value)
-    ? value
+    // NOTE isBuffer needs to go here since it actually extends
+    // Uint8Array on Node.js environments, so all Buffer are Uint8Array,
+    // but Uint8Array is not Buffer
+    ? isBuffer(value)
+      ? new Uint8Array(value)
+      : value
     : isHex(value)
       ? hexToU8a(value)
-      : isBuffer(value) || Array.isArray(value)
+      : Array.isArray(value)
         ? new Uint8Array(value)
         : stringToU8a(value);
 }
