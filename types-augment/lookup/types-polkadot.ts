@@ -1,13 +1,13 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts';
+import 'https://deno.land/x/polkadot/types/lookup.ts';
 
-import type { BitVec, Bytes, Compact, Enum, Null, Option, Result, Struct, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.27/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.27/types-codec/types/index.ts';
-import type { EthereumAddress } from 'https://deno.land/x/polkadot@0.2.27/types/interfaces/eth/index.ts';
-import type { AccountId32, H256, PerU16 } from 'https://deno.land/x/polkadot@0.2.27/types/interfaces/runtime/index.ts';
+import type { BitVec, Bytes, Compact, Enum, Null, Option, Result, Struct, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { EthereumAddress } from 'https://deno.land/x/polkadot/types/interfaces/eth/index.ts';
+import type { AccountId32, H256, PerU16 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
-declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
+declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
   /** @name PolkadotRuntimeCommonClaimsPalletEvent (74) */
   interface PolkadotRuntimeCommonClaimsPalletEvent extends Enum {
     readonly isClaimed: boolean;
@@ -450,7 +450,10 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly isGeneralIndex: boolean;
     readonly asGeneralIndex: Compact<u128>;
     readonly isGeneralKey: boolean;
-    readonly asGeneralKey: U8aFixed;
+    readonly asGeneralKey: {
+      readonly length: u8;
+      readonly data: U8aFixed;
+    } & Struct;
     readonly isOnlyChild: boolean;
     readonly isPlurality: boolean;
     readonly asPlurality: {
@@ -1383,13 +1386,13 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly hrmpWatermark: u32;
   }
 
-  /** @name PolkadotCorePrimitivesOutboundHrmpMessage (411) */
+  /** @name PolkadotCorePrimitivesOutboundHrmpMessage (412) */
   interface PolkadotCorePrimitivesOutboundHrmpMessage extends Struct {
     readonly recipient: u32;
     readonly data: Bytes;
   }
 
-  /** @name PolkadotPrimitivesV2ValidityAttestation (415) */
+  /** @name PolkadotPrimitivesV2ValidityAttestation (417) */
   interface PolkadotPrimitivesV2ValidityAttestation extends Enum {
     readonly isImplicit: boolean;
     readonly asImplicit: PolkadotPrimitivesV2ValidatorAppSignature;
@@ -1398,14 +1401,14 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'Implicit' | 'Explicit';
   }
 
-  /** @name PolkadotPrimitivesV2DisputeStatementSet (417) */
+  /** @name PolkadotPrimitivesV2DisputeStatementSet (419) */
   interface PolkadotPrimitivesV2DisputeStatementSet extends Struct {
     readonly candidateHash: H256;
     readonly session: u32;
     readonly statements: Vec<ITuple<[PolkadotPrimitivesV2DisputeStatement, u32, PolkadotPrimitivesV2ValidatorAppSignature]>>;
   }
 
-  /** @name PolkadotPrimitivesV2DisputeStatement (420) */
+  /** @name PolkadotPrimitivesV2DisputeStatement (422) */
   interface PolkadotPrimitivesV2DisputeStatement extends Enum {
     readonly isValid: boolean;
     readonly asValid: PolkadotPrimitivesV2ValidDisputeStatementKind;
@@ -1414,7 +1417,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'Valid' | 'Invalid';
   }
 
-  /** @name PolkadotPrimitivesV2ValidDisputeStatementKind (421) */
+  /** @name PolkadotPrimitivesV2ValidDisputeStatementKind (423) */
   interface PolkadotPrimitivesV2ValidDisputeStatementKind extends Enum {
     readonly isExplicit: boolean;
     readonly isBackingSeconded: boolean;
@@ -1425,13 +1428,13 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'Explicit' | 'BackingSeconded' | 'BackingValid' | 'ApprovalChecking';
   }
 
-  /** @name PolkadotPrimitivesV2InvalidDisputeStatementKind (422) */
+  /** @name PolkadotPrimitivesV2InvalidDisputeStatementKind (424) */
   interface PolkadotPrimitivesV2InvalidDisputeStatementKind extends Enum {
     readonly isExplicit: boolean;
     readonly type: 'Explicit';
   }
 
-  /** @name PolkadotRuntimeParachainsParasPalletCall (423) */
+  /** @name PolkadotRuntimeParachainsParasPalletCall (425) */
   interface PolkadotRuntimeParachainsParasPalletCall extends Enum {
     readonly isForceSetCurrentCode: boolean;
     readonly asForceSetCurrentCode: {
@@ -1474,7 +1477,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'ForceSetCurrentCode' | 'ForceSetCurrentHead' | 'ForceScheduleCodeUpgrade' | 'ForceNoteNewHead' | 'ForceQueueAction' | 'AddTrustedValidationCode' | 'PokeUnusedValidationCode' | 'IncludePvfCheckStatement';
   }
 
-  /** @name PolkadotPrimitivesV2PvfCheckStatement (424) */
+  /** @name PolkadotPrimitivesV2PvfCheckStatement (426) */
   interface PolkadotPrimitivesV2PvfCheckStatement extends Struct {
     readonly accept: bool;
     readonly subject: H256;
@@ -1482,7 +1485,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly validatorIndex: u32;
   }
 
-  /** @name PolkadotRuntimeParachainsInitializerPalletCall (425) */
+  /** @name PolkadotRuntimeParachainsInitializerPalletCall (427) */
   interface PolkadotRuntimeParachainsInitializerPalletCall extends Enum {
     readonly isForceApprove: boolean;
     readonly asForceApprove: {
@@ -1491,10 +1494,10 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'ForceApprove';
   }
 
-  /** @name PolkadotRuntimeParachainsDmpPalletCall (426) */
+  /** @name PolkadotRuntimeParachainsDmpPalletCall (428) */
   type PolkadotRuntimeParachainsDmpPalletCall = Null;
 
-  /** @name PolkadotRuntimeParachainsUmpPalletCall (427) */
+  /** @name PolkadotRuntimeParachainsUmpPalletCall (429) */
   interface PolkadotRuntimeParachainsUmpPalletCall extends Enum {
     readonly isServiceOverweight: boolean;
     readonly asServiceOverweight: {
@@ -1504,7 +1507,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'ServiceOverweight';
   }
 
-  /** @name PolkadotRuntimeParachainsHrmpPalletCall (428) */
+  /** @name PolkadotRuntimeParachainsHrmpPalletCall (430) */
   interface PolkadotRuntimeParachainsHrmpPalletCall extends Enum {
     readonly isHrmpInitOpenChannel: boolean;
     readonly asHrmpInitOpenChannel: {
@@ -1549,13 +1552,13 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'HrmpInitOpenChannel' | 'HrmpAcceptOpenChannel' | 'HrmpCloseChannel' | 'ForceCleanHrmp' | 'ForceProcessHrmpOpen' | 'ForceProcessHrmpClose' | 'HrmpCancelOpenRequest' | 'ForceOpenHrmpChannel';
   }
 
-  /** @name PolkadotRuntimeParachainsDisputesPalletCall (429) */
+  /** @name PolkadotRuntimeParachainsDisputesPalletCall (431) */
   interface PolkadotRuntimeParachainsDisputesPalletCall extends Enum {
     readonly isForceUnfreeze: boolean;
     readonly type: 'ForceUnfreeze';
   }
 
-  /** @name PolkadotRuntimeCommonParasRegistrarPalletCall (430) */
+  /** @name PolkadotRuntimeCommonParasRegistrarPalletCall (432) */
   interface PolkadotRuntimeCommonParasRegistrarPalletCall extends Enum {
     readonly isRegister: boolean;
     readonly asRegister: {
@@ -1602,7 +1605,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'Register' | 'ForceRegister' | 'Deregister' | 'Swap' | 'RemoveLock' | 'Reserve' | 'AddLock' | 'ScheduleCodeUpgrade' | 'SetCurrentHead';
   }
 
-  /** @name PolkadotRuntimeCommonSlotsPalletCall (431) */
+  /** @name PolkadotRuntimeCommonSlotsPalletCall (433) */
   interface PolkadotRuntimeCommonSlotsPalletCall extends Enum {
     readonly isForceLease: boolean;
     readonly asForceLease: {
@@ -1623,7 +1626,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'ForceLease' | 'ClearAllLeases' | 'TriggerOnboard';
   }
 
-  /** @name PolkadotRuntimeCommonAuctionsPalletCall (432) */
+  /** @name PolkadotRuntimeCommonAuctionsPalletCall (434) */
   interface PolkadotRuntimeCommonAuctionsPalletCall extends Enum {
     readonly isNewAuction: boolean;
     readonly asNewAuction: {
@@ -1642,7 +1645,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'NewAuction' | 'Bid' | 'CancelAuction';
   }
 
-  /** @name PolkadotRuntimeCommonCrowdloanPalletCall (434) */
+  /** @name PolkadotRuntimeCommonCrowdloanPalletCall (436) */
   interface PolkadotRuntimeCommonCrowdloanPalletCall extends Enum {
     readonly isCreate: boolean;
     readonly asCreate: {
@@ -1698,7 +1701,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'Create' | 'Contribute' | 'Withdraw' | 'Refund' | 'Dissolve' | 'Edit' | 'AddMemo' | 'Poke' | 'ContributeAll';
   }
 
-  /** @name SpRuntimeMultiSigner (436) */
+  /** @name SpRuntimeMultiSigner (438) */
   interface SpRuntimeMultiSigner extends Enum {
     readonly isEd25519: boolean;
     readonly asEd25519: SpCoreEd25519Public;
@@ -1709,10 +1712,10 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'Ed25519' | 'Sr25519' | 'Ecdsa';
   }
 
-  /** @name SpCoreEcdsaPublic (437) */
+  /** @name SpCoreEcdsaPublic (439) */
   interface SpCoreEcdsaPublic extends U8aFixed {}
 
-  /** @name PalletXcmCall (442) */
+  /** @name PalletXcmCall (444) */
   interface PalletXcmCall extends Enum {
     readonly isSend: boolean;
     readonly asSend: {
@@ -1774,7 +1777,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'Send' | 'TeleportAssets' | 'ReserveTransferAssets' | 'Execute' | 'ForceXcmVersion' | 'ForceDefaultXcmVersion' | 'ForceSubscribeVersionNotify' | 'ForceUnsubscribeVersionNotify' | 'LimitedReserveTransferAssets' | 'LimitedTeleportAssets';
   }
 
-  /** @name XcmVersionedXcm (443) */
+  /** @name XcmVersionedXcm (445) */
   interface XcmVersionedXcm extends Enum {
     readonly isV2: boolean;
     readonly asV2: XcmV2Xcm;
@@ -1783,10 +1786,10 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'V2' | 'V3';
   }
 
-  /** @name XcmV2Xcm (444) */
+  /** @name XcmV2Xcm (446) */
   interface XcmV2Xcm extends Vec<XcmV2Instruction> {}
 
-  /** @name XcmV2Instruction (446) */
+  /** @name XcmV2Instruction (448) */
   interface XcmV2Instruction extends Enum {
     readonly isWithdrawAsset: boolean;
     readonly asWithdrawAsset: XcmV2MultiassetMultiAssets;
@@ -1906,7 +1909,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'WithdrawAsset' | 'ReserveAssetDeposited' | 'ReceiveTeleportedAsset' | 'QueryResponse' | 'TransferAsset' | 'TransferReserveAsset' | 'Transact' | 'HrmpNewChannelOpenRequest' | 'HrmpChannelAccepted' | 'HrmpChannelClosing' | 'ClearOrigin' | 'DescendOrigin' | 'ReportError' | 'DepositAsset' | 'DepositReserveAsset' | 'ExchangeAsset' | 'InitiateReserveWithdraw' | 'InitiateTeleport' | 'QueryHolding' | 'BuyExecution' | 'RefundSurplus' | 'SetErrorHandler' | 'SetAppendix' | 'ClearError' | 'ClaimAsset' | 'Trap' | 'SubscribeVersion' | 'UnsubscribeVersion';
   }
 
-  /** @name XcmV2Response (447) */
+  /** @name XcmV2Response (449) */
   interface XcmV2Response extends Enum {
     readonly isNull: boolean;
     readonly isAssets: boolean;
@@ -1918,7 +1921,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'Null' | 'Assets' | 'ExecutionResult' | 'Version';
   }
 
-  /** @name XcmV2TraitsError (450) */
+  /** @name XcmV2TraitsError (452) */
   interface XcmV2TraitsError extends Enum {
     readonly isOverflow: boolean;
     readonly isUnimplemented: boolean;
@@ -1951,7 +1954,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'Overflow' | 'Unimplemented' | 'UntrustedReserveLocation' | 'UntrustedTeleportLocation' | 'MultiLocationFull' | 'MultiLocationNotInvertible' | 'BadOrigin' | 'InvalidLocation' | 'AssetNotFound' | 'FailedToTransactAsset' | 'NotWithdrawable' | 'LocationCannotHold' | 'ExceedsMaxMessageSize' | 'DestinationUnsupported' | 'Transport' | 'Unroutable' | 'UnknownClaim' | 'FailedToDecode' | 'MaxWeightInvalid' | 'NotHoldingFees' | 'TooExpensive' | 'Trap' | 'UnhandledXcmVersion' | 'WeightLimitReached' | 'Barrier' | 'WeightNotComputable';
   }
 
-  /** @name XcmV2MultiassetMultiAssetFilter (451) */
+  /** @name XcmV2MultiassetMultiAssetFilter (453) */
   interface XcmV2MultiassetMultiAssetFilter extends Enum {
     readonly isDefinite: boolean;
     readonly asDefinite: XcmV2MultiassetMultiAssets;
@@ -1960,7 +1963,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'Definite' | 'Wild';
   }
 
-  /** @name XcmV2MultiassetWildMultiAsset (452) */
+  /** @name XcmV2MultiassetWildMultiAsset (454) */
   interface XcmV2MultiassetWildMultiAsset extends Enum {
     readonly isAll: boolean;
     readonly isAllOf: boolean;
@@ -1971,14 +1974,14 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'All' | 'AllOf';
   }
 
-  /** @name XcmV2MultiassetWildFungibility (453) */
+  /** @name XcmV2MultiassetWildFungibility (455) */
   interface XcmV2MultiassetWildFungibility extends Enum {
     readonly isFungible: boolean;
     readonly isNonFungible: boolean;
     readonly type: 'Fungible' | 'NonFungible';
   }
 
-  /** @name XcmV2WeightLimit (454) */
+  /** @name XcmV2WeightLimit (456) */
   interface XcmV2WeightLimit extends Enum {
     readonly isUnlimited: boolean;
     readonly isLimited: boolean;
@@ -1986,7 +1989,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'Unlimited' | 'Limited';
   }
 
-  /** @name PolkadotRuntimeCommonClaimsPalletError (570) */
+  /** @name PolkadotRuntimeCommonClaimsPalletError (572) */
   interface PolkadotRuntimeCommonClaimsPalletError extends Enum {
     readonly isInvalidEthereumSignature: boolean;
     readonly isSignerHasNoClaim: boolean;
@@ -1997,7 +2000,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'InvalidEthereumSignature' | 'SignerHasNoClaim' | 'SenderHasNoClaim' | 'PotUnderflow' | 'InvalidStatement' | 'VestedBalanceExists';
   }
 
-  /** @name PolkadotRuntimeParachainsConfigurationHostConfiguration (645) */
+  /** @name PolkadotRuntimeParachainsConfigurationHostConfiguration (647) */
   interface PolkadotRuntimeParachainsConfigurationHostConfiguration extends Struct {
     readonly maxCodeSize: u32;
     readonly maxHeadDataSize: u32;
@@ -2043,19 +2046,19 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly minimumValidationUpgradeDelay: u32;
   }
 
-  /** @name PolkadotRuntimeParachainsConfigurationPalletError (648) */
+  /** @name PolkadotRuntimeParachainsConfigurationPalletError (650) */
   interface PolkadotRuntimeParachainsConfigurationPalletError extends Enum {
     readonly isInvalidNewValue: boolean;
     readonly type: 'InvalidNewValue';
   }
 
-  /** @name PolkadotRuntimeParachainsInclusionAvailabilityBitfieldRecord (651) */
+  /** @name PolkadotRuntimeParachainsInclusionAvailabilityBitfieldRecord (653) */
   interface PolkadotRuntimeParachainsInclusionAvailabilityBitfieldRecord extends Struct {
     readonly bitfield: BitVec;
     readonly submittedAt: u32;
   }
 
-  /** @name PolkadotRuntimeParachainsInclusionCandidatePendingAvailability (652) */
+  /** @name PolkadotRuntimeParachainsInclusionCandidatePendingAvailability (654) */
   interface PolkadotRuntimeParachainsInclusionCandidatePendingAvailability extends Struct {
     readonly core: u32;
     readonly hash_: H256;
@@ -2067,7 +2070,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly backingGroup: u32;
   }
 
-  /** @name PolkadotRuntimeParachainsInclusionPalletError (653) */
+  /** @name PolkadotRuntimeParachainsInclusionPalletError (655) */
   interface PolkadotRuntimeParachainsInclusionPalletError extends Enum {
     readonly isUnsortedOrDuplicateValidatorIndices: boolean;
     readonly isUnsortedOrDuplicateDisputeStatementSet: boolean;
@@ -2101,14 +2104,14 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'UnsortedOrDuplicateValidatorIndices' | 'UnsortedOrDuplicateDisputeStatementSet' | 'UnsortedOrDuplicateBackedCandidates' | 'UnexpectedRelayParent' | 'WrongBitfieldSize' | 'BitfieldAllZeros' | 'BitfieldDuplicateOrUnordered' | 'ValidatorIndexOutOfBounds' | 'InvalidBitfieldSignature' | 'UnscheduledCandidate' | 'CandidateScheduledBeforeParaFree' | 'WrongCollator' | 'ScheduledOutOfOrder' | 'HeadDataTooLarge' | 'PrematureCodeUpgrade' | 'NewCodeTooLarge' | 'CandidateNotInParentContext' | 'InvalidGroupIndex' | 'InsufficientBacking' | 'InvalidBacking' | 'NotCollatorSigned' | 'ValidationDataHashMismatch' | 'IncorrectDownwardMessageHandling' | 'InvalidUpwardMessages' | 'HrmpWatermarkMishandling' | 'InvalidOutboundHrmp' | 'InvalidValidationCodeHash' | 'ParaHeadMismatch' | 'BitfieldReferencesFreedCore';
   }
 
-  /** @name PolkadotPrimitivesV2ScrapedOnChainVotes (654) */
+  /** @name PolkadotPrimitivesV2ScrapedOnChainVotes (656) */
   interface PolkadotPrimitivesV2ScrapedOnChainVotes extends Struct {
     readonly session: u32;
     readonly backingValidatorsPerCandidate: Vec<ITuple<[PolkadotPrimitivesV2CandidateReceipt, Vec<ITuple<[u32, PolkadotPrimitivesV2ValidityAttestation]>>]>>;
     readonly disputes: Vec<PolkadotPrimitivesV2DisputeStatementSet>;
   }
 
-  /** @name PolkadotRuntimeParachainsParasInherentPalletError (659) */
+  /** @name PolkadotRuntimeParachainsParasInherentPalletError (661) */
   interface PolkadotRuntimeParachainsParasInherentPalletError extends Enum {
     readonly isTooManyInclusionInherents: boolean;
     readonly isInvalidParentHeader: boolean;
@@ -2119,28 +2122,28 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'TooManyInclusionInherents' | 'InvalidParentHeader' | 'CandidateConcludedInvalid' | 'InherentOverweight' | 'DisputeStatementsUnsortedOrDuplicates' | 'DisputeInvalid';
   }
 
-  /** @name PolkadotRuntimeParachainsSchedulerParathreadClaimQueue (661) */
+  /** @name PolkadotRuntimeParachainsSchedulerParathreadClaimQueue (663) */
   interface PolkadotRuntimeParachainsSchedulerParathreadClaimQueue extends Struct {
     readonly queue: Vec<PolkadotRuntimeParachainsSchedulerQueuedParathread>;
     readonly nextCoreOffset: u32;
   }
 
-  /** @name PolkadotRuntimeParachainsSchedulerQueuedParathread (663) */
+  /** @name PolkadotRuntimeParachainsSchedulerQueuedParathread (665) */
   interface PolkadotRuntimeParachainsSchedulerQueuedParathread extends Struct {
     readonly claim: PolkadotPrimitivesV2ParathreadEntry;
     readonly coreOffset: u32;
   }
 
-  /** @name PolkadotPrimitivesV2ParathreadEntry (664) */
+  /** @name PolkadotPrimitivesV2ParathreadEntry (666) */
   interface PolkadotPrimitivesV2ParathreadEntry extends Struct {
     readonly claim: PolkadotPrimitivesV2ParathreadClaim;
     readonly retries: u32;
   }
 
-  /** @name PolkadotPrimitivesV2ParathreadClaim (665) */
+  /** @name PolkadotPrimitivesV2ParathreadClaim (667) */
   interface PolkadotPrimitivesV2ParathreadClaim extends ITuple<[u32, PolkadotPrimitivesV2CollatorAppPublic]> {}
 
-  /** @name PolkadotPrimitivesV2CoreOccupied (668) */
+  /** @name PolkadotPrimitivesV2CoreOccupied (670) */
   interface PolkadotPrimitivesV2CoreOccupied extends Enum {
     readonly isParathread: boolean;
     readonly asParathread: PolkadotPrimitivesV2ParathreadEntry;
@@ -2148,7 +2151,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'Parathread' | 'Parachain';
   }
 
-  /** @name PolkadotRuntimeParachainsSchedulerCoreAssignment (671) */
+  /** @name PolkadotRuntimeParachainsSchedulerCoreAssignment (673) */
   interface PolkadotRuntimeParachainsSchedulerCoreAssignment extends Struct {
     readonly core: u32;
     readonly paraId: u32;
@@ -2156,7 +2159,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly groupIdx: u32;
   }
 
-  /** @name PolkadotRuntimeParachainsSchedulerAssignmentKind (672) */
+  /** @name PolkadotRuntimeParachainsSchedulerAssignmentKind (674) */
   interface PolkadotRuntimeParachainsSchedulerAssignmentKind extends Enum {
     readonly isParachain: boolean;
     readonly isParathread: boolean;
@@ -2164,7 +2167,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'Parachain' | 'Parathread';
   }
 
-  /** @name PolkadotRuntimeParachainsParasPvfCheckActiveVoteState (673) */
+  /** @name PolkadotRuntimeParachainsParasPvfCheckActiveVoteState (675) */
   interface PolkadotRuntimeParachainsParasPvfCheckActiveVoteState extends Struct {
     readonly votesAccept: BitVec;
     readonly votesReject: BitVec;
@@ -2173,7 +2176,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly causes: Vec<PolkadotRuntimeParachainsParasPvfCheckCause>;
   }
 
-  /** @name PolkadotRuntimeParachainsParasPvfCheckCause (675) */
+  /** @name PolkadotRuntimeParachainsParasPvfCheckCause (677) */
   interface PolkadotRuntimeParachainsParasPvfCheckCause extends Enum {
     readonly isOnboarding: boolean;
     readonly asOnboarding: u32;
@@ -2185,7 +2188,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'Onboarding' | 'Upgrade';
   }
 
-  /** @name PolkadotRuntimeParachainsParasParaLifecycle (677) */
+  /** @name PolkadotRuntimeParachainsParasParaLifecycle (679) */
   interface PolkadotRuntimeParachainsParasParaLifecycle extends Enum {
     readonly isOnboarding: boolean;
     readonly isParathread: boolean;
@@ -2197,39 +2200,39 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'Onboarding' | 'Parathread' | 'Parachain' | 'UpgradingParathread' | 'DowngradingParachain' | 'OffboardingParathread' | 'OffboardingParachain';
   }
 
-  /** @name PolkadotRuntimeParachainsParasParaPastCodeMeta (679) */
+  /** @name PolkadotRuntimeParachainsParasParaPastCodeMeta (681) */
   interface PolkadotRuntimeParachainsParasParaPastCodeMeta extends Struct {
     readonly upgradeTimes: Vec<PolkadotRuntimeParachainsParasReplacementTimes>;
     readonly lastPruned: Option<u32>;
   }
 
-  /** @name PolkadotRuntimeParachainsParasReplacementTimes (681) */
+  /** @name PolkadotRuntimeParachainsParasReplacementTimes (683) */
   interface PolkadotRuntimeParachainsParasReplacementTimes extends Struct {
     readonly expectedAt: u32;
     readonly activatedAt: u32;
   }
 
-  /** @name PolkadotPrimitivesV2UpgradeGoAhead (683) */
+  /** @name PolkadotPrimitivesV2UpgradeGoAhead (685) */
   interface PolkadotPrimitivesV2UpgradeGoAhead extends Enum {
     readonly isAbort: boolean;
     readonly isGoAhead: boolean;
     readonly type: 'Abort' | 'GoAhead';
   }
 
-  /** @name PolkadotPrimitivesV2UpgradeRestriction (684) */
+  /** @name PolkadotPrimitivesV2UpgradeRestriction (686) */
   interface PolkadotPrimitivesV2UpgradeRestriction extends Enum {
     readonly isPresent: boolean;
     readonly type: 'Present';
   }
 
-  /** @name PolkadotRuntimeParachainsParasParaGenesisArgs (685) */
+  /** @name PolkadotRuntimeParachainsParasParaGenesisArgs (687) */
   interface PolkadotRuntimeParachainsParasParaGenesisArgs extends Struct {
     readonly genesisHead: Bytes;
     readonly validationCode: Bytes;
     readonly paraKind: bool;
   }
 
-  /** @name PolkadotRuntimeParachainsParasPalletError (686) */
+  /** @name PolkadotRuntimeParachainsParasPalletError (688) */
   interface PolkadotRuntimeParachainsParasPalletError extends Enum {
     readonly isNotRegistered: boolean;
     readonly isCannotOnboard: boolean;
@@ -2247,27 +2250,27 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'NotRegistered' | 'CannotOnboard' | 'CannotOffboard' | 'CannotUpgrade' | 'CannotDowngrade' | 'PvfCheckStatementStale' | 'PvfCheckStatementFuture' | 'PvfCheckValidatorIndexOutOfBounds' | 'PvfCheckInvalidSignature' | 'PvfCheckDoubleVote' | 'PvfCheckSubjectInvalid' | 'PvfCheckDisabled' | 'CannotUpgradeCode';
   }
 
-  /** @name PolkadotRuntimeParachainsInitializerBufferedSessionChange (688) */
+  /** @name PolkadotRuntimeParachainsInitializerBufferedSessionChange (690) */
   interface PolkadotRuntimeParachainsInitializerBufferedSessionChange extends Struct {
     readonly validators: Vec<PolkadotPrimitivesV2ValidatorAppPublic>;
     readonly queued: Vec<PolkadotPrimitivesV2ValidatorAppPublic>;
     readonly sessionIndex: u32;
   }
 
-  /** @name PolkadotCorePrimitivesInboundDownwardMessage (690) */
+  /** @name PolkadotCorePrimitivesInboundDownwardMessage (692) */
   interface PolkadotCorePrimitivesInboundDownwardMessage extends Struct {
     readonly sentAt: u32;
     readonly msg: Bytes;
   }
 
-  /** @name PolkadotRuntimeParachainsUmpPalletError (692) */
+  /** @name PolkadotRuntimeParachainsUmpPalletError (694) */
   interface PolkadotRuntimeParachainsUmpPalletError extends Enum {
     readonly isUnknownMessageIndex: boolean;
     readonly isWeightOverLimit: boolean;
     readonly type: 'UnknownMessageIndex' | 'WeightOverLimit';
   }
 
-  /** @name PolkadotRuntimeParachainsHrmpHrmpOpenChannelRequest (693) */
+  /** @name PolkadotRuntimeParachainsHrmpHrmpOpenChannelRequest (695) */
   interface PolkadotRuntimeParachainsHrmpHrmpOpenChannelRequest extends Struct {
     readonly confirmed: bool;
     readonly age: u32;
@@ -2277,7 +2280,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly maxTotalSize: u32;
   }
 
-  /** @name PolkadotRuntimeParachainsHrmpHrmpChannel (695) */
+  /** @name PolkadotRuntimeParachainsHrmpHrmpChannel (697) */
   interface PolkadotRuntimeParachainsHrmpHrmpChannel extends Struct {
     readonly maxCapacity: u32;
     readonly maxTotalSize: u32;
@@ -2289,13 +2292,13 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly recipientDeposit: u128;
   }
 
-  /** @name PolkadotCorePrimitivesInboundHrmpMessage (697) */
+  /** @name PolkadotCorePrimitivesInboundHrmpMessage (699) */
   interface PolkadotCorePrimitivesInboundHrmpMessage extends Struct {
     readonly sentAt: u32;
     readonly data: Bytes;
   }
 
-  /** @name PolkadotRuntimeParachainsHrmpPalletError (700) */
+  /** @name PolkadotRuntimeParachainsHrmpPalletError (702) */
   interface PolkadotRuntimeParachainsHrmpPalletError extends Enum {
     readonly isOpenHrmpChannelToSelf: boolean;
     readonly isOpenHrmpChannelInvalidRecipient: boolean;
@@ -2319,7 +2322,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'OpenHrmpChannelToSelf' | 'OpenHrmpChannelInvalidRecipient' | 'OpenHrmpChannelZeroCapacity' | 'OpenHrmpChannelCapacityExceedsLimit' | 'OpenHrmpChannelZeroMessageSize' | 'OpenHrmpChannelMessageSizeExceedsLimit' | 'OpenHrmpChannelAlreadyExists' | 'OpenHrmpChannelAlreadyRequested' | 'OpenHrmpChannelLimitExceeded' | 'AcceptHrmpChannelDoesntExist' | 'AcceptHrmpChannelAlreadyConfirmed' | 'AcceptHrmpChannelLimitExceeded' | 'CloseHrmpChannelUnauthorized' | 'CloseHrmpChannelDoesntExist' | 'CloseHrmpChannelAlreadyUnderway' | 'CancelHrmpOpenChannelUnauthorized' | 'OpenHrmpChannelDoesntExist' | 'OpenHrmpChannelAlreadyConfirmed' | 'WrongWitness';
   }
 
-  /** @name PolkadotPrimitivesV2SessionInfo (702) */
+  /** @name PolkadotPrimitivesV2SessionInfo (704) */
   interface PolkadotPrimitivesV2SessionInfo extends Struct {
     readonly activeValidatorIndices: Vec<u32>;
     readonly randomSeed: U8aFixed;
@@ -2336,13 +2339,29 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly neededApprovals: u32;
   }
 
-  /** @name PolkadotPrimitivesV2IndexedVecValidatorIndex (703) */
+  /** @name PolkadotPrimitivesV2IndexedVecValidatorIndex (705) */
   interface PolkadotPrimitivesV2IndexedVecValidatorIndex extends Vec<PolkadotPrimitivesV2ValidatorAppPublic> {}
 
-  /** @name PolkadotPrimitivesV2IndexedVecGroupIndex (705) */
+  /** @name PolkadotPrimitivesV2IndexedVecGroupIndex (707) */
   interface PolkadotPrimitivesV2IndexedVecGroupIndex extends Vec<Vec<u32>> {}
 
-  /** @name PolkadotPrimitivesV2DisputeState (707) */
+  /** @name PolkadotPrimitivesVstagingExecutorParams (708) */
+  interface PolkadotPrimitivesVstagingExecutorParams extends Vec<PolkadotPrimitivesVstagingExecutorParamsExecutorParam> {}
+
+  /** @name PolkadotPrimitivesVstagingExecutorParamsExecutorParam (710) */
+  interface PolkadotPrimitivesVstagingExecutorParamsExecutorParam extends Enum {
+    readonly isMaxMemoryPages: boolean;
+    readonly asMaxMemoryPages: u32;
+    readonly isStackLogicalMax: boolean;
+    readonly asStackLogicalMax: u32;
+    readonly isStackNativeMax: boolean;
+    readonly asStackNativeMax: u32;
+    readonly isPrecheckingMaxMemory: boolean;
+    readonly asPrecheckingMaxMemory: u64;
+    readonly type: 'MaxMemoryPages' | 'StackLogicalMax' | 'StackNativeMax' | 'PrecheckingMaxMemory';
+  }
+
+  /** @name PolkadotPrimitivesV2DisputeState (712) */
   interface PolkadotPrimitivesV2DisputeState extends Struct {
     readonly validatorsFor: BitVec;
     readonly validatorsAgainst: BitVec;
@@ -2350,7 +2369,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly concludedAt: Option<u32>;
   }
 
-  /** @name PolkadotRuntimeParachainsDisputesPalletError (709) */
+  /** @name PolkadotRuntimeParachainsDisputesPalletError (714) */
   interface PolkadotRuntimeParachainsDisputesPalletError extends Enum {
     readonly isDuplicateDisputeStatementSets: boolean;
     readonly isAncientDisputeStatement: boolean;
@@ -2364,14 +2383,14 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'DuplicateDisputeStatementSets' | 'AncientDisputeStatement' | 'ValidatorIndexOutOfBounds' | 'InvalidSignature' | 'DuplicateStatement' | 'SingleSidedDispute' | 'MaliciousBacker' | 'MissingBackingVotes' | 'UnconfirmedDispute';
   }
 
-  /** @name PolkadotRuntimeCommonParasRegistrarParaInfo (710) */
+  /** @name PolkadotRuntimeCommonParasRegistrarParaInfo (715) */
   interface PolkadotRuntimeCommonParasRegistrarParaInfo extends Struct {
     readonly manager: AccountId32;
     readonly deposit: u128;
     readonly locked: bool;
   }
 
-  /** @name PolkadotRuntimeCommonParasRegistrarPalletError (711) */
+  /** @name PolkadotRuntimeCommonParasRegistrarPalletError (716) */
   interface PolkadotRuntimeCommonParasRegistrarPalletError extends Enum {
     readonly isNotRegistered: boolean;
     readonly isAlreadyRegistered: boolean;
@@ -2390,14 +2409,14 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'NotRegistered' | 'AlreadyRegistered' | 'NotOwner' | 'CodeTooLarge' | 'HeadDataTooLarge' | 'NotParachain' | 'NotParathread' | 'CannotDeregister' | 'CannotDowngrade' | 'CannotUpgrade' | 'ParaLocked' | 'NotReserved' | 'EmptyCode' | 'CannotSwap';
   }
 
-  /** @name PolkadotRuntimeCommonSlotsPalletError (713) */
+  /** @name PolkadotRuntimeCommonSlotsPalletError (718) */
   interface PolkadotRuntimeCommonSlotsPalletError extends Enum {
     readonly isParaNotOnboarding: boolean;
     readonly isLeaseError: boolean;
     readonly type: 'ParaNotOnboarding' | 'LeaseError';
   }
 
-  /** @name PolkadotRuntimeCommonAuctionsPalletError (718) */
+  /** @name PolkadotRuntimeCommonAuctionsPalletError (723) */
   interface PolkadotRuntimeCommonAuctionsPalletError extends Enum {
     readonly isAuctionInProgress: boolean;
     readonly isLeasePeriodInPast: boolean;
@@ -2409,7 +2428,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'AuctionInProgress' | 'LeasePeriodInPast' | 'ParaNotRegistered' | 'NotCurrentAuction' | 'NotAuction' | 'AuctionEnded' | 'AlreadyLeasedOut';
   }
 
-  /** @name PolkadotRuntimeCommonCrowdloanFundInfo (719) */
+  /** @name PolkadotRuntimeCommonCrowdloanFundInfo (724) */
   interface PolkadotRuntimeCommonCrowdloanFundInfo extends Struct {
     readonly depositor: AccountId32;
     readonly verifier: Option<SpRuntimeMultiSigner>;
@@ -2423,7 +2442,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly fundIndex: u32;
   }
 
-  /** @name PolkadotRuntimeCommonCrowdloanLastContribution (720) */
+  /** @name PolkadotRuntimeCommonCrowdloanLastContribution (725) */
   interface PolkadotRuntimeCommonCrowdloanLastContribution extends Enum {
     readonly isNever: boolean;
     readonly isPreEnding: boolean;
@@ -2433,7 +2452,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'Never' | 'PreEnding' | 'Ending';
   }
 
-  /** @name PolkadotRuntimeCommonCrowdloanPalletError (721) */
+  /** @name PolkadotRuntimeCommonCrowdloanPalletError (726) */
   interface PolkadotRuntimeCommonCrowdloanPalletError extends Enum {
     readonly isFirstPeriodInPast: boolean;
     readonly isFirstPeriodTooFarInFuture: boolean;
@@ -2461,7 +2480,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'FirstPeriodInPast' | 'FirstPeriodTooFarInFuture' | 'LastPeriodBeforeFirstPeriod' | 'LastPeriodTooFarInFuture' | 'CannotEndInPast' | 'EndTooFarInFuture' | 'Overflow' | 'ContributionTooSmall' | 'InvalidParaId' | 'CapExceeded' | 'ContributionPeriodOver' | 'InvalidOrigin' | 'NotParachain' | 'LeaseActive' | 'BidOrLeaseActive' | 'FundNotEnded' | 'NoContributions' | 'NotReadyToDissolve' | 'InvalidSignature' | 'MemoTooLarge' | 'AlreadyInNewRaise' | 'VrfDelayInProgress' | 'NoLeasePeriod';
   }
 
-  /** @name PalletXcmQueryStatus (722) */
+  /** @name PalletXcmQueryStatus (727) */
   interface PalletXcmQueryStatus extends Enum {
     readonly isPending: boolean;
     readonly asPending: {
@@ -2483,7 +2502,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'Pending' | 'VersionNotifier' | 'Ready';
   }
 
-  /** @name XcmVersionedResponse (726) */
+  /** @name XcmVersionedResponse (731) */
   interface XcmVersionedResponse extends Enum {
     readonly isV2: boolean;
     readonly asV2: XcmV2Response;
@@ -2492,7 +2511,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'V2' | 'V3';
   }
 
-  /** @name PalletXcmVersionMigrationStage (732) */
+  /** @name PalletXcmVersionMigrationStage (737) */
   interface PalletXcmVersionMigrationStage extends Enum {
     readonly isMigrateSupportedVersion: boolean;
     readonly isMigrateVersionNotifiers: boolean;
@@ -2502,14 +2521,14 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'MigrateSupportedVersion' | 'MigrateVersionNotifiers' | 'NotifyCurrentTargets' | 'MigrateAndNotifyOldTargets';
   }
 
-  /** @name XcmVersionedAssetId (735) */
+  /** @name XcmVersionedAssetId (740) */
   interface XcmVersionedAssetId extends Enum {
     readonly isV3: boolean;
     readonly asV3: XcmV3MultiassetAssetId;
     readonly type: 'V3';
   }
 
-  /** @name PalletXcmRemoteLockedFungibleRecord (736) */
+  /** @name PalletXcmRemoteLockedFungibleRecord (741) */
   interface PalletXcmRemoteLockedFungibleRecord extends Struct {
     readonly amount: u128;
     readonly owner: XcmVersionedMultiLocation;
@@ -2517,7 +2536,7 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly users: u32;
   }
 
-  /** @name PalletXcmError (740) */
+  /** @name PalletXcmError (745) */
   interface PalletXcmError extends Enum {
     readonly isUnreachable: boolean;
     readonly isSendFailure: boolean;
@@ -2542,13 +2561,13 @@ declare module 'https://deno.land/x/polkadot@0.2.27/types/lookup.ts' {
     readonly type: 'Unreachable' | 'SendFailure' | 'Filtered' | 'UnweighableMessage' | 'DestinationNotInvertible' | 'Empty' | 'CannotReanchor' | 'TooManyAssets' | 'InvalidOrigin' | 'BadVersion' | 'BadLocation' | 'NoSubscription' | 'AlreadySubscribed' | 'InvalidAsset' | 'LowBalance' | 'TooManyLocks' | 'AccountNotSovereign' | 'FeesNotMet' | 'LockNotFound' | 'InUse';
   }
 
-  /** @name PalletTransactionPaymentChargeTransactionPayment (751) */
+  /** @name PalletTransactionPaymentChargeTransactionPayment (756) */
   interface PalletTransactionPaymentChargeTransactionPayment extends Compact<u128> {}
 
-  /** @name PolkadotRuntimeCommonClaimsPrevalidateAttests (752) */
+  /** @name PolkadotRuntimeCommonClaimsPrevalidateAttests (757) */
   type PolkadotRuntimeCommonClaimsPrevalidateAttests = Null;
 
-  /** @name PolkadotRuntimeRuntime (753) */
+  /** @name PolkadotRuntimeRuntime (758) */
   type PolkadotRuntimeRuntime = Null;
 
 } // declare module

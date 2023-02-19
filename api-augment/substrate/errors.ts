@@ -1,12 +1,12 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.27/api-base/types/errors.ts';
+import 'https://deno.land/x/polkadot/api-base/types/errors.ts';
 
-import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot@0.2.27/api-base/types/index.ts';
+import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 
 export type __AugmentedError<ApiType extends ApiTypes> = AugmentedError<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.27/api-base/types/errors.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
   interface AugmentedErrors<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -411,10 +411,6 @@ declare module 'https://deno.land/x/polkadot@0.2.27/api-base/types/errors.ts' {
        * Contract trapped during execution.
        **/
       ContractTrapped: AugmentedError<ApiType>;
-      /**
-       * The debug message specified to `seal_debug_message` does contain invalid UTF-8.
-       **/
-      DebugMessageInvalidUTF8: AugmentedError<ApiType>;
       /**
        * Input passed to a contract API function failed to decode as expected type.
        **/
@@ -1210,6 +1206,10 @@ declare module 'https://deno.land/x/polkadot@0.2.27/api-base/types/errors.ts' {
        **/
       IncorrectData: AugmentedError<ApiType>;
       /**
+       * The provided metadata might be too long.
+       **/
+      IncorrectMetadata: AugmentedError<ApiType>;
+      /**
        * The item is locked (non-transferable).
        **/
       ItemLocked: AugmentedError<ApiType>;
@@ -1233,6 +1233,10 @@ declare module 'https://deno.land/x/polkadot@0.2.27/api-base/types/errors.ts' {
        * Item's metadata is locked.
        **/
       LockedItemMetadata: AugmentedError<ApiType>;
+      /**
+       * Can't set more attributes per one call.
+       **/
+      MaxAttributesLimitReached: AugmentedError<ApiType>;
       /**
        * The max supply is locked and can't be changed.
        **/
@@ -1314,6 +1318,10 @@ declare module 'https://deno.land/x/polkadot@0.2.27/api-base/types/errors.ts' {
        **/
       WrongDuration: AugmentedError<ApiType>;
       /**
+       * The extrinsic was sent by the wrong origin.
+       **/
+      WrongOrigin: AugmentedError<ApiType>;
+      /**
        * The owner turned out to be different to what was expected.
        **/
       WrongOwner: AugmentedError<ApiType>;
@@ -1321,6 +1329,10 @@ declare module 'https://deno.land/x/polkadot@0.2.27/api-base/types/errors.ts' {
        * The provided setting can't be set.
        **/
       WrongSetting: AugmentedError<ApiType>;
+      /**
+       * The provided signature is incorrect.
+       **/
+      WrongSignature: AugmentedError<ApiType>;
       /**
        * Generic error
        **/

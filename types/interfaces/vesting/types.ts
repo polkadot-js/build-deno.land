@@ -1,7 +1,7 @@
 /* eslint-disable */
 
-import type { Struct } from 'https://deno.land/x/polkadot@0.2.27/types-codec/mod.ts';
-import type { Balance, BlockNumber } from 'https://deno.land/x/polkadot@0.2.27/types/interfaces/runtime/index.ts';
+import type { Struct } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Balance, BlockNumber } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 /** @name VestingInfo */
 export interface VestingInfo extends Struct {

@@ -1,7 +1,7 @@
 
-import { Server, WebSocket } from 'https://esm.sh/mock-socket@9.2.0';
+import { Server, WebSocket } from 'https://esm.sh/mock-socket@9.2.1';
 
-import { stringify } from 'https://deno.land/x/polkadot@0.2.27/util/mod.ts';
+import { stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 interface Scope {
   body: { [index: string]: Record<string, unknown> };
@@ -64,11 +64,7 @@ export function mockWs (requests: Request[], wsUrl: string = TEST_WS_URL): Scope
   let requestCount = 0;
   const scope: Scope = {
     body: {},
-    done: (): void => {
-      server.stop((): void => {
-        // ignore
-      });
-    },
+    done: () => new Promise<void>((resolve) => server.stop(resolve)),
     requests: 0,
     server
   };

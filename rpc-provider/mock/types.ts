@@ -1,6 +1,6 @@
 
-import type { Server } from 'https://esm.sh/mock-socket@9.2.0';
-import type { Constructor } from 'https://deno.land/x/polkadot@0.2.27/types/types/index.ts';
+import type { Server } from 'https://esm.sh/mock-socket@9.2.1';
+import type { Constructor } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 export interface Global extends NodeJS.Global {
   WebSocket: Constructor<WebSocket>;
@@ -11,7 +11,7 @@ export interface Mock {
   body: Record<string, Record<string, unknown>>;
   requests: number;
   server: Server;
-  done: () => Record<string, unknown>;
+  done: () => Promise<void>;
 }
 
 export type MockStateSubscriptionCallback = (error: Error | null, value: any) => void;

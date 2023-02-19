@@ -1,6 +1,6 @@
 
-import { ApiBase } from 'https://deno.land/x/polkadot@0.2.27/api/base/index.ts';
-import { TypeRegistry } from 'https://deno.land/x/polkadot@0.2.27/types/mod.ts';
+import { ApiBase } from 'https://deno.land/x/polkadot/api/base/index.ts';
+import { TypeRegistry } from 'https://deno.land/x/polkadot/types/mod.ts';
 
 const registry = new TypeRegistry();
 

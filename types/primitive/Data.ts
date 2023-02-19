@@ -1,9 +1,9 @@
 
-import type { IU8a, Registry } from 'https://deno.land/x/polkadot@0.2.27/types-codec/types/index.ts';
+import type { IU8a, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { H256 } from '../interfaces/runtime/index.ts';
 
-import { Bytes, Enum } from 'https://deno.land/x/polkadot@0.2.27/types-codec/mod.ts';
-import { isString, isU8a, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.27/util/mod.ts';
+import { Bytes, Enum } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { isString, isU8a, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 /** @internal */
 function decodeDataU8a (registry: Registry, value: Uint8Array): [undefined | Uint8Array, number | undefined] {
