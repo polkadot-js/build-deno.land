@@ -1,5 +1,5 @@
 
-import type { AnyTuple, CallBase as CallBaseBase, CallFunction as CallFunctionBase, IMethod } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { AnyTuple, CallBase as CallBaseBase, CallFunction as CallFunctionBase, IMethod } from 'https://deno.land/x/polkadot@0.2.28/types-codec/types/index.ts';
 import type { FunctionMetadataLatest } from '../interfaces/metadata/index.ts';
 import type { Call } from '../interfaces/runtime/index.ts';
 import type { Registry } from './registry.ts';

@@ -1,6 +1,6 @@
 
-import { Bytes } from 'https://deno.land/x/polkadot/types/mod.ts';
-import { Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import { Bytes } from 'https://deno.land/x/polkadot@0.2.28/types/mod.ts';
+import { Registry } from 'https://deno.land/x/polkadot@0.2.28/types/types/index.ts';
 
 export class BytesFactory {
   #registry: Registry;

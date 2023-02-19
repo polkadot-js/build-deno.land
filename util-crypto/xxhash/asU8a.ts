@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.28/util/types.ts';
 
-import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
-import { isReady, twox } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
+import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.28/util/mod.ts';
+import { isReady, twox } from 'https://deno.land/x/polkadot@0.2.28/wasm-crypto/mod.ts';
 
 import { createAsHex } from '../helpers.ts';
 import { xxhash64 } from './xxhash64.ts';
@@ -16,7 +16,7 @@ import { xxhash64 } from './xxhash64.ts';
  * <BR>
  *
  * ```javascript
- * import { xxhashAsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
+ * import { xxhashAsU8a } from 'https://deno.land/x/polkadot@0.2.28/util-crypto/mod.ts';
  *
  * xxhashAsU8a('abc'); // => 0x44bc2cf5ad770999
  * ```

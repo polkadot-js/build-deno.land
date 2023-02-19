@@ -1,6 +1,6 @@
 
-import type { Codec } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
+import type { Codec } from 'https://deno.land/x/polkadot@0.2.28/types-codec/types/index.ts';
+import type { TypeDef } from 'https://deno.land/x/polkadot@0.2.28/types-create/types/index.ts';
 import type { EventMetadataLatest } from '../interfaces/metadata/index.ts';
 import type { Hash } from '../interfaces/runtime/index.ts';
 import type { EventId, Phase } from '../interfaces/system/index.ts';

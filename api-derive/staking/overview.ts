@@ -4,7 +4,7 @@ import type { DeriveApi, DeriveStakingOverview } from '../types.ts';
 
 import { combineLatest, map } from 'https://esm.sh/rxjs@7.8.0';
 
-import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.2.28/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 

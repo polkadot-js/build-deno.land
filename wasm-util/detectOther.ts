@@ -1,6 +1,6 @@
 // Copyright 2019-2022 @polkadot/wasm-util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { packageInfo as utilInfo } from 'https://deno.land/x/polkadot@0.2.27/wasm-util/packageInfo.ts';
+import { packageInfo as utilInfo } from 'https://deno.land/x/polkadot@0.2.28/wasm-util/packageInfo.ts';
 
 export default [utilInfo];

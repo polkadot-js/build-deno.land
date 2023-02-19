@@ -1,6 +1,6 @@
 
-import type { ContractMetadataLatest, ContractMetadataV4 } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
-import type { Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { ContractMetadataLatest, ContractMetadataV4 } from 'https://deno.land/x/polkadot@0.2.28/types/interfaces/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.2.28/types/types/index.ts';
 
 import { v0ToV1 } from './toV1.ts';
 import { v1ToV2 } from './toV2.ts';

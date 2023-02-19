@@ -1,7 +1,7 @@
 
-import type { CallFunction, Registry, RegistryError } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { CallFunction, Registry, RegistryError } from 'https://deno.land/x/polkadot@0.2.28/types/types/index.ts';
 
-import { u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { u8aToU8a } from 'https://deno.land/x/polkadot@0.2.28/util/mod.ts';
 
 export function findCall (registry: Registry, callIndex: Uint8Array | string): CallFunction {
   return registry.findMetaCall(u8aToU8a(callIndex));

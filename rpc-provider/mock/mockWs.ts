@@ -1,7 +1,7 @@
 
 import { Server, WebSocket } from 'https://esm.sh/mock-socket@9.2.1';
 
-import { stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { stringify } from 'https://deno.land/x/polkadot@0.2.28/util/mod.ts';
 
 interface Scope {
   body: { [index: string]: Record<string, unknown> };

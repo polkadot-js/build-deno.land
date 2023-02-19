@@ -1,5 +1,5 @@
 
-import { isObject, isUndefined } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isObject, isUndefined } from 'https://deno.land/x/polkadot@0.2.28/util/mod.ts';
 
 import { hasEq } from './util.ts';
 

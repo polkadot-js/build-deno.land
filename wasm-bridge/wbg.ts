@@ -3,7 +3,7 @@
 
 import type { BridgeBase, WasmBaseInstance } from './types.ts';
 
-import { getRandomValues } from 'https://deno.land/x/polkadot@0.2.27/x-randomvalues/mod.ts';
+import { getRandomValues } from 'https://deno.land/x/polkadot@0.2.28/x-randomvalues/mod.ts';
 
 const DEFAULT_CRYPTO = { getRandomValues };
 const DEFAULT_SELF = { crypto: DEFAULT_CRYPTO };
