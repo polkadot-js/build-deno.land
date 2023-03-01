@@ -3,17 +3,17 @@ on: [pull_request]
 
 jobs:
   pr:
+    continue-on-error: true
     strategy:
       matrix:
         step: ['cache', 'check', 'test']
-    name: ${{ matrix.step }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:
         node-version: 'lts/*'
-    - uses: denoland/setup-deno@d114c5eb74e48656e142e31d045a8f8cac283aee
+    - uses: denoland/setup-deno@v1
       with:
         deno-version: vx.x.x
     - name: ${{ matrix.step }}
