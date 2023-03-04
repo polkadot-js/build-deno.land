@@ -1,11 +1,8 @@
-// Copyright 2019-2022 @polkadot/wasm-crypto-init authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import type { WasmBaseInstance } from 'https://deno.land/x/polkadot@0.2.28/wasm-bridge/types.ts';
+import type { WasmBaseInstance } from 'https://deno.land/x/polkadot/wasm-bridge/types.ts';
 
 /* eslint-disable camelcase */
 
-// wasm-pack build output (formatted) from pkg/wasm_bg.d.ts
 export interface WasmCryptoInstance extends WasmBaseInstance {
   // exposed functions
 

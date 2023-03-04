@@ -1,14 +1,7 @@
-// Copyright 2019-2022 @polkadot/wasm-util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-// Use an array for our indexer - this is faster than using map access. In
-// this case we assume ASCII-only inputs, so we cannot overflow the array
 const chr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 const map = new Array<number>(256);
 
-// We use charCodeAt for access here and in the decoder loop - this is faster
-// on lookups (array + numbers) and also faster than accessing the specific
-// character via data[i]
 for (let i = 0; i < chr.length; i++) {
   map[chr.charCodeAt(i)] = i;
 }

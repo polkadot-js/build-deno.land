@@ -1,16 +1,11 @@
-// Copyright 2019-2022 @polkadot/wasm-crypto authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import type { WasmCryptoInstance } from 'https://deno.land/x/polkadot@0.2.28/wasm-crypto-init/types.ts';
+import type { WasmCryptoInstance } from 'https://deno.land/x/polkadot/wasm-crypto-init/types.ts';
 
 import { bridge, initBridge } from './init.ts';
 
 export { packageInfo } from './packageInfo.ts';
 export { bridge };
 
-// Removes the first parameter (expected as WasmCryptoInstance) and leaves the
-// rest of the parameters in-tack. This allows us to dynamically create a function
-// return from the withWasm helper
 type PopFirst<T extends unknown[]> =
   T extends [WasmCryptoInstance, ...infer N]
     ? N

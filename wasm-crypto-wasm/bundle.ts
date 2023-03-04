@@ -1,7 +1,5 @@
-// Copyright 2019-2022 @polkadot/wasm-crypto-wasm authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-import { base64Decode, unzlibSync } from 'https://deno.land/x/polkadot@0.2.28/wasm-util/mod.ts';
+import { base64Decode, unzlibSync } from 'https://deno.land/x/polkadot/wasm-util/mod.ts';
 
 import { bytes, lenIn, lenOut } from './deno/bytes.js';
 
@@ -13,7 +11,7 @@ export { packageInfo } from './packageInfo.ts';
  * The decoded WASM interface as exposed by this package.
  *
  * The build process will output into cjs/* into a compressed base64 format.
- * Upon loading the exposed bytes will be decoded and decompressed form this
+ * Upon loading the exposed bytes will be decoded and decompressed from this
  * specific format and returned.
  */
 export const wasmBytes = /*#__PURE__*/ unzlibSync(base64Decode(bytes, new Uint8Array(lenIn)), new Uint8Array(lenOut));

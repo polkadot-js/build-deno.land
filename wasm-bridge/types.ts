@@ -1,12 +1,6 @@
-// Copyright 2019-2022 @polkadot/wasm-bridge authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-// Use non-strong types instead of WasmImports which may not
-// be available as part of the TS environment types (it needs dom)
 export type WasmImports = Record<string, (...args: never[]) => unknown>;
 
-// Use non-strong types instead of WebAssembly.Memory which may not
-// be available as part of the TS environment types (it needs dom)
 export type WasmMemory = { buffer: ArrayBuffer };
 
 export declare interface InitResult<C extends WasmBaseInstance> {

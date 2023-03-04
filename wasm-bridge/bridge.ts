@@ -1,15 +1,9 @@
-// Copyright 2019-2022 @polkadot/wasm-bridge authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-// A number of functions are "unsafe" and purposefully so - it is
-// assumed that where the bridge is used, it is correctly wrapped
-// in a safeguard (see withWasm in the wasm-crypto package) which
-// then ensures that the internal wasm instance here is available
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 import type { BridgeBase, InitFn, InitPromise, WasmBaseInstance, WasmImports } from './types.ts';
 
-import { stringToU8a, u8aToString } from 'https://deno.land/x/polkadot@0.2.28/util/mod.ts';
+import { stringToU8a, u8aToString } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Wbg } from './wbg.ts';
 

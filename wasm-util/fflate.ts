@@ -1,23 +1,7 @@
-// Copyright 2019-2022 @polkadot/wasm-util authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-// MIT License
-//
-// Copyright (c) 2020 Arjun Barrett
-//
-// Copied from https://github.com/101arrowz/fflate/blob/73c737941ec89d85cdf0ad39ee6f26c5fdc95fd7/src/index.ts
-// This only contains the unzlibSync function, no compression, no async, no workers
-//
-// These 2 issues are addressed as a short-term, stop-gap solution
-//   - https://github.com/polkadot-js/api/issues/2963
-//   - https://github.com/101arrowz/fflate/issues/17
-//
-// Only tweaks make here are some TS adjustments (we use strict null checks), the code is otherwise as-is with
-// only the single required function provided (compression is still being done in the build with fflate)
 
 /* eslint-disable */
 
-// inflate state
 type InflateState = {
   // lmap
   l?: Uint16Array;
@@ -37,20 +21,14 @@ type InflateState = {
   i?: boolean;
 };
 
-// aliases for shorter compressed code (most minifers don't do this)
 const u8 = Uint8Array, u16 = Uint16Array, u32 = Uint32Array;
 
-// code length index map
 const clim = new u8([16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15]);
 
-// fixed length extra bits
 const fleb = new u8([0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0, /* unused */ 0, 0, /* impossible */ 0]);
 
-// fixed distance extra bits
-// see fleb note
 const fdeb = new u8([0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, /* unused */ 0, 0]);
 
-// get base, reverse index map from extra bits
 const freb = (eb: Uint8Array, start: number) => {
   const b = new u16(31);
   for (let i = 0; i < 31; ++i) {
@@ -67,11 +45,9 @@ const freb = (eb: Uint8Array, start: number) => {
 }
 
 const [fl, revfl] = freb(fleb, 2);
-// we can ignore the fact that the other numbers are wrong; they never happen anyway
 fl[28] = 258, revfl[258] = 28;
 const [fd] = freb(fdeb, 0);
 
-// map of value to reverse (assuming 16 bits)
 const rev = new u16(32768);
 for (let i = 0; i < 32768; ++i) {
   // reverse table algorithm from SO
@@ -81,9 +57,6 @@ for (let i = 0; i < 32768; ++i) {
   rev[i] = (((x & 0xFF00) >>> 8) | ((x & 0x00FF) << 8)) >>> 1;
 }
 
-// create huffman tree from u8 "map": index -> code length for code index
-// mb (max bits) must be at most 15
-// TODO: optimize/split up?
 const hMap = ((cd: Uint8Array, mb: number, r: 0 | 1) => {
   const s = cd.length;
   // index
@@ -126,38 +99,29 @@ const hMap = ((cd: Uint8Array, mb: number, r: 0 | 1) => {
   return co;
 });
 
-// fixed length tree
 const flt = new u8(288);
 for (let i = 0; i < 144; ++i) flt[i] = 8;
 for (let i = 144; i < 256; ++i) flt[i] = 9;
 for (let i = 256; i < 280; ++i) flt[i] = 7;
 for (let i = 280; i < 288; ++i) flt[i] = 8;
-// fixed distance tree
 const fdt = new u8(32);
 for (let i = 0; i < 32; ++i) fdt[i] = 5;
 
-// fixed length map
 const flrm = hMap(flt, 9, 1);
-// fixed distance map
 const fdrm = hMap(fdt, 5, 1);
 
-// read d, starting at bit p and mask with m
 const bits = (d: Uint8Array, p: number, m: number) => {
   const o = p >>> 3;
   return ((d[o] | (d[o + 1] << 8)) >>> (p & 7)) & m;
 }
 
-// read d, starting at bit p continuing for at least 16 bits
 const bits16 = (d: Uint8Array, p: number) => {
   const o = p >>> 3;
   return ((d[o] | (d[o + 1] << 8) | (d[o + 2] << 16)) >>> (p & 7));
 }
 
-// get end of byte
 const shft = (p: number) => (p >>> 3) + (p & 7 && 1);
 
-// typed array slice - allows garbage collector to free original reference,
-// while being more compatible than .slice
 const slc = <T extends Uint8Array | Uint16Array | Uint32Array>(v: T, s: number, e?: number): T => {
   if (s == null || s < 0) s = 0;
   if (e == null || e > v.length) e = v.length;
@@ -167,7 +131,6 @@ const slc = <T extends Uint8Array | Uint16Array | Uint32Array>(v: T, s: number, 
   return n;
 }
 
-// find max of array
 const max = (a: Uint8Array | number[]) => {
   let m = a[0];
   for (let i = 1; i < a.length; ++i) {
@@ -176,7 +139,6 @@ const max = (a: Uint8Array | number[]) => {
   return m;
 };
 
-// expands raw DEFLATE data
 const inflt = (dat: Uint8Array, buf?: Uint8Array, st?: InflateState) => {
   const noSt = !st || st.i;
   if (!st) st = {};
@@ -325,7 +287,6 @@ const inflt = (dat: Uint8Array, buf?: Uint8Array, st?: InflateState) => {
   return bt == buf.length ? buf : slc(buf, 0, bt);
 }
 
-// zlib valid
 const zlv = (d: Uint8Array) => {
   if ((d[0] & 15) != 8 || (d[0] >>> 4) > 7 || ((d[0] << 8 | d[1]) % 31)) throw 'invalid zlib data';
   if (d[1] & 32) throw 'invalid zlib data: preset dictionaries not supported';
