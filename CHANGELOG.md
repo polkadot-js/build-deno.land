@@ -2,6 +2,7 @@
 
 ## master
 
+- wasm-{bridge, crypto, crypto-{asmjs, init, wasm}, util} 7.0.2
 - wasm-{bridge, crypto, crypto-{asmjs, init, wasm}, util} 7.0.1
 
 ## 0.2.28 Feb 19, 2023
