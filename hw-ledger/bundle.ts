@@ -4,8 +4,8 @@ import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerTypes, Ledge
 
 import { newSubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.40.5';
 
-import { transports } from 'https://deno.land/x/polkadot@0.2.28/hw-ledger-transports/mod.ts';
-import { hexAddPrefix, u8aToBuffer } from 'https://deno.land/x/polkadot@0.2.28/util/mod.ts';
+import { transports } from 'https://deno.land/x/polkadot/hw-ledger-transports/mod.ts';
+import { hexAddPrefix, u8aToBuffer } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { LEDGER_DEFAULT_ACCOUNT, LEDGER_DEFAULT_CHANGE, LEDGER_DEFAULT_INDEX, LEDGER_SUCCESS_CODE } from './constants.ts';
 import { ledgerApps } from './defaults.ts';
@@ -47,7 +47,7 @@ export class Ledger {
   }
 
   public async getAddress (confirm = false, accountOffset = 0, addressOffset = 0, { account = LEDGER_DEFAULT_ACCOUNT, addressIndex = LEDGER_DEFAULT_INDEX, change = LEDGER_DEFAULT_CHANGE }: Partial<AccountOptions> = {}): Promise<LedgerAddress> {
-    return this.#withApp(async (app: SubstrateApp): Promise<LedgerAddress> => {
+    return this.withApp(async (app: SubstrateApp): Promise<LedgerAddress> => {
       const { address, pubKey } = await wrapError(app.getAddress(account + accountOffset, change, addressIndex + addressOffset, confirm));
 
       return {
@@ -58,7 +58,7 @@ export class Ledger {
   }
 
   public async getVersion (): Promise<LedgerVersion> {
-    return this.#withApp(async (app: SubstrateApp): Promise<LedgerVersion> => {
+    return this.withApp(async (app: SubstrateApp): Promise<LedgerVersion> => {
       const { device_locked: isLocked, major, minor, patch, test_mode: isTestMode } = await wrapError(app.getVersion());
 
       return {
@@ -70,7 +70,7 @@ export class Ledger {
   }
 
   public async sign (message: Uint8Array, accountOffset = 0, addressOffset = 0, { account = LEDGER_DEFAULT_ACCOUNT, addressIndex = LEDGER_DEFAULT_INDEX, change = LEDGER_DEFAULT_CHANGE }: Partial<AccountOptions> = {}): Promise<LedgerSignature> {
-    return this.#withApp(async (app: SubstrateApp): Promise<LedgerSignature> => {
+    return this.withApp(async (app: SubstrateApp): Promise<LedgerSignature> => {
       const buffer = u8aToBuffer(message);
       const { signature } = await wrapError(app.sign(account + accountOffset, change, addressIndex + addressOffset, buffer));
 
@@ -80,7 +80,7 @@ export class Ledger {
     });
   }
 
-  #getApp = async (): Promise<SubstrateApp> => {
+  async getApp (): Promise<SubstrateApp> {
     if (!this.#app) {
       const def = transports.find(({ type }) => type === this.#transport);
 
@@ -94,11 +94,11 @@ export class Ledger {
     }
 
     return this.#app;
-  };
+  }
 
-  #withApp = async <T> (fn: (app: SubstrateApp) => Promise<T>): Promise<T> => {
+  async withApp <T> (fn: (app: SubstrateApp) => Promise<T>): Promise<T> {
     try {
-      const app = await this.#getApp();
+      const app = await this.getApp();
 
       return await fn(app);
     } catch (error) {
@@ -106,5 +106,5 @@ export class Ledger {
 
       throw error;
     }
-  };
+  }
 }

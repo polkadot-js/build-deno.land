@@ -10,7 +10,7 @@ import type { HexString } from '../types.ts';
  * <BR>
  *
  * ```javascript
- * import { hexToU8a } from 'https://deno.land/x/polkadot@0.2.28/util/mod.ts';
+ * import { hexToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * hexToU8a('0x80001f'); // Uint8Array([0x80, 0x00, 0x1f])
  * hexToU8a('0x80001f', 32); // Uint8Array([0x00, 0x80, 0x00, 0x1f])
@@ -48,5 +48,5 @@ export function hexToU8a (_value?: HexString | string | null, bitLength = -1): U
     return u8a;
   }
 
-  return Uint8Array.from(buf.slice(0, resultLength));
+  return Uint8Array.from(buf.subarray(0, resultLength));
 }

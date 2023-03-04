@@ -1,7 +1,7 @@
 
 import util from 'https://deno.land/std@0.161.0/node/util.ts';
 
-import { extractGlobal } from 'https://deno.land/x/polkadot@0.2.28/x-global/mod.ts';
+import { extractGlobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
 
 export { packageInfo } from './packageInfo.ts';
 
@@ -18,4 +18,4 @@ class Fallback {
   }
 }
 
-export const TextEncoder = extractGlobal('TextEncoder', Fallback);
+export const TextEncoder = /*#__PURE__*/ extractGlobal('TextEncoder', Fallback);

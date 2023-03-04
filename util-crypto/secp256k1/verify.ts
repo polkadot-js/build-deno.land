@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.28/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { HashType } from './types.ts';
 
-import { u8aEq, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.28/util/mod.ts';
+import { u8aEq, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { hasher } from './hasher.ts';
 import { secp256k1Recover } from './recover.ts';

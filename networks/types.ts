@@ -1,5 +1,5 @@
 
-import type { RegistryEntry } from 'https://esm.sh/@substrate/ss58-registry@1.38.0';
+import type { RegistryEntry } from 'https://esm.sh/@substrate/ss58-registry@1.39.0';
 
 export type Icon = 'beachball' | 'empty' | 'jdenticon' | 'polkadot' | 'substrate';
 

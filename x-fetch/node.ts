@@ -1,5 +1,5 @@
 
-import { extractGlobal } from 'https://deno.land/x/polkadot@0.2.28/x-global/mod.ts';
+import { extractGlobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
 
 export { packageInfo } from './packageInfo.ts';
 
@@ -23,4 +23,4 @@ async function nodeFetch (...args: Parameters<typeof fetch>): Promise<Response> 
   return modFn(...args);
 }
 
-export const fetch = extractGlobal('fetch', nodeFetch);
+export const fetch = /*#__PURE__*/ extractGlobal('fetch', nodeFetch);

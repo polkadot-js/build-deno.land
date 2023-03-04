@@ -1,7 +1,7 @@
 
 import type { Logger, Logger$Data } from './types.ts';
 
-import { xglobal } from 'https://deno.land/x/polkadot@0.2.28/x-global/mod.ts';
+import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
 
 import { formatDate } from './format/formatDate.ts';
 import { isBn } from './is/bn.ts';
@@ -16,12 +16,12 @@ import { hasProcess } from './has.ts';
 type ConsoleType = 'error' | 'log' | 'warn';
 type LogType = ConsoleType | 'debug';
 
-const logTo = <const> {
+const logTo = {
   debug: 'log',
   error: 'error',
   log: 'log',
   warn: 'warn'
-};
+} as const;
 
 function formatOther (value: unknown): unknown {
   if (value && isObject(value) && value.constructor === Object) {
@@ -142,7 +142,7 @@ function parseEnv (type: string): [boolean, number] {
  * <BR>
  *
  * ```javascript
- * import { logger } from 'https://deno.land/x/polkadot@0.2.28/util/mod.ts';
+ * import { logger } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * const l = logger('test');
  * ```

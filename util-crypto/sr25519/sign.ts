@@ -1,9 +1,9 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.28/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { Keypair } from '../types.ts';
 
-import { u8aToU8a } from 'https://deno.land/x/polkadot@0.2.28/util/mod.ts';
-import { sr25519Sign as wasmSign } from 'https://deno.land/x/polkadot@0.2.28/wasm-crypto/mod.ts';
+import { u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { sr25519Sign as wasmSign } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 /**
  * @name sr25519Sign
