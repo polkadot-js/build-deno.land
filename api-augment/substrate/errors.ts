@@ -1,12 +1,12 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.28/api-base/types/errors.ts';
+import 'https://deno.land/x/polkadot/api-base/types/errors.ts';
 
-import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot@0.2.28/api-base/types/index.ts';
+import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 
 export type __AugmentedError<ApiType extends ApiTypes> = AugmentedError<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.28/api-base/types/errors.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
   interface AugmentedErrors<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -883,6 +883,18 @@ declare module 'https://deno.land/x/polkadot@0.2.28/api-base/types/errors.ts' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
+    glutton: {
+      /**
+       * The pallet was already initialized.
+       * 
+       * Set `witness_count` to `Some` to bypass this error.
+       **/
+      AlreadyInitialized: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
     grandpa: {
       /**
        * Attempt to signal GRANDPA change with one already pending.
@@ -1097,6 +1109,13 @@ declare module 'https://deno.land/x/polkadot@0.2.28/api-base/types/errors.ts' {
        * The message is queued for future execution.
        **/
       Queued: AugmentedError<ApiType>;
+      /**
+       * This message is temporarily unprocessable.
+       * 
+       * Such errors are expected, but not guaranteed, to resolve themselves eventually through
+       * retrying.
+       **/
+      TemporarilyUnprocessable: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -1318,6 +1337,10 @@ declare module 'https://deno.land/x/polkadot@0.2.28/api-base/types/errors.ts' {
        **/
       WrongDuration: AugmentedError<ApiType>;
       /**
+       * The provided namespace isn't supported in this call.
+       **/
+      WrongNamespace: AugmentedError<ApiType>;
+      /**
        * The extrinsic was sent by the wrong origin.
        **/
       WrongOrigin: AugmentedError<ApiType>;
@@ -1411,6 +1434,10 @@ declare module 'https://deno.land/x/polkadot@0.2.28/api-base/types/errors.ts' {
        * pool at a time.
        **/
       AccountBelongsToOtherPool: AugmentedError<ApiType>;
+      /**
+       * Bonding extra is restricted to the exact pending reward amount.
+       **/
+      BondExtraRestricted: AugmentedError<ApiType>;
       /**
        * The pools state cannot be changed.
        **/

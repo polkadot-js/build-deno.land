@@ -1,6 +1,6 @@
 
-import type { AccountId, Header } from 'https://deno.land/x/polkadot@0.2.28/types/interfaces/index.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.28/types/types/index.ts';
+import type { AccountId, Header } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { HeaderExtended } from './types.ts';
 
 import { extractAuthor } from './util.ts';

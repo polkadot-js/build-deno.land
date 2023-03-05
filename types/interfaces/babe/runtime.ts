@@ -1,7 +1,7 @@
 
 import type { DefinitionCall, DefinitionsCall } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.28/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const V1_V2_SHARED: Record<string, DefinitionCall> = {
   current_epoch: {

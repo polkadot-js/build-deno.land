@@ -1,11 +1,12 @@
 
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.28/types-codec/types/index.ts';
+
+import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { Check } from './types.ts';
 
-import fs from 'https://esm.sh/fs';
-import path from 'https://esm.sh/path';
+import fs from 'https://esm.sh/node:fs';
+import path from 'https://esm.sh/node:path';
 
-import { hexToU8a, stringCamelCase, stringify, u8aToHex } from 'https://deno.land/x/polkadot@0.2.28/util/mod.ts';
+import { hexToU8a, stringCamelCase, stringify, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { TypeRegistry } from '../../create/index.ts';
 import { unwrapStorageSi, unwrapStorageType } from '../../primitive/StorageKey.ts';
@@ -151,14 +152,15 @@ function serialize (registry: Registry, { data }: Check): void {
 
 export function testMeta (version: number, matchers: Record<string, Check>, withFallback = true): void {
   describe(`MetadataV${version}`, (): void => {
-    describe.each(Object.keys(matchers))('%s', (type): void => {
-      const matcher = matchers[type];
+    for (const [type, matcher] of Object.entries(matchers)) {
       const registry = new TypeRegistry();
 
-      serialize(registry, matcher);
-      decodeLatestMeta(registry, type, version, matcher);
-      toLatest(registry, version, matcher);
-      defaultValues(registry, matcher, true, withFallback);
-    });
+      describe(type, (): void => {
+        serialize(registry, matcher);
+        decodeLatestMeta(registry, type, version, matcher);
+        toLatest(registry, version, matcher);
+        defaultValues(registry, matcher, true, withFallback);
+      });
+    }
   });
 }

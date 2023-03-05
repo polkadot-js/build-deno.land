@@ -1,10 +1,10 @@
 
 /* eslint-disable sort-keys */
 
-import type { OverrideVersionedType } from 'https://deno.land/x/polkadot@0.2.28/types/types/index.ts';
+import type { OverrideVersionedType } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import { mapXcmTypes } from 'https://deno.land/x/polkadot@0.2.28/types-create/mod.ts';
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.28/util/mod.ts';
+import { mapXcmTypes } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 /* eslint-disable sort-keys */
 

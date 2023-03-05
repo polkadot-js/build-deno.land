@@ -1,8 +1,8 @@
 /* eslint-disable */
 
-import type { Bytes, Option, Struct, u32, u8 } from 'https://deno.land/x/polkadot@0.2.28/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.28/types-codec/types/index.ts';
-import type { BlockNumber, Call, PalletsOrigin } from 'https://deno.land/x/polkadot@0.2.28/types/interfaces/runtime/index.ts';
+import type { Bytes, Option, Struct, u32, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { BlockNumber, Call, PalletsOrigin } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 /** @name Period */
 export interface Period extends ITuple<[BlockNumber, u32]> {}

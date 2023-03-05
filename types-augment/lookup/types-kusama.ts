@@ -1,12 +1,12 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.28/types/lookup.ts';
+import 'https://deno.land/x/polkadot/types/lookup.ts';
 
-import type { Compact, Enum, Null, Struct, Vec, u16, u32 } from 'https://deno.land/x/polkadot@0.2.28/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.28/types-codec/types/index.ts';
-import type { PerU16 } from 'https://deno.land/x/polkadot@0.2.28/types/interfaces/runtime/index.ts';
+import type { Compact, Enum, Null, Struct, Vec, u16, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { PerU16 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
-declare module 'https://deno.land/x/polkadot@0.2.28/types/lookup.ts' {
+declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
   /** @name KusamaRuntimeSessionKeys (107) */
   interface KusamaRuntimeSessionKeys extends Struct {
     readonly grandpa: SpFinalityGrandpaAppPublic;
@@ -108,7 +108,7 @@ declare module 'https://deno.land/x/polkadot@0.2.28/types/lookup.ts' {
     readonly votes24: Vec<ITuple<[Compact<u32>, Vec<ITuple<[Compact<u16>, Compact<PerU16>]>>, Compact<u16>]>>;
   }
 
-  /** @name KusamaRuntimeRuntime (876) */
+  /** @name KusamaRuntimeRuntime (880) */
   type KusamaRuntimeRuntime = Null;
 
 } // declare module

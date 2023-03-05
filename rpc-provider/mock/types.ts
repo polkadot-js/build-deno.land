@@ -1,9 +1,8 @@
 
 import type { Server } from 'https://esm.sh/mock-socket@9.2.1';
-import type { Constructor } from 'https://deno.land/x/polkadot@0.2.28/types/types/index.ts';
 
-export interface Global extends NodeJS.Global {
-  WebSocket: Constructor<WebSocket>;
+export type Global = typeof globalThis & {
+  WebSocket: typeof WebSocket;
   fetch: any;
 }
 

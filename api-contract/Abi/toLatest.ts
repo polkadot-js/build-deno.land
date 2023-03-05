@@ -1,13 +1,13 @@
 
-import type { ContractMetadataLatest, ContractMetadataV4 } from 'https://deno.land/x/polkadot@0.2.28/types/interfaces/index.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.28/types/types/index.ts';
+import type { ContractMetadataLatest, ContractMetadataV4 } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 import { v0ToV1 } from './toV1.ts';
 import { v1ToV2 } from './toV2.ts';
 import { v2ToV3 } from './toV3.ts';
 import { v3ToV4 } from './toV4.ts';
 
-export const enumVersions = <const> ['V4', 'V3', 'V2', 'V1'];
+export const enumVersions = ['V4', 'V3', 'V2', 'V1'] as const;
 
 type Versions = typeof enumVersions[number] | 'V0';
 

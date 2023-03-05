@@ -1,5 +1,5 @@
 
-import type { AnyNumber } from 'https://deno.land/x/polkadot@0.2.28/types-codec/types/index.ts';
+import type { AnyNumber } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 
 export interface ExtrinsicOptions {
   isSigned: boolean;

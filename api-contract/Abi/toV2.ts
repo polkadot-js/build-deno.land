@@ -1,9 +1,9 @@
 
-import type { Text } from 'https://deno.land/x/polkadot@0.2.28/types/mod.ts';
-import type { ContractConstructorSpecV0, ContractEventSpecV0, ContractMessageSpecV0, ContractMetadataV1, ContractMetadataV2 } from 'https://deno.land/x/polkadot@0.2.28/types/interfaces/index.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.28/types/types/index.ts';
+import type { Text } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { ContractConstructorSpecV0, ContractEventSpecV0, ContractMessageSpecV0, ContractMetadataV1, ContractMetadataV2 } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.28/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 type WithArgs = keyof typeof ARG_TYPES;
 
@@ -21,11 +21,11 @@ interface ArgsEntry <T extends WithArgs> extends NamedEntry {
   args: GetArgsType<T>['args'][0][];
 }
 
-const ARG_TYPES = <const> {
+const ARG_TYPES = {
   ContractConstructorSpec: 'ContractMessageParamSpecV2',
   ContractEventSpec: 'ContractEventParamSpecV2',
   ContractMessageSpec: 'ContractMessageParamSpecV2'
-};
+} as const;
 
 function v1ToV2Label (entry: NamedEntry): { label: Text } {
   return objectSpread({}, entry, {

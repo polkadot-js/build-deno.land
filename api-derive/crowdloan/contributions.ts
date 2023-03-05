@@ -1,12 +1,12 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { StorageKey } from 'https://deno.land/x/polkadot@0.2.28/types/mod.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.28/util/mod.ts';
+import type { StorageKey } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { DeriveApi, DeriveContributions } from '../types.ts';
 
 import { BehaviorSubject, combineLatest, EMPTY, map, of, startWith, switchMap, tap, toArray } from 'https://esm.sh/rxjs@7.8.0';
 
-import { arrayFlatten, isFunction, nextTick } from 'https://deno.land/x/polkadot@0.2.28/util/mod.ts';
+import { arrayFlatten, isFunction, nextTick } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 import { extractContributed } from './util.ts';
