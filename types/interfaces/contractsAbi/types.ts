@@ -1,9 +1,9 @@
 /* eslint-disable */
 
-import type { BTreeMap, Bytes, Enum, Option, Raw, Struct, Text, U8aFixed, Vec, bool, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { PortableType } from 'https://deno.land/x/polkadot/types/interfaces/metadata/index.ts';
-import type { Si0Type, SiLookupTypeId, SiPath } from 'https://deno.land/x/polkadot/types/interfaces/scaleInfo/index.ts';
+import type { BTreeMap, Bytes, Enum, Option, Raw, Struct, Text, U8aFixed, Vec, bool, u32, u64 } from 'https://deno.land/x/polkadot@0.2.29/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.2.29/types-codec/types/index.ts';
+import type { PortableType } from 'https://deno.land/x/polkadot@0.2.29/types/interfaces/metadata/index.ts';
+import type { Si0Type, SiLookupTypeId, SiPath } from 'https://deno.land/x/polkadot@0.2.29/types/interfaces/scaleInfo/index.ts';
 
 /** @name ContractConstructorSpecLatest */
 export interface ContractConstructorSpecLatest extends ContractConstructorSpecV3 {}

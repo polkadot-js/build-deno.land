@@ -3,8 +3,8 @@
 
 import type { Definitions } from '../../types/index.ts';
 
-import { mapXcmTypes } from 'https://deno.land/x/polkadot/types-create/mod.ts';
-import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { mapXcmTypes } from 'https://deno.land/x/polkadot@0.2.29/types-create/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.2.29/util/mod.ts';
 
 import { v0 } from './v0.ts';
 import { v1 } from './v1.ts';

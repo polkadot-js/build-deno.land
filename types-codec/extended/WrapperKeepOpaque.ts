@@ -1,7 +1,7 @@
 
 import type { AnyJson, AnyU8a, Codec, CodecClass, Inspect, Registry } from '../types/index.ts';
 
-import { compactAddLength, compactStripLength, compactToU8a, isHex, isU8a, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { compactAddLength, compactStripLength, compactToU8a, isHex, isU8a, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.29/util/mod.ts';
 
 import { Raw } from '../native/Raw.ts';
 import { typeToConstructor } from '../utils/index.ts';

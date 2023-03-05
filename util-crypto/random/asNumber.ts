@@ -1,5 +1,5 @@
 
-import { BN, hexToBn } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { BN, hexToBn } from 'https://deno.land/x/polkadot@0.2.29/util/mod.ts';
 
 import { randomAsHex } from './asU8a.ts';
 
@@ -14,7 +14,7 @@ const BN_53 = new BN(0b11111111111111111111111111111111111111111111111111111);
  * <BR>
  *
  * ```javascript
- * import { randomAsNumber } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
+ * import { randomAsNumber } from 'https://deno.land/x/polkadot@0.2.29/util-crypto/mod.ts';
  *
  * randomAsNumber(); // => <random number>
  * ```

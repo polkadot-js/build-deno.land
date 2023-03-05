@@ -1,7 +1,7 @@
 
 import type { Definitions } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.2.29/util/mod.ts';
 
 /* eslint-disable sort-keys */
 
