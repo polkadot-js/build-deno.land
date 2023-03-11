@@ -1,11 +1,11 @@
 
-import type { DeriveCustom } from 'https://deno.land/x/polkadot@0.2.29/api-base/types/index.ts';
-import type { AnyFunction, AnyString } from 'https://deno.land/x/polkadot@0.2.29/types/types/index.ts';
+import type { DeriveCustom } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { AnyFunction, AnyString } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { ExactDerive } from './derive.ts';
 import type { DeriveApi } from './types.ts';
 
-import { derive } from './derive.ts';
 import { lazyDeriveSection } from './util/index.ts';
+import { derive } from './derive.ts';
 
 export * from './derive.ts';
 export * from './type/index.ts';

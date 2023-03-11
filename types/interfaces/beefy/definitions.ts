@@ -21,6 +21,10 @@ export default {
       validatorSetId: 'ValidatorSetId'
     },
     BeefyId: '[u8; 33]',
+    BeefyEquivocationProof: {
+      first: 'BeefyVoteMessage',
+      second: 'BeefyVoteMessage'
+    },
     BeefySignedCommitment: {
       commitment: 'BeefyCommitment',
       signatures: 'Vec<Option<EcdsaSignature>>'
@@ -32,6 +36,11 @@ export default {
     },
     BeefyPayload: 'Vec<(BeefyPayloadId, Bytes)>',
     BeefyPayloadId: '[u8;2]',
+    BeefyVoteMessage: {
+      commitment: 'BeefyCommitment',
+      id: 'AuthorityId',
+      signature: 'Signature'
+    },
     MmrRootHash: 'H256',
     ValidatorSetId: 'u64',
     ValidatorSet: {

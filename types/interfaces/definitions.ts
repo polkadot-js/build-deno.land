@@ -26,6 +26,7 @@ export { default as identity } from './identity/definitions.ts';
 export { default as imOnline } from './imOnline/definitions.ts';
 export { default as lottery } from './lottery/definitions.ts';
 export { default as mmr } from './mmr/definitions.ts';
+export { default as nfts } from './nfts/definitions.ts';
 export { default as nompools } from './nompools/definitions.ts';
 export { default as offences } from './offences/definitions.ts';
 export { default as pow } from './pow/definitions.ts';

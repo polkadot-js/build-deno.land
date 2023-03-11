@@ -1,16 +1,16 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.29/api-base/types/events.ts';
+import 'https://deno.land/x/polkadot/api-base/types/events.ts';
 
-import type { ApiTypes, AugmentedEvent } from 'https://deno.land/x/polkadot@0.2.29/api-base/types/index.ts';
-import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.29/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.29/types-codec/types/index.ts';
-import type { AccountId32, H256, Perbill, Perquintill } from 'https://deno.land/x/polkadot@0.2.29/types/interfaces/runtime/index.ts';
-import type { FrameSupportDispatchDispatchInfo, FrameSupportDispatchPostDispatchInfo, FrameSupportMessagesProcessMessageError, FrameSupportPreimagesBounded, FrameSupportTokensMiscAttributeNamespace, FrameSupportTokensMiscBalanceStatus, KitchensinkRuntimeProxyType, PalletAllianceCid, PalletAllianceUnscrupulousItem, PalletConvictionVotingTally, PalletDemocracyMetadataOwner, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletElectionProviderMultiPhasePhase, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNftsPriceWithDirection, PalletNominationPoolsPoolState, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord, PalletStakingExposure, PalletStakingForcing, PalletStakingValidatorPrefs, PalletStateTrieMigrationError, PalletStateTrieMigrationMigrationCompute, SpFinalityGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, SpRuntimeDispatchErrorWithPostInfo, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot@0.2.29/types/lookup.ts';
+import type { ApiTypes, AugmentedEvent } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { AccountId32, H256, Perbill, Perquintill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportDispatchDispatchInfo, FrameSupportDispatchPostDispatchInfo, FrameSupportMessagesProcessMessageError, FrameSupportPreimagesBounded, FrameSupportTokensMiscBalanceStatus, KitchensinkRuntimeProxyType, PalletAllianceCid, PalletAllianceUnscrupulousItem, PalletConvictionVotingTally, PalletDemocracyMetadataOwner, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletElectionProviderMultiPhasePhase, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNftsAttributeNamespace, PalletNftsPalletAttributes, PalletNftsPriceWithDirection, PalletNominationPoolsPoolState, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord, PalletStakingExposure, PalletStakingForcing, PalletStakingValidatorPrefs, PalletStateTrieMigrationError, PalletStateTrieMigrationMigrationCompute, SpConsensusGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, SpRuntimeDispatchErrorWithPostInfo, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedEvent<ApiType extends ApiTypes> = AugmentedEvent<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.29/api-base/types/events.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
   interface AugmentedEvents<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -127,6 +127,10 @@ declare module 'https://deno.land/x/polkadot@0.2.29/api-base/types/events.ts' {
        * Some asset `asset_id` was frozen.
        **/
       AssetFrozen: AugmentedEvent<ApiType, [assetId: u32], { assetId: u32 }>;
+      /**
+       * The min_balance of an asset has been updated by the asset owner.
+       **/
+      AssetMinBalanceChanged: AugmentedEvent<ApiType, [assetId: u32, newMinBalance: u128], { assetId: u32, newMinBalance: u128 }>;
       /**
        * An asset has had its attributes changed by the `Force` origin.
        **/
@@ -623,7 +627,7 @@ declare module 'https://deno.land/x/polkadot@0.2.29/api-base/types/events.ts' {
       /**
        * New authority set has been applied.
        **/
-      NewAuthorities: AugmentedEvent<ApiType, [authoritySet: Vec<ITuple<[SpFinalityGrandpaAppPublic, u64]>>], { authoritySet: Vec<ITuple<[SpFinalityGrandpaAppPublic, u64]>> }>;
+      NewAuthorities: AugmentedEvent<ApiType, [authoritySet: Vec<ITuple<[SpConsensusGrandpaAppPublic, u64]>>], { authoritySet: Vec<ITuple<[SpConsensusGrandpaAppPublic, u64]>> }>;
       /**
        * Current authority set has been paused.
        **/
@@ -804,11 +808,11 @@ declare module 'https://deno.land/x/polkadot@0.2.29/api-base/types/events.ts' {
       /**
        * Attribute metadata has been cleared for a `collection` or `item`.
        **/
-      AttributeCleared: AugmentedEvent<ApiType, [collection: u32, maybeItem: Option<u32>, key: Bytes, namespace: FrameSupportTokensMiscAttributeNamespace], { collection: u32, maybeItem: Option<u32>, key: Bytes, namespace: FrameSupportTokensMiscAttributeNamespace }>;
+      AttributeCleared: AugmentedEvent<ApiType, [collection: u32, maybeItem: Option<u32>, key: Bytes, namespace: PalletNftsAttributeNamespace], { collection: u32, maybeItem: Option<u32>, key: Bytes, namespace: PalletNftsAttributeNamespace }>;
       /**
        * New attribute metadata has been set for a `collection` or `item`.
        **/
-      AttributeSet: AugmentedEvent<ApiType, [collection: u32, maybeItem: Option<u32>, key: Bytes, value: Bytes, namespace: FrameSupportTokensMiscAttributeNamespace], { collection: u32, maybeItem: Option<u32>, key: Bytes, value: Bytes, namespace: FrameSupportTokensMiscAttributeNamespace }>;
+      AttributeSet: AugmentedEvent<ApiType, [collection: u32, maybeItem: Option<u32>, key: Bytes, value: Bytes, namespace: PalletNftsAttributeNamespace], { collection: u32, maybeItem: Option<u32>, key: Bytes, value: Bytes, namespace: PalletNftsAttributeNamespace }>;
       /**
        * An `item` was destroyed.
        **/
@@ -906,9 +910,14 @@ declare module 'https://deno.land/x/polkadot@0.2.29/api-base/types/events.ts' {
        **/
       OwnershipAcceptanceChanged: AugmentedEvent<ApiType, [who: AccountId32, maybeCollection: Option<u32>], { who: AccountId32, maybeCollection: Option<u32> }>;
       /**
+       * A new attribute in the `Pallet` namespace was set for the `collection` or an `item`
+       * within that `collection`.
+       **/
+      PalletAttributeSet: AugmentedEvent<ApiType, [collection: u32, item: Option<u32>, attribute: PalletNftsPalletAttributes, value: Bytes], { collection: u32, item: Option<u32>, attribute: PalletNftsPalletAttributes, value: Bytes }>;
+      /**
        * New attributes have been set for an `item` of the `collection`.
        **/
-      PreSignedAttributesSet: AugmentedEvent<ApiType, [collection: u32, item: u32, namespace: FrameSupportTokensMiscAttributeNamespace], { collection: u32, item: u32, namespace: FrameSupportTokensMiscAttributeNamespace }>;
+      PreSignedAttributesSet: AugmentedEvent<ApiType, [collection: u32, item: u32, namespace: PalletNftsAttributeNamespace], { collection: u32, item: u32, namespace: PalletNftsAttributeNamespace }>;
       /**
        * The deposit for a set of `item`s within a `collection` has been updated.
        **/
@@ -1299,6 +1308,28 @@ declare module 'https://deno.land/x/polkadot@0.2.29/api-base/types/events.ts' {
        * Stored data off chain.
        **/
       Stored: AugmentedEvent<ApiType, [sender: AccountId32, contentHash: H256], { sender: AccountId32, contentHash: H256 }>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    salary: {
+      /**
+       * The next cycle begins.
+       **/
+      CycleStarted: AugmentedEvent<ApiType, [index: u32], { index: u32 }>;
+      /**
+       * A member is inducted into the payroll.
+       **/
+      Inducted: AugmentedEvent<ApiType, [who: AccountId32], { who: AccountId32 }>;
+      /**
+       * A payment happened.
+       **/
+      Paid: AugmentedEvent<ApiType, [who: AccountId32, beneficiary: AccountId32, amount: u128, id: Null], { who: AccountId32, beneficiary: AccountId32, amount: u128, id: Null }>;
+      /**
+       * A member registered for a payout.
+       **/
+      Registered: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
        * Generic event
        **/

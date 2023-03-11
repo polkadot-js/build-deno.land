@@ -3,7 +3,9 @@
 
 import type { Definitions } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.29/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+
+import { runtime } from './runtime.ts';
 
 const deprecated = {
   Points: 'u32',
@@ -171,6 +173,7 @@ const phragmen = {
 
 export default {
   rpc: {},
+  runtime,
   types: objectSpread({}, deprecated, phragmen, {
     ActiveEraInfo: {
       index: 'EraIndex',

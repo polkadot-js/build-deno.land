@@ -1,28 +1,34 @@
 
 
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.29/types-codec/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { Check } from './types.ts';
 
 import fs from 'https://esm.sh/node:fs';
 import path from 'https://esm.sh/node:path';
 
-import { hexToU8a, stringCamelCase, stringify, u8aToHex } from 'https://deno.land/x/polkadot@0.2.29/util/mod.ts';
+import { hexToU8a, stringCamelCase, stringify, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { TypeRegistry } from '../../create/index.ts';
 import { unwrapStorageSi, unwrapStorageType } from '../../primitive/StorageKey.ts';
 import { Metadata } from '../Metadata.ts';
 import { getUniqTypes } from './getUniqTypes.ts';
 
+function getJsonName (version: number, type: string, sub: 'json' | 'types'): string {
+  return path.join(process.cwd(), `packages/types-support/src/metadata/v${version}/${type}-${sub}.json`);
+}
+
 function writeJson (json: unknown, version: number, type: string, sub: 'json' | 'types'): void {
-  fs.writeFileSync(
-    path.join(process.cwd(), `packages/types-support/src/metadata/v${version}/${type}-${sub}.json`),
-    stringify(json, 2),
-    { flag: 'w' }
-  );
+  fs.writeFileSync(getJsonName(version, type, sub), stringify(json, 2), { flag: 'w' });
+}
+
+function readJson <T = unknown> (version: number, type: string, sub: 'json' | 'types'): T {
+  return JSON.parse(
+    fs.readFileSync(getJsonName(version, type, sub), 'utf-8')
+  ) as unknown as T;
 }
 
 /** @internal */
-export function decodeLatestMeta (registry: Registry, type: string, version: number, { compare, data, types }: Check): void {
+export function decodeLatestMeta (registry: Registry, type: string, version: number, { data }: Check): void {
   const metadata = new Metadata(registry, data);
 
   registry.setMetadata(metadata);
@@ -35,35 +41,33 @@ export function decodeLatestMeta (registry: Registry, type: string, version: num
     expect(metadata.version).toBe(version);
 
     try {
-      expect(json).toEqual(compare);
+      expect(json).toEqual(readJson(version, type, 'json'));
     } catch (error) {
       if (process.env.GITHUB_REPOSITORY) {
-        console.error(stringify(json));
-
         throw error;
       }
 
+      console.error(error);
       writeJson(json, version, type, 'json');
     }
   });
 
-  it('decodes latest types correctly', (): void => {
-    if (types) {
+  if (version >= 14) {
+    it('decodes latest types correctly', (): void => {
       const json = metadata.asLatest.lookup.types.toJSON();
 
       try {
-        expect(json).toEqual(types);
+        expect(json).toEqual(readJson(version, type, 'types'));
       } catch (error) {
         if (process.env.GITHUB_REPOSITORY) {
-          console.error(stringify(metadata.toJSON()));
-
           throw error;
         }
 
+        console.error(error);
         writeJson(json, version, type, 'types');
       }
-    }
-  });
+    });
+  }
 }
 
 /** @internal */

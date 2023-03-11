@@ -1,32 +1,33 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.29/api-base/types/calls.ts';
+import 'https://deno.land/x/polkadot/api-base/types/calls.ts';
 
-import type { ApiTypes, AugmentedCall, DecoratedCallBase } from 'https://deno.land/x/polkadot@0.2.29/api-base/types/index.ts';
-import type { Bytes, Null, Option, Result, Vec, bool, u32 } from 'https://deno.land/x/polkadot@0.2.29/types-codec/mod.ts';
-import type { AnyNumber, IMethod, ITuple } from 'https://deno.land/x/polkadot@0.2.29/types-codec/types/index.ts';
-import type { BabeEquivocationProof, BabeGenesisConfiguration, Epoch, OpaqueKeyOwnershipProof } from 'https://deno.land/x/polkadot@0.2.29/types/interfaces/babe/index.ts';
-import type { ValidatorSet } from 'https://deno.land/x/polkadot@0.2.29/types/interfaces/beefy/index.ts';
-import type { CheckInherentsResult, InherentData } from 'https://deno.land/x/polkadot@0.2.29/types/interfaces/blockbuilder/index.ts';
-import type { BlockHash } from 'https://deno.land/x/polkadot@0.2.29/types/interfaces/chain/index.ts';
-import type { AuthorityId } from 'https://deno.land/x/polkadot@0.2.29/types/interfaces/consensus/index.ts';
-import type { Extrinsic } from 'https://deno.land/x/polkadot@0.2.29/types/interfaces/extrinsics/index.ts';
-import type { AuthorityList, GrandpaEquivocationProof, SetId } from 'https://deno.land/x/polkadot@0.2.29/types/interfaces/grandpa/index.ts';
-import type { OpaqueMetadata } from 'https://deno.land/x/polkadot@0.2.29/types/interfaces/metadata/index.ts';
-import type { MmrBatchProof, MmrEncodableOpaqueLeaf, MmrError, MmrLeafIndex, MmrProof } from 'https://deno.land/x/polkadot@0.2.29/types/interfaces/mmr/index.ts';
-import type { CandidateCommitments, CandidateEvent, CommittedCandidateReceipt, CoreState, GroupRotationInfo, InboundDownwardMessage, InboundHrmpMessage, OccupiedCoreAssumption, ParaId, ParaValidatorIndex, PersistedValidationData, PvfCheckStatement, ScrapedOnChainVotes, SessionInfo, ValidationCode, ValidationCodeHash, ValidatorSignature } from 'https://deno.land/x/polkadot@0.2.29/types/interfaces/parachains/index.ts';
-import type { FeeDetails, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot@0.2.29/types/interfaces/payment/index.ts';
-import type { AccountId, Balance, Block, Call, Hash, Header, Index, KeyTypeId, Slot, ValidatorId, Weight } from 'https://deno.land/x/polkadot@0.2.29/types/interfaces/runtime/index.ts';
-import type { SessionIndex } from 'https://deno.land/x/polkadot@0.2.29/types/interfaces/session/index.ts';
-import type { RuntimeVersion } from 'https://deno.land/x/polkadot@0.2.29/types/interfaces/state/index.ts';
-import type { ApplyExtrinsicResult } from 'https://deno.land/x/polkadot@0.2.29/types/interfaces/system/index.ts';
-import type { TransactionSource, TransactionValidity } from 'https://deno.land/x/polkadot@0.2.29/types/interfaces/txqueue/index.ts';
-import type { IExtrinsic, Observable } from 'https://deno.land/x/polkadot@0.2.29/types/types/index.ts';
+import type { ApiTypes, AugmentedCall, DecoratedCallBase } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Bytes, Null, Option, Result, Vec, bool, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { AnyNumber, IMethod, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { BabeEquivocationProof, BabeGenesisConfiguration, Epoch, OpaqueKeyOwnershipProof } from 'https://deno.land/x/polkadot/types/interfaces/babe/index.ts';
+import type { BeefyEquivocationProof, ValidatorSet, ValidatorSetId } from 'https://deno.land/x/polkadot/types/interfaces/beefy/index.ts';
+import type { CheckInherentsResult, InherentData } from 'https://deno.land/x/polkadot/types/interfaces/blockbuilder/index.ts';
+import type { BlockHash } from 'https://deno.land/x/polkadot/types/interfaces/chain/index.ts';
+import type { AuthorityId } from 'https://deno.land/x/polkadot/types/interfaces/consensus/index.ts';
+import type { Extrinsic } from 'https://deno.land/x/polkadot/types/interfaces/extrinsics/index.ts';
+import type { AuthorityList, GrandpaEquivocationProof, SetId } from 'https://deno.land/x/polkadot/types/interfaces/grandpa/index.ts';
+import type { OpaqueMetadata } from 'https://deno.land/x/polkadot/types/interfaces/metadata/index.ts';
+import type { MmrBatchProof, MmrEncodableOpaqueLeaf, MmrError, MmrLeafIndex, MmrProof } from 'https://deno.land/x/polkadot/types/interfaces/mmr/index.ts';
+import type { NpPoolId } from 'https://deno.land/x/polkadot/types/interfaces/nompools/index.ts';
+import type { CandidateCommitments, CandidateEvent, CommittedCandidateReceipt, CoreState, GroupRotationInfo, InboundDownwardMessage, InboundHrmpMessage, OccupiedCoreAssumption, ParaId, ParaValidatorIndex, PersistedValidationData, PvfCheckStatement, ScrapedOnChainVotes, SessionInfo, ValidationCode, ValidationCodeHash, ValidatorSignature } from 'https://deno.land/x/polkadot/types/interfaces/parachains/index.ts';
+import type { FeeDetails, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot/types/interfaces/payment/index.ts';
+import type { AccountId, Balance, Block, BlockNumber, Call, Hash, Header, Index, KeyTypeId, Slot, ValidatorId, Weight } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { SessionIndex } from 'https://deno.land/x/polkadot/types/interfaces/session/index.ts';
+import type { RuntimeVersion } from 'https://deno.land/x/polkadot/types/interfaces/state/index.ts';
+import type { ApplyExtrinsicResult } from 'https://deno.land/x/polkadot/types/interfaces/system/index.ts';
+import type { TransactionSource, TransactionValidity } from 'https://deno.land/x/polkadot/types/interfaces/txqueue/index.ts';
+import type { IExtrinsic, Observable } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 export type __AugmentedCall<ApiType extends ApiTypes> = AugmentedCall<ApiType>;
 export type __DecoratedCallBase<ApiType extends ApiTypes> = DecoratedCallBase<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.29/api-base/types/calls.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
   interface AugmentedCalls<ApiType extends ApiTypes> {
     /** 0xbc9d89904f5b923f/1 */
     accountNonceApi: {
@@ -81,8 +82,20 @@ declare module 'https://deno.land/x/polkadot@0.2.29/api-base/types/calls.ts' {
        **/
       [key: string]: DecoratedCallBase<ApiType>;
     };
-    /** 0x49eaaf1b548a0cb0/1 */
+    /** 0x49eaaf1b548a0cb0/2 */
     beefyApi: {
+      /**
+       * Return the block number where BEEFY consensus is enabled/started
+       **/
+      beefyGenesis: AugmentedCall<ApiType, () => Observable<Option<BlockNumber>>>;
+      /**
+       * Generates a proof of key ownership for the given authority in the given set.
+       **/
+      generateKeyOwnershipProof: AugmentedCall<ApiType, (setId: ValidatorSetId | AnyNumber | Uint8Array, authorityId: AuthorityId | string | Uint8Array) => Observable<Option<OpaqueKeyOwnershipProof>>>;
+      /**
+       * Submits an unsigned extrinsic to report an equivocation.
+       **/
+      submitReportEquivocationUnsignedExtrinsic: AugmentedCall<ApiType, (equivocationProof: BeefyEquivocationProof | { first?: any; second?: any } | string | Uint8Array, keyOwnerProof: OpaqueKeyOwnershipProof | string | Uint8Array) => Observable<Option<Null>>>;
       /**
        * Return the current active BEEFY validator set
        **/
@@ -168,7 +181,7 @@ declare module 'https://deno.land/x/polkadot@0.2.29/api-base/types/calls.ts' {
        **/
       [key: string]: DecoratedCallBase<ApiType>;
     };
-    /** 0x91d5df18b0d2cf58/1 */
+    /** 0x91d5df18b0d2cf58/2 */
     mmrApi: {
       /**
        * Generate MMR proof for a series of leaves under given indices.
@@ -206,9 +219,17 @@ declare module 'https://deno.land/x/polkadot@0.2.29/api-base/types/calls.ts' {
     /** 0x17a6bc0d0062aeb3/1 */
     nominationPoolsApi: {
       /**
+       * Returns the equivalent points of `new_funds` for a given pool.
+       **/
+      balanceToPoints: AugmentedCall<ApiType, (poolId: NpPoolId | AnyNumber | Uint8Array, newFunds: Balance | AnyNumber | Uint8Array) => Observable<Balance>>;
+      /**
        * Returns the pending rewards for the given member.
        **/
       pendingRewards: AugmentedCall<ApiType, (member: AccountId | string | Uint8Array) => Observable<Balance>>;
+      /**
+       * Returns the equivalent balance of `points` for a given pool.
+       **/
+      pointsToBalance: AugmentedCall<ApiType, (poolId: NpPoolId | AnyNumber | Uint8Array, points: Balance | AnyNumber | Uint8Array) => Observable<Balance>>;
       /**
        * Generic call
        **/
@@ -314,6 +335,17 @@ declare module 'https://deno.land/x/polkadot@0.2.29/api-base/types/calls.ts' {
        * Generate a set of session keys with optionally using the given seed.
        **/
       generateSessionKeys: AugmentedCall<ApiType, (seed: Option<Bytes> | null | Uint8Array | Bytes | string) => Observable<Bytes>>;
+      /**
+       * Generic call
+       **/
+      [key: string]: DecoratedCallBase<ApiType>;
+    };
+    /** 0x18ef58a3b67ba770/1 */
+    stakingApi: {
+      /**
+       * Returns the nominations quota for a nominator with a given balance.
+       **/
+      nominationsQuota: AugmentedCall<ApiType, (balance: Balance | AnyNumber | Uint8Array) => Observable<u32>>;
       /**
        * Generic call
        **/

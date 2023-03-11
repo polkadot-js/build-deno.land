@@ -2,7 +2,7 @@
 import type { SiLookupTypeId, SiVariant } from '../interfaces/index.ts';
 import type { PortableRegistry } from '../metadata/index.ts';
 
-import { lazyMethod } from 'https://deno.land/x/polkadot@0.2.29/util/mod.ts';
+import { lazyMethod } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 interface TypeHolder {
   type: SiLookupTypeId

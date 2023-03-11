@@ -1,16 +1,16 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.29/api-base/types/consts.ts';
+import 'https://deno.land/x/polkadot/api-base/types/consts.ts';
 
-import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot@0.2.29/api-base/types/index.ts';
-import type { Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.29/types-codec/mod.ts';
-import type { Codec, ITuple } from 'https://deno.land/x/polkadot@0.2.29/types-codec/types/index.ts';
-import type { Perbill, Percent, Permill, Perquintill } from 'https://deno.land/x/polkadot@0.2.29/types/interfaces/runtime/index.ts';
-import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, PalletContractsSchedule, PalletReferendaTrackInfo, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot@0.2.29/types/lookup.ts';
+import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Codec, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Perbill, Percent, Permill, Perquintill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, PalletContractsSchedule, PalletReferendaTrackInfo, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedConst<ApiType extends ApiTypes> = AugmentedConst<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.29/api-base/types/consts.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
   interface AugmentedConsts<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -957,6 +957,33 @@ declare module 'https://deno.land/x/polkadot@0.2.29/api-base/types/consts.ts' {
        * Once this passes, then anyone may cancel the referendum.
        **/
       undecidingTimeout: u32 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
+    salary: {
+      /**
+       * The total budget per cycle.
+       * 
+       * This may change over the course of a cycle without any problem.
+       **/
+      budget: u128 & AugmentedConst<ApiType>;
+      /**
+       * The number of blocks within a cycle which accounts have to claim the payout.
+       * 
+       * The number of blocks between sequential payout cycles is the sum of this and
+       * `RegistrationPeriod`.
+       **/
+      payoutPeriod: u32 & AugmentedConst<ApiType>;
+      /**
+       * The number of blocks within a cycle which accounts have to register their intent to
+       * claim.
+       * 
+       * The number of blocks between sequential payout cycles is the sum of this and
+       * `PayoutPeriod`.
+       **/
+      registrationPeriod: u32 & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/

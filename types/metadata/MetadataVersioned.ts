@@ -1,11 +1,12 @@
 
-import type { AnyJson } from 'https://deno.land/x/polkadot@0.2.29/types-codec/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.29/util/types.ts';
+import type { AnyJson } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { MetadataAll, MetadataLatest, MetadataV9, MetadataV10, MetadataV11, MetadataV12, MetadataV13, MetadataV14 } from '../interfaces/metadata/index.ts';
 import type { Registry } from '../types/index.ts';
 
-import { Struct } from 'https://deno.land/x/polkadot@0.2.29/types-codec/mod.ts';
+import { Struct } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 
+import { getUniqTypes, toCallsOnly } from './util/index.ts';
 import { toV10 } from './v9/toV10.ts';
 import { toV11 } from './v10/toV11.ts';
 import { toV12 } from './v11/toV12.ts';
@@ -13,7 +14,6 @@ import { toV13 } from './v12/toV13.ts';
 import { toV14 } from './v13/toV14.ts';
 import { toLatest } from './v14/toLatest.ts';
 import { MagicNumber } from './MagicNumber.ts';
-import { getUniqTypes, toCallsOnly } from './util/index.ts';
 
 const KNOWN_VERSIONS = [14, 13, 12, 11, 10, 9] as const;
 const LATEST_VERSION = KNOWN_VERSIONS[0];

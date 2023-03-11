@@ -1,10 +1,10 @@
 /* eslint-disable */
 
-import type { Bytes, Option, Struct, U8aFixed, Vec, u32, u64 } from 'https://deno.land/x/polkadot@0.2.29/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.29/types-codec/types/index.ts';
-import type { AuthorityId } from 'https://deno.land/x/polkadot@0.2.29/types/interfaces/consensus/index.ts';
-import type { EcdsaSignature } from 'https://deno.land/x/polkadot@0.2.29/types/interfaces/extrinsics/index.ts';
-import type { BlockNumber, H256 } from 'https://deno.land/x/polkadot@0.2.29/types/interfaces/runtime/index.ts';
+import type { Bytes, Option, Struct, U8aFixed, Vec, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { AuthorityId } from 'https://deno.land/x/polkadot/types/interfaces/consensus/index.ts';
+import type { EcdsaSignature, Signature } from 'https://deno.land/x/polkadot/types/interfaces/extrinsics/index.ts';
+import type { BlockNumber, H256 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 /** @name BeefyAuthoritySet */
 export interface BeefyAuthoritySet extends Struct {
@@ -18,6 +18,12 @@ export interface BeefyCommitment extends Struct {
   readonly payload: BeefyPayload;
   readonly blockNumber: BlockNumber;
   readonly validatorSetId: ValidatorSetId;
+}
+
+/** @name BeefyEquivocationProof */
+export interface BeefyEquivocationProof extends Struct {
+  readonly first: BeefyVoteMessage;
+  readonly second: BeefyVoteMessage;
 }
 
 /** @name BeefyId */
@@ -40,6 +46,13 @@ export interface BeefyPayloadId extends U8aFixed {}
 export interface BeefySignedCommitment extends Struct {
   readonly commitment: BeefyCommitment;
   readonly signatures: Vec<Option<EcdsaSignature>>;
+}
+
+/** @name BeefyVoteMessage */
+export interface BeefyVoteMessage extends Struct {
+  readonly commitment: BeefyCommitment;
+  readonly id: AuthorityId;
+  readonly signature: Signature;
 }
 
 /** @name MmrRootHash */

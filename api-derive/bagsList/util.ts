@@ -1,5 +1,5 @@
 
-import type { QueryableStorage } from 'https://deno.land/x/polkadot@0.2.29/api-base/types/index.ts';
+import type { QueryableStorage } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 import type { DeriveApi } from '../types.ts';
 
 export function getQueryInterface (api: DeriveApi): QueryableStorage<'rxjs'>['voterBagsList'] {

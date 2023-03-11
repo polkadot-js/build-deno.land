@@ -1,12 +1,12 @@
 
-import type { TypeDef } from 'https://deno.land/x/polkadot@0.2.29/types-create/types/index.ts';
+import type { TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 
-import { getTypeDef, TypeDefInfo } from 'https://deno.land/x/polkadot@0.2.29/types-create/mod.ts';
+import { getTypeDef, TypeDefInfo } from 'https://deno.land/x/polkadot/types-create/mod.ts';
 
 type Extracted = string | Extracted[];
 
 function extractSubSingle (_: string, { sub }: TypeDef): Extracted[] {
-  const { lookupName, type } = sub as TypeDef;
+  const { lookupName, type } = sub as unknown as TypeDef;
 
   return extractTypes([lookupName || type]);
 }

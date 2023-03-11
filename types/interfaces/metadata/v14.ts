@@ -3,7 +3,7 @@
 
 import type { DefinitionsTypes, DefinitionTypeStruct } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.29/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Si1Variant } from '../scaleInfo/v1.ts';
 

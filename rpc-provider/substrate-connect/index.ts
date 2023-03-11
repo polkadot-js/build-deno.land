@@ -1,10 +1,10 @@
 
-import type ScType from 'https://esm.sh/@substrate/connect@0.7.20';
+import type * as ScType from 'https://esm.sh/@substrate/connect@0.7.20';
 import type { JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, ProviderInterfaceEmitCb, ProviderInterfaceEmitted } from '../types.ts';
 
-import EventEmitter from 'https://esm.sh/eventemitter3@5.0.0';
+import { EventEmitter } from 'https://esm.sh/eventemitter3@5.0.0';
 
-import { isError, isFunction, isObject, logger, objectSpread } from 'https://deno.land/x/polkadot@0.2.29/util/mod.ts';
+import { isError, isFunction, isObject, logger, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { RpcCoder } from '../coder/index.ts';
 import { healthChecker } from './Health.ts';

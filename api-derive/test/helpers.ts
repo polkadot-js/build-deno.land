@@ -1,7 +1,7 @@
 
-import { ApiPromise, WsProvider } from 'https://deno.land/x/polkadot@0.2.29/api/mod.ts';
-import { Metadata, TypeRegistry } from 'https://deno.land/x/polkadot@0.2.29/types/mod.ts';
-import metaStatic from 'https://deno.land/x/polkadot@0.2.29/types-support/metadata/static-substrate.ts';
+import { ApiPromise, WsProvider } from 'https://deno.land/x/polkadot/api/mod.ts';
+import { Metadata, TypeRegistry } from 'https://deno.land/x/polkadot/types/mod.ts';
+import metaStatic from 'https://deno.land/x/polkadot/types-support/metadata/static-substrate.ts';
 
 export function createApiWithAugmentations (): ApiPromise {
   const registry = new TypeRegistry();

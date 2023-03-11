@@ -11,6 +11,7 @@ export default {
   types: {
     NpApiError: {
       _enum: ['MemberNotFound', 'OverflowInPendingRewards']
-    }
+    },
+    NpPoolId: 'u32'
   }
 } as Definitions;

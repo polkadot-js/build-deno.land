@@ -37,6 +37,7 @@ export * from './imOnline/types.ts';
 export * from './lottery/types.ts';
 export * from './metadata/types.ts';
 export * from './mmr/types.ts';
+export * from './nfts/types.ts';
 export * from './nimbus/types.ts';
 export * from './nompools/types.ts';
 export * from './offchain/types.ts';
