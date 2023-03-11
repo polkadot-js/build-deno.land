@@ -1,8 +1,8 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { Option } from 'https://deno.land/x/polkadot@0.2.30/types/mod.ts';
-import type { AccountId, EraIndex } from 'https://deno.land/x/polkadot@0.2.30/types/interfaces/index.ts';
-import type { PalletStakingExposure, PalletStakingNominations, PalletStakingRewardDestination, PalletStakingStakingLedger, PalletStakingValidatorPrefs } from 'https://deno.land/x/polkadot@0.2.30/types/lookup.ts';
+import type { Option } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, EraIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletStakingExposure, PalletStakingNominations, PalletStakingRewardDestination, PalletStakingStakingLedger, PalletStakingValidatorPrefs } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { DeriveApi, DeriveStakingQuery, StakingQueryFlags } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.0';
@@ -89,7 +89,7 @@ function getBatch (api: DeriveApi, activeEra: EraIndex, stashIds: AccountId[], f
 /**
  * @description From a stash, retrieve the controllerId and all relevant details
  */
-export const query = firstMemo(
+export const query = /*#__PURE__*/ firstMemo(
   (api: DeriveApi, accountId: Uint8Array | string, flags: StakingQueryFlags) =>
     api.derive.staking.queryMulti([accountId], flags)
 );

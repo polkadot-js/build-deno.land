@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import type { u32 } from 'https://deno.land/x/polkadot@0.2.30/types-codec/mod.ts';
+import type { u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 
 /** @name NftCollectionId */
 export interface NftCollectionId extends u32 {}

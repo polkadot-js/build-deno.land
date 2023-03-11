@@ -1,19 +1,19 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { Option, u32 } from 'https://deno.land/x/polkadot@0.2.30/types/mod.ts';
-import type { Hash, Proposal, Votes } from 'https://deno.land/x/polkadot@0.2.30/types/interfaces/index.ts';
+import type { Option, u32 } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Hash, Proposal, Votes } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { DeriveApi, DeriveCollectiveProposal } from '../types.ts';
 import type { Collective } from './types.ts';
 
 import { catchError, combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.0';
 
-import { isFunction } from 'https://deno.land/x/polkadot@0.2.30/util/mod.ts';
+import { isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { firstObservable } from '../util/index.ts';
 import { callMethod, withSection } from './helpers.ts';
 
-export type { Option, u32 } from 'https://deno.land/x/polkadot@0.2.30/types/mod.ts';
-export type { Hash, Proposal, Votes } from 'https://deno.land/x/polkadot@0.2.30/types/interfaces/index.ts';
+export type { Option, u32 } from 'https://deno.land/x/polkadot/types/mod.ts';
+export type { Hash, Proposal, Votes } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 
 type Result = [(Hash | Uint8Array | string)[], (Option<Proposal> | null)[], Option<Votes>[]];
 
@@ -70,5 +70,5 @@ export function proposal (section: Collective): (instanceId: string, api: Derive
   );
 }
 
-export const proposalCount = callMethod<u32 | null>('proposalCount', null);
-export const proposalHashes = callMethod<Hash[]>('proposals', []);
+export const proposalCount = /*#__PURE__*/ callMethod<u32 | null>('proposalCount', null);
+export const proposalHashes = /*#__PURE__*/ callMethod<Hash[]>('proposals', []);

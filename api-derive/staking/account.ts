@@ -1,13 +1,13 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { Balance } from 'https://deno.land/x/polkadot@0.2.30/types/interfaces/index.ts';
-import type { PalletStakingStakingLedger, PalletStakingUnlockChunk } from 'https://deno.land/x/polkadot@0.2.30/types/lookup.ts';
+import type { Balance } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletStakingStakingLedger, PalletStakingUnlockChunk } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { DeriveApi, DeriveSessionInfo, DeriveStakingAccount, DeriveStakingKeys, DeriveStakingQuery, DeriveUnlocking } from '../types.ts';
 import type { StakingQueryFlags } from './types.ts';
 
 import { combineLatest, map, switchMap } from 'https://esm.sh/rxjs@7.8.0';
 
-import { BN, BN_ZERO, objectSpread } from 'https://deno.land/x/polkadot@0.2.30/util/mod.ts';
+import { BN, BN_ZERO, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { firstMemo, memo } from '../util/index.ts';
 
@@ -84,7 +84,7 @@ export function accounts (instanceId: string, api: DeriveApi): (accountIds: (Uin
 /**
  * @description From a stash, retrieve the controllerId and fill in all the relevant staking details
  */
-export const account = firstMemo(
+export const account = /*#__PURE__*/ firstMemo(
   (api: DeriveApi, accountId: Uint8Array | string, opts?: StakingQueryFlags) =>
     api.derive.staking.accounts([accountId], opts)
 );

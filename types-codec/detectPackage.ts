@@ -1,6 +1,6 @@
 
 
-import { detectPackage } from 'https://deno.land/x/polkadot@0.2.30/util/mod.ts';
+import { detectPackage } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import others from './detectOther.ts';
 import { packageInfo } from './packageInfo.ts';

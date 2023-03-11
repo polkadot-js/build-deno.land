@@ -1,8 +1,8 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { Option, StorageKey } from 'https://deno.land/x/polkadot@0.2.30/types/mod.ts';
-import type { BalanceOf, EraIndex, Perbill } from 'https://deno.land/x/polkadot@0.2.30/types/interfaces/index.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.30/types/types/index.ts';
+import type { Option, StorageKey } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { BalanceOf, EraIndex, Perbill } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DeriveApi, DeriveEraSlashes, DeriveEraValSlash } from '../types.ts';
 
 import { combineLatest, map, of } from 'https://esm.sh/rxjs@7.8.0';
@@ -43,6 +43,6 @@ export function _eraSlashes (instanceId: string, api: DeriveApi): (era: EraIndex
   });
 }
 
-export const eraSlashes = singleEra('_eraSlashes');
-export const _erasSlashes = combineEras('_eraSlashes');
-export const erasSlashes = erasHistoricApply('_erasSlashes');
+export const eraSlashes = /*#__PURE__*/ singleEra('_eraSlashes');
+export const _erasSlashes = /*#__PURE__*/ combineEras('_eraSlashes');
+export const erasSlashes = /*#__PURE__*/ erasHistoricApply('_erasSlashes');

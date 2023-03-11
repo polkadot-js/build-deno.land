@@ -1,8 +1,8 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { StorageKey } from 'https://deno.land/x/polkadot@0.2.30/types/mod.ts';
-import type { EraIndex } from 'https://deno.land/x/polkadot@0.2.30/types/interfaces/index.ts';
-import type { PalletStakingValidatorPrefs } from 'https://deno.land/x/polkadot@0.2.30/types/lookup.ts';
+import type { StorageKey } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { EraIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletStakingValidatorPrefs } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { DeriveApi, DeriveEraPrefs, DeriveEraValPrefs } from '../types.ts';
 
 import { map, of } from 'https://esm.sh/rxjs@7.8.0';
@@ -35,6 +35,6 @@ export function _eraPrefs (instanceId: string, api: DeriveApi): (era: EraIndex, 
   });
 }
 
-export const eraPrefs = singleEra('_eraPrefs');
-export const _erasPrefs = combineEras('_eraPrefs');
-export const erasPrefs = erasHistoricApply('_erasPrefs');
+export const eraPrefs = /*#__PURE__*/ singleEra('_eraPrefs');
+export const _erasPrefs = /*#__PURE__*/ combineEras('_eraPrefs');
+export const erasPrefs = /*#__PURE__*/ erasHistoricApply('_erasPrefs');

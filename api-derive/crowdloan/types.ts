@@ -1,5 +1,5 @@
 
-import type { Balance } from 'https://deno.land/x/polkadot@0.2.30/types/interfaces/index.ts';
+import type { Balance } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 
 export interface DeriveContributions {
   blockHash: string;

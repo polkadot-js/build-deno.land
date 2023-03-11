@@ -1,10 +1,10 @@
 
-import type { AnyJson, AnyTuple, AnyU8a, ArgsDef, Codec, IMethod, Registry } from 'https://deno.land/x/polkadot@0.2.30/types-codec/types/index.ts';
+import type { AnyJson, AnyTuple, AnyU8a, ArgsDef, Codec, IMethod, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { FunctionMetadataLatest } from '../interfaces/metadata/index.ts';
 import type { CallBase, CallFunction, InterfaceTypes } from '../types/index.ts';
 
-import { Struct, U8aFixed } from 'https://deno.land/x/polkadot@0.2.30/types-codec/mod.ts';
-import { isHex, isObject, isU8a, objectSpread, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.30/util/mod.ts';
+import { Struct, U8aFixed } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { isHex, isObject, isU8a, objectSpread, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 interface DecodeMethodInput {
   args: unknown;

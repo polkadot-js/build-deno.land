@@ -1,15 +1,15 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { AccountId, Balance, BlockNumber, Call, Hash, PreimageStatus } from 'https://deno.land/x/polkadot@0.2.30/types/interfaces/index.ts';
-import type { FrameSupportPreimagesBounded, PalletPreimageRequestStatus } from 'https://deno.land/x/polkadot@0.2.30/types/lookup.ts';
-import type { Bytes, Option } from 'https://deno.land/x/polkadot@0.2.30/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.30/types-codec/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.30/util/types.ts';
+import type { AccountId, Balance, BlockNumber, Call, Hash, PreimageStatus } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { FrameSupportPreimagesBounded, PalletPreimageRequestStatus } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { Bytes, Option } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { DeriveApi, DeriveProposalImage } from '../types.ts';
 
 import { map, of, switchMap } from 'https://esm.sh/rxjs@7.8.0';
 
-import { BN_ZERO, isFunction } from 'https://deno.land/x/polkadot@0.2.30/util/mod.ts';
+import { BN_ZERO, isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { firstMemo, memo } from '../util/index.ts';
 import { getImageHashBounded } from './util.ts';
@@ -134,7 +134,7 @@ export function preimages (instanceId: string, api: DeriveApi): (hashes: (Hash |
   );
 }
 
-export const preimage = firstMemo(
+export const preimage = /*#__PURE__*/ firstMemo(
   (api: DeriveApi, hash: Hash | Uint8Array | string | FrameSupportPreimagesBounded) =>
     api.derive.democracy.preimages([hash])
 );

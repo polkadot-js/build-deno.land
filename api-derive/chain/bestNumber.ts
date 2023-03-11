@@ -3,6 +3,8 @@ import type { DeriveApi } from '../types.ts';
 
 import { createBlockNumberDerive } from './util.ts';
 
+export type { BlockNumber } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+
 /**
  * @name bestNumber
  * @returns The latest block number.
@@ -15,7 +17,7 @@ import { createBlockNumberDerive } from './util.ts';
  * });
  * ```
  */
-export const bestNumber = createBlockNumberDerive(
+export const bestNumber = /*#__PURE__*/ createBlockNumberDerive(
   (api: DeriveApi) =>
     api.rpc.chain.subscribeNewHeads()
 );

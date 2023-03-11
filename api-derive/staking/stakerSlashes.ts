@@ -1,6 +1,6 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { EraIndex } from 'https://deno.land/x/polkadot@0.2.30/types/interfaces/index.ts';
+import type { EraIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { DeriveApi, DeriveStakerSlashes } from '../types.ts';
 
 import { map } from 'https://esm.sh/rxjs@7.8.0';
@@ -23,4 +23,4 @@ export function _stakerSlashes (instanceId: string, api: DeriveApi): (accountId:
   });
 }
 
-export const stakerSlashes = erasHistoricApplyAccount('_stakerSlashes');
+export const stakerSlashes = /*#__PURE__*/ erasHistoricApplyAccount('_stakerSlashes');
