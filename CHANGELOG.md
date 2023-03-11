@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master
+
+- wasm-{bridge, crypto, crypto-{asmjs, init, wasm}, util} 7.0.3
+
 ## 0.2.29 Mar 5, 2023
 
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 10.0.1
