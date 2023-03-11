@@ -1,9 +1,9 @@
 
-import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.2.30/types-codec/types/index.ts';
 import type { MetadataLatest, PalletConstantMetadataLatest } from '../../../interfaces/index.ts';
 import type { ConstantCodec, Constants } from '../types.ts';
 
-import { hexToU8a, lazyMethod, lazyMethods, stringCamelCase } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { hexToU8a, lazyMethod, lazyMethods, stringCamelCase } from 'https://deno.land/x/polkadot@0.2.30/util/mod.ts';
 
 import { objectNameToCamel } from '../util.ts';
 

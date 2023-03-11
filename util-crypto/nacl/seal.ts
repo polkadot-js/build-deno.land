@@ -17,7 +17,7 @@ interface Sealed {
  * <BR>
  *
  * ```javascript
- * import { naclSeal } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
+ * import { naclSeal } from 'https://deno.land/x/polkadot@0.2.30/util-crypto/mod.ts';
  *
  * naclSeal([...], [...], [...], [...]); // => [...]
  * ```

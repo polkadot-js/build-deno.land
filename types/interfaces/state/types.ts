@@ -1,9 +1,9 @@
 /* eslint-disable */
 
-import type { StorageKey } from 'https://deno.land/x/polkadot/types/mod.ts';
-import type { Bytes, Enum, HashMap, Option, Struct, Text, U8aFixed, Vec, bool, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { Hash, StorageData } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { StorageKey } from 'https://deno.land/x/polkadot@0.2.30/types/mod.ts';
+import type { Bytes, Enum, HashMap, Option, Struct, Text, U8aFixed, Vec, bool, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.30/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.2.30/types-codec/types/index.ts';
+import type { Hash, StorageData } from 'https://deno.land/x/polkadot@0.2.30/types/interfaces/runtime/index.ts';
 
 /** @name ApiId */
 export interface ApiId extends U8aFixed {}

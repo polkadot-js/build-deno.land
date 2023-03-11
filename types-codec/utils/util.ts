@@ -1,5 +1,5 @@
 
-import { isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isFunction } from 'https://deno.land/x/polkadot@0.2.30/util/mod.ts';
 
 export function hasEq (o: unknown): o is { eq: (other: unknown) => boolean } {
   return isFunction((o as { eq: unknown }).eq);

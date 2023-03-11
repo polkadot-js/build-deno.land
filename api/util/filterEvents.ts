@@ -1,7 +1,7 @@
 
-import type { BlockNumber, EventRecord, ExtrinsicStatus, H256, SignedBlock } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { BlockNumber, EventRecord, ExtrinsicStatus, H256, SignedBlock } from 'https://deno.land/x/polkadot@0.2.30/types/interfaces/index.ts';
 
-import { isCompact } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isCompact } from 'https://deno.land/x/polkadot@0.2.30/util/mod.ts';
 
 import { l } from './logging.ts';
 

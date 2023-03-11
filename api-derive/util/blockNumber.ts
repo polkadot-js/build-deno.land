@@ -1,8 +1,8 @@
 
-import type { Compact } from 'https://deno.land/x/polkadot/types/mod.ts';
-import type { BlockNumber } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Compact } from 'https://deno.land/x/polkadot@0.2.30/types/mod.ts';
+import type { BlockNumber } from 'https://deno.land/x/polkadot@0.2.30/types/interfaces/index.ts';
 
-import { isCompact } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isCompact } from 'https://deno.land/x/polkadot@0.2.30/util/mod.ts';
 
 type CompatHeader = { number: Compact<BlockNumber> | BlockNumber };
 

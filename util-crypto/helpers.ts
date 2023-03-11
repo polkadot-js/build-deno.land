@@ -1,10 +1,10 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.30/util/types.ts';
 
-import { hasBigInt, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
-import { isReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
+import { hasBigInt, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.30/util/mod.ts';
+import { isReady } from 'https://deno.land/x/polkadot@0.2.30/wasm-crypto/mod.ts';
 
-export type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+export type { HexString } from 'https://deno.land/x/polkadot@0.2.30/util/types.ts';
 
 interface DualHash {
   256: (u8a: Uint8Array) => Uint8Array;

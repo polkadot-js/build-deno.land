@@ -1,9 +1,9 @@
 
-import type { Inspect, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Inspect, Registry } from 'https://deno.land/x/polkadot@0.2.30/types-codec/types/index.ts';
 
-import { Enum } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import { isBn, isNumber, isString, isU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
-import { decodeAddress } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
+import { Enum } from 'https://deno.land/x/polkadot@0.2.30/types-codec/mod.ts';
+import { isBn, isNumber, isString, isU8a } from 'https://deno.land/x/polkadot@0.2.30/util/mod.ts';
+import { decodeAddress } from 'https://deno.land/x/polkadot@0.2.30/util-crypto/mod.ts';
 
 import { GenericAccountId } from './AccountId.ts';
 import { GenericAccountIndex } from './AccountIndex.ts';
