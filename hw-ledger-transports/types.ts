@@ -1,7 +1,9 @@
 
-import Transport from 'https://esm.sh/@ledgerhq/hw-transport@6.28.1';
-
 export type LedgerTypes = 'hid' | 'u2f' | 'webusb';
+
+export interface Transport {
+  create (): Promise<Transport>;
+}
 
 export interface TransportDef {
   /** Create a transport to be used in Ledger operations */

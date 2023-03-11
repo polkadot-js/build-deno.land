@@ -1,9 +1,9 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.29/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { KeyringPair, KeyringPairs } from './types.ts';
 
-import { isHex, isU8a, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.29/util/mod.ts';
-import { decodeAddress } from 'https://deno.land/x/polkadot@0.2.29/util-crypto/mod.ts';
+import { isHex, isU8a, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { decodeAddress } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 type KeyringPairMap = Record<string, KeyringPair>;
 
