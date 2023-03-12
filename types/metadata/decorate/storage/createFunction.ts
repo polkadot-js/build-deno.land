@@ -1,12 +1,12 @@
 
-import type { ICompact, Inspect, INumber } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { ICompact, Inspect, INumber } from 'https://deno.land/x/polkadot@0.2.31/types-codec/types/index.ts';
 import type { StorageEntryMetadataLatest, StorageHasher } from '../../../interfaces/metadata/index.ts';
 import type { StorageEntry, StorageEntryIterator } from '../../../primitive/types.ts';
 import type { Registry } from '../../../types/index.ts';
 
-import { Raw } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import { compactAddLength, compactStripLength, isUndefined, objectSpread, stringCamelCase, u8aConcat, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
-import { xxhashAsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
+import { Raw } from 'https://deno.land/x/polkadot@0.2.31/types-codec/mod.ts';
+import { compactAddLength, compactStripLength, isUndefined, objectSpread, stringCamelCase, u8aConcat, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.31/util/mod.ts';
+import { xxhashAsU8a } from 'https://deno.land/x/polkadot@0.2.31/util-crypto/mod.ts';
 
 import { StorageKey } from '../../../primitive/index.ts';
 import { getSiName } from '../../util/index.ts';

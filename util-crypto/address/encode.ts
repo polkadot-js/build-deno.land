@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.30/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.31/util/types.ts';
 import type { Prefix } from './types.ts';
 
-import { u8aConcat } from 'https://deno.land/x/polkadot@0.2.30/util/mod.ts';
+import { u8aConcat } from 'https://deno.land/x/polkadot@0.2.31/util/mod.ts';
 
 import { base58Encode } from '../base58/index.ts';
 import { decodeAddress } from './decode.ts';

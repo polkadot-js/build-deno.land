@@ -13,7 +13,7 @@ import { bnToBn } from './toBn.ts';
  *
  * ```javascript
  * import BN from 'https://esm.sh/bn.js@5.2.1';
- * import { bnSqrt } from 'https://deno.land/x/polkadot@0.2.30/util/mod.ts';
+ * import { bnSqrt } from 'https://deno.land/x/polkadot@0.2.31/util/mod.ts';
  *
  * bnSqrt(new BN(16)).toString(); // => '4'
  * ```

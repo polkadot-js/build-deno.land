@@ -1,9 +1,9 @@
 
-import type { KeypairType } from 'https://deno.land/x/polkadot@0.2.30/util-crypto/types.ts';
+import type { KeypairType } from 'https://deno.land/x/polkadot@0.2.31/util-crypto/types.ts';
 import type { KeyringPair$Json, KeyringPair$Meta } from '../types.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.30/util/mod.ts';
-import { jsonEncryptFormat } from 'https://deno.land/x/polkadot@0.2.30/util-crypto/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.2.31/util/mod.ts';
+import { jsonEncryptFormat } from 'https://deno.land/x/polkadot@0.2.31/util-crypto/mod.ts';
 
 interface PairStateJson {
   address: string;

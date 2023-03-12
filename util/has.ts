@@ -1,6 +1,6 @@
 
-import { BigInt } from 'https://deno.land/x/polkadot@0.2.30/x-bigint/mod.ts';
-import { xglobal } from 'https://deno.land/x/polkadot@0.2.30/x-global/mod.ts';
+import { BigInt } from 'https://deno.land/x/polkadot@0.2.31/x-bigint/mod.ts';
+import { xglobal } from 'https://deno.land/x/polkadot@0.2.31/x-global/mod.ts';
 
 declare const __dirname: unknown;
 declare const module: unknown;

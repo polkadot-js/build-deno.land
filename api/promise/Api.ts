@@ -1,7 +1,7 @@
 
 import type { ApiOptions, UnsubscribePromise } from '../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.2.31/util/mod.ts';
 
 import { ApiBase } from '../base/index.ts';
 import { Combinator, CombinatorCallback, CombinatorFunction } from './Combinator.ts';
@@ -26,7 +26,7 @@ import { promiseTracker, toPromiseMethod } from './decorateMethod.ts';
  * <BR>
  *
  * ```javascript
- * import ApiPromise from 'https://deno.land/x/polkadot/api/promise/index.ts';
+ * import ApiPromise from 'https://deno.land/x/polkadot@0.2.31/api/promise/index.ts';
  *
  * // initialise via static create
  * const api = await ApiPromise.create();
@@ -42,7 +42,7 @@ import { promiseTracker, toPromiseMethod } from './decorateMethod.ts';
  * <BR>
  *
  * ```javascript
- * import { ApiPromise, WsProvider } from 'https://deno.land/x/polkadot/api/mod.ts';
+ * import { ApiPromise, WsProvider } from 'https://deno.land/x/polkadot@0.2.31/api/mod.ts';
  *
  * // initialise a provider with a specific endpoint
  * const provider = new WsProvider('wss://example.com:9944')
@@ -70,7 +70,7 @@ import { promiseTracker, toPromiseMethod } from './decorateMethod.ts';
  * <BR>
  *
  * ```javascript
- * import ApiPromise from 'https://deno.land/x/polkadot/api/promise/index.ts';
+ * import ApiPromise from 'https://deno.land/x/polkadot@0.2.31/api/promise/index.ts';
  *
  * ApiPromise.create().then((api) => {
  *   const [nonce] = await api.query.system.account(keyring.alice.address);
@@ -103,7 +103,7 @@ export class ApiPromise extends ApiBase<'promise'> {
    * <BR>
    *
    * ```javascript
-   * import Api from 'https://deno.land/x/polkadot/api/promise/index.ts';
+   * import Api from 'https://deno.land/x/polkadot@0.2.31/api/promise/index.ts';
    *
    * new Api().isReady.then((api) => {
    *   api.rpc.subscribeNewHeads((header) => {
@@ -135,7 +135,7 @@ export class ApiPromise extends ApiBase<'promise'> {
    * <BR>
    *
    * ```javascript
-   * import Api from 'https://deno.land/x/polkadot/api/promise/index.ts';
+   * import Api from 'https://deno.land/x/polkadot@0.2.31/api/promise/index.ts';
    *
    * Api.create().then(async (api) => {
    *   const timestamp = await api.query.timestamp.now();

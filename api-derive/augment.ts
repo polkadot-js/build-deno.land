@@ -1,2 +1,2 @@
 
-import 'https://deno.land/x/polkadot/api-augment/mod.ts';
+import 'https://deno.land/x/polkadot@0.2.31/api-augment/mod.ts';

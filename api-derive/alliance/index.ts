@@ -1,8 +1,8 @@
 
 import { hasProposals as collectiveHasProposals, members as collectiveMembers, prime as collectivePrime, proposal as collectiveProposal, proposalCount as collectiveProposalCount, proposalHashes as collectiveProposalHashes, proposals as collectiveProposals } from '../collective/index.ts';
 
-export type { u32 } from 'https://deno.land/x/polkadot/types/mod.ts';
-export type { AccountId } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+export type { u32 } from 'https://deno.land/x/polkadot@0.2.31/types/mod.ts';
+export type { AccountId } from 'https://deno.land/x/polkadot@0.2.31/types/interfaces/index.ts';
 
 export const members = /*#__PURE__*/ collectiveMembers('allianceMotion');
 

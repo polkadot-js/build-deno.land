@@ -1,8 +1,8 @@
 /* eslint-disable */
 
-import type { Enum, Struct, Vec, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { AccountId, BlockNumber } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { Enum, Struct, Vec, u32 } from 'https://deno.land/x/polkadot@0.2.31/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.2.31/types-codec/types/index.ts';
+import type { AccountId, BlockNumber } from 'https://deno.land/x/polkadot@0.2.31/types/interfaces/runtime/index.ts';
 
 /** @name CollectiveOrigin */
 export interface CollectiveOrigin extends Enum {
