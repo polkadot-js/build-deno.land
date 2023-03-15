@@ -1,14 +1,14 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { Option, Vec } from 'https://deno.land/x/polkadot@0.2.31/types/mod.ts';
-import type { AccountId, Balance, Hash, PropIndex } from 'https://deno.land/x/polkadot@0.2.31/types/interfaces/index.ts';
-import type { FrameSupportPreimagesBounded } from 'https://deno.land/x/polkadot@0.2.31/types/lookup.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.31/types/types/index.ts';
+import type { Option, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, Balance, Hash, PropIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { FrameSupportPreimagesBounded } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DeriveApi, DeriveProposal, DeriveProposalImage } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.0';
 
-import { isFunction, objectSpread } from 'https://deno.land/x/polkadot@0.2.31/util/mod.ts';
+import { isFunction, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 import { getImageHashBounded } from './util.ts';

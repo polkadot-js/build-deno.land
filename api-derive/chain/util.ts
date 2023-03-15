@@ -1,16 +1,18 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { QueryableStorage } from 'https://deno.land/x/polkadot@0.2.31/api-base/types/index.ts';
-import type { Compact, Vec } from 'https://deno.land/x/polkadot@0.2.31/types/mod.ts';
-import type { AccountId, BlockNumber, Header } from 'https://deno.land/x/polkadot@0.2.31/types/interfaces/index.ts';
-import type { Codec, IOption } from 'https://deno.land/x/polkadot@0.2.31/types/types/index.ts';
+import type { QueryableStorage } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Compact, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, BlockNumber, Header } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Codec, IOption } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DeriveApi } from '../types.ts';
 
 import { combineLatest, map, of } from 'https://esm.sh/rxjs@7.8.0';
 
 import { memo, unwrapBlockNumber } from '../util/index.ts';
 
-export function createBlockNumberDerive <T extends { number: Compact<BlockNumber> | BlockNumber }> (fn: (api: DeriveApi) => Observable<T>): (instanceId: string, api: DeriveApi) => () => Observable<BlockNumber> {
+export type BlockNumberDerive = (instanceId: string, api: DeriveApi) => () => Observable<BlockNumber>;
+
+export function createBlockNumberDerive <T extends { number: Compact<BlockNumber> | BlockNumber }> (fn: (api: DeriveApi) => Observable<T>): BlockNumberDerive {
   return (instanceId: string, api: DeriveApi) =>
     memo(instanceId, () =>
       fn(api).pipe(

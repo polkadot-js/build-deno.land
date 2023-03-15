@@ -1,7 +1,7 @@
 
 import type { DefinitionsCall, DefinitionsCallEntry } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.31/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const PH_V1_TO_V2: DefinitionsCallEntry['methods'] = {
   assumed_validation_data: {

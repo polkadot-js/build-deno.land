@@ -1,5 +1,5 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.31/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 
 export type DefinitionTypeType = string;
 
@@ -40,6 +40,8 @@ export interface DefinitionRpc {
   endpoint?: string;
   /** true if this needs a signed submission, e.g. when submitting extrinsics */
   isSigned?: boolean;
+  /** true if this is an RPC call that has been marked unsafe */
+  isUnsafe?: boolean;
   /** Don't log any errors if they occur (should be used sparingly for exceptions only) */
   noErrorLog?: boolean;
   /** The applicable parameters for the call */

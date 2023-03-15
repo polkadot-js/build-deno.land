@@ -1,15 +1,15 @@
 
-import type { SubmittableResult } from 'https://deno.land/x/polkadot@0.2.31/api/mod.ts';
-import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot@0.2.31/api/submittable/types.ts';
-import type { ApiTypes } from 'https://deno.land/x/polkadot@0.2.31/api/types/index.ts';
-import type { WeightV1, WeightV2 } from 'https://deno.land/x/polkadot@0.2.31/types/interfaces/index.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.31/util/mod.ts';
+import type { SubmittableResult } from 'https://deno.land/x/polkadot/api/mod.ts';
+import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot/api/submittable/types.ts';
+import type { ApiTypes } from 'https://deno.land/x/polkadot/api/types/index.ts';
+import type { WeightV1, WeightV2 } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { AbiConstructor, AbiMessage, BlueprintOptions, WeightAll } from '../types.ts';
 import type { BlueprintDeploy, ContractGeneric } from './types.ts';
 
-import { Bytes } from 'https://deno.land/x/polkadot@0.2.31/types/mod.ts';
-import { bnToBn, compactAddLength, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.31/util/mod.ts';
-import { randomAsU8a } from 'https://deno.land/x/polkadot@0.2.31/util-crypto/mod.ts';
+import { Bytes } from 'https://deno.land/x/polkadot/types/mod.ts';
+import { bnToBn, compactAddLength, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { randomAsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 export const EMPTY_SALT = new Uint8Array();
 

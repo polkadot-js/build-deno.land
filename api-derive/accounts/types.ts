@@ -1,5 +1,5 @@
 
-import type { AccountId, AccountIndex, RegistrationJudgement } from 'https://deno.land/x/polkadot@0.2.31/types/interfaces/index.ts';
+import type { AccountId, AccountIndex, RegistrationJudgement } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 
 export type AccountIdAndIndex = [AccountId?, AccountIndex?];
 

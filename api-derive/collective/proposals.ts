@@ -1,19 +1,16 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { Option, u32 } from 'https://deno.land/x/polkadot@0.2.31/types/mod.ts';
-import type { Hash, Proposal, Votes } from 'https://deno.land/x/polkadot@0.2.31/types/interfaces/index.ts';
+import type { Option } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Hash, Proposal, Votes } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { DeriveApi, DeriveCollectiveProposal } from '../types.ts';
-import type { Collective } from './types.ts';
+import type { Collective, HasProposalsFnRet, ProposalCountFn, ProposalFnRet, ProposalHashesFn, ProposalsFnRet } from './types.ts';
 
 import { catchError, combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.0';
 
-import { isFunction } from 'https://deno.land/x/polkadot@0.2.31/util/mod.ts';
+import { isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { firstObservable } from '../util/index.ts';
 import { callMethod, withSection } from './helpers.ts';
-
-export type { Option, u32 } from 'https://deno.land/x/polkadot@0.2.31/types/mod.ts';
-export type { Hash, Proposal, Votes } from 'https://deno.land/x/polkadot@0.2.31/types/interfaces/index.ts';
 
 type Result = [(Hash | Uint8Array | string)[], (Option<Proposal> | null)[], Option<Votes>[]];
 
@@ -45,14 +42,14 @@ function _proposalsFrom (api: DeriveApi, query: DeriveApi['query']['council'], h
   );
 }
 
-export function hasProposals (section: Collective): (instanceId: string, api: DeriveApi) => () => Observable<boolean> {
+export function hasProposals (section: Collective): HasProposalsFnRet {
   return withSection(section, (query) =>
     (): Observable<boolean> =>
       of(isFunction(query?.proposals))
   );
 }
 
-export function proposals (section: Collective): (instanceId: string, api: DeriveApi) => () => Observable<DeriveCollectiveProposal[]> {
+export function proposals (section: Collective): ProposalsFnRet {
   return withSection(section, (query, api) =>
     (): Observable<DeriveCollectiveProposal[]> =>
       api.derive[section as 'council'].proposalHashes().pipe(
@@ -61,7 +58,7 @@ export function proposals (section: Collective): (instanceId: string, api: Deriv
   );
 }
 
-export function proposal (section: Collective): (instanceId: string, api: DeriveApi) => (hash: Hash | Uint8Array | string) => Observable<DeriveCollectiveProposal | null> {
+export function proposal (section: Collective): ProposalFnRet {
   return withSection(section, (query, api) =>
     (hash: Hash | Uint8Array | string): Observable<DeriveCollectiveProposal | null> =>
       isFunction(query?.proposals)
@@ -70,5 +67,5 @@ export function proposal (section: Collective): (instanceId: string, api: Derive
   );
 }
 
-export const proposalCount = /*#__PURE__*/ callMethod<u32 | null>('proposalCount', null);
-export const proposalHashes = /*#__PURE__*/ callMethod<Hash[]>('proposals', []);
+export const proposalCount: ProposalCountFn = /*#__PURE__*/ callMethod('proposalCount', null);
+export const proposalHashes: ProposalHashesFn = /*#__PURE__*/ callMethod('proposals', []);
