@@ -15,7 +15,7 @@ import { bnToU8a } from './toU8a.ts';
  *
  * ```javascript
  * import BN from 'https://esm.sh/bn.js@5.2.1';
- * import { bnToHex } from 'https://deno.land/x/polkadot@0.2.31/util/mod.ts';
+ * import { bnToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * bnToHex(new BN(0x123456)); // => '0x123456'
  * ```

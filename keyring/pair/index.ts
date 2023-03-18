@@ -1,11 +1,11 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.31/util/types.ts';
-import type { EncryptedJsonEncoding, Keypair, KeypairType } from 'https://deno.land/x/polkadot@0.2.31/util-crypto/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { EncryptedJsonEncoding, Keypair, KeypairType } from 'https://deno.land/x/polkadot/util-crypto/types.ts';
 import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } from '../types.ts';
 import type { PairInfo } from './types.ts';
 
-import { objectSpread, u8aConcat, u8aEmpty, u8aEq, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.31/util/mod.ts';
-import { blake2AsU8a, convertPublicKeyToCurve25519, convertSecretKeyToCurve25519, ed25519PairFromSeed as ed25519FromSeed, ed25519Sign, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, naclOpen, naclSeal, secp256k1Compress, secp256k1Expand, secp256k1PairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify, sr25519PairFromSeed as sr25519FromSeed, sr25519Sign, sr25519VrfSign, sr25519VrfVerify } from 'https://deno.land/x/polkadot@0.2.31/util-crypto/mod.ts';
+import { objectSpread, u8aConcat, u8aEmpty, u8aEq, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { blake2AsU8a, ed25519PairFromSeed as ed25519FromSeed, ed25519Sign, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, secp256k1Compress, secp256k1Expand, secp256k1PairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify, sr25519PairFromSeed as sr25519FromSeed, sr25519Sign, sr25519VrfSign, sr25519VrfVerify } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { decodePair } from './decode.ts';
 import { encodePair } from './encode.ts';
@@ -142,22 +142,6 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     },
     // eslint-disable-next-line sort-keys
     decodePkcs8,
-    decryptMessage: (encryptedMessageWithNonce: HexString | string | Uint8Array, senderPublicKey: HexString | string | Uint8Array): Uint8Array | null => {
-      if (isLocked(secretKey)) {
-        throw new Error('Cannot encrypt with a locked key pair');
-      } else if (['ecdsa', 'ethereum'].includes(type)) {
-        throw new Error('Secp256k1 not supported yet');
-      }
-
-      const messageU8a = u8aToU8a(encryptedMessageWithNonce);
-
-      return naclOpen(
-        messageU8a.slice(24, messageU8a.length),
-        messageU8a.slice(0, 24),
-        convertPublicKeyToCurve25519(u8aToU8a(senderPublicKey)),
-        convertSecretKeyToCurve25519(secretKey)
-      );
-    },
     derive: (suri: string, meta?: KeyringPair$Meta): KeyringPair => {
       if (type === 'ethereum') {
         throw new Error('Unable to derive on this keypair');
@@ -172,17 +156,6 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     },
     encodePkcs8: (passphrase?: string): Uint8Array => {
       return recode(passphrase);
-    },
-    encryptMessage: (message: HexString | string | Uint8Array, recipientPublicKey: HexString | string | Uint8Array, nonceIn?: Uint8Array): Uint8Array => {
-      if (isLocked(secretKey)) {
-        throw new Error('Cannot encrypt with a locked key pair');
-      } else if (['ecdsa', 'ethereum'].includes(type)) {
-        throw new Error('Secp256k1 not supported yet');
-      }
-
-      const { nonce, sealed } = naclSeal(u8aToU8a(message), convertSecretKeyToCurve25519(secretKey), convertPublicKeyToCurve25519(u8aToU8a(recipientPublicKey)), nonceIn);
-
-      return u8aConcat(nonce, sealed);
     },
     lock: (): void => {
       secretKey = new Uint8Array();

@@ -1,6 +1,6 @@
 
 
-import { stringToU8a, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.31/util/mod.ts';
+import { stringToU8a, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { pbkdf2Encode } from '../pbkdf2/index.ts';
 import { randomAsU8a } from '../random/index.ts';
@@ -101,7 +101,7 @@ export function generateMnemonic (numWords: 12 | 15 | 18 | 21 | 24): string {
 export function validateMnemonic (mnemonic: string): boolean {
   try {
     mnemonicToEntropy(mnemonic);
-  } catch (e) {
+  } catch {
     return false;
   }
 

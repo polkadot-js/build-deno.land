@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.31/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { KeypairType, VerifyResult } from '../types.ts';
 
-import { u8aIsWrapped, u8aToU8a, u8aUnwrapBytes, u8aWrapBytes } from 'https://deno.land/x/polkadot@0.2.31/util/mod.ts';
+import { u8aIsWrapped, u8aToU8a, u8aUnwrapBytes, u8aWrapBytes } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { decodeAddress } from '../address/decode.ts';
 import { ed25519Verify } from '../ed25519/verify.ts';
@@ -44,7 +44,7 @@ function verifyDetect (result: VerifyResult, { message, publicKey, signature }: 
 
         return true;
       }
-    } catch (error) {
+    } catch {
       // do nothing, result.isValid still set to false
     }
 
@@ -72,7 +72,7 @@ function verifyMultisig (result: VerifyResult, { message, publicKey, signature }
       },
       sr25519: () => sr25519Verify(message, signature.subarray(1), publicKey)
     }[type]();
-  } catch (error) {
+  } catch {
     // ignore, result.isValid still set to false
   }
 

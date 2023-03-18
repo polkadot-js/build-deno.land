@@ -24,48 +24,32 @@ const json: KeyringPair$Json = {
 const pair: KeyringPair = {
   address,
   addressRaw: publicKey,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  decodePkcs8: (passphrase?: string, encoded?: Uint8Array): void =>
+  decodePkcs8: (_passphrase?: string, _encoded?: Uint8Array): void =>
     undefined,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  decryptMessage: (encryptedMessageWithNonce: string | Uint8Array, senderPublicKey: string | Uint8Array): Uint8Array | null =>
-    null,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  derive: (suri: string, meta?: KeyringPair$Meta): KeyringPair =>
+  derive: (_suri: string, _meta?: KeyringPair$Meta): KeyringPair =>
     pair,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  encodePkcs8: (passphrase?: string): Uint8Array =>
+  encodePkcs8: (_passphrase?: string): Uint8Array =>
     new Uint8Array(0),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  encryptMessage: (message: string | Uint8Array, recipientPublicKey: string | Uint8Array, _nonce?: Uint8Array): Uint8Array =>
-    new Uint8Array(),
   isLocked: true,
   lock: (): void => {
     // no locking, it is always locked
   },
   meta,
   publicKey,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  setMeta: (meta: KeyringPair$Meta): void =>
+  setMeta: (_meta: KeyringPair$Meta): void =>
     undefined,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  sign: (message: Uint8Array): Uint8Array =>
+  sign: (_message: Uint8Array): Uint8Array =>
     new Uint8Array(64),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  toJson: (passphrase?: string): KeyringPair$Json =>
+  toJson: (_passphrase?: string): KeyringPair$Json =>
     json,
   type: 'ed25519',
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  unlock: (passphrase?: string): void =>
+  unlock: (_passphrase?: string): void =>
     undefined,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  verify: (message: Uint8Array, signature: Uint8Array): boolean =>
+  verify: (_message: Uint8Array, _signature: Uint8Array): boolean =>
     false,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  vrfSign: (message: Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): Uint8Array =>
+  vrfSign: (_message: Uint8Array, _context?: string | Uint8Array, _extra?: string | Uint8Array): Uint8Array =>
     new Uint8Array(96),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  vrfVerify: (message: Uint8Array, vrfResult: Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): boolean =>
+  vrfVerify: (_message: Uint8Array, _vrfResult: Uint8Array, _context?: string | Uint8Array, _extra?: string | Uint8Array): boolean =>
     false
 };
 

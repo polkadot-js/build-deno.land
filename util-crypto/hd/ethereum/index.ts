@@ -1,7 +1,7 @@
 
 import type { Keypair } from '../../types.ts';
 
-import { bnToU8a, stringToU8a, u8aConcat } from 'https://deno.land/x/polkadot@0.2.31/util/mod.ts';
+import { bnToU8a, stringToU8a, u8aConcat } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { BN_BE_32_OPTS } from '../../bn.ts';
 import { hmacShaAsU8a } from '../../hmac/index.ts';
@@ -35,7 +35,7 @@ function deriveChild (hd: CodedKeypair, index: number): CodedKeypair {
       secp256k1PrivateKeyTweakAdd(hd.secretKey, I.slice(0, 32)),
       I.slice(32)
     );
-  } catch (err) {
+  } catch {
     // In case parse256(IL) >= n or ki == 0, proceed with the next value for i
     return deriveChild(hd, index + 1);
   }

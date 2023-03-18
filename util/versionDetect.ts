@@ -1,5 +1,5 @@
 
-import { xglobal } from 'https://deno.land/x/polkadot@0.2.31/x-global/mod.ts';
+import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
 
 import { isFunction } from './is/function.ts';
 
@@ -90,7 +90,7 @@ function getPath (infoPath?: string, pathOrFn?: FnString | string | false | null
   } else if (isFunction(pathOrFn)) {
     try {
       return pathOrFn() || '';
-    } catch (error) {
+    } catch {
       return '';
     }
   }

@@ -1,9 +1,9 @@
 
-import { extractGlobal } from 'https://deno.land/x/polkadot@0.2.31/x-global/mod.ts';
+import { extractGlobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
 
 export { packageInfo } from './packageInfo.ts';
 
-const importFetch = import('https://esm.sh/node-fetch@3.3.0').catch(() => null);
+const importFetch = import('https://esm.sh/node-fetch@3.3.1').catch(() => null);
 
 let modFn: typeof fetch | null = null;
 
