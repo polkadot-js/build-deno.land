@@ -1,6 +1,6 @@
 
-import type { PalletBagsListListBag, PalletBagsListListNode } from 'https://deno.land/x/polkadot/types/lookup.ts';
-import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { PalletBagsListListBag, PalletBagsListListNode } from 'https://deno.land/x/polkadot@0.2.32/types/lookup.ts';
+import type { BN } from 'https://deno.land/x/polkadot@0.2.32/util/mod.ts';
 
 export interface Bag {
   bag: PalletBagsListListBag | null;

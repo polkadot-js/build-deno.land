@@ -10,7 +10,7 @@ import { u8aCmp } from './cmp.ts';
  * <BR>
  *
  * ```javascript
- * import { u8aSorted} from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { u8aSorted} from 'https://deno.land/x/polkadot@0.2.32/util/mod.ts';
  *
  * u8aSorted([new Uint8Array([0x69]), new Uint8Array([0x68])]); // [0x68, 0x69]
  * ```

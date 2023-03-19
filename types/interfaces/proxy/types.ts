@@ -1,7 +1,7 @@
 /* eslint-disable */
 
-import type { Enum, Struct } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { AccountId, BlockNumber, Hash } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { Enum, Struct } from 'https://deno.land/x/polkadot@0.2.32/types-codec/mod.ts';
+import type { AccountId, BlockNumber, Hash } from 'https://deno.land/x/polkadot@0.2.32/types/interfaces/runtime/index.ts';
 
 /** @name ProxyAnnouncement */
 export interface ProxyAnnouncement extends Struct {

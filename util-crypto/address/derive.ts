@@ -1,5 +1,5 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.32/util/types.ts';
 import type { DeriveJunction } from '../key/DeriveJunction.ts';
 import type { Prefix } from './types.ts';
 

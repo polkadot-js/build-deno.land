@@ -3,8 +3,8 @@ import { hmac } from 'https://esm.sh/@noble/hashes@1.3.0/hmac.js';
 import { sha256 } from 'https://esm.sh/@noble/hashes@1.3.0/sha256.js';
 import { sha512 } from 'https://esm.sh/@noble/hashes@1.3.0/sha512.js';
 
-import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
-import { hmacSha256, hmacSha512, isReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
+import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.32/util/mod.ts';
+import { hmacSha256, hmacSha512, isReady } from 'https://deno.land/x/polkadot@0.2.32/wasm-crypto/mod.ts';
 
 const JS_HASH = {
   256: sha256,
