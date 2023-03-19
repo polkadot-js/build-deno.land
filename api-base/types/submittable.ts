@@ -2,7 +2,7 @@
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { AccountId, Address, ApplyExtrinsicResult, BlockNumber, Call, DispatchError, DispatchInfo, EventRecord, Extrinsic, ExtrinsicStatus, Hash, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { AnyFunction, AnyNumber, AnyTuple, Callback, CallBase, Codec, IExtrinsicEra, IKeyringPair, ISubmittableResult, Signer } from 'https://deno.land/x/polkadot/types/types/index.ts';
-import type { ApiTypes, PromiseOrObs } from './base.ts';
+import type { ApiTypes, EmptyBase, PromiseOrObs } from './base.ts';
 
 export type AugmentedSubmittable<T extends AnyFunction, A extends AnyTuple = AnyTuple> = T & CallBase<A>;
 
@@ -78,7 +78,7 @@ export interface SubmittableExtrinsicFunction<ApiType extends ApiTypes, A extend
 }
 
 
-export interface AugmentedSubmittables<ApiType extends ApiTypes> {
+export interface AugmentedSubmittables<ApiType extends ApiTypes> extends EmptyBase<ApiType> {
   // augmented
 }
 

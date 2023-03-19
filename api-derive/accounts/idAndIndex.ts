@@ -44,7 +44,7 @@ export function idAndIndex (instanceId: string, api: DeriveApi): (address?: Addr
       return api.derive.accounts.indexToId(accountIndex.toString()).pipe(
         map((accountId): AccountIdAndIndex => [accountId, accountIndex])
       );
-    } catch (error) {
+    } catch {
       return of([undefined, undefined]);
     }
   });

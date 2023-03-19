@@ -9,7 +9,6 @@ import { memo } from '../util/index.ts';
 import { erasHistoricApplyAccount } from './util.ts';
 
 export function _stakerPrefs (instanceId: string, api: DeriveApi): (accountId: Uint8Array | string, eras: EraIndex[], withActive: boolean) => Observable<DeriveStakerPrefs[]> {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   return memo(instanceId, (accountId: Uint8Array | string, eras: EraIndex[], _withActive: boolean): Observable<DeriveStakerPrefs[]> =>
     api.query.staking.erasValidatorPrefs.multi(eras.map((e) => [e, accountId])).pipe(
       map((all): DeriveStakerPrefs[] =>

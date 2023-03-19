@@ -9,7 +9,6 @@ import { firstMemo, memo } from '../util/index.ts';
 import { erasHistoricApplyAccount } from './util.ts';
 
 export function _ownExposures (instanceId: string, api: DeriveApi): (accountId: Uint8Array | string, eras: EraIndex[], withActive: boolean) => Observable<DeriveOwnExposure[]> {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   return memo(instanceId, (accountId: Uint8Array | string, eras: EraIndex[], _withActive: boolean): Observable<DeriveOwnExposure[]> =>
     eras.length
       ? combineLatest([

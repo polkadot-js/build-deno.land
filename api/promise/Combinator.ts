@@ -60,7 +60,7 @@ export class Combinator<T extends unknown[] = unknown[]> {
     try {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.#callback(this.#results as T);
-    } catch (error) {
+    } catch {
       // swallow, we don't want the handler to trip us up
     }
   }
@@ -80,7 +80,7 @@ export class Combinator<T extends unknown[] = unknown[]> {
         if (isFunction(unsubscribe)) {
           unsubscribe();
         }
-      } catch (error) {
+      } catch {
         // ignore
       }
     });

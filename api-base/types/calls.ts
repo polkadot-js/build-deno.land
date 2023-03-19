@@ -1,7 +1,7 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { AnyFunction, Codec, DefinitionCallNamed } from 'https://deno.land/x/polkadot/types/types/index.ts';
-import type { ApiTypes, ReturnCodec } from './base.ts';
+import type { ApiTypes, EmptyBase, ReturnCodec } from './base.ts';
 
 export type DecoratedCallBase<ApiType extends ApiTypes, F extends AnyFunction = (...args: any[]) => Observable<Codec>> =
   ApiType extends 'rxjs'
@@ -14,7 +14,7 @@ export type AugmentedCall<ApiType extends ApiTypes, F extends AnyFunction = (...
 };
 
 
-export interface AugmentedCalls<ApiType extends ApiTypes> {
+export interface AugmentedCalls<ApiType extends ApiTypes> extends EmptyBase<ApiType> {
   // augmented
 }
 

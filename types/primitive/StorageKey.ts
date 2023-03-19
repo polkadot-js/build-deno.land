@@ -238,7 +238,7 @@ export class StorageKey<A extends AnyTuple = AnyTuple> extends Bytes implements 
 
     try {
       this.#args = decodeArgsFromMeta(this.registry, this.toU8a(true), meta);
-    } catch (error) {
+    } catch {
       // ignore...
     }
 

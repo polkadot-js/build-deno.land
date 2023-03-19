@@ -111,7 +111,7 @@ class InnerChecker {
 
     try {
       parsedRequest = JSON.parse(request) as JSONRequest;
-    } catch (err) {
+    } catch {
       return;
     }
 
@@ -129,7 +129,7 @@ class InnerChecker {
 
     try {
       parsedResponse = JSON.parse(jsonRpcResponse) as { id: string, result: undefined | SmoldotHealth };
-    } catch (err) {
+    } catch {
       return jsonRpcResponse;
     }
 

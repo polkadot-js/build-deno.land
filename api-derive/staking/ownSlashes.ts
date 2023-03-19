@@ -10,7 +10,6 @@ import { firstMemo, memo } from '../util/index.ts';
 import { erasHistoricApplyAccount } from './util.ts';
 
 export function _ownSlashes (instanceId: string, api: DeriveApi): (accountId: Uint8Array | string, eras: EraIndex[], withActive: boolean) => Observable<DeriveStakerSlashes[]> {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   return memo(instanceId, (accountId: Uint8Array | string, eras: EraIndex[], _withActive: boolean): Observable<DeriveStakerSlashes[]> =>
     eras.length
       ? combineLatest([

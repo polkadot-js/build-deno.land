@@ -1,14 +1,14 @@
 
 import type { PalletConstantMetadataLatest } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { Codec } from 'https://deno.land/x/polkadot/types/types/index.ts';
-import type { ApiTypes } from './base.ts';
+import type { ApiTypes, EmptyBase } from './base.ts';
 
-export interface AugmentedConst<ApiType extends ApiTypes> {
+export interface AugmentedConst<_ extends ApiTypes> {
   meta: PalletConstantMetadataLatest;
 }
 
 
-export interface AugmentedConsts<ApiType extends ApiTypes> {
+export interface AugmentedConsts<ApiType extends ApiTypes> extends EmptyBase<ApiType> {
   // augmented
 }
 

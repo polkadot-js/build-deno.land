@@ -4,7 +4,7 @@ import type { StorageKey, u64 } from 'https://deno.land/x/polkadot/types/mod.ts'
 import type { Hash } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { StorageEntry } from 'https://deno.land/x/polkadot/types/primitive/types.ts';
 import type { AnyFunction, AnyTuple, Callback, Codec, IStorageKey } from 'https://deno.land/x/polkadot/types/types/index.ts';
-import type { ApiTypes, DropLast, MethodResult, PaginationOptions, PromiseOrObs, ReturnCodec, UnsubscribePromise } from './base.ts';
+import type { ApiTypes, DropLast, EmptyBase, MethodResult, PaginationOptions, PromiseOrObs, ReturnCodec, UnsubscribePromise } from './base.ts';
 
 interface StorageEntryObservableMulti<R extends Codec = Codec> {
   <T extends Codec = R>(args: (unknown[] | unknown)[]): Observable<T[]>;
@@ -109,7 +109,7 @@ export type AugmentedQueryAt<ApiType extends ApiTypes, F extends AnyFunction, A 
 export type AugmentedQueryDoubleMap<ApiType extends ApiTypes, F extends AnyFunction, A extends AnyTuple = AnyTuple> = AugmentedQuery<ApiType, F, A>;
 
 
-export interface AugmentedQueries<ApiType extends ApiTypes> {
+export interface AugmentedQueries<ApiType extends ApiTypes> extends EmptyBase<ApiType> {
   // augmented
 }
 

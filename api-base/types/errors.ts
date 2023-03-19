@@ -1,11 +1,11 @@
 
 import type { IsError } from 'https://deno.land/x/polkadot/types/metadata/decorate/types.ts';
-import type { ApiTypes } from './base.ts';
+import type { ApiTypes, EmptyBase } from './base.ts';
 
-export type AugmentedError<ApiType extends ApiTypes> = IsError;
+export type AugmentedError<_ extends ApiTypes> = IsError;
 
 
-export interface AugmentedErrors<ApiType extends ApiTypes> {
+export interface AugmentedErrors<ApiType extends ApiTypes> extends EmptyBase<ApiType> {
   // augmented
 }
 
