@@ -1,11 +1,11 @@
 # CHANGELOG
 
-## master
+## 0.2.32 Mar 19, 2023
 
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 10.1.4
 - phishing 0.20.3
 - hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 11.1.1
-- api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 10.1.3
+
 
 ## 0.2.31 Mar 12, 2023
 
