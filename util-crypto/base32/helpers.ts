@@ -1,9 +1,9 @@
 
-import type { U8aLike } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { U8aLike } from 'https://deno.land/x/polkadot@0.2.33/util/types.ts';
 
-import { u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { u8aToU8a } from 'https://deno.land/x/polkadot@0.2.33/util/mod.ts';
 
-export type { U8aLike } from 'https://deno.land/x/polkadot/util/types.ts';
+export type { U8aLike } from 'https://deno.land/x/polkadot@0.2.33/util/types.ts';
 
 interface Coder {
   decode: (value: string) => Uint8Array;

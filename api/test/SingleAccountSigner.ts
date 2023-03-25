@@ -1,9 +1,9 @@
 
-import type { KeyringPair } from 'https://deno.land/x/polkadot/keyring/types.ts';
-import type { Registry, SignerPayloadJSON, SignerPayloadRaw } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { KeyringPair } from 'https://deno.land/x/polkadot@0.2.33/keyring/types.ts';
+import type { Registry, SignerPayloadJSON, SignerPayloadRaw } from 'https://deno.land/x/polkadot@0.2.33/types/types/index.ts';
 import type { Signer, SignerResult } from '../types/index.ts';
 
-import { hexToU8a, objectSpread, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { hexToU8a, objectSpread, u8aToHex } from 'https://deno.land/x/polkadot@0.2.33/util/mod.ts';
 
 let id = 0;
 

@@ -1,7 +1,7 @@
 
 import type { DefinitionsCall, DefinitionsCallEntry } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.2.33/util/mod.ts';
 
 const CORE_V1_TO_V4: DefinitionsCallEntry['methods'] = {
   execute_block: {
