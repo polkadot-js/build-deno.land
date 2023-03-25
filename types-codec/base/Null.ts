@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.32/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { Codec, Inspect, IU8a, Registry } from '../types/index.ts';
 
-import { isNull } from 'https://deno.land/x/polkadot@0.2.32/util/mod.ts';
+import { isNull } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 /**
  * @name Null
@@ -87,7 +87,6 @@ export class Null implements Codec {
 
   /**
    * @description Encodes the value as a Uint8Array as per the SCALE specifications
-   * @param isBare true when the value has none of the type-specific prefixes (internal)
    */
   public toU8a (_isBare?: boolean): Uint8Array {
     return new Uint8Array();

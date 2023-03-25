@@ -1,9 +1,9 @@
 
-import type { BN } from 'https://deno.land/x/polkadot@0.2.32/util/mod.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.32/util/types.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, AnyNumber, CodecClass, ICompact, Inspect, INumber, IU8a, Registry } from '../types/index.ts';
 
-import { compactFromU8a, compactFromU8aLim, compactToU8a, isU8a } from 'https://deno.land/x/polkadot@0.2.32/util/mod.ts';
+import { compactFromU8a, compactFromU8aLim, compactToU8a, isU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { typeToConstructor } from '../utils/index.ts';
 
@@ -191,7 +191,6 @@ export class Compact<T extends INumber> implements ICompact<T> {
 
   /**
    * @description Encodes the value as a Uint8Array as per the SCALE specifications
-   * @param isBare true when the value has none of the type-specific prefixes (internal)
    */
   public toU8a (_isBare?: boolean): Uint8Array {
     return compactToU8a(this.#raw.toBn());

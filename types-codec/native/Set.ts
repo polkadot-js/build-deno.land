@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.32/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { CodecClass, Inspect, ISet, IU8a, Registry } from '../types/index.ts';
 
-import { BN, bnToBn, bnToU8a, isBn, isNumber, isString, isU8a, isUndefined, objectProperties, stringify, stringPascalCase, u8aToBn, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.32/util/mod.ts';
+import { BN, bnToBn, bnToU8a, isBn, isNumber, isString, isU8a, isUndefined, objectProperties, stringify, stringPascalCase, u8aToBn, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { compareArray } from '../utils/index.ts';
 
@@ -255,7 +255,6 @@ export class CodecSet extends Set<string> implements ISet<string> {
 
   /**
    * @description Encodes the value as a Uint8Array as per the SCALE specifications
-   * @param isBare true when the value has none of the type-specific prefixes (internal)
    */
   public toU8a (_isBare?: boolean): Uint8Array {
     return bnToU8a(this.valueEncoded, {

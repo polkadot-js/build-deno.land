@@ -1,12 +1,12 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.32/api-base/types/errors.ts';
+import 'https://deno.land/x/polkadot/api-base/types/errors.ts';
 
-import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot@0.2.32/api-base/types/index.ts';
+import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 
 export type __AugmentedError<ApiType extends ApiTypes> = AugmentedError<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/errors.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
   interface AugmentedErrors<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -179,6 +179,10 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/errors.ts' {
        **/
       BalanceLow: AugmentedError<ApiType>;
       /**
+       * Callback action resulted in error
+       **/
+      CallbackFailed: AugmentedError<ApiType>;
+      /**
        * The origin account is frozen.
        **/
       Frozen: AugmentedError<ApiType>;
@@ -212,12 +216,6 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/errors.ts' {
        **/
       NoPermission: AugmentedError<ApiType>;
       /**
-       * Unable to increment the consumer reference counters on the account. Either no provider
-       * reference exists to allow a non-zero balance of a non-self-sufficient asset, or the
-       * maximum number of consumers has been reached.
-       **/
-      NoProvider: AugmentedError<ApiType>;
-      /**
        * The asset should be frozen before the given operation.
        **/
       NotFrozen: AugmentedError<ApiType>;
@@ -225,6 +223,12 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/errors.ts' {
        * No approval exists that would allow the transfer.
        **/
       Unapproved: AugmentedError<ApiType>;
+      /**
+       * Unable to increment the consumer reference counters on the account. Either no provider
+       * reference exists to allow a non-zero balance of a non-self-sufficient asset, or one
+       * fewer then the maximum number of consumers has been reached.
+       **/
+      UnavailableConsumer: AugmentedError<ApiType>;
       /**
        * The given asset ID is unknown.
        **/
@@ -266,35 +270,43 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/errors.ts' {
     };
     balances: {
       /**
-       * Beneficiary account must pre-exist
+       * Beneficiary account must pre-exist.
        **/
       DeadAccount: AugmentedError<ApiType>;
       /**
-       * Value too low to create account due to existential deposit
+       * Value too low to create account due to existential deposit.
        **/
       ExistentialDeposit: AugmentedError<ApiType>;
       /**
-       * A vesting schedule already exists for this account
+       * A vesting schedule already exists for this account.
        **/
       ExistingVestingSchedule: AugmentedError<ApiType>;
+      /**
+       * Transfer/payment would kill account.
+       **/
+      Expendability: AugmentedError<ApiType>;
       /**
        * Balance too low to send value.
        **/
       InsufficientBalance: AugmentedError<ApiType>;
       /**
-       * Transfer/payment would kill account
-       **/
-      KeepAlive: AugmentedError<ApiType>;
-      /**
-       * Account liquidity restrictions prevent withdrawal
+       * Account liquidity restrictions prevent withdrawal.
        **/
       LiquidityRestrictions: AugmentedError<ApiType>;
       /**
-       * Number of named reserves exceed MaxReserves
+       * Number of freezes exceed `MaxFreezes`.
+       **/
+      TooManyFreezes: AugmentedError<ApiType>;
+      /**
+       * Number of holds exceed `MaxHolds`.
+       **/
+      TooManyHolds: AugmentedError<ApiType>;
+      /**
+       * Number of named reserves exceed `MaxReserves`.
        **/
       TooManyReserves: AugmentedError<ApiType>;
       /**
-       * Vesting balance too high to send value
+       * Vesting balance too high to send value.
        **/
       VestingBalance: AugmentedError<ApiType>;
       /**
@@ -384,7 +396,7 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/errors.ts' {
        * The contract's code was found to be invalid during validation or instrumentation.
        * 
        * The most likely cause of this is that an API was used which is not supported by the
-       * node. This hapens if an older node is used with a new version of ink!. Try updating
+       * node. This happens if an older node is used with a new version of ink!. Try updating
        * your node to the newest available version.
        * 
        * A more detailed error can be found on the node console if debug messages are enabled
@@ -564,6 +576,50 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/errors.ts' {
        * The given account did not vote on the poll.
        **/
       NotVoter: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    coreFellowship: {
+      /**
+       * The candidate has already been inducted. This should never happen since it would
+       * require a candidate (rank 0) to already be tracked in the pallet.
+       **/
+      AlreadyInducted: AugmentedError<ApiType>;
+      /**
+       * The given rank is invalid - this generally means it's not between 1 and `RANK_COUNT`.
+       **/
+      InvalidRank: AugmentedError<ApiType>;
+      /**
+       * The origin does not have enough permission to do this operation.
+       **/
+      NoPermission: AugmentedError<ApiType>;
+      /**
+       * No work needs to be done at present for this member.
+       **/
+      NothingDoing: AugmentedError<ApiType>;
+      /**
+       * The candidate has not been inducted, so cannot be offboarded from this pallet.
+       **/
+      NotTracked: AugmentedError<ApiType>;
+      /**
+       * Member's rank is not zero.
+       **/
+      Ranked: AugmentedError<ApiType>;
+      /**
+       * Operation cannot be done yet since not enough time has passed.
+       **/
+      TooSoon: AugmentedError<ApiType>;
+      /**
+       * Member's rank is not as expected - generally means that the rank provided to the call
+       * does not agree with the state of the system.
+       **/
+      UnexpectedRank: AugmentedError<ApiType>;
+      /**
+       * Member's rank is too low.
+       **/
+      Unranked: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -1216,6 +1272,10 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/errors.ts' {
        **/
       CollectionIdInUse: AugmentedError<ApiType>;
       /**
+       * Can't delete non-empty collections.
+       **/
+      CollectionNotEmpty: AugmentedError<ApiType>;
+      /**
        * The deadline has already expired.
        **/
       DeadlineExpired: AugmentedError<ApiType>;
@@ -1410,6 +1470,9 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/errors.ts' {
        * The portion supplied is beyond the value of the receipt.
        **/
       PortionTooBig: AugmentedError<ApiType>;
+      Release1: AugmentedError<ApiType>;
+      Release2: AugmentedError<ApiType>;
+      Tah: AugmentedError<ApiType>;
       /**
        * The thaw throttle has been reached for this period.
        **/
@@ -1450,6 +1513,18 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/errors.ts' {
        **/
       CannotWithdrawAny: AugmentedError<ApiType>;
       /**
+       * The submitted changes to commission change rate are not allowed.
+       **/
+      CommissionChangeRateNotAllowed: AugmentedError<ApiType>;
+      /**
+       * Not enough blocks have surpassed since the last commission update.
+       **/
+      CommissionChangeThrottled: AugmentedError<ApiType>;
+      /**
+       * The supplied commission exceeds the max allowed commission.
+       **/
+      CommissionExceedsMaximum: AugmentedError<ApiType>;
+      /**
        * Some error occurred that should never happen. This should be reported to the
        * maintainers.
        **/
@@ -1467,6 +1542,10 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/errors.ts' {
        * Pool id provided is not correct/usable.
        **/
       InvalidPoolId: AugmentedError<ApiType>;
+      /**
+       * The pool's max commission cannot be set higher than the existing value.
+       **/
+      MaxCommissionRestricted: AugmentedError<ApiType>;
       /**
        * Too many members in the pool or system.
        **/
@@ -1491,6 +1570,14 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/errors.ts' {
        * permissions for the pool. Members can never unbond to a value below `MinJoinBond`.
        **/
       MinimumBondNotMet: AugmentedError<ApiType>;
+      /**
+       * No commission current has been set.
+       **/
+      NoCommissionCurrentSet: AugmentedError<ApiType>;
+      /**
+       * There is no pending commission to claim.
+       **/
+      NoPendingCommission: AugmentedError<ApiType>;
       /**
        * A pool must be in [`PoolState::Destroying`] in order for the depositor to unbond or for
        * other members to be permissionlessly unbonded.

@@ -1,5 +1,5 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.32/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, Codec, CodecClass, Inspect, IU8a, Registry } from '../types/index.ts';
 
 /**
@@ -51,38 +51,65 @@ export class DoNotConstruct implements Codec {
     throw this.#neverError;
   }
 
+  /**
+   * @description Unimplemented
+   */
   eq (): boolean {
     throw this.#neverError;
   }
 
+  /**
+   * @description Unimplemented
+   */
   public inspect (): Inspect {
     throw this.#neverError;
   }
 
+  /**
+   * @description Unimplemented
+   */
   toHex (): HexString {
     throw this.#neverError;
   }
 
+  /**
+   * @description Unimplemented
+   */
   toHuman (): AnyJson {
     throw this.#neverError;
   }
 
+  /**
+   * @description Unimplemented
+   */
   toJSON (): AnyJson {
     throw this.#neverError;
   }
 
+  /**
+   * @description Unimplemented
+   */
   toPrimitive (): AnyJson {
     throw this.#neverError;
   }
 
+  /**
+   * @description Unimplemented
+   */
   toRawType (): string {
     throw this.#neverError;
   }
 
+  /**
+   * @description Unimplemented
+   */
   toString (): string {
     throw this.#neverError;
   }
 
+  /**
+   * @description Unimplemented
+   */
   toU8a (): Uint8Array {
     throw this.#neverError;
   }

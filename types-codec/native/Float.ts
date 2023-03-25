@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.32/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyFloat, CodecClass, IFloat, Inspect, IU8a, Registry } from '../types/index.ts';
 
-import { floatToU8a, isHex, isU8a, u8aToFloat, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.32/util/mod.ts';
+import { floatToU8a, isHex, isU8a, u8aToFloat, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 interface Options {
   bitLength?: 32 | 64;
@@ -126,7 +126,9 @@ export class Float extends Number implements IFloat {
   /**
    * @description Encodes the value as a Uint8Array as per the SCALE specifications
    */
-  public toU8a (): Uint8Array {
-    return floatToU8a(this, { bitLength: this.#bitLength });
+  public toU8a (_isBare?: boolean): Uint8Array {
+    return floatToU8a(this, {
+      bitLength: this.#bitLength
+    });
   }
 }

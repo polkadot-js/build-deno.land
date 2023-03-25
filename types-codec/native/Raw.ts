@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.32/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, AnyU8a, Inspect, IU8a, Registry } from '../types/index.ts';
 
-import { isAscii, isUndefined, isUtf8, u8aToHex, u8aToString, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.32/util/mod.ts';
+import { isAscii, isUndefined, isUtf8, u8aToHex, u8aToString, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 /**
  * @name Raw
@@ -151,7 +151,6 @@ export class Raw extends Uint8Array implements IU8a {
 
   /**
    * @description Encodes the value as a Uint8Array as per the SCALE specifications
-   * @param isBare true when the value has none of the type-specific prefixes (internal)
    */
   public toU8a (_isBare?: boolean): Uint8Array {
     return Uint8Array.from(this);

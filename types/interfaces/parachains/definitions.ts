@@ -3,7 +3,7 @@
 
 import type { Definitions } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.32/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import hrmpTypes from './hrmp.ts';
 import { runtime } from './runtime.ts';
@@ -53,6 +53,19 @@ const disputeTypes = {
     session: 'SessionIndex',
     statements: 'Vec<(DisputeStatement, ParaValidatorIndex, ValidatorSignature)>'
   },
+  ExecutorParam: {
+    _enum: {
+      Phantom: 'Null', // index starts at 1... empty slot at 0
+      MaxMemoryPages: 'u32',
+      StackLogicalMax: 'u32',
+      StackNativeMax: 'u32',
+      PrecheckingMaxMemory: 'u64',
+      PvfPrepTimeout: '(PvfPrepTimeoutKind, u64)',
+      PvfExecTimeout: '(PvfExecTimeoutKind, u64)'
+    }
+  },
+  ExecutorParamsHash: 'Hash',
+  ExecutorParams: 'Vec<ExecutorParam>',
   ExplicitDisputeStatement: {
     valid: 'bool',
     candidateHash: 'CandidateHash',
@@ -62,6 +75,12 @@ const disputeTypes = {
     _enum: ['Explicit']
   },
   MultiDisputeStatementSet: 'Vec<DisputeStatementSet>',
+  PvfExecTimeoutKind: {
+    _enum: ['Backing', 'Approval']
+  },
+  PvfPrepTimeoutKind: {
+    _enum: ['Precheck', 'Lenient']
+  },
   ValidDisputeStatementKind: {
     _enum: {
       Explicit: 'Null',

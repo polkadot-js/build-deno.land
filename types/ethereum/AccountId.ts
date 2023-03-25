@@ -1,9 +1,9 @@
 
-import type { AnyString, AnyU8a, Registry } from 'https://deno.land/x/polkadot@0.2.32/types-codec/types/index.ts';
+import type { AnyString, AnyU8a, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 
-import { U8aFixed } from 'https://deno.land/x/polkadot@0.2.32/types-codec/mod.ts';
-import { hexToU8a, isHex, isString, isU8a, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.32/util/mod.ts';
-import { ethereumEncode, isEthereumAddress } from 'https://deno.land/x/polkadot@0.2.32/util-crypto/mod.ts';
+import { U8aFixed } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { hexToU8a, isHex, isString, isU8a, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { ethereumEncode, isEthereumAddress } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 /** @internal */
 function decodeAccountId (value: AnyU8a | AnyString): AnyU8a {
@@ -34,7 +34,7 @@ export class GenericEthereumAccountId extends U8aFixed {
    * @description Compares the value of the input to see if there is a match
    */
   public override eq (other?: unknown): boolean {
-    return super.eq(decodeAccountId(other as AnyU8a));
+    return !!other && super.eq(decodeAccountId(other as AnyU8a));
   }
 
   /**

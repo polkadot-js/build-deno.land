@@ -1,16 +1,16 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.32/api-base/types/consts.ts';
+import 'https://deno.land/x/polkadot/api-base/types/consts.ts';
 
-import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot@0.2.32/api-base/types/index.ts';
-import type { Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.32/types-codec/mod.ts';
-import type { Codec, ITuple } from 'https://deno.land/x/polkadot@0.2.32/types-codec/types/index.ts';
-import type { Perbill, Percent, Permill, Perquintill } from 'https://deno.land/x/polkadot@0.2.32/types/interfaces/runtime/index.ts';
-import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, PalletContractsSchedule, PalletReferendaTrackInfo, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot@0.2.32/types/lookup.ts';
+import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Codec, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Perbill, Percent, Permill, Perquintill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, KitchensinkRuntimeHoldReason, PalletContractsSchedule, PalletReferendaTrackInfo, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedConst<ApiType extends ApiTypes> = AugmentedConst<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/consts.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
   interface AugmentedConsts<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -102,9 +102,24 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/consts.ts' {
     };
     balances: {
       /**
-       * The minimum amount required to keep an account open.
+       * The minimum amount required to keep an account open. MUST BE GREATER THAN ZERO!
+       * 
+       * If you *really* need it to be zero, you can enable the feature `insecure_zero_ed` for
+       * this pallet. However, you do so at your own risk: this will open up a major DoS vector.
+       * In case you have multiple sources of provider references, you may also get unexpected
+       * behaviour if you set this to zero.
+       * 
+       * Bottom line: Do yourself a favour and make it at least one!
        **/
       existentialDeposit: u128 & AugmentedConst<ApiType>;
+      /**
+       * The maximum number of individual freeze locks that can exist on an account at any time.
+       **/
+      maxFreezes: u32 & AugmentedConst<ApiType>;
+      /**
+       * The maximum number of holds that can exist on an account at any time.
+       **/
+      maxHolds: u32 & AugmentedConst<ApiType>;
       /**
        * The maximum number of locks that should exist on an account.
        * Not strictly enforced, but used for weight estimation.
@@ -283,6 +298,16 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/consts.ts' {
        **/
       [key: string]: Codec;
     };
+    coreFellowship: {
+      /**
+       * The maximum size in bytes submitted evidence is allowed to be.
+       **/
+      evidenceSize: u32 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
     democracy: {
       /**
        * Period in blocks where an external proposal may not be re-submitted after being vetoed.
@@ -380,6 +405,7 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/consts.ts' {
       minerMaxLength: u32 & AugmentedConst<ApiType>;
       minerMaxVotesPerVoter: u32 & AugmentedConst<ApiType>;
       minerMaxWeight: SpWeightsWeightV2Weight & AugmentedConst<ApiType>;
+      minerMaxWinners: u32 & AugmentedConst<ApiType>;
       /**
        * The priority of the unsigned transaction submitted in the unsigned-phase
        **/
@@ -742,6 +768,10 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/consts.ts' {
        **/
       fifoQueueLen: u32 & AugmentedConst<ApiType>;
       /**
+       * The identifier of the hold reason.
+       **/
+      holdReason: KitchensinkRuntimeHoldReason & AugmentedConst<ApiType>;
+      /**
        * The number of blocks between consecutive attempts to dequeue bids and create receipts.
        * 
        * A larger value results in fewer storage hits each block, but a slower period to get to
@@ -783,10 +813,6 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/consts.ts' {
        * this value multiplied by `Period`.
        **/
       queueCount: u32 & AugmentedConst<ApiType>;
-      /**
-       * The name for the reserve ID.
-       **/
-      reserveId: U8aFixed & AugmentedConst<ApiType>;
       /**
        * The maximum proportion which may be thawed and the period over which it is reset.
        **/

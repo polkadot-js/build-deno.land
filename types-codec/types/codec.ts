@@ -1,5 +1,5 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.32/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, ToString } from './helpers.ts';
 import type { IU8a } from './interfaces.ts';
 import type { Registry } from './registry.ts';
@@ -109,7 +109,8 @@ export interface Codec {
 
   /**
    * @description Encodes the value as a Uint8Array as per the SCALE specifications
-   * @param isBare true when the value has none of the type-specific prefixes (internal)
+   * @param isBare true when the value has none of the type-specific prefixes (internal use, only available on
+   * some Codec types, specifically those that add encodings such as length of indexes)
    */
   toU8a (isBare?: BareOpts): Uint8Array;
 }

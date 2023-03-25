@@ -1,19 +1,19 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.ts';
+import 'https://deno.land/x/polkadot/api-base/types/submittable.ts';
 
-import type { ApiTypes, AugmentedSubmittable, SubmittableExtrinsic, SubmittableExtrinsicFunction } from 'https://deno.land/x/polkadot@0.2.32/api-base/types/index.ts';
-import type { Data } from 'https://deno.land/x/polkadot@0.2.32/types/mod.ts';
-import type { Bytes, Compact, Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.32/types-codec/mod.ts';
-import type { AnyNumber, IMethod, ITuple } from 'https://deno.land/x/polkadot@0.2.32/types-codec/types/index.ts';
-import type { AccountId32, Call, H256, MultiAddress, Perbill, Percent, Perquintill } from 'https://deno.land/x/polkadot@0.2.32/types/interfaces/runtime/index.ts';
-import type { FrameSupportPreimagesBounded, FrameSupportScheduleDispatchTime, KitchensinkRuntimeOriginCaller, KitchensinkRuntimeProxyType, KitchensinkRuntimeSessionKeys, PalletAllianceCid, PalletAllianceDisbandWitness, PalletAllianceUnscrupulousItem, PalletContractsWasmDeterminism, PalletConvictionVotingConviction, PalletConvictionVotingVoteAccountVote, PalletDemocracyConviction, PalletDemocracyMetadataOwner, PalletDemocracyVoteAccountVote, PalletElectionProviderMultiPhaseRawSolution, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletElectionsPhragmenRenouncing, PalletIdentityBitFlags, PalletIdentityIdentityInfo, PalletIdentityJudgement, PalletImOnlineHeartbeat, PalletImOnlineSr25519AppSr25519Signature, PalletMultisigTimepoint, PalletNftsAttributeNamespace, PalletNftsCancelAttributesApprovalWitness, PalletNftsCollectionConfig, PalletNftsDestroyWitness, PalletNftsItemConfig, PalletNftsItemTip, PalletNftsMintSettings, PalletNftsMintWitness, PalletNftsPreSignedAttributes, PalletNftsPreSignedMint, PalletNftsPriceWithDirection, PalletNominationPoolsBondExtra, PalletNominationPoolsClaimPermission, PalletNominationPoolsConfigOpAccountId32, PalletNominationPoolsConfigOpU128, PalletNominationPoolsConfigOpU32, PalletNominationPoolsPoolState, PalletSocietyJudgement, PalletStakingPalletConfigOpPerbill, PalletStakingPalletConfigOpPercent, PalletStakingPalletConfigOpU128, PalletStakingPalletConfigOpU32, PalletStakingRewardDestination, PalletStakingValidatorPrefs, PalletStateTrieMigrationMigrationLimits, PalletStateTrieMigrationMigrationTask, PalletStateTrieMigrationProgress, PalletUniquesDestroyWitness, PalletVestingVestingInfo, SpConsensusBabeDigestsNextConfigDescriptor, SpConsensusGrandpaEquivocationProof, SpConsensusSlotsEquivocationProof, SpNposElectionsElectionScore, SpNposElectionsSupport, SpRuntimeMultiSignature, SpSessionMembershipProof, SpTransactionStorageProofTransactionStorageProof, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot@0.2.32/types/lookup.ts';
+import type { ApiTypes, AugmentedSubmittable, SubmittableExtrinsic, SubmittableExtrinsicFunction } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Data } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Bytes, Compact, Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { AnyNumber, IMethod, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { AccountId32, Call, H256, MultiAddress, Perbill, Percent, Perquintill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportPreimagesBounded, FrameSupportScheduleDispatchTime, KitchensinkRuntimeOriginCaller, KitchensinkRuntimeProxyType, KitchensinkRuntimeSessionKeys, PalletAllianceCid, PalletAllianceDisbandWitness, PalletAllianceUnscrupulousItem, PalletContractsWasmDeterminism, PalletConvictionVotingConviction, PalletConvictionVotingVoteAccountVote, PalletCoreFellowshipParamsType, PalletCoreFellowshipWish, PalletDemocracyConviction, PalletDemocracyMetadataOwner, PalletDemocracyVoteAccountVote, PalletElectionProviderMultiPhaseRawSolution, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletElectionsPhragmenRenouncing, PalletIdentityBitFlags, PalletIdentityIdentityInfo, PalletIdentityJudgement, PalletImOnlineHeartbeat, PalletImOnlineSr25519AppSr25519Signature, PalletMultisigTimepoint, PalletNftsAttributeNamespace, PalletNftsCancelAttributesApprovalWitness, PalletNftsCollectionConfig, PalletNftsDestroyWitness, PalletNftsItemConfig, PalletNftsItemTip, PalletNftsMintSettings, PalletNftsMintWitness, PalletNftsPreSignedAttributes, PalletNftsPreSignedMint, PalletNftsPriceWithDirection, PalletNominationPoolsBondExtra, PalletNominationPoolsClaimPermission, PalletNominationPoolsCommissionChangeRate, PalletNominationPoolsConfigOpAccountId32, PalletNominationPoolsConfigOpPerbill, PalletNominationPoolsConfigOpU128, PalletNominationPoolsConfigOpU32, PalletNominationPoolsPoolState, PalletSocietyJudgement, PalletStakingPalletConfigOpPerbill, PalletStakingPalletConfigOpPercent, PalletStakingPalletConfigOpU128, PalletStakingPalletConfigOpU32, PalletStakingRewardDestination, PalletStakingValidatorPrefs, PalletStateTrieMigrationMigrationLimits, PalletStateTrieMigrationMigrationTask, PalletStateTrieMigrationProgress, PalletUniquesDestroyWitness, PalletVestingVestingInfo, SpConsensusBabeDigestsNextConfigDescriptor, SpConsensusGrandpaEquivocationProof, SpConsensusSlotsEquivocationProof, SpNposElectionsElectionScore, SpNposElectionsSupport, SpRuntimeMultiSignature, SpSessionMembershipProof, SpTransactionStorageProofTransactionStorageProof, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedSubmittable = AugmentedSubmittable<() => unknown>;
 export type __SubmittableExtrinsic<ApiType extends ApiTypes> = SubmittableExtrinsic<ApiType>;
 export type __SubmittableExtrinsicFunction<ApiType extends ApiTypes> = SubmittableExtrinsicFunction<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
   interface AugmentedSubmittables<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -773,11 +773,14 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
     };
     balances: {
       /**
-       * Exactly as `transfer`, except the origin must be root and the source account may be
-       * specified.
-       * ## Complexity
-       * - Same as transfer, but additional read and write because the source account is not
-       * assumed to be in the overlay.
+       * Set the regular balance of a given account.
+       * 
+       * The dispatch origin for this call is `root`.
+       **/
+      forceSetBalance: AugmentedSubmittable<(who: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, newFree: Compact<u128> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u128>]>;
+      /**
+       * Exactly as `transfer_allow_death`, except the origin must be root and the source account
+       * may be specified.
        **/
       forceTransfer: AugmentedSubmittable<(source: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, dest: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, value: Compact<u128> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, MultiAddress, Compact<u128>]>;
       /**
@@ -787,39 +790,18 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
        **/
       forceUnreserve: AugmentedSubmittable<(who: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, amount: u128 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, u128]>;
       /**
-       * Set the balances of a given account.
-       * 
-       * This will alter `FreeBalance` and `ReservedBalance` in storage. it will
-       * also alter the total issuance of the system (`TotalIssuance`) appropriately.
-       * If the new free or reserved balance is below the existential deposit,
-       * it will reset the account nonce (`frame_system::AccountNonce`).
+       * Set the regular balance of a given account; it also takes a reserved balance but this
+       * must be the same as the account's current reserved balance.
        * 
        * The dispatch origin for this call is `root`.
+       * 
+       * WARNING: This call is DEPRECATED! Use `force_set_balance` instead.
        **/
-      setBalance: AugmentedSubmittable<(who: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, newFree: Compact<u128> | AnyNumber | Uint8Array, newReserved: Compact<u128> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u128>, Compact<u128>]>;
+      setBalanceDeprecated: AugmentedSubmittable<(who: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, newFree: Compact<u128> | AnyNumber | Uint8Array, oldReserved: Compact<u128> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u128>, Compact<u128>]>;
       /**
-       * Transfer some liquid free balance to another account.
+       * Alias for `transfer_allow_death`, provided only for name-wise compatibility.
        * 
-       * `transfer` will set the `FreeBalance` of the sender and receiver.
-       * If the sender's account is below the existential deposit as a result
-       * of the transfer, the account will be reaped.
-       * 
-       * The dispatch origin for this call must be `Signed` by the transactor.
-       * 
-       * ## Complexity
-       * - Dependent on arguments but not critical, given proper implementations for input config
-       * types. See related functions below.
-       * - It contains a limited number of reads and writes internally and no complex
-       * computation.
-       * 
-       * Related functions:
-       * 
-       * - `ensure_can_withdraw` is always called internally but has a bounded complexity.
-       * - Transferring balances to accounts that did not exist before will cause
-       * `T::OnNewAccount::on_new_account` to be called.
-       * - Removing enough funds from an account will trigger `T::DustRemoval::on_unbalanced`.
-       * - `transfer_keep_alive` works the same way as `transfer`, but has an additional check
-       * that the transfer will not kill the origin account.
+       * WARNING: DEPRECATED! Will be released in approximately 3 months.
        **/
       transfer: AugmentedSubmittable<(dest: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, value: Compact<u128> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u128>]>;
       /**
@@ -837,19 +819,39 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
        * - `keep_alive`: A boolean to determine if the `transfer_all` operation should send all
        * of the funds the account has, causing the sender account to be killed (false), or
        * transfer everything except at least the existential deposit, which will guarantee to
-       * keep the sender account alive (true). ## Complexity
-       * - O(1). Just like transfer, but reading the user's transferable balance first.
+       * keep the sender account alive (true).
        **/
       transferAll: AugmentedSubmittable<(dest: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, keepAlive: bool | boolean | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, bool]>;
       /**
-       * Same as the [`transfer`] call, but with a check that the transfer will not kill the
-       * origin account.
+       * Transfer some liquid free balance to another account.
        * 
-       * 99% of the time you want [`transfer`] instead.
+       * `transfer_allow_death` will set the `FreeBalance` of the sender and receiver.
+       * If the sender's account is below the existential deposit as a result
+       * of the transfer, the account will be reaped.
        * 
-       * [`transfer`]: struct.Pallet.html#method.transfer
+       * The dispatch origin for this call must be `Signed` by the transactor.
+       **/
+      transferAllowDeath: AugmentedSubmittable<(dest: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, value: Compact<u128> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u128>]>;
+      /**
+       * Same as the [`transfer_allow_death`] call, but with a check that the transfer will not
+       * kill the origin account.
+       * 
+       * 99% of the time you want [`transfer_allow_death`] instead.
+       * 
+       * [`transfer_allow_death`]: struct.Pallet.html#method.transfer
        **/
       transferKeepAlive: AugmentedSubmittable<(dest: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, value: Compact<u128> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u128>]>;
+      /**
+       * Upgrade a specified account.
+       * 
+       * - `origin`: Must be `Signed`.
+       * - `who`: The account to be upgraded.
+       * 
+       * This will waive the transaction fee if at least all but 10% of the accounts needed to
+       * be upgraded. (We let some not have to be upgraded just in order to allow for the
+       * possibililty of churn).
+       **/
+      upgradeAccounts: AugmentedSubmittable<(who: Vec<AccountId32> | (AccountId32 | string | Uint8Array)[]) => SubmittableExtrinsic<ApiType>, [Vec<AccountId32>]>;
       /**
        * Generic tx
        **/
@@ -1242,9 +1244,9 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
        * the in storage version to the current
        * [`InstructionWeights::version`](InstructionWeights).
        * 
-       * - `determinism`: If this is set to any other value but [`Determinism::Deterministic`]
-       * then the only way to use this code is to delegate call into it from an offchain
-       * execution. Set to [`Determinism::Deterministic`] if in doubt.
+       * - `determinism`: If this is set to any other value but [`Determinism::Enforced`] then
+       * the only way to use this code is to delegate call into it from an offchain execution.
+       * Set to [`Determinism::Enforced`] if in doubt.
        * 
        * # Note
        * 
@@ -1253,7 +1255,7 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
        * only be instantiated by permissioned entities. The same is true when uploading
        * through [`Self::instantiate_with_code`].
        **/
-      uploadCode: AugmentedSubmittable<(code: Bytes | string | Uint8Array, storageDepositLimit: Option<Compact<u128>> | null | Uint8Array | Compact<u128> | AnyNumber, determinism: PalletContractsWasmDeterminism | 'Deterministic' | 'AllowIndeterminism' | number | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes, Option<Compact<u128>>, PalletContractsWasmDeterminism]>;
+      uploadCode: AugmentedSubmittable<(code: Bytes | string | Uint8Array, storageDepositLimit: Option<Compact<u128>> | null | Uint8Array | Compact<u128> | AnyNumber, determinism: PalletContractsWasmDeterminism | 'Enforced' | 'Relaxed' | number | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes, Option<Compact<u128>>, PalletContractsWasmDeterminism]>;
       /**
        * Generic tx
        **/
@@ -1378,6 +1380,96 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
        * Weight: `O(R)` where R is the number of polls the voter has voted on.
        **/
       vote: AugmentedSubmittable<(pollIndex: Compact<u32> | AnyNumber | Uint8Array, vote: PalletConvictionVotingVoteAccountVote | { Standard: any } | { Split: any } | { SplitAbstain: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, PalletConvictionVotingVoteAccountVote]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
+    };
+    coreFellowship: {
+      /**
+       * Approve a member to continue at their rank.
+       * 
+       * This resets `last_proof` to the current block, thereby delaying any automatic demotion.
+       * 
+       * If `who` is not already tracked by this pallet, then it will become tracked.
+       * `last_promotion` will be set to zero.
+       * 
+       * - `origin`: An origin which satisfies `ApproveOrigin` or root.
+       * - `who`: A member (i.e. of non-zero rank).
+       * - `at_rank`: The rank of member.
+       **/
+      approve: AugmentedSubmittable<(who: AccountId32 | string | Uint8Array, atRank: u16 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId32, u16]>;
+      /**
+       * Bump the state of a member.
+       * 
+       * This will demote a member whose `last_proof` is now beyond their rank's
+       * `demotion_period`.
+       * 
+       * - `origin`: A `Signed` origin of an account.
+       * - `who`: A member account whose state is to be updated.
+       **/
+      bump: AugmentedSubmittable<(who: AccountId32 | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId32]>;
+      /**
+       * Introduce an already-ranked individual of the collective into this pallet. The rank may
+       * still be zero.
+       * 
+       * This resets `last_proof` to the current block and `last_promotion` will be set to zero,
+       * thereby delaying any automatic demotion but allowing immediate promotion.
+       * 
+       * - `origin`: A signed origin of a ranked, but not tracked, account.
+       **/
+      import: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
+      /**
+       * Introduce a new and unranked candidate (rank zero).
+       * 
+       * - `origin`: An origin which satisfies `InductOrigin` or root.
+       * - `who`: The account ID of the candidate to be inducted and become a member.
+       **/
+      induct: AugmentedSubmittable<(who: AccountId32 | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId32]>;
+      /**
+       * Stop tracking a prior member who is now not a ranked member of the collective.
+       * 
+       * - `origin`: A `Signed` origin of an account.
+       * - `who`: The ID of an account which was tracked in this pallet but which is now not a
+       * ranked member of the collective.
+       **/
+      offboard: AugmentedSubmittable<(who: AccountId32 | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId32]>;
+      /**
+       * Increment the rank of a ranked and tracked account.
+       * 
+       * - `origin`: An origin which satisfies `PromoteOrigin` with a `Success` result of
+       * `to_rank` or more or root.
+       * - `who`: The account ID of the member to be promoted to `to_rank`.
+       * - `to_rank`: One more than the current rank of `who`.
+       **/
+      promote: AugmentedSubmittable<(who: AccountId32 | string | Uint8Array, toRank: u16 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId32, u16]>;
+      /**
+       * Set whether a member is active or not.
+       * 
+       * - `origin`: A `Signed` origin of a member's account.
+       * - `is_active`: `true` iff the member is active.
+       **/
+      setActive: AugmentedSubmittable<(isActive: bool | boolean | Uint8Array) => SubmittableExtrinsic<ApiType>, [bool]>;
+      /**
+       * Set the parameters.
+       * 
+       * - `origin`: A origin complying with `ParamsOrigin` or root.
+       * - `params`: The new parameters for the pallet.
+       **/
+      setParams: AugmentedSubmittable<(params: PalletCoreFellowshipParamsType | { activeSalary?: any; passiveSalary?: any; demotionPeriod?: any; minPromotionPeriod?: any; offboardTimeout?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [PalletCoreFellowshipParamsType]>;
+      /**
+       * Provide evidence that a rank is deserved.
+       * 
+       * This is free as long as no evidence for the forthcoming judgement is already submitted.
+       * Evidence is cleared after an outcome (either demotion, promotion of approval).
+       * 
+       * - `origin`: A `Signed` origin of an inducted and ranked account.
+       * - `wish`: The stated desire of the member.
+       * - `evidence`: A dump of evidence to be considered. This should generally be either a
+       * Markdown-encoded document or a series of 32-byte hashes which can be found on a
+       * decentralised content-based-indexing system such as IPFS.
+       **/
+      submitEvidence: AugmentedSubmittable<(wish: PalletCoreFellowshipWish | 'Retention' | 'Promotion' | number | Uint8Array, evidence: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [PalletCoreFellowshipWish, Bytes]>;
       /**
        * Generic tx
        **/
@@ -2638,21 +2730,17 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
       /**
        * Destroy a single item.
        * 
-       * Origin must be Signed and the signing account must be either:
-       * - the Admin of the `collection`;
-       * - the Owner of the `item`;
+       * The origin must conform to `ForceOrigin` or must be Signed and the signing account must
+       * be the owner of the `item`.
        * 
        * - `collection`: The collection of the item to be burned.
        * - `item`: The item to be burned.
-       * - `check_owner`: If `Some` then the operation will fail with `WrongOwner` unless the
-       * item is owned by this value.
        * 
-       * Emits `Burned` with the actual amount burned.
+       * Emits `Burned`.
        * 
        * Weight: `O(1)`
-       * Modes: `check_owner.is_some()`.
        **/
-      burn: AugmentedSubmittable<(collection: u32 | AnyNumber | Uint8Array, item: u32 | AnyNumber | Uint8Array, checkOwner: Option<MultiAddress> | null | Uint8Array | MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string) => SubmittableExtrinsic<ApiType>, [u32, u32, Option<MultiAddress>]>;
+      burn: AugmentedSubmittable<(collection: u32 | AnyNumber | Uint8Array, item: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32, u32]>;
       /**
        * Allows to buy an item if it's up for sale.
        * 
@@ -2670,7 +2758,6 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
        * 
        * Origin must be either:
        * - the `Force` origin;
-       * - `Signed` with the signer being the Admin of the `collection`;
        * - `Signed` with the signer being the Owner of the `item`;
        * 
        * Arguments:
@@ -2728,7 +2815,6 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
        * 
        * Origin must be either:
        * - the `Force` origin;
-       * - `Signed` with the signer being the Admin of the `collection`;
        * - `Signed` with the signer being the Owner of the `item`;
        * 
        * Arguments:
@@ -2761,7 +2847,7 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
       /**
        * Clear the metadata for a collection.
        * 
-       * Origin must be either `ForceOrigin` or `Signed` and the sender should be the Owner of
+       * Origin must be either `ForceOrigin` or `Signed` and the sender should be the Admin of
        * the `collection`.
        * 
        * Any deposit is freed for the collection's owner.
@@ -2776,7 +2862,7 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
       /**
        * Clear the metadata for an item.
        * 
-       * Origin must be either `ForceOrigin` or Signed and the sender should be the Owner of the
+       * Origin must be either `ForceOrigin` or Signed and the sender should be the Admin of the
        * `collection`.
        * 
        * Any deposit is freed for the collection's owner.
@@ -2832,18 +2918,20 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
        * The origin must conform to `ForceOrigin` or must be `Signed` and the sender must be the
        * owner of the `collection`.
        * 
+       * NOTE: The collection must have 0 items to be destroyed.
+       * 
        * - `collection`: The identifier of the collection to be destroyed.
        * - `witness`: Information on the items minted in the collection. This must be
        * correct.
        * 
        * Emits `Destroyed` event when successful.
        * 
-       * Weight: `O(n + m)` where:
-       * - `n = witness.items`
+       * Weight: `O(m + c + a)` where:
        * - `m = witness.item_metadatas`
+       * - `c = witness.item_configs`
        * - `a = witness.attributes`
        **/
-      destroy: AugmentedSubmittable<(collection: u32 | AnyNumber | Uint8Array, witness: PalletNftsDestroyWitness | { items?: any; itemMetadatas?: any; attributes?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32, PalletNftsDestroyWitness]>;
+      destroy: AugmentedSubmittable<(collection: u32 | AnyNumber | Uint8Array, witness: PalletNftsDestroyWitness | { itemMetadatas?: any; itemConfigs?: any; attributes?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32, PalletNftsDestroyWitness]>;
       /**
        * Change the config of a collection.
        * 
@@ -2927,12 +3015,13 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
       /**
        * Disallows specified settings for the whole collection.
        * 
-       * Origin must be Signed and the sender should be the Freezer of the `collection`.
+       * Origin must be Signed and the sender should be the Owner of the `collection`.
        * 
        * - `collection`: The collection to be locked.
        * - `lock_settings`: The settings to be locked.
        * 
        * Note: it's possible to only lock(set) the setting, but not to unset it.
+       * 
        * Emits `CollectionLocked`.
        * 
        * Weight: `O(1)`
@@ -2941,8 +3030,8 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
       /**
        * Disallows changing the metadata or attributes of the item.
        * 
-       * Origin must be either `ForceOrigin` or Signed and the sender should be the Owner of the
-       * `collection`.
+       * Origin must be either `ForceOrigin` or Signed and the sender should be the Admin
+       * of the `collection`.
        * 
        * - `collection`: The collection if the `item`.
        * - `item`: An item to be locked.
@@ -2950,8 +3039,8 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
        * - `lock_attributes`: Specifies whether the attributes in the `CollectionOwner` namespace
        * should be locked.
        * 
-       * Note: `lock_attributes` affects the attributes in the `CollectionOwner` namespace
-       * only. When the metadata or attributes are locked, it won't be possible the unlock them.
+       * Note: `lock_attributes` affects the attributes in the `CollectionOwner` namespace only.
+       * When the metadata or attributes are locked, it won't be possible the unlock them.
        * 
        * Emits `ItemPropertiesLocked`.
        * 
@@ -2974,7 +3063,7 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
       /**
        * Mint an item of a particular collection.
        * 
-       * The origin must be Signed and the sender must be the Issuer of the `collection`.
+       * The origin must be Signed and the sender must comply with the `mint_settings` rules.
        * 
        * - `collection`: The collection of the item to be minted.
        * - `item`: An identifier of the new item.
@@ -2998,7 +3087,7 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
        * its metadata, attributes, who can mint it (`None` for anyone) and until what block
        * number.
        * - `signature`: The signature of the `data` object.
-       * - `signer`: The `data` object's signer. Should be an owner of the collection.
+       * - `signer`: The `data` object's signer. Should be an Issuer of the collection.
        * 
        * Emits `Issued` on success.
        * Emits `AttributeSet` if the attributes were provided.
@@ -3052,7 +3141,7 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
        * Set an attribute for a collection or item.
        * 
        * Origin must be Signed and must conform to the namespace ruleset:
-       * - `CollectionOwner` namespace could be modified by the `collection` owner only;
+       * - `CollectionOwner` namespace could be modified by the `collection` Admin only;
        * - `ItemOwner` namespace could be modified by the `maybe_item` owner only. `maybe_item`
        * should be set in that case;
        * - `Account(AccountId)` namespace could be modified only when the `origin` was given a
@@ -3081,7 +3170,7 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
        * - `data`: The pre-signed approval that consists of the information about the item,
        * attributes to update and until what block number.
        * - `signature`: The signature of the `data` object.
-       * - `signer`: The `data` object's signer. Should be an owner of the collection for the
+       * - `signer`: The `data` object's signer. Should be an Admin of the collection for the
        * `CollectionOwner` namespace.
        * 
        * Emits `AttributeSet` for each provided attribute.
@@ -3104,7 +3193,7 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
       /**
        * Set the metadata for a collection.
        * 
-       * Origin must be either `ForceOrigin` or `Signed` and the sender should be the Owner of
+       * Origin must be either `ForceOrigin` or `Signed` and the sender should be the Admin of
        * the `collection`.
        * 
        * If the origin is `Signed`, then funds of signer are reserved according to the formula:
@@ -3122,7 +3211,7 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
       /**
        * Set the metadata for an item.
        * 
-       * Origin must be either `ForceOrigin` or Signed and the sender should be the Owner of the
+       * Origin must be either `ForceOrigin` or Signed and the sender should be the Admin of the
        * `collection`.
        * 
        * If the origin is Signed, then funds of signer are reserved according to the formula:
@@ -3141,7 +3230,7 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
       /**
        * Set (or reset) the price for an item.
        * 
-       * Origin must be Signed and must be the owner of the asset `item`.
+       * Origin must be Signed and must be the owner of the `item`.
        * 
        * - `collection`: The collection of the item.
        * - `item`: The item to set the price for.
@@ -3158,6 +3247,9 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
        * Origin must be either `ForceOrigin` or Signed and the sender should be the Owner of the
        * `collection`.
        * 
+       * Note: by setting the role to `None` only the `ForceOrigin` will be able to change it
+       * after to `Some(account)`.
+       * 
        * - `collection`: The collection whose team should be changed.
        * - `issuer`: The new Issuer of this collection.
        * - `admin`: The new Admin of this collection.
@@ -3167,12 +3259,11 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
        * 
        * Weight: `O(1)`
        **/
-      setTeam: AugmentedSubmittable<(collection: u32 | AnyNumber | Uint8Array, issuer: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, admin: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, freezer: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32, MultiAddress, MultiAddress, MultiAddress]>;
+      setTeam: AugmentedSubmittable<(collection: u32 | AnyNumber | Uint8Array, issuer: Option<MultiAddress> | null | Uint8Array | MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string, admin: Option<MultiAddress> | null | Uint8Array | MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string, freezer: Option<MultiAddress> | null | Uint8Array | MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string) => SubmittableExtrinsic<ApiType>, [u32, Option<MultiAddress>, Option<MultiAddress>, Option<MultiAddress>]>;
       /**
        * Move an item from the sender account to another.
        * 
        * Origin must be Signed and the signing account must be either:
-       * - the Admin of the `collection`;
        * - the Owner of the `item`;
        * - the approved delegate for the `item` (in this case, the approval is reset).
        * 
@@ -3216,8 +3307,8 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
       /**
        * Update mint settings.
        * 
-       * Origin must be either `ForceOrigin` or `Signed` and the sender should be the Owner of
-       * the `collection`.
+       * Origin must be either `ForceOrigin` or `Signed` and the sender should be the Issuer
+       * of the `collection`.
        * 
        * - `collection`: The identifier of the collection to change.
        * - `mint_settings`: The new mint settings.
@@ -3328,8 +3419,16 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
        **/
       chill: AugmentedSubmittable<(poolId: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32]>;
       /**
+       * Claim pending commission.
+       * 
+       * The dispatch origin of this call must be signed by the `root` role of the pool. Pending
+       * commission is paid out and added to total claimed commission`. Total pending commission
+       * is reset to zero. the current.
+       **/
+      claimCommission: AugmentedSubmittable<(poolId: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32]>;
+      /**
        * A bonded member can use this to claim their payout based on the rewards that the pool
-       * has accumulated since their last claimed payout (OR since joining if this is there first
+       * has accumulated since their last claimed payout (OR since joining if this is their first
        * time claiming rewards). The payout will be transferred to the member's account.
        * 
        * The member will earn rewards pro rata based on the members stake vs the sum of the
@@ -3422,6 +3521,29 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
        **/
       setClaimPermission: AugmentedSubmittable<(permission: PalletNominationPoolsClaimPermission | 'Permissioned' | 'PermissionlessCompound' | 'PermissionlessWithdraw' | 'PermissionlessAll' | number | Uint8Array) => SubmittableExtrinsic<ApiType>, [PalletNominationPoolsClaimPermission]>;
       /**
+       * Set the commission of a pool.
+       * Both a commission percentage and a commission payee must be provided in the `current`
+       * tuple. Where a `current` of `None` is provided, any current commission will be removed.
+       * 
+       * - If a `None` is supplied to `new_commission`, existing commission will be removed.
+       **/
+      setCommission: AugmentedSubmittable<(poolId: u32 | AnyNumber | Uint8Array, newCommission: Option<ITuple<[Perbill, AccountId32]>> | null | Uint8Array | ITuple<[Perbill, AccountId32]> | [Perbill | AnyNumber | Uint8Array, AccountId32 | string | Uint8Array]) => SubmittableExtrinsic<ApiType>, [u32, Option<ITuple<[Perbill, AccountId32]>>]>;
+      /**
+       * Set the commission change rate for a pool.
+       * 
+       * Initial change rate is not bounded, whereas subsequent updates can only be more
+       * restrictive than the current.
+       **/
+      setCommissionChangeRate: AugmentedSubmittable<(poolId: u32 | AnyNumber | Uint8Array, changeRate: PalletNominationPoolsCommissionChangeRate | { maxIncrease?: any; minDelay?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32, PalletNominationPoolsCommissionChangeRate]>;
+      /**
+       * Set the maximum commission of a pool.
+       * 
+       * - Initial max can be set to any `Perbill`, and only smaller values thereafter.
+       * - Current commission will be lowered in the event it is higher than a new max
+       * commission.
+       **/
+      setCommissionMax: AugmentedSubmittable<(poolId: u32 | AnyNumber | Uint8Array, maxCommission: Perbill | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32, Perbill]>;
+      /**
        * Update configurations for the nomination pools. The origin for this call must be
        * Root.
        * 
@@ -3432,13 +3554,14 @@ declare module 'https://deno.land/x/polkadot@0.2.32/api-base/types/submittable.t
        * * `max_pools` - Set [`MaxPools`].
        * * `max_members` - Set [`MaxPoolMembers`].
        * * `max_members_per_pool` - Set [`MaxPoolMembersPerPool`].
+       * * `global_max_commission` - Set [`GlobalMaxCommission`].
        **/
-      setConfigs: AugmentedSubmittable<(minJoinBond: PalletNominationPoolsConfigOpU128 | { Noop: any } | { Set: any } | { Remove: any } | string | Uint8Array, minCreateBond: PalletNominationPoolsConfigOpU128 | { Noop: any } | { Set: any } | { Remove: any } | string | Uint8Array, maxPools: PalletNominationPoolsConfigOpU32 | { Noop: any } | { Set: any } | { Remove: any } | string | Uint8Array, maxMembers: PalletNominationPoolsConfigOpU32 | { Noop: any } | { Set: any } | { Remove: any } | string | Uint8Array, maxMembersPerPool: PalletNominationPoolsConfigOpU32 | { Noop: any } | { Set: any } | { Remove: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [PalletNominationPoolsConfigOpU128, PalletNominationPoolsConfigOpU128, PalletNominationPoolsConfigOpU32, PalletNominationPoolsConfigOpU32, PalletNominationPoolsConfigOpU32]>;
+      setConfigs: AugmentedSubmittable<(minJoinBond: PalletNominationPoolsConfigOpU128 | { Noop: any } | { Set: any } | { Remove: any } | string | Uint8Array, minCreateBond: PalletNominationPoolsConfigOpU128 | { Noop: any } | { Set: any } | { Remove: any } | string | Uint8Array, maxPools: PalletNominationPoolsConfigOpU32 | { Noop: any } | { Set: any } | { Remove: any } | string | Uint8Array, maxMembers: PalletNominationPoolsConfigOpU32 | { Noop: any } | { Set: any } | { Remove: any } | string | Uint8Array, maxMembersPerPool: PalletNominationPoolsConfigOpU32 | { Noop: any } | { Set: any } | { Remove: any } | string | Uint8Array, globalMaxCommission: PalletNominationPoolsConfigOpPerbill | { Noop: any } | { Set: any } | { Remove: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [PalletNominationPoolsConfigOpU128, PalletNominationPoolsConfigOpU128, PalletNominationPoolsConfigOpU32, PalletNominationPoolsConfigOpU32, PalletNominationPoolsConfigOpU32, PalletNominationPoolsConfigOpPerbill]>;
       /**
        * Set a new metadata for the pool.
        * 
-       * The dispatch origin of this call must be signed by the bouncer, or the root role
-       * of the pool.
+       * The dispatch origin of this call must be signed by the bouncer, or the root role of the
+       * pool.
        **/
       setMetadata: AugmentedSubmittable<(poolId: u32 | AnyNumber | Uint8Array, metadata: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32, Bytes]>;
       /**

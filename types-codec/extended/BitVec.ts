@@ -1,7 +1,7 @@
 
 import type { AnyU8a, Inspect, Registry } from '../types/index.ts';
 
-import { compactFromU8aLim, compactToU8a, isString, u8aConcatStrict, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.32/util/mod.ts';
+import { compactFromU8aLim, compactToU8a, isString, u8aConcatStrict, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Raw } from '../native/Raw.ts';
 
@@ -71,6 +71,9 @@ export class BitVec extends Raw {
     };
   }
 
+  /**
+   * @description Converts the Object to to a human-friendly JSON, with additional fields, expansion and formatting of information
+   */
   public override toHuman (): string {
     return `0b${
       [...this.toU8a(true)]
@@ -92,7 +95,7 @@ export class BitVec extends Raw {
    * @param isBare true when the value has none of the type-specific prefixes (internal)
    */
   public override toU8a (isBare?: boolean): Uint8Array {
-    const bitVec = super.toU8a();
+    const bitVec = super.toU8a(isBare);
 
     return isBare
       ? bitVec

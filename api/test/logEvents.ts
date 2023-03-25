@@ -1,5 +1,5 @@
 
-import type { EventRecord } from 'https://deno.land/x/polkadot@0.2.32/types/interfaces/index.ts';
+import type { EventRecord } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 
 import { SubmittableResult } from '../index.ts';
 

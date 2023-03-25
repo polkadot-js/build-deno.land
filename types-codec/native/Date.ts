@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.32/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyNumber, Inspect, INumber, IU8a, Registry, UIntBitLength } from '../types/index.ts';
 
-import { BN, bnToBn, bnToHex, bnToU8a, isString, isU8a, u8aToBn } from 'https://deno.land/x/polkadot@0.2.32/util/mod.ts';
+import { BN, bnToBn, bnToHex, bnToU8a, isString, isU8a, u8aToBn } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const BITLENGTH: UIntBitLength = 64;
 const U8A_OPTS = { bitLength: BITLENGTH, isLe: true };
@@ -160,7 +160,6 @@ export class CodecDate extends Date implements INumber {
 
   /**
    * @description Encodes the value as a Uint8Array as per the SCALE specifications
-   * @param isBare true when the value has none of the type-specific prefixes (internal)
    */
   public toU8a (_isBare?: boolean): Uint8Array {
     return bnToU8a(this.toNumber(), U8A_OPTS);

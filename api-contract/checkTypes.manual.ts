@@ -1,10 +1,10 @@
 
 
-import 'https://deno.land/x/polkadot@0.2.32/api-augment/mod.ts';
+import 'https://deno.land/x/polkadot/api-augment/mod.ts';
 
-import { ApiPromise } from 'https://deno.land/x/polkadot@0.2.32/api/mod.ts';
-import { BlueprintPromise, ContractPromise } from 'https://deno.land/x/polkadot@0.2.32/api-contract/mod.ts';
-import { createTestPairs, TestKeyringMap } from 'https://deno.land/x/polkadot@0.2.32/keyring/testingPairs.ts';
+import { ApiPromise } from 'https://deno.land/x/polkadot/api/mod.ts';
+import { BlueprintPromise, ContractPromise } from 'https://deno.land/x/polkadot/api-contract/mod.ts';
+import { createTestPairs, TestKeyringMap } from 'https://deno.land/x/polkadot/keyring/testingPairs.ts';
 
 import abiIncrementer from './test/contracts/ink/v0/incrementer.json' assert { type: 'json' };
 
