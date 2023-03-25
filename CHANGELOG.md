@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master
+
+- hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 11.1.2
+
 ## 0.2.32 Mar 19, 2023
 
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 10.1.4

@@ -1,5 +1,5 @@
 
-import { stringToU8a, u8aConcat } from 'https://deno.land/x/polkadot@0.2.32/util/mod.ts';
+import { stringToU8a, u8aConcat } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { blake2AsU8a } from '../blake2/asU8a.ts';
 

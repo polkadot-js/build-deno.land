@@ -1,7 +1,7 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.32/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 
-import { u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.32/util/mod.ts';
+import { u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { keccakAsU8a } from '../keccak/index.ts';
 import { secp256k1Expand } from '../secp256k1/index.ts';
@@ -22,7 +22,7 @@ export function ethereumEncode (addressOrPublic?: HexString | string | Uint8Arra
   const u8aAddress = u8aToU8a(addressOrPublic);
 
   if (![20, 32, 33, 65].includes(u8aAddress.length)) {
-    throw new Error('Invalid address or publicKey passed');
+    throw new Error(`Invalid address or publicKey provided, received ${u8aAddress.length} bytes input`);
   }
 
   const address = u8aToHex(getH160(u8aAddress), -1, false);

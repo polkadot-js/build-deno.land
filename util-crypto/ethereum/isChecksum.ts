@@ -1,5 +1,5 @@
 
-import { u8aToHex } from 'https://deno.land/x/polkadot@0.2.32/util/mod.ts';
+import { u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { keccakAsU8a } from '../keccak/index.ts';
 

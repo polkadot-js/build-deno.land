@@ -1,11 +1,12 @@
 
-import type { SubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.40.5';
-import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerTypes, LedgerVersion } from './types.ts';
+import type { SubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.40.6';
+import type { TransportDef, TransportType } from 'https://deno.land/x/polkadot/hw-ledger-transports/types.ts';
+import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerVersion } from './types.ts';
 
-import { newSubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.40.5';
+import { newSubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.40.6';
 
-import { transports } from 'https://deno.land/x/polkadot@0.2.32/hw-ledger-transports/mod.ts';
-import { hexAddPrefix, u8aToBuffer } from 'https://deno.land/x/polkadot@0.2.32/util/mod.ts';
+import { transports } from 'https://deno.land/x/polkadot/hw-ledger-transports/mod.ts';
+import { hexAddPrefix, u8aToBuffer } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { LEDGER_DEFAULT_ACCOUNT, LEDGER_DEFAULT_CHANGE, LEDGER_DEFAULT_INDEX, LEDGER_SUCCESS_CODE } from './constants.ts';
 import { ledgerApps } from './defaults.ts';
@@ -30,22 +31,28 @@ async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promis
 export class Ledger {
   #app: SubstrateApp | null = null;
 
-  #chain: Chain;
+  #ledgerName: string;
 
-  #transport: LedgerTypes;
+  #transportDef: TransportDef;
 
-  constructor (transport: LedgerTypes, chain: Chain) {
-    // u2f is deprecated
-    if (!['hid', 'webusb'].includes(transport)) {
-      throw new Error(`Unsupported transport ${transport}`);
-    } else if (!Object.keys(ledgerApps).includes(chain)) {
-      throw new Error(`Unsupported chain ${chain}`);
+  constructor (transport: TransportType, chain: Chain) {
+    const ledgerName = ledgerApps[chain];
+    const transportDef = transports.find(({ type }) => type === transport);
+
+    if (!ledgerName) {
+      throw new Error(`Unsupported Ledger chain ${chain}`);
+    } else if (!transportDef) {
+      throw new Error(`Unsupported Ledger transport ${transport}`);
     }
 
-    this.#chain = chain;
-    this.#transport = transport;
+    this.#ledgerName = ledgerName;
+    this.#transportDef = transportDef;
   }
 
+  /**
+   * Returns the address associated with a specific account & address offset. Optionally
+   * asks for on-device confirmation
+   */
   public async getAddress (confirm = false, accountOffset = 0, addressOffset = 0, { account = LEDGER_DEFAULT_ACCOUNT, addressIndex = LEDGER_DEFAULT_INDEX, change = LEDGER_DEFAULT_CHANGE }: Partial<AccountOptions> = {}): Promise<LedgerAddress> {
     return this.withApp(async (app: SubstrateApp): Promise<LedgerAddress> => {
       const { address, pubKey } = await wrapError(app.getAddress(account + accountOffset, change, addressIndex + addressOffset, confirm));
@@ -57,6 +64,9 @@ export class Ledger {
     });
   }
 
+  /**
+   * Returns the version of the Ledger application on the device
+   */
   public async getVersion (): Promise<LedgerVersion> {
     return this.withApp(async (app: SubstrateApp): Promise<LedgerVersion> => {
       const { device_locked: isLocked, major, minor, patch, test_mode: isTestMode } = await wrapError(app.getVersion());
@@ -69,6 +79,9 @@ export class Ledger {
     });
   }
 
+  /**
+   * Signs a transcation on the Ledger device
+   */
   public async sign (message: Uint8Array, accountOffset = 0, addressOffset = 0, { account = LEDGER_DEFAULT_ACCOUNT, addressIndex = LEDGER_DEFAULT_INDEX, change = LEDGER_DEFAULT_CHANGE }: Partial<AccountOptions> = {}): Promise<LedgerSignature> {
     return this.withApp(async (app: SubstrateApp): Promise<LedgerSignature> => {
       const buffer = u8aToBuffer(message);
@@ -80,27 +93,21 @@ export class Ledger {
     });
   }
 
-  async getApp (): Promise<SubstrateApp> {
-    if (!this.#app) {
-      const def = transports.find(({ type }) => type === this.#transport);
-
-      if (!def) {
-        throw new Error(`Unable to find a transport for ${this.#transport}`);
-      }
-
-      const transport = await def.create();
-
-      this.#app = newSubstrateApp(transport, ledgerApps[this.#chain]);
-    }
-
-    return this.#app;
-  }
-
+  /**
+   * @internal
+   *
+   * Returns a created SubstrateApp to perform operations against. Generally
+   * this is only used internally, to ensure consistent bahavior.
+   */
   async withApp <T> (fn: (app: SubstrateApp) => Promise<T>): Promise<T> {
     try {
-      const app = await this.getApp();
+      if (!this.#app) {
+        const transport = await this.#transportDef.create();
 
-      return await fn(app);
+        this.#app = newSubstrateApp(transport, this.#ledgerName);
+      }
+
+      return await fn(this.#app);
     } catch (error) {
       this.#app = null;
 

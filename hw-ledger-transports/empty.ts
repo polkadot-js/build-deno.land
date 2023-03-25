@@ -1,6 +1,6 @@
 
-import type { TransportDef } from './types.ts';
+import { createDefs } from './util.ts';
 
 export { packageInfo } from './packageInfo.ts';
 
-export const transports: TransportDef[] = [];
+export const transports = /*#__PURE__*/ createDefs();

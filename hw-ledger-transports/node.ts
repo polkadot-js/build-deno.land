@@ -1,14 +1,8 @@
 
-import type { Transport, TransportDef } from './types.ts';
-
 import LedgerHid from 'https://esm.sh/@ledgerhq/hw-transport-node-hid-singleton@6.28.9';
+
+import { createDefs } from './util.ts';
 
 export { packageInfo } from './packageInfo.ts';
 
-export const transports: TransportDef[] = [
-  {
-    create: (): Promise<Transport> =>
-      (LedgerHid as unknown as Transport).create(),
-    type: 'hid'
-  }
-];
+export const transports = /*#__PURE__*/ createDefs(['hid', LedgerHid]);
