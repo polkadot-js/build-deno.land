@@ -1,7 +1,7 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.33/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 
-import { isHex } from 'https://deno.land/x/polkadot@0.2.33/util/mod.ts';
+import { isHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { isEthereumChecksum } from './isChecksum.ts';
 

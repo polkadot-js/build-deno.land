@@ -1,6 +1,6 @@
 
-import { arrayRange } from 'https://deno.land/x/polkadot@0.2.33/util/mod.ts';
-import { perf, perfCmp } from 'https://deno.land/x/polkadot@0.2.33/util/test/index.ts';
+import { arrayRange } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { perf, perfCmp } from 'https://deno.land/x/polkadot/util/test/index.ts';
 
 import { randomAsU8a } from '../index.ts';
 

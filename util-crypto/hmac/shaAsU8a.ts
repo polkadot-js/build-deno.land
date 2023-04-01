@@ -3,8 +3,8 @@ import { hmac } from 'https://esm.sh/@noble/hashes@1.3.0/hmac.js';
 import { sha256 } from 'https://esm.sh/@noble/hashes@1.3.0/sha256.js';
 import { sha512 } from 'https://esm.sh/@noble/hashes@1.3.0/sha512.js';
 
-import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.33/util/mod.ts';
-import { hmacSha256, hmacSha512, isReady } from 'https://deno.land/x/polkadot@0.2.33/wasm-crypto/mod.ts';
+import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { hmacSha256, hmacSha512, isReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 const JS_HASH = {
   256: sha256,
@@ -37,10 +37,10 @@ export function hmacShaAsU8a (key: Uint8Array | string, data: Uint8Array, bitLen
  * @name hmacSha256AsU8a
  * @description creates a Hmac Sha256 Uint8Array from the key & data
  */
-export const hmacSha256AsU8a = createSha(256);
+export const hmacSha256AsU8a = /*#__PURE__*/ createSha(256);
 
 /**
  * @name hmacSha512AsU8a
  * @description creates a Hmac Sha512 Uint8Array from the key & data
  */
-export const hmacSha512AsU8a = createSha(512);
+export const hmacSha512AsU8a = /*#__PURE__*/ createSha(512);

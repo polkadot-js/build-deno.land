@@ -7,13 +7,13 @@ import { u8aEq } from './eq.ts';
 import { u8aToU8a } from './toU8a.ts';
 
 /** @internal */
-export const U8A_WRAP_ETHEREUM = u8aToU8a('\x19Ethereum Signed Message:\n');
+export const U8A_WRAP_ETHEREUM = /*#__PURE__*/ u8aToU8a('\x19Ethereum Signed Message:\n');
 
 /** @internal */
-export const U8A_WRAP_PREFIX = u8aToU8a('<Bytes>');
+export const U8A_WRAP_PREFIX = /*#__PURE__*/ u8aToU8a('<Bytes>');
 
 /** @internal */
-export const U8A_WRAP_POSTFIX = u8aToU8a('</Bytes>');
+export const U8A_WRAP_POSTFIX = /*#__PURE__*/ u8aToU8a('</Bytes>');
 
 const WRAP_LEN = U8A_WRAP_PREFIX.length + U8A_WRAP_POSTFIX.length;
 
