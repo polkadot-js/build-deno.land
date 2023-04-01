@@ -1,7 +1,7 @@
 
 import type { DefinitionCall, DefinitionsCall } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.2.34/util/mod.ts';
 
 const SHARED_V1_V2: Record<string, DefinitionCall> = {
   get_storage: {

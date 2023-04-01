@@ -1,7 +1,7 @@
 
 import { keccak_256 as keccak256Js, keccak_512 as keccak512Js } from 'https://esm.sh/@noble/hashes@1.3.0/sha3.js';
 
-import { keccak256, keccak512 } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
+import { keccak256, keccak512 } from 'https://deno.land/x/polkadot@0.2.34/wasm-crypto/mod.ts';
 
 import { createAsHex, createBitHasher, createDualHasher } from '../helpers.ts';
 
@@ -14,7 +14,7 @@ import { createAsHex, createBitHasher, createDualHasher } from '../helpers.ts';
  * <BR>
  *
  * ```javascript
- * import { keccakAsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
+ * import { keccakAsU8a } from 'https://deno.land/x/polkadot@0.2.34/util-crypto/mod.ts';
  *
  * keccakAsU8a('123'); // => Uint8Array
  * ```

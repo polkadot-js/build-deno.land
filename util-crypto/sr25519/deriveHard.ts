@@ -1,5 +1,5 @@
 
-import { sr25519DeriveKeypairHard } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
+import { sr25519DeriveKeypairHard } from 'https://deno.land/x/polkadot@0.2.34/wasm-crypto/mod.ts';
 
 import { createDeriveFn } from './derive.ts';
 

@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import type { Struct, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Struct, u64 } from 'https://deno.land/x/polkadot@0.2.34/types-codec/mod.ts';
 
 /** @name RawAuraPreDigest */
 export interface RawAuraPreDigest extends Struct {
