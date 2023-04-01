@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.33/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyFloat, CodecClass, IFloat, Inspect, IU8a, Registry } from '../types/index.ts';
 
-import { floatToU8a, isHex, isU8a, u8aToFloat, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.33/util/mod.ts';
+import { floatToU8a, isHex, isU8a, u8aToFloat, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 interface Options {
   bitLength?: 32 | 64;

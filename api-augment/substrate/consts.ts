@@ -1,16 +1,16 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.33/api-base/types/consts.ts';
+import 'https://deno.land/x/polkadot/api-base/types/consts.ts';
 
-import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot@0.2.33/api-base/types/index.ts';
-import type { Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.33/types-codec/mod.ts';
-import type { Codec, ITuple } from 'https://deno.land/x/polkadot@0.2.33/types-codec/types/index.ts';
-import type { Perbill, Percent, Permill, Perquintill } from 'https://deno.land/x/polkadot@0.2.33/types/interfaces/runtime/index.ts';
-import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, KitchensinkRuntimeHoldReason, PalletContractsSchedule, PalletReferendaTrackInfo, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot@0.2.33/types/lookup.ts';
+import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Codec, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Perbill, Percent, Permill, Perquintill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, KitchensinkRuntimeHoldReason, PalletContractsSchedule, PalletReferendaTrackInfo, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedConst<ApiType extends ApiTypes> = AugmentedConst<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.33/api-base/types/consts.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
   interface AugmentedConsts<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -196,33 +196,6 @@ declare module 'https://deno.land/x/polkadot@0.2.33/api-base/types/consts.ts' {
       [key: string]: Codec;
     };
     contracts: {
-      /**
-       * The maximum number of contracts that can be pending for deletion.
-       * 
-       * When a contract is deleted by calling `seal_terminate` it becomes inaccessible
-       * immediately, but the deletion of the storage items it has accumulated is performed
-       * later. The contract is put into the deletion queue. This defines how many
-       * contracts can be queued up at the same time. If that limit is reached `seal_terminate`
-       * will fail. The action must be retried in a later block in that case.
-       * 
-       * The reasons for limiting the queue depth are:
-       * 
-       * 1. The queue is in storage in order to be persistent between blocks. We want to limit
-       * the amount of storage that can be consumed.
-       * 2. The queue is stored in a vector and needs to be decoded as a whole when reading
-       * it at the end of each block. Longer queues take more weight to decode and hence
-       * limit the amount of items that can be deleted per block.
-       **/
-      deletionQueueDepth: u32 & AugmentedConst<ApiType>;
-      /**
-       * The maximum amount of weight that can be consumed per block for lazy trie removal.
-       * 
-       * The amount of weight that is dedicated per block to work on the deletion queue. Larger
-       * values allow more trie keys to be deleted in each block but reduce the amount of
-       * weight that is left for transactions. See [`Self::DeletionQueueDepth`] for more
-       * information about the deletion queue.
-       **/
-      deletionWeightLimit: SpWeightsWeightV2Weight & AugmentedConst<ApiType>;
       /**
        * The amount of balance a caller has to pay for each byte of storage.
        * 

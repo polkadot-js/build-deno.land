@@ -1,5 +1,5 @@
 
-import type { AnyTuple, Codec, Registry } from 'https://deno.land/x/polkadot@0.2.33/types-codec/types/index.ts';
+import type { AnyTuple, Codec, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { DispatchErrorModule, DispatchErrorModuleU8, DispatchErrorModuleU8a, ErrorMetadataLatest, EventMetadataLatest, PalletConstantMetadataLatest } from '../../interfaces/index.ts';
 import type { StorageEntry } from '../../primitive/types.ts';
 import type { CallFunction, IEvent, IEventLike } from '../../types/index.ts';

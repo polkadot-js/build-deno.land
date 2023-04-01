@@ -1,5 +1,5 @@
 
-import { isFunction } from 'https://deno.land/x/polkadot@0.2.33/util/mod.ts';
+import { isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { RpcErrorInterface } from '../types.ts';
 

@@ -1,9 +1,9 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { QueryableStorage } from 'https://deno.land/x/polkadot@0.2.33/api-base/types/index.ts';
-import type { Compact, Vec } from 'https://deno.land/x/polkadot@0.2.33/types/mod.ts';
-import type { AccountId, BlockNumber, Header } from 'https://deno.land/x/polkadot@0.2.33/types/interfaces/index.ts';
-import type { Codec, IOption } from 'https://deno.land/x/polkadot@0.2.33/types/types/index.ts';
+import type { QueryableStorage } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Compact, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, Address, BlockNumber, Header } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Codec, IOption } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DeriveApi } from '../types.ts';
 
 import { combineLatest, map, of } from 'https://esm.sh/rxjs@7.8.0';
@@ -22,23 +22,36 @@ export function createBlockNumberDerive <T extends { number: Compact<BlockNumber
 }
 
 export function getAuthorDetails (header: Header, queryAt: QueryableStorage<'rxjs'>): Observable<[Header, Vec<AccountId> | null, AccountId | null]> {
-  // this is Moonbeam specific
-  if (queryAt.authorMapping && queryAt.authorMapping.mappingWithDeposit) {
-    const mapId = header.digest.logs[0] && (
-      (header.digest.logs[0].isConsensus && header.digest.logs[0].asConsensus[1]) ||
-      (header.digest.logs[0].isPreRuntime && header.digest.logs[0].asPreRuntime[1])
-    );
+  const validators = queryAt.session
+    ? queryAt.session.validators()
+    : of(null);
 
-    if (mapId) {
+  // nimbus consensus stores the session key of the block author in header logs
+  const { logs: [log] } = header.digest;
+  const loggedAuthor = (log && (
+    (log.isConsensus && log.asConsensus[0].isNimbus && log.asConsensus[1]) ||
+    (log.isPreRuntime && log.asPreRuntime[0].isNimbus && log.asPreRuntime[1])
+  ));
+
+  if (loggedAuthor) {
+    // use the author mapping pallet, if available (ie: moonbeam, moonriver), to map session (nimbus) key to author (collator/validator) key
+    if (queryAt.authorMapping && queryAt.authorMapping.mappingWithDeposit) {
       return combineLatest([
         of(header),
-        queryAt.session
-          ? queryAt.session.validators()
-          : of(null),
-        queryAt.authorMapping.mappingWithDeposit<IOption<{ account: AccountId } & Codec>>(mapId).pipe(
-          map((opt) =>
-            opt.unwrapOr({ account: null }).account
-          )
+        validators,
+        queryAt.authorMapping.mappingWithDeposit<IOption<{ account: AccountId } & Codec>>(loggedAuthor)
+          .pipe(map((opt) => opt.unwrapOr({ account: null }).account))
+      ]);
+    }
+
+    // fall back to session pallet, if available (ie: manta, calamari), to map session (nimbus) key to author (collator/validator) key
+    if (queryAt.session && queryAt.session.queuedKeys) {
+      return combineLatest([
+        of(header),
+        validators,
+        queryAt.session.queuedKeys<[AccountId, { nimbus: Address }][]>().pipe(
+          map((queuedKeys) => queuedKeys.find((sessionKey) => sessionKey[1].nimbus.toHex() === loggedAuthor.toHex())),
+          map((sessionKey) => (sessionKey) ? sessionKey[0] : null)
         )
       ]);
     }
@@ -47,9 +60,7 @@ export function getAuthorDetails (header: Header, queryAt: QueryableStorage<'rxj
   // normal operation, non-mapping
   return combineLatest([
     of(header),
-    queryAt.session
-      ? queryAt.session.validators()
-      : of(null),
+    validators,
     of(null)
   ]);
 }

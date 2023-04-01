@@ -1,5 +1,5 @@
 
-import type { IsError } from 'https://deno.land/x/polkadot@0.2.33/types/metadata/decorate/types.ts';
+import type { IsError } from 'https://deno.land/x/polkadot/types/metadata/decorate/types.ts';
 import type { ApiTypes, EmptyBase } from './base.ts';
 
 export type AugmentedError<_ extends ApiTypes> = IsError;

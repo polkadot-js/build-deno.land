@@ -2,7 +2,7 @@
 import './augmentLookup.ts';
 import './augmentRegistry.ts';
 
-export * from 'https://deno.land/x/polkadot@0.2.33/types/types/registry.ts';
+export * from 'https://deno.land/x/polkadot/types/types/registry.ts';
 
 export type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 

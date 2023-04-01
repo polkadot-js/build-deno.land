@@ -1,14 +1,14 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { AccountId, EraIndex } from 'https://deno.land/x/polkadot@0.2.33/types/interfaces/index.ts';
-import type { PalletStakingStakingLedger } from 'https://deno.land/x/polkadot@0.2.33/types/lookup.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.33/util/mod.ts';
+import type { AccountId, EraIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletStakingStakingLedger } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { DeriveApi, DeriveEraPoints, DeriveEraPrefs, DeriveEraRewards, DeriveEraValPoints, DeriveEraValPrefs, DeriveStakerExposure, DeriveStakerReward, DeriveStakerRewardValidator } from '../types.ts';
 import type { DeriveStakingQuery } from './types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.0';
 
-import { BN_BILLION, BN_ZERO, objectSpread } from 'https://deno.land/x/polkadot@0.2.33/util/mod.ts';
+import { BN_BILLION, BN_ZERO, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { firstMemo, memo } from '../util/index.ts';
 

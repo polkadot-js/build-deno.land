@@ -1,14 +1,15 @@
 
-import type { AnyU8a, Registry } from 'https://deno.land/x/polkadot@0.2.33/types-codec/types/index.ts';
+import type { AnyU8a, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { AccountId, RawAuraPreDigest, RawBabePreDigestCompat } from '../interfaces/index.ts';
 
-import { Bytes, U8aFixed, u32 } from 'https://deno.land/x/polkadot@0.2.33/types-codec/mod.ts';
-import { BN, bnToU8a, isNumber, stringToU8a, u8aToHex, u8aToString } from 'https://deno.land/x/polkadot@0.2.33/util/mod.ts';
+import { Bytes, U8aFixed, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { BN, bnToU8a, isNumber, stringToU8a, u8aToHex, u8aToString } from 'https://deno.land/x/polkadot/util/mod.ts';
 
-export const CID_AURA = stringToU8a('aura');
-export const CID_BABE = stringToU8a('BABE');
-export const CID_GRPA = stringToU8a('FRNK');
-export const CID_POW = stringToU8a('pow_');
+export const CID_AURA = /*#__PURE__*/ stringToU8a('aura');
+export const CID_BABE = /*#__PURE__*/ stringToU8a('BABE');
+export const CID_GRPA = /*#__PURE__*/ stringToU8a('FRNK');
+export const CID_POW = /*#__PURE__*/ stringToU8a('pow_');
+export const CID_NMBS = /*#__PURE__*/ stringToU8a('nmbs');
 
 function getAuraAuthor (registry: Registry, bytes: Bytes, sessionValidators: AccountId[]): AccountId {
   return sessionValidators[
@@ -76,6 +77,13 @@ export class GenericConsensusEngineId extends U8aFixed {
   }
 
   /**
+   * @description `true` is the engine matches nimbus
+   */
+  public get isNimbus (): boolean {
+    return this.eq(CID_NMBS);
+  }
+
+  /**
    * @description From the input bytes, decode into an author
    */
   public extractAuthor (bytes: Bytes, sessionValidators: AccountId[]): AccountId | undefined {
@@ -87,8 +95,8 @@ export class GenericConsensusEngineId extends U8aFixed {
       }
     }
 
-    // For pow & Moonbeam, the bytes are the actual author
-    if (this.isPow || bytes.length === 20) {
+    // For pow & Nimbus, the bytes are the actual author
+    if (this.isPow || this.isNimbus) {
       return getBytesAsAuthor(this.registry, bytes);
     }
 

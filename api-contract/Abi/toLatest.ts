@@ -1,6 +1,6 @@
 
-import type { ContractMetadataLatest, ContractMetadataV4 } from 'https://deno.land/x/polkadot@0.2.33/types/interfaces/index.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.33/types/types/index.ts';
+import type { ContractMetadataLatest, ContractMetadataV4 } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 import { v0ToV1 } from './toV1.ts';
 import { v1ToV2 } from './toV2.ts';
@@ -22,10 +22,10 @@ export function v4ToLatest (_registry: Registry, v4: ContractMetadataV4): Contra
   return v4;
 }
 
-export const v3ToLatest = createConverter(v4ToLatest, v3ToV4);
-export const v2ToLatest = createConverter(v3ToLatest, v2ToV3);
-export const v1ToLatest = createConverter(v2ToLatest, v1ToV2);
-export const v0ToLatest = createConverter(v1ToLatest, v0ToV1);
+export const v3ToLatest = /*#__PURE__*/ createConverter(v4ToLatest, v3ToV4);
+export const v2ToLatest = /*#__PURE__*/ createConverter(v3ToLatest, v2ToV3);
+export const v1ToLatest = /*#__PURE__*/ createConverter(v2ToLatest, v1ToV2);
+export const v0ToLatest = /*#__PURE__*/ createConverter(v1ToLatest, v0ToV1);
 
 export const convertVersions: [Versions, Converter][] = [
   ['V4', v4ToLatest],

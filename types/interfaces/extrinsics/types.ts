@@ -1,8 +1,8 @@
 /* eslint-disable */
 
-import type { GenericExtrinsic, GenericExtrinsicEra, GenericExtrinsicPayload, GenericExtrinsicPayloadUnknown, GenericExtrinsicPayloadV4, GenericExtrinsicSignatureV4, GenericExtrinsicUnknown, GenericExtrinsicV4, GenericImmortalEra, GenericMortalEra, GenericSignerPayload } from 'https://deno.land/x/polkadot@0.2.33/types/mod.ts';
-import type { Enum, U8aFixed } from 'https://deno.land/x/polkadot@0.2.33/types-codec/mod.ts';
-import type { H512 } from 'https://deno.land/x/polkadot@0.2.33/types/interfaces/runtime/index.ts';
+import type { GenericExtrinsic, GenericExtrinsicEra, GenericExtrinsicPayload, GenericExtrinsicPayloadUnknown, GenericExtrinsicPayloadV4, GenericExtrinsicSignatureV4, GenericExtrinsicUnknown, GenericExtrinsicV4, GenericImmortalEra, GenericMortalEra, GenericSignerPayload } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Enum, U8aFixed } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { H512 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 /** @name AnySignature */
 export interface AnySignature extends H512 {}

@@ -1,4 +1,4 @@
 
-import { logger } from 'https://deno.land/x/polkadot@0.2.33/util/mod.ts';
+import { logger } from 'https://deno.land/x/polkadot/util/mod.ts';
 
-export const l = logger('api/util');
+export const l = /*#__PURE__*/ logger('api/util');

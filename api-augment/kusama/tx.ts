@@ -1,20 +1,20 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.33/api-base/types/submittable.ts';
+import 'https://deno.land/x/polkadot/api-base/types/submittable.ts';
 
-import type { ApiTypes, AugmentedSubmittable, SubmittableExtrinsic, SubmittableExtrinsicFunction } from 'https://deno.land/x/polkadot@0.2.33/api-base/types/index.ts';
-import type { Data } from 'https://deno.land/x/polkadot@0.2.33/types/mod.ts';
-import type { Bytes, Compact, Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.33/types-codec/mod.ts';
-import type { AnyNumber, IMethod, ITuple } from 'https://deno.land/x/polkadot@0.2.33/types-codec/types/index.ts';
-import type { EthereumAddress } from 'https://deno.land/x/polkadot@0.2.33/types/interfaces/eth/index.ts';
-import type { AccountId32, Call, H256, MultiAddress, Perbill, Percent, Perquintill } from 'https://deno.land/x/polkadot@0.2.33/types/interfaces/runtime/index.ts';
-import type { FrameSupportPreimagesBounded, FrameSupportScheduleDispatchTime, KusamaRuntimeOriginCaller, KusamaRuntimeProxyType, KusamaRuntimeSessionKeys, PalletConvictionVotingConviction, PalletConvictionVotingVoteAccountVote, PalletElectionProviderMultiPhaseRawSolution, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletIdentityBitFlags, PalletIdentityIdentityInfo, PalletIdentityJudgement, PalletImOnlineHeartbeat, PalletImOnlineSr25519AppSr25519Signature, PalletMultisigTimepoint, PalletNominationPoolsBondExtra, PalletNominationPoolsClaimPermission, PalletNominationPoolsCommissionChangeRate, PalletNominationPoolsConfigOpAccountId32, PalletNominationPoolsConfigOpPerbill, PalletNominationPoolsConfigOpU128, PalletNominationPoolsConfigOpU32, PalletNominationPoolsPoolState, PalletSocietyJudgement, PalletStakingPalletConfigOpPerbill, PalletStakingPalletConfigOpPercent, PalletStakingPalletConfigOpU128, PalletStakingPalletConfigOpU32, PalletStakingRewardDestination, PalletStakingValidatorPrefs, PalletVestingVestingInfo, PolkadotParachainPrimitivesHrmpChannelId, PolkadotPrimitivesV4InherentData, PolkadotPrimitivesV4PvfCheckStatement, PolkadotPrimitivesV4ValidatorAppSignature, PolkadotRuntimeCommonClaimsEcdsaSignature, PolkadotRuntimeCommonClaimsStatementKind, PolkadotRuntimeParachainsDisputesSlashingDisputeProof, SpConsensusBabeDigestsNextConfigDescriptor, SpConsensusGrandpaEquivocationProof, SpConsensusSlotsEquivocationProof, SpNposElectionsElectionScore, SpNposElectionsSupport, SpRuntimeMultiSignature, SpRuntimeMultiSigner, SpSessionMembershipProof, SpWeightsWeightV2Weight, XcmV3MultiLocation, XcmV3WeightLimit, XcmVersionedMultiAssets, XcmVersionedMultiLocation, XcmVersionedXcm } from 'https://deno.land/x/polkadot@0.2.33/types/lookup.ts';
+import type { ApiTypes, AugmentedSubmittable, SubmittableExtrinsic, SubmittableExtrinsicFunction } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Data } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Bytes, Compact, Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { AnyNumber, IMethod, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { EthereumAddress } from 'https://deno.land/x/polkadot/types/interfaces/eth/index.ts';
+import type { AccountId32, Call, H256, MultiAddress, Perbill, Percent, Perquintill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportPreimagesBounded, FrameSupportScheduleDispatchTime, KusamaRuntimeOriginCaller, KusamaRuntimeProxyType, KusamaRuntimeSessionKeys, PalletConvictionVotingConviction, PalletConvictionVotingVoteAccountVote, PalletElectionProviderMultiPhaseRawSolution, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletIdentityBitFlags, PalletIdentityIdentityInfo, PalletIdentityJudgement, PalletImOnlineHeartbeat, PalletImOnlineSr25519AppSr25519Signature, PalletMultisigTimepoint, PalletNominationPoolsBondExtra, PalletNominationPoolsClaimPermission, PalletNominationPoolsCommissionChangeRate, PalletNominationPoolsConfigOpAccountId32, PalletNominationPoolsConfigOpPerbill, PalletNominationPoolsConfigOpU128, PalletNominationPoolsConfigOpU32, PalletNominationPoolsPoolState, PalletSocietyJudgement, PalletStakingPalletConfigOpPerbill, PalletStakingPalletConfigOpPercent, PalletStakingPalletConfigOpU128, PalletStakingPalletConfigOpU32, PalletStakingRewardDestination, PalletStakingValidatorPrefs, PalletVestingVestingInfo, PolkadotParachainPrimitivesHrmpChannelId, PolkadotPrimitivesV4InherentData, PolkadotPrimitivesV4PvfCheckStatement, PolkadotPrimitivesV4ValidatorAppSignature, PolkadotPrimitivesVstagingAsyncBackingParams, PolkadotRuntimeCommonClaimsEcdsaSignature, PolkadotRuntimeCommonClaimsStatementKind, PolkadotRuntimeParachainsDisputesSlashingDisputeProof, SpConsensusBabeDigestsNextConfigDescriptor, SpConsensusGrandpaEquivocationProof, SpConsensusSlotsEquivocationProof, SpNposElectionsElectionScore, SpNposElectionsSupport, SpRuntimeMultiSignature, SpRuntimeMultiSigner, SpSessionMembershipProof, SpWeightsWeightV2Weight, XcmV3MultiLocation, XcmV3WeightLimit, XcmVersionedMultiAssets, XcmVersionedMultiLocation, XcmVersionedXcm } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedSubmittable = AugmentedSubmittable<() => unknown>;
 export type __SubmittableExtrinsic<ApiType extends ApiTypes> = SubmittableExtrinsic<ApiType>;
 export type __SubmittableExtrinsicFunction<ApiType extends ApiTypes> = SubmittableExtrinsicFunction<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.33/api-base/types/submittable.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
   interface AugmentedSubmittables<ApiType extends ApiTypes> {
     auctions: {
       /**
@@ -561,6 +561,10 @@ declare module 'https://deno.land/x/polkadot@0.2.33/api-base/types/submittable.t
       [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     configuration: {
+      /**
+       * Set the asynchronous backing parameters.
+       **/
+      setAsyncBackingParams: AugmentedSubmittable<(updated: PolkadotPrimitivesVstagingAsyncBackingParams | { maxCandidateDepth?: any; allowedAncestryLen?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [PolkadotPrimitivesVstagingAsyncBackingParams]>;
       /**
        * Setting this to true will disable consistency checks for the configuration setters.
        * Use with caution.
@@ -2356,7 +2360,7 @@ declare module 'https://deno.land/x/polkadot@0.2.33/api-base/types/submittable.t
        * - `delay`: The announcement period required of the initial proxy. Will generally be
        * zero.
        **/
-      addProxy: AugmentedSubmittable<(delegate: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, proxyType: KusamaRuntimeProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'IdentityJudgement' | 'CancelProxy' | 'Auction' | 'Society' | number | Uint8Array, delay: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, KusamaRuntimeProxyType, u32]>;
+      addProxy: AugmentedSubmittable<(delegate: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, proxyType: KusamaRuntimeProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'IdentityJudgement' | 'CancelProxy' | 'Auction' | 'Society' | 'NominationPools' | number | Uint8Array, delay: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, KusamaRuntimeProxyType, u32]>;
       /**
        * Publish the hash of a proxy-call that will be made in the future.
        * 
@@ -2395,7 +2399,7 @@ declare module 'https://deno.land/x/polkadot@0.2.33/api-base/types/submittable.t
        * 
        * Fails if there are insufficient funds to pay for deposit.
        **/
-      createPure: AugmentedSubmittable<(proxyType: KusamaRuntimeProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'IdentityJudgement' | 'CancelProxy' | 'Auction' | 'Society' | number | Uint8Array, delay: u32 | AnyNumber | Uint8Array, index: u16 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [KusamaRuntimeProxyType, u32, u16]>;
+      createPure: AugmentedSubmittable<(proxyType: KusamaRuntimeProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'IdentityJudgement' | 'CancelProxy' | 'Auction' | 'Society' | 'NominationPools' | number | Uint8Array, delay: u32 | AnyNumber | Uint8Array, index: u16 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [KusamaRuntimeProxyType, u32, u16]>;
       /**
        * Removes a previously spawned pure proxy.
        * 
@@ -2414,7 +2418,7 @@ declare module 'https://deno.land/x/polkadot@0.2.33/api-base/types/submittable.t
        * Fails with `NoPermission` in case the caller is not a previously created pure
        * account whose `pure` call has corresponding parameters.
        **/
-      killPure: AugmentedSubmittable<(spawner: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, proxyType: KusamaRuntimeProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'IdentityJudgement' | 'CancelProxy' | 'Auction' | 'Society' | number | Uint8Array, index: u16 | AnyNumber | Uint8Array, height: Compact<u32> | AnyNumber | Uint8Array, extIndex: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, KusamaRuntimeProxyType, u16, Compact<u32>, Compact<u32>]>;
+      killPure: AugmentedSubmittable<(spawner: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, proxyType: KusamaRuntimeProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'IdentityJudgement' | 'CancelProxy' | 'Auction' | 'Society' | 'NominationPools' | number | Uint8Array, index: u16 | AnyNumber | Uint8Array, height: Compact<u32> | AnyNumber | Uint8Array, extIndex: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, KusamaRuntimeProxyType, u16, Compact<u32>, Compact<u32>]>;
       /**
        * Dispatch the given `call` from an account that the sender is authorised for through
        * `add_proxy`.
@@ -2426,7 +2430,7 @@ declare module 'https://deno.land/x/polkadot@0.2.33/api-base/types/submittable.t
        * - `force_proxy_type`: Specify the exact proxy type to be used and checked for this call.
        * - `call`: The call to be made by the `real` account.
        **/
-      proxy: AugmentedSubmittable<(real: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, forceProxyType: Option<KusamaRuntimeProxyType> | null | Uint8Array | KusamaRuntimeProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'IdentityJudgement' | 'CancelProxy' | 'Auction' | 'Society' | number, call: Call | IMethod | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Option<KusamaRuntimeProxyType>, Call]>;
+      proxy: AugmentedSubmittable<(real: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, forceProxyType: Option<KusamaRuntimeProxyType> | null | Uint8Array | KusamaRuntimeProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'IdentityJudgement' | 'CancelProxy' | 'Auction' | 'Society' | 'NominationPools' | number, call: Call | IMethod | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Option<KusamaRuntimeProxyType>, Call]>;
       /**
        * Dispatch the given `call` from an account that the sender is authorized for through
        * `add_proxy`.
@@ -2440,7 +2444,7 @@ declare module 'https://deno.land/x/polkadot@0.2.33/api-base/types/submittable.t
        * - `force_proxy_type`: Specify the exact proxy type to be used and checked for this call.
        * - `call`: The call to be made by the `real` account.
        **/
-      proxyAnnounced: AugmentedSubmittable<(delegate: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, real: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, forceProxyType: Option<KusamaRuntimeProxyType> | null | Uint8Array | KusamaRuntimeProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'IdentityJudgement' | 'CancelProxy' | 'Auction' | 'Society' | number, call: Call | IMethod | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, MultiAddress, Option<KusamaRuntimeProxyType>, Call]>;
+      proxyAnnounced: AugmentedSubmittable<(delegate: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, real: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, forceProxyType: Option<KusamaRuntimeProxyType> | null | Uint8Array | KusamaRuntimeProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'IdentityJudgement' | 'CancelProxy' | 'Auction' | 'Society' | 'NominationPools' | number, call: Call | IMethod | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, MultiAddress, Option<KusamaRuntimeProxyType>, Call]>;
       /**
        * Remove the given announcement of a delegate.
        * 
@@ -2485,7 +2489,7 @@ declare module 'https://deno.land/x/polkadot@0.2.33/api-base/types/submittable.t
        * - `proxy`: The account that the `caller` would like to remove as a proxy.
        * - `proxy_type`: The permissions currently enabled for the removed proxy account.
        **/
-      removeProxy: AugmentedSubmittable<(delegate: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, proxyType: KusamaRuntimeProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'IdentityJudgement' | 'CancelProxy' | 'Auction' | 'Society' | number | Uint8Array, delay: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, KusamaRuntimeProxyType, u32]>;
+      removeProxy: AugmentedSubmittable<(delegate: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, proxyType: KusamaRuntimeProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'IdentityJudgement' | 'CancelProxy' | 'Auction' | 'Society' | 'NominationPools' | number | Uint8Array, delay: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, KusamaRuntimeProxyType, u32]>;
       /**
        * Generic tx
        **/

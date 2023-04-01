@@ -1,12 +1,12 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.33/api-base/types/errors.ts';
+import 'https://deno.land/x/polkadot/api-base/types/errors.ts';
 
-import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot@0.2.33/api-base/types/index.ts';
+import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 
 export type __AugmentedError<ApiType extends ApiTypes> = AugmentedError<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.33/api-base/types/errors.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
   interface AugmentedErrors<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -427,14 +427,6 @@ declare module 'https://deno.land/x/polkadot@0.2.33/api-base/types/errors.ts' {
        * Input passed to a contract API function failed to decode as expected type.
        **/
       DecodingFailed: AugmentedError<ApiType>;
-      /**
-       * Removal of a contract failed because the deletion queue is full.
-       * 
-       * This can happen when calling `seal_terminate`.
-       * The queue is filled by deleting contracts and emptied by a fixed amount each block.
-       * Trying again during another block is the only way to resolve this issue.
-       **/
-      DeletionQueueFull: AugmentedError<ApiType>;
       /**
        * A contract with the same AccountId already exists.
        **/

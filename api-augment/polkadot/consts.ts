@@ -1,16 +1,16 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.33/api-base/types/consts.ts';
+import 'https://deno.land/x/polkadot/api-base/types/consts.ts';
 
-import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot@0.2.33/api-base/types/index.ts';
-import type { Bytes, Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.33/types-codec/mod.ts';
-import type { Codec, ITuple } from 'https://deno.land/x/polkadot@0.2.33/types-codec/types/index.ts';
-import type { Perbill, Percent, Permill } from 'https://deno.land/x/polkadot@0.2.33/types/interfaces/runtime/index.ts';
-import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, PalletReferendaTrackInfo, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot@0.2.33/types/lookup.ts';
+import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Bytes, Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Codec, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Perbill, Percent, Permill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, PalletReferendaTrackInfo, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedConst<ApiType extends ApiTypes> = AugmentedConst<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.33/api-base/types/consts.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
   interface AugmentedConsts<ApiType extends ApiTypes> {
     auctions: {
       /**
@@ -56,7 +56,14 @@ declare module 'https://deno.land/x/polkadot@0.2.33/api-base/types/consts.ts' {
     };
     balances: {
       /**
-       * The minimum amount required to keep an account open.
+       * The minimum amount required to keep an account open. MUST BE GREATER THAN ZERO!
+       * 
+       * If you *really* need it to be zero, you can enable the feature `insecure_zero_ed` for
+       * this pallet. However, you do so at your own risk: this will open up a major DoS vector.
+       * In case you have multiple sources of provider references, you may also get unexpected
+       * behaviour if you set this to zero.
+       * 
+       * Bottom line: Do yourself a favour and make it at least one!
        **/
       existentialDeposit: u128 & AugmentedConst<ApiType>;
       /**
