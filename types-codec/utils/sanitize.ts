@@ -1,5 +1,5 @@
 
-import { AnyString } from '../types/index.ts';
+import type { AnyString } from '../types/index.ts';
 
 type Mapper = (value: string) => string;
 

@@ -1,12 +1,12 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.34/api-base/types/errors.ts';
+import 'https://deno.land/x/polkadot/api-base/types/errors.ts';
 
-import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot@0.2.34/api-base/types/index.ts';
+import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 
 export type __AugmentedError<ApiType extends ApiTypes> = AugmentedError<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.34/api-base/types/errors.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
   interface AugmentedErrors<ApiType extends ApiTypes> {
     auctions: {
       /**
@@ -911,9 +911,6 @@ declare module 'https://deno.land/x/polkadot@0.2.34/api-base/types/errors.ts' {
        * The portion supplied is beyond the value of the receipt.
        **/
       PortionTooBig: AugmentedError<ApiType>;
-      Release1: AugmentedError<ApiType>;
-      Release2: AugmentedError<ApiType>;
-      Tah: AugmentedError<ApiType>;
       /**
        * The thaw throttle has been reached for this period.
        **/

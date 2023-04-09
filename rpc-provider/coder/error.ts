@@ -1,7 +1,7 @@
 
-import { isFunction } from 'https://deno.land/x/polkadot@0.2.34/util/mod.ts';
+import type { RpcErrorInterface } from '../types.ts';
 
-import { RpcErrorInterface } from '../types.ts';
+import { isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const UNKNOWN = -99999;
 

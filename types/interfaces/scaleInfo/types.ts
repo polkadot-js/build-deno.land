@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import type { Compact, Enum, Null, Option, Struct, Text, Type, Vec, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.34/types-codec/mod.ts';
+import type { Compact, Enum, Null, Option, Struct, Text, Type, Vec, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 
 /** @name Si0Field */
 export interface Si0Field extends Struct {

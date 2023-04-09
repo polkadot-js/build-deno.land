@@ -1,9 +1,9 @@
 
 import type { DefinitionCall, DefinitionsCall } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.34/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
-const V1_V2_V3_SHARED_PAY: Record<string, DefinitionCall> = {
+const V1_TO_V4_SHARED_PAY: Record<string, DefinitionCall> = {
   query_fee_details: {
     description: 'The transaction fee details',
     params: [
@@ -20,7 +20,7 @@ const V1_V2_V3_SHARED_PAY: Record<string, DefinitionCall> = {
   }
 };
 
-const V1_V2_V3_SHARED_CALL: Record<string, DefinitionCall> = {
+const V1_TO_V3_SHARED_CALL: Record<string, DefinitionCall> = {
   query_call_fee_details: {
     description: 'The call fee details',
     params: [
@@ -37,7 +37,7 @@ const V1_V2_V3_SHARED_CALL: Record<string, DefinitionCall> = {
   }
 };
 
-const V2_V3_SHARED_PAY: Record<string, DefinitionCall> = {
+const V2_TO_V4_SHARED_PAY: Record<string, DefinitionCall> = {
   query_info: {
     description: 'The transaction info',
     params: [
@@ -97,19 +97,29 @@ const V3_SHARED_PAY_CALL: Record<string, DefinitionCall> = {
 export const runtime: DefinitionsCall = {
   TransactionPaymentApi: [
     {
+      // V4 is equivalent to V3 (V4 just dropped all V1 references)
       methods: objectSpread(
         {},
         V3_SHARED_PAY_CALL,
-        V2_V3_SHARED_PAY,
-        V1_V2_V3_SHARED_PAY
+        V2_TO_V4_SHARED_PAY,
+        V1_TO_V4_SHARED_PAY
+      ),
+      version: 4
+    },
+    {
+      methods: objectSpread(
+        {},
+        V3_SHARED_PAY_CALL,
+        V2_TO_V4_SHARED_PAY,
+        V1_TO_V4_SHARED_PAY
       ),
       version: 3
     },
     {
       methods: objectSpread(
         {},
-        V2_V3_SHARED_PAY,
-        V1_V2_V3_SHARED_PAY
+        V2_TO_V4_SHARED_PAY,
+        V1_TO_V4_SHARED_PAY
       ),
       version: 2
     },
@@ -132,7 +142,7 @@ export const runtime: DefinitionsCall = {
           // runtime. (We do detect the weight type, so correct)
           type: 'RuntimeDispatchInfo'
         }
-      }, V1_V2_V3_SHARED_PAY),
+      }, V1_TO_V4_SHARED_PAY),
       version: 1
     }
   ],
@@ -142,7 +152,7 @@ export const runtime: DefinitionsCall = {
         {},
         V3_SHARED_PAY_CALL,
         V2_V3_SHARED_CALL,
-        V1_V2_V3_SHARED_CALL
+        V1_TO_V3_SHARED_CALL
       ),
       version: 3
     },
@@ -150,7 +160,7 @@ export const runtime: DefinitionsCall = {
       methods: objectSpread(
         {},
         V2_V3_SHARED_CALL,
-        V1_V2_V3_SHARED_CALL
+        V1_TO_V3_SHARED_CALL
       ),
       version: 2
     },
@@ -172,7 +182,7 @@ export const runtime: DefinitionsCall = {
           // _may_ yield fallback decoding on some versions of the runtime
           type: 'RuntimeDispatchInfo'
         }
-      }, V1_V2_V3_SHARED_CALL),
+      }, V1_TO_V3_SHARED_CALL),
       version: 1
     }
   ]

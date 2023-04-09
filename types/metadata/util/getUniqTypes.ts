@@ -1,5 +1,5 @@
 
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.34/types-codec/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { MetadataLatest, SiLookupTypeId } from '../../interfaces/index.ts';
 import type { PortableRegistry } from '../../metadata/index.ts';
 

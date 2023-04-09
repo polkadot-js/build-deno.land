@@ -1,13 +1,13 @@
 
-import type { Option, Text, Type, Vec } from 'https://deno.land/x/polkadot@0.2.34/types-codec/mod.ts';
-import type { AnyString, LookupString, Registry } from 'https://deno.land/x/polkadot@0.2.34/types-codec/types/index.ts';
-import type { ILookup, TypeDef } from 'https://deno.land/x/polkadot@0.2.34/types-create/types/index.ts';
+import type { Option, Text, Type, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { AnyString, LookupString, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { ILookup, TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 import type { PortableType } from '../../interfaces/metadata/index.ts';
 import type { SiField, SiLookupTypeId, SiType, SiTypeDefArray, SiTypeDefBitSequence, SiTypeDefCompact, SiTypeDefComposite, SiTypeDefSequence, SiTypeDefTuple, SiTypeDefVariant, SiTypeParameter, SiVariant } from '../../interfaces/scaleInfo/index.ts';
 
-import { sanitize, Struct, u32 } from 'https://deno.land/x/polkadot@0.2.34/types-codec/mod.ts';
-import { getTypeDef, TypeDefInfo, withTypeString } from 'https://deno.land/x/polkadot@0.2.34/types-create/mod.ts';
-import { assertUnreachable, isNumber, isString, logger, objectSpread, stringCamelCase, stringify, stringPascalCase } from 'https://deno.land/x/polkadot@0.2.34/util/mod.ts';
+import { sanitize, Struct, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { getTypeDef, TypeDefInfo, withTypeString } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { assertUnreachable, isNumber, isString, logger, objectSpread, stringCamelCase, stringify, stringPascalCase } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const l = logger('PortableRegistry');
 
@@ -712,13 +712,20 @@ export class PortableRegistry extends Struct implements ILookup {
       ? [a, b]
       : [b, a];
 
-    // NOTE: Currently the BitVec type is one-way only, i.e. we only use it to decode, not
-    // re-encode stuff. As such we ignore the msb/lsb identifier given by bitOrderType, or rather
-    // we don't pass it though at all (all displays in LSB)
-    if (!BITVEC_NS.includes(bitOrder.namespace || '')) {
+    if (!bitOrder.namespace || !BITVEC_NS.includes(bitOrder.namespace)) {
       throw new Error(`Unexpected bitOrder found as ${bitOrder.namespace || '<unknown>'}`);
     } else if (bitStore.info !== TypeDefInfo.Plain || bitStore.type !== 'u8') {
       throw new Error(`Only u8 bitStore is currently supported, found ${bitStore.type}`);
+    }
+
+    const isLsb = BITVEC_NS_LSB.includes(bitOrder.namespace);
+
+    if (!isLsb) {
+      // TODO To remove this limitation, we need to pass an extra info flag
+      // through to the TypeDef (Here we could potentially re-use something
+      // like index (???) to indicate and ensure we use it to pass to the
+      // BitVec constructor - which does handle this type)
+      throw new Error(`Only LSB BitVec is currently supported, found ${bitOrder.namespace}`);
     }
 
     return {

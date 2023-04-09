@@ -6,7 +6,4 @@ export * from './votingBalances.ts';
 
 const votingBalance = all;
 
-export {
-  all,
-  votingBalance
-};
+export { all, votingBalance };
