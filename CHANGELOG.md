@@ -1,9 +1,9 @@
 # CHANGELOG
 
-## master
+## 0.2.35 Apr 10, 2023
 
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 10.3.2
-- api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 10.3.1
+
 
 ## 0.2.34 Apr 1, 2023
 
