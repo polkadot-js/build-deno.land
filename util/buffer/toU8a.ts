@@ -8,7 +8,7 @@
  * <BR>
  *
  * ```javascript
- * import { bufferToU8a } from 'https://deno.land/x/polkadot@0.2.34/util/mod.ts';
+ * import { bufferToU8a } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
  *
  * bufferToU8a(Buffer.from([1, 2, 3]));
  * ```

@@ -1,5 +1,5 @@
 
-import type { ParaId } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { ParaId } from 'https://deno.land/x/polkadot@0.2.35/types/interfaces/index.ts';
 import type { DidUpdate } from './types.ts';
 
 export function didUpdateToBool (didUpdate: DidUpdate, id: ParaId): boolean {

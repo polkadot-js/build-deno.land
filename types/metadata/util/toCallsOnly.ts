@@ -1,9 +1,9 @@
 
-import type { AnyJson, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { AnyJson, Registry } from 'https://deno.land/x/polkadot@0.2.35/types-codec/types/index.ts';
 import type { MetadataLatest, PalletCallMetadataLatest } from '../../interfaces/metadata/index.ts';
 
-import { Option, Text, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { Option, Text, u8 } from 'https://deno.land/x/polkadot@0.2.35/types-codec/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
 
 interface ModuleMetadataTrimmed {
   calls: Option<PalletCallMetadataLatest>;

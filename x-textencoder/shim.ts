@@ -1,5 +1,5 @@
 
-import { exposeGlobal } from 'https://deno.land/x/polkadot@0.2.34/x-global/mod.ts';
-import { TextEncoder } from 'https://deno.land/x/polkadot@0.2.34/x-textencoder/mod.ts';
+import { exposeGlobal } from 'https://deno.land/x/polkadot@0.2.35/x-global/mod.ts';
+import { TextEncoder } from 'https://deno.land/x/polkadot@0.2.35/x-textencoder/mod.ts';
 
 exposeGlobal('TextEncoder', TextEncoder);

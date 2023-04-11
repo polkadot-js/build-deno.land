@@ -1,7 +1,7 @@
 
 import { Keyring } from './keyring.ts';
 
-export { decodeAddress, encodeAddress, setSS58Format } from 'https://deno.land/x/polkadot@0.2.34/util-crypto/mod.ts';
+export { decodeAddress, encodeAddress, setSS58Format } from 'https://deno.land/x/polkadot@0.2.35/util-crypto/mod.ts';
 
 export * from './defaults.ts';
 

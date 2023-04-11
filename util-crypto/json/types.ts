@@ -1,5 +1,5 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.34/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.35/util/types.ts';
 
 export type EncryptedJsonVersion = '0' | '1' | '2' | '3';
 

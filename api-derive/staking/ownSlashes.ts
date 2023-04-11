@@ -1,7 +1,7 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { BalanceOf, EraIndex, Perbill } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { BalanceOf, EraIndex, Perbill } from 'https://deno.land/x/polkadot@0.2.35/types/interfaces/index.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.2.35/types/types/index.ts';
 import type { DeriveApi, DeriveStakerSlashes } from '../types.ts';
 
 import { combineLatest, map, of } from 'https://esm.sh/rxjs@7.8.0';

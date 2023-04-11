@@ -1,12 +1,12 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot/types/lookup.ts';
+import 'https://deno.land/x/polkadot@0.2.35/types/lookup.ts';
 
-import type { BTreeMap, Compact, Enum, Null, Struct, Vec, u16, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { H256, PerU16 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { BTreeMap, Compact, Enum, Null, Struct, Vec, u16, u32 } from 'https://deno.land/x/polkadot@0.2.35/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.2.35/types-codec/types/index.ts';
+import type { H256, PerU16 } from 'https://deno.land/x/polkadot@0.2.35/types/interfaces/runtime/index.ts';
 
-declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
+declare module 'https://deno.land/x/polkadot@0.2.35/types/lookup.ts' {
   /** @name KusamaRuntimeSessionKeys (96) */
   interface KusamaRuntimeSessionKeys extends Struct {
     readonly grandpa: SpConsensusGrandpaAppPublic;

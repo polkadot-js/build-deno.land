@@ -1,5 +1,5 @@
 
-import { xglobal } from 'https://deno.land/x/polkadot@0.2.34/x-global/mod.ts';
+import { xglobal } from 'https://deno.land/x/polkadot@0.2.35/x-global/mod.ts';
 
 import { isFunction } from './is/function.ts';
 

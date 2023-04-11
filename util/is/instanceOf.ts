@@ -8,7 +8,7 @@
  * <BR>
  *
  * ```javascript
- * import { isInstanceOf } from 'https://deno.land/x/polkadot@0.2.34/util/mod.ts';
+ * import { isInstanceOf } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
  *
  * console.log('isInstanceOf', isInstanceOf(new Array(0), Array)); // => true
  * ```

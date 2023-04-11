@@ -1,6 +1,6 @@
 
-import { stringToU8a } from 'https://deno.land/x/polkadot@0.2.34/util/mod.ts';
-import { bip39ToMiniSecret, isReady } from 'https://deno.land/x/polkadot@0.2.34/wasm-crypto/mod.ts';
+import { stringToU8a } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
+import { bip39ToMiniSecret, isReady } from 'https://deno.land/x/polkadot@0.2.35/wasm-crypto/mod.ts';
 
 import { pbkdf2Encode } from '../pbkdf2/index.ts';
 import { mnemonicToEntropy } from './toEntropy.ts';

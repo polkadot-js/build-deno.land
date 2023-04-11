@@ -1,9 +1,9 @@
 
-import 'https://deno.land/x/polkadot@0.2.34/x-bigint/shim.ts';
+import 'https://deno.land/x/polkadot@0.2.35/x-bigint/shim.ts';
 
 import { utils as utilsNobleSecp256k1 } from 'https://esm.sh/@noble/secp256k1@1.7.1';
 
-import { u8aConcat } from 'https://deno.land/x/polkadot@0.2.34/util/mod.ts';
+import { u8aConcat } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
 
 import { hmacSha256AsU8a } from './hmac/index.ts';
 import { cryptoWaitReady } from './crypto.ts';

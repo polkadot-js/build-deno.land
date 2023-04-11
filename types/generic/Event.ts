@@ -1,12 +1,12 @@
 
-import type { AnyJson, Codec, CodecClass } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
+import type { AnyJson, Codec, CodecClass } from 'https://deno.land/x/polkadot@0.2.35/types-codec/types/index.ts';
+import type { TypeDef } from 'https://deno.land/x/polkadot@0.2.35/types-create/types/index.ts';
 import type { EventMetadataLatest } from '../interfaces/metadata/index.ts';
 import type { EventId } from '../interfaces/system/index.ts';
 import type { IEvent, IEventData, InterfaceTypes, Registry } from '../types/index.ts';
 
-import { Null, Struct, Tuple } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import { objectProperties, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { Null, Struct, Tuple } from 'https://deno.land/x/polkadot@0.2.35/types-codec/mod.ts';
+import { objectProperties, objectSpread } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
 
 interface Decoded {
   DataType: CodecClass<Null> | CodecClass<GenericEventData>;

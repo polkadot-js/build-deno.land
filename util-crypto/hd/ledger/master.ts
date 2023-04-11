@@ -1,5 +1,5 @@
 
-import { u8aConcat } from 'https://deno.land/x/polkadot@0.2.34/util/mod.ts';
+import { u8aConcat } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
 
 import { hmacShaAsU8a } from '../../hmac/index.ts';
 import { mnemonicToSeedSync } from '../../mnemonic/bip39.ts';
