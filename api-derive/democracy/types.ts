@@ -1,9 +1,9 @@
 
-import type { Vec } from 'https://deno.land/x/polkadot@0.2.35/types/mod.ts';
-import type { AccountId, Balance, Call, Hash, PropIndex, ReferendumIndex, ReferendumInfoTo239, Vote } from 'https://deno.land/x/polkadot@0.2.35/types/interfaces/index.ts';
-import type { PalletDemocracyReferendumStatus, PalletDemocracyVoteThreshold } from 'https://deno.land/x/polkadot@0.2.35/types/lookup.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.35/util/types.ts';
+import type { Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, Balance, Call, Hash, PropIndex, ReferendumIndex, ReferendumInfoTo239, Vote } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletDemocracyReferendumStatus, PalletDemocracyVoteThreshold } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 
 export interface AtBlock {
   at: BN;
@@ -21,7 +21,7 @@ export interface DeriveDemocracyLock {
 
 export interface DeriveProposalImage extends AtBlock {
   balance: Balance;
-  proposal?: Call;
+  proposal?: Call | undefined;
   proposalHash?: HexString;
   proposalLen?: number;
   proposer: AccountId;
@@ -30,27 +30,27 @@ export interface DeriveProposalImage extends AtBlock {
 export interface DeriveDispatch extends AtBlock {
   index: ReferendumIndex;
   imageHash: HexString;
-  image?: DeriveProposalImage;
+  image?: DeriveProposalImage | undefined;
 }
 
 export interface DeriveProposal {
   balance?: Balance;
   index: PropIndex;
-  image?: DeriveProposalImage;
+  image?: DeriveProposalImage | undefined;
   imageHash: Hash;
   proposer: AccountId;
   seconds: Vec<AccountId>;
 }
 
 export interface DeriveProposalExternal {
-  image?: DeriveProposalImage;
+  image?: DeriveProposalImage | undefined;
   imageHash: HexString;
   threshold: PalletDemocracyVoteThreshold;
 }
 
 export interface DeriveReferendum {
   index: ReferendumIndex;
-  image?: DeriveProposalImage;
+  image?: DeriveProposalImage | undefined;
   imageHash: HexString;
   status: PalletDemocracyReferendumStatus | ReferendumInfoTo239;
 }

@@ -1,5 +1,5 @@
 
-import type { BN } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { Codec, CodecClass } from './codec.ts';
 import type { AnyTuple, LookupString } from './helpers.ts';
 import type { ICompact, IEnum, IMap, IMethod, INumber, IOption, IResult, ISet, IStruct, ITuple, IU8a, IVec } from './interfaces.ts';
@@ -29,7 +29,7 @@ export type RegistryTypes =
   { _set: Record<string, number> }>;
 
 export interface CodecCreateOptions {
-  blockHash?: Uint8Array | string | null;
+  blockHash?: Uint8Array | string | null | undefined;
   isFallback?: boolean;
   isOptional?: boolean;
   isPedantic?: boolean;

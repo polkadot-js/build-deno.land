@@ -1,16 +1,11 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.35/util/types.ts';
-import type { AnyJson, Codec, CodecClass, Inspect, IOption, IU8a, Registry } from '../types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { AnyJson, Codec, CodecClass, DefinitionSetter, Inspect, IOption, IU8a, Registry } from '../types/index.ts';
 
-import { isCodec, isNull, isU8a, isUndefined, u8aToHex } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
+import { isCodec, isNull, isU8a, isUndefined, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { typeToConstructor } from '../utils/index.ts';
 import { Null } from './Null.ts';
-
-interface Options<T> {
-  definition?: CodecClass<T>;
-  setDefinition?: (d: CodecClass<T>) => CodecClass<T>;
-}
 
 function noopSetDefinition <T extends Codec> (d: CodecClass<T>): CodecClass<T> {
   return d;
@@ -73,7 +68,7 @@ export class Option<T extends Codec> implements IOption<T> {
   readonly #Type: CodecClass<T>;
   readonly #raw: T;
 
-  constructor (registry: Registry, typeName: CodecClass<T> | string, value?: unknown, { definition, setDefinition = noopSetDefinition }: Options<T> = {}) {
+  constructor (registry: Registry, typeName: CodecClass<T> | string, value?: unknown, { definition, setDefinition = noopSetDefinition }: DefinitionSetter<CodecClass<T>> = {}) {
     const Type = definition || setDefinition(typeToConstructor(registry, typeName));
     const decoded = isU8a(value) && value.length && !isCodec(value)
       ? value[0] === 0

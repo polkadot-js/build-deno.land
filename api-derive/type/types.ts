@@ -1,5 +1,5 @@
 
-import type { AccountId, DispatchError, DispatchInfo, Event, EventRecord, Extrinsic, Header, SignedBlock } from 'https://deno.land/x/polkadot@0.2.35/types/interfaces/index.ts';
+import type { AccountId, DispatchError, DispatchInfo, Event, EventRecord, Extrinsic, Header, SignedBlock } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 
 export interface HeaderExtended extends Header {
   readonly author: AccountId | undefined;
@@ -12,8 +12,8 @@ export interface SignedBlockExtended extends SignedBlock {
 }
 
 export interface TxWithEvent {
-  dispatchError?: DispatchError;
-  dispatchInfo?: DispatchInfo;
+  dispatchError?: DispatchError | undefined;
+  dispatchInfo?: DispatchInfo | undefined;
   events: Event[];
   extrinsic: Extrinsic;
 }

@@ -1,16 +1,11 @@
 
-import type { BN } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.35/util/types.ts';
-import type { AnyJson, AnyNumber, CodecClass, ICompact, Inspect, INumber, IU8a, Registry } from '../types/index.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { AnyJson, AnyNumber, CodecClass, DefinitionSetter, ICompact, Inspect, INumber, IU8a, Registry } from '../types/index.ts';
 
-import { compactFromU8a, compactFromU8aLim, compactToU8a, isU8a } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
+import { compactFromU8a, compactFromU8aLim, compactToU8a, isU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { typeToConstructor } from '../utils/index.ts';
-
-interface Options<T> {
-  definition?: CodecClass<T>;
-  setDefinition?: (d: CodecClass<T>) => CodecClass<T>;
-}
 
 function noopSetDefinition <T> (d: CodecClass<T>): CodecClass<T> {
   return d;
@@ -54,7 +49,7 @@ export class Compact<T extends INumber> implements ICompact<T> {
   readonly #Type: CodecClass<T>;
   readonly #raw: T;
 
-  constructor (registry: Registry, Type: CodecClass<T> | string, value: Compact<T> | AnyNumber = 0, { definition, setDefinition = noopSetDefinition }: Options<T> = {}) {
+  constructor (registry: Registry, Type: CodecClass<T> | string, value: Compact<T> | AnyNumber = 0, { definition, setDefinition = noopSetDefinition }: DefinitionSetter<CodecClass<T>> = {}) {
     this.registry = registry;
     this.#Type = definition || setDefinition(typeToConstructor(registry, Type));
 

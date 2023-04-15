@@ -1,6 +1,6 @@
 
-import type { AnyJson, AnyNumber, AnyTuple, AnyU8a, Codec } from 'https://deno.land/x/polkadot@0.2.35/types-codec/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.35/util/types.ts';
+import type { AnyJson, AnyNumber, AnyTuple, AnyU8a, Codec } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { ExtrinsicStatus } from '../interfaces/author/index.ts';
 import type { EcdsaSignature, Ed25519Signature, Sr25519Signature } from '../interfaces/extrinsics/index.ts';
 import type { Address, Call, H256, Hash } from '../interfaces/runtime/index.ts';
@@ -9,10 +9,10 @@ import type { ICompact, IKeyringPair, IMethod, INumber, IRuntimeVersionBase } fr
 import type { Registry } from './registry.ts';
 
 export interface ISubmittableResult {
-  readonly dispatchError?: DispatchError;
-  readonly dispatchInfo?: DispatchInfo;
+  readonly dispatchError?: DispatchError | undefined;
+  readonly dispatchInfo?: DispatchInfo | undefined;
   readonly events: EventRecord[];
-  readonly internalError?: Error;
+  readonly internalError?: Error | undefined;
   readonly status: ExtrinsicStatus;
   readonly isCompleted: boolean;
   readonly isError: boolean;
@@ -20,7 +20,7 @@ export interface ISubmittableResult {
   readonly isInBlock: boolean;
   readonly isWarning: boolean;
   readonly txHash: Hash;
-  readonly txIndex?: number;
+  readonly txIndex?: number | undefined;
 
   filterRecords (section: string, method: string): EventRecord[];
   findRecord (section: string, method: string): EventRecord | undefined;

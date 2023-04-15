@@ -608,7 +608,13 @@ export default {
         _alias: {
           new_: 'new',
         },
-        new_: 'PolkadotPrimitivesVstagingAsyncBackingParams'
+        new_: 'PolkadotPrimitivesVstagingAsyncBackingParams',
+      },
+      set_executor_params: {
+        _alias: {
+          new_: 'new',
+        },
+        new_: 'PolkadotPrimitivesV4ExecutorParams'
       }
     }
   },
@@ -620,15 +626,46 @@ export default {
     allowedAncestryLen: 'u32'
   },
   /**
-   * Lookup310: polkadot_runtime_parachains::shared::pallet::Call<T>
+   * Lookup310: polkadot_primitives::v4::executor_params::ExecutorParams
+   **/
+  PolkadotPrimitivesV4ExecutorParams: 'Vec<PolkadotPrimitivesV4ExecutorParamsExecutorParam>',
+  /**
+   * Lookup312: polkadot_primitives::v4::executor_params::ExecutorParam
+   **/
+  PolkadotPrimitivesV4ExecutorParamsExecutorParam: {
+    _enum: {
+      __Unused0: 'Null',
+      MaxMemoryPages: 'u32',
+      StackLogicalMax: 'u32',
+      StackNativeMax: 'u32',
+      PrecheckingMaxMemory: 'u64',
+      PvfPrepTimeout: '(PolkadotPrimitivesV4PvfPrepTimeoutKind,u64)',
+      PvfExecTimeout: '(PolkadotPrimitivesV4PvfExecTimeoutKind,u64)',
+      WasmExtBulkMemory: 'Null'
+    }
+  },
+  /**
+   * Lookup313: polkadot_primitives::v4::PvfPrepTimeoutKind
+   **/
+  PolkadotPrimitivesV4PvfPrepTimeoutKind: {
+    _enum: ['Precheck', 'Lenient']
+  },
+  /**
+   * Lookup314: polkadot_primitives::v4::PvfExecTimeoutKind
+   **/
+  PolkadotPrimitivesV4PvfExecTimeoutKind: {
+    _enum: ['Backing', 'Approval']
+  },
+  /**
+   * Lookup315: polkadot_runtime_parachains::shared::pallet::Call<T>
    **/
   PolkadotRuntimeParachainsSharedPalletCall: 'Null',
   /**
-   * Lookup311: polkadot_runtime_parachains::inclusion::pallet::Call<T>
+   * Lookup316: polkadot_runtime_parachains::inclusion::pallet::Call<T>
    **/
   PolkadotRuntimeParachainsInclusionPalletCall: 'Null',
   /**
-   * Lookup312: polkadot_runtime_parachains::paras_inherent::pallet::Call<T>
+   * Lookup317: polkadot_runtime_parachains::paras_inherent::pallet::Call<T>
    **/
   PolkadotRuntimeParachainsParasInherentPalletCall: {
     _enum: {
@@ -638,7 +675,7 @@ export default {
     }
   },
   /**
-   * Lookup313: polkadot_primitives::v4::InherentData<sp_runtime::generic::header::Header<Number, sp_runtime::traits::BlakeTwo256>>
+   * Lookup318: polkadot_primitives::v4::InherentData<sp_runtime::generic::header::Header<Number, sp_runtime::traits::BlakeTwo256>>
    **/
   PolkadotPrimitivesV4InherentData: {
     bitfields: 'Vec<PolkadotPrimitivesV4SignedUncheckedSigned>',
@@ -647,7 +684,7 @@ export default {
     parentHeader: 'SpRuntimeHeader'
   },
   /**
-   * Lookup315: polkadot_primitives::v4::signed::UncheckedSigned<polkadot_primitives::v4::AvailabilityBitfield, polkadot_primitives::v4::AvailabilityBitfield>
+   * Lookup320: polkadot_primitives::v4::signed::UncheckedSigned<polkadot_primitives::v4::AvailabilityBitfield, polkadot_primitives::v4::AvailabilityBitfield>
    **/
   PolkadotPrimitivesV4SignedUncheckedSigned: {
     payload: 'BitVec',
@@ -655,15 +692,15 @@ export default {
     signature: 'PolkadotPrimitivesV4ValidatorAppSignature'
   },
   /**
-   * Lookup318: bitvec::order::Lsb0
+   * Lookup323: bitvec::order::Lsb0
    **/
   BitvecOrderLsb0: 'Null',
   /**
-   * Lookup320: polkadot_primitives::v4::validator_app::Signature
+   * Lookup325: polkadot_primitives::v4::validator_app::Signature
    **/
   PolkadotPrimitivesV4ValidatorAppSignature: 'SpCoreSr25519Signature',
   /**
-   * Lookup322: polkadot_primitives::v4::BackedCandidate<primitive_types::H256>
+   * Lookup327: polkadot_primitives::v4::BackedCandidate<primitive_types::H256>
    **/
   PolkadotPrimitivesV4BackedCandidate: {
     candidate: 'PolkadotPrimitivesV4CommittedCandidateReceipt',
@@ -671,14 +708,14 @@ export default {
     validatorIndices: 'BitVec'
   },
   /**
-   * Lookup323: polkadot_primitives::v4::CommittedCandidateReceipt<primitive_types::H256>
+   * Lookup328: polkadot_primitives::v4::CommittedCandidateReceipt<primitive_types::H256>
    **/
   PolkadotPrimitivesV4CommittedCandidateReceipt: {
     descriptor: 'PolkadotPrimitivesV4CandidateDescriptor',
     commitments: 'PolkadotPrimitivesV4CandidateCommitments'
   },
   /**
-   * Lookup324: polkadot_primitives::v4::CandidateDescriptor<primitive_types::H256>
+   * Lookup329: polkadot_primitives::v4::CandidateDescriptor<primitive_types::H256>
    **/
   PolkadotPrimitivesV4CandidateDescriptor: {
     paraId: 'u32',
@@ -692,15 +729,15 @@ export default {
     validationCodeHash: 'H256'
   },
   /**
-   * Lookup325: polkadot_primitives::v4::collator_app::Public
+   * Lookup330: polkadot_primitives::v4::collator_app::Public
    **/
   PolkadotPrimitivesV4CollatorAppPublic: 'SpCoreSr25519Public',
   /**
-   * Lookup326: polkadot_primitives::v4::collator_app::Signature
+   * Lookup331: polkadot_primitives::v4::collator_app::Signature
    **/
   PolkadotPrimitivesV4CollatorAppSignature: 'SpCoreSr25519Signature',
   /**
-   * Lookup328: polkadot_primitives::v4::CandidateCommitments<N>
+   * Lookup333: polkadot_primitives::v4::CandidateCommitments<N>
    **/
   PolkadotPrimitivesV4CandidateCommitments: {
     upwardMessages: 'Vec<Bytes>',
@@ -711,14 +748,14 @@ export default {
     hrmpWatermark: 'u32'
   },
   /**
-   * Lookup331: polkadot_core_primitives::OutboundHrmpMessage<polkadot_parachain::primitives::Id>
+   * Lookup336: polkadot_core_primitives::OutboundHrmpMessage<polkadot_parachain::primitives::Id>
    **/
   PolkadotCorePrimitivesOutboundHrmpMessage: {
     recipient: 'u32',
     data: 'Bytes'
   },
   /**
-   * Lookup337: polkadot_primitives::v4::ValidityAttestation
+   * Lookup342: polkadot_primitives::v4::ValidityAttestation
    **/
   PolkadotPrimitivesV4ValidityAttestation: {
     _enum: {
@@ -728,7 +765,7 @@ export default {
     }
   },
   /**
-   * Lookup339: polkadot_primitives::v4::DisputeStatementSet
+   * Lookup344: polkadot_primitives::v4::DisputeStatementSet
    **/
   PolkadotPrimitivesV4DisputeStatementSet: {
     candidateHash: 'H256',
@@ -736,7 +773,7 @@ export default {
     statements: 'Vec<(PolkadotPrimitivesV4DisputeStatement,u32,PolkadotPrimitivesV4ValidatorAppSignature)>'
   },
   /**
-   * Lookup343: polkadot_primitives::v4::DisputeStatement
+   * Lookup348: polkadot_primitives::v4::DisputeStatement
    **/
   PolkadotPrimitivesV4DisputeStatement: {
     _enum: {
@@ -745,7 +782,7 @@ export default {
     }
   },
   /**
-   * Lookup344: polkadot_primitives::v4::ValidDisputeStatementKind
+   * Lookup349: polkadot_primitives::v4::ValidDisputeStatementKind
    **/
   PolkadotPrimitivesV4ValidDisputeStatementKind: {
     _enum: {
@@ -756,13 +793,13 @@ export default {
     }
   },
   /**
-   * Lookup345: polkadot_primitives::v4::InvalidDisputeStatementKind
+   * Lookup350: polkadot_primitives::v4::InvalidDisputeStatementKind
    **/
   PolkadotPrimitivesV4InvalidDisputeStatementKind: {
     _enum: ['Explicit']
   },
   /**
-   * Lookup346: polkadot_runtime_parachains::paras::pallet::Call<T>
+   * Lookup351: polkadot_runtime_parachains::paras::pallet::Call<T>
    **/
   PolkadotRuntimeParachainsParasPalletCall: {
     _enum: {
@@ -799,7 +836,7 @@ export default {
     }
   },
   /**
-   * Lookup347: polkadot_primitives::v4::PvfCheckStatement
+   * Lookup352: polkadot_primitives::v4::PvfCheckStatement
    **/
   PolkadotPrimitivesV4PvfCheckStatement: {
     accept: 'bool',
@@ -808,7 +845,7 @@ export default {
     validatorIndex: 'u32'
   },
   /**
-   * Lookup348: polkadot_runtime_parachains::initializer::pallet::Call<T>
+   * Lookup353: polkadot_runtime_parachains::initializer::pallet::Call<T>
    **/
   PolkadotRuntimeParachainsInitializerPalletCall: {
     _enum: {
@@ -818,11 +855,11 @@ export default {
     }
   },
   /**
-   * Lookup349: polkadot_runtime_parachains::dmp::pallet::Call<T>
+   * Lookup354: polkadot_runtime_parachains::dmp::pallet::Call<T>
    **/
   PolkadotRuntimeParachainsDmpPalletCall: 'Null',
   /**
-   * Lookup350: polkadot_runtime_parachains::ump::pallet::Call<T>
+   * Lookup355: polkadot_runtime_parachains::ump::pallet::Call<T>
    **/
   PolkadotRuntimeParachainsUmpPalletCall: {
     _enum: {
@@ -833,7 +870,7 @@ export default {
     }
   },
   /**
-   * Lookup351: polkadot_runtime_parachains::hrmp::pallet::Call<T>
+   * Lookup356: polkadot_runtime_parachains::hrmp::pallet::Call<T>
    **/
   PolkadotRuntimeParachainsHrmpPalletCall: {
     _enum: {
@@ -872,20 +909,20 @@ export default {
     }
   },
   /**
-   * Lookup352: polkadot_parachain::primitives::HrmpChannelId
+   * Lookup357: polkadot_parachain::primitives::HrmpChannelId
    **/
   PolkadotParachainPrimitivesHrmpChannelId: {
     sender: 'u32',
     recipient: 'u32'
   },
   /**
-   * Lookup353: polkadot_runtime_parachains::disputes::pallet::Call<T>
+   * Lookup358: polkadot_runtime_parachains::disputes::pallet::Call<T>
    **/
   PolkadotRuntimeParachainsDisputesPalletCall: {
     _enum: ['force_unfreeze']
   },
   /**
-   * Lookup354: polkadot_runtime_common::paras_registrar::pallet::Call<T>
+   * Lookup359: polkadot_runtime_common::paras_registrar::pallet::Call<T>
    **/
   PolkadotRuntimeCommonParasRegistrarPalletCall: {
     _enum: {
@@ -926,7 +963,7 @@ export default {
     }
   },
   /**
-   * Lookup355: polkadot_runtime_common::slots::pallet::Call<T>
+   * Lookup360: polkadot_runtime_common::slots::pallet::Call<T>
    **/
   PolkadotRuntimeCommonSlotsPalletCall: {
     _enum: {
@@ -946,7 +983,7 @@ export default {
     }
   },
   /**
-   * Lookup356: polkadot_runtime_common::auctions::pallet::Call<T>
+   * Lookup361: polkadot_runtime_common::auctions::pallet::Call<T>
    **/
   PolkadotRuntimeCommonAuctionsPalletCall: {
     _enum: {
@@ -965,7 +1002,7 @@ export default {
     }
   },
   /**
-   * Lookup358: polkadot_runtime_common::crowdloan::pallet::Call<T>
+   * Lookup363: polkadot_runtime_common::crowdloan::pallet::Call<T>
    **/
   PolkadotRuntimeCommonCrowdloanPalletCall: {
     _enum: {
@@ -1014,7 +1051,7 @@ export default {
     }
   },
   /**
-   * Lookup360: sp_runtime::MultiSigner
+   * Lookup365: sp_runtime::MultiSigner
    **/
   SpRuntimeMultiSigner: {
     _enum: {
@@ -1024,11 +1061,11 @@ export default {
     }
   },
   /**
-   * Lookup361: sp_core::ecdsa::Public
+   * Lookup366: sp_core::ecdsa::Public
    **/
   SpCoreEcdsaPublic: '[u8;33]',
   /**
-   * Lookup366: pallet_xcm::pallet::Call<T>
+   * Lookup371: pallet_xcm::pallet::Call<T>
    **/
   PalletXcmCall: {
     _enum: {
@@ -1082,7 +1119,7 @@ export default {
     }
   },
   /**
-   * Lookup367: xcm::VersionedMultiLocation
+   * Lookup372: xcm::VersionedMultiLocation
    **/
   XcmVersionedMultiLocation: {
     _enum: {
@@ -1093,14 +1130,14 @@ export default {
     }
   },
   /**
-   * Lookup368: xcm::v2::multilocation::MultiLocation
+   * Lookup373: xcm::v2::multilocation::MultiLocation
    **/
   XcmV2MultiLocation: {
     parents: 'u8',
     interior: 'XcmV2MultilocationJunctions'
   },
   /**
-   * Lookup369: xcm::v2::multilocation::Junctions
+   * Lookup374: xcm::v2::multilocation::Junctions
    **/
   XcmV2MultilocationJunctions: {
     _enum: {
@@ -1116,7 +1153,7 @@ export default {
     }
   },
   /**
-   * Lookup370: xcm::v2::junction::Junction
+   * Lookup375: xcm::v2::junction::Junction
    **/
   XcmV2Junction: {
     _enum: {
@@ -1144,7 +1181,7 @@ export default {
     }
   },
   /**
-   * Lookup371: xcm::v2::NetworkId
+   * Lookup376: xcm::v2::NetworkId
    **/
   XcmV2NetworkId: {
     _enum: {
@@ -1155,7 +1192,7 @@ export default {
     }
   },
   /**
-   * Lookup373: xcm::v2::BodyId
+   * Lookup378: xcm::v2::BodyId
    **/
   XcmV2BodyId: {
     _enum: {
@@ -1172,7 +1209,7 @@ export default {
     }
   },
   /**
-   * Lookup374: xcm::v2::BodyPart
+   * Lookup379: xcm::v2::BodyPart
    **/
   XcmV2BodyPart: {
     _enum: {
@@ -1195,7 +1232,7 @@ export default {
     }
   },
   /**
-   * Lookup375: xcm::VersionedXcm<RuntimeCall>
+   * Lookup380: xcm::VersionedXcm<RuntimeCall>
    **/
   XcmVersionedXcm: {
     _enum: {
@@ -1206,11 +1243,11 @@ export default {
     }
   },
   /**
-   * Lookup376: xcm::v2::Xcm<RuntimeCall>
+   * Lookup381: xcm::v2::Xcm<RuntimeCall>
    **/
   XcmV2Xcm: 'Vec<XcmV2Instruction>',
   /**
-   * Lookup378: xcm::v2::Instruction<RuntimeCall>
+   * Lookup383: xcm::v2::Instruction<RuntimeCall>
    **/
   XcmV2Instruction: {
     _enum: {
@@ -1308,18 +1345,18 @@ export default {
     }
   },
   /**
-   * Lookup379: xcm::v2::multiasset::MultiAssets
+   * Lookup384: xcm::v2::multiasset::MultiAssets
    **/
   XcmV2MultiassetMultiAssets: 'Vec<XcmV2MultiAsset>',
   /**
-   * Lookup381: xcm::v2::multiasset::MultiAsset
+   * Lookup386: xcm::v2::multiasset::MultiAsset
    **/
   XcmV2MultiAsset: {
     id: 'XcmV2MultiassetAssetId',
     fun: 'XcmV2MultiassetFungibility'
   },
   /**
-   * Lookup382: xcm::v2::multiasset::AssetId
+   * Lookup387: xcm::v2::multiasset::AssetId
    **/
   XcmV2MultiassetAssetId: {
     _enum: {
@@ -1328,7 +1365,7 @@ export default {
     }
   },
   /**
-   * Lookup383: xcm::v2::multiasset::Fungibility
+   * Lookup388: xcm::v2::multiasset::Fungibility
    **/
   XcmV2MultiassetFungibility: {
     _enum: {
@@ -1337,7 +1374,7 @@ export default {
     }
   },
   /**
-   * Lookup384: xcm::v2::multiasset::AssetInstance
+   * Lookup389: xcm::v2::multiasset::AssetInstance
    **/
   XcmV2MultiassetAssetInstance: {
     _enum: {
@@ -1351,7 +1388,7 @@ export default {
     }
   },
   /**
-   * Lookup385: xcm::v2::Response
+   * Lookup390: xcm::v2::Response
    **/
   XcmV2Response: {
     _enum: {
@@ -1362,7 +1399,7 @@ export default {
     }
   },
   /**
-   * Lookup388: xcm::v2::traits::Error
+   * Lookup393: xcm::v2::traits::Error
    **/
   XcmV2TraitsError: {
     _enum: {
@@ -1395,19 +1432,19 @@ export default {
     }
   },
   /**
-   * Lookup389: xcm::v2::OriginKind
+   * Lookup394: xcm::v2::OriginKind
    **/
   XcmV2OriginKind: {
     _enum: ['Native', 'SovereignAccount', 'Superuser', 'Xcm']
   },
   /**
-   * Lookup390: xcm::double_encoded::DoubleEncoded<T>
+   * Lookup395: xcm::double_encoded::DoubleEncoded<T>
    **/
   XcmDoubleEncoded: {
     encoded: 'Bytes'
   },
   /**
-   * Lookup391: xcm::v2::multiasset::MultiAssetFilter
+   * Lookup396: xcm::v2::multiasset::MultiAssetFilter
    **/
   XcmV2MultiassetMultiAssetFilter: {
     _enum: {
@@ -1416,7 +1453,7 @@ export default {
     }
   },
   /**
-   * Lookup392: xcm::v2::multiasset::WildMultiAsset
+   * Lookup397: xcm::v2::multiasset::WildMultiAsset
    **/
   XcmV2MultiassetWildMultiAsset: {
     _enum: {
@@ -1428,13 +1465,13 @@ export default {
     }
   },
   /**
-   * Lookup393: xcm::v2::multiasset::WildFungibility
+   * Lookup398: xcm::v2::multiasset::WildFungibility
    **/
   XcmV2MultiassetWildFungibility: {
     _enum: ['Fungible', 'NonFungible']
   },
   /**
-   * Lookup394: xcm::v2::WeightLimit
+   * Lookup399: xcm::v2::WeightLimit
    **/
   XcmV2WeightLimit: {
     _enum: {
@@ -1443,11 +1480,11 @@ export default {
     }
   },
   /**
-   * Lookup395: xcm::v3::Xcm<Call>
+   * Lookup400: xcm::v3::Xcm<Call>
    **/
   XcmV3Xcm: 'Vec<XcmV3Instruction>',
   /**
-   * Lookup397: xcm::v3::Instruction<Call>
+   * Lookup402: xcm::v3::Instruction<Call>
    **/
   XcmV3Instruction: {
     _enum: {
@@ -1589,18 +1626,18 @@ export default {
     }
   },
   /**
-   * Lookup398: xcm::v3::multiasset::MultiAssets
+   * Lookup403: xcm::v3::multiasset::MultiAssets
    **/
   XcmV3MultiassetMultiAssets: 'Vec<XcmV3MultiAsset>',
   /**
-   * Lookup400: xcm::v3::multiasset::MultiAsset
+   * Lookup405: xcm::v3::multiasset::MultiAsset
    **/
   XcmV3MultiAsset: {
     id: 'XcmV3MultiassetAssetId',
     fun: 'XcmV3MultiassetFungibility'
   },
   /**
-   * Lookup401: xcm::v3::multiasset::AssetId
+   * Lookup406: xcm::v3::multiasset::AssetId
    **/
   XcmV3MultiassetAssetId: {
     _enum: {
@@ -1609,7 +1646,7 @@ export default {
     }
   },
   /**
-   * Lookup402: xcm::v3::multiasset::Fungibility
+   * Lookup407: xcm::v3::multiasset::Fungibility
    **/
   XcmV3MultiassetFungibility: {
     _enum: {
@@ -1618,7 +1655,7 @@ export default {
     }
   },
   /**
-   * Lookup403: xcm::v3::multiasset::AssetInstance
+   * Lookup408: xcm::v3::multiasset::AssetInstance
    **/
   XcmV3MultiassetAssetInstance: {
     _enum: {
@@ -1631,7 +1668,7 @@ export default {
     }
   },
   /**
-   * Lookup404: xcm::v3::Response
+   * Lookup409: xcm::v3::Response
    **/
   XcmV3Response: {
     _enum: {
@@ -1644,7 +1681,7 @@ export default {
     }
   },
   /**
-   * Lookup407: xcm::v3::traits::Error
+   * Lookup412: xcm::v3::traits::Error
    **/
   XcmV3TraitsError: {
     _enum: {
@@ -1691,7 +1728,7 @@ export default {
     }
   },
   /**
-   * Lookup409: xcm::v3::PalletInfo
+   * Lookup414: xcm::v3::PalletInfo
    **/
   XcmV3PalletInfo: {
     index: 'Compact<u32>',
@@ -1702,7 +1739,7 @@ export default {
     patch: 'Compact<u32>'
   },
   /**
-   * Lookup412: xcm::v3::MaybeErrorCode
+   * Lookup417: xcm::v3::MaybeErrorCode
    **/
   XcmV3MaybeErrorCode: {
     _enum: {
@@ -1712,7 +1749,7 @@ export default {
     }
   },
   /**
-   * Lookup415: xcm::v3::QueryResponseInfo
+   * Lookup420: xcm::v3::QueryResponseInfo
    **/
   XcmV3QueryResponseInfo: {
     destination: 'XcmV3MultiLocation',
@@ -1720,7 +1757,7 @@ export default {
     maxWeight: 'SpWeightsWeightV2Weight'
   },
   /**
-   * Lookup416: xcm::v3::multiasset::MultiAssetFilter
+   * Lookup421: xcm::v3::multiasset::MultiAssetFilter
    **/
   XcmV3MultiassetMultiAssetFilter: {
     _enum: {
@@ -1729,7 +1766,7 @@ export default {
     }
   },
   /**
-   * Lookup417: xcm::v3::multiasset::WildMultiAsset
+   * Lookup422: xcm::v3::multiasset::WildMultiAsset
    **/
   XcmV3MultiassetWildMultiAsset: {
     _enum: {
@@ -1747,13 +1784,13 @@ export default {
     }
   },
   /**
-   * Lookup418: xcm::v3::multiasset::WildFungibility
+   * Lookup423: xcm::v3::multiasset::WildFungibility
    **/
   XcmV3MultiassetWildFungibility: {
     _enum: ['Fungible', 'NonFungible']
   },
   /**
-   * Lookup419: xcm::v3::WeightLimit
+   * Lookup424: xcm::v3::WeightLimit
    **/
   XcmV3WeightLimit: {
     _enum: {
@@ -1762,7 +1799,7 @@ export default {
     }
   },
   /**
-   * Lookup420: xcm::VersionedMultiAssets
+   * Lookup425: xcm::VersionedMultiAssets
    **/
   XcmVersionedMultiAssets: {
     _enum: {
@@ -1773,7 +1810,7 @@ export default {
     }
   },
   /**
-   * Lookup436: polkadot_runtime_common::claims::pallet::Event<T>
+   * Lookup441: polkadot_runtime_common::claims::pallet::Event<T>
    **/
   PolkadotRuntimeCommonClaimsPalletEvent: {
     _enum: {
@@ -1785,7 +1822,7 @@ export default {
     }
   },
   /**
-   * Lookup452: polkadot_runtime_parachains::inclusion::pallet::Event<T>
+   * Lookup457: polkadot_runtime_parachains::inclusion::pallet::Event<T>
    **/
   PolkadotRuntimeParachainsInclusionPalletEvent: {
     _enum: {
@@ -1795,14 +1832,14 @@ export default {
     }
   },
   /**
-   * Lookup453: polkadot_primitives::v4::CandidateReceipt<primitive_types::H256>
+   * Lookup458: polkadot_primitives::v4::CandidateReceipt<primitive_types::H256>
    **/
   PolkadotPrimitivesV4CandidateReceipt: {
     descriptor: 'PolkadotPrimitivesV4CandidateDescriptor',
     commitmentsHash: 'H256'
   },
   /**
-   * Lookup456: polkadot_runtime_parachains::paras::pallet::Event
+   * Lookup461: polkadot_runtime_parachains::paras::pallet::Event
    **/
   PolkadotRuntimeParachainsParasPalletEvent: {
     _enum: {
@@ -1817,7 +1854,7 @@ export default {
     }
   },
   /**
-   * Lookup457: polkadot_runtime_parachains::ump::pallet::Event
+   * Lookup462: polkadot_runtime_parachains::ump::pallet::Event
    **/
   PolkadotRuntimeParachainsUmpPalletEvent: {
     _enum: {
@@ -1831,7 +1868,7 @@ export default {
     }
   },
   /**
-   * Lookup458: xcm::v3::traits::Outcome
+   * Lookup463: xcm::v3::traits::Outcome
    **/
   XcmV3TraitsOutcome: {
     _enum: {
@@ -1841,7 +1878,7 @@ export default {
     }
   },
   /**
-   * Lookup459: polkadot_runtime_parachains::hrmp::pallet::Event<T>
+   * Lookup464: polkadot_runtime_parachains::hrmp::pallet::Event<T>
    **/
   PolkadotRuntimeParachainsHrmpPalletEvent: {
     _enum: {
@@ -1853,7 +1890,7 @@ export default {
     }
   },
   /**
-   * Lookup460: polkadot_runtime_parachains::disputes::pallet::Event<T>
+   * Lookup465: polkadot_runtime_parachains::disputes::pallet::Event<T>
    **/
   PolkadotRuntimeParachainsDisputesPalletEvent: {
     _enum: {
@@ -1863,19 +1900,19 @@ export default {
     }
   },
   /**
-   * Lookup461: polkadot_runtime_parachains::disputes::DisputeLocation
+   * Lookup466: polkadot_runtime_parachains::disputes::DisputeLocation
    **/
   PolkadotRuntimeParachainsDisputesDisputeLocation: {
     _enum: ['Local', 'Remote']
   },
   /**
-   * Lookup462: polkadot_runtime_parachains::disputes::DisputeResult
+   * Lookup467: polkadot_runtime_parachains::disputes::DisputeResult
    **/
   PolkadotRuntimeParachainsDisputesDisputeResult: {
     _enum: ['Valid', 'Invalid']
   },
   /**
-   * Lookup463: polkadot_runtime_common::paras_registrar::pallet::Event<T>
+   * Lookup468: polkadot_runtime_common::paras_registrar::pallet::Event<T>
    **/
   PolkadotRuntimeCommonParasRegistrarPalletEvent: {
     _enum: {
@@ -1893,7 +1930,7 @@ export default {
     }
   },
   /**
-   * Lookup464: polkadot_runtime_common::slots::pallet::Event<T>
+   * Lookup469: polkadot_runtime_common::slots::pallet::Event<T>
    **/
   PolkadotRuntimeCommonSlotsPalletEvent: {
     _enum: {
@@ -1911,7 +1948,7 @@ export default {
     }
   },
   /**
-   * Lookup465: polkadot_runtime_common::auctions::pallet::Event<T>
+   * Lookup470: polkadot_runtime_common::auctions::pallet::Event<T>
    **/
   PolkadotRuntimeCommonAuctionsPalletEvent: {
     _enum: {
@@ -1951,7 +1988,7 @@ export default {
     }
   },
   /**
-   * Lookup466: polkadot_runtime_common::crowdloan::pallet::Event<T>
+   * Lookup471: polkadot_runtime_common::crowdloan::pallet::Event<T>
    **/
   PolkadotRuntimeCommonCrowdloanPalletEvent: {
     _enum: {
@@ -1995,7 +2032,7 @@ export default {
     }
   },
   /**
-   * Lookup467: pallet_xcm::pallet::Event<T>
+   * Lookup472: pallet_xcm::pallet::Event<T>
    **/
   PalletXcmEvent: {
     _enum: {
@@ -2025,7 +2062,7 @@ export default {
     }
   },
   /**
-   * Lookup612: pallet_referenda::types::ReferendumInfo<TrackId, polkadot_runtime::OriginCaller, Moment, frame_support::traits::preimages::Bounded<polkadot_runtime::RuntimeCall>, Balance, pallet_conviction_voting::types::Tally<Votes, Total>, sp_core::crypto::AccountId32, ScheduleAddress>
+   * Lookup617: pallet_referenda::types::ReferendumInfo<TrackId, polkadot_runtime::OriginCaller, Moment, frame_support::traits::preimages::Bounded<polkadot_runtime::RuntimeCall>, Balance, pallet_conviction_voting::types::Tally<Votes, Total>, sp_core::crypto::AccountId32, ScheduleAddress>
    **/
   PalletReferendaReferendumInfo: {
     _enum: {
@@ -2038,7 +2075,7 @@ export default {
     }
   },
   /**
-   * Lookup613: pallet_referenda::types::ReferendumStatus<TrackId, polkadot_runtime::OriginCaller, Moment, frame_support::traits::preimages::Bounded<polkadot_runtime::RuntimeCall>, Balance, pallet_conviction_voting::types::Tally<Votes, Total>, sp_core::crypto::AccountId32, ScheduleAddress>
+   * Lookup618: pallet_referenda::types::ReferendumStatus<TrackId, polkadot_runtime::OriginCaller, Moment, frame_support::traits::preimages::Bounded<polkadot_runtime::RuntimeCall>, Balance, pallet_conviction_voting::types::Tally<Votes, Total>, sp_core::crypto::AccountId32, ScheduleAddress>
    **/
   PalletReferendaReferendumStatus: {
     track: 'u16',
@@ -2054,13 +2091,13 @@ export default {
     alarm: 'Option<(u32,(u32,u32))>'
   },
   /**
-   * Lookup631: polkadot_runtime_common::claims::pallet::Error<T>
+   * Lookup636: polkadot_runtime_common::claims::pallet::Error<T>
    **/
   PolkadotRuntimeCommonClaimsPalletError: {
     _enum: ['InvalidEthereumSignature', 'SignerHasNoClaim', 'SenderHasNoClaim', 'PotUnderflow', 'InvalidStatement', 'VestedBalanceExists']
   },
   /**
-   * Lookup707: polkadot_runtime_parachains::configuration::HostConfiguration<BlockNumber>
+   * Lookup712: polkadot_runtime_parachains::configuration::HostConfiguration<BlockNumber>
    **/
   PolkadotRuntimeParachainsConfigurationHostConfiguration: {
     maxCodeSize: 'u32',
@@ -2085,6 +2122,7 @@ export default {
     hrmpMaxParachainInboundChannels: 'u32',
     hrmpMaxParathreadInboundChannels: 'u32',
     hrmpChannelMaxMessageSize: 'u32',
+    executorParams: 'PolkadotPrimitivesV4ExecutorParams',
     codeRetentionPeriod: 'u32',
     parathreadCores: 'u32',
     parathreadRetries: 'u32',
@@ -2107,20 +2145,20 @@ export default {
     minimumValidationUpgradeDelay: 'u32'
   },
   /**
-   * Lookup710: polkadot_runtime_parachains::configuration::pallet::Error<T>
+   * Lookup715: polkadot_runtime_parachains::configuration::pallet::Error<T>
    **/
   PolkadotRuntimeParachainsConfigurationPalletError: {
     _enum: ['InvalidNewValue']
   },
   /**
-   * Lookup713: polkadot_runtime_parachains::inclusion::AvailabilityBitfieldRecord<N>
+   * Lookup718: polkadot_runtime_parachains::inclusion::AvailabilityBitfieldRecord<N>
    **/
   PolkadotRuntimeParachainsInclusionAvailabilityBitfieldRecord: {
     bitfield: 'BitVec',
     submittedAt: 'u32'
   },
   /**
-   * Lookup714: polkadot_runtime_parachains::inclusion::CandidatePendingAvailability<primitive_types::H256, N>
+   * Lookup719: polkadot_runtime_parachains::inclusion::CandidatePendingAvailability<primitive_types::H256, N>
    **/
   PolkadotRuntimeParachainsInclusionCandidatePendingAvailability: {
     _alias: {
@@ -2136,13 +2174,13 @@ export default {
     backingGroup: 'u32'
   },
   /**
-   * Lookup715: polkadot_runtime_parachains::inclusion::pallet::Error<T>
+   * Lookup720: polkadot_runtime_parachains::inclusion::pallet::Error<T>
    **/
   PolkadotRuntimeParachainsInclusionPalletError: {
     _enum: ['UnsortedOrDuplicateValidatorIndices', 'UnsortedOrDuplicateDisputeStatementSet', 'UnsortedOrDuplicateBackedCandidates', 'UnexpectedRelayParent', 'WrongBitfieldSize', 'BitfieldAllZeros', 'BitfieldDuplicateOrUnordered', 'ValidatorIndexOutOfBounds', 'InvalidBitfieldSignature', 'UnscheduledCandidate', 'CandidateScheduledBeforeParaFree', 'WrongCollator', 'ScheduledOutOfOrder', 'HeadDataTooLarge', 'PrematureCodeUpgrade', 'NewCodeTooLarge', 'CandidateNotInParentContext', 'InvalidGroupIndex', 'InsufficientBacking', 'InvalidBacking', 'NotCollatorSigned', 'ValidationDataHashMismatch', 'IncorrectDownwardMessageHandling', 'InvalidUpwardMessages', 'HrmpWatermarkMishandling', 'InvalidOutboundHrmp', 'InvalidValidationCodeHash', 'ParaHeadMismatch', 'BitfieldReferencesFreedCore']
   },
   /**
-   * Lookup716: polkadot_primitives::v4::ScrapedOnChainVotes<primitive_types::H256>
+   * Lookup721: polkadot_primitives::v4::ScrapedOnChainVotes<primitive_types::H256>
    **/
   PolkadotPrimitivesV4ScrapedOnChainVotes: {
     session: 'u32',
@@ -2150,38 +2188,38 @@ export default {
     disputes: 'Vec<PolkadotPrimitivesV4DisputeStatementSet>'
   },
   /**
-   * Lookup721: polkadot_runtime_parachains::paras_inherent::pallet::Error<T>
+   * Lookup726: polkadot_runtime_parachains::paras_inherent::pallet::Error<T>
    **/
   PolkadotRuntimeParachainsParasInherentPalletError: {
     _enum: ['TooManyInclusionInherents', 'InvalidParentHeader', 'CandidateConcludedInvalid', 'InherentOverweight', 'DisputeStatementsUnsortedOrDuplicates', 'DisputeInvalid']
   },
   /**
-   * Lookup723: polkadot_runtime_parachains::scheduler::ParathreadClaimQueue
+   * Lookup728: polkadot_runtime_parachains::scheduler::ParathreadClaimQueue
    **/
   PolkadotRuntimeParachainsSchedulerParathreadClaimQueue: {
     queue: 'Vec<PolkadotRuntimeParachainsSchedulerQueuedParathread>',
     nextCoreOffset: 'u32'
   },
   /**
-   * Lookup725: polkadot_runtime_parachains::scheduler::QueuedParathread
+   * Lookup730: polkadot_runtime_parachains::scheduler::QueuedParathread
    **/
   PolkadotRuntimeParachainsSchedulerQueuedParathread: {
     claim: 'PolkadotPrimitivesV4ParathreadEntry',
     coreOffset: 'u32'
   },
   /**
-   * Lookup726: polkadot_primitives::v4::ParathreadEntry
+   * Lookup731: polkadot_primitives::v4::ParathreadEntry
    **/
   PolkadotPrimitivesV4ParathreadEntry: {
     claim: 'PolkadotPrimitivesV4ParathreadClaim',
     retries: 'u32'
   },
   /**
-   * Lookup727: polkadot_primitives::v4::ParathreadClaim
+   * Lookup732: polkadot_primitives::v4::ParathreadClaim
    **/
   PolkadotPrimitivesV4ParathreadClaim: '(u32,PolkadotPrimitivesV4CollatorAppPublic)',
   /**
-   * Lookup730: polkadot_primitives::v4::CoreOccupied
+   * Lookup735: polkadot_primitives::v4::CoreOccupied
    **/
   PolkadotPrimitivesV4CoreOccupied: {
     _enum: {
@@ -2190,7 +2228,7 @@ export default {
     }
   },
   /**
-   * Lookup733: polkadot_runtime_parachains::scheduler::CoreAssignment
+   * Lookup738: polkadot_runtime_parachains::scheduler::CoreAssignment
    **/
   PolkadotRuntimeParachainsSchedulerCoreAssignment: {
     core: 'u32',
@@ -2199,7 +2237,7 @@ export default {
     groupIdx: 'u32'
   },
   /**
-   * Lookup734: polkadot_runtime_parachains::scheduler::AssignmentKind
+   * Lookup739: polkadot_runtime_parachains::scheduler::AssignmentKind
    **/
   PolkadotRuntimeParachainsSchedulerAssignmentKind: {
     _enum: {
@@ -2208,7 +2246,7 @@ export default {
     }
   },
   /**
-   * Lookup735: polkadot_runtime_parachains::paras::PvfCheckActiveVoteState<BlockNumber>
+   * Lookup740: polkadot_runtime_parachains::paras::PvfCheckActiveVoteState<BlockNumber>
    **/
   PolkadotRuntimeParachainsParasPvfCheckActiveVoteState: {
     votesAccept: 'BitVec',
@@ -2218,7 +2256,7 @@ export default {
     causes: 'Vec<PolkadotRuntimeParachainsParasPvfCheckCause>'
   },
   /**
-   * Lookup737: polkadot_runtime_parachains::paras::PvfCheckCause<BlockNumber>
+   * Lookup742: polkadot_runtime_parachains::paras::PvfCheckCause<BlockNumber>
    **/
   PolkadotRuntimeParachainsParasPvfCheckCause: {
     _enum: {
@@ -2230,39 +2268,39 @@ export default {
     }
   },
   /**
-   * Lookup739: polkadot_runtime_parachains::paras::ParaLifecycle
+   * Lookup744: polkadot_runtime_parachains::paras::ParaLifecycle
    **/
   PolkadotRuntimeParachainsParasParaLifecycle: {
     _enum: ['Onboarding', 'Parathread', 'Parachain', 'UpgradingParathread', 'DowngradingParachain', 'OffboardingParathread', 'OffboardingParachain']
   },
   /**
-   * Lookup741: polkadot_runtime_parachains::paras::ParaPastCodeMeta<N>
+   * Lookup746: polkadot_runtime_parachains::paras::ParaPastCodeMeta<N>
    **/
   PolkadotRuntimeParachainsParasParaPastCodeMeta: {
     upgradeTimes: 'Vec<PolkadotRuntimeParachainsParasReplacementTimes>',
     lastPruned: 'Option<u32>'
   },
   /**
-   * Lookup743: polkadot_runtime_parachains::paras::ReplacementTimes<N>
+   * Lookup748: polkadot_runtime_parachains::paras::ReplacementTimes<N>
    **/
   PolkadotRuntimeParachainsParasReplacementTimes: {
     expectedAt: 'u32',
     activatedAt: 'u32'
   },
   /**
-   * Lookup745: polkadot_primitives::v4::UpgradeGoAhead
+   * Lookup750: polkadot_primitives::v4::UpgradeGoAhead
    **/
   PolkadotPrimitivesV4UpgradeGoAhead: {
     _enum: ['Abort', 'GoAhead']
   },
   /**
-   * Lookup746: polkadot_primitives::v4::UpgradeRestriction
+   * Lookup751: polkadot_primitives::v4::UpgradeRestriction
    **/
   PolkadotPrimitivesV4UpgradeRestriction: {
     _enum: ['Present']
   },
   /**
-   * Lookup747: polkadot_runtime_parachains::paras::ParaGenesisArgs
+   * Lookup752: polkadot_runtime_parachains::paras::ParaGenesisArgs
    **/
   PolkadotRuntimeParachainsParasParaGenesisArgs: {
     genesisHead: 'Bytes',
@@ -2270,13 +2308,13 @@ export default {
     paraKind: 'bool'
   },
   /**
-   * Lookup748: polkadot_runtime_parachains::paras::pallet::Error<T>
+   * Lookup753: polkadot_runtime_parachains::paras::pallet::Error<T>
    **/
   PolkadotRuntimeParachainsParasPalletError: {
     _enum: ['NotRegistered', 'CannotOnboard', 'CannotOffboard', 'CannotUpgrade', 'CannotDowngrade', 'PvfCheckStatementStale', 'PvfCheckStatementFuture', 'PvfCheckValidatorIndexOutOfBounds', 'PvfCheckInvalidSignature', 'PvfCheckDoubleVote', 'PvfCheckSubjectInvalid', 'PvfCheckDisabled', 'CannotUpgradeCode']
   },
   /**
-   * Lookup750: polkadot_runtime_parachains::initializer::BufferedSessionChange
+   * Lookup755: polkadot_runtime_parachains::initializer::BufferedSessionChange
    **/
   PolkadotRuntimeParachainsInitializerBufferedSessionChange: {
     validators: 'Vec<PolkadotPrimitivesV4ValidatorAppPublic>',
@@ -2284,20 +2322,20 @@ export default {
     sessionIndex: 'u32'
   },
   /**
-   * Lookup752: polkadot_core_primitives::InboundDownwardMessage<BlockNumber>
+   * Lookup757: polkadot_core_primitives::InboundDownwardMessage<BlockNumber>
    **/
   PolkadotCorePrimitivesInboundDownwardMessage: {
     sentAt: 'u32',
     msg: 'Bytes'
   },
   /**
-   * Lookup754: polkadot_runtime_parachains::ump::pallet::Error<T>
+   * Lookup759: polkadot_runtime_parachains::ump::pallet::Error<T>
    **/
   PolkadotRuntimeParachainsUmpPalletError: {
     _enum: ['UnknownMessageIndex', 'WeightOverLimit']
   },
   /**
-   * Lookup755: polkadot_runtime_parachains::hrmp::HrmpOpenChannelRequest
+   * Lookup760: polkadot_runtime_parachains::hrmp::HrmpOpenChannelRequest
    **/
   PolkadotRuntimeParachainsHrmpHrmpOpenChannelRequest: {
     confirmed: 'bool',
@@ -2308,7 +2346,7 @@ export default {
     maxTotalSize: 'u32'
   },
   /**
-   * Lookup757: polkadot_runtime_parachains::hrmp::HrmpChannel
+   * Lookup762: polkadot_runtime_parachains::hrmp::HrmpChannel
    **/
   PolkadotRuntimeParachainsHrmpHrmpChannel: {
     maxCapacity: 'u32',
@@ -2321,20 +2359,20 @@ export default {
     recipientDeposit: 'u128'
   },
   /**
-   * Lookup759: polkadot_core_primitives::InboundHrmpMessage<BlockNumber>
+   * Lookup764: polkadot_core_primitives::InboundHrmpMessage<BlockNumber>
    **/
   PolkadotCorePrimitivesInboundHrmpMessage: {
     sentAt: 'u32',
     data: 'Bytes'
   },
   /**
-   * Lookup762: polkadot_runtime_parachains::hrmp::pallet::Error<T>
+   * Lookup767: polkadot_runtime_parachains::hrmp::pallet::Error<T>
    **/
   PolkadotRuntimeParachainsHrmpPalletError: {
     _enum: ['OpenHrmpChannelToSelf', 'OpenHrmpChannelInvalidRecipient', 'OpenHrmpChannelZeroCapacity', 'OpenHrmpChannelCapacityExceedsLimit', 'OpenHrmpChannelZeroMessageSize', 'OpenHrmpChannelMessageSizeExceedsLimit', 'OpenHrmpChannelAlreadyExists', 'OpenHrmpChannelAlreadyRequested', 'OpenHrmpChannelLimitExceeded', 'AcceptHrmpChannelDoesntExist', 'AcceptHrmpChannelAlreadyConfirmed', 'AcceptHrmpChannelLimitExceeded', 'CloseHrmpChannelUnauthorized', 'CloseHrmpChannelDoesntExist', 'CloseHrmpChannelAlreadyUnderway', 'CancelHrmpOpenChannelUnauthorized', 'OpenHrmpChannelDoesntExist', 'OpenHrmpChannelAlreadyConfirmed', 'WrongWitness']
   },
   /**
-   * Lookup764: polkadot_primitives::v4::SessionInfo
+   * Lookup769: polkadot_primitives::v4::SessionInfo
    **/
   PolkadotPrimitivesV4SessionInfo: {
     activeValidatorIndices: 'Vec<u32>',
@@ -2352,44 +2390,13 @@ export default {
     neededApprovals: 'u32'
   },
   /**
-   * Lookup765: polkadot_primitives::v4::IndexedVec<polkadot_primitives::v4::ValidatorIndex, polkadot_primitives::v4::validator_app::Public>
+   * Lookup770: polkadot_primitives::v4::IndexedVec<polkadot_primitives::v4::ValidatorIndex, polkadot_primitives::v4::validator_app::Public>
    **/
   PolkadotPrimitivesV4IndexedVecValidatorIndex: 'Vec<PolkadotPrimitivesV4ValidatorAppPublic>',
   /**
-   * Lookup767: polkadot_primitives::v4::IndexedVec<polkadot_primitives::v4::GroupIndex, V>
+   * Lookup772: polkadot_primitives::v4::IndexedVec<polkadot_primitives::v4::GroupIndex, V>
    **/
   PolkadotPrimitivesV4IndexedVecGroupIndex: 'Vec<Vec<u32>>',
-  /**
-   * Lookup768: polkadot_primitives::v4::executor_params::ExecutorParams
-   **/
-  PolkadotPrimitivesV4ExecutorParams: 'Vec<PolkadotPrimitivesV4ExecutorParamsExecutorParam>',
-  /**
-   * Lookup770: polkadot_primitives::v4::executor_params::ExecutorParam
-   **/
-  PolkadotPrimitivesV4ExecutorParamsExecutorParam: {
-    _enum: {
-      __Unused0: 'Null',
-      MaxMemoryPages: 'u32',
-      StackLogicalMax: 'u32',
-      StackNativeMax: 'u32',
-      PrecheckingMaxMemory: 'u64',
-      PvfPrepTimeout: '(PolkadotPrimitivesV4PvfPrepTimeoutKind,u64)',
-      PvfExecTimeout: '(PolkadotPrimitivesV4PvfExecTimeoutKind,u64)',
-      WasmExtBulkMemory: 'Null'
-    }
-  },
-  /**
-   * Lookup771: polkadot_primitives::v4::PvfPrepTimeoutKind
-   **/
-  PolkadotPrimitivesV4PvfPrepTimeoutKind: {
-    _enum: ['Precheck', 'Lenient']
-  },
-  /**
-   * Lookup772: polkadot_primitives::v4::PvfExecTimeoutKind
-   **/
-  PolkadotPrimitivesV4PvfExecTimeoutKind: {
-    _enum: ['Backing', 'Approval']
-  },
   /**
    * Lookup774: polkadot_primitives::v4::DisputeState<N>
    **/

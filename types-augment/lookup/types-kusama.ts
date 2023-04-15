@@ -1,12 +1,12 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.35/types/lookup.ts';
+import 'https://deno.land/x/polkadot/types/lookup.ts';
 
-import type { BTreeMap, Compact, Enum, Null, Struct, Vec, u16, u32 } from 'https://deno.land/x/polkadot@0.2.35/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.35/types-codec/types/index.ts';
-import type { H256, PerU16 } from 'https://deno.land/x/polkadot@0.2.35/types/interfaces/runtime/index.ts';
+import type { BTreeMap, Compact, Enum, Null, Struct, Vec, u16, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { H256, PerU16 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
-declare module 'https://deno.land/x/polkadot@0.2.35/types/lookup.ts' {
+declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
   /** @name KusamaRuntimeSessionKeys (96) */
   interface KusamaRuntimeSessionKeys extends Struct {
     readonly grandpa: SpConsensusGrandpaAppPublic;
@@ -105,7 +105,7 @@ declare module 'https://deno.land/x/polkadot@0.2.35/types/lookup.ts' {
     readonly votes24: Vec<ITuple<[Compact<u32>, Vec<ITuple<[Compact<u16>, Compact<PerU16>]>>, Compact<u16>]>>;
   }
 
-  /** @name PolkadotRuntimeParachainsDisputesSlashingPalletCall (364) */
+  /** @name PolkadotRuntimeParachainsDisputesSlashingPalletCall (369) */
   interface PolkadotRuntimeParachainsDisputesSlashingPalletCall extends Enum {
     readonly isReportDisputeLostUnsigned: boolean;
     readonly asReportDisputeLostUnsigned: {
@@ -115,7 +115,7 @@ declare module 'https://deno.land/x/polkadot@0.2.35/types/lookup.ts' {
     readonly type: 'ReportDisputeLostUnsigned';
   }
 
-  /** @name PolkadotRuntimeParachainsDisputesSlashingDisputeProof (365) */
+  /** @name PolkadotRuntimeParachainsDisputesSlashingDisputeProof (370) */
   interface PolkadotRuntimeParachainsDisputesSlashingDisputeProof extends Struct {
     readonly timeSlot: PolkadotRuntimeParachainsDisputesSlashingDisputesTimeSlot;
     readonly kind: PolkadotRuntimeParachainsDisputesSlashingSlashingOffenceKind;
@@ -123,28 +123,28 @@ declare module 'https://deno.land/x/polkadot@0.2.35/types/lookup.ts' {
     readonly validatorId: PolkadotPrimitivesV4ValidatorAppPublic;
   }
 
-  /** @name PolkadotRuntimeParachainsDisputesSlashingDisputesTimeSlot (366) */
+  /** @name PolkadotRuntimeParachainsDisputesSlashingDisputesTimeSlot (371) */
   interface PolkadotRuntimeParachainsDisputesSlashingDisputesTimeSlot extends Struct {
     readonly sessionIndex: u32;
     readonly candidateHash: H256;
   }
 
-  /** @name PolkadotRuntimeParachainsDisputesSlashingSlashingOffenceKind (367) */
+  /** @name PolkadotRuntimeParachainsDisputesSlashingSlashingOffenceKind (372) */
   interface PolkadotRuntimeParachainsDisputesSlashingSlashingOffenceKind extends Enum {
     readonly isForInvalid: boolean;
     readonly isAgainstValid: boolean;
     readonly type: 'ForInvalid' | 'AgainstValid';
   }
 
-  /** @name KusamaRuntimeHoldReason (535) */
-  interface KusamaRuntimeHoldReason extends Enum {
+  /** @name KusamaRuntimeRuntimeHoldReason (540) */
+  interface KusamaRuntimeRuntimeHoldReason extends Enum {
     readonly isNis: boolean;
-    readonly asNis: KusamaRuntimeHoldReasonNis;
+    readonly asNis: PalletNisHoldReason;
     readonly type: 'Nis';
   }
 
-  /** @name KusamaRuntimeHoldReasonNis (536) */
-  interface KusamaRuntimeHoldReasonNis extends Enum {
+  /** @name PalletNisHoldReason (541) */
+  interface PalletNisHoldReason extends Enum {
     readonly isNftReceipt: boolean;
     readonly type: 'NftReceipt';
   }

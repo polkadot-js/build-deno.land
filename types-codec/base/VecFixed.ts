@@ -1,17 +1,12 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.35/util/types.ts';
-import type { Codec, CodecClass, Inspect, Registry } from '../types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { Codec, CodecClass, DefinitionSetter, Inspect, Registry } from '../types/index.ts';
 
-import { isU8a, u8aConcatStrict } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
+import { isU8a, u8aConcatStrict } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { AbstractArray } from '../abstract/Array.ts';
 import { decodeU8aVec, typeToConstructor } from '../utils/index.ts';
 import { decodeVec } from './Vec.ts';
-
-interface Options<T> {
-  definition?: CodecClass<T>;
-  setDefinition?: (d: CodecClass<T>) => CodecClass<T>;
-}
 
 function noopSetDefinition <T extends Codec> (d: CodecClass<T>): CodecClass<T> {
   return d;
@@ -25,7 +20,7 @@ function noopSetDefinition <T extends Codec> (d: CodecClass<T>): CodecClass<T> {
 export class VecFixed<T extends Codec> extends AbstractArray<T> {
   #Type: CodecClass<T>;
 
-  constructor (registry: Registry, Type: CodecClass<T> | string, length: number, value: Uint8Array | HexString | unknown[] = [] as unknown[], { definition, setDefinition = noopSetDefinition }: Options<T> = {}) {
+  constructor (registry: Registry, Type: CodecClass<T> | string, length: number, value: Uint8Array | HexString | unknown[] = [] as unknown[], { definition, setDefinition = noopSetDefinition }: DefinitionSetter<CodecClass<T>> = {}) {
     super(registry, length);
 
     this.#Type = definition || setDefinition(typeToConstructor<T>(registry, Type));

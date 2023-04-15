@@ -1,6 +1,6 @@
 
-import type { BlockNumber, DispatchError, DispatchInfo, EventRecord, ExtrinsicStatus, Hash } from 'https://deno.land/x/polkadot@0.2.35/types/interfaces/index.ts';
-import type { AnyJson, ISubmittableResult } from 'https://deno.land/x/polkadot@0.2.35/types/types/index.ts';
+import type { BlockNumber, DispatchError, DispatchInfo, EventRecord, ExtrinsicStatus, Hash } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { AnyJson, ISubmittableResult } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { SubmittableResultValue } from './types.ts';
 
 const recordIdentity = (record: EventRecord) => record;
@@ -33,11 +33,11 @@ function extractInfo (events: EventRecord[] = []): DispatchInfo | undefined {
 }
 
 export class SubmittableResult implements ISubmittableResult {
-  readonly dispatchError?: DispatchError;
+  readonly dispatchError?: DispatchError | undefined;
 
-  readonly dispatchInfo?: DispatchInfo;
+  readonly dispatchInfo?: DispatchInfo | undefined;
 
-  readonly internalError?: Error;
+  readonly internalError?: Error | undefined;
 
   readonly events: EventRecord[];
 
@@ -45,9 +45,9 @@ export class SubmittableResult implements ISubmittableResult {
 
   readonly txHash: Hash;
 
-  readonly txIndex?: number;
+  readonly txIndex?: number | undefined;
 
-  readonly blockNumber?: BlockNumber;
+  readonly blockNumber?: BlockNumber | undefined;
 
   constructor ({ blockNumber, dispatchError, dispatchInfo, events, internalError, status, txHash, txIndex }: SubmittableResultValue) {
     this.dispatchError = dispatchError || extractError(events);

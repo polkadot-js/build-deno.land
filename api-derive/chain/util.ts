@@ -1,12 +1,13 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { QueryableStorage } from 'https://deno.land/x/polkadot@0.2.35/api-base/types/index.ts';
-import type { Compact, Vec } from 'https://deno.land/x/polkadot@0.2.35/types/mod.ts';
-import type { AccountId, Address, BlockNumber, Header } from 'https://deno.land/x/polkadot@0.2.35/types/interfaces/index.ts';
-import type { Codec, IOption } from 'https://deno.land/x/polkadot@0.2.35/types/types/index.ts';
+import type { QueryableStorage } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Compact, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, BlockNumber, Header } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { SpCoreSr25519Public } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { Codec, IOption } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DeriveApi } from '../types.ts';
 
-import { combineLatest, map, of } from 'https://esm.sh/rxjs@7.8.0';
+import { combineLatest, map, mergeMap, of } from 'https://esm.sh/rxjs@7.8.0';
 
 import { memo, unwrapBlockNumber } from '../util/index.ts';
 
@@ -44,14 +45,19 @@ export function getAuthorDetails (header: Header, queryAt: QueryableStorage<'rxj
       ]);
     }
 
-    // fall back to session pallet, if available (ie: manta, calamari), to map session (nimbus) key to author (collator/validator) key
-    if (queryAt.session && queryAt.session.queuedKeys) {
+    // fall back to session and parachain staking pallets, if available (ie: manta, calamari), to map session (nimbus) key to author (collator) key
+    if (queryAt.parachainStaking && queryAt.parachainStaking.selectedCandidates && queryAt.session && queryAt.session.nextKeys && queryAt.session.nextKeys.multi) {
       return combineLatest([
         of(header),
         validators,
-        queryAt.session.queuedKeys<[AccountId, { nimbus: Address }][]>().pipe(
-          map((queuedKeys) => queuedKeys.find((sessionKey) => sessionKey[1].nimbus.toHex() === loggedAuthor.toHex())),
-          map((sessionKey) => (sessionKey) ? sessionKey[0] : null)
+        queryAt.parachainStaking.selectedCandidates<AccountId[]>().pipe(
+          mergeMap((selectedCandidates) => combineLatest([
+            of(selectedCandidates),
+            queryAt.session.nextKeys.multi<IOption<{ nimbus: SpCoreSr25519Public } & Codec>>(selectedCandidates).pipe(
+              map((nextKeys) => nextKeys.findIndex((option) => option.unwrapOrDefault().nimbus.toHex() === loggedAuthor.toHex()))
+            )
+          ])),
+          map(([selectedCandidates, index]) => selectedCandidates[index])
         )
       ]);
     }

@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.35/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyNumber, Inspect, INumber, IU8a, Registry, ToBn, UIntBitLength } from '../types/index.ts';
 
-import { BN, BN_BILLION, BN_HUNDRED, BN_MILLION, BN_QUINTILL, bnToBn, bnToHex, bnToU8a, formatBalance, formatNumber, hexToBn, isBigInt, isBn, isFunction, isHex, isNumber, isObject, isString, isU8a, u8aToBn, u8aToNumber } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
+import { BN, BN_BILLION, BN_HUNDRED, BN_MILLION, BN_QUINTILL, bnToBn, bnToHex, bnToU8a, formatBalance, formatNumber, hexToBn, isBigInt, isBn, isFunction, isHex, isNumber, isObject, isString, isU8a, u8aToBn, u8aToNumber } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 export const DEFAULT_UINT_BITS = 64;
 

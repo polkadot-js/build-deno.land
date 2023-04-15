@@ -29,6 +29,7 @@ export * from './eth/types.ts';
 export * from './evm/types.ts';
 export * from './extrinsics/types.ts';
 export * from './finality/types.ts';
+export * from './fungibles/types.ts';
 export * from './genericAsset/types.ts';
 export * from './gilt/types.ts';
 export * from './grandpa/types.ts';

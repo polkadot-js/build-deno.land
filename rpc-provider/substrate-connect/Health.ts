@@ -1,7 +1,7 @@
 
 import type { HealthChecker, SmoldotHealth } from './types.ts';
 
-import { stringify } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
+import { stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 interface JSONRequest {
   id: string;
@@ -128,7 +128,7 @@ class InnerChecker {
     let parsedResponse: {id: string, result?: SmoldotHealth, params?: { subscription: string }};
 
     try {
-      parsedResponse = JSON.parse(jsonRpcResponse) as { id: string, result: undefined | SmoldotHealth };
+      parsedResponse = JSON.parse(jsonRpcResponse) as { id: string, result?: SmoldotHealth };
     } catch {
       return jsonRpcResponse;
     }

@@ -1,6 +1,6 @@
 
-import type { BN } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.35/util/types.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { Codec } from './codec.ts';
 
 export type AnyJson = string | number | boolean | null | undefined | AnyJson[] | { [index: string]: AnyJson };
@@ -31,6 +31,11 @@ export interface ToString {
 
 export interface ToBn {
   toBn: () => BN;
+}
+
+export interface DefinitionSetter <T> {
+  definition?: T | undefined;
+  setDefinition?: (d: T) => T;
 }
 
 export type LookupString = `Lookup${number}`;

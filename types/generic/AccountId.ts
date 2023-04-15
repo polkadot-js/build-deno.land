@@ -1,9 +1,9 @@
 
-import type { AnyString, AnyU8a, Registry, U8aBitLength } from 'https://deno.land/x/polkadot@0.2.35/types-codec/types/index.ts';
+import type { AnyString, AnyU8a, Registry, U8aBitLength } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 
-import { U8aFixed } from 'https://deno.land/x/polkadot@0.2.35/types-codec/mod.ts';
-import { hexToU8a, isHex, isString, isU8a, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
-import { decodeAddress, encodeAddress } from 'https://deno.land/x/polkadot@0.2.35/util-crypto/mod.ts';
+import { U8aFixed } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { hexToU8a, isHex, isString, isU8a, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { decodeAddress, encodeAddress } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 /** @internal */
 function decodeAccountId (value?: AnyU8a | AnyString): Uint8Array {

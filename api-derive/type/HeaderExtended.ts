@@ -1,6 +1,6 @@
 
-import type { AccountId, Header } from 'https://deno.land/x/polkadot@0.2.35/types/interfaces/index.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.35/types/types/index.ts';
+import type { AccountId, Header } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { HeaderExtended } from './types.ts';
 
 import { extractAuthor } from './util.ts';
@@ -10,7 +10,7 @@ export function createHeaderExtended (registry: Registry, header?: Header, valid
   const HeaderBase = registry.createClass('Header');
 
   class Implementation extends HeaderBase implements HeaderExtended {
-    readonly #author?: AccountId;
+    readonly #author?: AccountId | undefined;
 
     constructor (registry: Registry, header?: Header, validators?: AccountId[] | null, author?: AccountId | null) {
       super(registry, header);

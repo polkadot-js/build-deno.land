@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.35/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, AnyU8a, Inspect, IU8a, Registry } from '../types/index.ts';
 
-import { isAscii, isUndefined, isUtf8, u8aToHex, u8aToString, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
+import { isAscii, isUndefined, isUtf8, u8aToHex, u8aToString, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 /**
  * @name Raw
@@ -16,8 +16,8 @@ import { isAscii, isUndefined, isUtf8, u8aToHex, u8aToString, u8aToU8a } from 'h
 export class Raw extends Uint8Array implements IU8a {
   readonly registry: Registry;
 
-  public createdAtHash?: IU8a;
-  public initialU8aLength?: number;
+  public createdAtHash?: IU8a | undefined;
+  public initialU8aLength?: number | undefined;
   public isStorageFallback?: boolean;
 
   /**

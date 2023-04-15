@@ -1,19 +1,19 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.35/types/types/registry.ts';
+import 'https://deno.land/x/polkadot/types/types/registry.ts';
 
-import type { KusamaRuntimeGovernanceOriginsPalletCustomOriginsOrigin, KusamaRuntimeHoldReason, KusamaRuntimeHoldReasonNis, KusamaRuntimeNposCompactSolution24, KusamaRuntimeOriginCaller, KusamaRuntimeProxyType, KusamaRuntimeRuntime, KusamaRuntimeSessionKeys, PolkadotRuntimeParachainsDisputesSlashingDisputeProof, PolkadotRuntimeParachainsDisputesSlashingDisputesTimeSlot, PolkadotRuntimeParachainsDisputesSlashingPalletCall, PolkadotRuntimeParachainsDisputesSlashingPalletError, PolkadotRuntimeParachainsDisputesSlashingPendingSlashes, PolkadotRuntimeParachainsDisputesSlashingSlashingOffenceKind } from 'https://deno.land/x/polkadot@0.2.35/types/lookup.ts';
+import type { KusamaRuntimeGovernanceOriginsPalletCustomOriginsOrigin, KusamaRuntimeNposCompactSolution24, KusamaRuntimeOriginCaller, KusamaRuntimeProxyType, KusamaRuntimeRuntime, KusamaRuntimeRuntimeHoldReason, KusamaRuntimeSessionKeys, PalletNisHoldReason, PolkadotRuntimeParachainsDisputesSlashingDisputeProof, PolkadotRuntimeParachainsDisputesSlashingDisputesTimeSlot, PolkadotRuntimeParachainsDisputesSlashingPalletCall, PolkadotRuntimeParachainsDisputesSlashingPalletError, PolkadotRuntimeParachainsDisputesSlashingPendingSlashes, PolkadotRuntimeParachainsDisputesSlashingSlashingOffenceKind } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
-declare module 'https://deno.land/x/polkadot@0.2.35/types/types/registry.ts' {
+declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
   interface InterfaceTypes {
     KusamaRuntimeGovernanceOriginsPalletCustomOriginsOrigin: KusamaRuntimeGovernanceOriginsPalletCustomOriginsOrigin;
-    KusamaRuntimeHoldReason: KusamaRuntimeHoldReason;
-    KusamaRuntimeHoldReasonNis: KusamaRuntimeHoldReasonNis;
     KusamaRuntimeNposCompactSolution24: KusamaRuntimeNposCompactSolution24;
     KusamaRuntimeOriginCaller: KusamaRuntimeOriginCaller;
     KusamaRuntimeProxyType: KusamaRuntimeProxyType;
     KusamaRuntimeRuntime: KusamaRuntimeRuntime;
+    KusamaRuntimeRuntimeHoldReason: KusamaRuntimeRuntimeHoldReason;
     KusamaRuntimeSessionKeys: KusamaRuntimeSessionKeys;
+    PalletNisHoldReason: PalletNisHoldReason;
     PolkadotRuntimeParachainsDisputesSlashingDisputeProof: PolkadotRuntimeParachainsDisputesSlashingDisputeProof;
     PolkadotRuntimeParachainsDisputesSlashingDisputesTimeSlot: PolkadotRuntimeParachainsDisputesSlashingDisputesTimeSlot;
     PolkadotRuntimeParachainsDisputesSlashingPalletCall: PolkadotRuntimeParachainsDisputesSlashingPalletCall;

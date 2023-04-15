@@ -1,6 +1,6 @@
 
-import type { AccountId, DispatchError, DispatchInfo, EventRecord, Extrinsic, SignedBlock } from 'https://deno.land/x/polkadot@0.2.35/types/interfaces/index.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.35/types/types/index.ts';
+import type { AccountId, DispatchError, DispatchInfo, EventRecord, Extrinsic, SignedBlock } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { SignedBlockExtended, TxWithEvent } from './types.ts';
 
 import { extractAuthor } from './util.ts';
@@ -34,7 +34,7 @@ export function createSignedBlockExtended (registry: Registry, block?: SignedBlo
   const SignedBlockBase = registry.createClass('SignedBlock');
 
   class Implementation extends SignedBlockBase implements SignedBlockExtended {
-    readonly #author?: AccountId;
+    readonly #author?: AccountId | undefined;
     readonly #events: EventRecord[];
     readonly #extrinsics: TxWithEvent[];
 

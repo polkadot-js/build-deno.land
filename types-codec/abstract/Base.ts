@@ -1,5 +1,5 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.35/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, BareOpts, Codec, Inspect, IU8a, Registry } from '../types/index.ts';
 
 /**
@@ -9,8 +9,8 @@ import type { AnyJson, BareOpts, Codec, Inspect, IU8a, Registry } from '../types
 export abstract class AbstractBase<T extends Codec> implements Codec {
   readonly registry: Registry;
 
-  public createdAtHash?: IU8a;
-  public initialU8aLength?: number;
+  public createdAtHash?: IU8a | undefined;
+  public initialU8aLength?: number | undefined;
   public isStorageFallback?: boolean;
 
   readonly #raw: T;

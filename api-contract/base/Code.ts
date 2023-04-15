@@ -1,15 +1,15 @@
 
-import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot@0.2.35/api/submittable/types.ts';
-import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot@0.2.35/api/types/index.ts';
-import type { AccountId, EventRecord } from 'https://deno.land/x/polkadot@0.2.35/types/interfaces/index.ts';
-import type { ISubmittableResult } from 'https://deno.land/x/polkadot@0.2.35/types/types/index.ts';
-import type { Codec } from 'https://deno.land/x/polkadot@0.2.35/types-codec/types/index.ts';
+import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot/api/submittable/types.ts';
+import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot/api/types/index.ts';
+import type { AccountId, EventRecord } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { ISubmittableResult } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { Codec } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { AbiConstructor, BlueprintOptions } from '../types.ts';
 import type { MapConstructorExec } from './types.ts';
 
-import { SubmittableResult } from 'https://deno.land/x/polkadot@0.2.35/api/mod.ts';
-import { ApiBase } from 'https://deno.land/x/polkadot@0.2.35/api/base/index.ts';
-import { BN_ZERO, compactAddLength, isUndefined, isWasm, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
+import { SubmittableResult } from 'https://deno.land/x/polkadot/api/mod.ts';
+import { ApiBase } from 'https://deno.land/x/polkadot/api/base/index.ts';
+import { BN_ZERO, compactAddLength, isUndefined, isWasm, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Abi } from '../Abi/index.ts';
 import { applyOnEvent } from '../util.ts';
@@ -23,10 +23,10 @@ export interface CodeConstructor<ApiType extends ApiTypes> {
 }
 
 export class CodeSubmittableResult<ApiType extends ApiTypes> extends SubmittableResult {
-  readonly blueprint?: Blueprint<ApiType>;
-  readonly contract?: Contract<ApiType>;
+  readonly blueprint?: Blueprint<ApiType> | undefined;
+  readonly contract?: Contract<ApiType> | undefined;
 
-  constructor (result: ISubmittableResult, blueprint?: Blueprint<ApiType>, contract?: Contract<ApiType>) {
+  constructor (result: ISubmittableResult, blueprint?: Blueprint<ApiType> | undefined, contract?: Contract<ApiType> | undefined) {
     super(result);
 
     this.blueprint = blueprint;
@@ -75,14 +75,14 @@ export class Code<ApiType extends ApiTypes> extends Base<ApiType> {
       encodeSalt(salt)
     ).withResultTransform((result: ISubmittableResult) =>
       new CodeSubmittableResult(result, ...(applyOnEvent(result, ['CodeStored', 'Instantiated'], (records: EventRecord[]) =>
-        records.reduce<[Blueprint<ApiType>?, Contract<ApiType>?]>(([blueprint, contract], { event }) =>
+        records.reduce<[Blueprint<ApiType> | undefined, Contract<ApiType> | undefined]>(([blueprint, contract], { event }) =>
           this.api.events.contracts.Instantiated.is(event)
             ? [blueprint, new Contract<ApiType>(this.api, this.abi, (event as unknown as { data: [Codec, AccountId] }).data[1], this._decorateMethod)]
             : this.api.events.contracts.CodeStored.is(event)
               ? [new Blueprint<ApiType>(this.api, this.abi, (event as unknown as { data: [AccountId] }).data[0], this._decorateMethod), contract]
               : [blueprint, contract],
-        [])
-      ) || []))
+        [undefined, undefined])
+      ) || [undefined, undefined]))
     );
   };
 }

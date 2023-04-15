@@ -1,7 +1,7 @@
 
-import type { AnyTupleValue, Codec, CodecClass, Inspect, ITuple, Registry } from '../types/index.ts';
+import type { AnyTupleValue, Codec, CodecClass, DefinitionSetter, Inspect, ITuple, Registry } from '../types/index.ts';
 
-import { isFunction, isHex, isString, isU8a, stringify, u8aConcatStrict, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
+import { isFunction, isHex, isString, isU8a, stringify, u8aConcatStrict, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { AbstractArray } from '../abstract/Array.ts';
 import { decodeU8a, mapToTypeMap, typeToConstructor } from '../utils/index.ts';
@@ -13,11 +13,6 @@ type TupleTypes = TupleType[] | {
 };
 
 type Definition = [CodecClass[], string[]];
-
-interface Options {
-  definition?: Definition;
-  setDefinition?: (d: Definition) => Definition;
-}
 
 function noopSetDefinition (d: Definition): Definition {
   return d;
@@ -65,7 +60,7 @@ function decodeTuple (registry: Registry, result: Codec[], value: Exclude<AnyTup
 export class Tuple extends AbstractArray<Codec> implements ITuple<Codec[]> {
   #Types: Definition;
 
-  constructor (registry: Registry, Types: TupleTypes | TupleType, value?: AnyTupleValue, { definition, setDefinition = noopSetDefinition }: Options = {}) {
+  constructor (registry: Registry, Types: TupleTypes | TupleType, value?: AnyTupleValue, { definition, setDefinition = noopSetDefinition }: DefinitionSetter<Definition> = {}) {
     const Classes = definition || setDefinition(
       Array.isArray(Types)
         ? [Types.map((t) => typeToConstructor(registry, t)), []]

@@ -19,6 +19,7 @@ export { default as elections } from './elections/definitions.ts';
 export { default as engine } from './engine/definitions.ts';
 export { default as evm } from './evm/definitions.ts';
 export { default as extrinsics } from './extrinsics/definitions.ts';
+export { default as fungibles } from './fungibles/definitions.ts';
 export { default as genericAsset } from './genericAsset/definitions.ts';
 export { default as gilt } from './gilt/definitions.ts';
 export { default as grandpa } from './grandpa/definitions.ts';

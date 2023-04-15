@@ -1,7 +1,7 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { AccountId, Address, ApplyExtrinsicResult, BlockNumber, Call, DispatchError, DispatchInfo, EventRecord, Extrinsic, ExtrinsicStatus, Hash, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot@0.2.35/types/interfaces/index.ts';
-import type { AnyFunction, AnyNumber, AnyTuple, Callback, CallBase, Codec, IExtrinsicEra, IKeyringPair, ISubmittableResult, Signer } from 'https://deno.land/x/polkadot@0.2.35/types/types/index.ts';
+import type { AccountId, Address, ApplyExtrinsicResult, BlockNumber, Call, DispatchError, DispatchInfo, EventRecord, Extrinsic, ExtrinsicStatus, Hash, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { AnyFunction, AnyNumber, AnyTuple, Callback, CallBase, Codec, IExtrinsicEra, IKeyringPair, ISubmittableResult, Signer } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { ApiTypes, EmptyBase, PromiseOrObs } from './base.ts';
 
 export type AugmentedSubmittable<T extends AnyFunction, A extends AnyTuple = AnyTuple> = T & CallBase<A>;
@@ -38,13 +38,13 @@ export type SubmittablePaymentResult<ApiType extends ApiTypes> =
     : Promise<RuntimeDispatchInfo>;
 
 export interface SubmittableResultValue {
-  dispatchError?: DispatchError;
-  dispatchInfo?: DispatchInfo;
+  dispatchError?: DispatchError | undefined;
+  dispatchInfo?: DispatchInfo | undefined;
   events?: EventRecord[];
-  internalError?: Error;
+  internalError?: Error | undefined;
   status: ExtrinsicStatus;
   txHash: Hash;
-  txIndex?: number;
+  txIndex?: number | undefined;
   blockNumber?: BlockNumber;
 }
 

@@ -5655,6 +5655,8 @@ export default {
     hashBlake2128PerByte: 'SpWeightsWeightV2Weight',
     ecdsaRecover: 'SpWeightsWeightV2Weight',
     ecdsaToEthAddress: 'SpWeightsWeightV2Weight',
+    sr25519Verify: 'SpWeightsWeightV2Weight',
+    sr25519VerifyPerByte: 'SpWeightsWeightV2Weight',
     reentranceCount: 'SpWeightsWeightV2Weight',
     accountReentranceCount: 'SpWeightsWeightV2Weight',
     instantiationNonce: 'SpWeightsWeightV2Weight'
