@@ -2,6 +2,7 @@
 
 ## master
 
+- api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 10.3.4
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 10.3.3
 
 ## 0.2.35 Apr 10, 2023

@@ -3,7 +3,7 @@ import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { HeaderExtended } from '../type/types.ts';
 import type { DeriveApi } from '../types.ts';
 
-import { combineLatest, map, switchMap } from 'https://esm.sh/rxjs@7.8.0';
+import { map, switchMap } from 'https://esm.sh/rxjs@7.8.0';
 
 import { createHeaderExtended } from '../type/index.ts';
 import { memo } from '../util/index.ts';
@@ -25,12 +25,9 @@ import { getAuthorDetails } from './util.ts';
  */
 export function getHeader (instanceId: string, api: DeriveApi): (blockHash: Uint8Array | string) => Observable<HeaderExtended> {
   return memo(instanceId, (blockHash: Uint8Array | string): Observable<HeaderExtended> =>
-    combineLatest([
-      api.rpc.chain.getHeader(blockHash),
-      api.queryAt(blockHash)
-    ]).pipe(
-      switchMap(([header, queryAt]) =>
-        getAuthorDetails(header, queryAt)
+    api.rpc.chain.getHeader(blockHash).pipe(
+      switchMap((header) =>
+        getAuthorDetails(api, header, blockHash)
       ),
       map(([header, validators, author]) =>
         createHeaderExtended((validators || header).registry, header, validators, author)

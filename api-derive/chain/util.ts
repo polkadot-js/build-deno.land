@@ -7,7 +7,7 @@ import type { SpCoreSr25519Public } from 'https://deno.land/x/polkadot/types/loo
 import type { Codec, IOption } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DeriveApi } from '../types.ts';
 
-import { combineLatest, map, mergeMap, of } from 'https://esm.sh/rxjs@7.8.0';
+import { combineLatest, map, mergeMap, of, switchMap } from 'https://esm.sh/rxjs@7.8.0';
 
 import { memo, unwrapBlockNumber } from '../util/index.ts';
 
@@ -22,7 +22,8 @@ export function createBlockNumberDerive <T extends { number: Compact<BlockNumber
     );
 }
 
-export function getAuthorDetails (header: Header, queryAt: QueryableStorage<'rxjs'>): Observable<[Header, Vec<AccountId> | null, AccountId | null]> {
+/** @internal */
+function getAuthorDetailsWithAt (header: Header, queryAt: QueryableStorage<'rxjs'>): Observable<[Header, Vec<AccountId> | null, AccountId | null]> {
   const validators = queryAt.session
     ? queryAt.session.validators()
     : of(null);
@@ -69,4 +70,23 @@ export function getAuthorDetails (header: Header, queryAt: QueryableStorage<'rxj
     validators,
     of(null)
   ]);
+}
+
+export function getAuthorDetails (api: DeriveApi, header: Header, blockHash?: Uint8Array | string): Observable<[Header, Vec<AccountId> | null, AccountId | null]> {
+  // For on-chain state, we need to retrieve it as per the start
+  // of the block being constructed, i.e. session validators would
+  // be at the point of the block construction, not when all operations
+  // has been supplied.
+  //
+  // However for the first block (no parentHash available), we would
+  // just use the as-is
+  return api.queryAt(
+    header.parentHash.isEmpty
+      ? blockHash || header.hash
+      : header.parentHash
+  ).pipe(
+    switchMap((queryAt) =>
+      getAuthorDetailsWithAt(header, queryAt)
+    )
+  );
 }

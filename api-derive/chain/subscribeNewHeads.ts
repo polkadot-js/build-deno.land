@@ -3,7 +3,7 @@ import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { HeaderExtended } from '../type/types.ts';
 import type { DeriveApi } from '../types.ts';
 
-import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.0';
+import { map, switchMap } from 'https://esm.sh/rxjs@7.8.0';
 
 import { createHeaderExtended } from '../type/index.ts';
 import { memo } from '../util/index.ts';
@@ -26,13 +26,7 @@ export function subscribeNewHeads (instanceId: string, api: DeriveApi): () => Ob
   return memo(instanceId, (): Observable<HeaderExtended> =>
     api.rpc.chain.subscribeNewHeads().pipe(
       switchMap((header) =>
-        combineLatest([
-          of(header),
-          api.queryAt(header.hash)
-        ])
-      ),
-      switchMap(([header, queryAt]) =>
-        getAuthorDetails(header, queryAt)
+        getAuthorDetails(api, header)
       ),
       map(([header, validators, author]): HeaderExtended => {
         header.createdAtHash = header.hash;
