@@ -4,13 +4,13 @@
 
 type InflateState = {
   // lmap
-  l?: Uint16Array;
+  l?: Uint16Array | undefined;
   // dmap
-  d?: Uint16Array;
+  d?: Uint16Array | undefined;
   // lbits
-  m?: number;
+  m?: number | undefined;
   // dbits
-  n?: number;
+  n?: number | undefined;
   // final
   f?: number;
   // pos

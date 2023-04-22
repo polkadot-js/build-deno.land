@@ -2,6 +2,7 @@
 
 ## master
 
+- wasm-{bridge, crypto, crypto-{asmjs, init, wasm}, util} 7.1.1
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 10.3.4
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 10.3.3
 
