@@ -1339,12 +1339,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        **/
       [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
-    dmp: {
-      /**
-       * Generic tx
-       **/
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
-    };
     electionProviderMultiPhase: {
       /**
        * Trigger the governance fallback.

@@ -1,15 +1,16 @@
 
+import type { Bytes } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { AnyJson, BareOpts, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { BlockHash } from '../interfaces/chain/index.ts';
 import type { ExtrinsicPayloadV4 } from '../interfaces/extrinsics/index.ts';
 import type { ExtrinsicPayloadValue, ICompact, IKeyringPair, INumber } from '../types/index.ts';
+import type { GenericExtrinsicEra } from './ExtrinsicEra.ts';
 
-import { AbstractBase, Bytes } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { AbstractBase } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import { u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { DEFAULT_VERSION } from './constants.ts';
-import { GenericExtrinsicEra } from './ExtrinsicEra.ts';
 
 interface ExtrinsicPayloadOptions {
   version?: number;

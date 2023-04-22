@@ -1,7 +1,8 @@
 
+import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { ApiOptions } from '../types/index.ts';
 
-import { from, Observable } from 'https://esm.sh/rxjs@7.8.0';
+import { from } from 'https://esm.sh/rxjs@7.8.0';
 
 import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 

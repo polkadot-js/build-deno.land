@@ -157,6 +157,20 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
+    assetRate: {
+      /**
+       * The given asset ID already has an assigned conversion rate and cannot be re-created.
+       **/
+      AlreadyExists: AugmentedError<ApiType>;
+      /**
+       * The given asset ID is unknown.
+       **/
+      UnknownAssetId: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
     assets: {
       /**
        * The asset-account already exists.

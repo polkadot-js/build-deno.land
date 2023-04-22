@@ -5,6 +5,7 @@ import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { Address, ApplyExtrinsicResult, Call, Extrinsic, ExtrinsicEra, ExtrinsicStatus, Hash, Header, Index, RuntimeDispatchInfo, SignerPayload } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { Callback, Codec, Constructor, ISubmittableResult, SignatureOptions } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { ApiBase } from '../base/index.ts';
 import type { ApiInterfaceRx, ApiTypes, PromiseOrObs, SignerResult } from '../types/index.ts';
 import type { AddressOrPair, SignerOptions, SubmittableDryRunResult, SubmittableExtrinsic, SubmittablePaymentResult, SubmittableResultResult, SubmittableResultSubscription } from './types.ts';
 
@@ -12,7 +13,6 @@ import { catchError, first, map, mergeMap, of, switchMap, tap } from 'https://es
 
 import { isBn, isFunction, isNumber, isString, isU8a, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
-import { ApiBase } from '../base/index.ts';
 import { filterEvents, isKeyringPair } from '../util/index.ts';
 import { SubmittableResult } from './Result.ts';
 

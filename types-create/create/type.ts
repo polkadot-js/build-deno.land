@@ -1,8 +1,9 @@
 
+import type { Bytes } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { Codec, CodecClass, IU8a, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { CreateOptions } from '../types/index.ts';
 
-import { Bytes, Option } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { Option } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import { isHex, isU8a, u8aEq, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { createClassUnsafe } from './class.ts';

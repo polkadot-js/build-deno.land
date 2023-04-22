@@ -1,7 +1,6 @@
 
 import type { EventRecord } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
-
-import { SubmittableResult } from '../index.ts';
+import type { SubmittableResult } from '../index.ts';
 
 export const logEvents = (done: () => Record<string, unknown>): (r: SubmittableResult) => void =>
   ({ events, status }: SubmittableResult): void => {

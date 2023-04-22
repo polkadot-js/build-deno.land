@@ -1,10 +1,11 @@
 
+import type { Text, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { Address, BlockHash, Call, ExtrinsicEra, Hash } from '../interfaces/index.ts';
 import type { Codec, ICompact, INumber, IRuntimeVersion, ISignerPayload, SignerPayloadJSON, SignerPayloadRaw } from '../types/index.ts';
 
-import { Option, Struct, Text, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { Option, Struct } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import { objectProperty, objectSpread, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 export interface SignerPayloadType extends Codec {

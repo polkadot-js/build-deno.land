@@ -368,6 +368,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
     };
     dmp: {
       /**
+       * The number to multiply the base delivery fee by.
+       **/
+      deliveryFeeFactor: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<u128>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
+      /**
        * A mapping that stores the downward message queue MQC head for each para.
        * 
        * Each link in this chain has a form:

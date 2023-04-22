@@ -1,9 +1,9 @@
 
-import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
+import type { Observable, Subscription } from 'https://esm.sh/rxjs@7.8.0';
 import type { Callback, Codec } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DecorateFn, DecorateMethodOptions, ObsInnerType, StorageEntryPromiseOverloads, UnsubscribePromise, VoidFn } from '../types/index.ts';
 
-import { catchError, EMPTY, Subscription, tap } from 'https://esm.sh/rxjs@7.8.0';
+import { catchError, EMPTY, tap } from 'https://esm.sh/rxjs@7.8.0';
 
 import { isFunction, nextTick } from 'https://deno.land/x/polkadot/util/mod.ts';
 

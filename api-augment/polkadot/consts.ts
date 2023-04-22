@@ -176,6 +176,16 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        **/
       [key: string]: Codec;
     };
+    council: {
+      /**
+       * The maximum weight of a dispatch call that can be proposed and executed.
+       **/
+      maxProposalWeight: SpWeightsWeightV2Weight & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
     crowdloan: {
       /**
        * The minimum amount that may be contributed into a crowdloan. Should almost certainly be at
@@ -779,6 +789,16 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        * Get the chain's current version.
        **/
       version: SpVersionRuntimeVersion & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
+    technicalCommittee: {
+      /**
+       * The maximum weight of a dispatch call that can be proposed and executed.
+       **/
+      maxProposalWeight: SpWeightsWeightV2Weight & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/

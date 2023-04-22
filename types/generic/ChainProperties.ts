@@ -1,8 +1,9 @@
 
+import type { Option, Text, u32, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { Codec } from '../types/index.ts';
 
-import { Json, Option, Text, u32, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { Json } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import { isFunction, isNull, isUndefined } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 function createValue (registry: Registry, type: string, value: unknown, asArray = true): Option<Codec> {

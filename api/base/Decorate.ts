@@ -2,7 +2,7 @@
 import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
 import type { AugmentedCall, DeriveCustom, QueryableCalls } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 import type { RpcInterface } from 'https://deno.land/x/polkadot/rpc-core/types/index.ts';
-import type { StorageKey, Text, u64 } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Metadata, StorageKey, Text, u64 } from 'https://deno.land/x/polkadot/types/mod.ts';
 import type { Call, Hash, RuntimeVersion } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { DecoratedMeta } from 'https://deno.land/x/polkadot/types/metadata/decorate/types.ts';
 import type { StorageEntry } from 'https://deno.land/x/polkadot/types/primitive/types.ts';
@@ -18,7 +18,7 @@ import { BehaviorSubject, combineLatest, from, map, of, switchMap, tap, toArray 
 import { getAvailableDerives } from 'https://deno.land/x/polkadot/api-derive/mod.ts';
 import { memo, RpcCore } from 'https://deno.land/x/polkadot/rpc-core/mod.ts';
 import { WsProvider } from 'https://deno.land/x/polkadot/rpc-provider/mod.ts';
-import { expandMetadata, GenericExtrinsic, Metadata, typeDefinitions, TypeRegistry } from 'https://deno.land/x/polkadot/types/mod.ts';
+import { expandMetadata, GenericExtrinsic, typeDefinitions, TypeRegistry } from 'https://deno.land/x/polkadot/types/mod.ts';
 import { getSpecRuntime } from 'https://deno.land/x/polkadot/types-known/mod.ts';
 import { arrayChunk, arrayFlatten, assertReturn, BN, compactStripLength, lazyMethod, lazyMethods, logger, nextTick, objectSpread, stringCamelCase, stringUpperFirst, u8aConcatStrict, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { blake2AsHex } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
