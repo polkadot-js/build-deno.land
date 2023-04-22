@@ -1,2 +1,2 @@
 
-export { WebSocket, packageInfo } from './browser.ts';
+export * from './browser.ts';

@@ -2,10 +2,10 @@
 
 import { NativeModules } from 'https://esm.sh/react-native';
 
-import { xglobal } from 'https://deno.land/x/polkadot@0.2.35/x-global/mod.ts';
+import { base64Decode } from 'https://deno.land/x/polkadot/wasm-util/base64.ts';
+import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
 
-import { base64Decode } from './base64.ts';
-import { getRandomValues as getRandomValuesGlobal } from './browser.ts';
+import { crypto as cryptoBrowser, getRandomValues as getRandomValuesBrowser } from './browser.ts';
 import { insecureRandomValues } from './fallback.ts';
 
 export { packageInfo } from './packageInfo.ts';
@@ -19,28 +19,31 @@ interface RNExt {
   }
 }
 
-interface GlobalExt {
-  nativeCallSyncHook: unknown;
-}
-
-function getRandomValuesNative <T extends Uint8Array> (output: T): T {
-  const bytes = base64Decode(
+/**
+ * @internal
+ *
+ * A getRandomValues util that detects and uses the available RN
+ * random utiliy generation functions.
+ **/
+function getRandomValuesRn (output: Uint8Array): Uint8Array {
+  return base64Decode(
     (NativeModules as RNExt).RNGetRandomValues
       ? (NativeModules as RNExt).RNGetRandomValues.getRandomBase64(output.length)
-      : (NativeModules as RNExt).ExpoRandom.getRandomBase64String(output.length)
+      : (NativeModules as RNExt).ExpoRandom.getRandomBase64String(output.length),
+    output
   );
-
-  for (let i = 0; i < bytes.length; i++) {
-    output[i] = bytes[i];
-  }
-
-  return output;
 }
 
 export const getRandomValues = (
-  typeof xglobal.crypto === 'object' && typeof xglobal.crypto.getRandomValues === 'function'
-    ? getRandomValuesGlobal
-    : (typeof (xglobal as unknown as GlobalExt).nativeCallSyncHook === 'undefined' || !NativeModules.ExpoRandom)
+  (typeof xglobal.crypto === 'object' && typeof xglobal.crypto.getRandomValues === 'function')
+    ? getRandomValuesBrowser
+    : (typeof xglobal.nativeCallSyncHook === 'undefined' || !NativeModules.ExpoRandom)
       ? insecureRandomValues
-      : getRandomValuesNative
+      : getRandomValuesRn
+);
+
+export const crypto = (
+  getRandomValues === getRandomValuesBrowser
+    ? cryptoBrowser
+    : { getRandomValues }
 );

@@ -1,9 +1,9 @@
 
-import type { EncryptedJsonEncoding, Keypair, KeypairType } from 'https://deno.land/x/polkadot@0.2.35/util-crypto/types.ts';
+import type { EncryptedJsonEncoding, Keypair, KeypairType } from 'https://deno.land/x/polkadot/util-crypto/types.ts';
 import type { KeyringInstance, KeyringOptions, KeyringPair, KeyringPair$Json, KeyringPair$Meta } from './types.ts';
 
-import { hexToU8a, isHex, stringToU8a } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
-import { base64Decode, decodeAddress, ed25519PairFromSeed as ed25519FromSeed, encodeAddress, ethereumEncode, hdEthereum, keyExtractSuri, keyFromPath, mnemonicToLegacySeed, mnemonicToMiniSecret, secp256k1PairFromSeed as secp256k1FromSeed, sr25519PairFromSeed as sr25519FromSeed } from 'https://deno.land/x/polkadot@0.2.35/util-crypto/mod.ts';
+import { hexToU8a, isHex, stringToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { base64Decode, decodeAddress, ed25519PairFromSeed as ed25519FromSeed, encodeAddress, ethereumEncode, hdEthereum, keyExtractSuri, keyFromPath, mnemonicToLegacySeed, mnemonicToMiniSecret, secp256k1PairFromSeed as secp256k1FromSeed, sr25519PairFromSeed as sr25519FromSeed } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { createPair } from './pair/index.ts';
 import { DEV_PHRASE } from './defaults.ts';
@@ -41,7 +41,7 @@ export class Keyring implements KeyringInstance {
 
   readonly #type: KeypairType;
 
-  #ss58?: number;
+  #ss58?: number | undefined;
 
   public decodeAddress = decodeAddress;
 
@@ -244,7 +244,7 @@ export class Keyring implements KeyringInstance {
   public encodeAddress = (address: Uint8Array | string, ss58Format?: number): string => {
     return this.type === 'ethereum'
       ? ethereumEncode(address)
-      : encodeAddress(address, ss58Format === undefined ? this.#ss58 : ss58Format);
+      : encodeAddress(address, ss58Format ?? this.#ss58);
   };
 
   /**

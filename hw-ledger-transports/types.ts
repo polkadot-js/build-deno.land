@@ -1,10 +1,9 @@
 
+import type * as HwTransport from 'https://esm.sh/@ledgerhq/hw-transport@6.28.2';
+
 export type TransportType = 'hid' | 'webusb';
 
-
-export interface Transport {
-  // empty on purpose, just a stub
-}
+export type Transport = HwTransport.default;
 
 export interface TransportDef {
   /** Create a transport to be used in Ledger operations */

@@ -1,5 +1,5 @@
 
-import { TextDecoder } from 'https://deno.land/x/polkadot@0.2.35/x-textdecoder/mod.ts';
+import { TextDecoder } from 'https://deno.land/x/polkadot/x-textdecoder/mod.ts';
 
 const decoder = new TextDecoder('utf-8');
 
@@ -12,7 +12,7 @@ const decoder = new TextDecoder('utf-8');
  * <BR>
  *
  * ```javascript
- * import { u8aToString } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
+ * import { u8aToString } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * u8aToString(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x6f])); // hello
  * ```

@@ -1,7 +1,7 @@
 
 import type { Keypair, KeypairType } from '../types.ts';
+import type { DeriveJunction } from './DeriveJunction.ts';
 
-import { DeriveJunction } from './DeriveJunction.ts';
 import { keyHdkdEcdsa } from './hdkdEcdsa.ts';
 import { keyHdkdEd25519 } from './hdkdEd25519.ts';
 import { keyHdkdSr25519 } from './hdkdSr25519.ts';

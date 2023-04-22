@@ -1,14 +1,12 @@
 
-import crypto from 'https://deno.land/std@0.161.0/node/crypto.ts';
+import nodeCrypto from 'node:crypto';
+
+import { extractGlobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
 
 export { packageInfo } from './packageInfo.ts';
 
+export const crypto = /*#__PURE__*/ extractGlobal('crypto', nodeCrypto.webcrypto);
+
 export function getRandomValues <T extends Uint8Array> (output: T): T {
-  const bytes = crypto.randomBytes(output.length);
-
-  for (let i = 0; i < bytes.length; i++) {
-    output[i] = bytes[i];
-  }
-
-  return output;
+  return crypto.getRandomValues(output);
 }

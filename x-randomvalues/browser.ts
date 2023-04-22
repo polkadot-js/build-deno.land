@@ -1,11 +1,10 @@
 
-import { xglobal } from 'https://deno.land/x/polkadot@0.2.35/x-global/mod.ts';
+import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
 
 export { packageInfo } from './packageInfo.ts';
 
+export const crypto = xglobal.crypto;
+
 export function getRandomValues <T extends Uint8Array> (arr: T): T {
-  // We use x-global here - this prevents packagers such as rollup
-  // confusing this with the "normal" Node.js import and stubbing it
-  // (and also aligns with eg. x-fetch, where x-global is used)
-  return xglobal.crypto.getRandomValues(arr);
+  return crypto.getRandomValues(arr);
 }

@@ -1,7 +1,6 @@
 
 import type { Keypair } from '../types.ts';
-
-import { DeriveJunction } from './DeriveJunction.ts';
+import type { DeriveJunction } from './DeriveJunction.ts';
 
 export function createSeedDeriveFn (fromSeed: (seed: Uint8Array) => Keypair, derive: (seed: Uint8Array, chainCode: Uint8Array) => Uint8Array): (keypair: Keypair, junction: DeriveJunction) => Keypair {
   return (keypair: Keypair, { chainCode, isHard }: DeriveJunction): Keypair => {

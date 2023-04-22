@@ -1,6 +1,6 @@
 
-import LedgerHid from 'https://esm.sh/@ledgerhq/hw-transport-webhid@6.27.12';
-import LedgerUsb from 'https://esm.sh/@ledgerhq/hw-transport-webusb@6.27.12';
+import LedgerHid from 'https://esm.sh/@ledgerhq/hw-transport-webhid@6.27.13';
+import LedgerUsb from 'https://esm.sh/@ledgerhq/hw-transport-webusb@6.27.13';
 
 import { createDefs } from './util.ts';
 

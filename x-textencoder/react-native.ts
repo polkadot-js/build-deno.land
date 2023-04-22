@@ -1,2 +1,2 @@
 
-export { TextEncoder, packageInfo } from './browser.ts';
+export * from './browser.ts';

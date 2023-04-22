@@ -2,10 +2,10 @@
 import type { Keypair } from '../types.ts';
 import type { HashType } from './types.ts';
 
-import { Signature, signSync } from 'https://esm.sh/@noble/secp256k1@1.7.1';
+import { secp256k1 } from 'https://esm.sh/@noble/curves@1.0.0/secp256k1.js';
 
-import { bnToU8a, hasBigInt, u8aConcat } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
-import { isReady, secp256k1Sign as wasm } from 'https://deno.land/x/polkadot@0.2.35/wasm-crypto/mod.ts';
+import { bnToU8a, hasBigInt, u8aConcat } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isReady, secp256k1Sign as wasm } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 import { BN_BE_256_OPTS } from '../bn.ts';
 import { hasher } from './hasher.ts';
@@ -25,12 +25,11 @@ export function secp256k1Sign (message: Uint8Array | string, { secretKey }: Part
     return wasm(data, secretKey);
   }
 
-  const [sigBytes, recoveryParam] = signSync(data, secretKey, { canonical: true, recovered: true });
-  const { r, s } = Signature.fromHex(sigBytes);
+  const signature = secp256k1.sign(data, secretKey, { lowS: true });
 
   return u8aConcat(
-    bnToU8a(r, BN_BE_256_OPTS),
-    bnToU8a(s, BN_BE_256_OPTS),
-    new Uint8Array([recoveryParam || 0])
+    bnToU8a(signature.r, BN_BE_256_OPTS),
+    bnToU8a(signature.s, BN_BE_256_OPTS),
+    new Uint8Array([signature.recovery || 0])
   );
 }

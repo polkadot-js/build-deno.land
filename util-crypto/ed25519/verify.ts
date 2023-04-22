@@ -1,10 +1,10 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.35/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 
-import nacl from 'https://esm.sh/tweetnacl@1.0.3';
+import { ed25519 } from 'https://esm.sh/@noble/curves@1.0.0/ed25519.js';
 
-import { u8aToU8a } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
-import { ed25519Verify as wasmVerify, isReady } from 'https://deno.land/x/polkadot@0.2.35/wasm-crypto/mod.ts';
+import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { ed25519Verify as wasmVerify, isReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 /**
  * @name ed25519Sign
@@ -15,7 +15,7 @@ import { ed25519Verify as wasmVerify, isReady } from 'https://deno.land/x/polkad
  * <BR>
  *
  * ```javascript
- * import { ed25519Verify } from 'https://deno.land/x/polkadot@0.2.35/util-crypto/mod.ts';
+ * import { ed25519Verify } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
  *
  * ed25519Verify([...], [...], [...]); // => true/false
  * ```
@@ -31,7 +31,11 @@ export function ed25519Verify (message: HexString | Uint8Array | string, signatu
     throw new Error(`Invalid signature, received ${signatureU8a.length} bytes, expected 64`);
   }
 
-  return !onlyJs && isReady()
-    ? wasmVerify(signatureU8a, messageU8a, publicKeyU8a)
-    : nacl.sign.detached.verify(messageU8a, signatureU8a, publicKeyU8a);
+  try {
+    return !hasBigInt || (!onlyJs && isReady())
+      ? wasmVerify(signatureU8a, messageU8a, publicKeyU8a)
+      : ed25519.verify(signatureU8a, messageU8a, publicKeyU8a);
+  } catch {
+    return false;
+  }
 }

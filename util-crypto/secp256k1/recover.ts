@@ -1,11 +1,11 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.35/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { HashType } from './types.ts';
 
-import { recoverPublicKey, Signature } from 'https://esm.sh/@noble/secp256k1@1.7.1';
+import { secp256k1 } from 'https://esm.sh/@noble/curves@1.0.0/secp256k1.js';
 
-import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.35/util/mod.ts';
-import { isReady, secp256k1Recover as wasm } from 'https://deno.land/x/polkadot@0.2.35/wasm-crypto/mod.ts';
+import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isReady, secp256k1Recover as wasm } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 import { secp256k1Compress } from './compress.ts';
 import { secp256k1Expand } from './expand.ts';
@@ -19,7 +19,11 @@ export function secp256k1Recover (msgHash: HexString | Uint8Array | string, sign
   const msg = u8aToU8a(msgHash);
   const publicKey = !hasBigInt || (!onlyJs && isReady())
     ? wasm(msg, sig, recovery)
-    : recoverPublicKey(msg, Signature.fromCompact(sig).toRawBytes(), recovery);
+    : secp256k1.Signature
+      .fromCompact(sig)
+      .addRecoveryBit(recovery)
+      .recoverPublicKey(msg)
+      .toRawBytes();
 
   if (!publicKey) {
     throw new Error('Unable to recover publicKey from signature');

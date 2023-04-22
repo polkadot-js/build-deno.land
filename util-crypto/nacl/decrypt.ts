@@ -1,5 +1,5 @@
 
-import nacl from 'https://esm.sh/tweetnacl@1.0.3';
+import { naclSecretboxOpen } from './tweetnacl.ts';
 
 /**
  * @name naclDecrypt
@@ -10,11 +10,11 @@ import nacl from 'https://esm.sh/tweetnacl@1.0.3';
  * <BR>
  *
  * ```javascript
- * import { naclDecrypt } from 'https://deno.land/x/polkadot@0.2.35/util-crypto/mod.ts';
+ * import { naclDecrypt } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
  *
  * naclDecrypt([...], [...], [...]); // => [...]
  * ```
  */
 export function naclDecrypt (encrypted: Uint8Array, nonce: Uint8Array, secret: Uint8Array): Uint8Array | null {
-  return nacl.secretbox.open(encrypted, nonce, secret) || null;
+  return naclSecretboxOpen(encrypted, nonce, secret);
 }

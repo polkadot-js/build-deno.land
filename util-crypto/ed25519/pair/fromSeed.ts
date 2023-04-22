@@ -1,9 +1,10 @@
 
 import type { Keypair } from '../../types.ts';
 
-import nacl from 'https://esm.sh/tweetnacl@1.0.3';
+import { ed25519 } from 'https://esm.sh/@noble/curves@1.0.0/ed25519.js';
 
-import { ed25519KeypairFromSeed, isReady } from 'https://deno.land/x/polkadot@0.2.35/wasm-crypto/mod.ts';
+import { hasBigInt, u8aConcatStrict } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { ed25519KeypairFromSeed, isReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 /**
  * @name ed25519PairFromSeed
@@ -14,13 +15,13 @@ import { ed25519KeypairFromSeed, isReady } from 'https://deno.land/x/polkadot@0.
  * <BR>
  *
  * ```javascript
- * import { ed25519PairFromSeed } from 'https://deno.land/x/polkadot@0.2.35/util-crypto/mod.ts';
+ * import { ed25519PairFromSeed } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
  *
  * ed25519PairFromSeed(...); // => { secretKey: [...], publicKey: [...] }
  * ```
  */
 export function ed25519PairFromSeed (seed: Uint8Array, onlyJs?: boolean): Keypair {
-  if (!onlyJs && isReady()) {
+  if (!hasBigInt || (!onlyJs && isReady())) {
     const full = ed25519KeypairFromSeed(seed);
 
     return {
@@ -29,5 +30,10 @@ export function ed25519PairFromSeed (seed: Uint8Array, onlyJs?: boolean): Keypai
     };
   }
 
-  return nacl.sign.keyPair.fromSeed(seed);
+  const publicKey = ed25519.getPublicKey(seed);
+
+  return {
+    publicKey,
+    secretKey: u8aConcatStrict([seed, publicKey])
+  };
 }

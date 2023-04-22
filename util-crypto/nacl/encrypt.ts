@@ -1,7 +1,6 @@
 
-import nacl from 'https://esm.sh/tweetnacl@1.0.3';
-
 import { randomAsU8a } from '../random/asU8a.ts';
+import { naclSecretbox } from './tweetnacl.ts';
 
 interface Encrypted {
   encrypted: Uint8Array;
@@ -17,14 +16,14 @@ interface Encrypted {
  * <BR>
  *
  * ```javascript
- * import { naclEncrypt } from 'https://deno.land/x/polkadot@0.2.35/util-crypto/mod.ts';
+ * import { naclEncrypt } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
  *
  * naclEncrypt([...], [...]); // => [...]
  * ```
  */
 export function naclEncrypt (message: Uint8Array, secret: Uint8Array, nonce: Uint8Array = randomAsU8a(24)): Encrypted {
   return {
-    encrypted: nacl.secretbox(message, nonce, secret),
+    encrypted: naclSecretbox(message, nonce, secret),
     nonce
   };
 }

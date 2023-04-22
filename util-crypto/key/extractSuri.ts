@@ -1,5 +1,6 @@
 
-import { DeriveJunction } from './DeriveJunction.ts';
+import type { DeriveJunction } from './DeriveJunction.ts';
+
 import { keyExtractPath } from './extractPath.ts';
 
 export interface ExtractResult {

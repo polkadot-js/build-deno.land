@@ -1,8 +1,6 @@
 
 import type { Keypair } from '../../types.ts';
 
-import nacl from 'https://esm.sh/tweetnacl@1.0.3';
-
 /**
  * @name ed25519PairFromSecret
  * @summary Creates a new public/secret keypair from a secret.
@@ -12,11 +10,18 @@ import nacl from 'https://esm.sh/tweetnacl@1.0.3';
  * <BR>
  *
  * ```javascript
- * import { ed25519PairFromSecret } from 'https://deno.land/x/polkadot@0.2.35/util-crypto/mod.ts';
+ * import { ed25519PairFromSecret } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
  *
  * ed25519PairFromSecret(...); // => { secretKey: [...], publicKey: [...] }
  * ```
  */
-export function ed25519PairFromSecret (secret: Uint8Array): Keypair {
-  return nacl.sign.keyPair.fromSecretKey(secret);
+export function ed25519PairFromSecret (secretKey: Uint8Array): Keypair {
+  if (secretKey.length !== 64) {
+    throw new Error('Invalid secretKey provided');
+  }
+
+  return {
+    publicKey: secretKey.slice(32),
+    secretKey
+  };
 }
