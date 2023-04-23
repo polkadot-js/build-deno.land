@@ -1,13 +1,12 @@
 # CHANGELOG
 
-## master
+## 0.2.36 Apr 23, 2023
 
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 10.4.1
-- phishing 0.21.1
 - hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 12.0.1
 - wasm-{bridge, crypto, crypto-{asmjs, init, wasm}, util} 7.1.1
-- api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 10.3.4
-- api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 10.3.3
+- phishing 0.21.1
+
 
 ## 0.2.35 Apr 10, 2023
 
@@ -17,22 +16,22 @@
 ## 0.2.34 Apr 1, 2023
 
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 10.2.2
-- phishing 0.20.5
 - hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 11.1.3
+- phishing 0.20.5
 
 
 ## 0.2.33 Mar 25, 2023
 
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 10.2.1
-- phishing 0.20.4
 - hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 11.1.2
+- phishing 0.20.4
 
 
 ## 0.2.32 Mar 19, 2023
 
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 10.1.4
-- phishing 0.20.3
 - hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 11.1.1
+- phishing 0.20.3
 
 
 ## 0.2.31 Mar 12, 2023
@@ -43,9 +42,9 @@
 ## 0.2.30 Mar 11, 2023
 
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 10.1.1
-- phishing 0.20.2
 - hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 11.0.2
 - wasm-{bridge, crypto, crypto-{asmjs, init, wasm}, util} 7.0.3
+- phishing 0.20.2
 
 
 ## 0.2.29 Mar 5, 2023
