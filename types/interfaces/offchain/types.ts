@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import type { Enum } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Enum } from 'https://deno.land/x/polkadot@0.2.36/types-codec/mod.ts';
 
 /** @name StorageKind */
 export interface StorageKind extends Enum {

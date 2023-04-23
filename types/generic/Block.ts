@@ -1,10 +1,10 @@
 
-import type { Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { AnyNumber, AnyU8a, IU8a, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Vec } from 'https://deno.land/x/polkadot@0.2.36/types-codec/mod.ts';
+import type { AnyNumber, AnyU8a, IU8a, Registry } from 'https://deno.land/x/polkadot@0.2.36/types-codec/types/index.ts';
 import type { GenericExtrinsic } from '../extrinsic/Extrinsic.ts';
 import type { Digest, DigestItem, Header } from '../interfaces/runtime/index.ts';
 
-import { Struct } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { Struct } from 'https://deno.land/x/polkadot@0.2.36/types-codec/mod.ts';
 
 export interface HeaderValue {
   digest?: Digest | { logs: DigestItem[] | string[] };

@@ -1,4 +1,4 @@
 
-import { packageInfo as codecInfo } from 'https://deno.land/x/polkadot/types-codec/packageInfo.ts';
+import { packageInfo as codecInfo } from 'https://deno.land/x/polkadot@0.2.36/types-codec/packageInfo.ts';
 
 export default [codecInfo];

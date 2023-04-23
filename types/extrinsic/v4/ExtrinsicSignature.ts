@@ -1,12 +1,12 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.36/util/types.ts';
 import type { EcdsaSignature, Ed25519Signature, ExtrinsicEra, ExtrinsicSignature, Sr25519Signature } from '../../interfaces/extrinsics/index.ts';
 import type { Address, Call } from '../../interfaces/runtime/index.ts';
 import type { ExtrinsicPayloadValue, ICompact, IExtrinsicSignature, IKeyringPair, INumber, Registry, SignatureOptions } from '../../types/index.ts';
 import type { ExtrinsicSignatureOptions } from '../types.ts';
 
-import { Struct } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import { isU8a, isUndefined, objectProperties, objectSpread, stringify, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { Struct } from 'https://deno.land/x/polkadot@0.2.36/types-codec/mod.ts';
+import { isU8a, isUndefined, objectProperties, objectSpread, stringify, u8aToHex } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
 
 import { EMPTY_U8A, IMMORTAL_ERA } from '../constants.ts';
 import { GenericExtrinsicPayloadV4 } from './ExtrinsicPayload.ts';

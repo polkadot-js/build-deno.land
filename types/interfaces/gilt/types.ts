@@ -1,7 +1,7 @@
 /* eslint-disable */
 
-import type { Struct, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { AccountId, Balance, BlockNumber, Perquintill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { Struct, u32 } from 'https://deno.land/x/polkadot@0.2.36/types-codec/mod.ts';
+import type { AccountId, Balance, BlockNumber, Perquintill } from 'https://deno.land/x/polkadot@0.2.36/types/interfaces/runtime/index.ts';
 
 /** @name ActiveGilt */
 export interface ActiveGilt extends Struct {
