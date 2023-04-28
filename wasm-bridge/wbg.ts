@@ -1,7 +1,7 @@
 
 import type { BridgeBase, WasmBaseInstance } from './types.ts';
 
-import { getRandomValues } from 'https://deno.land/x/polkadot@0.2.36/x-randomvalues/mod.ts';
+import { getRandomValues } from 'https://deno.land/x/polkadot/x-randomvalues/mod.ts';
 
 const DEFAULT_CRYPTO = { getRandomValues };
 const DEFAULT_SELF = { crypto: DEFAULT_CRYPTO };
@@ -18,7 +18,7 @@ const DEFAULT_SELF = { crypto: DEFAULT_CRYPTO };
  * Internally the implementation does a thin layer into the supplied bridge.
  */
 export class Wbg<C extends WasmBaseInstance> {
-  #bridge: BridgeBase<C>;
+  readonly #bridge: BridgeBase<C>;
 
   constructor (bridge: BridgeBase<C>) {
     this.#bridge = bridge;
