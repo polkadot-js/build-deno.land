@@ -17,7 +17,7 @@ import { hexStripPrefix } from './stripPrefix.ts';
  * <BR>
  *
  * ```javascript
- * import { hexToBn } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { hexToBn } from 'https://deno.land/x/polkadot@0.2.37/util/mod.ts';
  *
  * hexToBn('0x123480001f'); // => BN(0x123480001f)
  * ```

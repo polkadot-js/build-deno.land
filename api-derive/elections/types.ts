@@ -1,6 +1,6 @@
 
-import type { u32 } from 'https://deno.land/x/polkadot/types/mod.ts';
-import type { AccountId, Balance, BlockNumber, SetIndex, VoteIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { u32 } from 'https://deno.land/x/polkadot@0.2.37/types/mod.ts';
+import type { AccountId, Balance, BlockNumber, SetIndex, VoteIndex } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/index.ts';
 
 export interface DeriveElectionsInfo {
   candidates: AccountId[];

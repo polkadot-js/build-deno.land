@@ -1,5 +1,5 @@
 
-import { BigInt } from 'https://deno.land/x/polkadot/x-bigint/mod.ts';
+import { BigInt } from 'https://deno.land/x/polkadot@0.2.37/x-bigint/mod.ts';
 
 /**
  * @name _0n

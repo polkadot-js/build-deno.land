@@ -8,7 +8,7 @@
  * <BR>
  *
  * ```javascript
- * import { isBoolean } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { isBoolean } from 'https://deno.land/x/polkadot@0.2.37/util/mod.ts';
  *
  * isBoolean(false); // => true
  * ```

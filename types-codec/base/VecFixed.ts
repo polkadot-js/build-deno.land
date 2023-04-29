@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.37/util/types.ts';
 import type { Codec, CodecClass, DefinitionSetter, Inspect, Registry } from '../types/index.ts';
 
-import { identity, isU8a, u8aConcatStrict } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { identity, isU8a, u8aConcatStrict } from 'https://deno.land/x/polkadot@0.2.37/util/mod.ts';
 
 import { AbstractArray } from '../abstract/Array.ts';
 import { decodeU8aVec, typeToConstructor } from '../utils/index.ts';

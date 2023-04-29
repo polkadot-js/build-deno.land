@@ -1,9 +1,9 @@
 
-import type { ApiRx } from 'https://deno.land/x/polkadot/api/mod.ts';
-import type { AccountId, Hash } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { ApiRx } from 'https://deno.land/x/polkadot@0.2.37/api/mod.ts';
+import type { AccountId, Hash } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/index.ts';
 import type { Abi } from '../Abi/index.ts';
 
-import { toRxMethod } from 'https://deno.land/x/polkadot/api/mod.ts';
+import { toRxMethod } from 'https://deno.land/x/polkadot@0.2.37/api/mod.ts';
 
 import { Blueprint, Code, Contract } from '../base/index.ts';
 

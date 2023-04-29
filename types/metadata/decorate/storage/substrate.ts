@@ -1,5 +1,5 @@
 
-import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.2.37/types-codec/types/index.ts';
 import type { StorageEntry } from '../../../primitive/types.ts';
 import type { ManualMetadata } from './util.ts';
 

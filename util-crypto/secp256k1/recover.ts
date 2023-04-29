@@ -1,11 +1,11 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.37/util/types.ts';
 import type { HashType } from './types.ts';
 
 import { secp256k1 } from 'https://esm.sh/@noble/curves@1.0.0/secp256k1.js';
 
-import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
-import { isReady, secp256k1Recover as wasm } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
+import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.37/util/mod.ts';
+import { isReady, secp256k1Recover as wasm } from 'https://deno.land/x/polkadot@0.2.37/wasm-crypto/mod.ts';
 
 import { secp256k1Compress } from './compress.ts';
 import { secp256k1Expand } from './expand.ts';
