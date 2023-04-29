@@ -1,8 +1,6 @@
 
 import type { DefinitionsCall, DefinitionsCallEntry } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
-
 const GRANDPA_V2_V3: DefinitionsCallEntry['methods'] = {
   generate_key_ownership_proof: {
     description: 'Generates a proof of key ownership for the given authority in the given set.',
@@ -42,13 +40,14 @@ const GRANDPA_V2_V3: DefinitionsCallEntry['methods'] = {
 export const runtime: DefinitionsCall = {
   GrandpaApi: [
     {
-      methods: objectSpread({
+      methods: {
         current_set_id: {
           description: 'Get current GRANDPA authority set id.',
           params: [],
           type: 'SetId'
-        }
-      }, GRANDPA_V2_V3),
+        },
+        ...GRANDPA_V2_V3
+      },
       version: 3
     },
     {

@@ -1,9 +1,9 @@
 
-import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
+import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
 import type { HeaderExtended } from '../type/types.ts';
 import type { DeriveApi } from '../types.ts';
 
-import { map, switchMap } from 'https://esm.sh/rxjs@7.8.0';
+import { map, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
 import { createHeaderExtended } from '../type/index.ts';
 import { memo } from '../util/index.ts';

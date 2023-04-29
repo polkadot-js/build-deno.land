@@ -1,6 +1,4 @@
 
-import type { OverrideVersionedType } from 'https://deno.land/x/polkadot@0.2.36/types/types/index.ts';
+import type { OverrideVersionedType } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-const typesChain: Record<string, OverrideVersionedType[]> = {};
-
-export default typesChain;
+export const typesChain: Record<string, OverrideVersionedType[]> = {};

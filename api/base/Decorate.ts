@@ -1,27 +1,27 @@
 
-import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { AugmentedCall, DeriveCustom, QueryableCalls } from 'https://deno.land/x/polkadot@0.2.36/api-base/types/index.ts';
-import type { RpcInterface } from 'https://deno.land/x/polkadot@0.2.36/rpc-core/types/index.ts';
-import type { Metadata, StorageKey, Text, u64 } from 'https://deno.land/x/polkadot@0.2.36/types/mod.ts';
-import type { Call, Hash, RuntimeVersion } from 'https://deno.land/x/polkadot@0.2.36/types/interfaces/index.ts';
-import type { DecoratedMeta } from 'https://deno.land/x/polkadot@0.2.36/types/metadata/decorate/types.ts';
-import type { StorageEntry } from 'https://deno.land/x/polkadot@0.2.36/types/primitive/types.ts';
-import type { AnyFunction, AnyJson, AnyTuple, CallFunction, Codec, DefinitionCallNamed, DefinitionRpc, DefinitionRpcSub, DefinitionsCall, DefinitionsCallEntry, DetectCodec, IMethod, IStorageKey, Registry, RegistryError, RegistryTypes } from 'https://deno.land/x/polkadot@0.2.36/types/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.36/util/types.ts';
+import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
+import type { AugmentedCall, DeriveCustom, QueryableCalls } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { RpcInterface } from 'https://deno.land/x/polkadot/rpc-core/types/index.ts';
+import type { Metadata, StorageKey, Text, u64 } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Call, Hash, RuntimeVersion } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { DecoratedMeta } from 'https://deno.land/x/polkadot/types/metadata/decorate/types.ts';
+import type { StorageEntry } from 'https://deno.land/x/polkadot/types/primitive/types.ts';
+import type { AnyFunction, AnyJson, AnyTuple, CallFunction, Codec, DefinitionCallNamed, DefinitionRpc, DefinitionRpcSub, DefinitionsCall, DefinitionsCallEntry, DetectCodec, IMethod, IStorageKey, Registry, RegistryError, RegistryTypes } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { SubmittableExtrinsic } from '../submittable/types.ts';
 import type { ApiDecoration, ApiInterfaceRx, ApiOptions, ApiTypes, AugmentedQuery, DecoratedErrors, DecoratedEvents, DecoratedRpc, DecorateMethod, GenericStorageEntryFunction, PaginationOptions, QueryableConsts, QueryableStorage, QueryableStorageEntry, QueryableStorageEntryAt, QueryableStorageMulti, QueryableStorageMultiArg, SubmittableExtrinsicFunction, SubmittableExtrinsics } from '../types/index.ts';
 import type { AllDerives } from '../util/decorate.ts';
 import type { VersionedRegistry } from './types.ts';
 
-import { BehaviorSubject, combineLatest, from, map, of, switchMap, tap, toArray } from 'https://esm.sh/rxjs@7.8.0';
+import { BehaviorSubject, combineLatest, from, map, of, switchMap, tap, toArray } from 'https://esm.sh/rxjs@7.8.1';
 
-import { getAvailableDerives } from 'https://deno.land/x/polkadot@0.2.36/api-derive/mod.ts';
-import { memo, RpcCore } from 'https://deno.land/x/polkadot@0.2.36/rpc-core/mod.ts';
-import { WsProvider } from 'https://deno.land/x/polkadot@0.2.36/rpc-provider/mod.ts';
-import { expandMetadata, GenericExtrinsic, typeDefinitions, TypeRegistry } from 'https://deno.land/x/polkadot@0.2.36/types/mod.ts';
-import { getSpecRuntime } from 'https://deno.land/x/polkadot@0.2.36/types-known/mod.ts';
-import { arrayChunk, arrayFlatten, assertReturn, BN, compactStripLength, lazyMethod, lazyMethods, logger, nextTick, objectSpread, stringCamelCase, stringUpperFirst, u8aConcatStrict, u8aToHex } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
-import { blake2AsHex } from 'https://deno.land/x/polkadot@0.2.36/util-crypto/mod.ts';
+import { getAvailableDerives } from 'https://deno.land/x/polkadot/api-derive/mod.ts';
+import { memo, RpcCore } from 'https://deno.land/x/polkadot/rpc-core/mod.ts';
+import { WsProvider } from 'https://deno.land/x/polkadot/rpc-provider/mod.ts';
+import { expandMetadata, GenericExtrinsic, typeDefinitions, TypeRegistry } from 'https://deno.land/x/polkadot/types/mod.ts';
+import { getSpecRuntime } from 'https://deno.land/x/polkadot/types-known/mod.ts';
+import { arrayChunk, arrayFlatten, assertReturn, BN, compactStripLength, lazyMethod, lazyMethods, logger, nextTick, objectSpread, stringCamelCase, stringUpperFirst, u8aConcatStrict, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { blake2AsHex } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { createSubmittable } from '../submittable/index.ts';
 import { augmentObject } from '../util/augmentObject.ts';
@@ -117,7 +117,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
    * <BR>
    *
    * ```javascript
-   * import Api from 'https://deno.land/x/polkadot@0.2.36/api/promise/index.ts';
+   * import Api from 'https://deno.land/x/polkadot/api/promise/index.ts';
    *
    * const api = new Api().isReady();
    *
@@ -136,19 +136,22 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
     this._rx.queryAt = (blockHash: Uint8Array | string, knownVersion?: RuntimeVersion) =>
       from(this.at(blockHash, knownVersion)).pipe(map((a) => a.rx.query));
     this._rx.registry = this.#registry;
+    this._decorateMethod = decorateMethod;
+    this._options = options;
+    this._type = type;
 
-    const thisProvider = options.source
+    const provider = options.source
       ? options.source._rpcCore.provider.isClonable
         ? options.source._rpcCore.provider.clone()
         : options.source._rpcCore.provider
       : (options.provider || new WsProvider());
 
-    this._decorateMethod = decorateMethod;
-    this._options = options;
-    this._type = type;
-
     // The RPC interface decorates the known interfaces on init
-    this._rpcCore = new RpcCore(this.#instanceId, this.#registry, thisProvider, this._options.rpc) as (RpcCore & RpcInterface);
+    this._rpcCore = new RpcCore(this.#instanceId, this.#registry, {
+      isPedantic: this._options.isPedantic,
+      provider,
+      userRpc: this._options.rpc
+    }) as (RpcCore & RpcInterface);
     this._isConnected = new BehaviorSubject(this._rpcCore.provider.isConnected);
     this._rx.hasSubscriptions = this._rpcCore.provider.hasSubscriptions;
   }
@@ -316,7 +319,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
     // we try and create mappings to runtime names via a hash mapping)
     const sectionMap: Record<string, boolean> = {};
 
-    for (let i = 0; i < methods.length; i++) {
+    for (let i = 0, count = methods.length; i < count; i++) {
       const [section] = methods[i].split('_');
 
       sectionMap[section] = true;
@@ -325,7 +328,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
     // convert the actual section names into an easy name lookup
     const sections = Object.keys(sectionMap);
 
-    for (let i = 0; i < sections.length; i++) {
+    for (let i = 0, count = sections.length; i < count; i++) {
       const nameA = stringUpperFirst(sections[i]);
       const nameB = `${nameA}Api`;
 
@@ -341,8 +344,9 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
     const hasResults = exposed.length !== 0;
     const allKnown = [...this._rpcCore.mapping.entries()];
     const allKeys: string[] = [];
+    const count = allKnown.length;
 
-    for (let i = 0; i < allKnown.length; i++) {
+    for (let i = 0; i < count; i++) {
       const [, { alias, endpoint, method, pubsub, section }] = allKnown[i];
 
       allKeys.push(`${section}_${method}`);
@@ -372,7 +376,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
 
     // loop through all entries we have (populated in decorate) and filter as required
     // only remove when we have results and method missing, or with no results if optional
-    for (let i = 0; i < allKnown.length; i++) {
+    for (let i = 0; i < count; i++) {
       const [k, { method, section }] = allKnown[i];
 
       if (hasResults && !exposed.includes(k) && k !== 'rpc_methods') {
@@ -405,7 +409,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
       return fn;
     };
 
-    for (let s = 0; s < rpc.sections.length; s++) {
+    for (let s = 0, scount = rpc.sections.length; s < scount; s++) {
       const section = rpc.sections[s];
 
       if (!Object.prototype.hasOwnProperty.call(out, section)) {
@@ -414,7 +418,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
         const decorateInternal = (method: string) =>
           decorateFn(section, method);
 
-        for (let m = 0; m < methods.length; m++) {
+        for (let m = 0, mcount = methods.length; m < mcount; m++) {
           const method = methods[m];
 
           //  skip subscriptions where we have a non-subscribe interface
@@ -440,13 +444,13 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
 
     const entries = Object.entries(additional);
 
-    for (let j = 0; j < entries.length; j++) {
+    for (let j = 0, ecount = entries.length; j < ecount; j++) {
       const [key, defs] = entries[j];
 
       if (result[key]) {
         // we have this one already, step through for new versions or
         // new methods and add those as applicable
-        for (let k = 0; k < defs.length; k++) {
+        for (let k = 0, dcount = defs.length; k < dcount; k++) {
           const def = defs[k];
           const prev = result[key].find(({ version }) => def.version === version);
 
@@ -472,7 +476,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
 
     // options > chain/spec > built-in, apply in reverse order with
     // methods overriding previous definitions (or interleave missing)
-    for (let i = 0; i < defValues.length; i++) {
+    for (let i = 0, count = defValues.length; i < count; i++) {
       this._addRuntimeDef(result, defValues[i].runtime);
     }
 
@@ -494,7 +498,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
 
     this.#runtimeLog[implName] = true;
 
-    for (let i = 0; i < sections.length; i++) {
+    for (let i = 0, scount = sections.length; i < scount; i++) {
       const [_section, secs] = sections[i];
       const sectionHash = blake2AsHex(_section, 64);
       const rtApi = apis.find(([a]) => a.eq(sectionHash));
@@ -514,7 +518,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
               named[section] = {};
             }
 
-            for (let m = 0; m < methods.length; m++) {
+            for (let m = 0, mcount = methods.length; m < mcount; m++) {
               const [_method, def] = methods[m];
               const method = stringCamelCase(_method);
 
@@ -554,7 +558,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
 
     const modules = Object.keys(named);
 
-    for (let i = 0; i < modules.length; i++) {
+    for (let i = 0, count = modules.length; i < count; i++) {
       lazyMethod(result, modules[i], lazySection);
     }
 
@@ -639,7 +643,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
 
     const sections = Object.keys(tx);
 
-    for (let i = 0; i < sections.length; i++) {
+    for (let i = 0, count = sections.length; i < count; i++) {
       lazyMethod(result, sections[i], lazySection);
     }
 
@@ -670,7 +674,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
 
     const sections = Object.keys(query);
 
-    for (let i = 0; i < sections.length; i++) {
+    for (let i = 0, count = sections.length; i < count; i++) {
       lazyMethod(result, sections[i], lazySection);
     }
 

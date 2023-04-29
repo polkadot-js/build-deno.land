@@ -1,8 +1,8 @@
 /* eslint-disable */
 
-import type { Enum, Result, Struct, Vec, bool } from 'https://deno.land/x/polkadot@0.2.36/types-codec/mod.ts';
-import type { TransactionLongevity, TransactionPriority, TransactionTag } from 'https://deno.land/x/polkadot@0.2.36/types/interfaces/runtime/index.ts';
-import type { TransactionValidityError } from 'https://deno.land/x/polkadot@0.2.36/types/interfaces/system/index.ts';
+import type { Enum, Result, Struct, Vec, bool } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { TransactionLongevity, TransactionPriority, TransactionTag } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { TransactionValidityError } from 'https://deno.land/x/polkadot/types/interfaces/system/index.ts';
 
 /** @name TransactionSource */
 export interface TransactionSource extends Enum {

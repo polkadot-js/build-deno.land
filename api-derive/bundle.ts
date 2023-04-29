@@ -1,6 +1,6 @@
 
-import type { DeriveCustom } from 'https://deno.land/x/polkadot@0.2.36/api-base/types/index.ts';
-import type { AnyFunction, AnyString } from 'https://deno.land/x/polkadot@0.2.36/types/types/index.ts';
+import type { DeriveCustom } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { AnyFunction, AnyString } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { ExactDerive } from './derive.ts';
 import type { DeriveApi } from './types.ts';
 
@@ -116,7 +116,7 @@ function injectFunctions (instanceId: string, api: DeriveApi, derives: DeriveCus
     )
   ));
 
-  for (let i = 0; i < names.length; i++) {
+  for (let i = 0, count = names.length; i < count; i++) {
     const name = names[i];
 
     isIncluded(name) &&

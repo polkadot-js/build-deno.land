@@ -1,6 +1,6 @@
 
-import type { Option, Text } from 'https://deno.land/x/polkadot@0.2.36/types-codec/mod.ts';
-import type { ICompact, INumber, LookupString } from 'https://deno.land/x/polkadot@0.2.36/types-codec/types/index.ts';
+import type { Option, Text } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ICompact, INumber, LookupString } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { TypeDef } from './types.ts';
 
 interface SiTypeBase {

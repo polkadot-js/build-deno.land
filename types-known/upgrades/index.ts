@@ -1,10 +1,10 @@
 
-import type { ChainUpgrades } from 'https://deno.land/x/polkadot@0.2.36/types/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.36/util/types.ts';
+import type { ChainUpgrades } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { ChainUpgradesExpanded } from './types.ts';
 
-import { selectableNetworks } from 'https://deno.land/x/polkadot@0.2.36/networks/mod.ts';
-import { BN, hexToU8a } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+import { selectableNetworks } from 'https://deno.land/x/polkadot/networks/mod.ts';
+import { BN, hexToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import * as allKnown from './e2e/index.ts';
 
@@ -33,6 +33,4 @@ function mapRaw ([network, versions]: [string, ChainUpgradesExpanded]): ChainUpg
   };
 }
 
-const upgrades = Object.entries<ChainUpgradesExpanded>(allKnown).map(mapRaw);
-
-export default upgrades;
+export const upgrades = Object.entries<ChainUpgradesExpanded>(allKnown).map(mapRaw);

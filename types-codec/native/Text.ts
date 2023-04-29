@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.36/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyString, AnyU8a, Inspect, IText, IU8a, Registry } from '../types/index.ts';
 
-import { compactAddLength, compactFromU8aLim, compactToU8a, hexToU8a, isHex, isString, isU8a, stringToU8a, u8aToHex, u8aToString } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+import { compactAddLength, compactFromU8aLim, compactToU8a, hexToU8a, isHex, isString, isU8a, stringToU8a, u8aToHex, u8aToString } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Raw } from './Raw.ts';
 

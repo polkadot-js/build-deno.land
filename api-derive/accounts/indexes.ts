@@ -1,8 +1,8 @@
 
-import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
+import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
 import type { AccountIndexes, DeriveApi } from '../types.ts';
 
-import { map, of, startWith } from 'https://esm.sh/rxjs@7.8.0';
+import { map, of, startWith } from 'https://esm.sh/rxjs@7.8.1';
 
 import { memo } from '../util/index.ts';
 

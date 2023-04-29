@@ -1,11 +1,11 @@
 
-import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { Option } from 'https://deno.land/x/polkadot@0.2.36/types/mod.ts';
-import type { ProposalIndex } from 'https://deno.land/x/polkadot@0.2.36/types/interfaces/index.ts';
-import type { PalletTreasuryProposal } from 'https://deno.land/x/polkadot@0.2.36/types/lookup.ts';
+import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
+import type { Option } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { ProposalIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletTreasuryProposal } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { DeriveApi, DeriveCollectiveProposal, DeriveTreasuryProposal, DeriveTreasuryProposals } from '../types.ts';
 
-import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.0';
+import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
 import { memo } from '../util/index.ts';
 

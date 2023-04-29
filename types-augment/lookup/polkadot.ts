@@ -1110,7 +1110,10 @@ export default {
         beneficiary: 'XcmVersionedMultiLocation',
         assets: 'XcmVersionedMultiAssets',
         feeAssetItem: 'u32',
-        weightLimit: 'XcmV3WeightLimit'
+        weightLimit: 'XcmV3WeightLimit',
+      },
+      force_suspension: {
+        suspended: 'bool'
       }
     }
   },

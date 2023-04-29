@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.36/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { Codec, CodecClass, DefinitionSetter, Registry } from '../types/index.ts';
 
-import { compactFromU8aLim, isHex, isU8a, logger, stringify, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+import { compactFromU8aLim, identity, isHex, isU8a, logger, stringify, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { AbstractArray } from '../abstract/Array.ts';
 import { decodeU8aVec, typeToConstructor } from '../utils/index.ts';
@@ -10,10 +10,6 @@ import { decodeU8aVec, typeToConstructor } from '../utils/index.ts';
 const MAX_LENGTH = 64 * 1024;
 
 const l = logger('Vec');
-
-function noopSetDefinition <T extends Codec> (d: CodecClass<T>): CodecClass<T> {
-  return d;
-}
 
 function decodeVecLength (value: Uint8Array | HexString | unknown[]): [Uint8Array | unknown[] | null, number, number] {
   if (Array.isArray(value)) {
@@ -73,7 +69,7 @@ export function decodeVec<T extends Codec> (registry: Registry, result: T[], val
 export class Vec<T extends Codec> extends AbstractArray<T> {
   #Type: CodecClass<T>;
 
-  constructor (registry: Registry, Type: CodecClass<T> | string, value: Uint8Array | HexString | unknown[] = [], { definition, setDefinition = noopSetDefinition }: DefinitionSetter<CodecClass<T>> = {}) {
+  constructor (registry: Registry, Type: CodecClass<T> | string, value: Uint8Array | HexString | unknown[] = [], { definition, setDefinition = identity }: DefinitionSetter<CodecClass<T>> = {}) {
     const [decodeFrom, length, startAt] = decodeVecLength(value);
 
     super(registry, length);
@@ -117,7 +113,7 @@ export class Vec<T extends Codec> extends AbstractArray<T> {
       ? other
       : new this.#Type(this.registry, other);
 
-    for (let i = 0; i < this.length; i++) {
+    for (let i = 0, count = this.length; i < count; i++) {
       if (check.eq(this[i])) {
         return i;
       }

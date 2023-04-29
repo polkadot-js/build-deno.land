@@ -1,11 +1,11 @@
 
-import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { Bytes, Option } from 'https://deno.land/x/polkadot@0.2.36/types/mod.ts';
-import type { BountyIndex } from 'https://deno.land/x/polkadot@0.2.36/types/interfaces/index.ts';
-import type { PalletBountiesBounty } from 'https://deno.land/x/polkadot@0.2.36/types/lookup.ts';
+import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
+import type { Bytes, Option } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { BountyIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletBountiesBounty } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { DeriveApi, DeriveBounties, DeriveCollectiveProposal } from '../types.ts';
 
-import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.0';
+import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
 import { memo } from '../util/index.ts';
 import { filterBountiesProposals } from './helpers/filterBountyProposals.ts';

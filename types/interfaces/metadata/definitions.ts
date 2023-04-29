@@ -3,8 +3,6 @@
 
 import type { Definitions } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
-
 import { AllHashers } from './hashers.ts';
 import { runtime } from './runtime.ts';
 import { v9 } from './v9.ts';
@@ -19,7 +17,13 @@ export { AllHashers };
 export default {
   rpc: {},
   runtime,
-  types: objectSpread({}, v9, v10, v11, v12, v13, v14, {
+  types: {
+    ...v9,
+    ...v10,
+    ...v11,
+    ...v12,
+    ...v13,
+    ...v14,
     // latest mappings
     ErrorMetadataLatest: 'ErrorMetadataV14',
     EventMetadataLatest: 'EventMetadataV14',
@@ -64,5 +68,5 @@ export default {
         V14: 'MetadataV14'
       }
     }
-  })
+  }
 } as Definitions;

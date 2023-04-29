@@ -1,11 +1,11 @@
 
-import type { Text, u8 } from 'https://deno.land/x/polkadot@0.2.36/types-codec/mod.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.36/types-codec/types/index.ts';
+import type { Text, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { DispatchErrorModule, DispatchErrorModuleU8, DispatchErrorModuleU8a, MetadataLatest, SiField, SiVariant } from '../../../interfaces/index.ts';
 import type { PortableRegistry } from '../../../metadata/index.ts';
 import type { Errors, IsError } from '../types.ts';
 
-import { isCodec, isU8a, lazyMethod, objectSpread, stringCamelCase } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+import { isCodec, isU8a, lazyMethod, objectSpread, stringCamelCase } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { lazyVariants } from '../../../create/lazy.ts';
 import { objectNameToString } from '../util.ts';
@@ -29,7 +29,7 @@ export function variantToMeta (lookup: PortableRegistry, variant: SiVariant): It
 export function decorateErrors (registry: Registry, { lookup, pallets }: MetadataLatest, version: number): Errors {
   const result: Errors = {};
 
-  for (let i = 0; i < pallets.length; i++) {
+  for (let i = 0, count = pallets.length; i < count; i++) {
     const { errors, index, name } = pallets[i];
 
     if (errors.isSome) {

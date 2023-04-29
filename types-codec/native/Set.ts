@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.36/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { CodecClass, Inspect, ISet, IU8a, Registry } from '../types/index.ts';
 
-import { BN, bnToBn, bnToU8a, isBn, isNumber, isString, isU8a, isUndefined, objectProperties, stringify, stringPascalCase, u8aToBn, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+import { BN, bnToBn, bnToU8a, isBn, isNumber, isString, isU8a, isUndefined, objectProperties, stringify, stringPascalCase, u8aToBn, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { compareArray } from '../utils/index.ts';
 
@@ -11,7 +11,7 @@ type SetValues = Record<string, number | BN>;
 function encodeSet (setValues: SetValues, values: string[]): BN {
   const encoded = new BN(0);
 
-  for (let i = 0; i < values.length; i++) {
+  for (let i = 0, count = values.length; i < count; i++) {
     encoded.ior(bnToBn(setValues[values[i]] || 0));
   }
 
@@ -20,9 +20,10 @@ function encodeSet (setValues: SetValues, values: string[]): BN {
 
 /** @internal */
 function decodeSetArray (setValues: SetValues, values: string[]): string[] {
-  const result = new Array<string>(values.length);
+  const count = values.length;
+  const result = new Array<string>(count);
 
-  for (let i = 0; i < values.length; i++) {
+  for (let i = 0; i < count; i++) {
     const key = values[i];
 
     if (isUndefined(setValues[key])) {
@@ -41,7 +42,7 @@ function decodeSetNumber (setValues: SetValues, _value: BN | number): string[] {
   const keys = Object.keys(setValues);
   const result: string[] = [];
 
-  for (let i = 0; i < keys.length; i++) {
+  for (let i = 0, count = keys.length; i < count; i++) {
     const key = keys[i];
 
     if (bn.and(bnToBn(setValues[key])).eq(bnToBn(setValues[key]))) {
@@ -111,9 +112,10 @@ export class CodecSet extends Set<string> implements ISet<string> {
     return class extends CodecSet {
       static {
         const keys = Object.keys(values);
-        const isKeys = new Array<string>(keys.length);
+        const count = keys.length;
+        const isKeys = new Array<string>(count);
 
-        for (let i = 0; i < keys.length; i++) {
+        for (let i = 0; i < count; i++) {
           isKeys[i] = `is${stringPascalCase(keys[i])}`;
         }
 

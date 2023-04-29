@@ -1,5 +1,5 @@
 
-import { lazyMethods, logger, objectClear } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+import { lazyMethods, logger, objectClear } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 type Sections <T> = Record<string, Methods<T>>;
 
@@ -50,12 +50,12 @@ function findMethodExcludes <T> (src: Sections<T>, dst: Sections<T>): string[] {
   const dstSections = findSectionIncludes(Object.keys(dst), srcSections);
   const excludes: string[] = [];
 
-  for (let s = 0; s < dstSections.length; s++) {
+  for (let s = 0, scount = dstSections.length; s < scount; s++) {
     const section = dstSections[s];
     const srcMethods = Object.keys(src[section]);
     const dstMethods = Object.keys(dst[section]);
 
-    for (let d = 0; d < dstMethods.length; d++) {
+    for (let d = 0, mcount = dstMethods.length; d < mcount; d++) {
       const method = dstMethods[d];
 
       if (!srcMethods.includes(method)) {
@@ -92,7 +92,7 @@ export function augmentObject <T> (prefix: string | null, src: Sections<T>, dst:
 
   const sections = Object.keys(src);
 
-  for (let i = 0; i < sections.length; i++) {
+  for (let i = 0, count = sections.length; i < count; i++) {
     const section = sections[i];
     const methods = src[section];
 

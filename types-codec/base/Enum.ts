@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.36/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, Codec, CodecClass, DefinitionSetter, IEnum, Inspect, IU8a, Registry } from '../types/index.ts';
 
-import { isHex, isNumber, isObject, isString, isU8a, objectProperties, stringCamelCase, stringify, stringPascalCase, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+import { identity, isHex, isNumber, isObject, isString, isU8a, objectProperties, stringCamelCase, stringify, stringPascalCase, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { mapToTypeMap, typesToMap } from '../utils/index.ts';
 import { Null } from './Null.ts';
@@ -29,10 +29,6 @@ interface Decoded {
   value: Codec;
 }
 
-function noopSetDefinition (d: Definition): Definition {
-  return d;
-}
-
 function isRustEnum (def: Record<string, string | CodecClass> | Record<string, number>): def is Record<string, string | CodecClass> {
   const defValues = Object.values(def);
 
@@ -53,7 +49,7 @@ function extractDef (registry: Registry, _def: Record<string, string | CodecClas
   let isIndexed: boolean;
 
   if (Array.isArray(_def)) {
-    for (let i = 0; i < _def.length; i++) {
+    for (let i = 0, count = _def.length; i < count; i++) {
       def[_def[i]] = { Type: Null, index: i };
     }
 
@@ -62,7 +58,7 @@ function extractDef (registry: Registry, _def: Record<string, string | CodecClas
   } else if (isRustEnum(_def)) {
     const [Types, keys] = mapToTypeMap(registry, _def);
 
-    for (let i = 0; i < keys.length; i++) {
+    for (let i = 0, count = keys.length; i < count; i++) {
       def[keys[i]] = { Type: Types[i], index: i };
     }
 
@@ -71,7 +67,7 @@ function extractDef (registry: Registry, _def: Record<string, string | CodecClas
   } else {
     const entries = Object.entries(_def);
 
-    for (let i = 0; i < entries.length; i++) {
+    for (let i = 0, count = entries.length; i < count; i++) {
       const [key, index] = entries[i];
 
       def[key] = { Type: Null, index };
@@ -188,7 +184,7 @@ export class Enum implements IEnum {
   readonly #isIndexed: boolean;
   readonly #raw: Codec;
 
-  constructor (registry: Registry, Types: Record<string, string | CodecClass> | Record<string, number> | string[], value?: unknown, index?: number, { definition, setDefinition = noopSetDefinition }: DefinitionSetter<Definition> = {}) {
+  constructor (registry: Registry, Types: Record<string, string | CodecClass> | Record<string, number> | string[], value?: unknown, index?: number, { definition, setDefinition = identity }: DefinitionSetter<Definition> = {}) {
     const { def, isBasic, isIndexed } = definition || setDefinition(extractDef(registry, Types));
 
     // shortcut isU8a as used in SCALE decoding
@@ -221,10 +217,11 @@ export class Enum implements IEnum {
         const keys = Array.isArray(Types)
           ? Types
           : Object.keys(Types);
-        const asKeys = new Array<string>(keys.length);
-        const isKeys = new Array<string>(keys.length);
+        const count = keys.length;
+        const asKeys = new Array<string>(count);
+        const isKeys = new Array<string>(count);
 
-        for (let i = 0; i < keys.length; i++) {
+        for (let i = 0; i < count; i++) {
           const name = stringPascalCase(keys[i]);
 
           asKeys[i] = `as${name}`;

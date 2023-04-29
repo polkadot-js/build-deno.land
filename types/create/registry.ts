@@ -1,14 +1,14 @@
 
-import type { AnyString, Codec, CodecClass, IU8a, LookupString } from 'https://deno.land/x/polkadot@0.2.36/types-codec/types/index.ts';
-import type { CreateOptions, TypeDef } from 'https://deno.land/x/polkadot@0.2.36/types-create/types/index.ts';
+import type { AnyString, Codec, CodecClass, IU8a, LookupString } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { CreateOptions, TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 import type { ExtDef } from '../extrinsic/signedExtensions/types.ts';
 import type { ChainProperties, DispatchErrorModule, DispatchErrorModuleU8, DispatchErrorModuleU8a, EventMetadataLatest, Hash, MetadataLatest, SiField, SiLookupTypeId, SiVariant, WeightV1, WeightV2 } from '../interfaces/types.ts';
 import type { CallFunction, CodecHasher, Definitions, DetectCodec, RegisteredTypes, Registry, RegistryError, RegistryTypes } from '../types/index.ts';
 
-import { DoNotConstruct, Json, Raw } from 'https://deno.land/x/polkadot@0.2.36/types-codec/mod.ts';
-import { constructTypeClass, createClassUnsafe, createTypeUnsafe } from 'https://deno.land/x/polkadot@0.2.36/types-create/mod.ts';
-import { assertReturn, BN_ZERO, formatBalance, isBn, isFunction, isNumber, isString, isU8a, lazyMethod, logger, objectSpread, stringCamelCase, stringify } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
-import { blake2AsU8a } from 'https://deno.land/x/polkadot@0.2.36/util-crypto/mod.ts';
+import { DoNotConstruct, Json, Raw } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { constructTypeClass, createClassUnsafe, createTypeUnsafe } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { assertReturn, BN_ZERO, formatBalance, isBn, isFunction, isNumber, isString, isU8a, lazyMethod, logger, objectSpread, stringCamelCase, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { blake2AsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { expandExtensionTypes, fallbackExtensions, findUnknownExtensions } from '../extrinsic/signedExtensions/index.ts';
 import { GenericEventData } from '../generic/Event.ts';
@@ -33,9 +33,10 @@ function valueToString (v: { toString: () => string }): string {
 }
 
 function getFieldArgs (lookup: PortableRegistry, fields: SiField[]): string[] {
-  const args = new Array<string>(fields.length);
+  const count = fields.length;
+  const args = new Array<string>(count);
 
-  for (let i = 0; i < fields.length; i++) {
+  for (let i = 0; i < count; i++) {
     args[i] = lookup.getTypeDef(fields[i].type).type;
   }
 
@@ -45,7 +46,7 @@ function getFieldArgs (lookup: PortableRegistry, fields: SiField[]): string[] {
 function clearRecord (record: Record<string, unknown>): void {
   const keys = Object.keys(record);
 
-  for (let i = 0; i < keys.length; i++) {
+  for (let i = 0, count = keys.length; i < count; i++) {
     delete record[keys[i]];
   }
 }
@@ -57,7 +58,7 @@ function getVariantStringIdx ({ index }: SiVariant): string {
 function injectErrors (_: TypeRegistry, { lookup, pallets }: MetadataLatest, version: number, result: Record<string, Record<string, RegistryError>>): void {
   clearRecord(result);
 
-  for (let i = 0; i < pallets.length; i++) {
+  for (let i = 0, count = pallets.length; i < count; i++) {
     const { errors, index, name } = pallets[i];
 
     if (errors.isSome) {
@@ -83,7 +84,7 @@ function injectEvents (registry: TypeRegistry, { lookup, pallets }: MetadataLate
 
   clearRecord(result);
 
-  for (let i = 0; i < filtered.length; i++) {
+  for (let i = 0, count = filtered.length; i < count; i++) {
     const { events, index, name } = filtered[i];
 
     lazyMethod(result, version >= 12 ? index.toNumber() : i, () =>
@@ -106,7 +107,7 @@ function injectExtrinsics (registry: TypeRegistry, { lookup, pallets }: Metadata
   clearRecord(result);
   clearRecord(mapping);
 
-  for (let i = 0; i < filtered.length; i++) {
+  for (let i = 0, count = filtered.length; i < count; i++) {
     const { calls, index, name } = filtered[i];
     const sectionIndex = version >= 12 ? index.toNumber() : i;
     const sectionName = stringCamelCase(name);
@@ -174,6 +175,7 @@ export class TypeRegistry implements Registry {
   #userExtensions?: ExtDef | undefined;
 
   readonly #knownDefaults: Record<string, CodecClass>;
+  readonly #knownDefaultsEntries: [string, CodecClass][];
   readonly #knownDefinitions: Record<string, Definitions>;
   readonly #metadataCalls: Record<string, Record<string, CallFunction>> = {};
   readonly #metadataErrors: Record<string, Record<string, RegistryError>> = {};
@@ -184,11 +186,12 @@ export class TypeRegistry implements Registry {
 
   constructor (createdAtHash?: Hash | Uint8Array | string) {
     this.#knownDefaults = objectSpread({ Json, Metadata, PortableRegistry, Raw }, baseTypes);
+    this.#knownDefaultsEntries = Object.entries(this.#knownDefaults);
     this.#knownDefinitions = definitions;
 
     const allKnown = Object.values(this.#knownDefinitions);
 
-    for (let i = 0; i < allKnown.length; i++) {
+    for (let i = 0, count = allKnown.length; i < count; i++) {
       this.register(allKnown[i].types as unknown as RegistryTypes);
     }
 
@@ -387,7 +390,7 @@ export class TypeRegistry implements Registry {
     // (previously this used to be a simple find & return)
     const names: string[] = [];
 
-    for (const [name, Clazz] of Object.entries(this.#knownDefaults)) {
+    for (const [name, Clazz] of this.#knownDefaultsEntries) {
       if (Type === Clazz) {
         names.push(name);
       }
@@ -399,11 +402,10 @@ export class TypeRegistry implements Registry {
       }
     }
 
-    // both sort and reverse are done in-place
-    names.sort().reverse();
-
     return names.length
-      ? names[0]
+      // both sort and reverse are done in-place
+      // ['U32', 'u32'] -> ['u32', 'U32']
+      ? names.sort().reverse()[0]
       : undefined;
   }
 
@@ -479,7 +481,7 @@ export class TypeRegistry implements Registry {
   #registerObject = (obj: RegistryTypes): void => {
     const entries = Object.entries(obj);
 
-    for (let e = 0; e < entries.length; e++) {
+    for (let e = 0, count = entries.length; e < count; e++) {
       const [name, type] = entries[e];
 
       if (isFunction(type)) {

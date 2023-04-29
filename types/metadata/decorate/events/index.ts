@@ -1,10 +1,10 @@
 
-import type { AnyTuple, Registry } from 'https://deno.land/x/polkadot@0.2.36/types-codec/types/index.ts';
+import type { AnyTuple, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { MetadataLatest, PalletMetadataLatest, SiVariant } from '../../../interfaces/index.ts';
 import type { IEvent, IEventLike } from '../../../types/index.ts';
 import type { Events, IsEvent } from '../types.ts';
 
-import { isCodec, isU8a, lazyMethod, stringCamelCase } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+import { isCodec, isU8a, lazyMethod, stringCamelCase } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { lazyVariants } from '../../../create/lazy.ts';
 import { variantToMeta } from '../errors/index.ts';
@@ -19,7 +19,7 @@ export function decorateEvents (registry: Registry, { lookup, pallets }: Metadat
   const result: Events = {};
   const filtered = pallets.filter(filterEventsSome);
 
-  for (let i = 0; i < filtered.length; i++) {
+  for (let i = 0, count = filtered.length; i < count; i++) {
     const { events, index, name } = filtered[i];
     const sectionIndex = version >= 12 ? index.toNumber() : i;
 

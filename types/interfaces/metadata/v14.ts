@@ -1,9 +1,7 @@
 
 /* eslint-disable sort-keys */
 
-import type { DefinitionsTypes, DefinitionTypeStruct } from '../../types/index.ts';
-
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+import type { DefinitionsTypes } from '../../types/index.ts';
 
 import { Si1Variant } from '../scaleInfo/v1.ts';
 
@@ -15,14 +13,23 @@ export const v14: DefinitionsTypes = {
   },
 
   // compatibility with earlier layouts, i.e. don't break previous users
-  ErrorMetadataV14: objectSpread<DefinitionTypeStruct>({}, Si1Variant, { args: 'Vec<Type>' }),
-  EventMetadataV14: objectSpread<DefinitionTypeStruct>({}, Si1Variant, { args: 'Vec<Type>' }),
+  ErrorMetadataV14: {
+    ...Si1Variant,
+    args: 'Vec<Type>'
+  },
+  EventMetadataV14: {
+    ...Si1Variant,
+    args: 'Vec<Type>'
+  },
   FunctionArgumentMetadataV14: {
     name: 'Text',
     type: 'Type',
     typeName: 'Option<Type>'
   },
-  FunctionMetadataV14: objectSpread<DefinitionTypeStruct>({}, Si1Variant, { args: 'Vec<FunctionArgumentMetadataV14>' }),
+  FunctionMetadataV14: {
+    ...Si1Variant,
+    args: 'Vec<FunctionArgumentMetadataV14>'
+  },
 
   // V14
   ExtrinsicMetadataV14: {

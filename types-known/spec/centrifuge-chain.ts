@@ -1,9 +1,7 @@
 
 /* eslint-disable sort-keys */
 
-import type { OverrideVersionedType } from 'https://deno.land/x/polkadot@0.2.36/types/types/index.ts';
-
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+import type { OverrideVersionedType } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 const sharedTypes = {
   // Anchor
@@ -80,18 +78,20 @@ const sharedTypes = {
   }
 };
 
-const standaloneTypes = objectSpread({}, sharedTypes, {
+const standaloneTypes = {
+  ...sharedTypes,
   AccountInfo: 'AccountInfoWithRefCount',
   Address: 'LookupSource',
   LookupSource: 'IndicesLookupSource',
   Multiplier: 'Fixed64',
   RefCount: 'RefCountTo259'
-});
+};
 
-const versioned: OverrideVersionedType[] = [
+export const versioned: OverrideVersionedType[] = [
   {
     minmax: [240, 243],
-    types: objectSpread({}, standaloneTypes, {
+    types: {
+      ...standaloneTypes,
       ProxyType: {
         _enum: [
           'Any',
@@ -101,16 +101,14 @@ const versioned: OverrideVersionedType[] = [
           'Vesting'
         ]
       }
-    })
+    }
   },
   {
     minmax: [244, 999],
-    types: objectSpread({}, standaloneTypes)
+    types: { ...standaloneTypes }
   },
   {
     minmax: [1000, undefined],
-    types: objectSpread({}, sharedTypes)
+    types: { ...sharedTypes }
   }
 ];
-
-export default versioned;

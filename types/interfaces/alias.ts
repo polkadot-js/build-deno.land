@@ -1,8 +1,6 @@
 
 import type { OverrideModuleType, Registry } from '../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
-
 const typesAlias: Record<string, OverrideModuleType> = {
   assets: {
     Approval: 'AssetApproval',
@@ -108,8 +106,8 @@ const typesAlias: Record<string, OverrideModuleType> = {
  * @description Get types for specific modules (metadata override)
  */
 export function getAliasTypes ({ knownTypes }: Registry, section: string): OverrideModuleType {
-  return objectSpread({},
-    typesAlias[section],
-    knownTypes.typesAlias?.[section]
-  );
+  return {
+    ...(typesAlias[section] ?? {}),
+    ...(knownTypes.typesAlias?.[section] ?? {})
+  };
 }

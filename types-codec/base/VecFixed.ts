@@ -1,16 +1,12 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.36/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { Codec, CodecClass, DefinitionSetter, Inspect, Registry } from '../types/index.ts';
 
-import { isU8a, u8aConcatStrict } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+import { identity, isU8a, u8aConcatStrict } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { AbstractArray } from '../abstract/Array.ts';
 import { decodeU8aVec, typeToConstructor } from '../utils/index.ts';
 import { decodeVec } from './Vec.ts';
-
-function noopSetDefinition <T extends Codec> (d: CodecClass<T>): CodecClass<T> {
-  return d;
-}
 
 /**
  * @name VecFixed
@@ -20,7 +16,7 @@ function noopSetDefinition <T extends Codec> (d: CodecClass<T>): CodecClass<T> {
 export class VecFixed<T extends Codec> extends AbstractArray<T> {
   #Type: CodecClass<T>;
 
-  constructor (registry: Registry, Type: CodecClass<T> | string, length: number, value: Uint8Array | HexString | unknown[] = [] as unknown[], { definition, setDefinition = noopSetDefinition }: DefinitionSetter<CodecClass<T>> = {}) {
+  constructor (registry: Registry, Type: CodecClass<T> | string, length: number, value: Uint8Array | HexString | unknown[] = [] as unknown[], { definition, setDefinition = identity }: DefinitionSetter<CodecClass<T>> = {}) {
     super(registry, length);
 
     this.#Type = definition || setDefinition(typeToConstructor<T>(registry, Type));
@@ -59,7 +55,7 @@ export class VecFixed<T extends Codec> extends AbstractArray<T> {
   public override get encodedLength (): number {
     let total = 0;
 
-    for (let i = 0; i < this.length; i++) {
+    for (let i = 0, count = this.length; i < count; i++) {
       total += this[i].encodedLength;
     }
 

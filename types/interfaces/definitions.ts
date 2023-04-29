@@ -2,8 +2,8 @@
 export * from './essentials.ts';
 
 export { default as assets } from './assets/definitions.ts';
-export { default as authorship } from './authorship/definitions.ts';
 export { default as aura } from './aura/definitions.ts';
+export { default as authorship } from './authorship/definitions.ts';
 export { default as babe } from './babe/definitions.ts';
 export { default as balances } from './balances/definitions.ts';
 export { default as beefy } from './beefy/definitions.ts';

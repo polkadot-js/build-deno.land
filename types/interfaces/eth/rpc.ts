@@ -2,8 +2,6 @@
 
 import type { DefinitionsRpc } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
-
 const netRpc: DefinitionsRpc = {
   listening: {
     aliasSection: 'net',
@@ -39,7 +37,9 @@ const web3Rpc: DefinitionsRpc = {
   }
 };
 
-export const rpc: DefinitionsRpc = objectSpread({}, netRpc, web3Rpc, {
+export const rpc: DefinitionsRpc = {
+  ...netRpc,
+  ...web3Rpc,
   accounts: {
     description: 'Returns accounts list.',
     params: [],
@@ -501,4 +501,4 @@ export const rpc: DefinitionsRpc = objectSpread({}, netRpc, web3Rpc, {
     ],
     type: 'bool'
   }
-});
+};

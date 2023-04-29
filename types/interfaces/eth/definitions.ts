@@ -4,8 +4,6 @@
 
 import type { DefinitionsTypes } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
-
 import { rpc } from './rpc.ts';
 import { runtime } from './runtime.ts';
 
@@ -83,7 +81,10 @@ const V2: DefinitionsTypes = {
   }
 };
 
-const types: DefinitionsTypes = objectSpread({}, V0, V1, V2, {
+const types: DefinitionsTypes = {
+  ...V0,
+  ...V1,
+  ...V2,
   EthereumAccountId: 'GenericEthereumAccountId',
   EthereumAddress: 'GenericEthereumAccountId',
   EthereumLookupSource: 'GenericEthereumLookupSource',
@@ -357,6 +358,6 @@ const types: DefinitionsTypes = objectSpread({}, V0, V1, V2, {
     target: 'H256',
     number: 'Option<u64>'
   }
-});
+};
 
 export default { rpc, runtime, types };

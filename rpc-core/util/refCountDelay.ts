@@ -1,7 +1,7 @@
 
-import type { ConnectableObservable, MonoTypeOperatorFunction, TeardownLogic } from 'https://esm.sh/rxjs@7.8.0';
+import type { ConnectableObservable, MonoTypeOperatorFunction, TeardownLogic } from 'https://esm.sh/rxjs@7.8.1';
 
-import { asapScheduler, Observable, Subscription } from 'https://esm.sh/rxjs@7.8.0';
+import { asapScheduler, Observable, Subscription } from 'https://esm.sh/rxjs@7.8.1';
 
 /** @internal */
 export function refCountDelay <T> (delay = 1750): MonoTypeOperatorFunction<T> {

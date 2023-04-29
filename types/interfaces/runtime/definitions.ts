@@ -3,8 +3,6 @@
 
 import type { Definitions } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
-
 import { runtime } from './runtime.ts';
 
 const numberTypes = {
@@ -45,7 +43,8 @@ export const knownOrigins: Record<string, string> = {
 export default {
   rpc: {},
   runtime,
-  types: objectSpread({}, numberTypes, {
+  types: {
+    ...numberTypes,
     AccountId: 'AccountId32',
     AccountId20: 'GenericEthereumAccountId',
     AccountId32: 'GenericAccountId32',
@@ -223,5 +222,5 @@ export default {
     SealV0: '(u64, Signature)',
     Seal: '(ConsensusEngineId, Bytes)',
     Consensus: '(ConsensusEngineId, Bytes)'
-  })
+  }
 } as Definitions;

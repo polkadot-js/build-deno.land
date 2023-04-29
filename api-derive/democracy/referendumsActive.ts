@@ -1,8 +1,8 @@
 
-import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
+import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
 import type { DeriveApi, DeriveReferendum } from '../types.ts';
 
-import { of, switchMap } from 'https://esm.sh/rxjs@7.8.0';
+import { of, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
 import { memo } from '../util/index.ts';
 

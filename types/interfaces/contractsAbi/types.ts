@@ -1,9 +1,9 @@
 /* eslint-disable */
 
-import type { BTreeMap, Bytes, Enum, Option, Raw, Struct, Text, U8aFixed, Vec, bool, u32, u64 } from 'https://deno.land/x/polkadot@0.2.36/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.36/types-codec/types/index.ts';
-import type { PortableType } from 'https://deno.land/x/polkadot@0.2.36/types/interfaces/metadata/index.ts';
-import type { Si0Type, SiLookupTypeId, SiPath } from 'https://deno.land/x/polkadot@0.2.36/types/interfaces/scaleInfo/index.ts';
+import type { BTreeMap, Bytes, Enum, Option, Raw, Struct, Text, U8aFixed, Vec, bool, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { PortableType } from 'https://deno.land/x/polkadot/types/interfaces/metadata/index.ts';
+import type { Si0Type, SiLookupTypeId, SiPath } from 'https://deno.land/x/polkadot/types/interfaces/scaleInfo/index.ts';
 
 /** @name ContractConstructorSpecLatest */
 export interface ContractConstructorSpecLatest extends ContractConstructorSpecV3 {}
@@ -276,10 +276,7 @@ export interface ContractMetadataV3 extends Struct {
 }
 
 /** @name ContractMetadataV4 */
-export interface ContractMetadataV4 extends Struct {
-  readonly types: Vec<PortableType>;
-  readonly spec: ContractContractSpecV3;
-}
+export interface ContractMetadataV4 extends ContractMetadataV3 {}
 
 /** @name ContractProject */
 export interface ContractProject extends ITuple<[ContractProjectInfo, ContractMetadata]> {}

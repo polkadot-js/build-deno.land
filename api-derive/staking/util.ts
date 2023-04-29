@@ -1,13 +1,13 @@
 
-import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { ObsInnerType } from 'https://deno.land/x/polkadot@0.2.36/api-base/types/index.ts';
-import type { EraIndex } from 'https://deno.land/x/polkadot@0.2.36/types/interfaces/index.ts';
+import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
+import type { ObsInnerType } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { EraIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { ExactDerive } from '../derive.ts';
 import type { DeriveApi } from '../types.ts';
 
-import { BehaviorSubject, combineLatest, map, of, switchMap, tap, toArray } from 'https://esm.sh/rxjs@7.8.0';
+import { BehaviorSubject, combineLatest, map, of, switchMap, tap, toArray } from 'https://esm.sh/rxjs@7.8.1';
 
-import { arrayChunk, arrayFlatten, nextTick } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+import { arrayChunk, arrayFlatten, nextTick } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 

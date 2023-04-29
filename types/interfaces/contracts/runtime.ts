@@ -1,8 +1,6 @@
 
 import type { DefinitionCall, DefinitionsCall } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
-
 const SHARED_V1_V2: Record<string, DefinitionCall> = {
   get_storage: {
     description: 'Query a given storage key in a given contract.',
@@ -41,7 +39,7 @@ const SHARED_V1_V2: Record<string, DefinitionCall> = {
 export const runtime: DefinitionsCall = {
   ContractsApi: [
     {
-      methods: objectSpread({
+      methods: {
         call: {
           description: 'Perform a call from a specified account to a given contract.',
           params: [
@@ -105,12 +103,13 @@ export const runtime: DefinitionsCall = {
             }
           ],
           type: 'ContractInstantiateResult'
-        }
-      }, SHARED_V1_V2),
+        },
+        ...SHARED_V1_V2
+      },
       version: 2
     },
     {
-      methods: objectSpread({
+      methods: {
         call: {
           description: 'Perform a call from a specified account to a given contract.',
           params: [
@@ -174,8 +173,9 @@ export const runtime: DefinitionsCall = {
             }
           ],
           type: 'ContractInstantiateResultU64'
-        }
-      }, SHARED_V1_V2),
+        },
+        ...SHARED_V1_V2
+      },
       version: 1
     }
   ]

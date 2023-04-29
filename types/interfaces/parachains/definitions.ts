@@ -3,8 +3,6 @@
 
 import type { Definitions } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
-
 import hrmpTypes from './hrmp.ts';
 import { runtime } from './runtime.ts';
 import slotTypes from './slots.ts';
@@ -94,7 +92,12 @@ const disputeTypes = {
 export default {
   rpc: {},
   runtime,
-  types: objectSpread({}, cumulusTypes, disputeTypes, hrmpTypes, proposeTypes, slotTypes, {
+  types: {
+    ...cumulusTypes,
+    ...disputeTypes,
+    ...hrmpTypes,
+    ...proposeTypes,
+    ...slotTypes,
     AbridgedCandidateReceipt: {
       parachainIndex: 'ParaId',
       relayParent: 'Hash',
@@ -505,5 +508,5 @@ export default {
     MessagingStateSnapshotEgressEntry: '(ParaId, AbridgedHrmpChannel)',
     SystemInherentData: 'ParachainInherentData',
     VecInboundHrmpMessage: 'Vec<InboundHrmpMessage>'
-  })
+  }
 } as Definitions;

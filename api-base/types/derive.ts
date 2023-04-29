@@ -1,5 +1,5 @@
 
-import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
+import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
 
 type DeriveCreator = (instanceId: string, api: unknown) => (...args: unknown[]) => Observable<any>;
 

@@ -1,9 +1,9 @@
 
-import type { ExactDerive } from 'https://deno.land/x/polkadot@0.2.36/api-derive/mod.ts';
-import type { AnyFunction } from 'https://deno.land/x/polkadot@0.2.36/types/types/index.ts';
+import type { ExactDerive } from 'https://deno.land/x/polkadot/api-derive/mod.ts';
+import type { AnyFunction } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { ApiTypes, DecorateMethod, MethodResult } from '../types/index.ts';
 
-import { lazyDeriveSection } from 'https://deno.land/x/polkadot@0.2.36/api-derive/mod.ts';
+import { lazyDeriveSection } from 'https://deno.land/x/polkadot/api-derive/mod.ts';
 
 type AnyDeriveSection = Record<string, AnyFunction>;
 
@@ -30,7 +30,7 @@ export function decorateDeriveSections<ApiType extends ApiTypes> (decorateMethod
   const result: AnyDerive = {};
   const names = Object.keys(derives);
 
-  for (let i = 0; i < names.length; i++) {
+  for (let i = 0, count = names.length; i < count; i++) {
     lazyDeriveSection(result, names[i], getKeys, creator);
   }
 

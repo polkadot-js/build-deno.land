@@ -1,9 +1,7 @@
 
 /* eslint-disable sort-keys */
 
-import type { OverrideVersionedType } from 'https://deno.land/x/polkadot@0.2.36/types/types/index.ts';
-
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+import type { OverrideVersionedType } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 const sharedTypes = {
   CompactAssignments: 'CompactAssignmentsWith16',
@@ -34,41 +32,51 @@ const addrAccountIdTypes = {
   ValidatorPrefs: 'ValidatorPrefsWithCommission'
 };
 
-const versioned: OverrideVersionedType[] = [
+export const versioned: OverrideVersionedType[] = [
   {
     minmax: [0, 12],
-    types: objectSpread({}, sharedTypes, addrAccountIdTypes, {
+    types: {
+      ...sharedTypes,
+      ...addrAccountIdTypes,
       CompactAssignments: 'CompactAssignmentsTo257',
       OpenTip: 'OpenTipTo225',
       RefCount: 'RefCountTo259'
-    })
+    }
   },
   {
     minmax: [13, 22],
-    types: objectSpread({}, sharedTypes, addrAccountIdTypes, {
+    types: {
+      ...sharedTypes,
+      ...addrAccountIdTypes,
       CompactAssignments: 'CompactAssignmentsTo257',
       RefCount: 'RefCountTo259'
-    })
+    }
   },
   {
     minmax: [23, 24],
-    types: objectSpread({}, sharedTypes, addrAccountIdTypes, {
+    types: {
+      ...sharedTypes,
+      ...addrAccountIdTypes,
       RefCount: 'RefCountTo259'
-    })
+    }
   },
   {
     minmax: [25, 27],
-    types: objectSpread({}, sharedTypes, addrAccountIdTypes)
+    types: {
+      ...sharedTypes,
+      ...addrAccountIdTypes
+    }
   },
   {
     minmax: [28, 29],
-    types: objectSpread({}, sharedTypes, {
+    types: {
+      ...sharedTypes,
       AccountInfo: 'AccountInfoWithDualRefCount'
-    })
+    }
   },
   {
     minmax: [30, 9109],
-    types: objectSpread({}, sharedTypes)
+    types: { ...sharedTypes }
   },
   {
     // metadata v14
@@ -86,5 +94,3 @@ const versioned: OverrideVersionedType[] = [
   //   }
   // }
 ];
-
-export default versioned;

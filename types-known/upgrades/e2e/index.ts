@@ -1,4 +1,4 @@
 
-export { default as kusama } from './kusama.ts';
-export { default as polkadot } from './polkadot.ts';
-export { default as westend } from './westend.ts';
+export { upgrades as kusama } from './kusama.ts';
+export { upgrades as polkadot } from './polkadot.ts';
+export { upgrades as westend } from './westend.ts';

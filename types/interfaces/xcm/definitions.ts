@@ -3,8 +3,7 @@
 
 import type { Definitions } from '../../types/index.ts';
 
-import { mapXcmTypes } from 'https://deno.land/x/polkadot@0.2.36/types-create/mod.ts';
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+import { mapXcmTypes } from 'https://deno.land/x/polkadot/types-create/mod.ts';
 
 import { v0 } from './v0.ts';
 import { v1 } from './v1.ts';
@@ -79,7 +78,13 @@ const location = {
 
 export default {
   rpc: {},
-  types: objectSpread({}, location, xcm, v0, v1, v2, mapXcmTypes(XCM_LATEST), {
+  types: {
+    ...location,
+    ...xcm,
+    ...v0,
+    ...v1,
+    ...v2,
+    ...mapXcmTypes(XCM_LATEST),
     DoubleEncodedCall: {
       encoded: 'Vec<u8>'
     },
@@ -156,5 +161,5 @@ export default {
       }
     },
     XcmVersion: 'u32'
-  })
+  }
 } as Definitions;

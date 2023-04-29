@@ -1,8 +1,6 @@
 
 import type { Definitions } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
-
 import { v0 } from './v0.ts';
 import { v1 } from './v1.ts';
 
@@ -10,7 +8,9 @@ import { v1 } from './v1.ts';
 
 export default {
   rpc: {},
-  types: objectSpread({}, v0, v1, {
+  types: {
+    ...v0,
+    ...v1,
     // latest mappings
     SiField: 'Si1Field',
     SiLookupTypeId: 'Si1LookupTypeId',
@@ -27,5 +27,5 @@ export default {
     SiTypeParameter: 'Si1TypeParameter',
     SiTypeDefVariant: 'Si1TypeDefVariant',
     SiVariant: 'Si1Variant'
-  })
+  }
 } as Definitions;

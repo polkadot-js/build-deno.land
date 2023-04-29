@@ -1,9 +1,9 @@
 
-import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { Hash, Header } from 'https://deno.land/x/polkadot@0.2.36/types/interfaces/index.ts';
+import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
+import type { Hash, Header } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { DeriveApi } from '../types.ts';
 
-import { from, of, switchMap } from 'https://esm.sh/rxjs@7.8.0';
+import { from, of, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
 import { memo } from '../util/index.ts';
 

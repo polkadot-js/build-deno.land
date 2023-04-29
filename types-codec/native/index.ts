@@ -1,5 +1,5 @@
 
-export { bool, bool as Bool } from './Bool.ts';
+export { bool as Bool, bool } from './Bool.ts';
 export { CodecDate, CodecDate as Date } from './Date.ts';
 export { Float } from './Float.ts';
 export { Json } from './Json.ts';

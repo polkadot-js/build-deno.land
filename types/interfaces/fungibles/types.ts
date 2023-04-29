@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import type { Enum } from 'https://deno.land/x/polkadot@0.2.36/types-codec/mod.ts';
+import type { Enum } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 
 /** @name FungiblesAccessError */
 export interface FungiblesAccessError extends Enum {

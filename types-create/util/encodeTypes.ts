@@ -1,8 +1,8 @@
 
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.36/types-codec/types/index.ts';
-import type { TypeDef } from 'https://deno.land/x/polkadot@0.2.36/types-create/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 
-import { isNumber, isUndefined, objectSpread, stringify } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+import { isNumber, isUndefined, objectSpread, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { TypeDefInfo } from '../types/index.ts';
 
@@ -51,7 +51,7 @@ function encodeSubTypes (registry: Registry, sub: TypeDef[], asEnum?: boolean, e
 
   const inner: Record<string, string> = objectSpread({}, extra);
 
-  for (let i = 0; i < sub.length; i++) {
+  for (let i = 0, count = sub.length; i < count; i++) {
     const def = sub[i];
 
     inner[def.name as string] = encodeTypeDef(registry, def);

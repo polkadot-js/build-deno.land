@@ -1,9 +1,9 @@
 
-import type { Codec, CodecClass, LookupString, Registry, U8aBitLength, UIntBitLength } from 'https://deno.land/x/polkadot@0.2.36/types-codec/types/index.ts';
+import type { Codec, CodecClass, LookupString, Registry, U8aBitLength, UIntBitLength } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { TypeDef } from '../types/index.ts';
 
-import { BTreeMap, BTreeSet, Bytes, CodecSet, Compact, DoNotConstruct, Enum, HashMap, Int, Null, Option, Range, RangeInclusive, Result, Struct, Tuple, U8aFixed, UInt, Vec, VecFixed, WrapperKeepOpaque, WrapperOpaque } from 'https://deno.land/x/polkadot@0.2.36/types-codec/mod.ts';
-import { isNumber, stringify } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+import { BTreeMap, BTreeSet, Bytes, CodecSet, Compact, DoNotConstruct, Enum, HashMap, Int, Null, Option, Range, RangeInclusive, Result, Struct, Tuple, U8aFixed, UInt, Vec, VecFixed, WrapperKeepOpaque, WrapperOpaque } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { isNumber, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { TypeDefInfo } from '../types/index.ts';
 import { getTypeDef } from '../util/getTypeDef.ts';
@@ -36,7 +36,7 @@ function getTypeClassMap (value: TypeDef): Record<string, string> {
   const subs = getSubDefArray(value);
   const map: Record<string, string> = {};
 
-  for (let i = 0; i < subs.length; i++) {
+  for (let i = 0, count = subs.length; i < count; i++) {
     map[subs[i].name as string] = getTypeDefType(subs[i]);
   }
 

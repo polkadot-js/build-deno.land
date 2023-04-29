@@ -1,8 +1,8 @@
 
-import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
+import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
 import type { DeriveApi, DeriveStakingWaiting, StakingQueryFlags } from '../types.ts';
 
-import { combineLatest, map, switchMap } from 'https://esm.sh/rxjs@7.8.0';
+import { combineLatest, map, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
 import { memo } from '../util/index.ts';
 

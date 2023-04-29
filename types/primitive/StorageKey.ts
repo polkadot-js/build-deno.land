@@ -1,13 +1,13 @@
 
-import type { AnyJson, AnyTuple, Codec } from 'https://deno.land/x/polkadot@0.2.36/types-codec/types/index.ts';
+import type { AnyJson, AnyTuple, Codec } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { AllHashers } from '../interfaces/metadata/definitions.ts';
 import type { StorageEntryMetadataLatest, StorageHasher } from '../interfaces/metadata/index.ts';
 import type { SiLookupTypeId } from '../interfaces/scaleInfo/index.ts';
 import type { IStorageKey, Registry } from '../types/index.ts';
 import type { StorageEntry } from './types.ts';
 
-import { Bytes } from 'https://deno.land/x/polkadot@0.2.36/types-codec/mod.ts';
-import { isFunction, isString, isU8a } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+import { Bytes } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { isFunction, isString, isU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { getSiName } from '../metadata/util/index.ts';
 import { unwrapStorageType } from '../util/index.ts';
@@ -82,9 +82,10 @@ function decodeStorageKey (value?: string | Uint8Array | StorageKey | StorageEnt
 function decodeHashers <A extends AnyTuple> (registry: Registry, value: Uint8Array, hashers: [StorageHasher, SiLookupTypeId][]): A {
   // the storage entry is xxhashAsU8a(prefix, 128) + xxhashAsU8a(method, 128), 256 bits total
   let offset = 32;
-  const result = new Array<Codec>(hashers.length);
+  const count = hashers.length;
+  const result = new Array<Codec>(count);
 
-  for (let i = 0; i < hashers.length; i++) {
+  for (let i = 0; i < count; i++) {
     const [hasher, type] = hashers[i];
     const [hashLen, canDecode] = HASHER_MAP[hasher.type as 'Identity'];
     const decoded = canDecode

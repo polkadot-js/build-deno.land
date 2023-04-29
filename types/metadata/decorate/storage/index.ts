@@ -1,9 +1,9 @@
 
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.36/types-codec/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { MetadataLatest, StorageEntryMetadataLatest } from '../../../interfaces/index.ts';
 import type { Storage } from '../types.ts';
 
-import { lazyMethod, lazyMethods, stringCamelCase } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+import { lazyMethod, lazyMethods, stringCamelCase } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { objectNameToCamel } from '../util.ts';
 import { createFunction, createKeyRaw, NO_RAW_ARGS } from './createFunction.ts';
@@ -18,7 +18,7 @@ const VERSION_DOCS = { docs: 'Returns the current pallet version from storage', 
 export function decorateStorage (registry: Registry, { pallets }: MetadataLatest, _metaVersion: number): Storage {
   const result: Storage = getStorage(registry);
 
-  for (let i = 0; i < pallets.length; i++) {
+  for (let i = 0, count = pallets.length; i < count; i++) {
     const { name, storage } = pallets[i];
 
     if (storage.isSome) {

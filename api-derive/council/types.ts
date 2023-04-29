@@ -1,5 +1,5 @@
 
-import type { AccountId, Balance } from 'https://deno.land/x/polkadot@0.2.36/types/interfaces/index.ts';
+import type { AccountId, Balance } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 
 export interface DeriveCouncilVote {
   stake: Balance;

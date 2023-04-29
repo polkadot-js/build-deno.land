@@ -1,6 +1,4 @@
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
-
 /* eslint-disable sort-keys */
 
 const SlotRange10 = {
@@ -41,7 +39,8 @@ const oldTypes = {
   SubId: 'u32'
 };
 
-export default objectSpread({}, oldTypes, {
+export default {
+  ...oldTypes,
   AuctionIndex: 'u32',
   LeasePeriod: 'BlockNumber',
   LeasePeriodOf: 'BlockNumber',
@@ -54,4 +53,4 @@ export default objectSpread({}, oldTypes, {
   WinnersData: 'Vec<WinnersDataTuple>',
   WinnersDataTuple10: '(AccountId, ParaId, BalanceOf, SlotRange10)',
   WinnersDataTuple: '(AccountId, ParaId, BalanceOf, SlotRange)'
-});
+};

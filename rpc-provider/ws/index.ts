@@ -1,14 +1,12 @@
 
-/* eslint-disable camelcase */
-
-import type { Constructor } from 'https://deno.land/x/polkadot@0.2.36/util/types.ts';
+import type { Constructor } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { EndpointStats, JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, ProviderInterfaceEmitCb, ProviderInterfaceEmitted, ProviderStats } from '../types.ts';
 
 import { EventEmitter } from 'https://esm.sh/eventemitter3@5.0.0';
 
-import { isChildClass, isNull, isUndefined, logger, objectSpread } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
-import { xglobal } from 'https://deno.land/x/polkadot@0.2.36/x-global/mod.ts';
-import { WebSocket } from 'https://deno.land/x/polkadot@0.2.36/x-ws/mod.ts';
+import { isChildClass, isNull, isUndefined, logger, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
+import { WebSocket } from 'https://deno.land/x/polkadot/x-ws/mod.ts';
 
 import { RpcCoder } from '../coder/index.ts';
 import defaults from '../defaults.ts';
@@ -73,8 +71,8 @@ function defaultEndpointStats (): EndpointStats {
  * <BR>
  *
  * ```javascript
- * import Api from 'https://deno.land/x/polkadot@0.2.36/api/promise/index.ts';
- * import { WsProvider } from 'https://deno.land/x/polkadot@0.2.36/rpc-provider/ws/index.ts';
+ * import Api from 'https://deno.land/x/polkadot/api/promise/index.ts';
+ * import { WsProvider } from 'https://deno.land/x/polkadot/rpc-provider/ws/index.ts';
  *
  * const provider = new WsProvider('ws://127.0.0.1:9944');
  * const api = new Api(provider);
@@ -356,8 +354,12 @@ export class WsProvider implements ProviderInterface {
           start: Date.now(),
           subscription
         };
-        this.#endpointStats.bytesSent += body.length;
-        this.#stats.total.bytesSent += body.length;
+
+        const bytesSent = body.length;
+
+        this.#endpointStats.bytesSent += bytesSent;
+        this.#stats.total.bytesSent += bytesSent;
+
         this.#websocket.send(body);
       } catch (error) {
         this.#endpointStats.errors++;
@@ -480,8 +482,10 @@ export class WsProvider implements ProviderInterface {
   #onSocketMessage = (message: MessageEvent<string>): void => {
     l.debug(() => ['received', message.data]);
 
-    this.#endpointStats.bytesRecv += message.data.length;
-    this.#stats.total.bytesRecv += message.data.length;
+    const bytesRecv = message.data.length;
+
+    this.#endpointStats.bytesRecv += bytesRecv;
+    this.#stats.total.bytesRecv += bytesRecv;
 
     const response = JSON.parse(message.data) as JsonRpcResponse;
 
@@ -602,7 +606,7 @@ export class WsProvider implements ProviderInterface {
     const now = Date.now();
     const ids = Object.keys(this.#handlers);
 
-    for (let i = 0; i < ids.length; i++) {
+    for (let i = 0, count = ids.length; i < count; i++) {
       const handler = this.#handlers[ids[i]];
 
       if ((now - handler.start) > this.#timeout) {

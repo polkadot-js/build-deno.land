@@ -1,9 +1,9 @@
 
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.36/types-codec/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { MetadataLatest, PalletConstantMetadataLatest } from '../../../interfaces/index.ts';
 import type { ConstantCodec, Constants } from '../types.ts';
 
-import { hexToU8a, lazyMethod, lazyMethods, stringCamelCase } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+import { hexToU8a, lazyMethod, lazyMethods, stringCamelCase } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { objectNameToCamel } from '../util.ts';
 
@@ -11,7 +11,7 @@ import { objectNameToCamel } from '../util.ts';
 export function decorateConstants (registry: Registry, { pallets }: MetadataLatest, _version: number): Constants {
   const result: Constants = {};
 
-  for (let i = 0; i < pallets.length; i++) {
+  for (let i = 0, count = pallets.length; i < count; i++) {
     const { constants, name } = pallets[i];
 
     if (!constants.isEmpty) {

@@ -1,9 +1,9 @@
 
-import type { Observable } from 'https://esm.sh/rxjs@7.8.0';
-import type { PalletDemocracyReferendumInfo } from 'https://deno.land/x/polkadot@0.2.36/types/lookup.ts';
+import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
+import type { PalletDemocracyReferendumInfo } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { DeriveApi } from '../types.ts';
 
-import { map, switchMap } from 'https://esm.sh/rxjs@7.8.0';
+import { map, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
 import { memo } from '../util/index.ts';
 

@@ -1,17 +1,17 @@
 
-import type { OverrideVersionedType } from 'https://deno.land/x/polkadot@0.2.36/types/types/index.ts';
+import type { OverrideVersionedType } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import centrifugeChain from './centrifuge-chain.ts';
-import kusama from './kusama.ts';
-import node from './node.ts';
-import nodeTemplate from './node-template.ts';
-import polkadot from './polkadot.ts';
-import rococo from './rococo.ts';
-import shell from './shell.ts';
-import statemint from './statemint.ts';
-import westend from './westend.ts';
+import { versioned as centrifugeChain } from './centrifuge-chain.ts';
+import { versioned as kusama } from './kusama.ts';
+import { versioned as node } from './node.ts';
+import { versioned as nodeTemplate } from './node-template.ts';
+import { versioned as polkadot } from './polkadot.ts';
+import { versioned as rococo } from './rococo.ts';
+import { versioned as shell } from './shell.ts';
+import { versioned as statemint } from './statemint.ts';
+import { versioned as westend } from './westend.ts';
 
-const typesSpec: Record<string, OverrideVersionedType[]> = {
+export const typesSpec: Record<string, OverrideVersionedType[]> = {
   'centrifuge-chain': centrifugeChain,
   kusama,
   node,
@@ -24,5 +24,3 @@ const typesSpec: Record<string, OverrideVersionedType[]> = {
   westend,
   westmint: statemint
 };
-
-export default typesSpec;

@@ -1,13 +1,13 @@
 
 export * from './account.ts';
 export * from './currentPoints.ts';
+export * from './electedInfo.ts';
 export * from './erasExposure.ts';
 export * from './erasHistoric.ts';
 export * from './erasPoints.ts';
 export * from './erasPrefs.ts';
 export * from './erasRewards.ts';
 export * from './erasSlashes.ts';
-export * from './electedInfo.ts';
 export * from './keys.ts';
 export * from './overview.ts';
 export * from './ownExposure.ts';

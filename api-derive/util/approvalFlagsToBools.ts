@@ -1,12 +1,12 @@
 
-import type { Vec } from 'https://deno.land/x/polkadot@0.2.36/types/mod.ts';
-import type { ApprovalFlag } from 'https://deno.land/x/polkadot@0.2.36/types/interfaces/elections/index.ts';
+import type { Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { ApprovalFlag } from 'https://deno.land/x/polkadot/types/interfaces/elections/index.ts';
 
 /** @internal */
 export function approvalFlagsToBools (flags: Vec<ApprovalFlag> | ApprovalFlag[]): boolean[] {
   const bools: boolean[] = [];
 
-  for (let i = 0; i < flags.length; i++) {
+  for (let i = 0, count = flags.length; i < count; i++) {
     const str = flags[i].toString(2);
 
     // read from lowest bit to highest

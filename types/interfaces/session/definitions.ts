@@ -3,8 +3,6 @@
 
 import type { Definitions } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
-
 import { runtime } from './runtime.ts';
 
 const keyTypes = {
@@ -34,7 +32,8 @@ const keyTypes = {
 export default {
   rpc: {},
   runtime,
-  types: objectSpread({}, keyTypes, {
+  types: {
+    ...keyTypes,
     FullIdentification: 'Exposure',
     IdentificationTuple: '(ValidatorId, FullIdentification)',
     MembershipProof: {
@@ -44,5 +43,5 @@ export default {
     },
     SessionIndex: 'u32',
     ValidatorCount: 'u32'
-  })
+  }
 } as Definitions;

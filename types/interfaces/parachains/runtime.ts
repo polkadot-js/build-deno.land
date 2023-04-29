@@ -1,8 +1,6 @@
 
 import type { DefinitionsCall, DefinitionsCallEntry } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
-
 const PH_V1_TO_V2: DefinitionsCallEntry['methods'] = {
   assumed_validation_data: {
     description: 'Returns the persisted validation data for the given `ParaId` along with the corresponding validation code hash.',
@@ -202,19 +200,31 @@ const PH_V4: DefinitionsCallEntry['methods'] = {
 export const runtime: DefinitionsCall = {
   ParachainHost: [
     {
-      methods: objectSpread({}, PH_V1_TO_V2, PH_V2_TO_V3, PH_V3, PH_V4),
+      methods: {
+        ...PH_V1_TO_V2,
+        ...PH_V2_TO_V3,
+        ...PH_V3,
+        ...PH_V4
+      },
       version: 4
     },
     {
-      methods: objectSpread({}, PH_V1_TO_V2, PH_V2_TO_V3, PH_V3),
+      methods: {
+        ...PH_V1_TO_V2,
+        ...PH_V2_TO_V3,
+        ...PH_V3
+      },
       version: 3
     },
     {
-      methods: objectSpread({}, PH_V1_TO_V2, PH_V2_TO_V3),
+      methods: {
+        ...PH_V1_TO_V2,
+        ...PH_V2_TO_V3
+      },
       version: 2
     },
     {
-      methods: objectSpread({
+      methods: {
         session_info: {
           description: 'Get the session info for the given session, if stored.',
           params: [
@@ -224,8 +234,9 @@ export const runtime: DefinitionsCall = {
             }
           ],
           type: 'Option<OldV1SessionInfo>'
-        }
-      }, PH_V1_TO_V2),
+        },
+        ...PH_V1_TO_V2
+      },
       version: 1
     }
   ]
