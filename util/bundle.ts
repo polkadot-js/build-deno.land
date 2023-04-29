@@ -2,6 +2,7 @@
 /**
  * @summary Utility methods for this package are split into groups
  */
+
 export { packageInfo } from './packageInfo.ts';
 
 export * from './array/index.ts';
@@ -20,6 +21,7 @@ export * from './lazy.ts';
 export * from './logger.ts';
 export * from './memoize.ts';
 export * from './nextTick.ts';
+export * from './noop.ts';
 export * from './number/index.ts';
 export * from './object/index.ts';
 export * from './promisify.ts';

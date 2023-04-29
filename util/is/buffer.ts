@@ -1,11 +1,10 @@
 
-import { xglobal } from 'https://deno.land/x/polkadot@0.2.36/x-global/mod.ts';
+import type { BufferObj, BufferObjConstructor } from '../types.ts';
+
+import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
 
 import { hasBuffer } from '../has.ts';
 import { isFunction } from './function.ts';
-
-interface BufTyp extends Function { isBuffer: (value: unknown) => boolean }
-interface BufObj { readDoubleLE: (...args: unknown[]) => unknown }
 
 /**
  * @name isBuffer
@@ -16,12 +15,12 @@ interface BufObj { readDoubleLE: (...args: unknown[]) => unknown }
  * <BR>
  *
  * ```javascript
- * import { isBuffer } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+ * import { isBuffer } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * console.log('isBuffer', isBuffer(Buffer.from([]))); // => true
  * ```
  */
 export function isBuffer (value: unknown): value is Buffer {
   // we do check a function first, since it is slightly faster than isBuffer itself
-  return hasBuffer && isFunction(value && (value as unknown as BufObj).readDoubleLE) && (xglobal.Buffer as BufTyp).isBuffer(value);
+  return hasBuffer && !!value && isFunction((value as unknown as BufferObj).readDoubleLE) && (xglobal.Buffer as unknown as BufferObjConstructor).isBuffer(value);
 }

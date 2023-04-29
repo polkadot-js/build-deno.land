@@ -1,8 +1,8 @@
 
-import type { BN } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.36/util/types.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 
-import { bnToU8a, compactToU8a, stringToU8a, u8aConcat, u8aSorted } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+import { bnToU8a, compactToU8a, stringToU8a, u8aConcat, u8aSorted } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { blake2AsU8a } from '../blake2/asU8a.ts';
 import { BN_LE_16_OPTS } from '../bn.ts';

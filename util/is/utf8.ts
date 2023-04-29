@@ -11,7 +11,7 @@ import { isString } from './string.ts';
  * @description
  * Checks to see if the input string or Uint8Array is valid Utf8
  */
-export function isUtf8 (value?: HexString | number[] | Buffer | Uint8Array | string | null): boolean {
+export function isUtf8 (value?: HexString | number[] | Uint8Array | string | null): boolean {
   if (!value) {
     return isString(value);
   }

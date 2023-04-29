@@ -21,6 +21,6 @@
  */
 
 export { compactAddLength } from './addLength.ts';
-export { compactStripLength } from './stripLength.ts';
 export { compactFromU8a, compactFromU8aLim } from './fromU8a.ts';
+export { compactStripLength } from './stripLength.ts';
 export { compactToU8a } from './toU8a.ts';

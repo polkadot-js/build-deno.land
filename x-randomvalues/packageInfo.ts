@@ -1,3 +1,3 @@
 
 
-export const packageInfo = { name: '@polkadot/x-randomvalues', path: new URL(import.meta.url).pathname, type: 'deno', version: '0.2.36' };
+export const packageInfo = { name: '@polkadot/x-randomvalues', path: new URL(import.meta.url).pathname, type: 'deno', version: '12.1.1' };

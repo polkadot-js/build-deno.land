@@ -8,7 +8,7 @@
  * <BR>
  *
  * ```javascript
- * import { arrayChunk } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+ * import { arrayChunk } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * arrayChunk([1, 2, 3, 4, 5]); // [[1, 2], [3, 4], [5]]
  * ```
@@ -16,7 +16,7 @@
 export function arrayChunk <T> (array: T[], chunkSize: number): T[][] {
   const outputSize = Math.ceil(array.length / chunkSize);
 
-  // noop for the single-split case
+  // shortcut for the single-split case
   if (outputSize === 1) {
     return [array];
   }

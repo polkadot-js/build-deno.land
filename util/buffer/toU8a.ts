@@ -8,11 +8,11 @@
  * <BR>
  *
  * ```javascript
- * import { bufferToU8a } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+ * import { bufferToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * bufferToU8a(Buffer.from([1, 2, 3]));
  * ```
  */
-export function bufferToU8a (buffer?: Buffer | number[] | null): Uint8Array {
+export function bufferToU8a (buffer?: Uint8Array | number[] | null): Uint8Array {
   return new Uint8Array(buffer || []);
 }

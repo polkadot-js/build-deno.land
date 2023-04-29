@@ -1,12 +1,12 @@
 
-import { BigInt } from 'https://deno.land/x/polkadot@0.2.36/x-bigint/mod.ts';
-import { xglobal } from 'https://deno.land/x/polkadot@0.2.36/x-global/mod.ts';
+import type { BufferObjConstructor } from './types.ts';
+
+import { BigInt } from 'https://deno.land/x/polkadot/x-bigint/mod.ts';
+import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
 
 declare const __dirname: unknown;
 declare const module: unknown;
 declare const require: unknown;
-
-interface BufTyp extends Function { isBuffer: (value: unknown) => boolean; }
 
 /** true if the environment has proper BigInt support */
 export const hasBigInt = typeof BigInt === 'function' && typeof BigInt.asIntN === 'function';
@@ -25,7 +25,7 @@ export const hasWasm = typeof WebAssembly !== 'undefined';
 
 
 /** true if the environment has support for Buffer (typically Node.js) */
-export const hasBuffer = typeof xglobal.Buffer === 'function' && typeof (xglobal.Buffer as BufTyp).isBuffer === 'function';
+export const hasBuffer = typeof xglobal.Buffer === 'function' && typeof (xglobal.Buffer as unknown as BufferObjConstructor).isBuffer === 'function';
 
 /** true if the environment has process available (typically Node.js) */
 export const hasProcess = typeof xglobal.process === 'object';

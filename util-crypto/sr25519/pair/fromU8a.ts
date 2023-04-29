@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.36/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { Keypair } from '../../types.ts';
 
-import { u8aToU8a } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+import { u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const SEC_LEN = 64;
 const PUB_LEN = 32;

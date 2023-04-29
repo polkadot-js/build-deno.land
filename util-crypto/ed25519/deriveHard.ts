@@ -1,5 +1,5 @@
 
-import { compactAddLength, isU8a, stringToU8a, u8aConcat } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+import { compactAddLength, isU8a, stringToU8a, u8aConcat } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { blake2AsU8a } from '../blake2/asU8a.ts';
 

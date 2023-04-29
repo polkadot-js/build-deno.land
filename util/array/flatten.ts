@@ -9,13 +9,13 @@
  * <BR>
  *
  * ```javascript
- * import { arrayFlatten } from 'https://deno.land/x/polkadot@0.2.36/util/mod.ts';
+ * import { arrayFlatten } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * arrayFlatten([[1, 2], [3, 4], [5]]); // [1, 2, 3, 4, 5]
  * ```
  */
 export function arrayFlatten <T> (arrays: readonly T[][]): T[] {
-  // noop for the empty & single-entry case
+  // shortcuts for the empty & single-entry case
   if (arrays.length === 0) {
     return [];
   } else if (arrays.length === 1) {
