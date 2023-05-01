@@ -3,7 +3,8 @@ import type { BN } from './bn/bn.ts';
 
 export interface Constructor<T extends object = object> {
   prototype: T;
-  new (...args: never[]): T;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  new (...args: any[]): T;
 
   hasOwnProperty (prop: string): boolean;
   isPrototypeOf (other: unknown): boolean;

@@ -12,13 +12,13 @@ import { isClass } from './class.ts';
  * <BR>
  *
  * ```javascript
- * import { isChildClass } from 'https://deno.land/x/polkadot@0.2.37/util/mod.ts';
+ * import { isChildClass } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * console.log('isChildClass', isChildClass(BN, BN); // => true
  * console.log('isChildClass', isChildClass(BN, Uint8Array); // => false
  * ```
  */
-export function isChildClass <P extends Constructor> (Parent: P, Child?: Constructor | null | unknown): Child is P {
+export function isChildClass <P extends Constructor> (Parent: P, Child?: unknown): Child is P {
   // https://stackoverflow.com/questions/30993434/check-if-a-constructor-inherits-another-in-es6/30993664
   return isClass(Child) && isClass(Parent)
     // eslint-disable-next-line no-prototype-builtins
