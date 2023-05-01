@@ -1,8 +1,9 @@
 # CHANGELOG
 
-## master
+## 0.2.38 May 1, 2023
 
 - hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 12.1.2
+
 
 ## 0.2.37 Apr 29, 2023
 
