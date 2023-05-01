@@ -1,33 +1,33 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.37/api-base/types/calls.ts';
+import 'https://deno.land/x/polkadot@0.2.38/api-base/types/calls.ts';
 
-import type { ApiTypes, AugmentedCall, DecoratedCallBase } from 'https://deno.land/x/polkadot@0.2.37/api-base/types/index.ts';
-import type { Bytes, Null, Option, Result, Vec, u32 } from 'https://deno.land/x/polkadot@0.2.37/types-codec/mod.ts';
-import type { AnyNumber, IMethod, ITuple } from 'https://deno.land/x/polkadot@0.2.37/types-codec/types/index.ts';
-import type { TAssetBalance } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/assets/index.ts';
-import type { BabeEquivocationProof, BabeGenesisConfiguration, Epoch, OpaqueKeyOwnershipProof } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/babe/index.ts';
-import type { CheckInherentsResult, InherentData } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/blockbuilder/index.ts';
-import type { BlockHash } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/chain/index.ts';
-import type { AuthorityId } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/consensus/index.ts';
-import type { CodeSource, CodeUploadResult, ContractExecResult, ContractInstantiateResult } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/contracts/index.ts';
-import type { Extrinsic } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/extrinsics/index.ts';
-import type { AuthorityList, GrandpaEquivocationProof, SetId } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/grandpa/index.ts';
-import type { OpaqueMetadata } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/metadata/index.ts';
-import type { MmrBatchProof, MmrEncodableOpaqueLeaf, MmrError } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/mmr/index.ts';
-import type { NftCollectionId, NftItemId } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/nfts/index.ts';
-import type { NpPoolId } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/nompools/index.ts';
-import type { FeeDetails, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/payment/index.ts';
-import type { AccountId, Balance, Block, BlockNumber, Call, Hash, Header, Index, KeyTypeId, Slot, Weight, WeightV2 } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/runtime/index.ts';
-import type { RuntimeVersion } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/state/index.ts';
-import type { ApplyExtrinsicResult } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/system/index.ts';
-import type { TransactionSource, TransactionValidity } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/txqueue/index.ts';
-import type { IExtrinsic, Observable } from 'https://deno.land/x/polkadot@0.2.37/types/types/index.ts';
+import type { ApiTypes, AugmentedCall, DecoratedCallBase } from 'https://deno.land/x/polkadot@0.2.38/api-base/types/index.ts';
+import type { Bytes, Null, Option, Result, Vec, u32 } from 'https://deno.land/x/polkadot@0.2.38/types-codec/mod.ts';
+import type { AnyNumber, IMethod, ITuple } from 'https://deno.land/x/polkadot@0.2.38/types-codec/types/index.ts';
+import type { TAssetBalance } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/assets/index.ts';
+import type { BabeEquivocationProof, BabeGenesisConfiguration, Epoch, OpaqueKeyOwnershipProof } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/babe/index.ts';
+import type { CheckInherentsResult, InherentData } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/blockbuilder/index.ts';
+import type { BlockHash } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/chain/index.ts';
+import type { AuthorityId } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/consensus/index.ts';
+import type { CodeSource, CodeUploadResult, ContractExecResult, ContractInstantiateResult } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/contracts/index.ts';
+import type { Extrinsic } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/extrinsics/index.ts';
+import type { AuthorityList, GrandpaEquivocationProof, SetId } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/grandpa/index.ts';
+import type { OpaqueMetadata } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/metadata/index.ts';
+import type { MmrBatchProof, MmrEncodableOpaqueLeaf, MmrError } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/mmr/index.ts';
+import type { NftCollectionId, NftItemId } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/nfts/index.ts';
+import type { NpPoolId } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/nompools/index.ts';
+import type { FeeDetails, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/payment/index.ts';
+import type { AccountId, Balance, Block, BlockNumber, Call, Hash, Header, Index, KeyTypeId, Slot, Weight, WeightV2 } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/runtime/index.ts';
+import type { RuntimeVersion } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/state/index.ts';
+import type { ApplyExtrinsicResult } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/system/index.ts';
+import type { TransactionSource, TransactionValidity } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/txqueue/index.ts';
+import type { IExtrinsic, Observable } from 'https://deno.land/x/polkadot@0.2.38/types/types/index.ts';
 
 export type __AugmentedCall<ApiType extends ApiTypes> = AugmentedCall<ApiType>;
 export type __DecoratedCallBase<ApiType extends ApiTypes> = DecoratedCallBase<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.37/api-base/types/calls.ts' {
+declare module 'https://deno.land/x/polkadot@0.2.38/api-base/types/calls.ts' {
   interface AugmentedCalls<ApiType extends ApiTypes> {
     /** 0xbc9d89904f5b923f/1 */
     accountNonceApi: {

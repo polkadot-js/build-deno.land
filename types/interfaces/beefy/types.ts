@@ -1,10 +1,10 @@
 /* eslint-disable */
 
-import type { Bytes, Option, Struct, U8aFixed, Vec, u32, u64 } from 'https://deno.land/x/polkadot@0.2.37/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.37/types-codec/types/index.ts';
-import type { AuthorityId } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/consensus/index.ts';
-import type { EcdsaSignature, Signature } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/extrinsics/index.ts';
-import type { BlockNumber, H256 } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/runtime/index.ts';
+import type { Bytes, Option, Struct, U8aFixed, Vec, u32, u64 } from 'https://deno.land/x/polkadot@0.2.38/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.2.38/types-codec/types/index.ts';
+import type { AuthorityId } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/consensus/index.ts';
+import type { EcdsaSignature, Signature } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/extrinsics/index.ts';
+import type { BlockNumber, H256 } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/runtime/index.ts';
 
 /** @name BeefyAuthoritySet */
 export interface BeefyAuthoritySet extends Struct {

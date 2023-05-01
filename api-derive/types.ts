@@ -1,9 +1,9 @@
 
-import type { ApiInterfaceRx } from 'https://deno.land/x/polkadot@0.2.37/api-base/types/index.ts';
-import type { u32 } from 'https://deno.land/x/polkadot@0.2.37/types/mod.ts';
-import type { Balance, BlockNumber, BountyIndex, Hash, Proposal, ProposalIndex, SetIndex, Votes } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/index.ts';
-import type { PalletBountiesBounty, PalletTreasuryProposal } from 'https://deno.land/x/polkadot@0.2.37/types/lookup.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.37/util/mod.ts';
+import type { ApiInterfaceRx } from 'https://deno.land/x/polkadot@0.2.38/api-base/types/index.ts';
+import type { u32 } from 'https://deno.land/x/polkadot@0.2.38/types/mod.ts';
+import type { Balance, BlockNumber, BountyIndex, Hash, Proposal, ProposalIndex, SetIndex, Votes } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/index.ts';
+import type { PalletBountiesBounty, PalletTreasuryProposal } from 'https://deno.land/x/polkadot@0.2.38/types/lookup.ts';
+import type { BN } from 'https://deno.land/x/polkadot@0.2.38/util/mod.ts';
 import type { ExactDerive } from './derive.ts';
 
 export * from './accounts/types.ts';

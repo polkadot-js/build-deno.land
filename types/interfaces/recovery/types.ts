@@ -1,7 +1,7 @@
 /* eslint-disable */
 
-import type { Struct, Vec, u16 } from 'https://deno.land/x/polkadot@0.2.37/types-codec/mod.ts';
-import type { AccountId, Balance, BlockNumber } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/runtime/index.ts';
+import type { Struct, Vec, u16 } from 'https://deno.land/x/polkadot@0.2.38/types-codec/mod.ts';
+import type { AccountId, Balance, BlockNumber } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/runtime/index.ts';
 
 /** @name ActiveRecovery */
 export interface ActiveRecovery extends Struct {

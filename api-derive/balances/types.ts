@@ -1,7 +1,7 @@
 
-import type { AccountId, Balance, BalanceLockTo212, Index } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/index.ts';
-import type { PalletBalancesBalanceLock, PalletBalancesReserveData } from 'https://deno.land/x/polkadot@0.2.37/types/lookup.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.37/util/mod.ts';
+import type { AccountId, Balance, BalanceLockTo212, Index } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/index.ts';
+import type { PalletBalancesBalanceLock, PalletBalancesReserveData } from 'https://deno.land/x/polkadot@0.2.38/types/lookup.ts';
+import type { BN } from 'https://deno.land/x/polkadot@0.2.38/util/mod.ts';
 
 export interface DeriveBalancesAccountData {
   freeBalance: Balance;

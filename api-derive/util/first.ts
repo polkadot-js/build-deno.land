@@ -4,7 +4,7 @@ import type { DeriveApi } from '../types.ts';
 
 import { map } from 'https://esm.sh/rxjs@7.8.1';
 
-import { memo } from 'https://deno.land/x/polkadot@0.2.37/rpc-core/mod.ts';
+import { memo } from 'https://deno.land/x/polkadot@0.2.38/rpc-core/mod.ts';
 
 export function firstObservable <T> (obs: Observable<T[]>): Observable<T> {
   return obs.pipe(map(([a]) => a));

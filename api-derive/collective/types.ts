@@ -1,7 +1,7 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { u32 } from 'https://deno.land/x/polkadot@0.2.37/types/mod.ts';
-import type { AccountId, Hash } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/index.ts';
+import type { u32 } from 'https://deno.land/x/polkadot@0.2.38/types/mod.ts';
+import type { AccountId, Hash } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/index.ts';
 import type { DeriveApi, DeriveCollectiveProposal } from '../types.ts';
 
 export type Collective = 'allianceMotion' | 'council' | 'membership' | 'technicalCommittee';

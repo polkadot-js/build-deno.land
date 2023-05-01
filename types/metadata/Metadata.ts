@@ -1,8 +1,8 @@
 
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.37/types-codec/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.37/util/types.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.2.38/types-codec/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.38/util/types.ts';
 
-import { isString, isU8a, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.37/util/mod.ts';
+import { isString, isU8a, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.38/util/mod.ts';
 
 import { MetadataVersioned } from './MetadataVersioned.ts';
 

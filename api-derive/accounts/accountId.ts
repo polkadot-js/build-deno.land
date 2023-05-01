@@ -1,12 +1,12 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { AccountId, AccountIndex, Address } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/index.ts';
+import type { AccountId, AccountIndex, Address } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/index.ts';
 import type { DeriveApi } from '../types.ts';
 
 import { map, of } from 'https://esm.sh/rxjs@7.8.1';
 
-import { assertReturn, isU8a } from 'https://deno.land/x/polkadot@0.2.37/util/mod.ts';
-import { decodeAddress } from 'https://deno.land/x/polkadot@0.2.37/util-crypto/mod.ts';
+import { assertReturn, isU8a } from 'https://deno.land/x/polkadot@0.2.38/util/mod.ts';
+import { decodeAddress } from 'https://deno.land/x/polkadot@0.2.38/util-crypto/mod.ts';
 
 import { memo } from '../util/index.ts';
 

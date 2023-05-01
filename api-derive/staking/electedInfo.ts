@@ -1,11 +1,11 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { AccountId } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/index.ts';
+import type { AccountId } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/index.ts';
 import type { DeriveApi, DeriveStakingElected, StakingQueryFlags } from '../types.ts';
 
 import { map, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
-import { arrayFlatten } from 'https://deno.land/x/polkadot@0.2.37/util/mod.ts';
+import { arrayFlatten } from 'https://deno.land/x/polkadot@0.2.38/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 

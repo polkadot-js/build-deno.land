@@ -1,9 +1,9 @@
 
-import type { Text } from 'https://deno.land/x/polkadot@0.2.37/types/mod.ts';
-import type { ContractConstructorSpecV0, ContractEventSpecV0, ContractMessageSpecV0, ContractMetadataV1, ContractMetadataV2 } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/index.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.37/types/types/index.ts';
+import type { Text } from 'https://deno.land/x/polkadot@0.2.38/types/mod.ts';
+import type { ContractConstructorSpecV0, ContractEventSpecV0, ContractMessageSpecV0, ContractMetadataV1, ContractMetadataV2 } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.2.38/types/types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.37/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.2.38/util/mod.ts';
 
 type WithArgs = keyof typeof ARG_TYPES;
 

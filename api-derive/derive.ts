@@ -1,5 +1,5 @@
 
-import type { AnyFunction } from 'https://deno.land/x/polkadot@0.2.37/types/types/index.ts';
+import type { AnyFunction } from 'https://deno.land/x/polkadot@0.2.38/types/types/index.ts';
 
 import * as accounts from './accounts/index.ts';
 import * as alliance from './alliance/index.ts';

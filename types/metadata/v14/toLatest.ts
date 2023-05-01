@@ -1,5 +1,5 @@
 
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.37/types-codec/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.2.38/types-codec/types/index.ts';
 import type { MetadataLatest, MetadataV14 } from '../../interfaces/metadata/index.ts';
 
 /**

@@ -1,9 +1,9 @@
 /* eslint-disable */
 
-import type { Bytes, Struct, Vec, WrapperOpaque, u32 } from 'https://deno.land/x/polkadot@0.2.37/types-codec/mod.ts';
-import type { Signature } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/extrinsics/index.ts';
-import type { BlockNumber } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/runtime/index.ts';
-import type { SessionIndex } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/session/index.ts';
+import type { Bytes, Struct, Vec, WrapperOpaque, u32 } from 'https://deno.land/x/polkadot@0.2.38/types-codec/mod.ts';
+import type { Signature } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/extrinsics/index.ts';
+import type { BlockNumber } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/runtime/index.ts';
+import type { SessionIndex } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/session/index.ts';
 
 /** @name AuthIndex */
 export interface AuthIndex extends u32 {}

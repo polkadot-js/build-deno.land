@@ -1,13 +1,13 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { QueryableStorageEntry } from 'https://deno.land/x/polkadot@0.2.37/api-base/types/index.ts';
-import type { AccountData, AccountId, AccountIndex, AccountInfo, Address, Balance, Index } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/index.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.37/types/types/index.ts';
+import type { QueryableStorageEntry } from 'https://deno.land/x/polkadot@0.2.38/api-base/types/index.ts';
+import type { AccountData, AccountId, AccountIndex, AccountInfo, Address, Balance, Index } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/index.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.2.38/types/types/index.ts';
 import type { DeriveApi, DeriveBalancesAccount, DeriveBalancesAccountData } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
-import { isFunction, objectSpread } from 'https://deno.land/x/polkadot@0.2.37/util/mod.ts';
+import { isFunction, objectSpread } from 'https://deno.land/x/polkadot@0.2.38/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 

@@ -1,13 +1,13 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { Option } from 'https://deno.land/x/polkadot@0.2.37/types/mod.ts';
-import type { AccountId32 } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/index.ts';
-import type { PalletBagsListListBag, PalletBagsListListNode } from 'https://deno.land/x/polkadot@0.2.37/types/lookup.ts';
+import type { Option } from 'https://deno.land/x/polkadot@0.2.38/types/mod.ts';
+import type { AccountId32 } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/index.ts';
+import type { PalletBagsListListBag, PalletBagsListListNode } from 'https://deno.land/x/polkadot@0.2.38/types/lookup.ts';
 import type { DeriveApi } from '../types.ts';
 
 import { BehaviorSubject, map, of, switchMap, tap, toArray } from 'https://esm.sh/rxjs@7.8.1';
 
-import { nextTick } from 'https://deno.land/x/polkadot@0.2.37/util/mod.ts';
+import { nextTick } from 'https://deno.land/x/polkadot@0.2.38/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 import { getQueryInterface } from './util.ts';

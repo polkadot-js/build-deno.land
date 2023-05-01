@@ -1,13 +1,13 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { Balance } from 'https://deno.land/x/polkadot@0.2.37/types/interfaces/index.ts';
-import type { PalletStakingStakingLedger, PalletStakingUnlockChunk } from 'https://deno.land/x/polkadot@0.2.37/types/lookup.ts';
+import type { Balance } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/index.ts';
+import type { PalletStakingStakingLedger, PalletStakingUnlockChunk } from 'https://deno.land/x/polkadot@0.2.38/types/lookup.ts';
 import type { DeriveApi, DeriveSessionInfo, DeriveStakingAccount, DeriveStakingKeys, DeriveStakingQuery, DeriveUnlocking } from '../types.ts';
 import type { StakingQueryFlags } from './types.ts';
 
 import { combineLatest, map, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
-import { BN, BN_ZERO, objectSpread } from 'https://deno.land/x/polkadot@0.2.37/util/mod.ts';
+import { BN, BN_ZERO, objectSpread } from 'https://deno.land/x/polkadot@0.2.38/util/mod.ts';
 
 import { firstMemo, memo } from '../util/index.ts';
 
