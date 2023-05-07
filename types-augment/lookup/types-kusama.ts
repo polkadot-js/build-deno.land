@@ -1,12 +1,12 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.38/types/lookup.ts';
+import 'https://deno.land/x/polkadot/types/lookup.ts';
 
-import type { BTreeMap, Compact, Enum, Null, Struct, Vec, u16, u32 } from 'https://deno.land/x/polkadot@0.2.38/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.38/types-codec/types/index.ts';
-import type { H256, PerU16 } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/runtime/index.ts';
+import type { Compact, Enum, Null, Struct, Vec, u16, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { PerU16 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
-declare module 'https://deno.land/x/polkadot@0.2.38/types/lookup.ts' {
+declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
   /** @name KusamaRuntimeSessionKeys (96) */
   interface KusamaRuntimeSessionKeys extends Struct {
     readonly grandpa: SpConsensusGrandpaAppPublic;
@@ -105,37 +105,6 @@ declare module 'https://deno.land/x/polkadot@0.2.38/types/lookup.ts' {
     readonly votes24: Vec<ITuple<[Compact<u32>, Vec<ITuple<[Compact<u16>, Compact<PerU16>]>>, Compact<u16>]>>;
   }
 
-  /** @name PolkadotRuntimeParachainsDisputesSlashingPalletCall (368) */
-  interface PolkadotRuntimeParachainsDisputesSlashingPalletCall extends Enum {
-    readonly isReportDisputeLostUnsigned: boolean;
-    readonly asReportDisputeLostUnsigned: {
-      readonly disputeProof: PolkadotRuntimeParachainsDisputesSlashingDisputeProof;
-      readonly keyOwnerProof: SpSessionMembershipProof;
-    } & Struct;
-    readonly type: 'ReportDisputeLostUnsigned';
-  }
-
-  /** @name PolkadotRuntimeParachainsDisputesSlashingDisputeProof (369) */
-  interface PolkadotRuntimeParachainsDisputesSlashingDisputeProof extends Struct {
-    readonly timeSlot: PolkadotRuntimeParachainsDisputesSlashingDisputesTimeSlot;
-    readonly kind: PolkadotRuntimeParachainsDisputesSlashingSlashingOffenceKind;
-    readonly validatorIndex: u32;
-    readonly validatorId: PolkadotPrimitivesV4ValidatorAppPublic;
-  }
-
-  /** @name PolkadotRuntimeParachainsDisputesSlashingDisputesTimeSlot (370) */
-  interface PolkadotRuntimeParachainsDisputesSlashingDisputesTimeSlot extends Struct {
-    readonly sessionIndex: u32;
-    readonly candidateHash: H256;
-  }
-
-  /** @name PolkadotRuntimeParachainsDisputesSlashingSlashingOffenceKind (371) */
-  interface PolkadotRuntimeParachainsDisputesSlashingSlashingOffenceKind extends Enum {
-    readonly isForInvalid: boolean;
-    readonly isAgainstValid: boolean;
-    readonly type: 'ForInvalid' | 'AgainstValid';
-  }
-
   /** @name KusamaRuntimeRuntimeHoldReason (540) */
   interface KusamaRuntimeRuntimeHoldReason extends Enum {
     readonly isNis: boolean;
@@ -149,24 +118,7 @@ declare module 'https://deno.land/x/polkadot@0.2.38/types/lookup.ts' {
     readonly type: 'NftReceipt';
   }
 
-  /** @name PolkadotRuntimeParachainsDisputesSlashingPendingSlashes (810) */
-  interface PolkadotRuntimeParachainsDisputesSlashingPendingSlashes extends Struct {
-    readonly keys_: BTreeMap<u32, PolkadotPrimitivesV4ValidatorAppPublic>;
-    readonly kind: PolkadotRuntimeParachainsDisputesSlashingSlashingOffenceKind;
-  }
-
-  /** @name PolkadotRuntimeParachainsDisputesSlashingPalletError (814) */
-  interface PolkadotRuntimeParachainsDisputesSlashingPalletError extends Enum {
-    readonly isInvalidKeyOwnershipProof: boolean;
-    readonly isInvalidSessionIndex: boolean;
-    readonly isInvalidCandidateHash: boolean;
-    readonly isInvalidValidatorIndex: boolean;
-    readonly isValidatorIndexIdMismatch: boolean;
-    readonly isDuplicateSlashingReport: boolean;
-    readonly type: 'InvalidKeyOwnershipProof' | 'InvalidSessionIndex' | 'InvalidCandidateHash' | 'InvalidValidatorIndex' | 'ValidatorIndexIdMismatch' | 'DuplicateSlashingReport';
-  }
-
-  /** @name KusamaRuntimeRuntime (857) */
+  /** @name KusamaRuntimeRuntime (860) */
   type KusamaRuntimeRuntime = Null;
 
 } // declare module

@@ -1,9 +1,9 @@
 /* eslint-disable */
 
-import type { Bytes, Struct, U8aFixed, Vec, u32 } from 'https://deno.land/x/polkadot@0.2.38/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.38/types-codec/types/index.ts';
-import type { AccountId, ValidatorId } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/runtime/index.ts';
-import type { Exposure } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/staking/index.ts';
+import type { Bytes, Struct, U8aFixed, Vec, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { AccountId, ValidatorId } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { Exposure } from 'https://deno.land/x/polkadot/types/interfaces/staking/index.ts';
 
 /** @name BeefyKey */
 export interface BeefyKey extends U8aFixed {}

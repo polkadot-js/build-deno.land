@@ -1,7 +1,7 @@
 
 import type { RpcErrorInterface } from '../types.ts';
 
-import { isFunction } from 'https://deno.land/x/polkadot@0.2.38/util/mod.ts';
+import { isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const UNKNOWN = -99999;
 
@@ -27,10 +27,10 @@ function extend<Data, K extends keyof RpcError<Data>> (that: RpcError<Data>, nam
  * throw new RpcError('some message', RpcError.CODES.METHOD_NOT_FOUND); // => error.code = -32601
  * ```
  */
-export default class RpcError<Data = never> extends Error implements RpcErrorInterface<Data> {
+export default class RpcError<T = never> extends Error implements RpcErrorInterface<T> {
   public code!: number;
 
-  public data?: Data;
+  public data?: T;
 
   public override message!: string;
 
@@ -38,7 +38,7 @@ export default class RpcError<Data = never> extends Error implements RpcErrorInt
 
   public override stack!: string;
 
-  public constructor (message = '', code: number = UNKNOWN, data?: Data) {
+  public constructor (message = '', code: number = UNKNOWN, data?: T) {
     super();
 
     extend(this, 'message', String(message));

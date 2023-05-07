@@ -1,6 +1,6 @@
 
-import type { BN } from 'https://deno.land/x/polkadot@0.2.38/util/mod.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.38/util/types.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { Codec } from './codec.ts';
 
 export type AnyJson = string | number | boolean | null | undefined | AnyJson[] | { [index: string]: AnyJson };

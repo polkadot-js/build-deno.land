@@ -1,7 +1,7 @@
 
 import type { JsonRpcRequest, JsonRpcResponse, JsonRpcResponseBaseError } from '../types.ts';
 
-import { isNumber, isString, isUndefined, stringify } from 'https://deno.land/x/polkadot@0.2.38/util/mod.ts';
+import { isNumber, isString, isUndefined, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import RpcError from './error.ts';
 
@@ -33,7 +33,7 @@ function checkError (error?: JsonRpcResponseBaseError): void {
 export class RpcCoder {
   #id = 0;
 
-  public decodeResponse (response?: JsonRpcResponse): unknown {
+  public decodeResponse <T> (response?: JsonRpcResponse<T>): T {
     if (!response || response.jsonrpc !== '2.0') {
       throw new Error('Invalid jsonrpc field in decoded object');
     }

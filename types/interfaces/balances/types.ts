@@ -1,7 +1,7 @@
 /* eslint-disable */
 
-import type { Enum, Set, Struct, U8aFixed } from 'https://deno.land/x/polkadot@0.2.38/types-codec/mod.ts';
-import type { Balance, BlockNumber, LockIdentifier } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/runtime/index.ts';
+import type { Enum, Set, Struct, U8aFixed } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Balance, BlockNumber, LockIdentifier } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 /** @name AccountData */
 export interface AccountData extends Struct {

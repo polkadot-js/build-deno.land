@@ -1,12 +1,12 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.38/api-base/types/errors.ts';
+import 'https://deno.land/x/polkadot/api-base/types/errors.ts';
 
-import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot@0.2.38/api-base/types/index.ts';
+import type { ApiTypes, AugmentedError } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 
 export type __AugmentedError<ApiType extends ApiTypes> = AugmentedError<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.38/api-base/types/errors.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
   interface AugmentedErrors<ApiType extends ApiTypes> {
     auctions: {
       /**
@@ -1305,6 +1305,37 @@ declare module 'https://deno.land/x/polkadot@0.2.38/api-base/types/errors.ts' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
+    parasSlashing: {
+      /**
+       * The given slashing report is valid but already previously reported.
+       **/
+      DuplicateSlashingReport: AugmentedError<ApiType>;
+      /**
+       * The candidate hash is invalid.
+       **/
+      InvalidCandidateHash: AugmentedError<ApiType>;
+      /**
+       * The key ownership proof is invalid.
+       **/
+      InvalidKeyOwnershipProof: AugmentedError<ApiType>;
+      /**
+       * The session index is too old or invalid.
+       **/
+      InvalidSessionIndex: AugmentedError<ApiType>;
+      /**
+       * There is no pending slash for the given validator index and time
+       * slot.
+       **/
+      InvalidValidatorIndex: AugmentedError<ApiType>;
+      /**
+       * The validator index does not match the validator id.
+       **/
+      ValidatorIndexIdMismatch: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
     phragmenElection: {
       /**
        * Duplicated candidate submission.
@@ -2025,7 +2056,7 @@ declare module 'https://deno.land/x/polkadot@0.2.38/api-base/types/errors.ts' {
        **/
       Filtered: AugmentedError<ApiType>;
       /**
-       * The unlock operation cannot succeed because there are still users of the lock.
+       * The unlock operation cannot succeed because there are still consumers of the lock.
        **/
       InUse: AugmentedError<ApiType>;
       /**

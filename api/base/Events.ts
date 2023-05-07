@@ -1,7 +1,7 @@
 
 import type { ApiInterfaceEvents } from '../types/index.ts';
 
-import { EventEmitter } from 'https://esm.sh/eventemitter3@5.0.0';
+import { EventEmitter } from 'https://esm.sh/eventemitter3@5.0.1';
 
 export class Events {
   #eventemitter = new EventEmitter();

@@ -1,12 +1,12 @@
 
-import type { Constructor } from 'https://deno.land/x/polkadot@0.2.38/util/types.ts';
+import type { Constructor } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { EndpointStats, JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, ProviderInterfaceEmitCb, ProviderInterfaceEmitted, ProviderStats } from '../types.ts';
 
-import { EventEmitter } from 'https://esm.sh/eventemitter3@5.0.0';
+import { EventEmitter } from 'https://esm.sh/eventemitter3@5.0.1';
 
-import { isChildClass, isNull, isUndefined, logger, objectSpread } from 'https://deno.land/x/polkadot@0.2.38/util/mod.ts';
-import { xglobal } from 'https://deno.land/x/polkadot@0.2.38/x-global/mod.ts';
-import { WebSocket } from 'https://deno.land/x/polkadot@0.2.38/x-ws/mod.ts';
+import { isChildClass, isNull, isUndefined, logger, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
+import { WebSocket } from 'https://deno.land/x/polkadot/x-ws/mod.ts';
 
 import { RpcCoder } from '../coder/index.ts';
 import defaults from '../defaults.ts';
@@ -71,8 +71,8 @@ function defaultEndpointStats (): EndpointStats {
  * <BR>
  *
  * ```javascript
- * import Api from 'https://deno.land/x/polkadot@0.2.38/api/promise/index.ts';
- * import { WsProvider } from 'https://deno.land/x/polkadot@0.2.38/rpc-provider/ws/index.ts';
+ * import Api from 'https://deno.land/x/polkadot/api/promise/index.ts';
+ * import { WsProvider } from 'https://deno.land/x/polkadot/rpc-provider/ws/index.ts';
  *
  * const provider = new WsProvider('ws://127.0.0.1:9944');
  * const api = new Api(provider);
@@ -89,7 +89,7 @@ export class WsProvider implements ProviderInterface {
   readonly #handlers: Record<string, WsStateAwaiting> = {};
   readonly #isReadyPromise: Promise<WsProvider>;
   readonly #stats: ProviderStats;
-  readonly #waitingForId: Record<string, JsonRpcResponse> = {};
+  readonly #waitingForId: Record<string, JsonRpcResponse<unknown>> = {};
 
   #autoConnectMs: number;
   #endpointIndex: number;
@@ -207,7 +207,7 @@ export class WsProvider implements ProviderInterface {
       this.#endpointIndex = this.selectEndpointIndex(this.#endpoints);
 
       // the as here is Deno-specific - not available on the globalThis
-      this.#websocket = typeof xglobal.WebSocket !== 'undefined' && isChildClass(xglobal.WebSocket as unknown as Constructor, WebSocket)
+      this.#websocket = typeof xglobal.WebSocket !== 'undefined' && isChildClass(xglobal.WebSocket as unknown as Constructor<WebSocket>, WebSocket)
         ? new WebSocket(this.endpoint)
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore - WS may be an instance of ws, which supports options
@@ -487,14 +487,14 @@ export class WsProvider implements ProviderInterface {
     this.#endpointStats.bytesRecv += bytesRecv;
     this.#stats.total.bytesRecv += bytesRecv;
 
-    const response = JSON.parse(message.data) as JsonRpcResponse;
+    const response = JSON.parse(message.data) as JsonRpcResponse<string>;
 
     return isUndefined(response.method)
       ? this.#onSocketMessageResult(response)
       : this.#onSocketMessageSubscribe(response);
   };
 
-  #onSocketMessageResult = (response: JsonRpcResponse): void => {
+  #onSocketMessageResult = (response: JsonRpcResponse<string>): void => {
     const handler = this.#handlers[response.id];
 
     if (!handler) {
@@ -505,7 +505,7 @@ export class WsProvider implements ProviderInterface {
 
     try {
       const { method, params, subscription } = handler;
-      const result = this.#coder.decodeResponse(response) as string;
+      const result = this.#coder.decodeResponse<string>(response);
 
       // first send the result - in case of subs, we may have an update
       // immediately if we have some queued results already
@@ -534,7 +534,7 @@ export class WsProvider implements ProviderInterface {
     delete this.#handlers[response.id];
   };
 
-  #onSocketMessageSubscribe = (response: JsonRpcResponse): void => {
+  #onSocketMessageSubscribe = (response: JsonRpcResponse<unknown>): void => {
     const method = ALIASES[response.method as string] || response.method || 'invalid';
     const subId = `${method}::${response.params.subscription}`;
     const handler = this.#subscriptions[subId];

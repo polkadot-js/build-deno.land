@@ -1,8 +1,8 @@
 
-import type { ApiPromise } from 'https://deno.land/x/polkadot@0.2.38/api/mod.ts';
-import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot@0.2.38/api-base/types/index.ts';
-import type { Proposal, ProposalIndex } from 'https://deno.land/x/polkadot@0.2.38/types/interfaces/index.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.38/types/types/index.ts';
+import type { ApiPromise } from 'https://deno.land/x/polkadot/api/mod.ts';
+import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Proposal, ProposalIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 export class ProposalFactory {
   readonly #api: ApiPromise;

@@ -1,10 +1,10 @@
 
-import type * as ScType from 'https://esm.sh/@substrate/connect@0.7.24';
+import type * as ScType from 'https://esm.sh/@substrate/connect@0.7.26';
 import type { JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, ProviderInterfaceEmitCb, ProviderInterfaceEmitted } from '../types.ts';
 
-import { EventEmitter } from 'https://esm.sh/eventemitter3@5.0.0';
+import { EventEmitter } from 'https://esm.sh/eventemitter3@5.0.1';
 
-import { isError, isFunction, isObject, logger, objectSpread } from 'https://deno.land/x/polkadot@0.2.38/util/mod.ts';
+import { isError, isFunction, isObject, logger, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { RpcCoder } from '../coder/index.ts';
 import { healthChecker } from './Health.ts';
@@ -122,11 +122,11 @@ export class ScProvider implements ProviderInterface {
         return;
       }
 
-      const response = JSON.parse(hcRes) as JsonRpcResponse;
+      const response = JSON.parse(hcRes) as JsonRpcResponse<string>;
       let decodedResponse: string | Error;
 
       try {
-        decodedResponse = this.#coder.decodeResponse(response) as string;
+        decodedResponse = this.#coder.decodeResponse(response);
       } catch (e) {
         decodedResponse = e as Error;
       }
