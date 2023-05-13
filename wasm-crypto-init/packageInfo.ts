@@ -1,3 +1,3 @@
 
 
-export const packageInfo = { name: '@polkadot/wasm-crypto-init', path: new URL(import.meta.url).pathname, type: 'deno', version: '0.2.38' };
+export const packageInfo = { name: '@polkadot/wasm-crypto-init', path: new URL(import.meta.url).pathname, type: 'deno', version: '7.2.1' };

@@ -2,6 +2,7 @@
 
 ## master
 
+- wasm-{bridge, crypto, crypto-{asmjs, init, wasm}, util} 7.2.1
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 10.6.1
 
 ## 0.2.38 May 1, 2023
