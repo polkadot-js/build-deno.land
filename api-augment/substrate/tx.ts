@@ -274,6 +274,19 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        **/
       approveTransfer: AugmentedSubmittable<(id: Compact<u32> | AnyNumber | Uint8Array, delegate: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, amount: Compact<u128> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, MultiAddress, Compact<u128>]>;
       /**
+       * Disallow further unprivileged transfers of an asset `id` to and from an account `who`.
+       * 
+       * Origin must be Signed and the sender should be the Freezer of the asset `id`.
+       * 
+       * - `id`: The identifier of the account's asset.
+       * - `who`: The account to be unblocked.
+       * 
+       * Emits `Blocked`.
+       * 
+       * Weight: `O(1)`
+       **/
+      block: AugmentedSubmittable<(id: Compact<u32> | AnyNumber | Uint8Array, who: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, MultiAddress]>;
+      /**
        * Reduce the balance of `who` by as much as possible up to `amount` assets of `id`.
        * 
        * Origin must be Signed and the sender should be the Manager of the asset `id`.
@@ -503,7 +516,9 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        **/
       forceTransfer: AugmentedSubmittable<(id: Compact<u32> | AnyNumber | Uint8Array, source: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, dest: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, amount: Compact<u128> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, MultiAddress, MultiAddress, Compact<u128>]>;
       /**
-       * Disallow further unprivileged transfers from an account.
+       * Disallow further unprivileged transfers of an asset `id` from an account `who`. `who`
+       * must already exist as an entry in `Account`s of the asset. If you want to freeze an
+       * account that does not have an entry, use `touch_other` first.
        * 
        * Origin must be Signed and the sender should be the Freezer of the asset `id`.
        * 
@@ -543,16 +558,31 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        **/
       mint: AugmentedSubmittable<(id: Compact<u32> | AnyNumber | Uint8Array, beneficiary: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, amount: Compact<u128> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, MultiAddress, Compact<u128>]>;
       /**
-       * Return the deposit (if any) of an asset account.
+       * Return the deposit (if any) of an asset account or a consumer reference (if any) of an
+       * account.
        * 
        * The origin must be Signed.
        * 
-       * - `id`: The identifier of the asset for the account to be created.
+       * - `id`: The identifier of the asset for which the caller would like the deposit
+       * refunded.
        * - `allow_burn`: If `true` then assets may be destroyed in order to complete the refund.
        * 
        * Emits `Refunded` event when successful.
        **/
       refund: AugmentedSubmittable<(id: Compact<u32> | AnyNumber | Uint8Array, allowBurn: bool | boolean | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, bool]>;
+      /**
+       * Return the deposit (if any) of a target asset account. Useful if you are the depositor.
+       * 
+       * The origin must be Signed and either the account owner, depositor, or asset `Admin`. In
+       * order to burn a non-zero balance of the asset, the caller must be the account and should
+       * use `refund`.
+       * 
+       * - `id`: The identifier of the asset for the account holding a deposit.
+       * - `who`: The account to refund.
+       * 
+       * Emits `Refunded` event when successful.
+       **/
+      refundOther: AugmentedSubmittable<(id: Compact<u32> | AnyNumber | Uint8Array, who: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, MultiAddress]>;
       /**
        * Set the metadata for an asset.
        * 
@@ -617,7 +647,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        **/
       startDestroy: AugmentedSubmittable<(id: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>]>;
       /**
-       * Allow unprivileged transfers from an account again.
+       * Allow unprivileged transfers to and from an account again.
        * 
        * Origin must be Signed and the sender should be the Admin of the asset `id`.
        * 
@@ -653,6 +683,19 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * Emits `Touched` event when successful.
        **/
       touch: AugmentedSubmittable<(id: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>]>;
+      /**
+       * Create an asset account for `who`.
+       * 
+       * A deposit will be taken from the signer account.
+       * 
+       * - `origin`: Must be Signed by `Freezer` or `Admin` of the asset `id`; the signer account
+       * must have sufficient funds for a deposit to be taken.
+       * - `id`: The identifier of the asset for the account to be created.
+       * - `who`: The account to be created.
+       * 
+       * Emits `Touched` event when successful.
+       **/
+      touchOther: AugmentedSubmittable<(id: Compact<u32> | AnyNumber | Uint8Array, who: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, MultiAddress]>;
       /**
        * Move some assets from the sender account to another.
        * 
@@ -4577,7 +4620,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * NOTE: Two of the storage writes (`Self::bonded`, `Self::payee`) are _never_ cleaned
        * unless the `origin` falls below _existential deposit_ and gets removed as dust.
        **/
-      bond: AugmentedSubmittable<(controller: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, value: Compact<u128> | AnyNumber | Uint8Array, payee: PalletStakingRewardDestination | { Staked: any } | { Stash: any } | { Controller: any } | { Account: any } | { None: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u128>, PalletStakingRewardDestination]>;
+      bond: AugmentedSubmittable<(value: Compact<u128> | AnyNumber | Uint8Array, payee: PalletStakingRewardDestination | { Staked: any } | { Stash: any } | { Controller: any } | { Account: any } | { None: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u128>, PalletStakingRewardDestination]>;
       /**
        * Add some extra amount that have appeared in the stash `free_balance` into the balance up
        * for staking.
@@ -4789,7 +4832,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        **/
       scaleValidatorCount: AugmentedSubmittable<(factor: Percent | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Percent]>;
       /**
-       * (Re-)set the controller of a stash.
+       * (Re-)sets the controller of a stash to the stash itself. This function previously
+       * accepted a `controller` argument to set the controller to an account other than the
+       * stash itself. This functionality has now been removed, now only setting the controller
+       * to the stash, if it is not already.
        * 
        * Effects will be felt instantly (as soon as this function is completed successfully).
        * 
@@ -4801,7 +4847,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * - Contains a limited number of reads.
        * - Writes are limited to the `origin` account key.
        **/
-      setController: AugmentedSubmittable<(controller: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress]>;
+      setController: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
       /**
        * Set the validators who cannot be slashed (if any).
        * 
@@ -5040,7 +5086,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
       /**
        * Make some on-chain remark.
        * 
-       * ## Complexity
        * - `O(1)`
        **/
       remark: AugmentedSubmittable<(remark: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes]>;
@@ -5050,16 +5095,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
       remarkWithEvent: AugmentedSubmittable<(remark: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes]>;
       /**
        * Set the new runtime code.
-       * 
-       * ## Complexity
-       * - `O(C + S)` where `C` length of `code` and `S` complexity of `can_set_code`
        **/
       setCode: AugmentedSubmittable<(code: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes]>;
       /**
        * Set the new runtime code without doing any checks of the given `code`.
-       * 
-       * ## Complexity
-       * - `O(C)` where `C` length of `code`
        **/
       setCodeWithoutChecks: AugmentedSubmittable<(code: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes]>;
       /**
