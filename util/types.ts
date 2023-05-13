@@ -1,7 +1,7 @@
 
 import type { BN } from './bn/bn.ts';
 
-export interface Constructor<T extends object = object> {
+export interface Constructor<T = any> {
   prototype: T;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   new (...args: any[]): T;

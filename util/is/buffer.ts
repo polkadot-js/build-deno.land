@@ -1,7 +1,7 @@
 
 import type { BufferObj, BufferObjConstructor } from '../types.ts';
 
-import { xglobal } from 'https://deno.land/x/polkadot@0.2.38/x-global/mod.ts';
+import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
 
 import { hasBuffer } from '../has.ts';
 import { isFunction } from './function.ts';
@@ -15,7 +15,7 @@ import { isFunction } from './function.ts';
  * <BR>
  *
  * ```javascript
- * import { isBuffer } from 'https://deno.land/x/polkadot@0.2.38/util/mod.ts';
+ * import { isBuffer } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * console.log('isBuffer', isBuffer(Buffer.from([]))); // => true
  * ```

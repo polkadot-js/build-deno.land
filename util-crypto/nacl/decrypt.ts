@@ -10,7 +10,7 @@ import { naclSecretboxOpen } from './tweetnacl.ts';
  * <BR>
  *
  * ```javascript
- * import { naclDecrypt } from 'https://deno.land/x/polkadot@0.2.38/util-crypto/mod.ts';
+ * import { naclDecrypt } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
  *
  * naclDecrypt([...], [...], [...]); // => [...]
  * ```
