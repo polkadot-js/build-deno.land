@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.39/util/types.ts';
 import type { AnyJson, Codec, CodecClass, Inspect, ISet, IU8a, Registry } from '../types/index.ts';
 
-import { compactFromU8aLim, compactToU8a, isHex, isU8a, logger, stringify, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { compactFromU8aLim, compactToU8a, isHex, isU8a, logger, stringify, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.39/util/mod.ts';
 
 import { compareSet, decodeU8aVec, sortSet, typeToConstructor } from '../utils/index.ts';
 

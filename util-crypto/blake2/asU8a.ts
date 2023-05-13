@@ -1,10 +1,10 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.39/util/types.ts';
 
 import { blake2b as blake2bJs } from 'https://esm.sh/@noble/hashes@1.3.0/blake2b.js';
 
-import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
-import { blake2b, isReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
+import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.39/util/mod.ts';
+import { blake2b, isReady } from 'https://deno.land/x/polkadot@0.2.39/wasm-crypto/mod.ts';
 
 import { createAsHex } from '../helpers.ts';
 
@@ -17,7 +17,7 @@ import { createAsHex } from '../helpers.ts';
  * <BR>
  *
  * ```javascript
- * import { blake2AsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
+ * import { blake2AsU8a } from 'https://deno.land/x/polkadot@0.2.39/util-crypto/mod.ts';
  *
  * blake2AsU8a('abc'); // => [0xba, 0x80, 0xa5, 0x3f, 0x98, 0x1c, 0x4d, 0x0d]
  * ```

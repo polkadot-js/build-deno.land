@@ -1,9 +1,9 @@
 /* eslint-disable */
 
-import type { Data } from 'https://deno.land/x/polkadot/types/mod.ts';
-import type { Enum, Option, Set, Struct, Vec, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { AccountId, Balance, H160 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { Data } from 'https://deno.land/x/polkadot@0.2.39/types/mod.ts';
+import type { Enum, Option, Set, Struct, Vec, u32 } from 'https://deno.land/x/polkadot@0.2.39/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.2.39/types-codec/types/index.ts';
+import type { AccountId, Balance, H160 } from 'https://deno.land/x/polkadot@0.2.39/types/interfaces/runtime/index.ts';
 
 /** @name IdentityFields */
 export interface IdentityFields extends Set {

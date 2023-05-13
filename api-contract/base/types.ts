@@ -1,8 +1,8 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot/api/submittable/types.ts';
-import type { ApiTypes, ObsInnerType } from 'https://deno.land/x/polkadot/api/types/index.ts';
-import type { AccountId } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot@0.2.39/api/submittable/types.ts';
+import type { ApiTypes, ObsInnerType } from 'https://deno.land/x/polkadot@0.2.39/api/types/index.ts';
+import type { AccountId } from 'https://deno.land/x/polkadot@0.2.39/types/interfaces/index.ts';
 import type { AbiMessage, BlueprintOptions, ContractCallOutcome, ContractOptions } from '../types.ts';
 
 export interface MessageMeta {

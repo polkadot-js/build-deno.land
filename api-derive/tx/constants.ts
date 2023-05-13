@@ -1,5 +1,5 @@
 
-import { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { BN } from 'https://deno.land/x/polkadot@0.2.39/util/mod.ts';
 
 export const FALLBACK_MAX_HASH_COUNT = 250;
 

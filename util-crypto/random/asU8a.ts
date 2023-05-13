@@ -1,5 +1,5 @@
 
-import { getRandomValues } from 'https://deno.land/x/polkadot/x-randomvalues/mod.ts';
+import { getRandomValues } from 'https://deno.land/x/polkadot@0.2.39/x-randomvalues/mod.ts';
 
 import { createAsHex } from '../helpers.ts';
 
@@ -12,7 +12,7 @@ import { createAsHex } from '../helpers.ts';
  * <BR>
  *
  * ```javascript
- * import { randomAsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
+ * import { randomAsU8a } from 'https://deno.land/x/polkadot@0.2.39/util-crypto/mod.ts';
  *
  * randomAsU8a(); // => Uint8Array([...])
  * ```

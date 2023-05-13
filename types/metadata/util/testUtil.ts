@@ -1,12 +1,12 @@
 
 
-import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.2.39/types-codec/types/index.ts';
 import type { Check } from './types.ts';
 
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { hexToU8a, stringCamelCase, stringify, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { hexToU8a, stringCamelCase, stringify, u8aToHex } from 'https://deno.land/x/polkadot@0.2.39/util/mod.ts';
 
 import { TypeRegistry } from '../../create/index.ts';
 import { unwrapStorageSi, unwrapStorageType } from '../../util/index.ts';

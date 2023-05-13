@@ -1,5 +1,5 @@
 
-import type { WasmCryptoInstance } from 'https://deno.land/x/polkadot/wasm-crypto-init/types.ts';
+import type { WasmCryptoInstance } from 'https://deno.land/x/polkadot@0.2.39/wasm-crypto-init/types.ts';
 
 import { bridge, initBridge } from './init.ts';
 

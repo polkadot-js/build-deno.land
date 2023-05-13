@@ -1,6 +1,6 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { BN } from 'https://deno.land/x/polkadot@0.2.39/util/mod.ts';
 import type { DeriveApi, DeriveContractFees } from '../types.ts';
 
 import { map, of } from 'https://esm.sh/rxjs@7.8.1';
