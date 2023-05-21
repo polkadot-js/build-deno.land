@@ -1,8 +1,8 @@
 
-import type { SignerPayloadRawBase } from 'https://deno.land/x/polkadot@0.2.39/types/types/index.ts';
+import type { SignerPayloadRawBase } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { ApiOptions, ApiTypes, DecorateMethod, Signer } from '../types/index.ts';
 
-import { isString, objectSpread, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.39/util/mod.ts';
+import { isString, objectSpread, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Getters } from './Getters.ts';
 
@@ -24,7 +24,7 @@ export abstract class ApiBase<ApiType extends ApiTypes> extends Getters<ApiType>
    * <BR>
    *
    * ```javascript
-   * import Api from 'https://deno.land/x/polkadot@0.2.39/api/promise/index.ts';
+   * import Api from 'https://deno.land/x/polkadot/api/promise/index.ts';
    *
    * const api = new Api().isReady();
    *
@@ -56,7 +56,7 @@ export abstract class ApiBase<ApiType extends ApiTypes> extends Getters<ApiType>
   /**
    * @description Set an external signer which will be used to sign extrinsic when account passed in is not KeyringPair
    */
-  public setSigner (signer: Signer): void {
+  public setSigner (signer: Signer | undefined): void {
     this._rx.signer = signer;
   }
 

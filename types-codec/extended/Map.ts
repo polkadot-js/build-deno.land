@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.39/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, Codec, CodecClass, IMap, Inspect, IU8a, Registry } from '../types/index.ts';
 
-import { compactFromU8aLim, compactToU8a, isHex, isObject, isU8a, logger, stringify, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.39/util/mod.ts';
+import { compactFromU8aLim, compactToU8a, isHex, isObject, isU8a, logger, stringify, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { AbstractArray } from '../abstract/Array.ts';
 import { Enum } from '../base/Enum.ts';
@@ -152,7 +152,7 @@ export class CodecMap<K extends Codec = Codec, V extends Codec = Codec> extends 
    * @description Returns a breakdown of the hex encoding for this Codec
    */
   public inspect (): Inspect {
-    const inner = new Array<Inspect>();
+    const inner: Inspect[] = [];
 
     for (const [k, v] of this.entries()) {
       inner.push(k.inspect());
@@ -238,7 +238,7 @@ export class CodecMap<K extends Codec = Codec, V extends Codec = Codec> extends 
    * @param isBare true when the value has none of the type-specific prefixes (internal)
    */
   public toU8a (isBare?: boolean): Uint8Array {
-    const encoded = new Array<Uint8Array>();
+    const encoded: Uint8Array[] = [];
 
     if (!isBare) {
       encoded.push(compactToU8a(this.size));

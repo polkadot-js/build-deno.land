@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.39/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, BareOpts, Codec, CodecClass, DefinitionSetter, Inspect, IStruct, IU8a, Registry } from '../types/index.ts';
 
-import { isBoolean, isHex, isObject, isU8a, isUndefined, objectProperties, stringCamelCase, stringify, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.39/util/mod.ts';
+import { isBoolean, isHex, isObject, isU8a, isUndefined, objectProperties, stringCamelCase, stringify, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { compareMap, decodeU8aStruct, mapToTypeMap, typesToMap } from '../utils/index.ts';
 
@@ -231,7 +231,7 @@ export class Struct<
    * @description Returns a breakdown of the hex encoding for this Codec
    */
   public inspect (isBare?: BareOpts): Inspect {
-    const inner = new Array<Inspect>();
+    const inner: Inspect[] = [];
 
     for (const [k, v] of this.entries()) {
       inner.push({
