@@ -1,11 +1,11 @@
 
-import 'https://deno.land/x/polkadot/types-augment/mod.ts';
+import 'https://deno.land/x/polkadot@0.2.40/types-augment/mod.ts';
 
-import type { Bytes, Compact, Option, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { IOption, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Bytes, Compact, Option, u32 } from 'https://deno.land/x/polkadot@0.2.40/types-codec/mod.ts';
+import type { IOption, ITuple } from 'https://deno.land/x/polkadot@0.2.40/types-codec/types/index.ts';
 import type { AccountId, BlockAttestations, SessionKeys7 } from './interfaces/index.ts';
 
-import { assert } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { assert } from 'https://deno.land/x/polkadot@0.2.40/util/mod.ts';
 
 import { TypeRegistry } from './create/index.ts';
 

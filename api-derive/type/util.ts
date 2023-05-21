@@ -1,5 +1,5 @@
 
-import type { AccountId, Digest } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { AccountId, Digest } from 'https://deno.land/x/polkadot@0.2.40/types/interfaces/index.ts';
 
 export function extractAuthor (digest: Digest, sessionValidators: AccountId[]): AccountId | undefined {
   const [citem] = digest.logs.filter((e) => e.isConsensus);

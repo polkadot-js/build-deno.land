@@ -1,7 +1,7 @@
 
 import nodeCrypto from 'node:crypto';
 
-import { extractGlobal } from 'https://deno.land/x/polkadot@0.2.39/x-global/mod.ts';
+import { extractGlobal } from 'https://deno.land/x/polkadot@0.2.40/x-global/mod.ts';
 
 export { packageInfo } from './packageInfo.ts';
 

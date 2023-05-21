@@ -20,7 +20,7 @@ function converter (map: readonly string[]): (value?: AnyString | null) => strin
  * <BR>
  *
  * ```javascript
- * import { stringLowerFirst } from 'https://deno.land/x/polkadot@0.2.39/util/mod.ts';
+ * import { stringLowerFirst } from 'https://deno.land/x/polkadot@0.2.40/util/mod.ts';
  *
  * stringLowerFirst('ABC'); // => 'aBC'
  * ```
@@ -36,7 +36,7 @@ export const stringLowerFirst = /*#__PURE__*/ converter(CC_TO_LO);
  * <BR>
  *
  * ```javascript
- * import { stringUpperFirst } from 'https://deno.land/x/polkadot@0.2.39/util/mod.ts';
+ * import { stringUpperFirst } from 'https://deno.land/x/polkadot@0.2.40/util/mod.ts';
  *
  * stringUpperFirst('abc'); // => 'Abc'
  * ```

@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.39/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.40/util/types.ts';
 
-import { u8aToU8a } from 'https://deno.land/x/polkadot@0.2.39/util/mod.ts';
-import { vrfVerify } from 'https://deno.land/x/polkadot@0.2.39/wasm-crypto/mod.ts';
+import { u8aToU8a } from 'https://deno.land/x/polkadot@0.2.40/util/mod.ts';
+import { vrfVerify } from 'https://deno.land/x/polkadot@0.2.40/wasm-crypto/mod.ts';
 
 const EMPTY_U8A = new Uint8Array();
 

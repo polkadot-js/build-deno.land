@@ -1,6 +1,6 @@
 
-import type { BN } from 'https://deno.land/x/polkadot@0.2.39/util/mod.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.39/util/types.ts';
+import type { BN } from 'https://deno.land/x/polkadot@0.2.40/util/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.40/util/types.ts';
 import type { Prefix } from './types.ts';
 
 import { encodeAddress } from './encode.ts';

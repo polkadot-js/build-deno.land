@@ -1,11 +1,11 @@
 
 import type { Observable, Subscription } from 'https://esm.sh/rxjs@7.8.1';
-import type { Callback, Codec } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { Callback, Codec } from 'https://deno.land/x/polkadot@0.2.40/types/types/index.ts';
 import type { DecorateFn, DecorateMethodOptions, ObsInnerType, StorageEntryPromiseOverloads, UnsubscribePromise, VoidFn } from '../types/index.ts';
 
 import { catchError, EMPTY, tap } from 'https://esm.sh/rxjs@7.8.1';
 
-import { isFunction, nextTick } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isFunction, nextTick } from 'https://deno.land/x/polkadot@0.2.40/util/mod.ts';
 
 interface Tracker<T> {
   reject: (value: Error) => Observable<never>;

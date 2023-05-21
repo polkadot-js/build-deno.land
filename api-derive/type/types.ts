@@ -1,5 +1,5 @@
 
-import type { AccountId, DispatchError, DispatchInfo, Event, EventRecord, Extrinsic, Header, SignedBlock } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { AccountId, DispatchError, DispatchInfo, Event, EventRecord, Extrinsic, Header, SignedBlock } from 'https://deno.land/x/polkadot@0.2.40/types/interfaces/index.ts';
 
 export interface HeaderExtended extends Header {
   readonly author: AccountId | undefined;

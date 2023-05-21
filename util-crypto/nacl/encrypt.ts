@@ -16,7 +16,7 @@ interface Encrypted {
  * <BR>
  *
  * ```javascript
- * import { naclEncrypt } from 'https://deno.land/x/polkadot@0.2.39/util-crypto/mod.ts';
+ * import { naclEncrypt } from 'https://deno.land/x/polkadot@0.2.40/util-crypto/mod.ts';
  *
  * naclEncrypt([...], [...]); // => [...]
  * ```

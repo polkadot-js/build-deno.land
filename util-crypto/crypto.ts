@@ -1,5 +1,5 @@
 
-import { isReady, waitReady } from 'https://deno.land/x/polkadot@0.2.39/wasm-crypto/mod.ts';
+import { isReady, waitReady } from 'https://deno.land/x/polkadot@0.2.40/wasm-crypto/mod.ts';
 
 export const cryptoIsReady = isReady;
 

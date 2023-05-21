@@ -1,6 +1,6 @@
 
-import { _0n, _1n } from 'https://deno.land/x/polkadot@0.2.39/util/mod.ts';
-import { BigInt } from 'https://deno.land/x/polkadot@0.2.39/x-bigint/mod.ts';
+import { _0n, _1n } from 'https://deno.land/x/polkadot@0.2.40/util/mod.ts';
+import { BigInt } from 'https://deno.land/x/polkadot@0.2.40/x-bigint/mod.ts';
 
 
 interface State {
