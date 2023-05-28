@@ -1,9 +1,9 @@
 
-import type { ApiPromise } from 'https://deno.land/x/polkadot@0.2.40/api/mod.ts';
-import type { Bounty, BountyIndex } from 'https://deno.land/x/polkadot@0.2.40/types/interfaces/index.ts';
-import type { Codec, Constructor, InterfaceTypes, Registry } from 'https://deno.land/x/polkadot@0.2.40/types/types/index.ts';
+import type { ApiPromise } from 'https://deno.land/x/polkadot/api/mod.ts';
+import type { Bounty, BountyIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Codec, Constructor, InterfaceTypes, Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import { Option, StorageKey } from 'https://deno.land/x/polkadot@0.2.40/types/mod.ts';
+import { Option, StorageKey } from 'https://deno.land/x/polkadot/types/mod.ts';
 
 export class BountyFactory {
   readonly #api: ApiPromise;

@@ -1,13 +1,13 @@
 
-import type { AnyJson, AnyTuple, Codec } from 'https://deno.land/x/polkadot@0.2.40/types-codec/types/index.ts';
+import type { AnyJson, AnyTuple, Codec } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { AllHashers } from '../interfaces/metadata/definitions.ts';
 import type { StorageEntryMetadataLatest, StorageHasher } from '../interfaces/metadata/index.ts';
 import type { SiLookupTypeId } from '../interfaces/scaleInfo/index.ts';
 import type { IStorageKey, Registry } from '../types/index.ts';
 import type { StorageEntry } from './types.ts';
 
-import { Bytes } from 'https://deno.land/x/polkadot@0.2.40/types-codec/mod.ts';
-import { isFunction, isString, isU8a } from 'https://deno.land/x/polkadot@0.2.40/util/mod.ts';
+import { Bytes } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { isFunction, isString, isU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { getSiName } from '../metadata/util/index.ts';
 import { unwrapStorageType } from '../util/index.ts';

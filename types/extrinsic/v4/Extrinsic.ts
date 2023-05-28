@@ -1,12 +1,12 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.40/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { ExtrinsicSignatureV4 } from '../../interfaces/extrinsics/index.ts';
 import type { Address, Call } from '../../interfaces/runtime/index.ts';
 import type { ExtrinsicPayloadValue, IExtrinsicImpl, IKeyringPair, Registry, SignatureOptions } from '../../types/index.ts';
 import type { ExtrinsicOptions } from '../types.ts';
 
-import { Struct } from 'https://deno.land/x/polkadot@0.2.40/types-codec/mod.ts';
-import { isU8a } from 'https://deno.land/x/polkadot@0.2.40/util/mod.ts';
+import { Struct } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { isU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 export const EXTRINSIC_VERSION = 4;
 
@@ -33,8 +33,8 @@ export class GenericExtrinsicV4 extends Struct implements IExtrinsicImpl {
   public static decodeExtrinsic (registry: Registry, value?: Call | Uint8Array | ExtrinsicValueV4, isSigned = false): ExtrinsicValueV4 {
     if (value instanceof GenericExtrinsicV4) {
       return value;
-    } else if (value instanceof registry.createClassUnsafe('Call')) {
-      return { method: value as Call };
+    } else if (value instanceof registry.createClassUnsafe<Call>('Call')) {
+      return { method: value };
     } else if (isU8a(value)) {
       // here we decode manually since we need to pull through the version information
       const signature = registry.createTypeUnsafe<ExtrinsicSignatureV4>('ExtrinsicSignatureV4', [value, { isSigned }]);

@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import type { Vec, bool } from 'https://deno.land/x/polkadot@0.2.40/types-codec/mod.ts';
+import type { Vec, bool } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 
 /** @name Approvals */
 export interface Approvals extends Vec<bool> {}

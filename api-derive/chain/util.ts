@@ -1,10 +1,10 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { QueryableStorage } from 'https://deno.land/x/polkadot@0.2.40/api-base/types/index.ts';
-import type { Compact, Vec } from 'https://deno.land/x/polkadot@0.2.40/types/mod.ts';
-import type { AccountId, BlockNumber, Header } from 'https://deno.land/x/polkadot@0.2.40/types/interfaces/index.ts';
-import type { SpCoreSr25519Public } from 'https://deno.land/x/polkadot@0.2.40/types/lookup.ts';
-import type { Codec, IOption } from 'https://deno.land/x/polkadot@0.2.40/types/types/index.ts';
+import type { QueryableStorage } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Compact, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, BlockNumber, Header } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { SpCoreSr25519Public } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { Codec, IOption } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DeriveApi } from '../types.ts';
 
 import { combineLatest, map, mergeMap, of, switchMap } from 'https://esm.sh/rxjs@7.8.1';

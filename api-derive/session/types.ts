@@ -1,6 +1,6 @@
 
-import type { Option, u32, u64 } from 'https://deno.land/x/polkadot@0.2.40/types/mod.ts';
-import type { BlockNumber, EraIndex, Moment, SessionIndex } from 'https://deno.land/x/polkadot@0.2.40/types/interfaces/index.ts';
+import type { Option, u32, u64 } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { BlockNumber, EraIndex, Moment, SessionIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 
 export interface DeriveSessionIndexes {
   activeEra: EraIndex;
