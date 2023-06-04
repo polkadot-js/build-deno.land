@@ -1,7 +1,7 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.40/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 
-import { BN, bnToU8a, compactAddLength, hexToU8a, isBigInt, isBn, isHex, isNumber, isString, stringToU8a } from 'https://deno.land/x/polkadot@0.2.40/util/mod.ts';
+import { BN, bnToU8a, compactAddLength, hexToU8a, isBigInt, isBn, isHex, isNumber, isString, stringToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { blake2AsU8a } from '../blake2/asU8a.ts';
 import { BN_LE_256_OPTS } from '../bn.ts';

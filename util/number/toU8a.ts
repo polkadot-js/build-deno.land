@@ -11,7 +11,7 @@ import { numberToHex } from './toHex.ts';
  * <BR>
  *
  * ```javascript
- * import { numberToU8a } from 'https://deno.land/x/polkadot@0.2.40/util/mod.ts';
+ * import { numberToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * numberToU8a(0x1234); // => [0x12, 0x34]
  * ```

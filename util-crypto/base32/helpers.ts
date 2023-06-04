@@ -1,9 +1,9 @@
 
-import type { U8aLike } from 'https://deno.land/x/polkadot@0.2.40/util/types.ts';
+import type { U8aLike } from 'https://deno.land/x/polkadot/util/types.ts';
 
-import { u8aToU8a } from 'https://deno.land/x/polkadot@0.2.40/util/mod.ts';
+import { u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
-export type { U8aLike } from 'https://deno.land/x/polkadot@0.2.40/util/types.ts';
+export type { U8aLike } from 'https://deno.land/x/polkadot/util/types.ts';
 
 interface Coder {
   decode: (value: string) => Uint8Array;
@@ -68,7 +68,7 @@ export function createValidate ({ chars, ipfs, type }: Config): ValidateFn {
       throw new Error(`Expected ipfs-compatible ${type} to start with '${ipfs}'`);
     }
 
-    for (let i = (ipfsCompat ? 1 : 0); i < value.length; i++) {
+    for (let i = (ipfsCompat ? 1 : 0), count = value.length; i < count; i++) {
       if (!(chars.includes(value[i]) || (
         value[i] === '=' && (
           (i === value.length - 1) ||

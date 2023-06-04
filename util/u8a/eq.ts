@@ -12,7 +12,7 @@ import { u8aToU8a } from './toU8a.ts';
  * <BR>
  *
  * ```javascript
- * import { u8aEq } from 'https://deno.land/x/polkadot@0.2.40/util/mod.ts';
+ * import { u8aEq } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * u8aEq(new Uint8Array([0x68, 0x65]), new Uint8Array([0x68, 0x65])); // true
  * ```
@@ -33,7 +33,7 @@ export function u8aEq (a: HexString | Uint8Array | string, b: HexString | Uint8A
       }
     }
 
-    for (let i = length; i < u8aa.length; i++) {
+    for (let i = length, count = u8aa.length; i < count; i++) {
       if (u8aa[i] !== u8ab[i]) {
         return false;
       }

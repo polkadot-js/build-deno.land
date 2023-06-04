@@ -1,5 +1,7 @@
 
 
+/* global it, expect */
+
 import { formatDecimal, formatNumber } from '../index.ts';
 
 type ExecFn = (...params: any[]) => unknown;

@@ -1,6 +1,6 @@
 
-import { hasBigInt } from 'https://deno.land/x/polkadot@0.2.40/util/mod.ts';
-import { bip39Validate, isReady } from 'https://deno.land/x/polkadot@0.2.40/wasm-crypto/mod.ts';
+import { hasBigInt } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { bip39Validate, isReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 import { validateMnemonic } from './bip39.ts';
 
@@ -11,7 +11,7 @@ import { validateMnemonic } from './bip39.ts';
  * <BR>
  *
  * ```javascript
- * import { mnemonicGenerate, mnemonicValidate } from 'https://deno.land/x/polkadot@0.2.40/util-crypto/mod.ts';
+ * import { mnemonicGenerate, mnemonicValidate } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
  *
  * const mnemonic = mnemonicGenerate(); // => string
  * const isValidMnemonic = mnemonicValidate(mnemonic); // => boolean

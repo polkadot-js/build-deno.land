@@ -12,7 +12,7 @@ import { u8aToU8a } from './toU8a.ts';
  * <BR>
  *
  * ```javascript
- * import { { u8aConcat } from 'https://deno.land/x/polkadot@0.2.40/util/mod.ts';
+ * import { { u8aConcat } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * u8aConcat(
  *   new Uint8Array([1, 2, 3]),
@@ -38,17 +38,18 @@ export function u8aConcat (...list: readonly U8aLike[]): Uint8Array {
  * @description A strict version of [[u8aConcat]], accepting only Uint8Array inputs
  */
 export function u8aConcatStrict (u8as: readonly Uint8Array[], length = 0): Uint8Array {
+  const count = u8as.length;
   let offset = 0;
 
   if (!length) {
-    for (let i = 0; i < u8as.length; i++) {
+    for (let i = 0; i < count; i++) {
       length += u8as[i].length;
     }
   }
 
   const result = new Uint8Array(length);
 
-  for (let i = 0; i < u8as.length; i++) {
+  for (let i = 0; i < count; i++) {
     result.set(u8as[i], offset);
     offset += u8as[i].length;
   }
