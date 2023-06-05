@@ -105,20 +105,14 @@ declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
     readonly votes24: Vec<ITuple<[Compact<u32>, Vec<ITuple<[Compact<u16>, Compact<PerU16>]>>, Compact<u16>]>>;
   }
 
-  /** @name KusamaRuntimeRuntimeHoldReason (540) */
+  /** @name KusamaRuntimeRuntimeHoldReason (543) */
   interface KusamaRuntimeRuntimeHoldReason extends Enum {
     readonly isNis: boolean;
     readonly asNis: PalletNisHoldReason;
     readonly type: 'Nis';
   }
 
-  /** @name PalletNisHoldReason (541) */
-  interface PalletNisHoldReason extends Enum {
-    readonly isNftReceipt: boolean;
-    readonly type: 'NftReceipt';
-  }
-
-  /** @name KusamaRuntimeRuntime (860) */
+  /** @name KusamaRuntimeRuntime (869) */
   type KusamaRuntimeRuntime = Null;
 
 } // declare module

@@ -2,7 +2,7 @@
 
 import 'https://deno.land/x/polkadot/types/types/registry.ts';
 
-import type { KusamaRuntimeGovernanceOriginsPalletCustomOriginsOrigin, KusamaRuntimeNposCompactSolution24, KusamaRuntimeOriginCaller, KusamaRuntimeProxyType, KusamaRuntimeRuntime, KusamaRuntimeRuntimeHoldReason, KusamaRuntimeSessionKeys, PalletNisHoldReason } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { KusamaRuntimeGovernanceOriginsPalletCustomOriginsOrigin, KusamaRuntimeNposCompactSolution24, KusamaRuntimeOriginCaller, KusamaRuntimeProxyType, KusamaRuntimeRuntime, KusamaRuntimeRuntimeHoldReason, KusamaRuntimeSessionKeys } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
   interface InterfaceTypes {
@@ -13,6 +13,5 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     KusamaRuntimeRuntime: KusamaRuntimeRuntime;
     KusamaRuntimeRuntimeHoldReason: KusamaRuntimeRuntimeHoldReason;
     KusamaRuntimeSessionKeys: KusamaRuntimeSessionKeys;
-    PalletNisHoldReason: PalletNisHoldReason;
   } // InterfaceTypes
 } // declare module
