@@ -1,10 +1,10 @@
 
 import type { BN } from './bn/bn.ts';
 
-export interface Constructor<T = any> {
+export interface Class<T = any, A extends unknown[] = any[]> {
   prototype: T;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  new (...args: any[]): T;
+
+  new (...args: A): T;
 
   hasOwnProperty (prop: string): boolean;
   isPrototypeOf (other: unknown): boolean;
@@ -73,7 +73,7 @@ export interface BufferObj extends Uint8Array {
   readDoubleLE: (offset?: number) => number;
 }
 
-export interface BufferObjConstructor extends Constructor<BufferObj> {
+export interface BufferObjClass extends Class<BufferObj> {
   isBuffer: (value: unknown) => boolean;
 }
 

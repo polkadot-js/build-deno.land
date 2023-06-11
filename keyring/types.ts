@@ -13,7 +13,58 @@ export interface KeyringOptions {
   type?: KeypairType;
 }
 
-export type KeyringPair$Meta = Record<string, unknown>;
+export interface KeyringPair$MetaHardware {
+  accountIndex?: number;
+  accountOffset?: number;
+  addressOffset?: number;
+  hardwareType?: 'ledger';
+}
+
+export interface KeyringPair$MetaFlags {
+  isDefaultAuthSelected?: boolean;
+  isExternal?: boolean;
+  isHardware?: boolean;
+  isHidden?: boolean;
+  isInjected?: boolean;
+  isMultisig?: boolean;
+  isProxied?: boolean;
+  isRecent?: boolean;
+  isTesting?: boolean;
+}
+
+export interface KeyringPair$MetaContract {
+  abi: string;
+  genesisHash?: HexString | null;
+}
+
+export interface KeyringPair$MetaExtension {
+  source?: string;
+}
+
+export interface KeyringPair$MetaMultisig {
+  threshold?: number;
+  who?: string[];
+}
+
+export interface KeyringPair$MetaParent {
+  parentAddress?: string;
+  parentName?: string;
+}
+
+export interface KeyringPair$Meta extends KeyringPair$MetaExtension, KeyringPair$MetaFlags, KeyringPair$MetaHardware, KeyringPair$MetaMultisig, KeyringPair$MetaParent {
+  address?: string;
+  contract?: KeyringPair$MetaContract;
+  genesisHash?: HexString | null;
+  name?: string;
+  suri?: string;
+  tags?: string[];
+  type?: KeypairType;
+  whenCreated?: number;
+  whenEdited?: number;
+  whenUsed?: number;
+
+  [key: string]: unknown;
+}
 
 export interface KeyringPair$Json extends EncryptedJson {
   /** The ss58 encoded address or the hex-encoded version (the latter is for ETH-compat chains) */

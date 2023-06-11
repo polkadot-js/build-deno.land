@@ -1,5 +1,5 @@
 
-import type { BufferObjConstructor } from './types.ts';
+import type { BufferObjClass } from './types.ts';
 
 import { BigInt } from 'https://deno.land/x/polkadot/x-bigint/mod.ts';
 import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
@@ -25,7 +25,7 @@ export const hasWasm = typeof WebAssembly !== 'undefined';
 
 
 /** true if the environment has support for Buffer (typically Node.js) */
-export const hasBuffer = typeof xglobal.Buffer === 'function' && typeof (xglobal.Buffer as unknown as BufferObjConstructor).isBuffer === 'function';
+export const hasBuffer = typeof xglobal.Buffer === 'function' && typeof (xglobal.Buffer as unknown as BufferObjClass).isBuffer === 'function';
 
 /** true if the environment has process available (typically Node.js) */
 export const hasProcess = typeof xglobal.process === 'object';

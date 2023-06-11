@@ -1,5 +1,5 @@
 
-import type { Constructor } from '../types.ts';
+import type { Class } from '../types.ts';
 
 import { isClass } from './class.ts';
 
@@ -18,7 +18,7 @@ import { isClass } from './class.ts';
  * console.log('isChildClass', isChildClass(BN, Uint8Array); // => false
  * ```
  */
-export function isChildClass <P extends Constructor> (Parent: P, Child?: unknown): Child is P {
+export function isChildClass <P extends Class> (Parent: P, Child?: unknown): Child is P {
   // https://stackoverflow.com/questions/30993434/check-if-a-constructor-inherits-another-in-es6/30993664
   return isClass(Child) && isClass(Parent)
     // eslint-disable-next-line no-prototype-builtins

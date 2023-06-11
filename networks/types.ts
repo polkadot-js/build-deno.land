@@ -1,5 +1,6 @@
 
 import type { RegistryEntry } from 'https://esm.sh/@substrate/ss58-registry@1.40.0';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 
 export type Icon = 'beachball' | 'empty' | 'jdenticon' | 'polkadot' | 'substrate';
 
@@ -7,7 +8,7 @@ export type KnownIcon = Record<string, Icon>;
 
 export type KnownLedger = Record<string, number>;
 
-export type KnownGenesis = Record<string, string[]>;
+export type KnownGenesis = Record<string, HexString[]>;
 
 export type KnownSubstrate = RegistryEntry;
 
