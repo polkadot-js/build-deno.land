@@ -1,7 +1,7 @@
 
 import type { ApiPromise } from 'https://deno.land/x/polkadot/api/mod.ts';
 import type { Bounty, BountyIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
-import type { Codec, Constructor, InterfaceTypes, Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { Codec, CodecClass, InterfaceTypes, Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 import { Option, StorageKey } from 'https://deno.land/x/polkadot/types/mod.ts';
 
@@ -27,7 +27,7 @@ export class BountyFactory {
     this.#registry.createType('Bounty');
 
   public optionOf = <T extends Codec>(value: T): Option<T> => {
-    const typeName = this.#registry.getClassName(value.constructor as Constructor<T>);
+    const typeName = this.#registry.getClassName(value.constructor as CodecClass<T>);
 
     return new Option<T>(this.#registry, typeName as keyof InterfaceTypes, value);
   };

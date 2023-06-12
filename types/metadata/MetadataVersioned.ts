@@ -3,6 +3,7 @@ import type { AnyJson } from 'https://deno.land/x/polkadot/types-codec/types/ind
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { MetadataAll, MetadataLatest, MetadataV9, MetadataV10, MetadataV11, MetadataV12, MetadataV13, MetadataV14, MetadataV15 } from '../interfaces/metadata/index.ts';
 import type { Registry } from '../types/index.ts';
+import type { MetaVersionAll, MetaVersionAsX } from './versions.ts';
 
 import { Struct } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 
@@ -15,16 +16,10 @@ import { toV14 } from './v13/toV14.ts';
 import { toV15 } from './v14/toV15.ts';
 import { toLatest } from './v15/toLatest.ts';
 import { MagicNumber } from './MagicNumber.ts';
+import { LATEST_VERSION, TO_CALLS_VERSION } from './versions.ts';
 
-const KNOWN_VERSIONS = [15, 14, 13, 12, 11, 10, 9] as const;
-const LATEST_VERSION = KNOWN_VERSIONS[0];
-
-const TO_CALLS_VERSION = 14; // LATEST_VERSION;
-
-type MetaAll = typeof KNOWN_VERSIONS[number];
-type MetaAsX = `asV${MetaAll}`;
-type MetaMapped = MetadataAll[MetaAsX];
-type MetaVersions = Exclude<MetaAll, 9> | 'latest';
+type MetaMapped = MetadataAll[MetaVersionAsX];
+type MetaVersions = Exclude<MetaVersionAll, 9> | 'latest';
 
 /**
  * @name MetadataVersioned
@@ -55,15 +50,15 @@ export class MetadataVersioned extends Struct {
 
   #getVersion = <T extends MetaMapped, F extends MetaMapped>(version: MetaVersions, fromPrev: (registry: Registry, input: F, metaVersion: number) => T): T => {
     if (version !== 'latest' && this.#assertVersion(version)) {
-      const asCurr: MetaAsX = `asV${version}`;
+      const asCurr: MetaVersionAsX = `asV${version}`;
 
       return this.#metadata()[asCurr] as T;
     }
 
     if (!this.#converted.has(version)) {
-      const asPrev: MetaAsX = version === 'latest'
+      const asPrev: MetaVersionAsX = version === 'latest'
         ? `asV${LATEST_VERSION}`
-        : `asV${(version - 1) as MetaAll}`;
+        : `asV${(version - 1) as MetaVersionAll}`;
 
       this.#converted.set(version, fromPrev(this.registry, this[asPrev] as F, this.version));
     }
@@ -156,8 +151,8 @@ export class MetadataVersioned extends Struct {
   /**
    * @description the metadata version this structure represents
    */
-  public get version (): number {
-    return this.#metadata().index;
+  public get version (): MetaVersionAll {
+    return this.#metadata().index as MetaVersionAll;
   }
 
   public getUniqTypes (throwError: boolean): string[] {

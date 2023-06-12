@@ -15,4 +15,6 @@ export interface DeriveElectionsInfo {
   voteCount?: VoteIndex;
   voterCount?: SetIndex;
   votingBond?: Balance;
+  votingBondBase?: Balance;
+  votingBondFactor?: Balance;
 }

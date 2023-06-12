@@ -3,7 +3,7 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
 import type { Address, ApplyExtrinsicResult, Call, Extrinsic, ExtrinsicEra, ExtrinsicStatus, Hash, Header, Index, RuntimeDispatchInfo, SignerPayload } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
-import type { Callback, Codec, Constructor, ISubmittableResult, SignatureOptions } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { Callback, Codec, CodecClass, ISubmittableResult, SignatureOptions } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { ApiBase } from '../base/index.ts';
 import type { ApiInterfaceRx, ApiTypes, PromiseOrObs, SignerResult } from '../types/index.ts';
@@ -81,7 +81,7 @@ function optionsOrNonce (partialOptions: Partial<SignerOptions> = {}): Partial<S
     : partialOptions;
 }
 
-export function createClass <ApiType extends ApiTypes> ({ api, apiType, blockHash, decorateMethod }: SubmittableOptions<ApiType>): Constructor<SubmittableExtrinsic<ApiType>> {
+export function createClass <ApiType extends ApiTypes> ({ api, apiType, blockHash, decorateMethod }: SubmittableOptions<ApiType>): CodecClass<SubmittableExtrinsic<ApiType>> {
   // an instance of the base extrinsic for us to extend
   const ExtrinsicBase = api.registry.createClass('Extrinsic');
 

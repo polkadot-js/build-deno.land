@@ -1,5 +1,5 @@
 
-import type { Constructor } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { Class } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { EndpointStats, JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, ProviderInterfaceEmitCb, ProviderInterfaceEmitted, ProviderStats } from '../types.ts';
 
 import { EventEmitter } from 'https://esm.sh/eventemitter3@5.0.1';
@@ -207,7 +207,7 @@ export class WsProvider implements ProviderInterface {
       this.#endpointIndex = this.selectEndpointIndex(this.#endpoints);
 
       // the as here is Deno-specific - not available on the globalThis
-      this.#websocket = typeof xglobal.WebSocket !== 'undefined' && isChildClass(xglobal.WebSocket as unknown as Constructor<WebSocket>, WebSocket)
+      this.#websocket = typeof xglobal.WebSocket !== 'undefined' && isChildClass(xglobal.WebSocket as unknown as Class<WebSocket>, WebSocket)
         ? new WebSocket(this.endpoint)
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore - WS may be an instance of ws, which supports options
