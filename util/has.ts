@@ -1,8 +1,8 @@
 
 import type { BufferObjClass } from './types.ts';
 
-import { BigInt } from 'https://deno.land/x/polkadot/x-bigint/mod.ts';
-import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
+import { BigInt } from 'https://deno.land/x/polkadot@0.2.41/x-bigint/mod.ts';
+import { xglobal } from 'https://deno.land/x/polkadot@0.2.41/x-global/mod.ts';
 
 declare const __dirname: unknown;
 declare const module: unknown;

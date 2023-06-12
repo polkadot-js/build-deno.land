@@ -1,5 +1,5 @@
 
-export * from 'https://deno.land/x/polkadot/types-create/exports.ts';
+export * from 'https://deno.land/x/polkadot@0.2.41/types-create/exports.ts';
 
 export * from './createClass.ts';
 export * from './createType.ts';

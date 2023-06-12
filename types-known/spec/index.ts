@@ -1,5 +1,5 @@
 
-import type { OverrideVersionedType } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { OverrideVersionedType } from 'https://deno.land/x/polkadot@0.2.41/types/types/index.ts';
 
 import { versioned as centrifugeChain } from './centrifuge-chain.ts';
 import { versioned as kusama } from './kusama.ts';

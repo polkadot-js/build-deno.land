@@ -1,10 +1,10 @@
 
-import 'https://deno.land/x/polkadot/types-codec/types/registry.ts';
+import 'https://deno.land/x/polkadot@0.2.41/types-codec/types/registry.ts';
 
-import type { Codec, CodecClass, ICompact, INumber, LookupString } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { ILookup, TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
+import type { Codec, CodecClass, ICompact, INumber, LookupString } from 'https://deno.land/x/polkadot@0.2.41/types-codec/types/index.ts';
+import type { ILookup, TypeDef } from 'https://deno.land/x/polkadot@0.2.41/types-create/types/index.ts';
 
-declare module 'https://deno.land/x/polkadot/types-codec/types/registry.ts' {
+declare module 'https://deno.land/x/polkadot@0.2.41/types-codec/types/registry.ts' {
   interface Registry {
     readonly lookup: ILookup;
 

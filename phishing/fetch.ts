@@ -1,5 +1,5 @@
 
-import { fetch } from 'https://deno.land/x/polkadot/x-fetch/mod.ts';
+import { fetch } from 'https://deno.land/x/polkadot@0.2.41/x-fetch/mod.ts';
 
 
 async function fetchWithTimeout (url: string, timeout = 2000): Promise<Response> {

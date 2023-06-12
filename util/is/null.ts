@@ -8,7 +8,7 @@
  * <BR>
  *
  * ```javascript
- * import { isNull } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { isNull } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
  *
  * console.log('isNull', isNull(null)); // => true
  * ```

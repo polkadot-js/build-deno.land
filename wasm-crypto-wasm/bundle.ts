@@ -1,5 +1,5 @@
 
-import { base64Decode, unzlibSync } from 'https://deno.land/x/polkadot@0.2.40/wasm-util/mod.ts';
+import { base64Decode, unzlibSync } from 'https://deno.land/x/polkadot@0.2.41/wasm-util/mod.ts';
 
 import { bytes, lenIn, lenOut } from './deno/bytes.js';
 
