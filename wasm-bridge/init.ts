@@ -9,7 +9,7 @@ import type { InitFn, InitPromise, InitResult, WasmBaseInstance, WasmImports } f
  * It will attempt to create a WASM interface first and if this fails or is not available in
  * the environment, will fallback to attempting to create an ASM.js interface.
  */
-export function createWasmFn <C extends WasmBaseInstance> (root: string, wasmBytes: null | Uint8Array, asmFn: null | ((wbg: WasmImports) => C)): InitFn<C> {
+export function createWasmFn <C extends WasmBaseInstance> (root: 'crypto', wasmBytes: null | Uint8Array, asmFn: null | ((wbg: WasmImports) => C)): InitFn<C> {
   return async (wbg: WasmImports): InitPromise<C> => {
     const result: InitResult<C> = {
       error: null,
@@ -18,7 +18,7 @@ export function createWasmFn <C extends WasmBaseInstance> (root: string, wasmByt
     };
 
     try {
-      if (!wasmBytes || !wasmBytes.length) {
+      if (!wasmBytes?.length) {
         throw new Error('No WebAssembly provided for initialization');
       } else if (typeof WebAssembly !== 'object' || typeof WebAssembly.instantiate !== 'function') {
         throw new Error('WebAssembly is not available in your environment');

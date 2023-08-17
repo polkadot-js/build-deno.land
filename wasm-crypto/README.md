@@ -11,8 +11,8 @@ Install the package (also requires `@polkadot/util` for `TextEncoder` polyfills 
 Use it -
 
 ```js
-import { u8aToHex } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
-import { bip39Generate, bip39ToSeed, waitReady } from 'https://deno.land/x/polkadot@0.2.41/wasm-crypto/mod.ts';
+import { u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { bip39Generate, bip39ToSeed, waitReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 await waitReady();
 
