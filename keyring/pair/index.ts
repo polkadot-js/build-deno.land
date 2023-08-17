@@ -1,11 +1,10 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
-import type { EncryptedJsonEncoding, Keypair, KeypairType } from 'https://deno.land/x/polkadot@0.2.41/util-crypto/types.ts';
+import type { EncryptedJsonEncoding, Keypair, KeypairType } from 'https://deno.land/x/polkadot/util-crypto/types.ts';
 import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } from '../types.ts';
 import type { PairInfo } from './types.ts';
 
-import { objectSpread, u8aConcat, u8aEmpty, u8aEq, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
-import { blake2AsU8a, ed25519PairFromSeed as ed25519FromSeed, ed25519Sign, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, secp256k1Compress, secp256k1Expand, secp256k1PairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify, sr25519PairFromSeed as sr25519FromSeed, sr25519Sign, sr25519VrfSign, sr25519VrfVerify } from 'https://deno.land/x/polkadot@0.2.41/util-crypto/mod.ts';
+import { objectSpread, u8aConcat, u8aEmpty, u8aEq, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { blake2AsU8a, ed25519PairFromSeed as ed25519FromSeed, ed25519Sign, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, secp256k1Compress, secp256k1Expand, secp256k1PairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify, sr25519PairFromSeed as sr25519FromSeed, sr25519Sign, sr25519VrfSign, sr25519VrfVerify } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { decodePair } from './decode.ts';
 import { encodePair } from './encode.ts';
@@ -163,7 +162,7 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     setMeta: (additional: KeyringPair$Meta): void => {
       meta = objectSpread({}, meta, additional);
     },
-    sign: (message: HexString | string | Uint8Array, options: SignOptions = {}): Uint8Array => {
+    sign: (message: string | Uint8Array, options: SignOptions = {}): Uint8Array => {
       if (isLocked(secretKey)) {
         throw new Error('Cannot sign with a locked key pair');
       }
@@ -190,10 +189,10 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     unlock: (passphrase?: string): void => {
       return decodePkcs8(passphrase);
     },
-    verify: (message: HexString | string | Uint8Array, signature: HexString | string | Uint8Array, signerPublic: HexString | string | Uint8Array): boolean => {
+    verify: (message: string | Uint8Array, signature: string | Uint8Array, signerPublic: string | Uint8Array): boolean => {
       return signatureVerify(message, signature, TYPE_ADDRESS[type](u8aToU8a(signerPublic))).isValid;
     },
-    vrfSign: (message: HexString | string | Uint8Array, context?: HexString | string | Uint8Array, extra?: string | Uint8Array): Uint8Array => {
+    vrfSign: (message: string | Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): Uint8Array => {
       if (isLocked(secretKey)) {
         throw new Error('Cannot sign with a locked key pair');
       }
@@ -206,7 +205,7 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
 
       return u8aConcat(vrfHash(proof, context, extra), proof);
     },
-    vrfVerify: (message: HexString | string | Uint8Array, vrfResult: Uint8Array, signerPublic: HexString | Uint8Array | string, context?: HexString | string | Uint8Array, extra?: HexString | string | Uint8Array): boolean => {
+    vrfVerify: (message: string | Uint8Array, vrfResult: Uint8Array, signerPublic: Uint8Array | string, context?: string | Uint8Array, extra?: string | Uint8Array): boolean => {
       if (type === 'sr25519') {
         return sr25519VrfVerify(message, vrfResult, publicKey, context, extra);
       }

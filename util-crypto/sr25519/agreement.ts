@@ -1,14 +1,12 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
-
-import { u8aToU8a } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
-import { sr25519Agree } from 'https://deno.land/x/polkadot@0.2.41/wasm-crypto/mod.ts';
+import { u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { sr25519Agree } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 /**
  * @name sr25519Agreement
  * @description Key agreement between other's public key and self secret key
  */
-export function sr25519Agreement (secretKey: HexString | Uint8Array | string, publicKey: HexString | Uint8Array | string): Uint8Array {
+export function sr25519Agreement (secretKey: string | Uint8Array, publicKey: string | Uint8Array): Uint8Array {
   const secretKeyU8a = u8aToU8a(secretKey);
   const publicKeyU8a = u8aToU8a(publicKey);
 

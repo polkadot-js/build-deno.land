@@ -1,10 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
-
 import { ed25519 } from 'https://esm.sh/@noble/curves@1.1.0/ed25519.js';
 
-import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
-import { ed25519Verify as wasmVerify, isReady } from 'https://deno.land/x/polkadot@0.2.41/wasm-crypto/mod.ts';
+import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { ed25519Verify as wasmVerify, isReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 /**
  * @name ed25519Sign
@@ -15,12 +13,12 @@ import { ed25519Verify as wasmVerify, isReady } from 'https://deno.land/x/polkad
  * <BR>
  *
  * ```javascript
- * import { ed25519Verify } from 'https://deno.land/x/polkadot@0.2.41/util-crypto/mod.ts';
+ * import { ed25519Verify } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
  *
  * ed25519Verify([...], [...], [...]); // => true/false
  * ```
  */
-export function ed25519Verify (message: HexString | Uint8Array | string, signature: HexString | Uint8Array | string, publicKey: HexString | Uint8Array | string, onlyJs?: boolean): boolean {
+export function ed25519Verify (message: string | Uint8Array, signature: string | Uint8Array, publicKey: string | Uint8Array, onlyJs?: boolean): boolean {
   const messageU8a = u8aToU8a(message);
   const publicKeyU8a = u8aToU8a(publicKey);
   const signatureU8a = u8aToU8a(signature);

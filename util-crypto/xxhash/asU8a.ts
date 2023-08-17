@@ -1,8 +1,6 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
-
-import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
-import { isReady, twox } from 'https://deno.land/x/polkadot@0.2.41/wasm-crypto/mod.ts';
+import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isReady, twox } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 import { createAsHex } from '../helpers.ts';
 import { xxhash64 } from './xxhash64.ts';
@@ -16,12 +14,12 @@ import { xxhash64 } from './xxhash64.ts';
  * <BR>
  *
  * ```javascript
- * import { xxhashAsU8a } from 'https://deno.land/x/polkadot@0.2.41/util-crypto/mod.ts';
+ * import { xxhashAsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
  *
  * xxhashAsU8a('abc'); // => 0x44bc2cf5ad770999
  * ```
  */
-export function xxhashAsU8a (data: HexString | Uint8Array | string, bitLength: 64 | 128 | 192 | 256 | 320 | 384 | 448 | 512 = 64, onlyJs?: boolean): Uint8Array {
+export function xxhashAsU8a (data: string | Uint8Array, bitLength: 64 | 128 | 192 | 256 | 320 | 384 | 448 | 512 = 64, onlyJs?: boolean): Uint8Array {
   const rounds = Math.ceil(bitLength / 64);
   const u8a = u8aToU8a(data);
 

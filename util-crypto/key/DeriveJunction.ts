@@ -1,7 +1,5 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
-
-import { BN, bnToU8a, compactAddLength, hexToU8a, isBigInt, isBn, isHex, isNumber, isString, stringToU8a } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { BN, bnToU8a, compactAddLength, hexToU8a, isBigInt, isBn, isHex, isNumber, isString, stringToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { blake2AsU8a } from '../blake2/asU8a.ts';
 import { BN_LE_256_OPTS } from '../bn.ts';
@@ -44,7 +42,7 @@ export class DeriveJunction {
     return !this.#isHard;
   }
 
-  public hard (value: HexString | number | string | bigint | BN | Uint8Array): DeriveJunction {
+  public hard (value: number | string | bigint | BN | Uint8Array): DeriveJunction {
     return this.soft(value).harden();
   }
 
@@ -54,7 +52,7 @@ export class DeriveJunction {
     return this;
   }
 
-  public soft (value: HexString | number | string | bigint | BN | Uint8Array): DeriveJunction {
+  public soft (value: number | string | bigint | BN | Uint8Array): DeriveJunction {
     if (isNumber(value) || isBn(value) || isBigInt(value)) {
       return this.soft(bnToU8a(value, BN_LE_256_OPTS));
     } else if (isHex(value)) {

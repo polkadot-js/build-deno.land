@@ -1,6 +1,4 @@
 
-import type { HexString } from '../types.ts';
-
 /**
  * @name hexToU8a
  * @summary Creates a Uint8Array object from a hex string.
@@ -10,13 +8,13 @@ import type { HexString } from '../types.ts';
  * <BR>
  *
  * ```javascript
- * import { hexToU8a } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+ * import { hexToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * hexToU8a('0x80001f'); // Uint8Array([0x80, 0x00, 0x1f])
  * hexToU8a('0x80001f', 32); // Uint8Array([0x00, 0x80, 0x00, 0x1f])
  * ```
  */
-export function hexToU8a (_value?: HexString | string | null, bitLength = -1): Uint8Array {
+export function hexToU8a (_value?: string | null, bitLength = -1): Uint8Array {
   if (!_value) {
     return new Uint8Array();
   }

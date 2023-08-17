@@ -1,6 +1,4 @@
 
-import type { HexString } from '../types.ts';
-
 import { u8aToU8a } from './toU8a.ts';
 
 /**
@@ -12,12 +10,12 @@ import { u8aToU8a } from './toU8a.ts';
  * <BR>
  *
  * ```javascript
- * import { u8aEq } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+ * import { u8aEq } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * u8aEq(new Uint8Array([0x68, 0x65]), new Uint8Array([0x68, 0x65])); // true
  * ```
  */
-export function u8aEq (a: HexString | Uint8Array | string, b: HexString | Uint8Array | string): boolean {
+export function u8aEq (a: string | Uint8Array, b: string | Uint8Array): boolean {
   const u8aa = u8aToU8a(a);
   const u8ab = u8aToU8a(b);
 

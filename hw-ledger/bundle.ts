@@ -1,12 +1,12 @@
 
-import type { SubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.40.7';
-import type { TransportDef, TransportType } from 'https://deno.land/x/polkadot@0.2.41/hw-ledger-transports/types.ts';
+import type { SubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.41.1';
+import type { TransportDef, TransportType } from 'https://deno.land/x/polkadot/hw-ledger-transports/types.ts';
 import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerVersion } from './types.ts';
 
-import { newSubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.40.7';
+import { newSubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.41.1';
 
-import { transports } from 'https://deno.land/x/polkadot@0.2.41/hw-ledger-transports/mod.ts';
-import { hexAddPrefix, u8aToBuffer } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { transports } from 'https://deno.land/x/polkadot/hw-ledger-transports/mod.ts';
+import { hexAddPrefix, u8aToBuffer, u8aWrapBytes } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { LEDGER_DEFAULT_ACCOUNT, LEDGER_DEFAULT_CHANGE, LEDGER_DEFAULT_INDEX, LEDGER_SUCCESS_CODE } from './constants.ts';
 import { ledgerApps } from './defaults.ts';
@@ -26,6 +26,17 @@ async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promis
   }
 
   return result;
+}
+
+/** @internal Wraps a sign/signRaw call and returns the associated signature */
+function sign (method: 'sign' | 'signRaw', message: Uint8Array, accountOffset = 0, addressOffset = 0, { account = LEDGER_DEFAULT_ACCOUNT, addressIndex = LEDGER_DEFAULT_INDEX, change = LEDGER_DEFAULT_CHANGE }: Partial<AccountOptions> = {}): (app: SubstrateApp) => Promise<LedgerSignature> {
+  return async (app: SubstrateApp): Promise<LedgerSignature> => {
+    const { signature } = await wrapError(app[method](account + accountOffset, change, addressIndex + addressOffset, u8aToBuffer(message)));
+
+    return {
+      signature: hexAddPrefix(signature.toString('hex'))
+    };
+  };
 }
 
 /**
@@ -89,15 +100,15 @@ export class Ledger {
   /**
    * Signs a transaction on the Ledger device
    */
-  public async sign (message: Uint8Array, accountOffset = 0, addressOffset = 0, { account = LEDGER_DEFAULT_ACCOUNT, addressIndex = LEDGER_DEFAULT_INDEX, change = LEDGER_DEFAULT_CHANGE }: Partial<AccountOptions> = {}): Promise<LedgerSignature> {
-    return this.withApp(async (app: SubstrateApp): Promise<LedgerSignature> => {
-      const buffer = u8aToBuffer(message);
-      const { signature } = await wrapError(app.sign(account + accountOffset, change, addressIndex + addressOffset, buffer));
+  public async sign (message: Uint8Array, accountOffset?: number, addressOffset?: number, options?: Partial<AccountOptions>): Promise<LedgerSignature> {
+    return this.withApp(sign('sign', message, accountOffset, addressOffset, options));
+  }
 
-      return {
-        signature: hexAddPrefix(signature.toString('hex'))
-      };
-    });
+  /**
+   * Signs a message (non-transactional) on the Ledger device
+   */
+  public async signRaw (message: Uint8Array, accountOffset?: number, addressOffset?: number, options?: Partial<AccountOptions>): Promise<LedgerSignature> {
+    return this.withApp(sign('signRaw', u8aWrapBytes(message), accountOffset, addressOffset, options));
   }
 
   /**

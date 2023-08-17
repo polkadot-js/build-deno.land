@@ -1,6 +1,4 @@
 
-import type { HexString } from '../types.ts';
-
 const CHR = '0123456789abcdef';
 const U8 = new Uint8Array(256);
 const U16 = new Uint8Array(256 * 256);
@@ -30,13 +28,13 @@ for (let i = 0; i < 256; i++) {
  * <BR>
  *
  * ```javascript
- * import { hexToU8a } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+ * import { hexToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * hexToU8a('0x80001f'); // Uint8Array([0x80, 0x00, 0x1f])
  * hexToU8a('0x80001f', 32); // Uint8Array([0x00, 0x80, 0x00, 0x1f])
  * ```
  */
-export function hexToU8a (value?: HexString | string | null, bitLength = -1): Uint8Array {
+export function hexToU8a (value?: string | null, bitLength = -1): Uint8Array {
   if (!value) {
     return new Uint8Array();
   }

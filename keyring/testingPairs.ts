@@ -1,5 +1,5 @@
 
-import type { KeypairType } from 'https://deno.land/x/polkadot@0.2.41/util-crypto/types.ts';
+import type { KeypairType } from 'https://deno.land/x/polkadot/util-crypto/types.ts';
 import type { KeyringOptions, KeyringPair } from './types.ts';
 
 import { nobody } from './pair/nobody.ts';
@@ -45,7 +45,9 @@ export function createTestPairs <O extends KeyringOptions, M = DetectMap<O>> (op
   const map: TestKeyringMap = { nobody: nobody() };
 
   for (const p of pairs) {
-    map[p.meta.name as string] = p;
+    if (p.meta.name) {
+      map[p.meta.name] = p;
+    }
   }
 
   return map as M;

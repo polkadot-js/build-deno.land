@@ -1,6 +1,4 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
-
 export type EncryptedJsonVersion = '0' | '1' | '2' | '3';
 
 export type EncryptedJsonEncoding = 'none' | 'scrypt' | 'xsalsa20-poly1305';
@@ -12,6 +10,6 @@ export interface EncryptedJsonDescriptor {
 }
 
 export interface EncryptedJson {
-  encoded: HexString | string;
+  encoded: string;
   encoding: EncryptedJsonDescriptor;
 }

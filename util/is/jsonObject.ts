@@ -1,10 +1,7 @@
 
 import { stringify } from '../stringify.ts';
 
-interface ObjectIndexed {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [index: string]: any;
-}
+type ObjectIndexed = Record<string, any>;
 
 /**
  * @name isJsonObject
@@ -16,7 +13,7 @@ interface ObjectIndexed {
  * <BR>
  *
  * ```javascript
- * import { isJsonObject } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+ * import { isJsonObject } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * isJsonObject({}); // => true
  * isJsonObject({

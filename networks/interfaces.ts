@@ -1,7 +1,7 @@
 
 import type { KnownSubstrate, Network, SubstrateNetwork } from './types.ts';
 
-import knownSubstrate from 'https://esm.sh/@substrate/ss58-registry@1.40.0';
+import knownSubstrate from 'https://esm.sh/@substrate/ss58-registry@1.43.0';
 
 import { knownGenesis, knownIcon, knownLedger, knownTestnet } from './defaults/index.ts';
 
@@ -26,8 +26,8 @@ function toExpanded (o: KnownSubstrate): SubstrateNetwork {
   n.isIgnored = n.isTestnet || (
     !(
       o.standardAccount &&
-      o.decimals && o.decimals.length &&
-      o.symbols && o.symbols.length
+      o.decimals?.length &&
+      o.symbols?.length
     ) &&
     o.prefix !== 42
   );

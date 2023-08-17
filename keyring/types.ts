@@ -1,6 +1,6 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
-import type { EncryptedJson, Keypair, KeypairType, Prefix } from 'https://deno.land/x/polkadot@0.2.41/util-crypto/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { EncryptedJson, Keypair, KeypairType, Prefix } from 'https://deno.land/x/polkadot/util-crypto/types.ts';
 
 export interface KeyringOptions {
   /**
@@ -68,7 +68,7 @@ export interface KeyringPair$Meta extends KeyringPair$MetaExtension, KeyringPair
 
 export interface KeyringPair$Json extends EncryptedJson {
   /** The ss58 encoded address or the hex-encoded version (the latter is for ETH-compat chains) */
-  address: string | HexString;
+  address: string;
   /** The underlying metadata associated with the keypair */
   meta: KeyringPair$Meta;
 }
@@ -93,12 +93,12 @@ export interface KeyringPair {
   encodePkcs8 (passphrase?: string): Uint8Array;
   lock (): void;
   setMeta (meta: KeyringPair$Meta): void;
-  sign (message: HexString | string | Uint8Array, options?: SignOptions): Uint8Array;
+  sign (message: string | Uint8Array, options?: SignOptions): Uint8Array;
   toJson (passphrase?: string): KeyringPair$Json;
   unlock (passphrase?: string): void;
-  verify (message: HexString | string | Uint8Array, signature: Uint8Array, signerPublic: HexString | string | Uint8Array): boolean;
-  vrfSign (message: HexString | string | Uint8Array, context?: HexString | string | Uint8Array, extra?: HexString | string | Uint8Array): Uint8Array;
-  vrfVerify (message: HexString | string | Uint8Array, vrfResult: Uint8Array, signerPublic: HexString | Uint8Array | string, context?: HexString | string | Uint8Array, extra?: HexString | string | Uint8Array): boolean;
+  verify (message: string | Uint8Array, signature: Uint8Array, signerPublic: string | Uint8Array): boolean;
+  vrfSign (message: string | Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): Uint8Array;
+  vrfVerify (message: string | Uint8Array, vrfResult: Uint8Array, signerPublic: string | Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): boolean;
 }
 
 export interface KeyringPairs {

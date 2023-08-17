@@ -1,14 +1,13 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
 import type { Prefix } from './types.ts';
 
-import { isHex, isU8a, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { isHex, isU8a, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { base58Decode } from '../base58/index.ts';
 import { checkAddressChecksum } from './checksum.ts';
 import { defaults } from './defaults.ts';
 
-export function decodeAddress (encoded?: HexString | string | Uint8Array | null, ignoreChecksum?: boolean, ss58Format: Prefix = -1): Uint8Array {
+export function decodeAddress (encoded?: string | Uint8Array | null, ignoreChecksum?: boolean, ss58Format: Prefix = -1): Uint8Array {
   if (!encoded) {
     throw new Error('Invalid empty address passed');
   }

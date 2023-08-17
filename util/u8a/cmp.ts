@@ -1,6 +1,4 @@
 
-import type { HexString } from '../types.ts';
-
 import { u8aToU8a } from './toU8a.ts';
 
 /**
@@ -12,14 +10,14 @@ import { u8aToU8a } from './toU8a.ts';
  * <BR>
  *
  * ```javascript
- * import { u8aCmp } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+ * import { u8aCmp } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * u8aCmp(new Uint8Array([0x67, 0x65]), new Uint8Array([0x68, 0x65])); // -1
  * u8aCmp(new Uint8Array([0x68, 0x65]), new Uint8Array([0x68, 0x65])); // 0
  * u8aCmp(new Uint8Array([0x69, 0x65]), new Uint8Array([0x68, 0x65])); // +1
  * ```
  */
-export function u8aCmp (a: HexString | Uint8Array | string, b: HexString | Uint8Array | string): number {
+export function u8aCmp (a: string | Uint8Array, b: string | Uint8Array): number {
   const u8aa = u8aToU8a(a);
   const u8ab = u8aToU8a(b);
   let i = 0;

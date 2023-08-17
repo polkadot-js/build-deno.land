@@ -1,8 +1,6 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
-
-import { u8aToU8a } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
-import { vrfVerify } from 'https://deno.land/x/polkadot@0.2.41/wasm-crypto/mod.ts';
+import { u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { vrfVerify } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 const EMPTY_U8A = new Uint8Array();
 
@@ -10,7 +8,7 @@ const EMPTY_U8A = new Uint8Array();
  * @name sr25519VrfVerify
  * @description Verify with sr25519 vrf verification
  */
-export function sr25519VrfVerify (message: HexString | Uint8Array | string, signOutput: HexString | string | Uint8Array, publicKey: HexString | Uint8Array | string, context: HexString | string | Uint8Array = EMPTY_U8A, extra: HexString | string | Uint8Array = EMPTY_U8A): boolean {
+export function sr25519VrfVerify (message: string | Uint8Array, signOutput: string | Uint8Array, publicKey: string | Uint8Array, context: string | Uint8Array = EMPTY_U8A, extra: string | Uint8Array = EMPTY_U8A): boolean {
   const publicKeyU8a = u8aToU8a(publicKey);
   const proofU8a = u8aToU8a(signOutput);
 

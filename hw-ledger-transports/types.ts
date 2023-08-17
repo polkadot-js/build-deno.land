@@ -1,5 +1,5 @@
 
-import type * as HwTransport from 'https://esm.sh/@ledgerhq/hw-transport@6.28.4';
+import type * as HwTransport from 'https://esm.sh/@ledgerhq/hw-transport@6.28.8';
 
 export type TransportType = 'hid' | 'webusb';
 

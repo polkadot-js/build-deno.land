@@ -1,9 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
 import type { KeyringPair, KeyringPairs } from './types.ts';
 
-import { isHex, isU8a, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
-import { decodeAddress } from 'https://deno.land/x/polkadot@0.2.41/util-crypto/mod.ts';
+import { isHex, isU8a, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { decodeAddress } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 type KeyringPairMap = Record<string, KeyringPair>;
 
@@ -20,7 +19,7 @@ export class Pairs implements KeyringPairs {
     return Object.values(this.#map);
   }
 
-  public get (address: HexString | string | Uint8Array): KeyringPair {
+  public get (address: string | Uint8Array): KeyringPair {
     const pair = this.#map[decodeAddress(address).toString()];
 
     if (!pair) {
@@ -34,7 +33,7 @@ export class Pairs implements KeyringPairs {
     return pair;
   }
 
-  public remove (address: HexString | string | Uint8Array): void {
+  public remove (address: string | Uint8Array): void {
     delete this.#map[decodeAddress(address).toString()];
   }
 }

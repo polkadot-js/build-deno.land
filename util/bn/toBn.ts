@@ -1,5 +1,5 @@
 
-import type { HexString, ToBigInt, ToBn } from '../types.ts';
+import type { ToBigInt, ToBn } from '../types.ts';
 
 import { hexToBn } from '../hex/toBn.ts';
 import { isBigInt } from '../is/bigInt.ts';
@@ -18,13 +18,13 @@ import { BN } from './bn.ts';
  *
  * ```javascript
  * import BN from 'https://esm.sh/bn.js@5.2.1';
- * import { bnToBn } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+ * import { bnToBn } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * bnToBn(0x1234); // => BN(0x1234)
  * bnToBn(new BN(0x1234)); // => BN(0x1234)
  * ```
  */
-export function bnToBn <ExtToBn extends ToBigInt | ToBn> (value?: HexString | ExtToBn | BN | bigint | string | number | null): BN {
+export function bnToBn <ExtToBn extends ToBigInt | ToBn> (value?: ExtToBn | BN | bigint | string | number | null): BN {
   return value
     ? BN.isBN(value)
       ? value

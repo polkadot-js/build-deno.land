@@ -1,14 +1,13 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
 import type { Keypair } from '../../types.ts';
 
-import { u8aToU8a } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const SEC_LEN = 64;
 const PUB_LEN = 32;
 const TOT_LEN = SEC_LEN + PUB_LEN;
 
-export function sr25519PairFromU8a (full: HexString | Uint8Array | string): Keypair {
+export function sr25519PairFromU8a (full: string | Uint8Array): Keypair {
   const fullU8a = u8aToU8a(full);
 
   if (fullU8a.length !== TOT_LEN) {

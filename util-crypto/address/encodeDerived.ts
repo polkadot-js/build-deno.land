@@ -1,6 +1,5 @@
 
-import type { BN } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { Prefix } from './types.ts';
 
 import { decodeAddress } from './decode.ts';
@@ -13,6 +12,6 @@ import { createKeyDerived } from './keyDerived.ts';
  * @description
  * Creates a Substrate derived address based on the input address/publicKey and the index supplied.
  */
-export function encodeDerivedAddress (who: HexString | Uint8Array | string, index: bigint | BN | number, ss58Format?: Prefix): string {
+export function encodeDerivedAddress (who: string | Uint8Array, index: bigint | BN | number, ss58Format?: Prefix): string {
   return encodeAddress(createKeyDerived(decodeAddress(who), index), ss58Format);
 }

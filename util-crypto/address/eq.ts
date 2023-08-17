@@ -1,7 +1,5 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
-
-import { u8aEq } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { u8aEq } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { decodeAddress } from './decode.ts';
 
@@ -14,11 +12,11 @@ import { decodeAddress } from './decode.ts';
  * <BR>
  *
  * ```javascript
- * import { u8aEq } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+ * import { u8aEq } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * u8aEq(new Uint8Array([0x68, 0x65]), new Uint8Array([0x68, 0x65])); // true
  * ```
  */
-export function addressEq (a: HexString | string | Uint8Array, b: HexString | string | Uint8Array): boolean {
+export function addressEq (a: string | Uint8Array, b: string | Uint8Array): boolean {
   return u8aEq(decodeAddress(a), decodeAddress(b));
 }

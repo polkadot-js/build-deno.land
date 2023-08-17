@@ -1,5 +1,4 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
 import type { Prefix } from './types.ts';
 
 import { base58Decode } from '../base58/index.ts';
@@ -12,7 +11,7 @@ import { defaults } from './defaults.ts';
  * @description
  * From the provided input, validate that the address is a valid input.
  */
-export function checkAddress (address: HexString | string, prefix: Prefix): [boolean, string | null] {
+export function checkAddress (address: string, prefix: Prefix): [boolean, string | null] {
   let decoded;
 
   try {

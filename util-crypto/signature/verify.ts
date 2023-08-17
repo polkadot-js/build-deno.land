@@ -1,8 +1,7 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
 import type { KeypairType, VerifyResult } from '../types.ts';
 
-import { u8aIsWrapped, u8aToU8a, u8aUnwrapBytes, u8aWrapBytes } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { u8aIsWrapped, u8aToU8a, u8aUnwrapBytes, u8aWrapBytes } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { decodeAddress } from '../address/decode.ts';
 import { ed25519Verify } from '../ed25519/verify.ts';
@@ -85,7 +84,7 @@ function getVerifyFn (signature: Uint8Array): VerifyFn {
     : verifyDetect;
 }
 
-export function signatureVerify (message: HexString | Uint8Array | string, signature: HexString | Uint8Array | string, addressOrPublicKey: HexString | Uint8Array | string): VerifyResult {
+export function signatureVerify (message: string | Uint8Array, signature: string | Uint8Array, addressOrPublicKey: string | Uint8Array): VerifyResult {
   const signatureU8a = u8aToU8a(signature);
 
   if (![64, 65, 66].includes(signatureU8a.length)) {

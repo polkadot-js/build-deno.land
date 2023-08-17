@@ -1,7 +1,7 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 
-import { u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { keccakAsU8a } from '../keccak/index.ts';
 import { secp256k1Expand } from '../secp256k1/index.ts';
@@ -14,7 +14,7 @@ function getH160 (u8a: Uint8Array): Uint8Array {
   return u8a.slice(-20);
 }
 
-export function ethereumEncode (addressOrPublic?: HexString | string | Uint8Array): HexString {
+export function ethereumEncode (addressOrPublic?: string | Uint8Array): HexString {
   if (!addressOrPublic) {
     return '0x';
   }

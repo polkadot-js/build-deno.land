@@ -1,15 +1,14 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
 import type { Prefix } from './types.ts';
 
-import { u8aConcat } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { u8aConcat } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { base58Encode } from '../base58/index.ts';
 import { decodeAddress } from './decode.ts';
 import { defaults } from './defaults.ts';
 import { sshash } from './sshash.ts';
 
-export function encodeAddress (key: HexString | Uint8Array | string, ss58Format: Prefix = defaults.prefix): string {
+export function encodeAddress (key: string | Uint8Array, ss58Format: Prefix = defaults.prefix): string {
   // decode it, this means we can re-encode an address
   const u8a = decodeAddress(key);
 

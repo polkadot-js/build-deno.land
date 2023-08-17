@@ -1,5 +1,4 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
 import type { DeriveJunction } from '../key/DeriveJunction.ts';
 import type { Prefix } from './types.ts';
 
@@ -18,7 +17,7 @@ function filterHard ({ isHard }: DeriveJunction): boolean {
  * @description
  * Creates a sr25519 derived address based on the input address/publicKey and the uri supplied.
  */
-export function deriveAddress (who: HexString | Uint8Array | string, suri: string, ss58Format?: Prefix): string {
+export function deriveAddress (who: string | Uint8Array, suri: string, ss58Format?: Prefix): string {
   const { path } = keyExtractPath(suri);
 
   if (!path.length || path.every(filterHard)) {

@@ -72,16 +72,21 @@ export type HexDigit = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
 
 export type HexString = `0x${string}`;
 
-export interface BufferObj extends Uint8Array {
+export interface BufferObject extends Uint8Array {
+  // Possibly used externally via type imports
   equals: (otherBuffer: Uint8Array) => boolean;
+  // As used in is/buffer
   readDoubleLE: (offset?: number) => number;
 }
 
-export interface BufferObjClass extends Class<BufferObj> {
+export interface BufferClass extends Class<BufferObject> {
+  // As used in u8a/toBuffer
+  from: <T = BufferObject>(value: unknown) => T;
+  // As used in is/buffer
   isBuffer: (value: unknown) => boolean;
 }
 
-export type U8aLike = HexString | number[] | Uint8Array | AnyString;
+export type U8aLike = number[] | Uint8Array | AnyString;
 
 export interface Observable {
   next: (...params: unknown[]) => unknown;

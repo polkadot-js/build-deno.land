@@ -1,7 +1,7 @@
 
 import type { Keypair } from '../types.ts';
 
-import { isU8a } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { isU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { sr25519PairFromU8a } from './pair/fromU8a.ts';
 import { sr25519KeypairToU8a } from './pair/toU8a.ts';

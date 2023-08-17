@@ -1,11 +1,10 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
 import type { Keypair } from '../types.ts';
 
 import { ed25519 } from 'https://esm.sh/@noble/curves@1.1.0/ed25519.js';
 
-import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
-import { ed25519Sign as wasmSign, isReady } from 'https://deno.land/x/polkadot@0.2.41/wasm-crypto/mod.ts';
+import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { ed25519Sign as wasmSign, isReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 /**
  * @name ed25519Sign
@@ -16,12 +15,12 @@ import { ed25519Sign as wasmSign, isReady } from 'https://deno.land/x/polkadot@0
  * <BR>
  *
  * ```javascript
- * import { ed25519Sign } from 'https://deno.land/x/polkadot@0.2.41/util-crypto/mod.ts';
+ * import { ed25519Sign } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
  *
  * ed25519Sign([...], [...]); // => [...]
  * ```
  */
-export function ed25519Sign (message: HexString | Uint8Array | string, { publicKey, secretKey }: Partial<Keypair>, onlyJs?: boolean): Uint8Array {
+export function ed25519Sign (message: string | Uint8Array, { publicKey, secretKey }: Partial<Keypair>, onlyJs?: boolean): Uint8Array {
   if (!secretKey) {
     throw new Error('Expected a valid secretKey');
   } else if (!publicKey) {

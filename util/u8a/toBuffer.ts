@@ -1,4 +1,8 @@
 
+import type { BufferClass, BufferObject } from '../types.ts';
+
+import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
+
 /**
  * @name u8aToBuffer
  * @summary Creates a Buffer object from a hex string.
@@ -8,11 +12,11 @@
  * <BR>
  *
  * ```javascript
- * import { u8aToBuffer } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+ * import { u8aToBuffer } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
- * console.log('Buffer', u8aToBuffer('0x123480001f'));
+ * console.log('Buffer', u8aToBuffer(new Uint8Array([1, 2, 3])));
  * ```
  */
-export function u8aToBuffer (value?: Uint8Array | null): Buffer {
-  return Buffer.from(value || []);
+export function u8aToBuffer <T = BufferObject> (value?: Uint8Array | null): T {
+  return (xglobal.Buffer as unknown as BufferClass).from(value || []);
 }

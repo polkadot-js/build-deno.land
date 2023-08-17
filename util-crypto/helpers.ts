@@ -1,10 +1,10 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 
-import { hasBigInt, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
-import { isReady } from 'https://deno.land/x/polkadot@0.2.41/wasm-crypto/mod.ts';
+import { hasBigInt, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
-export type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
+export type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 
 interface DualHash {
   256: (u8a: Uint8Array) => Uint8Array;
@@ -18,14 +18,14 @@ export function createAsHex <T extends (...args: never[]) => Uint8Array> (fn: T)
 }
 
 /** @internal */
-export function createBitHasher (bitLength: 256 | 512, fn: (data: HexString | Uint8Array | string, bitLength: 256 | 512, onlyJs?: boolean) => Uint8Array): (data: HexString | Uint8Array | string, onlyJs?: boolean) => Uint8Array {
-  return (data: HexString | Uint8Array | string, onlyJs?: boolean): Uint8Array =>
+export function createBitHasher (bitLength: 256 | 512, fn: (data: string | Uint8Array, bitLength: 256 | 512, onlyJs?: boolean) => Uint8Array): (data: string | Uint8Array, onlyJs?: boolean) => Uint8Array {
+  return (data: string | Uint8Array, onlyJs?: boolean): Uint8Array =>
     fn(data, bitLength, onlyJs);
 }
 
 /** @internal */
-export function createDualHasher (wa: DualHash, js: DualHash): (value: HexString | Uint8Array | string, bitLength?: 256 | 512, onlyJs?: boolean) => Uint8Array {
-  return (value: HexString | Uint8Array | string, bitLength: 256 | 512 = 256, onlyJs?: boolean): Uint8Array => {
+export function createDualHasher (wa: DualHash, js: DualHash): (value: string | Uint8Array, bitLength?: 256 | 512, onlyJs?: boolean) => Uint8Array {
+  return (value: string | Uint8Array, bitLength: 256 | 512 = 256, onlyJs?: boolean): Uint8Array => {
     const u8a = u8aToU8a(value);
 
     return !hasBigInt || (!onlyJs && isReady())

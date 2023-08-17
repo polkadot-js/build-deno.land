@@ -1,8 +1,8 @@
 
 import type { BN } from '../bn/bn.ts';
-import type { HexString, ToBigInt, ToBn } from '../types.ts';
+import type { ToBigInt, ToBn } from '../types.ts';
 
-import { BigInt } from 'https://deno.land/x/polkadot@0.2.41/x-bigint/mod.ts';
+import { BigInt } from 'https://deno.land/x/polkadot/x-bigint/mod.ts';
 
 import { hexToBigInt } from '../hex/toBigInt.ts';
 import { isBn } from '../is/bn.ts';
@@ -14,7 +14,7 @@ import { isToBn } from '../is/toBn.ts';
  * @name nToBigInt
  * @summary Creates a bigInt value from a BN, bigint, string (base 10 or hex) or number input.
  */
-export function nToBigInt <ExtToBn extends ToBigInt | ToBn> (value?: HexString | ExtToBn | BN | bigint | string | number | null): bigint {
+export function nToBigInt <ExtToBn extends ToBigInt | ToBn> (value?: ExtToBn | BN | bigint | string | number | null): bigint {
   return typeof value === 'bigint'
     ? value
     : !value

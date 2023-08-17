@@ -1,8 +1,7 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
 import type { HashType } from './types.ts';
 
-import { u8aEq, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { u8aEq, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { hasher } from './hasher.ts';
 import { secp256k1Recover } from './recover.ts';
@@ -11,7 +10,7 @@ import { secp256k1Recover } from './recover.ts';
  * @name secp256k1Verify
  * @description Verifies the signature of `message`, using the supplied pair
  */
-export function secp256k1Verify (msgHash: HexString | Uint8Array | string, signature: HexString | Uint8Array | string, address: HexString | Uint8Array | string, hashType: HashType = 'blake2', onlyJs?: boolean): boolean {
+export function secp256k1Verify (msgHash: string | Uint8Array, signature: string | Uint8Array, address: string | Uint8Array, hashType: HashType = 'blake2', onlyJs?: boolean): boolean {
   const sig = u8aToU8a(signature);
 
   if (sig.length !== 65) {
