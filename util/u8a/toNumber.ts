@@ -1,19 +1,24 @@
 
-interface ToNumberOptions {
-  /**
-   * @description Number is signed, apply two's complement
-   */
-  isNegative?: boolean;
-}
+import type { ToBnOptions } from '../types.ts';
 
 /**
  * @name u8aToNumber
- * @summary Creates a number from a Uint8Array object. This only operates on LE values as used in SCALE.
+ * @summary Creates a number from a Uint8Array object.
  */
-export function u8aToNumber (value: Uint8Array, { isNegative = false }: ToNumberOptions = {}): number {
+export function u8aToNumber (value: Uint8Array, { isLe = true, isNegative = false }: ToBnOptions = {}): number {
+  // slice + reverse is expensive, however SCALE is LE by default so this is the path
+  // we are most interested in (the BE is added for the sake of being comprehensive)
+  if (!isLe) {
+    value = value.slice().reverse();
+  }
+
   const count = value.length;
 
-  if (isNegative) {
+  // When the value is a i{8, 16, 24, 32, 40, 40} values and the top-most bit
+  // indicates a signed value, we use a two's complement conversion. If one of these
+  // flags are not set, we just do a normal unsigned conversion (the same shortcut
+  // applies in both the u8aTo{BigInt, Bn} conversions as well)
+  if (isNegative && count && (value[count - 1] & 0x80)) {
     switch (count) {
       case 0:
         return 0;
