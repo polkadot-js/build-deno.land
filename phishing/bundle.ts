@@ -1,8 +1,8 @@
 
 import type { AddressList, HostList } from './types.ts';
 
-import { u8aEq } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
-import { decodeAddress } from 'https://deno.land/x/polkadot@0.2.41/util-crypto/mod.ts';
+import { u8aEq } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { decodeAddress } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { fetchJson } from './fetch.ts';
 
@@ -152,7 +152,7 @@ export async function checkAddress (address: string | Uint8Array, allowCached = 
       u8as.some((a) => u8aEq(a, u8a))
     );
 
-    return (entry && entry[0]) || null;
+    return entry?.[0] || null;
   } catch {
     return null;
   }
