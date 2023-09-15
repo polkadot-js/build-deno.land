@@ -1,7 +1,7 @@
 
 import type { Keypair } from '../../types.ts';
 
-import { u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { u8aToU8a } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
 
 const SEC_LEN = 64;
 const PUB_LEN = 32;

@@ -1,5 +1,5 @@
 
-import type { EraIndex } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/index.ts';
+import type { EraIndex } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
 
 import { deriveCache } from '../util/index.ts';
 

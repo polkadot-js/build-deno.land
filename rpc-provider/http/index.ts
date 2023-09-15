@@ -1,8 +1,8 @@
 
 import type { JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, ProviderInterfaceEmitCb, ProviderInterfaceEmitted, ProviderStats } from '../types.ts';
 
-import { logger, noop } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
-import { fetch } from 'https://deno.land/x/polkadot@0.2.41/x-fetch/mod.ts';
+import { logger, noop } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+import { fetch } from 'https://deno.land/x/polkadot@0.2.42/x-fetch/mod.ts';
 
 import { RpcCoder } from '../coder/index.ts';
 import defaults from '../defaults.ts';
@@ -23,8 +23,8 @@ const l = logger('api-http');
  * <BR>
  *
  * ```javascript
- * import Api from 'https://deno.land/x/polkadot@0.2.41/api/promise/index.ts';
- * import { HttpProvider } from 'https://deno.land/x/polkadot@0.2.41/rpc-provider/mod.ts';
+ * import Api from 'https://deno.land/x/polkadot@0.2.42/api/promise/index.ts';
+ * import { HttpProvider } from 'https://deno.land/x/polkadot@0.2.42/rpc-provider/mod.ts';
  *
  * const provider = new HttpProvider('http://127.0.0.1:9933');
  * const api = new Api(provider);

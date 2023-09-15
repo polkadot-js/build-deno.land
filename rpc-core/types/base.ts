@@ -1,6 +1,6 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { AnyFunction, Codec, DefinitionRpc } from 'https://deno.land/x/polkadot@0.2.41/types/types/index.ts';
+import type { AnyFunction, Codec, DefinitionRpc } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
 
 export interface RpcInterfaceMethod {
   <T extends Codec> (...params: unknown[]): Observable<T>;

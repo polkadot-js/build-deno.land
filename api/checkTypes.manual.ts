@@ -1,18 +1,18 @@
 
 
-import 'https://deno.land/x/polkadot@0.2.41/api-augment/mod.ts';
+import 'https://deno.land/x/polkadot@0.2.42/api-augment/mod.ts';
 
-import type { HeaderExtended } from 'https://deno.land/x/polkadot@0.2.41/api-derive/types.ts';
-import type { TestKeyringMapSubstrate } from 'https://deno.land/x/polkadot@0.2.41/keyring/testingPairs.ts';
-import type { StorageKey } from 'https://deno.land/x/polkadot@0.2.41/types/mod.ts';
-import type { AccountId, Balance, DispatchErrorModule, Event, Header, Index } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/index.ts';
-import type { FrameSystemAccountInfo } from 'https://deno.land/x/polkadot@0.2.41/types/lookup.ts';
-import type { AnyTuple, IExtrinsic, IMethod } from 'https://deno.land/x/polkadot@0.2.41/types/types/index.ts';
+import type { HeaderExtended } from 'https://deno.land/x/polkadot@0.2.42/api-derive/types.ts';
+import type { TestKeyringMapSubstrate } from 'https://deno.land/x/polkadot@0.2.42/keyring/testingPairs.ts';
+import type { StorageKey } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
+import type { AccountId, Balance, DispatchErrorModule, Event, Header, Index } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
+import type { FrameSystemAccountInfo } from 'https://deno.land/x/polkadot@0.2.42/types/lookup.ts';
+import type { AnyTuple, IExtrinsic, IMethod } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
 import type { SubmittableResult } from './index.ts';
 
-import { ApiPromise } from 'https://deno.land/x/polkadot@0.2.41/api/mod.ts';
-import { createTestPairs } from 'https://deno.land/x/polkadot@0.2.41/keyring/testingPairs.ts';
-import { createTypeUnsafe, TypeRegistry } from 'https://deno.land/x/polkadot@0.2.41/types/create/index.ts';
+import { ApiPromise } from 'https://deno.land/x/polkadot@0.2.42/api/mod.ts';
+import { createTestPairs } from 'https://deno.land/x/polkadot@0.2.42/keyring/testingPairs.ts';
+import { createTypeUnsafe, TypeRegistry } from 'https://deno.land/x/polkadot@0.2.42/types/create/index.ts';
 
 const registry = new TypeRegistry();
 

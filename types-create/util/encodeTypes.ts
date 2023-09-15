@@ -1,8 +1,8 @@
 
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.41/types-codec/types/index.ts';
-import type { TypeDef } from 'https://deno.land/x/polkadot@0.2.41/types-create/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
+import type { TypeDef } from 'https://deno.land/x/polkadot@0.2.42/types-create/types/index.ts';
 
-import { isNumber, isUndefined, objectSpread, stringify } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { isNumber, isUndefined, objectSpread, stringify } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
 
 import { TypeDefInfo } from '../types/index.ts';
 

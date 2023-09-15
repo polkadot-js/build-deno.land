@@ -1,10 +1,10 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { DecoratedRpc, QueryableCalls, QueryableConsts, QueryableStorage, QueryableStorageMulti, SubmittableExtrinsics } from 'https://deno.land/x/polkadot@0.2.41/api-base/types/index.ts';
-import type { RpcInterface } from 'https://deno.land/x/polkadot@0.2.41/rpc-core/types/index.ts';
-import type { Metadata } from 'https://deno.land/x/polkadot@0.2.41/types/mod.ts';
-import type { Hash, RuntimeVersion } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/index.ts';
-import type { Registry, Signer } from 'https://deno.land/x/polkadot@0.2.41/types/types/index.ts';
+import type { DecoratedRpc, QueryableCalls, QueryableConsts, QueryableStorage, QueryableStorageMulti, SubmittableExtrinsics } from 'https://deno.land/x/polkadot@0.2.42/api-base/types/index.ts';
+import type { RpcInterface } from 'https://deno.land/x/polkadot@0.2.42/rpc-core/types/index.ts';
+import type { Metadata } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
+import type { Hash, RuntimeVersion } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
+import type { Registry, Signer } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
 
 export interface ApiInterfaceRx {
   call: QueryableCalls<'rxjs'>;

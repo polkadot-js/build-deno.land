@@ -1,6 +1,6 @@
 
-import type { IsEvent } from 'https://deno.land/x/polkadot@0.2.41/types/metadata/decorate/types.ts';
-import type { AnyTuple } from 'https://deno.land/x/polkadot@0.2.41/types/types/index.ts';
+import type { IsEvent } from 'https://deno.land/x/polkadot@0.2.42/types/metadata/decorate/types.ts';
+import type { AnyTuple } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
 import type { ApiTypes, EmptyBase } from './base.ts';
 
 export type AugmentedEvent<_ extends ApiTypes, T extends AnyTuple = AnyTuple, N = unknown> = IsEvent<T, N>;

@@ -1,9 +1,9 @@
 
-import type { ContractMetadataV0, ContractMetadataV1 } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/index.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.41/types/types/index.ts';
+import type { ContractMetadataV0, ContractMetadataV1 } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
 
-import { convertSiV0toV1 } from 'https://deno.land/x/polkadot@0.2.41/types/mod.ts';
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { convertSiV0toV1 } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
 
 interface Named {
   name: unknown;

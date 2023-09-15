@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.42/util/types.ts';
 import type { AnyBool, Codec, Inspect, IU8a, Registry } from '../types/index.ts';
 
-import { isU8a, u8aToHex } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { isU8a, u8aToHex } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
 
 /**
  * @name bool

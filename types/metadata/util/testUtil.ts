@@ -2,14 +2,14 @@
 
 /* global describe, it, expect */
 
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.41/types-codec/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
 import type { MetaVersionAll } from '../versions.ts';
 import type { Check } from './types.ts';
 
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { hexToU8a, stringCamelCase, stringify, u8aToHex } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { hexToU8a, stringCamelCase, stringify, u8aToHex } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
 
 import { TypeRegistry } from '../../create/index.ts';
 import { unwrapStorageSi, unwrapStorageType } from '../../util/index.ts';

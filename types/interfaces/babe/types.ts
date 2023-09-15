@@ -1,9 +1,9 @@
 /* eslint-disable */
 
-import type { Bytes, Enum, Option, Struct, U8aFixed, Vec, bool, u32, u64 } from 'https://deno.land/x/polkadot@0.2.41/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.41/types-codec/types/index.ts';
-import type { AuthorityId } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/consensus/index.ts';
-import type { Hash, Header, Slot } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/runtime/index.ts';
+import type { Bytes, Enum, Option, Struct, U8aFixed, Vec, bool, u32, u64 } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
+import type { AuthorityId } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/consensus/index.ts';
+import type { Hash, Header, Slot } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/runtime/index.ts';
 
 /** @name AllowedSlots */
 export interface AllowedSlots extends Enum {

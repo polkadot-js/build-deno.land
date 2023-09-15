@@ -1,16 +1,16 @@
 
 import type { Observer } from 'https://esm.sh/rxjs@7.8.1';
-import type { ProviderInterface, ProviderInterfaceCallback } from 'https://deno.land/x/polkadot@0.2.41/rpc-provider/types.ts';
-import type { StorageKey, Vec } from 'https://deno.land/x/polkadot@0.2.41/types/mod.ts';
-import type { Hash } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/index.ts';
-import type { AnyJson, AnyNumber, Codec, DefinitionRpc, DefinitionRpcExt, DefinitionRpcSub, Registry } from 'https://deno.land/x/polkadot@0.2.41/types/types/index.ts';
-import type { Memoized } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
+import type { ProviderInterface, ProviderInterfaceCallback } from 'https://deno.land/x/polkadot@0.2.42/rpc-provider/types.ts';
+import type { StorageKey, Vec } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
+import type { Hash } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
+import type { AnyJson, AnyNumber, Codec, DefinitionRpc, DefinitionRpcExt, DefinitionRpcSub, Registry } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
+import type { Memoized } from 'https://deno.land/x/polkadot@0.2.42/util/types.ts';
 import type { RpcInterfaceMethod } from './types/index.ts';
 
 import { Observable, publishReplay, refCount } from 'https://esm.sh/rxjs@7.8.1';
 
-import { rpcDefinitions } from 'https://deno.land/x/polkadot@0.2.41/types/mod.ts';
-import { hexToU8a, isFunction, isNull, isUndefined, lazyMethod, logger, memoize, objectSpread, u8aConcat, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { rpcDefinitions } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
+import { hexToU8a, isFunction, isNull, isUndefined, lazyMethod, logger, memoize, objectSpread, u8aConcat, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
 
 import { drr, refCountDelay } from './util/index.ts';
 
@@ -79,8 +79,8 @@ function isTreatAsHex (key: StorageKey): boolean {
  * <BR>
  *
  * ```javascript
- * import Rpc from 'https://deno.land/x/polkadot@0.2.41/rpc-core/mod.ts';
- * import { WsProvider } from 'https://deno.land/x/polkadot@0.2.41/rpc-provider/ws/index.ts';
+ * import Rpc from 'https://deno.land/x/polkadot@0.2.42/rpc-core/mod.ts';
+ * import { WsProvider } from 'https://deno.land/x/polkadot@0.2.42/rpc-provider/ws/index.ts';
  *
  * const provider = new WsProvider('ws://127.0.0.1:9944');
  * const rpc = new Rpc(provider);

@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.42/util/types.ts';
 import type { AnyBool, Inspect, Registry } from '../types/index.ts';
 
-import { isHex, isU8a, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { isHex, isU8a, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
 
 import { Option } from '../base/Option.ts';
 import { bool as Bool } from '../native/Bool.ts';

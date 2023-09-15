@@ -1,7 +1,7 @@
 /* eslint-disable */
 
-import type { Compact, Enum, Struct } from 'https://deno.land/x/polkadot@0.2.41/types-codec/mod.ts';
-import type { AccountId, Balance } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/runtime/index.ts';
+import type { Compact, Enum, Struct } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
+import type { AccountId, Balance } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/runtime/index.ts';
 
 /** @name AssetOptions */
 export interface AssetOptions extends Struct {

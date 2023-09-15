@@ -1,13 +1,13 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { Option, u32, WrapperOpaque } from 'https://deno.land/x/polkadot@0.2.41/types/mod.ts';
-import type { AccountId } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/index.ts';
-import type { PalletImOnlineBoundedOpaqueNetworkState } from 'https://deno.land/x/polkadot@0.2.41/types/lookup.ts';
+import type { Option, u32, WrapperOpaque } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
+import type { AccountId } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
+import type { PalletImOnlineBoundedOpaqueNetworkState } from 'https://deno.land/x/polkadot@0.2.42/types/lookup.ts';
 import type { DeriveApi, DeriveHeartbeats } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
-import { BN_ZERO } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { BN_ZERO } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 

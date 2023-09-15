@@ -1,6 +1,6 @@
 
-import type { DeriveCustom } from 'https://deno.land/x/polkadot@0.2.41/api-base/types/index.ts';
-import type { AnyFunction, AnyString } from 'https://deno.land/x/polkadot@0.2.41/types/types/index.ts';
+import type { DeriveCustom } from 'https://deno.land/x/polkadot@0.2.42/api-base/types/index.ts';
+import type { AnyFunction, AnyString } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
 import type { ExactDerive } from './derive.ts';
 import type { DeriveApi } from './types.ts';
 

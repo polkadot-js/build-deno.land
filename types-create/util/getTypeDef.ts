@@ -1,9 +1,9 @@
 
-import type { AnyString } from 'https://deno.land/x/polkadot@0.2.41/types-codec/types/index.ts';
-import type { TypeDef } from 'https://deno.land/x/polkadot@0.2.41/types-create/types/index.ts';
+import type { AnyString } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
+import type { TypeDef } from 'https://deno.land/x/polkadot@0.2.42/types-create/types/index.ts';
 
-import { sanitize } from 'https://deno.land/x/polkadot@0.2.41/types-codec/mod.ts';
-import { isNumber, isString, objectSpread } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { sanitize } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
+import { isNumber, isString, objectSpread } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
 
 import { TypeDefInfo } from '../types/index.ts';
 import { typeSplit } from './typeSplit.ts';

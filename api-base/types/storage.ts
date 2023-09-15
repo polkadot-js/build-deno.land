@@ -1,9 +1,9 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { StorageKey, u64 } from 'https://deno.land/x/polkadot@0.2.41/types/mod.ts';
-import type { Hash } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/index.ts';
-import type { StorageEntry } from 'https://deno.land/x/polkadot@0.2.41/types/primitive/types.ts';
-import type { AnyFunction, AnyTuple, Callback, Codec, IStorageKey } from 'https://deno.land/x/polkadot@0.2.41/types/types/index.ts';
+import type { StorageKey, u64 } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
+import type { Hash } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
+import type { StorageEntry } from 'https://deno.land/x/polkadot@0.2.42/types/primitive/types.ts';
+import type { AnyFunction, AnyTuple, Callback, Codec, IStorageKey } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
 import type { ApiTypes, DropLast, EmptyBase, MethodResult, PaginationOptions, PromiseOrObs, ReturnCodec, UnsubscribePromise } from './base.ts';
 
 interface StorageEntryObservableMulti<R extends Codec = Codec> {

@@ -1,11 +1,11 @@
 
-import type { Hash, ReferendumInfoTo239, Tally } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/index.ts';
-import type { FrameSupportPreimagesBounded, PalletDemocracyReferendumInfo, PalletDemocracyReferendumStatus, PalletDemocracyVoteThreshold } from 'https://deno.land/x/polkadot@0.2.41/types/lookup.ts';
-import type { Option } from 'https://deno.land/x/polkadot@0.2.41/types-codec/mod.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
+import type { Hash, ReferendumInfoTo239, Tally } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
+import type { FrameSupportPreimagesBounded, PalletDemocracyReferendumInfo, PalletDemocracyReferendumStatus, PalletDemocracyVoteThreshold } from 'https://deno.land/x/polkadot@0.2.42/types/lookup.ts';
+import type { Option } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.42/util/types.ts';
 import type { DeriveReferendum, DeriveReferendumVote, DeriveReferendumVotes, DeriveReferendumVoteState } from '../types.ts';
 
-import { BN, bnSqrt, isHex, isString, isU8a, objectSpread, stringToHex, u8aToHex } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { BN, bnSqrt, isHex, isString, isU8a, objectSpread, stringToHex, u8aToHex } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
 
 interface ApproxState {
   votedAye: BN;

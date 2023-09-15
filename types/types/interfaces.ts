@@ -1,10 +1,10 @@
 
-import type { SignOptions } from 'https://deno.land/x/polkadot@0.2.41/keyring/types.ts';
-import type { AnyTuple, Codec, IMethod as IMethodBase, INumber, IText } from 'https://deno.land/x/polkadot@0.2.41/types-codec/types/index.ts';
+import type { SignOptions } from 'https://deno.land/x/polkadot@0.2.42/keyring/types.ts';
+import type { AnyTuple, Codec, IMethod as IMethodBase, INumber, IText } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
 import type { FunctionMetadataLatest, StorageEntryMetadataLatest } from '../interfaces/metadata/index.ts';
 import type { Registry } from './registry.ts';
 
-export type { ICompact, IEnum, IMap, INumber, IOption, IResult, ISet, IStruct, IText, ITuple, IU8a, IVec } from 'https://deno.land/x/polkadot@0.2.41/types-codec/types/index.ts';
+export type { ICompact, IEnum, IMap, INumber, IOption, IResult, ISet, IStruct, IText, ITuple, IU8a, IVec } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
 
 export interface IMethod<A extends AnyTuple = AnyTuple, M = FunctionMetadataLatest> extends IMethodBase<A, M> {
   readonly registry: Registry;

@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import type { StorageKey } from 'https://deno.land/x/polkadot@0.2.41/types/mod.ts';
+import type { StorageKey } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
 
 /** @name PrefixedStorageKey */
 export interface PrefixedStorageKey extends StorageKey {}

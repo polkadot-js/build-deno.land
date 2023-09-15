@@ -1,8 +1,8 @@
 /* eslint-disable */
 
-import type { PortableRegistry } from 'https://deno.land/x/polkadot@0.2.41/types/mod.ts';
-import type { Bytes, Enum, Option, Struct, Text, Type, Vec, WrapperOpaque, bool, u8 } from 'https://deno.land/x/polkadot@0.2.41/types-codec/mod.ts';
-import type { Si1Field, Si1LookupTypeId, Si1Type, SiLookupTypeId } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/scaleInfo/index.ts';
+import type { PortableRegistry } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
+import type { Bytes, Enum, Option, Struct, Text, Type, Vec, WrapperOpaque, bool, u8 } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
+import type { Si1Field, Si1LookupTypeId, Si1Type, SiLookupTypeId } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/scaleInfo/index.ts';
 
 /** @name ErrorMetadataLatest */
 export interface ErrorMetadataLatest extends ErrorMetadataV14 {}

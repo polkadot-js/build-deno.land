@@ -1,6 +1,6 @@
 
-import type { BlockNumber, DispatchError, DispatchInfo, EventRecord, ExtrinsicStatus, Hash } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/index.ts';
-import type { AnyJson, ISubmittableResult } from 'https://deno.land/x/polkadot@0.2.41/types/types/index.ts';
+import type { BlockNumber, DispatchError, DispatchInfo, EventRecord, ExtrinsicStatus, Hash } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
+import type { AnyJson, ISubmittableResult } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
 import type { SubmittableResultValue } from './types.ts';
 
 const recordIdentity = (record: EventRecord) => record;

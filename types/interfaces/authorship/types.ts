@@ -1,8 +1,8 @@
 /* eslint-disable */
 
-import type { Enum, Option } from 'https://deno.land/x/polkadot@0.2.41/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.41/types-codec/types/index.ts';
-import type { AccountId, BlockNumber, Hash } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/runtime/index.ts';
+import type { Enum, Option } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
+import type { AccountId, BlockNumber, Hash } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/runtime/index.ts';
 
 /** @name UncleEntryItem */
 export interface UncleEntryItem extends Enum {

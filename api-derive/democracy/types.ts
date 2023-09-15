@@ -1,9 +1,9 @@
 
-import type { Vec } from 'https://deno.land/x/polkadot@0.2.41/types/mod.ts';
-import type { AccountId, Balance, Call, Hash, PropIndex, ReferendumIndex, ReferendumInfoTo239, Vote } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/index.ts';
-import type { PalletDemocracyReferendumStatus, PalletDemocracyVoteThreshold } from 'https://deno.land/x/polkadot@0.2.41/types/lookup.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
+import type { Vec } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
+import type { AccountId, Balance, Call, Hash, PropIndex, ReferendumIndex, ReferendumInfoTo239, Vote } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
+import type { PalletDemocracyReferendumStatus, PalletDemocracyVoteThreshold } from 'https://deno.land/x/polkadot@0.2.42/types/lookup.ts';
+import type { BN } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.42/util/types.ts';
 
 export interface AtBlock {
   at: BN;

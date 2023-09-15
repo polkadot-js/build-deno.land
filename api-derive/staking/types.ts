@@ -1,7 +1,7 @@
 
-import type { AccountId, Balance, EraIndex, RewardPoint } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/index.ts';
-import type { PalletStakingExposure, PalletStakingRewardDestination, PalletStakingStakingLedger, PalletStakingValidatorPrefs } from 'https://deno.land/x/polkadot@0.2.41/types/lookup.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import type { AccountId, Balance, EraIndex, RewardPoint } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
+import type { PalletStakingExposure, PalletStakingRewardDestination, PalletStakingStakingLedger, PalletStakingValidatorPrefs } from 'https://deno.land/x/polkadot@0.2.42/types/lookup.ts';
+import type { BN } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
 import type { DeriveSessionIndexes } from '../session/types.ts';
 
 export type DeriveEraValPoints = Record<string, RewardPoint>;

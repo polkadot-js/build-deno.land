@@ -1,8 +1,8 @@
 
-import type { ContractMetadataV3, ContractMetadataV4 } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/index.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.41/types/types/index.ts';
+import type { ContractMetadataV3, ContractMetadataV4 } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
 
 export function v3ToV4 (registry: Registry, v3: ContractMetadataV3): ContractMetadataV4 {
   return registry.createType('ContractMetadataV4', objectSpread({}, v3, {

@@ -11,7 +11,7 @@ import { hexToU8a } from './toU8a.ts';
  * <BR>
  *
  * ```javascript
- * import { hexToString } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { hexToString } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
  *
  * hexToU8a('0x68656c6c6f'); // hello
  * ```

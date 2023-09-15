@@ -1,15 +1,15 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { u32, Vec } from 'https://deno.land/x/polkadot@0.2.41/types/mod.ts';
-import type { AccountId32, Balance, BlockNumber } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/index.ts';
-import type { PalletElectionsPhragmenSeatHolder } from 'https://deno.land/x/polkadot@0.2.41/types/lookup.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.41/types/types/index.ts';
+import type { u32, Vec } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
+import type { AccountId32, Balance, BlockNumber } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
+import type { PalletElectionsPhragmenSeatHolder } from 'https://deno.land/x/polkadot@0.2.42/types/lookup.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
 import type { DeriveApi } from '../types.ts';
 import type { DeriveElectionsInfo } from './types.ts';
 
 import { combineLatest, map, of } from 'https://esm.sh/rxjs@7.8.1';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 

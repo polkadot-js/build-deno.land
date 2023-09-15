@@ -1,10 +1,10 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { QueryableModuleStorage } from 'https://deno.land/x/polkadot@0.2.41/api-base/types/index.ts';
-import type { Vec } from 'https://deno.land/x/polkadot@0.2.41/types/mod.ts';
-import type { AccountId, Balance } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/index.ts';
-import type { PalletElectionsPhragmenVoter } from 'https://deno.land/x/polkadot@0.2.41/types/lookup.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.41/types/types/index.ts';
+import type { QueryableModuleStorage } from 'https://deno.land/x/polkadot@0.2.42/api-base/types/index.ts';
+import type { Vec } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
+import type { AccountId, Balance } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
+import type { PalletElectionsPhragmenVoter } from 'https://deno.land/x/polkadot@0.2.42/types/lookup.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
 import type { DeriveApi, DeriveCouncilVote, DeriveCouncilVotes } from '../types.ts';
 
 import { combineLatest, map, of } from 'https://esm.sh/rxjs@7.8.1';

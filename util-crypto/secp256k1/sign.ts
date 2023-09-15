@@ -4,8 +4,8 @@ import type { HashType } from './types.ts';
 
 import { secp256k1 } from 'https://esm.sh/@noble/curves@1.2.0/secp256k1.js';
 
-import { bnToU8a, hasBigInt, u8aConcat } from 'https://deno.land/x/polkadot/util/mod.ts';
-import { isReady, secp256k1Sign as wasm } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
+import { bnToU8a, hasBigInt, u8aConcat } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+import { isReady, secp256k1Sign as wasm } from 'https://deno.land/x/polkadot@0.2.42/wasm-crypto/mod.ts';
 
 import { BN_BE_256_OPTS } from '../bn.ts';
 import { hasher } from './hasher.ts';

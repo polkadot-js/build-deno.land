@@ -1,11 +1,11 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { AccountId } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/index.ts';
+import type { AccountId } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
 import type { Collective, PrimeFnRet } from './types.ts';
 
 import { map, of } from 'https://esm.sh/rxjs@7.8.1';
 
-import { isFunction } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { isFunction } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
 
 import { withSection } from './helpers.ts';
 

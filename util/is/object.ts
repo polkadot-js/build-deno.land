@@ -10,7 +10,7 @@ type ObjectIndexed = Record<string, any>;
  * <BR>
  *
  * ```javascript
- * import { isObject } from 'https://deno.land/x/polkadot/util/mod.ts';
+ * import { isObject } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
  *
  * isObject({}); // => true
  * isObject('something'); // => false

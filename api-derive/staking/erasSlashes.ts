@@ -1,8 +1,8 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { Option, StorageKey } from 'https://deno.land/x/polkadot@0.2.41/types/mod.ts';
-import type { BalanceOf, EraIndex, Perbill } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/index.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.41/types/types/index.ts';
+import type { Option, StorageKey } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
+import type { BalanceOf, EraIndex, Perbill } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
 import type { DeriveApi, DeriveEraSlashes, DeriveEraValSlash } from '../types.ts';
 
 import { combineLatest, map, of } from 'https://esm.sh/rxjs@7.8.1';

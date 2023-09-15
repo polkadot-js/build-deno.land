@@ -1,10 +1,10 @@
 
-import type { ApiBase } from 'https://deno.land/x/polkadot@0.2.41/api/base/index.ts';
-import type { ApiTypes } from 'https://deno.land/x/polkadot@0.2.41/api/types/index.ts';
-import type { Text } from 'https://deno.land/x/polkadot@0.2.41/types/mod.ts';
-import type { ContractExecResultResult, ContractSelector, StorageDeposit, Weight, WeightV2 } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/index.ts';
-import type { Codec, TypeDef } from 'https://deno.land/x/polkadot@0.2.41/types/types/index.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import type { ApiBase } from 'https://deno.land/x/polkadot@0.2.42/api/base/index.ts';
+import type { ApiTypes } from 'https://deno.land/x/polkadot@0.2.42/api/types/index.ts';
+import type { Text } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
+import type { ContractExecResultResult, ContractSelector, StorageDeposit, Weight, WeightV2 } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
+import type { Codec, TypeDef } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
+import type { BN } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
 import type { Abi } from './index.ts';
 
 export interface ContractBase<ApiType extends ApiTypes> {

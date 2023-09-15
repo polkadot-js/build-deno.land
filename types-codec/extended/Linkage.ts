@@ -1,5 +1,5 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.42/util/types.ts';
 import type { Codec, CodecClass, Registry } from '../types/index.ts';
 
 import { Option } from '../base/Option.ts';

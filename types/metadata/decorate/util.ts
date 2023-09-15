@@ -1,7 +1,7 @@
 
-import type { Text } from 'https://deno.land/x/polkadot@0.2.41/types-codec/mod.ts';
+import type { Text } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
 
-import { stringCamelCase } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { stringCamelCase } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
 
 type Name = string | Text;
 

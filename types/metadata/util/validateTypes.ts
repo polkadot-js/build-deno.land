@@ -1,7 +1,7 @@
 
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.41/types-codec/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
 
-import { logger } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { logger } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
 
 import { extractTypes } from './extractTypes.ts';
 import { flattenUniq } from './flattenUniq.ts';

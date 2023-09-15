@@ -1,8 +1,8 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { Option } from 'https://deno.land/x/polkadot@0.2.41/types/mod.ts';
-import type { AccountId } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/index.ts';
-import type { KitchensinkRuntimeSessionKeys } from 'https://deno.land/x/polkadot@0.2.41/types/lookup.ts';
+import type { Option } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
+import type { AccountId } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
+import type { KitchensinkRuntimeSessionKeys } from 'https://deno.land/x/polkadot@0.2.42/types/lookup.ts';
 import type { DeriveApi } from '../types.ts';
 import type { DeriveStakingKeys } from './types.ts';
 

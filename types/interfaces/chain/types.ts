@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import type { Hash } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/runtime/index.ts';
+import type { Hash } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/runtime/index.ts';
 
 /** @name BlockHash */
 export interface BlockHash extends Hash {}

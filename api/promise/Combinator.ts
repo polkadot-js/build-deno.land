@@ -1,8 +1,8 @@
 
-import type { Callback } from 'https://deno.land/x/polkadot@0.2.41/types/types/index.ts';
+import type { Callback } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
 import type { UnsubscribePromise } from '../types/index.ts';
 
-import { isFunction } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { isFunction } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
 
 export type CombinatorCallback <T extends unknown[]> = Callback<T>;
 

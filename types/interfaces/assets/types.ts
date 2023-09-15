@@ -1,7 +1,7 @@
 /* eslint-disable */
 
-import type { Bytes, Compact, Struct, bool, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.41/types-codec/mod.ts';
-import type { AccountId, BalanceOf } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/runtime/index.ts';
+import type { Bytes, Compact, Struct, bool, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
+import type { AccountId, BalanceOf } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/runtime/index.ts';
 
 /** @name AssetApproval */
 export interface AssetApproval extends Struct {

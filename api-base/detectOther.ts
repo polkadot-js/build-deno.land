@@ -1,5 +1,5 @@
 
-import { packageInfo as rpcInfo } from 'https://deno.land/x/polkadot@0.2.41/rpc-core/packageInfo.ts';
-import { packageInfo as typesInfo } from 'https://deno.land/x/polkadot@0.2.41/types/packageInfo.ts';
+import { packageInfo as rpcInfo } from 'https://deno.land/x/polkadot@0.2.42/rpc-core/packageInfo.ts';
+import { packageInfo as typesInfo } from 'https://deno.land/x/polkadot@0.2.42/types/packageInfo.ts';
 
 export default [rpcInfo, typesInfo];

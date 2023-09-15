@@ -1,10 +1,10 @@
 
-import type { AnyU8a, Registry } from 'https://deno.land/x/polkadot@0.2.41/types-codec/types/index.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import type { AnyU8a, Registry } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
+import type { BN } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
 import type { IExtrinsicEra, INumber } from '../types/index.ts';
 
-import { Enum, Raw, Tuple, U64 } from 'https://deno.land/x/polkadot@0.2.41/types-codec/mod.ts';
-import { bnToBn, formatNumber, hexToU8a, isHex, isObject, isU8a, u8aToBn, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { Enum, Raw, Tuple, U64 } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
+import { bnToBn, formatNumber, hexToU8a, isHex, isObject, isU8a, u8aToBn, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
 
 import { IMMORTAL_ERA } from './constants.ts';
 

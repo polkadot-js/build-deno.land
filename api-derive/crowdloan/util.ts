@@ -1,7 +1,7 @@
 
-import type { FrameSystemEventRecord } from 'https://deno.land/x/polkadot@0.2.41/types/lookup.ts';
-import type { Vec } from 'https://deno.land/x/polkadot@0.2.41/types-codec/mod.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import type { FrameSystemEventRecord } from 'https://deno.land/x/polkadot@0.2.42/types/lookup.ts';
+import type { Vec } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
+import type { BN } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
 
 interface Changes {
   added: string[];

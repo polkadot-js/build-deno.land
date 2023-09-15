@@ -1,5 +1,5 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.42/util/types.ts';
 
 export interface AccountOptions {
   /** The index of the account */

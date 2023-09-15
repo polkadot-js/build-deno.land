@@ -1,6 +1,6 @@
 
-import type { Vec } from 'https://deno.land/x/polkadot@0.2.41/types/mod.ts';
-import type { ApprovalFlag } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/elections/index.ts';
+import type { Vec } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
+import type { ApprovalFlag } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/elections/index.ts';
 
 /** @internal */
 export function approvalFlagsToBools (flags: Vec<ApprovalFlag> | ApprovalFlag[]): boolean[] {

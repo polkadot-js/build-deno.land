@@ -1,6 +1,6 @@
 
-import type { SubmittableResult } from 'https://deno.land/x/polkadot@0.2.41/api/mod.ts';
-import type { EventRecord } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/index.ts';
+import type { SubmittableResult } from 'https://deno.land/x/polkadot@0.2.42/api/mod.ts';
+import type { EventRecord } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
 
 type ContractEvents = 'CodeStored' | 'ContractEmitted' | 'ContractExecution' | 'Instantiated';
 

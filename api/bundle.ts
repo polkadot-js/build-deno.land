@@ -1,8 +1,8 @@
 
-import 'https://deno.land/x/polkadot@0.2.41/rpc-augment/mod.ts';
+import 'https://deno.land/x/polkadot@0.2.42/rpc-augment/mod.ts';
 
-export { Keyring } from 'https://deno.land/x/polkadot@0.2.41/keyring/mod.ts';
-export { HttpProvider, ScProvider, WsProvider } from 'https://deno.land/x/polkadot@0.2.41/rpc-provider/mod.ts';
+export { Keyring } from 'https://deno.land/x/polkadot@0.2.42/keyring/mod.ts';
+export { HttpProvider, ScProvider, WsProvider } from 'https://deno.land/x/polkadot@0.2.42/rpc-provider/mod.ts';
 
 export { packageInfo } from './packageInfo.ts';
 export { SubmittableResult } from './submittable/index.ts';

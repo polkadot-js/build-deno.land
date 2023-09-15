@@ -1,10 +1,10 @@
 
-import type { ChainUpgrades } from 'https://deno.land/x/polkadot@0.2.41/types/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.41/util/types.ts';
+import type { ChainUpgrades } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot@0.2.42/util/types.ts';
 import type { ChainUpgradesExpanded } from './types.ts';
 
-import { selectableNetworks } from 'https://deno.land/x/polkadot@0.2.41/networks/mod.ts';
-import { BN, hexToU8a } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { selectableNetworks } from 'https://deno.land/x/polkadot@0.2.42/networks/mod.ts';
+import { BN, hexToU8a } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
 
 import * as allKnown from './e2e/index.ts';
 

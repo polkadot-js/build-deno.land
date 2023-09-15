@@ -1,14 +1,14 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { Option, Vec } from 'https://deno.land/x/polkadot@0.2.41/types/mod.ts';
-import type { AccountId, Hash, ReferendumInfoTo239, Vote } from 'https://deno.land/x/polkadot@0.2.41/types/interfaces/index.ts';
-import type { PalletDemocracyReferendumInfo, PalletDemocracyReferendumStatus, PalletDemocracyVoteVoting } from 'https://deno.land/x/polkadot@0.2.41/types/lookup.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import type { Option, Vec } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
+import type { AccountId, Hash, ReferendumInfoTo239, Vote } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
+import type { PalletDemocracyReferendumInfo, PalletDemocracyReferendumStatus, PalletDemocracyVoteVoting } from 'https://deno.land/x/polkadot@0.2.42/types/lookup.ts';
+import type { BN } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
 import type { DeriveApi, DeriveBalancesAccount, DeriveReferendum, DeriveReferendumVote, DeriveReferendumVotes } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
-import { isFunction, objectSpread } from 'https://deno.land/x/polkadot@0.2.41/util/mod.ts';
+import { isFunction, objectSpread } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 import { calcVotes, getImageHash, getStatus } from './util.ts';
