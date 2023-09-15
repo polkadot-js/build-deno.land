@@ -1,7 +1,7 @@
 
-import { hmac } from 'https://esm.sh/@noble/hashes@1.3.1/hmac.js';
-import { sha256 } from 'https://esm.sh/@noble/hashes@1.3.1/sha256.js';
-import { sha512 } from 'https://esm.sh/@noble/hashes@1.3.1/sha512.js';
+import { hmac } from 'https://esm.sh/@noble/hashes@1.3.2/hmac.js';
+import { sha256 } from 'https://esm.sh/@noble/hashes@1.3.2/sha256.js';
+import { sha512 } from 'https://esm.sh/@noble/hashes@1.3.2/sha512.js';
 
 import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { hmacSha256, hmacSha512, isReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';

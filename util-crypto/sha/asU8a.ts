@@ -1,6 +1,6 @@
 
-import { sha256 as sha256Js } from 'https://esm.sh/@noble/hashes@1.3.1/sha256.js';
-import { sha512 as sha512Js } from 'https://esm.sh/@noble/hashes@1.3.1/sha512.js';
+import { sha256 as sha256Js } from 'https://esm.sh/@noble/hashes@1.3.2/sha256.js';
+import { sha512 as sha512Js } from 'https://esm.sh/@noble/hashes@1.3.2/sha512.js';
 
 import { sha256, sha512 } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 

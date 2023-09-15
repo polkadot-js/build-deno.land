@@ -23,6 +23,7 @@ export { isNumber } from './number.ts';
 export { isObject } from './object.ts';
 export { isObservable } from './observable.ts';
 export { isPromise } from './promise.ts';
+export { isRiscV } from './riscv.ts';
 export { isString } from './string.ts';
 export { isTestChain } from './testChain.ts';
 export { isToBigInt } from './toBigInt.ts';

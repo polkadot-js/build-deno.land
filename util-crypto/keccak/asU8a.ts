@@ -1,5 +1,5 @@
 
-import { keccak_256 as keccak256Js, keccak_512 as keccak512Js } from 'https://esm.sh/@noble/hashes@1.3.1/sha3.js';
+import { keccak_256 as keccak256Js, keccak_512 as keccak512Js } from 'https://esm.sh/@noble/hashes@1.3.2/sha3.js';
 
 import { keccak256, keccak512 } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 

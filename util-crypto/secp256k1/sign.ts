@@ -2,7 +2,7 @@
 import type { Keypair } from '../types.ts';
 import type { HashType } from './types.ts';
 
-import { secp256k1 } from 'https://esm.sh/@noble/curves@1.1.0/secp256k1.js';
+import { secp256k1 } from 'https://esm.sh/@noble/curves@1.2.0/secp256k1.js';
 
 import { bnToU8a, hasBigInt, u8aConcat } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { isReady, secp256k1Sign as wasm } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';

@@ -1,7 +1,7 @@
 
-import type { Params } from './types.ts';
+import type { ScryptParams } from './types.ts';
 
-import { scrypt as scryptJs } from 'https://esm.sh/@noble/hashes@1.3.1/scrypt.js';
+import { scrypt as scryptJs } from 'https://esm.sh/@noble/hashes@1.3.2/scrypt.js';
 
 import { hasBigInt, objectSpread, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { isReady, scrypt } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
@@ -10,7 +10,7 @@ import { randomAsU8a } from '../random/asU8a.ts';
 import { DEFAULT_PARAMS } from './defaults.ts';
 
 interface Result {
-  params: Params,
+  params: ScryptParams,
   password: Uint8Array;
   salt: Uint8Array;
 }

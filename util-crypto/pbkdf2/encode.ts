@@ -1,6 +1,6 @@
 
-import { pbkdf2 as pbkdf2Js } from 'https://esm.sh/@noble/hashes@1.3.1/pbkdf2.js';
-import { sha512 } from 'https://esm.sh/@noble/hashes@1.3.1/sha512.js';
+import { pbkdf2 as pbkdf2Js } from 'https://esm.sh/@noble/hashes@1.3.2/pbkdf2.js';
+import { sha512 } from 'https://esm.sh/@noble/hashes@1.3.2/sha512.js';
 
 import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { isReady, pbkdf2 } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';

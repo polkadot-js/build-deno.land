@@ -1,7 +1,7 @@
 
 import type { Keypair } from '../../types.ts';
 
-import { secp256k1 } from 'https://esm.sh/@noble/curves@1.1.0/secp256k1.js';
+import { secp256k1 } from 'https://esm.sh/@noble/curves@1.2.0/secp256k1.js';
 
 import { hasBigInt, u8aEmpty } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { isReady, secp256k1FromSeed } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';

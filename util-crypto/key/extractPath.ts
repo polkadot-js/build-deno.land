@@ -4,7 +4,7 @@ import { DeriveJunction } from './DeriveJunction.ts';
 const RE_JUNCTION = /\/(\/?)([^/]+)/g;
 
 export interface ExtractResult {
-  parts: null | string[];
+  parts: string[] | null;
   path: DeriveJunction[];
 }
 

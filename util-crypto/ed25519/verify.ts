@@ -1,5 +1,5 @@
 
-import { ed25519 } from 'https://esm.sh/@noble/curves@1.1.0/ed25519.js';
+import { ed25519 } from 'https://esm.sh/@noble/curves@1.2.0/ed25519.js';
 
 import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { ed25519Verify as wasmVerify, isReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';

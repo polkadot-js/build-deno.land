@@ -1,7 +1,7 @@
 
 import type { Keypair } from '../../types.ts';
 
-import { ed25519 } from 'https://esm.sh/@noble/curves@1.1.0/ed25519.js';
+import { ed25519 } from 'https://esm.sh/@noble/curves@1.2.0/ed25519.js';
 
 import { hasBigInt, u8aConcatStrict } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { ed25519KeypairFromSeed, isReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
