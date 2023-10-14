@@ -1,7 +1,7 @@
 /* eslint-disable */
 
-import type { Bytes, Enum, Struct, Text, U256, Vec, u256 } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
-import type { H160, H256 } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/runtime/index.ts';
+import type { Bytes, Enum, Option, Struct, Text, U256, Vec, u256, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { H160, H256 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 /** @name EvmAccount */
 export interface EvmAccount extends Struct {
@@ -17,11 +17,29 @@ export interface EvmCallInfo extends Struct {
   readonly logs: Vec<EvmLog>;
 }
 
+/** @name EvmCallInfoV2 */
+export interface EvmCallInfoV2 extends Struct {
+  readonly exitReason: ExitReason;
+  readonly value: Bytes;
+  readonly usedGas: U256;
+  readonly weightInfo: Option<EvmWeightInfo>;
+  readonly logs: Vec<EvmLog>;
+}
+
 /** @name EvmCreateInfo */
 export interface EvmCreateInfo extends Struct {
   readonly exitReason: ExitReason;
   readonly value: H160;
   readonly usedGas: U256;
+  readonly logs: Vec<EvmLog>;
+}
+
+/** @name EvmCreateInfoV2 */
+export interface EvmCreateInfoV2 extends Struct {
+  readonly exitReason: ExitReason;
+  readonly value: H160;
+  readonly usedGas: U256;
+  readonly weightInfo: Option<EvmWeightInfo>;
   readonly logs: Vec<EvmLog>;
 }
 
@@ -36,6 +54,14 @@ export interface EvmLog extends Struct {
 export interface EvmVicinity extends Struct {
   readonly gasPrice: u256;
   readonly origin: H160;
+}
+
+/** @name EvmWeightInfo */
+export interface EvmWeightInfo extends Struct {
+  readonly refTimeLimit: Option<u64>;
+  readonly proofSizeLimit: Option<u64>;
+  readonly refTimeUsage: Option<u64>;
+  readonly proofSizeUsage: Option<u64>;
 }
 
 /** @name ExitError */

@@ -1,8 +1,8 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { Option } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
-import type { AccountId, EraIndex } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
-import type { PalletStakingExposure, PalletStakingNominations, PalletStakingRewardDestination, PalletStakingStakingLedger, PalletStakingValidatorPrefs } from 'https://deno.land/x/polkadot@0.2.42/types/lookup.ts';
+import type { Option } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, EraIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletStakingExposure, PalletStakingNominations, PalletStakingRewardDestination, PalletStakingStakingLedger, PalletStakingValidatorPrefs } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { DeriveApi, DeriveStakingQuery, StakingQueryFlags } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.1';
@@ -12,7 +12,7 @@ import { firstMemo, memo } from '../util/index.ts';
 function parseDetails (stashId: AccountId, controllerIdOpt: Option<AccountId> | null, nominatorsOpt: Option<PalletStakingNominations>, rewardDestination: PalletStakingRewardDestination, validatorPrefs: PalletStakingValidatorPrefs, exposure: PalletStakingExposure, stakingLedgerOpt: Option<PalletStakingStakingLedger>): DeriveStakingQuery {
   return {
     accountId: stashId,
-    controllerId: controllerIdOpt && controllerIdOpt.unwrapOr(null),
+    controllerId: controllerIdOpt?.unwrapOr(null) || null,
     exposure,
     nominators: nominatorsOpt.isSome
       ? nominatorsOpt.unwrap().targets

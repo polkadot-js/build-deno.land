@@ -1,7 +1,7 @@
 
-import type { InterfaceTypes } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
-import type { bool, BTreeMap, BTreeSet, Bytes, CodecSet, Compact, Enum, HashMap, Linkage, Null, Option, OptionBool, Range, RangeInclusive, Result, Struct, u8, U8aFixed, Vec, VecFixed } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
-import type { Codec, ICompact, IEnum, IMap, IMethod, INumber, IOption, IResult, ISet, IStruct, ITuple, IU8a, IVec } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
+import type { InterfaceTypes } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { bool, BTreeMap, BTreeSet, Bytes, CodecSet, Compact, Enum, HashMap, Linkage, Null, Option, OptionBool, Range, RangeInclusive, Result, Struct, u8, U8aFixed, Vec, VecFixed } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Codec, ICompact, IEnum, IMap, IMethod, INumber, IOption, IResult, ISet, IStruct, ITuple, IU8a, IVec } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 
 export type DetectCodec<T extends Codec, K extends string> =
   // This is weird - it looks the wrong way around (i.e. T check should be done first), however
@@ -30,7 +30,7 @@ export type __Sanitize<K extends string> =
 
 export type __Value = string | Record<string, unknown> | __Value[];
 
-export type __MapWrapOne<C extends Codec> = {
+export interface __MapWrapOne<C extends Codec> {
   'BTreeSet<': BTreeSet<C>;
   'Compact<': C extends INumber ? Compact<C> : Codec;
   'Linkage<': Linkage<C>;
@@ -39,13 +39,13 @@ export type __MapWrapOne<C extends Codec> = {
   'RangeInclusive<': C extends INumber ? RangeInclusive<C> : Codec;
   'Vec<': C extends u8 ? Bytes : Vec<C>;
   '[': C extends u8 ? U8aFixed : VecFixed<C>;
-};
+}
 
-export type __MapWrapTwo<K extends Codec, V extends Codec> = {
+export interface __MapWrapTwo<K extends Codec, V extends Codec> {
   'BTreeMap<': BTreeMap<K, V>;
   'HashMap<': HashMap<K, V>;
   'Result<': Result<K, V>;
-};
+}
 
 export type __WrapOne = keyof __MapWrapOne<Codec>;
 

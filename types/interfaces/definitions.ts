@@ -1,6 +1,7 @@
 
 export * from './essentials.ts';
 
+export { default as assetConversion } from './assetConversion/definitions.ts';
 export { default as assets } from './assets/definitions.ts';
 export { default as aura } from './aura/definitions.ts';
 export { default as authorship } from './authorship/definitions.ts';

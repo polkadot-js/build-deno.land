@@ -1,6 +1,6 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { AnyFunction, Callback, Codec } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
+import type { AnyFunction, Callback, Codec } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 export type Push<T extends readonly unknown[], V> = [...T, V]
 
@@ -53,7 +53,7 @@ export interface PaginationOptions<A = unknown> {
 export type DecorateMethod<_ApiType extends ApiTypes, T = any> =
   <M extends (...args: any[]) => Observable<any>>(method: M, options?: DecorateMethodOptions) => T;
 
-type AsCodec<R extends Codec | any> = R extends Codec
+type AsCodec<R> = R extends Codec
   ? R
   : Codec;
 

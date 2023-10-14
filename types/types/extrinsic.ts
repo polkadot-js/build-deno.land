@@ -1,6 +1,6 @@
 
-import type { AnyJson, AnyNumber, AnyTuple, AnyU8a, Codec } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.42/util/types.ts';
+import type { AnyJson, AnyNumber, AnyTuple, AnyU8a, Codec } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { ExtrinsicStatus } from '../interfaces/author/index.ts';
 import type { EcdsaSignature, Ed25519Signature, Sr25519Signature } from '../interfaces/extrinsics/index.ts';
 import type { Address, Call, H256, Hash } from '../interfaces/runtime/index.ts';
@@ -36,22 +36,22 @@ export interface SignerPayloadJSON {
   /**
    * @description The checkpoint hash of the block, in hex
    */
-  blockHash: string;
+  blockHash: HexString;
 
   /**
    * @description The checkpoint block number, in hex
    */
-  blockNumber: string;
+  blockNumber: HexString;
 
   /**
    * @description The era for this transaction, in hex
    */
-  era: string;
+  era: HexString;
 
   /**
    * @description The genesis hash of the chain, in hex
    */
-  genesisHash: string;
+  genesisHash: HexString;
 
   /**
    * @description The encoded method (with arguments) in hex
@@ -61,22 +61,22 @@ export interface SignerPayloadJSON {
   /**
    * @description The nonce for this transaction, in hex
    */
-  nonce: string;
+  nonce: HexString;
 
   /**
    * @description The current spec version for the runtime
    */
-  specVersion: string;
+  specVersion: HexString;
 
   /**
    * @description The tip for this transaction, in hex
    */
-  tip: string;
+  tip: HexString;
 
   /**
    * @description The current transaction version for the runtime
    */
-  transactionVersion: string;
+  transactionVersion: HexString;
 
   /**
    * @description The applicable signed extensions for this runtime

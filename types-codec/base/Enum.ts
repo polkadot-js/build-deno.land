@@ -1,15 +1,13 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.42/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, Codec, CodecClass, DefinitionSetter, IEnum, Inspect, IU8a, Registry } from '../types/index.ts';
 
-import { identity, isHex, isNumber, isObject, isString, isU8a, objectProperties, stringCamelCase, stringify, stringPascalCase, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+import { identity, isHex, isNumber, isObject, isString, isU8a, objectProperties, stringCamelCase, stringify, stringPascalCase, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { mapToTypeMap, typesToMap } from '../utils/index.ts';
 import { Null } from './Null.ts';
 
-export interface EnumCodecClass<T = Codec> {
-  new(registry: Registry, value?: any, index?: number): T;
-}
+export type EnumCodecClass<T = Codec> = new(registry: Registry, value?: any, index?: number) => T;
 
 interface Definition {
   def: TypesDef;
@@ -87,7 +85,7 @@ function extractDef (registry: Registry, _def: Record<string, string | CodecClas
 function getEntryType (def: TypesDef, checkIdx: number): CodecClass {
   const values = Object.values(def);
 
-  for (let i = 0; i < values.length; i++) {
+  for (let i = 0, count = values.length; i < count; i++) {
     const { Type, index } = values[i];
 
     if (index === checkIdx) {

@@ -1,13 +1,13 @@
 
 import type { AnyU8a, Inspect, Registry } from '../types/index.ts';
 
-import { compactFromU8aLim, compactToU8a, isString, u8aConcatStrict, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+import { compactFromU8aLim, compactToU8a, isString, u8aConcatStrict, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Raw } from '../native/Raw.ts';
 
 /** @internal */
 function decodeBitVecU8a (value?: Uint8Array): [number, Uint8Array] {
-  if (!value || !value.length) {
+  if (!value?.length) {
     return [0, new Uint8Array()];
   }
 

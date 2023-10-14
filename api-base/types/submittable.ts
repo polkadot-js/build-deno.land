@@ -1,7 +1,7 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { AccountId, Address, ApplyExtrinsicResult, BlockNumber, Call, DispatchError, DispatchInfo, EventRecord, Extrinsic, ExtrinsicStatus, Hash, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
-import type { AnyFunction, AnyNumber, AnyTuple, Callback, CallBase, Codec, IExtrinsicEra, IKeyringPair, ISubmittableResult, Signer } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
+import type { AccountId, Address, ApplyExtrinsicResult, BlockNumber, Call, DispatchError, DispatchInfo, EventRecord, Extrinsic, ExtrinsicStatus, Hash, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { AnyFunction, AnyNumber, AnyTuple, Callback, CallBase, Codec, IExtrinsicEra, IKeyringPair, ISubmittableResult, Signer } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { ApiTypes, EmptyBase, PromiseOrObs } from './base.ts';
 
 export type AugmentedSubmittable<T extends AnyFunction, A extends AnyTuple = AnyTuple> = T & CallBase<A>;
@@ -88,7 +88,4 @@ export interface SubmittableExtrinsics<ApiType extends ApiTypes> extends Augment
   [key: string]: SubmittableModuleExtrinsics<ApiType>;
 }
 
-export interface SubmittableModuleExtrinsics<ApiType extends ApiTypes> {
-  // only with is<Type> augmentation
-  [key: string]: SubmittableExtrinsicFunction<ApiType>;
-}
+export type SubmittableModuleExtrinsics<ApiType extends ApiTypes> = Record<string, SubmittableExtrinsicFunction<ApiType>>;

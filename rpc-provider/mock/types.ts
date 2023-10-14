@@ -1,5 +1,5 @@
 
-import type { Server } from 'https://esm.sh/mock-socket@9.2.1';
+import type { Server } from 'https://esm.sh/mock-socket@9.3.1';
 
 export type Global = typeof globalThis & {
   WebSocket: typeof WebSocket;

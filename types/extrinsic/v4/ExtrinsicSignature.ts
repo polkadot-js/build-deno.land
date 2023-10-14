@@ -1,12 +1,12 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.42/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { EcdsaSignature, Ed25519Signature, ExtrinsicEra, ExtrinsicSignature, Sr25519Signature } from '../../interfaces/extrinsics/index.ts';
 import type { Address, Call } from '../../interfaces/runtime/index.ts';
 import type { ExtrinsicPayloadValue, ICompact, IExtrinsicSignature, IKeyringPair, INumber, Registry, SignatureOptions } from '../../types/index.ts';
 import type { ExtrinsicSignatureOptions } from '../types.ts';
 
-import { Struct } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
-import { isU8a, isUndefined, objectProperties, objectSpread, stringify, u8aToHex } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+import { Struct } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { isU8a, isUndefined, objectProperties, objectSpread, stringify, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { EMPTY_U8A, IMMORTAL_ERA } from '../constants.ts';
 import { GenericExtrinsicPayloadV4 } from './ExtrinsicPayload.ts';
@@ -162,7 +162,7 @@ export class GenericExtrinsicSignatureV4 extends Struct implements IExtrinsicSig
    * @description Generate a payload and applies the signature from a keypair
    */
   public sign (method: Call, account: IKeyringPair, options: SignatureOptions): IExtrinsicSignature {
-    if (!account || !account.addressRaw) {
+    if (!account?.addressRaw) {
       throw new Error(`Expected a valid keypair for signing, found ${stringify(account)}`);
     }
 

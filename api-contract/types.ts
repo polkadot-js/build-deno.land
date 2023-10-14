@@ -1,10 +1,10 @@
 
-import type { ApiBase } from 'https://deno.land/x/polkadot@0.2.42/api/base/index.ts';
-import type { ApiTypes } from 'https://deno.land/x/polkadot@0.2.42/api/types/index.ts';
-import type { Text } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
-import type { ContractExecResultResult, ContractSelector, StorageDeposit, Weight, WeightV2 } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
-import type { Codec, TypeDef } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+import type { ApiBase } from 'https://deno.land/x/polkadot/api/base/index.ts';
+import type { ApiTypes } from 'https://deno.land/x/polkadot/api/types/index.ts';
+import type { Text } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { ContractExecResultResult, ContractSelector, StorageDeposit, Weight, WeightV2 } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Codec, TypeDef } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { Abi } from './index.ts';
 
 export interface ContractBase<ApiType extends ApiTypes> {
@@ -47,10 +47,7 @@ export interface AbiMessage {
 
 export type AbiConstructor = AbiMessage;
 
-export interface InterfaceContractCalls {
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  [index: string]: Function;
-}
+export type InterfaceContractCalls = Record<string, Function>;
 
 export interface ContractCallOutcome {
   debugMessage: Text;

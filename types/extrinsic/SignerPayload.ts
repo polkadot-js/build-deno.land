@@ -1,12 +1,12 @@
 
-import type { Text, Vec } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.42/util/types.ts';
+import type { Text, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { AnyJson, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { Address, BlockHash, Call, ExtrinsicEra, Hash } from '../interfaces/index.ts';
 import type { Codec, ICompact, INumber, IRuntimeVersion, ISignerPayload, SignerPayloadJSON, SignerPayloadRaw } from '../types/index.ts';
 
-import { Option, Struct } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
-import { objectProperty, objectSpread, u8aToHex } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+import { Option, Struct } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { objectProperty, objectSpread, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 export interface SignerPayloadType extends Codec {
   address: Address;
@@ -44,7 +44,7 @@ const knownTypes: Record<string, string> = {
 export class GenericSignerPayload extends Struct implements ISignerPayload, SignerPayloadType {
   readonly #extraTypes: Record<string, string>;
 
-  constructor (registry: Registry, value?: HexString | { [x: string]: unknown; } | Map<unknown, unknown> | unknown[]) {
+  constructor (registry: Registry, value?: HexString | Record<string, unknown> | Map<unknown, unknown> | unknown[]) {
     const extensionTypes = objectSpread<Record<string, string>>({}, registry.getSignedExtensionTypes(), registry.getSignedExtensionExtra());
 
     super(registry, objectSpread<Record<string, string>>({}, extensionTypes, knownTypes), value);
@@ -110,18 +110,22 @@ export class GenericSignerPayload extends Struct implements ISignerPayload, Sign
    * @description Creates an representation of the structure as an ISignerPayload JSON
    */
   public toPayload (): SignerPayloadJSON {
-    const result: Record<string, string> = {};
+    const result: Record<string, AnyJson> = {};
     const keys = Object.keys(this.#extraTypes);
 
     // add any explicit overrides we may have
     for (let i = 0, count = keys.length; i < count; i++) {
       const key = keys[i];
-      const value = this.get(key) as Codec;
-      const isOption = value instanceof Option;
+      const value = this.getT(key);
 
       // Don't include Option.isNone
-      if (!isOption || value.isSome) {
-        result[key] = value.toHex();
+      if (!(value instanceof Option) || value.isSome) {
+        // NOTE In the spread below we convert (mostly) to Hex to align
+        // with the typings. In the case of "unknown" fields, we use the
+        // primitive toJSON conversion (which is serializable). Technically
+        // we can include isNone in here as well ("null" is allowed), however
+        // for empty fields we just skip it completely (historical compat)
+        result[key] = value.toJSON();
       }
     }
 

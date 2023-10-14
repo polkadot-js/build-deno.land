@@ -1,16 +1,16 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts';
+import 'https://deno.land/x/polkadot/api-base/types/consts.ts';
 
-import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot@0.2.42/api-base/types/index.ts';
-import type { Bytes, Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
-import type { Codec, ITuple } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
-import type { Perbill, Percent, Permill, Perquintill } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/runtime/index.ts';
-import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, PalletContractsSchedule, PalletReferendaTrackInfo, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot@0.2.42/types/lookup.ts';
+import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Bytes, Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Codec, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Perbill, Percent, Permill, Perquintill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, PalletContractsEnvironment, PalletContractsSchedule, PalletReferendaTrackInfo, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedConst<ApiType extends ApiTypes> = AugmentedConst<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
   interface AugmentedConsts<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -140,6 +140,10 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts' {
        **/
       maxAuthorities: u32 & AugmentedConst<ApiType>;
       /**
+       * The maximum number of nominators for each validator.
+       **/
+      maxNominators: u32 & AugmentedConst<ApiType>;
+      /**
        * Generic const
        **/
       [key: string]: Codec;
@@ -225,6 +229,28 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts' {
        **/
       [key: string]: Codec;
     };
+    broker: {
+      /**
+       * Maximum number of legacy leases.
+       **/
+      maxLeasedCores: u32 & AugmentedConst<ApiType>;
+      /**
+       * Maximum number of system cores.
+       **/
+      maxReservedCores: u32 & AugmentedConst<ApiType>;
+      /**
+       * Identifier from which the internal Pot is generated.
+       **/
+      palletId: FrameSupportPalletId & AugmentedConst<ApiType>;
+      /**
+       * Number of Relay-chain blocks per timeslice.
+       **/
+      timeslicePeriod: u32 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
     childBounties: {
       /**
        * Minimum value for a child-bounty.
@@ -240,6 +266,13 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts' {
       [key: string]: Codec;
     };
     contracts: {
+      /**
+       * The percentage of the storage deposit that should be held for using a code hash.
+       * Instantiating a contract, or calling [`chain_extension::Ext::add_delegate_dependency`]
+       * protects the code from being removed. In order to prevent abuse these actions are
+       * protected with a percentage of the code deposit.
+       **/
+      codeHashLockupDepositPercent: Perbill & AugmentedConst<ApiType>;
       /**
        * Fallback value to limit the storage deposit if it's not being set by the caller.
        **/
@@ -261,9 +294,14 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts' {
        **/
       depositPerItem: u128 & AugmentedConst<ApiType>;
       /**
-       * The maximum length of a contract code in bytes. This limit applies to the instrumented
-       * version of the code. Therefore `instantiate_with_code` can fail even when supplying
-       * a wasm binary below this maximum size.
+       * Type that bundles together all the runtime configurable interface types.
+       * 
+       * This is not a real config. We just mention the type here as constant so that
+       * its type appears in the metadata. Only valid value is `()`.
+       **/
+      environment: PalletContractsEnvironment & AugmentedConst<ApiType>;
+      /**
+       * The maximum length of a contract code in bytes.
        * 
        * The value should be chosen carefully taking into the account the overall memory limit
        * your runtime has, as well as the [maximum allowed callstack
@@ -274,6 +312,11 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts' {
        * The maximum length of the debug buffer in bytes.
        **/
       maxDebugBufferLen: u32 & AugmentedConst<ApiType>;
+      /**
+       * The maximum number of delegate_dependencies that a contract can lock with
+       * [`chain_extension::Ext::add_delegate_dependency`].
+       **/
+      maxDelegateDependencies: u32 & AugmentedConst<ApiType>;
       /**
        * The maximum allowable length in bytes for storage keys.
        **/
@@ -416,16 +459,6 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts' {
        * "better" in the Unsigned phase.
        **/
       betterUnsignedThreshold: Perbill & AugmentedConst<ApiType>;
-      /**
-       * The maximum number of electable targets to put in the snapshot.
-       **/
-      maxElectableTargets: u16 & AugmentedConst<ApiType>;
-      /**
-       * The maximum number of electing voters to put in the snapshot. At the moment, snapshots
-       * are only over a single block, but once multi-block elections are introduced they will
-       * take place over multiple blocks.
-       **/
-      maxElectingVoters: u32 & AugmentedConst<ApiType>;
       /**
        * The maximum number of winners that can be elected by this `ElectionProvider`
        * implementation.
@@ -579,6 +612,10 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts' {
        * Max Authorities in use
        **/
       maxAuthorities: u32 & AugmentedConst<ApiType>;
+      /**
+       * The maximum number of nominators for each validator.
+       **/
+      maxNominators: u32 & AugmentedConst<ApiType>;
       /**
        * The maximum number of entries to keep in the set id to session index mapping.
        * 
@@ -1080,6 +1117,45 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts' {
        **/
       [key: string]: Codec;
     };
+    safeMode: {
+      /**
+       * The amount that will be reserved upon calling [`Pallet::enter`].
+       * 
+       * `None` disallows permissionlessly enabling the safe-mode and is a sane default.
+       **/
+      enterDepositAmount: Option<u128> & AugmentedConst<ApiType>;
+      /**
+       * For how many blocks the safe-mode will be entered by [`Pallet::enter`].
+       **/
+      enterDuration: u32 & AugmentedConst<ApiType>;
+      /**
+       * The amount that will be reserved upon calling [`Pallet::extend`].
+       * 
+       * `None` disallows permissionlessly extending the safe-mode and is a sane default.
+       **/
+      extendDepositAmount: Option<u128> & AugmentedConst<ApiType>;
+      /**
+       * For how many blocks the safe-mode can be extended by each [`Pallet::extend`] call.
+       * 
+       * This does not impose a hard limit as the safe-mode can be extended multiple times.
+       **/
+      extendDuration: u32 & AugmentedConst<ApiType>;
+      /**
+       * The minimal duration a deposit will remain reserved after safe-mode is entered or
+       * extended, unless [`Pallet::force_release_deposit`] is successfully called sooner.
+       * 
+       * Every deposit is tied to a specific activation or extension, thus each deposit can be
+       * released independently after the delay for it has passed.
+       * 
+       * `None` disallows permissionlessly releasing the safe-mode deposits and is a sane
+       * default.
+       **/
+      releaseDelay: Option<u32> & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
     salary: {
       /**
        * The total budget per cycle.
@@ -1127,26 +1203,30 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts' {
     };
     society: {
       /**
-       * The minimum amount of a deposit required for a bid to be made.
-       **/
-      candidateDeposit: u128 & AugmentedConst<ApiType>;
-      /**
        * The number of blocks between membership challenges.
        **/
       challengePeriod: u32 & AugmentedConst<ApiType>;
       /**
-       * The maximum number of candidates that we accept per round.
+       * The number of blocks on which new candidates can claim their membership and be the
+       * named head.
        **/
-      maxCandidateIntake: u32 & AugmentedConst<ApiType>;
+      claimPeriod: u32 & AugmentedConst<ApiType>;
+      /**
+       * The maximum number of strikes before a member gets funds slashed.
+       **/
+      graceStrikes: u32 & AugmentedConst<ApiType>;
+      /**
+       * The maximum number of bids at once.
+       **/
+      maxBids: u32 & AugmentedConst<ApiType>;
       /**
        * The maximum duration of the payout lock.
        **/
       maxLockDuration: u32 & AugmentedConst<ApiType>;
       /**
-       * The number of times a member may vote the wrong way (or not at all, when they are a
-       * skeptic) before they become suspended.
+       * The maximum number of payouts a member may have waiting unclaimed.
        **/
-      maxStrikes: u32 & AugmentedConst<ApiType>;
+      maxPayouts: u32 & AugmentedConst<ApiType>;
       /**
        * The societies's pallet id
        **/
@@ -1156,14 +1236,10 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts' {
        **/
       periodSpend: u128 & AugmentedConst<ApiType>;
       /**
-       * The number of blocks between candidate/membership rotation periods.
+       * The number of blocks on which new candidates should be voted on. Together with
+       * `ClaimPeriod`, this sums to the number of blocks between candidate intake periods.
        **/
-      rotationPeriod: u32 & AugmentedConst<ApiType>;
-      /**
-       * The amount of the unpaid reward that gets deducted in the case that either a skeptic
-       * doesn't vote or someone votes in the wrong way.
-       **/
-      wrongSideDeduction: u128 & AugmentedConst<ApiType>;
+      votingPeriod: u32 & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/
@@ -1197,10 +1273,6 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts' {
        * The test `reducing_history_depth_abrupt` shows this effect.
        **/
       historyDepth: u32 & AugmentedConst<ApiType>;
-      /**
-       * Maximum number of nominations per nominator.
-       **/
-      maxNominations: u32 & AugmentedConst<ApiType>;
       /**
        * The maximum number of nominators rewarded for each validator.
        * 
@@ -1444,6 +1516,18 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts' {
        * Period between successive spends.
        **/
       spendPeriod: u32 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
+    txPause: {
+      /**
+       * Maximum length for pallet name and call name SCALE encoded string names.
+       * 
+       * TOO LONG NAMES WILL BE TREATED AS PAUSED.
+       **/
+      maxNameLen: u32 & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/

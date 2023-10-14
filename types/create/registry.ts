@@ -1,14 +1,14 @@
 
-import type { AnyString, Codec, CodecClass, IU8a, LookupString } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
-import type { CreateOptions, TypeDef } from 'https://deno.land/x/polkadot@0.2.42/types-create/types/index.ts';
+import type { AnyString, Codec, CodecClass, IU8a, LookupString } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { CreateOptions, TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 import type { ExtDef } from '../extrinsic/signedExtensions/types.ts';
 import type { ChainProperties, DispatchErrorModule, DispatchErrorModuleU8, DispatchErrorModuleU8a, EventMetadataLatest, Hash, MetadataLatest, SiField, SiLookupTypeId, SiVariant, WeightV1, WeightV2 } from '../interfaces/types.ts';
 import type { CallFunction, CodecHasher, Definitions, DetectCodec, RegisteredTypes, Registry, RegistryError, RegistryTypes } from '../types/index.ts';
 
-import { DoNotConstruct, Json, Raw } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
-import { constructTypeClass, createClassUnsafe, createTypeUnsafe } from 'https://deno.land/x/polkadot@0.2.42/types-create/mod.ts';
-import { assertReturn, BN_ZERO, formatBalance, isBn, isFunction, isNumber, isString, isU8a, lazyMethod, logger, objectSpread, stringCamelCase, stringify } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
-import { blake2AsU8a } from 'https://deno.land/x/polkadot@0.2.42/util-crypto/mod.ts';
+import { DoNotConstruct, Json, Raw } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { constructTypeClass, createClassUnsafe, createTypeUnsafe } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { assertReturn, BN_ZERO, formatBalance, isBn, isFunction, isNumber, isString, isU8a, lazyMethod, logger, objectSpread, stringCamelCase, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { blake2AsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { expandExtensionTypes, fallbackExtensions, findUnknownExtensions } from '../extrinsic/signedExtensions/index.ts';
 import { GenericEventData } from '../generic/Event.ts';
@@ -155,9 +155,9 @@ function extractProperties (registry: TypeRegistry, metadata: Metadata): ChainPr
     return original;
   }
 
-  const { tokenDecimals, tokenSymbol } = original || {};
+  const { isEthereum, tokenDecimals, tokenSymbol } = original || {};
 
-  return registry.createTypeUnsafe<ChainProperties>('ChainProperties', [{ ss58Format, tokenDecimals, tokenSymbol }]);
+  return registry.createTypeUnsafe<ChainProperties>('ChainProperties', [{ isEthereum, ss58Format, tokenDecimals, tokenSymbol }]);
 }
 
 export class TypeRegistry implements Registry {
@@ -210,6 +210,10 @@ export class TypeRegistry implements Registry {
     }
 
     return [12];
+  }
+
+  public get chainIsEthereum (): boolean {
+    return this.#chainProperties?.isEthereum.isTrue || false;
   }
 
   public get chainSS58 (): number | undefined {
@@ -337,7 +341,7 @@ export class TypeRegistry implements Registry {
   }
 
   public get <T extends Codec = Codec, K extends string = string> (name: K, withUnknown?: boolean, knownTypeDef?: TypeDef): CodecClass<T> | undefined {
-    return this.getUnsafe(name, withUnknown, knownTypeDef) as CodecClass<T>;
+    return this.getUnsafe(name, withUnknown, knownTypeDef);
   }
 
   public getUnsafe <T extends Codec = Codec, K extends string = string> (name: K, withUnknown?: boolean, knownTypeDef?: TypeDef): CodecClass<T> | undefined {

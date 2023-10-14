@@ -1,6 +1,6 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { AccountId, AccountIndex } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
+import type { AccountId, AccountIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { AccountIndexes, DeriveApi } from '../types.ts';
 
 import { map } from 'https://esm.sh/rxjs@7.8.1';
@@ -25,7 +25,7 @@ export function idToIndex (instanceId: string, api: DeriveApi): (accountId: Acco
   return memo(instanceId, (accountId: AccountId | string): Observable<AccountIndex | undefined> =>
     api.derive.accounts.indexes().pipe(
       map((indexes: AccountIndexes): AccountIndex | undefined =>
-        (indexes || {})[accountId.toString()]
+        indexes[accountId.toString()]
       )
     ));
 }

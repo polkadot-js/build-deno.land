@@ -1,5 +1,6 @@
 /* eslint-disable */
 
+export * from './assetConversion/types.ts';
 export * from './assets/types.ts';
 export * from './attestations/types.ts';
 export * from './aura/types.ts';

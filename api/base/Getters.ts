@@ -1,10 +1,9 @@
 
-import type { RpcInterface } from 'https://deno.land/x/polkadot@0.2.42/rpc-core/types/index.ts';
-import type { ProviderInterface } from 'https://deno.land/x/polkadot@0.2.42/rpc-provider/types.ts';
-import type { Text } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
-import type { Hash, RuntimeVersion } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
-import type { Metadata } from 'https://deno.land/x/polkadot@0.2.42/types/metadata/index.ts';
-import type { CallFunction, RegistryError } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
+import type { RpcCoreStats, RpcInterface } from 'https://deno.land/x/polkadot/rpc-core/types/index.ts';
+import type { Text } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Hash, RuntimeVersion } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Metadata } from 'https://deno.land/x/polkadot/types/metadata/index.ts';
+import type { CallFunction, RegistryError } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { ApiDecoration, ApiInterfaceRx, ApiTypes, DecoratedErrors, DecoratedEvents, DecoratedRpc, QueryableCalls, QueryableConsts, QueryableStorage, QueryableStorageMulti, SubmittableExtrinsics } from '../types/index.ts';
 
 import { packageInfo } from '../packageInfo.ts';
@@ -199,8 +198,8 @@ export abstract class Getters<ApiType extends ApiTypes> extends Init<ApiType> im
   /**
    * @description Returns the underlying provider stats
    */
-  public get stats (): ProviderInterface['stats'] | undefined {
-    return this._rpcCore.provider.stats;
+  public get stats (): RpcCoreStats | undefined {
+    return this._rpcCore.stats;
   }
 
   /**

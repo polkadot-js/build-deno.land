@@ -1,16 +1,16 @@
 
 import type { Observer } from 'https://esm.sh/rxjs@7.8.1';
-import type { ProviderInterface, ProviderInterfaceCallback } from 'https://deno.land/x/polkadot@0.2.42/rpc-provider/types.ts';
-import type { StorageKey, Vec } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
-import type { Hash } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
-import type { AnyJson, AnyNumber, Codec, DefinitionRpc, DefinitionRpcExt, DefinitionRpcSub, Registry } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
-import type { Memoized } from 'https://deno.land/x/polkadot@0.2.42/util/types.ts';
-import type { RpcInterfaceMethod } from './types/index.ts';
+import type { ProviderInterface, ProviderInterfaceCallback } from 'https://deno.land/x/polkadot/rpc-provider/types.ts';
+import type { StorageKey, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Hash } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { AnyJson, AnyNumber, Codec, DefinitionRpc, DefinitionRpcExt, DefinitionRpcSub, Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { Memoized } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { RpcCoreStats, RpcInterfaceMethod } from './types/index.ts';
 
 import { Observable, publishReplay, refCount } from 'https://esm.sh/rxjs@7.8.1';
 
-import { rpcDefinitions } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
-import { hexToU8a, isFunction, isNull, isUndefined, lazyMethod, logger, memoize, objectSpread, u8aConcat, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+import { rpcDefinitions } from 'https://deno.land/x/polkadot/types/mod.ts';
+import { hexToU8a, isFunction, isNull, isUndefined, lazyMethod, logger, memoize, objectSpread, u8aConcat, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { drr, refCountDelay } from './util/index.ts';
 
@@ -79,8 +79,8 @@ function isTreatAsHex (key: StorageKey): boolean {
  * <BR>
  *
  * ```javascript
- * import Rpc from 'https://deno.land/x/polkadot@0.2.42/rpc-core/mod.ts';
- * import { WsProvider } from 'https://deno.land/x/polkadot@0.2.42/rpc-provider/ws/index.ts';
+ * import Rpc from 'https://deno.land/x/polkadot/rpc-core/mod.ts';
+ * import { WsProvider } from 'https://deno.land/x/polkadot/rpc-provider/ws/index.ts';
  *
  * const provider = new WsProvider('ws://127.0.0.1:9944');
  * const rpc = new Rpc(provider);
@@ -91,6 +91,8 @@ export class RpcCore {
   readonly #isPedantic: boolean;
   readonly #registryDefault: Registry;
   readonly #storageCache = new Map<string, Codec>();
+  #storageCacheHits = 0;
+  #storageCacheSize = 0;
 
   #getBlockRegistry?: (blockHash: Uint8Array) => Promise<{ registry: Registry }>;
   #getBlockHash?: (blockNumber: AnyNumber) => Promise<Uint8Array>;
@@ -105,7 +107,6 @@ export class RpcCore {
    * @param  {ProviderInterface} provider An API provider using any of the supported providers (HTTP, SC or WebSocket)
    */
   constructor (instanceId: string, registry: Registry, { isPedantic = true, provider, userRpc = {} }: Options) {
-    // eslint-disable-next-line @typescript-eslint/unbound-method
     if (!provider || !isFunction(provider.send)) {
       throw new Error('Expected Provider to API create');
     }
@@ -143,6 +144,23 @@ export class RpcCore {
    */
   public disconnect (): Promise<void> {
     return this.provider.disconnect();
+  }
+
+  /**
+   * @description Returns the underlying core stats, including those from teh provider
+   */
+  public get stats (): RpcCoreStats | undefined {
+    const stats = this.provider.stats;
+
+    return stats
+      ? {
+        ...stats,
+        core: {
+          cacheHits: this.#storageCacheHits,
+          cacheSize: this.#storageCacheSize
+        }
+      }
+      : undefined;
   }
 
   /**
@@ -451,6 +469,8 @@ export class RpcCore {
       const cached = this.#storageCache.get(hexKey);
 
       if (cached) {
+        this.#storageCacheHits++;
+
         return cached;
       }
     }
@@ -468,6 +488,7 @@ export class RpcCore {
     // clearing of it, so very long running processes (not just a couple of hours, longer)
     // will increase memory beyond what is allowed.
     this.#storageCache.set(hexKey, codec);
+    this.#storageCacheSize++;
 
     return codec;
   }

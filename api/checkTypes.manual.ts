@@ -1,18 +1,18 @@
 
 
-import 'https://deno.land/x/polkadot@0.2.42/api-augment/mod.ts';
+import 'https://deno.land/x/polkadot/api-augment/mod.ts';
 
-import type { HeaderExtended } from 'https://deno.land/x/polkadot@0.2.42/api-derive/types.ts';
-import type { TestKeyringMapSubstrate } from 'https://deno.land/x/polkadot@0.2.42/keyring/testingPairs.ts';
-import type { StorageKey } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
-import type { AccountId, Balance, DispatchErrorModule, Event, Header, Index } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
-import type { FrameSystemAccountInfo } from 'https://deno.land/x/polkadot@0.2.42/types/lookup.ts';
-import type { AnyTuple, IExtrinsic, IMethod } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
+import type { HeaderExtended } from 'https://deno.land/x/polkadot/api-derive/types.ts';
+import type { TestKeyringMapSubstrate } from 'https://deno.land/x/polkadot/keyring/testingPairs.ts';
+import type { StorageKey } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, Balance, DispatchErrorModule, Event, Header, Index } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { FrameSystemAccountInfo } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { AnyTuple, IExtrinsic, IMethod } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { SubmittableResult } from './index.ts';
 
-import { ApiPromise } from 'https://deno.land/x/polkadot@0.2.42/api/mod.ts';
-import { createTestPairs } from 'https://deno.land/x/polkadot@0.2.42/keyring/testingPairs.ts';
-import { createTypeUnsafe, TypeRegistry } from 'https://deno.land/x/polkadot@0.2.42/types/create/index.ts';
+import { ApiPromise } from 'https://deno.land/x/polkadot/api/mod.ts';
+import { createTestPairs } from 'https://deno.land/x/polkadot/keyring/testingPairs.ts';
+import { createTypeUnsafe, TypeRegistry } from 'https://deno.land/x/polkadot/types/create/index.ts';
 
 const registry = new TypeRegistry();
 
@@ -273,7 +273,6 @@ async function tx (api: ApiPromise, pairs: TestKeyringMapSubstrate): Promise<voi
   // it allows for query & then using the submittable
   const second = api.tx.democracy.second(123);
 
-  // eslint-disable-next-line @typescript-eslint/no-floating-promises
   await second.signAndSend('123', (result) => console.log(result));
 
   // it handles enum inputs correctly
@@ -302,8 +301,7 @@ async function main (): Promise<void> {
   const api = await ApiPromise.create();
   const pairs = createTestPairs();
 
-  // eslint-disable-next-line @typescript-eslint/no-floating-promises
-  Promise.all([
+  await Promise.all([
     calls(api),
     consts(api),
     derive(api),

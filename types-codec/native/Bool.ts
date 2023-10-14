@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.42/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyBool, Codec, Inspect, IU8a, Registry } from '../types/index.ts';
 
-import { isU8a, u8aToHex } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+import { isU8a, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 /**
  * @name bool
@@ -33,7 +33,7 @@ export class bool extends Boolean implements Codec {
    * @description The length of the value when encoded as a Uint8Array
    */
   public get encodedLength (): number {
-    return 1;
+    return 1 | 0;
   }
 
   /**

@@ -5,13 +5,13 @@ import type { Collective } from './types.ts';
 
 import { of } from 'https://esm.sh/rxjs@7.8.1';
 
-import { isFunction } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+import { isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 
 export function getInstance (api: DeriveApi, section: string): DeriveApi['query']['council'] {
   const instances = api.registry.getModuleInstances(api.runtimeVersion.specName, section);
-  const name = instances && instances.length
+  const name = instances?.length
     ? instances[0]
     : section;
 

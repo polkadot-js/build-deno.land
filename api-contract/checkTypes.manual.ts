@@ -1,12 +1,12 @@
 
 
-import 'https://deno.land/x/polkadot@0.2.42/api-augment/mod.ts';
+import 'https://deno.land/x/polkadot/api-augment/mod.ts';
 
-import type { TestKeyringMapSubstrate } from 'https://deno.land/x/polkadot@0.2.42/keyring/testingPairs.ts';
+import type { TestKeyringMapSubstrate } from 'https://deno.land/x/polkadot/keyring/testingPairs.ts';
 
-import { ApiPromise } from 'https://deno.land/x/polkadot@0.2.42/api/mod.ts';
-import { BlueprintPromise, ContractPromise } from 'https://deno.land/x/polkadot@0.2.42/api-contract/mod.ts';
-import { createTestPairs } from 'https://deno.land/x/polkadot@0.2.42/keyring/testingPairs.ts';
+import { ApiPromise } from 'https://deno.land/x/polkadot/api/mod.ts';
+import { BlueprintPromise, ContractPromise } from 'https://deno.land/x/polkadot/api-contract/mod.ts';
+import { createTestPairs } from 'https://deno.land/x/polkadot/keyring/testingPairs.ts';
 
 import abiIncrementer from './test/contracts/ink/v0/incrementer.json' assert { type: 'json' };
 
@@ -33,8 +33,7 @@ async function main (): Promise<void> {
   });
   const pairs = createTestPairs();
 
-  // eslint-disable-next-line @typescript-eslint/no-floating-promises
-  Promise.all([
+  await Promise.all([
     checkBlueprint(api, pairs),
     checkContract(api, pairs)
   ]);

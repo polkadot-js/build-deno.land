@@ -1,9 +1,9 @@
 
-import type { AnyString } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
-import type { TypeDef } from 'https://deno.land/x/polkadot@0.2.42/types-create/types/index.ts';
+import type { AnyString } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 
-import { sanitize } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
-import { isNumber, isString, objectSpread } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+import { sanitize } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { isNumber, isString, objectSpread, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { TypeDefInfo } from '../types/index.ts';
 import { typeSplit } from './typeSplit.ts';
@@ -34,7 +34,7 @@ const KNOWN_INTERNALS = ['_alias', '_fallback'];
 function getTypeString (typeOrObj: any): string {
   return isString(typeOrObj)
     ? typeOrObj.toString()
-    : JSON.stringify(typeOrObj);
+    : stringify(typeOrObj);
 }
 
 function isRustEnum (details: Record<string, string> | Record<string, number>): details is Record<string, string> {
@@ -206,7 +206,7 @@ function _decodeDoNotConstruct (value: TypeDef, type: string, _: string): TypeDe
 }
 
 function hasWrapper (type: string, [start, end]: [string, string, TypeDefInfo, any?]): boolean {
-  return (type.substring(0, start.length) === start) && (type.slice(-1 * end.length) === end);
+  return (type.startsWith(start)) && (type.slice(-1 * end.length) === end);
 }
 
 const nestedExtraction: [string, string, TypeDefInfo, (value: TypeDef, type: string, subType: string, count: number) => TypeDef][] = [

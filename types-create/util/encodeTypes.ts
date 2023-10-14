@@ -1,12 +1,12 @@
 
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
-import type { TypeDef } from 'https://deno.land/x/polkadot@0.2.42/types-create/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 
-import { isNumber, isUndefined, objectSpread, stringify } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+import { isNumber, isUndefined, objectSpread, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { TypeDefInfo } from '../types/index.ts';
 
-type ToString = { toString: () => string };
+interface ToString { toString: () => string }
 
 const stringIdentity = <T extends ToString> (value: T): string => value.toString();
 
@@ -54,7 +54,11 @@ function encodeSubTypes (registry: Registry, sub: TypeDef[], asEnum?: boolean, e
   for (let i = 0, count = sub.length; i < count; i++) {
     const def = sub[i];
 
-    inner[def.name as string] = encodeTypeDef(registry, def);
+    if (!def.name) {
+      throw new Error(`No name found in ${stringify(def)}`);
+    }
+
+    inner[def.name] = encodeTypeDef(registry, def);
   }
 
   return stringify(

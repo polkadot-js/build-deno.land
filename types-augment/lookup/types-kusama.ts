@@ -1,23 +1,68 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.42/types/lookup.ts';
+import 'https://deno.land/x/polkadot/types/lookup.ts';
 
-import type { Compact, Enum, Null, Struct, Vec, u16, u32 } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
-import type { PerU16 } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/runtime/index.ts';
+import type { Bytes, Compact, Enum, Null, Struct, U8aFixed, Vec, u16, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { H256, PerU16 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
-declare module 'https://deno.land/x/polkadot@0.2.42/types/lookup.ts' {
-  /** @name KusamaRuntimeSessionKeys (96) */
+declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
+  /** @name PalletBeefyCall (94) */
+  interface PalletBeefyCall extends Enum {
+    readonly isReportEquivocation: boolean;
+    readonly asReportEquivocation: {
+      readonly equivocationProof: SpConsensusBeefyEquivocationProof;
+      readonly keyOwnerProof: SpSessionMembershipProof;
+    } & Struct;
+    readonly isReportEquivocationUnsigned: boolean;
+    readonly asReportEquivocationUnsigned: {
+      readonly equivocationProof: SpConsensusBeefyEquivocationProof;
+      readonly keyOwnerProof: SpSessionMembershipProof;
+    } & Struct;
+    readonly type: 'ReportEquivocation' | 'ReportEquivocationUnsigned';
+  }
+
+  /** @name SpConsensusBeefyEquivocationProof (95) */
+  interface SpConsensusBeefyEquivocationProof extends Struct {
+    readonly first: SpConsensusBeefyVoteMessage;
+    readonly second: SpConsensusBeefyVoteMessage;
+  }
+
+  /** @name SpConsensusBeefyEcdsaCryptoPublic (96) */
+  interface SpConsensusBeefyEcdsaCryptoPublic extends SpCoreEcdsaPublic {}
+
+  /** @name SpConsensusBeefyEcdsaCryptoSignature (99) */
+  interface SpConsensusBeefyEcdsaCryptoSignature extends SpCoreEcdsaSignature {}
+
+  /** @name SpConsensusBeefyVoteMessage (102) */
+  interface SpConsensusBeefyVoteMessage extends Struct {
+    readonly commitment: SpConsensusBeefyCommitment;
+    readonly id: SpConsensusBeefyEcdsaCryptoPublic;
+    readonly signature: SpConsensusBeefyEcdsaCryptoSignature;
+  }
+
+  /** @name SpConsensusBeefyCommitment (103) */
+  interface SpConsensusBeefyCommitment extends Struct {
+    readonly payload: SpConsensusBeefyPayload;
+    readonly blockNumber: u32;
+    readonly validatorSetId: u64;
+  }
+
+  /** @name SpConsensusBeefyPayload (104) */
+  interface SpConsensusBeefyPayload extends Vec<ITuple<[U8aFixed, Bytes]>> {}
+
+  /** @name KusamaRuntimeSessionKeys (109) */
   interface KusamaRuntimeSessionKeys extends Struct {
     readonly grandpa: SpConsensusGrandpaAppPublic;
     readonly babe: SpConsensusBabeAppPublic;
     readonly imOnline: PalletImOnlineSr25519AppSr25519Public;
-    readonly paraValidator: PolkadotPrimitivesV4ValidatorAppPublic;
-    readonly paraAssignment: PolkadotPrimitivesV4AssignmentAppPublic;
+    readonly paraValidator: PolkadotPrimitivesV5ValidatorAppPublic;
+    readonly paraAssignment: PolkadotPrimitivesV5AssignmentAppPublic;
     readonly authorityDiscovery: SpAuthorityDiscoveryAppPublic;
+    readonly beefy: SpConsensusBeefyEcdsaCryptoPublic;
   }
 
-  /** @name KusamaRuntimeOriginCaller (127) */
+  /** @name KusamaRuntimeOriginCaller (136) */
   interface KusamaRuntimeOriginCaller extends Enum {
     readonly isSystem: boolean;
     readonly asSystem: FrameSupportDispatchRawOrigin;
@@ -31,7 +76,7 @@ declare module 'https://deno.land/x/polkadot@0.2.42/types/lookup.ts' {
     readonly type: 'System' | 'Void' | 'Origins' | 'ParachainsOrigin' | 'XcmPallet';
   }
 
-  /** @name KusamaRuntimeGovernanceOriginsPalletCustomOriginsOrigin (129) */
+  /** @name KusamaRuntimeGovernanceOriginsPalletCustomOriginsOrigin (138) */
   interface KusamaRuntimeGovernanceOriginsPalletCustomOriginsOrigin extends Enum {
     readonly isStakingAdmin: boolean;
     readonly isTreasurer: boolean;
@@ -63,7 +108,7 @@ declare module 'https://deno.land/x/polkadot@0.2.42/types/lookup.ts' {
     readonly type: 'StakingAdmin' | 'Treasurer' | 'FellowshipAdmin' | 'GeneralAdmin' | 'AuctionAdmin' | 'LeaseAdmin' | 'ReferendumCanceller' | 'ReferendumKiller' | 'SmallTipper' | 'BigTipper' | 'SmallSpender' | 'MediumSpender' | 'BigSpender' | 'WhitelistedCaller' | 'FellowshipInitiates' | 'Fellows' | 'FellowshipExperts' | 'FellowshipMasters' | 'Fellowship1Dan' | 'Fellowship2Dan' | 'Fellowship3Dan' | 'Fellowship4Dan' | 'Fellowship5Dan' | 'Fellowship6Dan' | 'Fellowship7Dan' | 'Fellowship8Dan' | 'Fellowship9Dan';
   }
 
-  /** @name KusamaRuntimeProxyType (208) */
+  /** @name KusamaRuntimeProxyType (214) */
   interface KusamaRuntimeProxyType extends Enum {
     readonly isAny: boolean;
     readonly isNonTransfer: boolean;
@@ -77,7 +122,7 @@ declare module 'https://deno.land/x/polkadot@0.2.42/types/lookup.ts' {
     readonly type: 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'IdentityJudgement' | 'CancelProxy' | 'Auction' | 'Society' | 'NominationPools';
   }
 
-  /** @name KusamaRuntimeNposCompactSolution24 (217) */
+  /** @name KusamaRuntimeNposCompactSolution24 (223) */
   interface KusamaRuntimeNposCompactSolution24 extends Struct {
     readonly votes1: Vec<ITuple<[Compact<u32>, Compact<u16>]>>;
     readonly votes2: Vec<ITuple<[Compact<u32>, ITuple<[Compact<u16>, Compact<PerU16>]>, Compact<u16>]>>;
@@ -105,14 +150,29 @@ declare module 'https://deno.land/x/polkadot@0.2.42/types/lookup.ts' {
     readonly votes24: Vec<ITuple<[Compact<u32>, Vec<ITuple<[Compact<u16>, Compact<PerU16>]>>, Compact<u16>]>>;
   }
 
-  /** @name KusamaRuntimeRuntimeHoldReason (543) */
+  /** @name KusamaRuntimeRuntimeHoldReason (556) */
   interface KusamaRuntimeRuntimeHoldReason extends Enum {
     readonly isNis: boolean;
     readonly asNis: PalletNisHoldReason;
     readonly type: 'Nis';
   }
 
-  /** @name KusamaRuntimeRuntime (869) */
+  /** @name PalletBeefyError (591) */
+  interface PalletBeefyError extends Enum {
+    readonly isInvalidKeyOwnershipProof: boolean;
+    readonly isInvalidEquivocationProof: boolean;
+    readonly isDuplicateOffenceReport: boolean;
+    readonly type: 'InvalidKeyOwnershipProof' | 'InvalidEquivocationProof' | 'DuplicateOffenceReport';
+  }
+
+  /** @name SpConsensusBeefyMmrBeefyAuthoritySet (592) */
+  interface SpConsensusBeefyMmrBeefyAuthoritySet extends Struct {
+    readonly id: u64;
+    readonly len: u32;
+    readonly keysetCommitment: H256;
+  }
+
+  /** @name KusamaRuntimeRuntime (891) */
   type KusamaRuntimeRuntime = Null;
 
 } // declare module

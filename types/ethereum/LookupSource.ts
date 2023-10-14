@@ -1,11 +1,11 @@
 
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.42/util/types.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 
-import { AbstractBase } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
-import { isBigInt, isBn, isHex, isNumber, isU8a, u8aConcat, u8aToBn, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
-import { decodeAddress } from 'https://deno.land/x/polkadot@0.2.42/util-crypto/mod.ts';
+import { AbstractBase } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { isBigInt, isBn, isHex, isNumber, isU8a, u8aConcat, u8aToBn, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { decodeAddress } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { GenericAccountIndex } from '../generic/AccountIndex.ts';
 import { GenericEthereumAccountId } from './AccountId.ts';

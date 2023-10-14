@@ -1,20 +1,20 @@
 
 import type { Observable, Subscription } from 'https://esm.sh/rxjs@7.8.1';
-import type { Text } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
-import type { ExtDef } from 'https://deno.land/x/polkadot@0.2.42/types/extrinsic/signedExtensions/types.ts';
-import type { ChainProperties, Hash, HeaderPartial, RuntimeVersion, RuntimeVersionPartial } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.42/util/types.ts';
+import type { Text } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { ExtDef } from 'https://deno.land/x/polkadot/types/extrinsic/signedExtensions/types.ts';
+import type { ChainProperties, Hash, HeaderPartial, RuntimeVersion, RuntimeVersionPartial } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { ApiBase, ApiDecoration, ApiOptions, ApiTypes, DecorateMethod } from '../types/index.ts';
 import type { VersionedRegistry } from './types.ts';
 
 import { firstValueFrom, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
-import { Metadata, TypeRegistry } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
-import { getSpecAlias, getSpecExtensions, getSpecHasher, getSpecRpc, getSpecTypes, getUpgradeVersion } from 'https://deno.land/x/polkadot@0.2.42/types-known/mod.ts';
-import { assertReturn, BN_ZERO, isUndefined, logger, objectSpread, u8aEq, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
-import { cryptoWaitReady } from 'https://deno.land/x/polkadot@0.2.42/util-crypto/mod.ts';
+import { Metadata, TypeRegistry } from 'https://deno.land/x/polkadot/types/mod.ts';
+import { getSpecAlias, getSpecExtensions, getSpecHasher, getSpecRpc, getSpecTypes, getUpgradeVersion } from 'https://deno.land/x/polkadot/types-known/mod.ts';
+import { assertReturn, BN_ZERO, isUndefined, logger, noop, objectSpread, u8aEq, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { cryptoWaitReady } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { Decorate } from './Decorate.ts';
 
@@ -75,8 +75,7 @@ export abstract class Init<ApiType extends ApiTypes> extends Decorate<ApiType> {
     // 'connected' event, then the `on('connected')` won't fire anymore. To
     // cater for this case, we call manually `this._onProviderConnect`.
     if (this._rpcCore.provider.isConnected) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      this.#onProviderConnect();
+      this.#onProviderConnect().catch(noop);
     }
   }
 
@@ -127,8 +126,13 @@ export abstract class Init<ApiType extends ApiTypes> extends Decorate<ApiType> {
     const metadata = new Metadata(registry,
       await firstValueFrom(this._rpcCore.state.getMetadata.raw<HexString>(header.parentHash))
     );
+    const runtimeChain = this._runtimeChain;
 
-    this._initRegistry(registry, this._runtimeChain as Text, version, metadata);
+    if (!runtimeChain) {
+      throw new Error('Invalid initializion order, runtimeChain is not available');
+    }
+
+    this._initRegistry(registry, runtimeChain, version, metadata);
 
     // add our new registry
     const result = { counter: 0, lastBlockHash: blockHash, metadata, registry, runtimeVersion: version };
@@ -298,12 +302,17 @@ export abstract class Init<ApiType extends ApiTypes> extends Decorate<ApiType> {
 
               // update the default registry version
               const thisRegistry = this._getDefaultRegistry();
+              const runtimeChain = this._runtimeChain;
+
+              if (!runtimeChain) {
+                throw new Error('Invalid initializion order, runtimeChain is not available');
+              }
 
               // setup the data as per the current versions
               thisRegistry.metadata = metadata;
               thisRegistry.runtimeVersion = version;
 
-              this._initRegistry(this.registry, this._runtimeChain as Text, version, metadata);
+              this._initRegistry(this.registry, runtimeChain, version, metadata);
               this._injectMetadata(thisRegistry, true);
 
               return true;
@@ -333,7 +342,7 @@ export abstract class Init<ApiType extends ApiTypes> extends Decorate<ApiType> {
     // retrieve metadata, either from chain  or as pass-in via options
     const metadataKey = `${genesisHash.toHex() || '0x'}-${runtimeVersion.specVersion.toString()}`;
     const metadata = chainMetadata || (
-      optMetadata && optMetadata[metadataKey]
+      optMetadata?.[metadataKey]
         ? new Metadata(this.registry, optMetadata[metadataKey])
         : await firstValueFrom(this._rpcCore.state.getMetadata())
     );
@@ -355,10 +364,16 @@ export abstract class Init<ApiType extends ApiTypes> extends Decorate<ApiType> {
   }
 
   private _initFromMeta (metadata: Metadata): boolean {
+    const runtimeVersion = this._runtimeVersion;
+
+    if (!runtimeVersion) {
+      throw new Error('Invalid initializion order, runtimeVersion is not available');
+    }
+
     this._extrinsicType = metadata.asLatest.extrinsic.version.toNumber();
     this._rx.extrinsicType = this._extrinsicType;
     this._rx.genesisHash = this._genesisHash;
-    this._rx.runtimeVersion = this._runtimeVersion as RuntimeVersion; // must be set here
+    this._rx.runtimeVersion = runtimeVersion;
 
     // inject metadata and adjust the types as detected
     this._injectMetadata(this._getDefaultRegistry(), true);
@@ -376,7 +391,7 @@ export abstract class Init<ApiType extends ApiTypes> extends Decorate<ApiType> {
     // Only enable the health keepalive on WS, not needed on HTTP
     this.#healthTimer = this.hasSubscriptions
       ? setInterval((): void => {
-        firstValueFrom(this._rpcCore.system.health.raw()).catch(() => undefined);
+        firstValueFrom(this._rpcCore.system.health.raw()).catch(noop);
       }, KEEPALIVE_INTERVAL)
       : null;
   }

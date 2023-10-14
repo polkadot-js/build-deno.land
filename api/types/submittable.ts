@@ -1,2 +1,2 @@
 
-export * from 'https://deno.land/x/polkadot@0.2.42/api-base/types/submittable.ts';
+export * from 'https://deno.land/x/polkadot/api-base/types/submittable.ts';

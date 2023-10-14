@@ -1,19 +1,19 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { Option, u32, WrapperOpaque } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
-import type { AccountId } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
-import type { PalletImOnlineBoundedOpaqueNetworkState } from 'https://deno.land/x/polkadot@0.2.42/types/lookup.ts';
+import type { Option, u32 } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Codec } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DeriveApi, DeriveHeartbeats } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
-import { BN_ZERO } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+import { BN_ZERO } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 
-type HeartbeatsOpt = Option<WrapperOpaque<PalletImOnlineBoundedOpaqueNetworkState>>;
+type Result = [DeriveHeartbeats, AccountId[], Option<Codec>[], u32[]];
 
-function mapResult ([result, validators, heartbeats, numBlocks]: [DeriveHeartbeats, AccountId[], HeartbeatsOpt[], u32[]]): DeriveHeartbeats {
+function mapResult ([result, validators, heartbeats, numBlocks]: Result): DeriveHeartbeats {
   validators.forEach((validator, index): void => {
     const validatorId = validator.toString();
     const blockCount = numBlocks[index];
@@ -39,7 +39,7 @@ export function receivedHeartbeats (instanceId: string, api: DeriveApi): () => O
   return memo(instanceId, (): Observable<DeriveHeartbeats> =>
     api.query.imOnline?.receivedHeartbeats
       ? api.derive.staking.overview().pipe(
-        switchMap(({ currentIndex, validators }): Observable<[DeriveHeartbeats, AccountId[], HeartbeatsOpt[], u32[]]> =>
+        switchMap(({ currentIndex, validators }): Observable<Result> =>
           combineLatest([
             of({}),
             of(validators),

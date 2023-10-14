@@ -1,9 +1,9 @@
 
-import type { Codec, CodecClass, LookupString, Registry, U8aBitLength, UIntBitLength } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
+import type { Codec, CodecClass, LookupString, Registry, U8aBitLength, UIntBitLength } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { TypeDef } from '../types/index.ts';
 
-import { BTreeMap, BTreeSet, Bytes, CodecSet, Compact, DoNotConstruct, Enum, HashMap, Int, Null, Option, Range, RangeInclusive, Result, Struct, Tuple, U8aFixed, UInt, Vec, VecFixed, WrapperKeepOpaque, WrapperOpaque } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
-import { isNumber, stringify } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+import { BTreeMap, BTreeSet, Bytes, CodecSet, Compact, DoNotConstruct, Enum, HashMap, Int, Null, Option, Range, RangeInclusive, Result, Struct, Tuple, U8aFixed, UInt, Vec, VecFixed, WrapperKeepOpaque, WrapperOpaque } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { isNumber, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { TypeDefInfo } from '../types/index.ts';
 import { getTypeDef } from '../util/getTypeDef.ts';
@@ -37,7 +37,13 @@ function getTypeClassMap (value: TypeDef): Record<string, string> {
   const map: Record<string, string> = {};
 
   for (let i = 0, count = subs.length; i < count; i++) {
-    map[subs[i].name as string] = getTypeDefType(subs[i]);
+    const sub = subs[i];
+
+    if (!sub.name) {
+      throw new Error(`No name found in definition ${stringify(sub)}`);
+    }
+
+    map[sub.name] = getTypeDefType(sub);
   }
 
   return map;
@@ -84,7 +90,11 @@ const infoMapping: Record<TypeDefInfo, (registry: Registry, value: TypeDef) => C
     return Enum.with(
       subs.every(({ type }) => type === 'Null')
         ? subs.reduce<Record<string, number>>((out, { index, name }, count) => {
-          out[name as string] = index || count;
+          if (!name) {
+            throw new Error('No name found in sub definition');
+          }
+
+          out[name] = index || count;
 
           return out;
         }, {})
@@ -148,7 +158,11 @@ const infoMapping: Record<TypeDefInfo, (registry: Registry, value: TypeDef) => C
   [TypeDefInfo.Set]: (_registry: Registry, value: TypeDef): CodecClass<Codec> =>
     CodecSet.with(
       getSubDefArray(value).reduce<Record<string, number>>((result, { index, name }) => {
-        result[name as string] = index as number;
+        if (!name || !isNumber(index)) {
+          throw new Error('No name found in sub definition');
+        }
+
+        result[name] = index;
 
         return result;
       }, {}),
@@ -220,7 +234,7 @@ export function constructTypeClass<T extends Codec = Codec> (registry: Registry,
 }
 
 export function getTypeClass<T extends Codec = Codec> (registry: Registry, typeDef: TypeDef): CodecClass<T> {
-  return registry.getUnsafe(typeDef.type, false, typeDef) as CodecClass<T>;
+  return registry.getUnsafe(typeDef.type, false, typeDef) as unknown as CodecClass<T>;
 }
 
 export function createClassUnsafe<T extends Codec = Codec, K extends string = string> (registry: Registry, type: K): CodecClass<T> {

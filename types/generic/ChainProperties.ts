@@ -1,10 +1,10 @@
 
-import type { Option, Text, u32, Vec } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
+import type { bool as Bool, Option, Text, u32, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { Codec } from '../types/index.ts';
 
-import { Json } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
-import { isFunction, isNull, isUndefined } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+import { Json } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { isFunction, isNull, isUndefined } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 function createValue (registry: Registry, type: string, value: unknown, asArray = true): Option<Codec> {
   // We detect codec here as well - when found, generally this is constructed from itself
@@ -33,7 +33,9 @@ function decodeValue (registry: Registry, key: string, value: unknown): unknown 
       ? createValue(registry, 'Option<Vec<u32>>' as 'Vec<u32>', value)
       : key === 'tokenSymbol'
         ? createValue(registry, 'Option<Vec<Text>>' as 'Vec<Text>', value)
-        : value;
+        : key === 'isEthereum'
+          ? createValue(registry, 'Bool', value, false)
+          : value;
 }
 
 function decode (registry: Registry, value?: Map<string, unknown> | Record<string, unknown> | null): Record<string, unknown> {
@@ -47,6 +49,7 @@ function decode (registry: Registry, value?: Map<string, unknown> | Record<strin
 
     return all;
   }, {
+    isEthereum: registry.createTypeUnsafe('Bool', []),
     ss58Format: registry.createTypeUnsafe('Option<u32>', []),
     tokenDecimals: registry.createTypeUnsafe('Option<Vec<u32>>', []),
     tokenSymbol: registry.createTypeUnsafe('Option<Vec<Text>>', [])
@@ -56,6 +59,13 @@ function decode (registry: Registry, value?: Map<string, unknown> | Record<strin
 export class GenericChainProperties extends Json {
   constructor (registry: Registry, value?: Map<string, unknown> | Record<string, unknown> | null) {
     super(registry, decode(registry, value));
+  }
+
+  /**
+   * @description The chain uses Ethereum addresses
+   */
+  public get isEthereum (): Bool {
+    return this.getT('isEthereum');
   }
 
   /**

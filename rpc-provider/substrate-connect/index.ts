@@ -1,10 +1,10 @@
 
-import type * as ScType from 'https://esm.sh/@substrate/connect@0.7.26';
+import type * as ScType from 'https://esm.sh/@substrate/connect@0.7.33';
 import type { JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, ProviderInterfaceEmitCb, ProviderInterfaceEmitted } from '../types.ts';
 
 import { EventEmitter } from 'https://esm.sh/eventemitter3@5.0.1';
 
-import { isError, isFunction, isObject, logger, objectSpread } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+import { isError, isFunction, isObject, logger, noop, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { RpcCoder } from '../coder/index.ts';
 import { healthChecker } from './Health.ts';
@@ -45,9 +45,9 @@ export class ScProvider implements ProviderInterface {
   readonly #coder: RpcCoder = new RpcCoder();
   readonly #spec: string | ScType.WellKnownChain;
   readonly #sharedSandbox?: ScProvider | undefined;
-  readonly #subscriptions: Map<string, [ResponseCallback, { unsubscribeMethod: string; id: string | number }]> = new Map();
-  readonly #resubscribeMethods: Map<string, ActiveSubs> = new Map();
-  readonly #requests: Map<number, ResponseCallback> = new Map();
+  readonly #subscriptions = new Map<string, [ResponseCallback, { unsubscribeMethod: string; id: string | number }]>();
+  readonly #resubscribeMethods = new Map<string, ActiveSubs>();
+  readonly #requests = new Map<number, ResponseCallback>();
   readonly #wellKnownChains: Set<ScType.WellKnownChain>;
   readonly #eventemitter: EventEmitter = new EventEmitter();
 
@@ -67,11 +67,11 @@ export class ScProvider implements ProviderInterface {
 
   public get hasSubscriptions (): boolean {
     // Indicates that subscriptions are supported
-    return true;
+    return !!true;
   }
 
   public get isClonable (): boolean {
-    return false;
+    return !!false;
   }
 
   public get isConnected (): boolean {
@@ -183,11 +183,11 @@ export class ScProvider implements ProviderInterface {
 
         Promise
           .race([
-            this.send(unsubscribeMethod, [id]).catch(() => undefined),
+            this.send(unsubscribeMethod, [id]).catch(noop),
             new Promise((resolve) => setTimeout(resolve, 500))
           ])
           .then(killStaleSubscriptions)
-          .catch(() => undefined);
+          .catch(noop);
       };
 
       hc.start((health) => {
@@ -266,7 +266,7 @@ export class ScProvider implements ProviderInterface {
       }
 
       try {
-        const promise: Promise<void> = new Promise((resolve) => {
+        const promise = new Promise<void>((resolve) => {
           this.subscribe(subDetails.type, subDetails.method, subDetails.params, subDetails.callback).catch((error) => console.log(error));
           resolve();
         });

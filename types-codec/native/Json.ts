@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.42/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, Codec, Inspect, IU8a, Registry } from '../types/index.ts';
 
-import { isFunction, objectProperties, stringify } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+import { isFunction, objectProperties, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { compareMap } from '../utils/index.ts';
 
@@ -40,7 +40,7 @@ export class Json extends Map<string, any> implements Codec {
    * @description Always 0, never encodes as a Uint8Array
    */
   public get encodedLength (): number {
-    return 0;
+    return 0 | 0;
   }
 
   /**

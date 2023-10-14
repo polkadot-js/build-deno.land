@@ -1,13 +1,13 @@
 
-import type { Option, Text, Type, u32, Vec } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
-import type { AnyString, LookupString, Registry } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
-import type { ILookup, TypeDef } from 'https://deno.land/x/polkadot@0.2.42/types-create/types/index.ts';
+import type { Option, Text, Type, u32, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { AnyString, LookupString, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { ILookup, TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
 import type { PortableType } from '../../interfaces/metadata/index.ts';
 import type { SiField, SiLookupTypeId, SiType, SiTypeDefArray, SiTypeDefBitSequence, SiTypeDefCompact, SiTypeDefComposite, SiTypeDefSequence, SiTypeDefTuple, SiTypeDefVariant, SiTypeParameter, SiVariant } from '../../interfaces/scaleInfo/index.ts';
 
-import { sanitize, Struct } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
-import { getTypeDef, TypeDefInfo, withTypeString } from 'https://deno.land/x/polkadot@0.2.42/types-create/mod.ts';
-import { assertUnreachable, isNumber, isString, logger, objectSpread, stringCamelCase, stringify, stringPascalCase } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+import { sanitize, Struct } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { getTypeDef, TypeDefInfo, withTypeString } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { assertUnreachable, isNumber, isString, logger, objectSpread, stringCamelCase, stringify, stringPascalCase } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const l = logger('PortableRegistry');
 
@@ -78,7 +78,10 @@ const PATHS_ALIAS = splitNamespace([
   'ink::env::types::*',
   'ink::primitives::types::*',
   'ink_env::types::*',
-  'ink_primitives::types::*'
+  'ink_primitives::types::*',
+  // noir
+  'np_runtime::accountname::AccountName',
+  'np_runtime::universaladdress::UniversalAddress'
 ]);
 
 const PATHS_SET = splitNamespace([
@@ -527,6 +530,13 @@ export class PortableRegistry extends Struct implements ILookup {
    **/
   public get names (): string[] {
     return Object.values(this.#names).sort();
+  }
+
+  /**
+   * @description Returns all the available parameterized types for this chain
+   **/
+  public get paramTypes (): TypeInfoParams {
+    return this.#params;
   }
 
   /**

@@ -1,11 +1,11 @@
 
 import type { Observable, Subscription } from 'https://esm.sh/rxjs@7.8.1';
-import type { Callback, Codec } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
+import type { Callback, Codec } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DecorateFn, DecorateMethodOptions, ObsInnerType, StorageEntryPromiseOverloads, UnsubscribePromise, VoidFn } from '../types/index.ts';
 
 import { catchError, EMPTY, tap } from 'https://esm.sh/rxjs@7.8.1';
 
-import { isFunction, nextTick } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+import { isFunction, nextTick } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 interface Tracker<T> {
   reject: (value: Error) => Observable<never>;
@@ -99,7 +99,7 @@ function decorateSubscribe<M extends DecorateFn<CodecReturnType<M>>> (method: M,
  * @description Decorate method for ApiPromise, where the results are converted to the Promise equivalent
  */
 export function toPromiseMethod<M extends DecorateFn<CodecReturnType<M>>> (method: M, options?: DecorateMethodOptions): StorageEntryPromiseOverloads {
-  const needsCallback = !!(options && options.methodName && options.methodName.includes('subscribe'));
+  const needsCallback = !!(options?.methodName && options.methodName.includes('subscribe'));
 
   return function (...args: unknown[]): Promise<CodecReturnType<M>> | UnsubscribePromise {
     const [actualArgs, resultCb] = extractArgs(args, needsCallback);

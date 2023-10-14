@@ -1,13 +1,13 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { QueryableStorageEntry } from 'https://deno.land/x/polkadot@0.2.42/api-base/types/index.ts';
-import type { AccountData, AccountId, AccountIndex, AccountInfo, Address, Balance, Index } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
+import type { QueryableStorageEntry } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { AccountData, AccountId, AccountIndex, AccountInfo, Address, Balance, Index } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DeriveApi, DeriveBalancesAccount, DeriveBalancesAccountData } from '../types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
-import { isFunction, objectSpread } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+import { isFunction, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 
@@ -15,11 +15,9 @@ type BalanceResult = [Balance, Balance, Balance, Balance];
 
 type Result = [Index, BalanceResult[]];
 
-type DeriveCustomAccount = DeriveApi['derive'] & {
-  [custom: string]: {
-    customAccount?: DeriveApi['query']['balances']['account']
-  }
-}
+type DeriveCustomAccount = DeriveApi['derive'] & Record<string, {
+  customAccount?: DeriveApi['query']['balances']['account']
+}>
 
 function zeroBalance (api: DeriveApi) {
   return api.registry.createType('Balance');

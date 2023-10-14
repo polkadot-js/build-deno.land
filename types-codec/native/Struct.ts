@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.42/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, BareOpts, Codec, CodecClass, DefinitionSetter, Inspect, IStruct, IU8a, Registry } from '../types/index.ts';
 
-import { isBoolean, isHex, isObject, isU8a, isUndefined, objectProperties, stringCamelCase, stringify, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+import { isBoolean, isHex, isObject, isU8a, isUndefined, objectProperties, stringCamelCase, stringify, u8aConcatStrict, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { compareMap, decodeU8aStruct, mapToTypeMap, typesToMap } from '../utils/index.ts';
 
@@ -223,7 +223,7 @@ export class Struct<
   /**
    * @description Returns the a types value by name
    */
-  public getT <T> (key: string): T {
+  public getT <T = Codec> (key: string): T {
     return super.get(key) as unknown as T;
   }
 

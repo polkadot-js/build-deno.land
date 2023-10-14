@@ -1,10 +1,10 @@
 
-import type { AnyU8a, Registry } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
-import type { BN } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+import type { AnyU8a, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { IExtrinsicEra, INumber } from '../types/index.ts';
 
-import { Enum, Raw, Tuple, U64 } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
-import { bnToBn, formatNumber, hexToU8a, isHex, isObject, isU8a, u8aToBn, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+import { Enum, Raw, Tuple, U64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { bnToBn, formatNumber, hexToU8a, isHex, isObject, isU8a, u8aToBn, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { IMMORTAL_ERA } from './constants.ts';
 
@@ -139,7 +139,7 @@ export class MortalEra extends Tuple {
    * @description Encoded length for mortals occupy 2 bytes, different from the actual Tuple since it is encoded. This is a shortcut fro `toU8a().length`
    */
   public override get encodedLength (): number {
-    return 2;
+    return 2 | 0;
   }
 
   /**

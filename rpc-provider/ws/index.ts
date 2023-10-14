@@ -1,12 +1,12 @@
 
-import type { Class } from 'https://deno.land/x/polkadot@0.2.42/util/types.ts';
+import type { Class } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { EndpointStats, JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, ProviderInterfaceEmitCb, ProviderInterfaceEmitted, ProviderStats } from '../types.ts';
 
 import { EventEmitter } from 'https://esm.sh/eventemitter3@5.0.1';
 
-import { isChildClass, isNull, isUndefined, logger, objectSpread } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
-import { xglobal } from 'https://deno.land/x/polkadot@0.2.42/x-global/mod.ts';
-import { WebSocket } from 'https://deno.land/x/polkadot@0.2.42/x-ws/mod.ts';
+import { isChildClass, isNull, isUndefined, logger, noop, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
+import { WebSocket } from 'https://deno.land/x/polkadot/x-ws/mod.ts';
 
 import { RpcCoder } from '../coder/index.ts';
 import defaults from '../defaults.ts';
@@ -31,7 +31,7 @@ interface WsStateSubscription extends SubscriptionHandler {
   params: unknown[];
 }
 
-const ALIASES: { [index: string]: string } = {
+const ALIASES: Record<string, string> = {
   chain_finalisedHead: 'chain_finalizedHead',
   chain_subscribeFinalisedHeads: 'chain_subscribeFinalizedHeads',
   chain_unsubscribeFinalisedHeads: 'chain_unsubscribeFinalizedHeads'
@@ -71,8 +71,8 @@ function defaultEndpointStats (): EndpointStats {
  * <BR>
  *
  * ```javascript
- * import Api from 'https://deno.land/x/polkadot@0.2.42/api/promise/index.ts';
- * import { WsProvider } from 'https://deno.land/x/polkadot@0.2.42/rpc-provider/ws/index.ts';
+ * import Api from 'https://deno.land/x/polkadot/api/promise/index.ts';
+ * import { WsProvider } from 'https://deno.land/x/polkadot/rpc-provider/ws/index.ts';
  *
  * const provider = new WsProvider('ws://127.0.0.1:9944');
  * const api = new Api(provider);
@@ -136,9 +136,7 @@ export class WsProvider implements ProviderInterface {
     this.#timeout = timeout || DEFAULT_TIMEOUT_MS;
 
     if (autoConnectMs && autoConnectMs > 0) {
-      this.connectWithRetry().catch((): void => {
-        // does not throw
-      });
+      this.connectWithRetry().catch(noop);
     }
 
     this.#isReadyPromise = new Promise((resolve): void => {
@@ -152,14 +150,14 @@ export class WsProvider implements ProviderInterface {
    * @summary `true` when this provider supports subscriptions
    */
   public get hasSubscriptions (): boolean {
-    return true;
+    return !!true;
   }
 
   /**
    * @summary `true` when this provider supports clone()
    */
   public get isClonable (): boolean {
-    return true;
+    return !!true;
   }
 
   /**
@@ -242,9 +240,7 @@ export class WsProvider implements ProviderInterface {
         await this.connect();
       } catch {
         setTimeout((): void => {
-          this.connectWithRetry().catch((): void => {
-            // does not throw
-          });
+          this.connectWithRetry().catch(noop);
         }, this.#autoConnectMs);
       }
     }
@@ -467,9 +463,7 @@ export class WsProvider implements ProviderInterface {
 
     if (this.#autoConnectMs > 0) {
       setTimeout((): void => {
-        this.connectWithRetry().catch(() => {
-          // does not throw
-        });
+        this.connectWithRetry().catch(noop);
       }, this.#autoConnectMs);
     }
   };
@@ -535,7 +529,11 @@ export class WsProvider implements ProviderInterface {
   };
 
   #onSocketMessageSubscribe = (response: JsonRpcResponse<unknown>): void => {
-    const method = ALIASES[response.method as string] || response.method || 'invalid';
+    if (!response.method) {
+      throw new Error('No method found in JSONRPC response');
+    }
+
+    const method = ALIASES[response.method] || response.method;
     const subId = `${method}::${response.params.subscription}`;
     const handler = this.#subscriptions[subId];
 

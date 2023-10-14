@@ -1,5 +1,5 @@
 
-import type { EraIndex } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/index.ts';
+import type { EraIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 
 import { deriveCache } from '../util/index.ts';
 
@@ -37,8 +37,10 @@ export function setEraMultiCache <T extends { era: EraIndex }> (CACHE_KEY: strin
 }
 
 export function filterCachedEras <T extends { era: EraIndex }> (eras: EraIndex[], cached: T[], query: T[]): T[] {
-  return eras.map((e) =>
-    cached.find(({ era }) => e.eq(era)) ||
-    query.find(({ era }) => e.eq(era)) as T
-  );
+  return eras
+    .map((e) =>
+      cached.find(({ era }) => e.eq(era)) ||
+      query.find(({ era }) => e.eq(era))
+    )
+    .filter((e): e is T => !!e);
 }

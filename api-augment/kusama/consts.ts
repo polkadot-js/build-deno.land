@@ -1,16 +1,16 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts';
+import 'https://deno.land/x/polkadot/api-base/types/consts.ts';
 
-import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot@0.2.42/api-base/types/index.ts';
-import type { Bytes, Option, Vec, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
-import type { Codec, ITuple } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
-import type { Perbill, Permill, Perquintill } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/runtime/index.ts';
-import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, PalletReferendaTrackInfo, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot@0.2.42/types/lookup.ts';
+import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Bytes, Option, Vec, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Codec, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { Perbill, Permill, Perquintill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, PalletReferendaTrackInfo, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedConst<ApiType extends ApiTypes> = AugmentedConst<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
   interface AugmentedConsts<ApiType extends ApiTypes> {
     auctions: {
       /**
@@ -50,6 +50,10 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts' {
        **/
       maxAuthorities: u32 & AugmentedConst<ApiType>;
       /**
+       * The maximum number of nominators for each validator.
+       **/
+      maxNominators: u32 & AugmentedConst<ApiType>;
+      /**
        * Generic const
        **/
       [key: string]: Codec;
@@ -83,6 +87,29 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts' {
        * The maximum number of named reserves that can exist on an account.
        **/
       maxReserves: u32 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
+    beefy: {
+      /**
+       * The maximum number of authorities that can be added.
+       **/
+      maxAuthorities: u32 & AugmentedConst<ApiType>;
+      /**
+       * The maximum number of nominators for each validator.
+       **/
+      maxNominators: u32 & AugmentedConst<ApiType>;
+      /**
+       * The maximum number of entries to keep in the set id to session index mapping.
+       * 
+       * Since the `SetIdSession` map is only used for validating equivocations this
+       * value should relate to the bonding duration of whatever staking system is
+       * being used (if any). If equivocation handling is not enabled then this value
+       * can be zero.
+       **/
+      maxSetIdSessionEntries: u64 & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/
@@ -178,12 +205,13 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts' {
     };
     crowdloan: {
       /**
-       * The minimum amount that may be contributed into a crowdloan. Should almost certainly be at
-       * least `ExistentialDeposit`.
+       * The minimum amount that may be contributed into a crowdloan. Should almost certainly be
+       * at least `ExistentialDeposit`.
        **/
       minContribution: u128 & AugmentedConst<ApiType>;
       /**
-       * `PalletId` for the crowdloan pallet. An appropriate value could be `PalletId(*b"py/cfund")`
+       * `PalletId` for the crowdloan pallet. An appropriate value could be
+       * `PalletId(*b"py/cfund")`
        **/
       palletId: FrameSupportPalletId & AugmentedConst<ApiType>;
       /**
@@ -206,16 +234,6 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts' {
        * "better" in the Unsigned phase.
        **/
       betterUnsignedThreshold: Perbill & AugmentedConst<ApiType>;
-      /**
-       * The maximum number of electable targets to put in the snapshot.
-       **/
-      maxElectableTargets: u16 & AugmentedConst<ApiType>;
-      /**
-       * The maximum number of electing voters to put in the snapshot. At the moment, snapshots
-       * are only over a single block, but once multi-block elections are introduced they will
-       * take place over multiple blocks.
-       **/
-      maxElectingVoters: u32 & AugmentedConst<ApiType>;
       /**
        * The maximum number of winners that can be elected by this `ElectionProvider`
        * implementation.
@@ -334,6 +352,10 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts' {
        * Max Authorities in use
        **/
       maxAuthorities: u32 & AugmentedConst<ApiType>;
+      /**
+       * The maximum number of nominators for each validator.
+       **/
+      maxNominators: u32 & AugmentedConst<ApiType>;
       /**
        * The maximum number of entries to keep in the set id to session index mapping.
        * 
@@ -705,7 +727,7 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts' {
        **/
       dataDepositPerByte: u128 & AugmentedConst<ApiType>;
       /**
-       * The deposit to be paid to run a parathread.
+       * The deposit to be paid to run a on-demand parachain.
        * This should include the cost for storing the genesis head and validation code.
        **/
       paraDeposit: u128 & AugmentedConst<ApiType>;
@@ -748,26 +770,30 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts' {
     };
     society: {
       /**
-       * The minimum amount of a deposit required for a bid to be made.
-       **/
-      candidateDeposit: u128 & AugmentedConst<ApiType>;
-      /**
        * The number of blocks between membership challenges.
        **/
       challengePeriod: u32 & AugmentedConst<ApiType>;
       /**
-       * The maximum number of candidates that we accept per round.
+       * The number of blocks on which new candidates can claim their membership and be the
+       * named head.
        **/
-      maxCandidateIntake: u32 & AugmentedConst<ApiType>;
+      claimPeriod: u32 & AugmentedConst<ApiType>;
+      /**
+       * The maximum number of strikes before a member gets funds slashed.
+       **/
+      graceStrikes: u32 & AugmentedConst<ApiType>;
+      /**
+       * The maximum number of bids at once.
+       **/
+      maxBids: u32 & AugmentedConst<ApiType>;
       /**
        * The maximum duration of the payout lock.
        **/
       maxLockDuration: u32 & AugmentedConst<ApiType>;
       /**
-       * The number of times a member may vote the wrong way (or not at all, when they are a
-       * skeptic) before they become suspended.
+       * The maximum number of payouts a member may have waiting unclaimed.
        **/
-      maxStrikes: u32 & AugmentedConst<ApiType>;
+      maxPayouts: u32 & AugmentedConst<ApiType>;
       /**
        * The societies's pallet id
        **/
@@ -777,14 +803,10 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts' {
        **/
       periodSpend: u128 & AugmentedConst<ApiType>;
       /**
-       * The number of blocks between candidate/membership rotation periods.
+       * The number of blocks on which new candidates should be voted on. Together with
+       * `ClaimPeriod`, this sums to the number of blocks between candidate intake periods.
        **/
-      rotationPeriod: u32 & AugmentedConst<ApiType>;
-      /**
-       * The amount of the unpaid reward that gets deducted in the case that either a skeptic
-       * doesn't vote or someone votes in the wrong way.
-       **/
-      wrongSideDeduction: u128 & AugmentedConst<ApiType>;
+      votingPeriod: u32 & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/
@@ -819,10 +841,6 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts' {
        **/
       historyDepth: u32 & AugmentedConst<ApiType>;
       /**
-       * Maximum number of nominations per nominator.
-       **/
-      maxNominations: u32 & AugmentedConst<ApiType>;
-      /**
        * The maximum number of nominators rewarded for each validator.
        * 
        * For each validator only the `$MaxNominatorRewardedPerValidator` biggest stakers can
@@ -853,6 +871,36 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/consts.ts' {
        * should be applied immediately, without opportunity for intervention.
        **/
       slashDeferDuration: u32 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
+    stateTrieMigration: {
+      /**
+       * Maximal number of bytes that a key can have.
+       * 
+       * FRAME itself does not limit the key length.
+       * The concrete value must therefore depend on your storage usage.
+       * A [`frame_support::storage::StorageNMap`] for example can have an arbitrary number of
+       * keys which are then hashed and concatenated, resulting in arbitrarily long keys.
+       * 
+       * Use the *state migration RPC* to retrieve the length of the longest key in your
+       * storage: <https://github.com/paritytech/substrate/issues/11642>
+       * 
+       * The migration will halt with a `Halted` event if this value is too small.
+       * Since there is no real penalty from over-estimating, it is advised to use a large
+       * value. The default is 512 byte.
+       * 
+       * Some key lengths for reference:
+       * - [`frame_support::storage::StorageValue`]: 32 byte
+       * - [`frame_support::storage::StorageMap`]: 64 byte
+       * - [`frame_support::storage::StorageDoubleMap`]: 96 byte
+       * 
+       * For more info see
+       * <https://www.shawntabrizi.com/substrate/querying-substrate-storage-via-rpc/>
+       **/
+      maxKeyLen: u32 & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/

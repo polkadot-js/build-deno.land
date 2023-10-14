@@ -1,33 +1,33 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.42/api-base/types/calls.ts';
+import 'https://deno.land/x/polkadot/api-base/types/calls.ts';
 
-import type { ApiTypes, AugmentedCall, DecoratedCallBase } from 'https://deno.land/x/polkadot@0.2.42/api-base/types/index.ts';
-import type { Bytes, Null, Option, Result, Vec, bool, u32 } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
-import type { AnyNumber, IMethod, ITuple } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
-import type { BabeEquivocationProof, BabeGenesisConfiguration, Epoch, OpaqueKeyOwnershipProof } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/babe/index.ts';
-import type { BeefyEquivocationProof, ValidatorSet, ValidatorSetId } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/beefy/index.ts';
-import type { CheckInherentsResult, InherentData } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/blockbuilder/index.ts';
-import type { BlockHash } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/chain/index.ts';
-import type { AuthorityId } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/consensus/index.ts';
-import type { Extrinsic } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/extrinsics/index.ts';
-import type { AuthorityList, GrandpaEquivocationProof, SetId } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/grandpa/index.ts';
-import type { OpaqueMetadata } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/metadata/index.ts';
-import type { MmrBatchProof, MmrEncodableOpaqueLeaf, MmrError } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/mmr/index.ts';
-import type { NpPoolId } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/nompools/index.ts';
-import type { CandidateCommitments, CandidateEvent, CandidateHash, CommittedCandidateReceipt, CoreState, DisputeState, ExecutorParams, GroupRotationInfo, InboundDownwardMessage, InboundHrmpMessage, OccupiedCoreAssumption, ParaId, ParaValidatorIndex, PersistedValidationData, PvfCheckStatement, ScrapedOnChainVotes, SessionInfo, ValidationCode, ValidationCodeHash, ValidatorSignature } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/parachains/index.ts';
-import type { FeeDetails, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/payment/index.ts';
-import type { AccountId, Balance, Block, BlockNumber, Call, Hash, Header, Index, KeyTypeId, Slot, ValidatorId, Weight } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/runtime/index.ts';
-import type { SessionIndex } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/session/index.ts';
-import type { RuntimeVersion } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/state/index.ts';
-import type { ApplyExtrinsicResult } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/system/index.ts';
-import type { TransactionSource, TransactionValidity } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/txqueue/index.ts';
-import type { IExtrinsic, Observable } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
+import type { ApiTypes, AugmentedCall, DecoratedCallBase } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Bytes, Null, Option, Result, Vec, bool, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { AnyNumber, IMethod, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { BabeEquivocationProof, BabeGenesisConfiguration, Epoch, OpaqueKeyOwnershipProof } from 'https://deno.land/x/polkadot/types/interfaces/babe/index.ts';
+import type { BeefyEquivocationProof, ValidatorSet, ValidatorSetId } from 'https://deno.land/x/polkadot/types/interfaces/beefy/index.ts';
+import type { CheckInherentsResult, InherentData } from 'https://deno.land/x/polkadot/types/interfaces/blockbuilder/index.ts';
+import type { BlockHash } from 'https://deno.land/x/polkadot/types/interfaces/chain/index.ts';
+import type { AuthorityId } from 'https://deno.land/x/polkadot/types/interfaces/consensus/index.ts';
+import type { Extrinsic } from 'https://deno.land/x/polkadot/types/interfaces/extrinsics/index.ts';
+import type { AuthorityList, GrandpaEquivocationProof, SetId } from 'https://deno.land/x/polkadot/types/interfaces/grandpa/index.ts';
+import type { OpaqueMetadata } from 'https://deno.land/x/polkadot/types/interfaces/metadata/index.ts';
+import type { MmrBatchProof, MmrEncodableOpaqueLeaf, MmrError } from 'https://deno.land/x/polkadot/types/interfaces/mmr/index.ts';
+import type { NpPoolId } from 'https://deno.land/x/polkadot/types/interfaces/nompools/index.ts';
+import type { CandidateCommitments, CandidateEvent, CandidateHash, CommittedCandidateReceipt, CoreState, DisputeProof, DisputeState, ExecutorParams, GroupRotationInfo, InboundDownwardMessage, InboundHrmpMessage, OccupiedCoreAssumption, ParaId, ParaValidatorIndex, PendingSlashes, PersistedValidationData, PvfCheckStatement, ScrapedOnChainVotes, SessionInfo, ValidationCode, ValidationCodeHash, ValidatorSignature } from 'https://deno.land/x/polkadot/types/interfaces/parachains/index.ts';
+import type { FeeDetails, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot/types/interfaces/payment/index.ts';
+import type { AccountId, Balance, Block, BlockNumber, Call, Hash, Header, Index, KeyTypeId, Slot, ValidatorId, Weight } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { SessionIndex } from 'https://deno.land/x/polkadot/types/interfaces/session/index.ts';
+import type { RuntimeVersion } from 'https://deno.land/x/polkadot/types/interfaces/state/index.ts';
+import type { ApplyExtrinsicResult } from 'https://deno.land/x/polkadot/types/interfaces/system/index.ts';
+import type { TransactionSource, TransactionValidity } from 'https://deno.land/x/polkadot/types/interfaces/txqueue/index.ts';
+import type { IExtrinsic, Observable } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 export type __AugmentedCall<ApiType extends ApiTypes> = AugmentedCall<ApiType>;
 export type __DecoratedCallBase<ApiType extends ApiTypes> = DecoratedCallBase<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/calls.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
   interface AugmentedCalls<ApiType extends ApiTypes> {
     /** 0xbc9d89904f5b923f/1 */
     accountNonceApi: {
@@ -82,7 +82,7 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/calls.ts' {
        **/
       [key: string]: DecoratedCallBase<ApiType>;
     };
-    /** 0x49eaaf1b548a0cb0/2 */
+    /** 0x49eaaf1b548a0cb0/3 */
     beefyApi: {
       /**
        * Return the block number where BEEFY consensus is enabled/started
@@ -242,7 +242,7 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/calls.ts' {
        **/
       [key: string]: DecoratedCallBase<ApiType>;
     };
-    /** 0xaf2c0297a23e6d3d/4 */
+    /** 0xaf2c0297a23e6d3d/5 */
     parachainHost: {
       /**
        * Returns the persisted validation data for the given `ParaId` along with the corresponding validation code hash.
@@ -277,6 +277,10 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/calls.ts' {
        **/
       inboundHrmpChannelsContents: AugmentedCall<ApiType, (paraId: ParaId | AnyNumber | Uint8Array) => Observable<Vec<InboundHrmpMessage>>>;
       /**
+       * Returns a merkle proof of a validator session key
+       **/
+      keyOwnershipProof: AugmentedCall<ApiType, (validatorId: ValidatorId | string | Uint8Array) => Observable<Option<OpaqueKeyOwnershipProof>>>;
+      /**
        * Scrape dispute relevant from on-chain, backing votes and resolved disputes.
        **/
       onChainVotes: AugmentedCall<ApiType, () => Observable<Option<ScrapedOnChainVotes>>>;
@@ -304,6 +308,14 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/calls.ts' {
        * Submits a PVF pre-checking statement into the transaction pool.
        **/
       submitPvfCheckStatement: AugmentedCall<ApiType, (stmt: PvfCheckStatement | { accept?: any; subject?: any; sessionIndex?: any; validatorIndex?: any } | string | Uint8Array, signature: ValidatorSignature | string | Uint8Array) => Observable<Null>>;
+      /**
+       * Submit an unsigned extrinsic to slash validators who lost a dispute about a candidate of a past session
+       **/
+      submitReportDisputeLost: AugmentedCall<ApiType, (disputeProof: DisputeProof | { timeSlot?: any; kind?: any; validatorIndex?: any; validatorId?: any } | string | Uint8Array, keyOwnershipProof: OpaqueKeyOwnershipProof | string | Uint8Array) => Observable<Option<Null>>>;
+      /**
+       * Returns a list of validators that lost a past session dispute and need to be slashed
+       **/
+      unappliedSlashes: AugmentedCall<ApiType, () => Observable<Vec<ITuple<[SessionIndex, CandidateHash, PendingSlashes]>>>>;
       /**
        * Fetch the validation code used by a para, making the given `OccupiedCoreAssumption`.
        **/

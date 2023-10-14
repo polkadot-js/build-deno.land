@@ -1,7 +1,7 @@
 
 export type ExtTypes = Record<string, string>;
 
-export type ExtInfo = {
+export interface ExtInfo {
   extrinsic: ExtTypes;
   payload: ExtTypes;
 }

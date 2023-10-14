@@ -1,19 +1,19 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.42/api-base/types/storage.ts';
+import 'https://deno.land/x/polkadot/api-base/types/storage.ts';
 
-import type { ApiTypes, AugmentedQuery, QueryableStorageEntry } from 'https://deno.land/x/polkadot@0.2.42/api-base/types/index.ts';
-import type { Data } from 'https://deno.land/x/polkadot@0.2.42/types/mod.ts';
-import type { BTreeSet, Bytes, Null, Option, Struct, U8aFixed, Vec, WrapperOpaque, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.42/types-codec/mod.ts';
-import type { AnyNumber, ITuple } from 'https://deno.land/x/polkadot@0.2.42/types-codec/types/index.ts';
-import type { AccountId32, Call, H256, Perbill, Percent } from 'https://deno.land/x/polkadot@0.2.42/types/interfaces/runtime/index.ts';
-import type { FrameSupportDispatchPerDispatchClassWeight, FrameSupportPreimagesBounded, FrameSystemAccountInfo, FrameSystemEventRecord, FrameSystemLastRuntimeUpgradeInfo, FrameSystemPhase, KitchensinkRuntimeRuntimeHoldReason, KitchensinkRuntimeSessionKeys, PalletAllianceCid, PalletAllianceMemberRole, PalletAssetConversionNativeOrAssetId, PalletAssetConversionPoolInfo, PalletAssetsApproval, PalletAssetsAssetAccount, PalletAssetsAssetDetails, PalletAssetsAssetMetadata, PalletBagsListListBag, PalletBagsListListNode, PalletBalancesAccountData, PalletBalancesBalanceLock, PalletBalancesIdAmount, PalletBalancesReserveData, PalletBountiesBounty, PalletChildBountiesChildBounty, PalletCollectiveVotes, PalletContractsStorageContractInfo, PalletContractsStorageDeletionQueueManager, PalletContractsWasmOwnerInfo, PalletContractsWasmPrefabWasmModule, PalletConvictionVotingVoteVoting, PalletCoreFellowshipMemberStatus, PalletCoreFellowshipParamsType, PalletCoreFellowshipWish, PalletDemocracyMetadataOwner, PalletDemocracyReferendumInfo, PalletDemocracyVoteThreshold, PalletDemocracyVoteVoting, PalletElectionProviderMultiPhasePhase, PalletElectionProviderMultiPhaseReadySolution, PalletElectionProviderMultiPhaseRoundSnapshot, PalletElectionProviderMultiPhaseSignedSignedSubmission, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletElectionsPhragmenSeatHolder, PalletElectionsPhragmenVoter, PalletFastUnstakeUnstakeRequest, PalletGrandpaStoredPendingChange, PalletGrandpaStoredState, PalletIdentityRegistrarInfo, PalletIdentityRegistration, PalletImOnlineBoundedOpaqueNetworkState, PalletImOnlineSr25519AppSr25519Public, PalletLotteryLotteryConfig, PalletMessageQueueBookState, PalletMessageQueuePage, PalletMultisigMultisig, PalletNftFractionalizationDetails, PalletNftsAttributeDeposit, PalletNftsAttributeNamespace, PalletNftsCollectionConfig, PalletNftsCollectionDetails, PalletNftsCollectionMetadata, PalletNftsItemConfig, PalletNftsItemDetails, PalletNftsItemMetadata, PalletNftsPendingSwap, PalletNisBid, PalletNisReceiptRecord, PalletNisSummaryRecord, PalletNominationPoolsBondedPoolInner, PalletNominationPoolsClaimPermission, PalletNominationPoolsPoolMember, PalletNominationPoolsRewardPool, PalletNominationPoolsSubPools, PalletPreimageRequestStatus, PalletProxyAnnouncement, PalletProxyProxyDefinition, PalletRankedCollectiveMemberRecord, PalletRankedCollectiveVoteRecord, PalletRecoveryActiveRecovery, PalletRecoveryRecoveryConfig, PalletReferendaReferendumInfoConvictionVotingTally, PalletReferendaReferendumInfoRankedCollectiveTally, PalletSalaryClaimantStatus, PalletSalaryStatusType, PalletSchedulerScheduled, PalletSocietyBid, PalletSocietyBidKind, PalletSocietyVote, PalletSocietyVouchingStatus, PalletStakingActiveEraInfo, PalletStakingEraRewardPoints, PalletStakingExposure, PalletStakingForcing, PalletStakingNominations, PalletStakingRewardDestination, PalletStakingSlashingSlashingSpans, PalletStakingSlashingSpanRecord, PalletStakingStakingLedger, PalletStakingUnappliedSlash, PalletStakingValidatorPrefs, PalletStateTrieMigrationMigrationLimits, PalletStateTrieMigrationMigrationTask, PalletTipsOpenTip, PalletTransactionPaymentReleases, PalletTransactionStorageTransactionInfo, PalletTreasuryProposal, PalletUniquesCollectionDetails, PalletUniquesCollectionMetadata, PalletUniquesItemDetails, PalletUniquesItemMetadata, PalletVestingReleases, PalletVestingVestingInfo, SpAuthorityDiscoveryAppPublic, SpConsensusBabeAppPublic, SpConsensusBabeBabeEpochConfiguration, SpConsensusBabeDigestsNextConfigDescriptor, SpConsensusBabeDigestsPreDigest, SpCoreCryptoKeyTypeId, SpNposElectionsElectionScore, SpRuntimeDigest, SpStakingOffenceOffenceDetails } from 'https://deno.land/x/polkadot@0.2.42/types/lookup.ts';
-import type { Observable } from 'https://deno.land/x/polkadot@0.2.42/types/types/index.ts';
+import type { ApiTypes, AugmentedQuery, QueryableStorageEntry } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Data } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { BTreeSet, Bytes, Null, Option, Struct, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { AnyNumber, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { AccountId32, Call, H256, Perbill, Percent } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportDispatchPerDispatchClassWeight, FrameSupportPreimagesBounded, FrameSystemAccountInfo, FrameSystemEventRecord, FrameSystemLastRuntimeUpgradeInfo, FrameSystemPhase, KitchensinkRuntimeRuntimeHoldReason, KitchensinkRuntimeSessionKeys, PalletAllianceCid, PalletAllianceMemberRole, PalletAssetConversionNativeOrAssetId, PalletAssetConversionPoolInfo, PalletAssetsApproval, PalletAssetsAssetAccount, PalletAssetsAssetDetails, PalletAssetsAssetMetadata, PalletBagsListListBag, PalletBagsListListNode, PalletBalancesAccountData, PalletBalancesBalanceLock, PalletBalancesIdAmount, PalletBalancesReserveData, PalletBountiesBounty, PalletBrokerAllowedRenewalId, PalletBrokerAllowedRenewalRecord, PalletBrokerConfigRecord, PalletBrokerContributionRecord, PalletBrokerInstaPoolHistoryRecord, PalletBrokerLeaseRecordItem, PalletBrokerPoolIoRecord, PalletBrokerRegionId, PalletBrokerRegionRecord, PalletBrokerSaleInfoRecord, PalletBrokerScheduleItem, PalletBrokerStatusRecord, PalletChildBountiesChildBounty, PalletCollectiveVotes, PalletContractsStorageContractInfo, PalletContractsStorageDeletionQueueManager, PalletContractsWasmCodeInfo, PalletConvictionVotingVoteVoting, PalletCoreFellowshipMemberStatus, PalletCoreFellowshipParamsType, PalletCoreFellowshipWish, PalletDemocracyMetadataOwner, PalletDemocracyReferendumInfo, PalletDemocracyVoteThreshold, PalletDemocracyVoteVoting, PalletElectionProviderMultiPhasePhase, PalletElectionProviderMultiPhaseReadySolution, PalletElectionProviderMultiPhaseRoundSnapshot, PalletElectionProviderMultiPhaseSignedSignedSubmission, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletElectionsPhragmenSeatHolder, PalletElectionsPhragmenVoter, PalletFastUnstakeUnstakeRequest, PalletGrandpaStoredPendingChange, PalletGrandpaStoredState, PalletIdentityRegistrarInfo, PalletIdentityRegistration, PalletImOnlineSr25519AppSr25519Public, PalletLotteryLotteryConfig, PalletMessageQueueBookState, PalletMessageQueuePage, PalletMultisigMultisig, PalletNftFractionalizationDetails, PalletNftsAttributeDeposit, PalletNftsAttributeNamespace, PalletNftsCollectionConfig, PalletNftsCollectionDetails, PalletNftsCollectionMetadata, PalletNftsItemConfig, PalletNftsItemDetails, PalletNftsItemMetadata, PalletNftsPendingSwap, PalletNisBid, PalletNisReceiptRecord, PalletNisSummaryRecord, PalletNominationPoolsBondedPoolInner, PalletNominationPoolsClaimPermission, PalletNominationPoolsPoolMember, PalletNominationPoolsRewardPool, PalletNominationPoolsSubPools, PalletPreimageRequestStatus, PalletProxyAnnouncement, PalletProxyProxyDefinition, PalletRankedCollectiveMemberRecord, PalletRankedCollectiveVoteRecord, PalletRecoveryActiveRecovery, PalletRecoveryRecoveryConfig, PalletReferendaReferendumInfoConvictionVotingTally, PalletReferendaReferendumInfoRankedCollectiveTally, PalletSalaryClaimantStatus, PalletSalaryStatusType, PalletSchedulerScheduled, PalletSocietyBid, PalletSocietyCandidacy, PalletSocietyGroupParams, PalletSocietyIntakeRecord, PalletSocietyMemberRecord, PalletSocietyPayoutRecord, PalletSocietyTally, PalletSocietyVote, PalletStakingActiveEraInfo, PalletStakingEraRewardPoints, PalletStakingExposure, PalletStakingForcing, PalletStakingNominations, PalletStakingRewardDestination, PalletStakingSlashingSlashingSpans, PalletStakingSlashingSpanRecord, PalletStakingStakingLedger, PalletStakingUnappliedSlash, PalletStakingValidatorPrefs, PalletStateTrieMigrationMigrationLimits, PalletStateTrieMigrationMigrationTask, PalletTipsOpenTip, PalletTransactionPaymentReleases, PalletTransactionStorageTransactionInfo, PalletTreasuryProposal, PalletUniquesCollectionDetails, PalletUniquesCollectionMetadata, PalletUniquesItemDetails, PalletUniquesItemMetadata, PalletVestingReleases, PalletVestingVestingInfo, SpAuthorityDiscoveryAppPublic, SpConsensusBabeAppPublic, SpConsensusBabeBabeEpochConfiguration, SpConsensusBabeDigestsNextConfigDescriptor, SpConsensusBabeDigestsPreDigest, SpCoreCryptoKeyTypeId, SpNposElectionsElectionScore, SpRuntimeDigest, SpStakingOffenceOffenceDetails } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { Observable } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 export type __AugmentedQuery<ApiType extends ApiTypes> = AugmentedQuery<ApiType, () => unknown>;
 export type __QueryableStorageEntry<ApiType extends ApiTypes> = QueryableStorageEntry<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/storage.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
   interface AugmentedQueries<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -102,7 +102,7 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/storage.ts' {
       /**
        * Maps an asset to its fixed point representation in the native balance.
        * 
-       * E.g. `native_amount = asset_amount * ConversionRateToNative::<T>::get(asset_id)`
+       * E.g. `native_amount = asset_amount * ConversionRateToNative::<T>::get(asset_kind)`
        **/
       conversionRateToNative: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Option<u128>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
       /**
@@ -354,6 +354,60 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/storage.ts' {
        **/
       [key: string]: QueryableStorageEntry<ApiType>;
     };
+    broker: {
+      /**
+       * Records of allowed renewals.
+       **/
+      allowedRenewals: AugmentedQuery<ApiType, (arg: PalletBrokerAllowedRenewalId | { core?: any; when?: any } | string | Uint8Array) => Observable<Option<PalletBrokerAllowedRenewalRecord>>, [PalletBrokerAllowedRenewalId]> & QueryableStorageEntry<ApiType, [PalletBrokerAllowedRenewalId]>;
+      /**
+       * The current configuration of this pallet.
+       **/
+      configuration: AugmentedQuery<ApiType, () => Observable<Option<PalletBrokerConfigRecord>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * Record of a single contribution to the Instantaneous Coretime Pool.
+       **/
+      instaPoolContribution: AugmentedQuery<ApiType, (arg: PalletBrokerRegionId | { begin?: any; core?: any; mask?: any } | string | Uint8Array) => Observable<Option<PalletBrokerContributionRecord>>, [PalletBrokerRegionId]> & QueryableStorageEntry<ApiType, [PalletBrokerRegionId]>;
+      /**
+       * Total InstaPool rewards for each Timeslice and the number of core parts which contributed.
+       **/
+      instaPoolHistory: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Option<PalletBrokerInstaPoolHistoryRecord>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
+      /**
+       * Record of Coretime entering or leaving the Instantaneous Coretime Pool.
+       **/
+      instaPoolIo: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<PalletBrokerPoolIoRecord>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
+      /**
+       * The Polkadot Core legacy leases.
+       **/
+      leases: AugmentedQuery<ApiType, () => Observable<Vec<PalletBrokerLeaseRecordItem>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * The current (unassigned) Regions.
+       **/
+      regions: AugmentedQuery<ApiType, (arg: PalletBrokerRegionId | { begin?: any; core?: any; mask?: any } | string | Uint8Array) => Observable<Option<PalletBrokerRegionRecord>>, [PalletBrokerRegionId]> & QueryableStorageEntry<ApiType, [PalletBrokerRegionId]>;
+      /**
+       * The Polkadot Core reservations (generally tasked with the maintenance of System Chains).
+       **/
+      reservations: AugmentedQuery<ApiType, () => Observable<Vec<Vec<PalletBrokerScheduleItem>>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * The details of the current sale, including its properties and status.
+       **/
+      saleInfo: AugmentedQuery<ApiType, () => Observable<Option<PalletBrokerSaleInfoRecord>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * The current status of miscellaneous subsystems of this pallet.
+       **/
+      status: AugmentedQuery<ApiType, () => Observable<Option<PalletBrokerStatusRecord>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * The current workload of each core. This gets updated with workplan as timeslices pass.
+       **/
+      workload: AugmentedQuery<ApiType, (arg: u16 | AnyNumber | Uint8Array) => Observable<Vec<PalletBrokerScheduleItem>>, [u16]> & QueryableStorageEntry<ApiType, [u16]>;
+      /**
+       * The work we plan on having each core do at a particular time in the future.
+       **/
+      workplan: AugmentedQuery<ApiType, (arg: ITuple<[u32, u16]> | [u32 | AnyNumber | Uint8Array, u16 | AnyNumber | Uint8Array]) => Observable<Option<Vec<PalletBrokerScheduleItem>>>, [ITuple<[u32, u16]>]> & QueryableStorageEntry<ApiType, [ITuple<[u32, u16]>]>;
+      /**
+       * Generic query
+       **/
+      [key: string]: QueryableStorageEntry<ApiType>;
+    };
     childBounties: {
       /**
        * Child bounties that have been added.
@@ -383,9 +437,9 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/storage.ts' {
     };
     contracts: {
       /**
-       * A mapping between an original code hash and instrumented wasm code, ready for execution.
+       * A mapping from a contract's code hash to its code info.
        **/
-      codeStorage: AugmentedQuery<ApiType, (arg: H256 | string | Uint8Array) => Observable<Option<PalletContractsWasmPrefabWasmModule>>, [H256]> & QueryableStorageEntry<ApiType, [H256]>;
+      codeInfoOf: AugmentedQuery<ApiType, (arg: H256 | string | Uint8Array) => Observable<Option<PalletContractsWasmCodeInfo>>, [H256]> & QueryableStorageEntry<ApiType, [H256]>;
       /**
        * The code associated with a given account.
        * 
@@ -404,6 +458,10 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/storage.ts' {
        * and the latest deleted contract in queue.
        **/
       deletionQueueCounter: AugmentedQuery<ApiType, () => Observable<PalletContractsStorageDeletionQueueManager>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * A migration can span across multiple blocks. This storage defines a cursor to track the
+       * progress of the migration, enabling us to resume from the last completed position.
+       **/
       migrationInProgress: AugmentedQuery<ApiType, () => Observable<Option<Bytes>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * This is a **monotonic** counter incremented on contract instantiation.
@@ -431,11 +489,7 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/storage.ts' {
        **/
       nonce: AugmentedQuery<ApiType, () => Observable<u64>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * A mapping between an original code hash and its owner information.
-       **/
-      ownerInfoOf: AugmentedQuery<ApiType, (arg: H256 | string | Uint8Array) => Observable<Option<PalletContractsWasmOwnerInfo>>, [H256]> & QueryableStorageEntry<ApiType, [H256]>;
-      /**
-       * A mapping from an original code hash to the original code, untouched by instrumentation.
+       * A mapping from a contract's code hash to its code.
        **/
       pristineCode: AugmentedQuery<ApiType, (arg: H256 | string | Uint8Array) => Observable<Option<Bytes>>, [H256]> & QueryableStorageEntry<ApiType, [H256]>;
       /**
@@ -734,15 +788,19 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/storage.ts' {
     };
     glutton: {
       /**
-       * Storage value used to specify what percentage of the left over `ref_time`
-       * to consume during `on_idle`.
+       * The proportion of the remaining `ref_time` to consume during `on_idle`.
+       * 
+       * `1.0` is mapped to `100%`. Must be at most [`crate::RESOURCE_HARD_LIMIT`]. Setting this to
+       * over `1.0` could stall the chain.
        **/
-      compute: AugmentedQuery<ApiType, () => Observable<Perbill>, []> & QueryableStorageEntry<ApiType, []>;
+      compute: AugmentedQuery<ApiType, () => Observable<u64>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * Storage value used the specify what percentage of left over `proof_size`
-       * to consume during `on_idle`.
+       * The proportion of the remaining `proof_size` to consume during `on_idle`.
+       * 
+       * `1.0` is mapped to `100%`. Must be at most [`crate::RESOURCE_HARD_LIMIT`]. Setting this to
+       * over `1.0` could stall the chain.
        **/
-      storage: AugmentedQuery<ApiType, () => Observable<Perbill>, []> & QueryableStorageEntry<ApiType, []>;
+      storage: AugmentedQuery<ApiType, () => Observable<u64>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Storage map used for wasting proof size.
        * 
@@ -860,10 +918,9 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/storage.ts' {
        **/
       keys: AugmentedQuery<ApiType, () => Observable<Vec<PalletImOnlineSr25519AppSr25519Public>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * For each session index, we keep a mapping of `SessionIndex` and `AuthIndex` to
-       * `WrapperOpaque<BoundedOpaqueNetworkState>`.
+       * For each session index, we keep a mapping of `SessionIndex` and `AuthIndex`.
        **/
-      receivedHeartbeats: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: u32 | AnyNumber | Uint8Array) => Observable<Option<WrapperOpaque<PalletImOnlineBoundedOpaqueNetworkState>>>, [u32, u32]> & QueryableStorageEntry<ApiType, [u32, u32]>;
+      receivedHeartbeats: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: u32 | AnyNumber | Uint8Array) => Observable<Option<bool>>, [u32, u32]> & QueryableStorageEntry<ApiType, [u32, u32]>;
       /**
        * Generic query
        **/
@@ -1398,6 +1455,27 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/storage.ts' {
        **/
       [key: string]: QueryableStorageEntry<ApiType>;
     };
+    safeMode: {
+      /**
+       * Holds the reserve that was taken from an account at a specific block number.
+       * 
+       * This helps governance to have an overview of outstanding deposits that should be returned or
+       * slashed.
+       **/
+      deposits: AugmentedQuery<ApiType, (arg1: AccountId32 | string | Uint8Array, arg2: u32 | AnyNumber | Uint8Array) => Observable<Option<u128>>, [AccountId32, u32]> & QueryableStorageEntry<ApiType, [AccountId32, u32]>;
+      /**
+       * Contains the last block number that the safe-mode will remain entered in.
+       * 
+       * Set to `None` when safe-mode is exited.
+       * 
+       * Safe-mode is automatically exited when the current block number exceeds this value.
+       **/
+      enteredUntil: AugmentedQuery<ApiType, () => Observable<Option<u32>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * Generic query
+       **/
+      [key: string]: QueryableStorageEntry<ApiType>;
+    };
     salary: {
       /**
        * The status of a claimant.
@@ -1475,67 +1553,83 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/storage.ts' {
        * The current bids, stored ordered by the value of the bid.
        **/
       bids: AugmentedQuery<ApiType, () => Observable<Vec<PalletSocietyBid>>, []> & QueryableStorageEntry<ApiType, []>;
+      candidates: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Option<PalletSocietyCandidacy>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
-       * The current set of candidates; bidders that are attempting to become members.
+       * The number of challenge rounds there have been. Used to identify stale DefenderVotes.
        **/
-      candidates: AugmentedQuery<ApiType, () => Observable<Vec<PalletSocietyBid>>, []> & QueryableStorageEntry<ApiType, []>;
+      challengeRoundCount: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * The defending member currently being challenged.
+       * Votes for the defender, keyed by challenge round.
        **/
-      defender: AugmentedQuery<ApiType, () => Observable<Option<AccountId32>>, []> & QueryableStorageEntry<ApiType, []>;
+      defenderVotes: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: AccountId32 | string | Uint8Array) => Observable<Option<PalletSocietyVote>>, [u32, AccountId32]> & QueryableStorageEntry<ApiType, [u32, AccountId32]>;
       /**
-       * Votes for the defender.
+       * The defending member currently being challenged, along with a running tally of votes.
        **/
-      defenderVotes: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Option<PalletSocietyVote>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
+      defending: AugmentedQuery<ApiType, () => Observable<Option<ITuple<[AccountId32, AccountId32, PalletSocietyTally]>>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * The first member.
        **/
       founder: AugmentedQuery<ApiType, () => Observable<Option<AccountId32>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * The most primary from the most recently approved members.
+       * The most primary from the most recently approved rank 0 members in the society.
        **/
       head: AugmentedQuery<ApiType, () => Observable<Option<AccountId32>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
+       * The current items in `Members` keyed by their unique index. Keys are densely populated
+       * `0..MemberCount` (does not include `MemberCount`).
+       **/
+      memberByIndex: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Option<AccountId32>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
+      /**
+       * The number of items in `Members` currently. (Doesn't include `SuspendedMembers`.)
+       **/
+      memberCount: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * The current members and their rank. Doesn't include `SuspendedMembers`.
+       **/
+      members: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Option<PalletSocietyMemberRecord>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
+      /**
+       * At the end of the claim period, this contains the most recently approved members (along with
+       * their bid and round ID) who is from the most recent round with the lowest bid. They will
+       * become the new `Head`.
+       **/
+      nextHead: AugmentedQuery<ApiType, () => Observable<Option<PalletSocietyIntakeRecord>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
        * The max number of members for the society at one time.
        **/
-      maxMembers: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
+      parameters: AugmentedQuery<ApiType, () => Observable<Option<PalletSocietyGroupParams>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * The current set of members, ordered.
+       * Information regarding rank-0 payouts, past and future.
        **/
-      members: AugmentedQuery<ApiType, () => Observable<Vec<AccountId32>>, []> & QueryableStorageEntry<ApiType, []>;
-      /**
-       * Pending payouts; ordered by block number, with the amount that should be paid out.
-       **/
-      payouts: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Vec<ITuple<[u32, u128]>>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
+      payouts: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<PalletSocietyPayoutRecord>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
        * Amount of our account balance that is specifically for the next round's bid(s).
        **/
       pot: AugmentedQuery<ApiType, () => Observable<u128>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * The number of rounds which have passed.
+       **/
+      roundCount: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * A hash of the rules of this society concerning membership. Can only be set once and
        * only by the founder.
        **/
       rules: AugmentedQuery<ApiType, () => Observable<Option<H256>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * The ongoing number of losing votes cast by the member.
+       * The current skeptic.
        **/
-      strikes: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<u32>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
+      skeptic: AugmentedQuery<ApiType, () => Observable<Option<AccountId32>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * The set of suspended candidates.
+       * The set of suspended members, with their old membership record.
        **/
-      suspendedCandidates: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Option<ITuple<[u128, PalletSocietyBidKind]>>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
+      suspendedMembers: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Option<PalletSocietyMemberRecord>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
-       * The set of suspended members.
+       * Clear-cursor for Vote, map from Candidate -> (Maybe) Cursor.
        **/
-      suspendedMembers: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<bool>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
+      voteClearCursor: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Option<Bytes>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
        * Double map from Candidate -> Voter -> (Maybe) Vote.
        **/
       votes: AugmentedQuery<ApiType, (arg1: AccountId32 | string | Uint8Array, arg2: AccountId32 | string | Uint8Array) => Observable<Option<PalletSocietyVote>>, [AccountId32, AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32, AccountId32]>;
-      /**
-       * Members currently vouching or banned from vouching again
-       **/
-      vouching: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Option<PalletSocietyVouchingStatus>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
        * Generic query
        **/
@@ -1701,7 +1795,8 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/storage.ts' {
        * they wish to support.
        * 
        * Note that the keys of this storage map might become non-decodable in case the
-       * [`Config::MaxNominations`] configuration is decreased. In this rare case, these nominators
+       * account's [`NominationsQuota::MaxNominations`] configuration is decreased.
+       * In this rare case, these nominators
        * are still existent in storage, their key is correct and retrievable (i.e. `contains_key`
        * indicates that they exist), but their value cannot be decoded. Therefore, the non-decodable
        * nominators will effectively not-exist, until they re-submit their preferences such that it
@@ -1856,7 +1951,7 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/storage.ts' {
        * allows light-clients to leverage the changes trie storage tracking mechanism and
        * in case of changes fetch the list of events of interest.
        * 
-       * The value has the type `(T::BlockNumber, EventIndex)` because if we used only just
+       * The value has the type `(BlockNumberFor<T>, EventIndex)` because if we used only just
        * the `EventIndex` then in case if the topic has the same contents on the next block
        * no notification will be triggered thus the event might be lost.
        **/
@@ -2031,6 +2126,16 @@ declare module 'https://deno.land/x/polkadot@0.2.42/api-base/types/storage.ts' {
        * Proposals that have been made.
        **/
       proposals: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Option<PalletTreasuryProposal>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
+      /**
+       * Generic query
+       **/
+      [key: string]: QueryableStorageEntry<ApiType>;
+    };
+    txPause: {
+      /**
+       * The set of calls that are explicitly paused.
+       **/
+      pausedCalls: AugmentedQuery<ApiType, (arg: ITuple<[Bytes, Bytes]> | [Bytes | string | Uint8Array, Bytes | string | Uint8Array]) => Observable<Option<Null>>, [ITuple<[Bytes, Bytes]>]> & QueryableStorageEntry<ApiType, [ITuple<[Bytes, Bytes]>]>;
       /**
        * Generic query
        **/
