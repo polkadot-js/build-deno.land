@@ -1,6 +1,6 @@
 
-import { u8aToU8a } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
-import { vrfVerify } from 'https://deno.land/x/polkadot@0.2.42/wasm-crypto/mod.ts';
+import { u8aToU8a } from 'https://deno.land/x/polkadot@0.2.43/util/mod.ts';
+import { vrfVerify } from 'https://deno.land/x/polkadot@0.2.43/wasm-crypto/mod.ts';
 
 const EMPTY_U8A = new Uint8Array();
 

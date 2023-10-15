@@ -1,8 +1,8 @@
 
 import { secp256k1 } from 'https://esm.sh/@noble/curves@1.2.0/secp256k1.js';
 
-import { hasBigInt } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
-import { isReady, secp256k1Compress as wasm } from 'https://deno.land/x/polkadot@0.2.42/wasm-crypto/mod.ts';
+import { hasBigInt } from 'https://deno.land/x/polkadot@0.2.43/util/mod.ts';
+import { isReady, secp256k1Compress as wasm } from 'https://deno.land/x/polkadot@0.2.43/wasm-crypto/mod.ts';
 
 export function secp256k1Compress (publicKey: Uint8Array, onlyJs?: boolean): Uint8Array {
   if (![33, 65].includes(publicKey.length)) {

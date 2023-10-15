@@ -1,5 +1,5 @@
 
-import { createWasm } from 'https://deno.land/x/polkadot@0.2.42/wasm-crypto-init/wasm.ts';
+import { createWasm } from 'https://deno.land/x/polkadot@0.2.43/wasm-crypto-init/wasm.ts';
 
 import { initBridge } from './init.ts';
 

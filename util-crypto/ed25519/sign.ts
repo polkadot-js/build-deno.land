@@ -3,8 +3,8 @@ import type { Keypair } from '../types.ts';
 
 import { ed25519 } from 'https://esm.sh/@noble/curves@1.2.0/ed25519.js';
 
-import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
-import { ed25519Sign as wasmSign, isReady } from 'https://deno.land/x/polkadot@0.2.42/wasm-crypto/mod.ts';
+import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.43/util/mod.ts';
+import { ed25519Sign as wasmSign, isReady } from 'https://deno.land/x/polkadot@0.2.43/wasm-crypto/mod.ts';
 
 /**
  * @name ed25519Sign
@@ -15,7 +15,7 @@ import { ed25519Sign as wasmSign, isReady } from 'https://deno.land/x/polkadot@0
  * <BR>
  *
  * ```javascript
- * import { ed25519Sign } from 'https://deno.land/x/polkadot@0.2.42/util-crypto/mod.ts';
+ * import { ed25519Sign } from 'https://deno.land/x/polkadot@0.2.43/util-crypto/mod.ts';
  *
  * ed25519Sign([...], [...]); // => [...]
  * ```

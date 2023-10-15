@@ -1,7 +1,7 @@
 
 import type { BufferClass, BufferObject } from '../types.ts';
 
-import { xglobal } from 'https://deno.land/x/polkadot@0.2.42/x-global/mod.ts';
+import { xglobal } from 'https://deno.land/x/polkadot@0.2.43/x-global/mod.ts';
 
 import { hasBuffer } from '../has.ts';
 
@@ -14,7 +14,7 @@ import { hasBuffer } from '../has.ts';
  * <BR>
  *
  * ```javascript
- * import { u8aToBuffer } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+ * import { u8aToBuffer } from 'https://deno.land/x/polkadot@0.2.43/util/mod.ts';
  *
  * console.log('Buffer', u8aToBuffer(new Uint8Array([1, 2, 3])));
  * ```

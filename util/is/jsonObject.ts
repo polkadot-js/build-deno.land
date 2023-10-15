@@ -13,7 +13,7 @@ type ObjectIndexed = Record<string, any>;
  * <BR>
  *
  * ```javascript
- * import { isJsonObject } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+ * import { isJsonObject } from 'https://deno.land/x/polkadot@0.2.43/util/mod.ts';
  *
  * isJsonObject({}); // => true
  * isJsonObject({

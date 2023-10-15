@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import type { Fixed128 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { Fixed128 } from 'https://deno.land/x/polkadot@0.2.43/types/interfaces/runtime/index.ts';
 
 /** @name Multiplier */
 export interface Multiplier extends Fixed128 {}

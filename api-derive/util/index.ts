@@ -1,5 +1,5 @@
 
-export { drr, memo } from 'https://deno.land/x/polkadot/rpc-core/mod.ts';
+export { drr, memo } from 'https://deno.land/x/polkadot@0.2.43/rpc-core/mod.ts';
 
 export * from './approvalFlagsToBools.ts';
 export * from './blockNumber.ts';

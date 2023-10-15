@@ -2,7 +2,7 @@
 import type { BN } from '../bn/index.ts';
 import type { ToBigInt, ToBn } from '../types.ts';
 
-import { BigInt } from 'https://deno.land/x/polkadot@0.2.42/x-bigint/mod.ts';
+import { BigInt } from 'https://deno.land/x/polkadot@0.2.43/x-bigint/mod.ts';
 
 import { _0n, _1n, _2pow53n, _sqrt2pow53n } from './consts.ts';
 import { nToBigInt } from './toBigInt.ts';

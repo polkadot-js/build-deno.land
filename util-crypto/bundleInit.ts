@@ -1,5 +1,5 @@
 
-import 'https://deno.land/x/polkadot@0.2.42/x-bigint/shim.ts';
+import 'https://deno.land/x/polkadot@0.2.43/x-bigint/shim.ts';
 
 import { cryptoWaitReady } from './crypto.ts';
 

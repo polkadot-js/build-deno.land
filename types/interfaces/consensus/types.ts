@@ -1,7 +1,7 @@
 /* eslint-disable */
 
-import type { U8aFixed } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { AccountId } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { U8aFixed } from 'https://deno.land/x/polkadot@0.2.43/types-codec/mod.ts';
+import type { AccountId } from 'https://deno.land/x/polkadot@0.2.43/types/interfaces/runtime/index.ts';
 
 /** @name AuthorityId */
 export interface AuthorityId extends AccountId {}

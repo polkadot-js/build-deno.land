@@ -1,7 +1,7 @@
 
 import type { Logger } from './types.ts';
 
-import { xglobal } from 'https://deno.land/x/polkadot@0.2.42/x-global/mod.ts';
+import { xglobal } from 'https://deno.land/x/polkadot@0.2.43/x-global/mod.ts';
 
 import { formatDate } from './format/formatDate.ts';
 import { isBn } from './is/bn.ts';
@@ -139,7 +139,7 @@ function parseEnv (type: string): [boolean, number] {
  * <BR>
  *
  * ```javascript
- * import { logger } from 'https://deno.land/x/polkadot@0.2.42/util/mod.ts';
+ * import { logger } from 'https://deno.land/x/polkadot@0.2.43/util/mod.ts';
  *
  * const l = logger('test');
  * ```
