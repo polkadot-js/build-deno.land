@@ -1,11 +1,11 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { BN } from 'https://deno.land/x/polkadot@0.2.44/util/mod.ts';
 import type { DeriveApi, DeriveOwnContributions } from '../types.ts';
 
 import { combineLatest, EMPTY, map, of, startWith, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
-import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot@0.2.44/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 import { extractContributed } from './util.ts';

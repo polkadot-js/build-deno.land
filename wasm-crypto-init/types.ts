@@ -1,5 +1,5 @@
 
-import type { WasmBaseInstance } from 'https://deno.land/x/polkadot/wasm-bridge/types.ts';
+import type { WasmBaseInstance } from 'https://deno.land/x/polkadot@0.2.44/wasm-bridge/types.ts';
 
 /* eslint-disable camelcase */
 

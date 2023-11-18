@@ -1,7 +1,7 @@
 
 import type { Prefix } from './types.ts';
 
-import { u8aConcat } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { u8aConcat } from 'https://deno.land/x/polkadot@0.2.44/util/mod.ts';
 
 import { base58Encode } from '../base58/index.ts';
 import { decodeAddress } from './decode.ts';

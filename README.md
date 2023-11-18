@@ -9,8 +9,8 @@ Access is to be done via the `https://deno.land/x/polkadot[@<version>]/<module>/
 For example, to access `polkadot/util` & `polkadot/api` interfaces -
 
 ```js
-import { ApiPromise, WsProvider } from 'https://deno.land/x/polkadot@0.2.43/api/mod.ts';
-import { stringToU8a } from 'https://deno.land/x/polkadot@0.2.43/util/mod.ts';
+import { ApiPromise, WsProvider } from 'https://deno.land/x/polkadot@0.2.44/api/mod.ts';
+import { stringToU8a } from 'https://deno.land/x/polkadot@0.2.44/util/mod.ts';
 
 const api = await ApiPromise.create({ provider: new WsProvider() });
 

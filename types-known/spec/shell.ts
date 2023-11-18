@@ -1,7 +1,7 @@
 
 /* eslint-disable sort-keys */
 
-import type { OverrideVersionedType } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { OverrideVersionedType } from 'https://deno.land/x/polkadot@0.2.44/types/types/index.ts';
 
 export const versioned: OverrideVersionedType[] = [
   {

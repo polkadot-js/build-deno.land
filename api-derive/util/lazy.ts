@@ -1,5 +1,5 @@
 
-import { lazyMethod, lazyMethods } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { lazyMethod, lazyMethods } from 'https://deno.land/x/polkadot@0.2.44/util/mod.ts';
 
 type LazySection <T> = Record<string, T>;
 

@@ -1,7 +1,7 @@
 
 import type { KeypairType, VerifyResult } from '../types.ts';
 
-import { u8aIsWrapped, u8aToU8a, u8aUnwrapBytes, u8aWrapBytes } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { u8aIsWrapped, u8aToU8a, u8aUnwrapBytes, u8aWrapBytes } from 'https://deno.land/x/polkadot@0.2.44/util/mod.ts';
 
 import { decodeAddress } from '../address/decode.ts';
 import { ed25519Verify } from '../ed25519/verify.ts';

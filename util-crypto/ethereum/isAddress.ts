@@ -1,5 +1,5 @@
 
-import { isHex } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isHex } from 'https://deno.land/x/polkadot@0.2.44/util/mod.ts';
 
 import { isEthereumChecksum } from './isChecksum.ts';
 

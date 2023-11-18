@@ -1,9 +1,9 @@
 
-import type { InitFn } from 'https://deno.land/x/polkadot/wasm-bridge/types.ts';
-import type { WasmCryptoInstance } from 'https://deno.land/x/polkadot/wasm-crypto-init/types.ts';
+import type { InitFn } from 'https://deno.land/x/polkadot@0.2.44/wasm-bridge/types.ts';
+import type { WasmCryptoInstance } from 'https://deno.land/x/polkadot@0.2.44/wasm-crypto-init/types.ts';
 
-import { Bridge } from 'https://deno.land/x/polkadot/wasm-bridge/mod.ts';
-import { createWasm } from 'https://deno.land/x/polkadot/wasm-crypto-init/mod.ts';
+import { Bridge } from 'https://deno.land/x/polkadot@0.2.44/wasm-bridge/mod.ts';
+import { createWasm } from 'https://deno.land/x/polkadot@0.2.44/wasm-crypto-init/mod.ts';
 
 /**
  * @name bridge

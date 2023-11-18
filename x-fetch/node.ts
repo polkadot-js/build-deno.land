@@ -1,5 +1,5 @@
 
-import { extractGlobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
+import { extractGlobal } from 'https://deno.land/x/polkadot@0.2.44/x-global/mod.ts';
 
 export { packageInfo } from './packageInfo.ts';
 

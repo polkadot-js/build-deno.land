@@ -1,6 +1,6 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { EventRecord, Hash, SignedBlock } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { EventRecord, Hash, SignedBlock } from 'https://deno.land/x/polkadot@0.2.44/types/interfaces/index.ts';
 import type { DeriveApi } from '../types.ts';
 
 import { combineLatest, map, switchMap } from 'https://esm.sh/rxjs@7.8.1';
