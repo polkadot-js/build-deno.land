@@ -1,7 +1,7 @@
 /* eslint-disable */
 
-import type { Struct, Vec, u32 } from 'https://deno.land/x/polkadot@0.2.43/types-codec/mod.ts';
-import type { AccountId, Balance, BlockNumber } from 'https://deno.land/x/polkadot@0.2.43/types/interfaces/runtime/index.ts';
+import type { Struct, Vec, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { AccountId, Balance, BlockNumber } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 /** @name Multisig */
 export interface Multisig extends Struct {

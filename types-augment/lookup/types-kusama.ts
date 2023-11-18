@@ -1,12 +1,12 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.43/types/lookup.ts';
+import 'https://deno.land/x/polkadot/types/lookup.ts';
 
-import type { Bytes, Compact, Enum, Null, Struct, U8aFixed, Vec, u16, u32, u64 } from 'https://deno.land/x/polkadot@0.2.43/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.43/types-codec/types/index.ts';
-import type { H256, PerU16 } from 'https://deno.land/x/polkadot@0.2.43/types/interfaces/runtime/index.ts';
+import type { Bytes, Compact, Enum, Null, Struct, U8aFixed, Vec, u16, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { H256, PerU16 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
-declare module 'https://deno.land/x/polkadot@0.2.43/types/lookup.ts' {
+declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
   /** @name PalletBeefyCall (94) */
   interface PalletBeefyCall extends Enum {
     readonly isReportEquivocation: boolean;

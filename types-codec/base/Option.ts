@@ -1,8 +1,8 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.43/util/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { AnyJson, Codec, CodecClass, DefinitionSetter, Inspect, IOption, IU8a, Registry } from '../types/index.ts';
 
-import { identity, isCodec, isNull, isU8a, isUndefined, u8aToHex } from 'https://deno.land/x/polkadot@0.2.43/util/mod.ts';
+import { identity, isCodec, isNull, isU8a, isUndefined, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { typeToConstructor } from '../utils/index.ts';
 import { Null } from './Null.ts';
@@ -33,7 +33,7 @@ function decodeOption (registry: Registry, Type: CodecClass, value?: unknown): C
     // convert the actual value into known
     return new Type(registry, value.value);
   } else if (isNull(value) || isUndefined(value) || value === '0x' || value instanceof None) {
-    // anyhting empty we pass as-is
+    // anything empty we pass as-is
     return new None(registry);
   } else if (isU8a(value)) {
     // the isU8a check happens last in the if-tree - since the wrapped value

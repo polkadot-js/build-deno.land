@@ -1,10 +1,10 @@
 
-import type * as ScType from 'https://esm.sh/@substrate/connect@0.7.33';
+import type * as ScType from 'https://esm.sh/@substrate/connect@0.7.35';
 import type { JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, ProviderInterfaceEmitCb, ProviderInterfaceEmitted } from '../types.ts';
 
 import { EventEmitter } from 'https://esm.sh/eventemitter3@5.0.1';
 
-import { isError, isFunction, isObject, logger, noop, objectSpread } from 'https://deno.land/x/polkadot@0.2.43/util/mod.ts';
+import { isError, isFunction, isObject, logger, noop, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { RpcCoder } from '../coder/index.ts';
 import { healthChecker } from './Health.ts';
@@ -89,7 +89,7 @@ export class ScProvider implements ProviderInterface {
       throw new Error('Already connected!');
     }
 
-    // it could happen that after emitting `disconnected` due to the fact taht
+    // it could happen that after emitting `disconnected` due to the fact that
     // smoldot is syncing, the consumer tries to reconnect after a certain amount
     // of time... In which case we want to make sure that we don't create a new
     // chain.

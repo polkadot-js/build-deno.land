@@ -8,5 +8,7 @@ import { runtime } from './runtime.ts';
 export default {
   rpc: {},
   runtime,
-  types: {}
+  types: {
+    TAssetConversion: 'Option<MultiLocation>'
+  }
 } as Definitions;

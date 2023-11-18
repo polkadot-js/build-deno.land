@@ -1,10 +1,10 @@
 /* eslint-disable */
 
-import type { Bytes, Option, Struct, U8aFixed, Vec, u32, u64 } from 'https://deno.land/x/polkadot@0.2.43/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.43/types-codec/types/index.ts';
-import type { AuthorityId } from 'https://deno.land/x/polkadot@0.2.43/types/interfaces/consensus/index.ts';
-import type { EcdsaSignature, Signature } from 'https://deno.land/x/polkadot@0.2.43/types/interfaces/extrinsics/index.ts';
-import type { BlockNumber, H256 } from 'https://deno.land/x/polkadot@0.2.43/types/interfaces/runtime/index.ts';
+import type { Bytes, Enum, Option, Struct, U8aFixed, Vec, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { AuthorityId } from 'https://deno.land/x/polkadot/types/interfaces/consensus/index.ts';
+import type { EcdsaSignature, Signature } from 'https://deno.land/x/polkadot/types/interfaces/extrinsics/index.ts';
+import type { BlockNumber, H256 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 /** @name BeefyAuthoritySet */
 export interface BeefyAuthoritySet extends Struct {
@@ -46,6 +46,14 @@ export interface BeefyPayloadId extends U8aFixed {}
 export interface BeefySignedCommitment extends Struct {
   readonly commitment: BeefyCommitment;
   readonly signatures: Vec<Option<EcdsaSignature>>;
+}
+
+/** @name BeefyVersionedFinalityProof */
+export interface BeefyVersionedFinalityProof extends Enum {
+  readonly isV0: boolean;
+  readonly isV1: boolean;
+  readonly asV1: BeefySignedCommitment;
+  readonly type: 'V0' | 'V1';
 }
 
 /** @name BeefyVoteMessage */

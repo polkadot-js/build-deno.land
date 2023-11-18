@@ -1,8 +1,8 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { Option, u32, Vec } from 'https://deno.land/x/polkadot@0.2.43/types/mod.ts';
-import type { AccountId, BalanceOf } from 'https://deno.land/x/polkadot@0.2.43/types/interfaces/index.ts';
-import type { PalletSocietyBid } from 'https://deno.land/x/polkadot@0.2.43/types/lookup.ts';
+import type { Option, u32, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, BalanceOf } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { PalletSocietyBid } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { DeriveApi, DeriveSociety } from '../types.ts';
 
 import { combineLatest, map, of } from 'https://esm.sh/rxjs@7.8.1';

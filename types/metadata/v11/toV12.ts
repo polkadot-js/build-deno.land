@@ -1,8 +1,8 @@
 
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.43/types-codec/types/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { MetadataV11, MetadataV12, ModuleMetadataV12 } from '../../interfaces/metadata/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.43/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 /**
  * @internal

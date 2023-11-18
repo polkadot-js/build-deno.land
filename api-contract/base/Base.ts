@@ -1,10 +1,10 @@
 
-import type { ApiBase } from 'https://deno.land/x/polkadot@0.2.43/api/base/index.ts';
-import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot@0.2.43/api/types/index.ts';
-import type { WeightV2 } from 'https://deno.land/x/polkadot@0.2.43/types/interfaces/index.ts';
-import type { Registry } from 'https://deno.land/x/polkadot@0.2.43/types/types/index.ts';
+import type { ApiBase } from 'https://deno.land/x/polkadot/api/base/index.ts';
+import type { ApiTypes, DecorateMethod } from 'https://deno.land/x/polkadot/api/types/index.ts';
+import type { WeightV2 } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Registry } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
-import { isFunction } from 'https://deno.land/x/polkadot@0.2.43/util/mod.ts';
+import { isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { Abi } from '../Abi/index.ts';
 

@@ -1,9 +1,9 @@
 
-import type { RpcCoreStats, RpcInterface } from 'https://deno.land/x/polkadot@0.2.43/rpc-core/types/index.ts';
-import type { Text } from 'https://deno.land/x/polkadot@0.2.43/types/mod.ts';
-import type { Hash, RuntimeVersion } from 'https://deno.land/x/polkadot@0.2.43/types/interfaces/index.ts';
-import type { Metadata } from 'https://deno.land/x/polkadot@0.2.43/types/metadata/index.ts';
-import type { CallFunction, RegistryError } from 'https://deno.land/x/polkadot@0.2.43/types/types/index.ts';
+import type { RpcCoreStats, RpcInterface } from 'https://deno.land/x/polkadot/rpc-core/types/index.ts';
+import type { Text } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { Hash, RuntimeVersion } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Metadata } from 'https://deno.land/x/polkadot/types/metadata/index.ts';
+import type { CallFunction, RegistryError } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { ApiDecoration, ApiInterfaceRx, ApiTypes, DecoratedErrors, DecoratedEvents, DecoratedRpc, QueryableCalls, QueryableConsts, QueryableStorage, QueryableStorageMulti, SubmittableExtrinsics } from '../types/index.ts';
 
 import { packageInfo } from '../packageInfo.ts';
@@ -217,7 +217,7 @@ export abstract class Getters<ApiType extends ApiTypes> extends Init<ApiType> im
    *
    * ```javascript
    * api.tx.balances
-   *   .transfer(<recipientId>, <balance>)
+   *   .transferAllowDeath(<recipientId>, <balance>)
    *   .signAndSend(<keyPair>, ({status}) => {
    *     console.log('tx status', status.asFinalized.toHex());
    *   });

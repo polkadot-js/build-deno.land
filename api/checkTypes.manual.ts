@@ -1,18 +1,18 @@
 
 
-import 'https://deno.land/x/polkadot@0.2.43/api-augment/mod.ts';
+import 'https://deno.land/x/polkadot/api-augment/mod.ts';
 
-import type { HeaderExtended } from 'https://deno.land/x/polkadot@0.2.43/api-derive/types.ts';
-import type { TestKeyringMapSubstrate } from 'https://deno.land/x/polkadot@0.2.43/keyring/testingPairs.ts';
-import type { StorageKey } from 'https://deno.land/x/polkadot@0.2.43/types/mod.ts';
-import type { AccountId, Balance, DispatchErrorModule, Event, Header, Index } from 'https://deno.land/x/polkadot@0.2.43/types/interfaces/index.ts';
-import type { FrameSystemAccountInfo } from 'https://deno.land/x/polkadot@0.2.43/types/lookup.ts';
-import type { AnyTuple, IExtrinsic, IMethod } from 'https://deno.land/x/polkadot@0.2.43/types/types/index.ts';
+import type { HeaderExtended } from 'https://deno.land/x/polkadot/api-derive/types.ts';
+import type { TestKeyringMapSubstrate } from 'https://deno.land/x/polkadot/keyring/testingPairs.ts';
+import type { StorageKey } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, Balance, DispatchErrorModule, Event, Header, Index } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { FrameSystemAccountInfo } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { AnyTuple, IExtrinsic, IMethod } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { SubmittableResult } from './index.ts';
 
-import { ApiPromise } from 'https://deno.land/x/polkadot@0.2.43/api/mod.ts';
-import { createTestPairs } from 'https://deno.land/x/polkadot@0.2.43/keyring/testingPairs.ts';
-import { createTypeUnsafe, TypeRegistry } from 'https://deno.land/x/polkadot@0.2.43/types/create/index.ts';
+import { ApiPromise } from 'https://deno.land/x/polkadot/api/mod.ts';
+import { createTestPairs } from 'https://deno.land/x/polkadot/keyring/testingPairs.ts';
+import { createTypeUnsafe, TypeRegistry } from 'https://deno.land/x/polkadot/types/create/index.ts';
 
 const registry = new TypeRegistry();
 
@@ -240,7 +240,7 @@ function types (api: ApiPromise): void {
 
 async function tx (api: ApiPromise, pairs: TestKeyringMapSubstrate): Promise<void> {
   // transfer, also allows for bigint inputs here
-  const transfer = api.tx.balances.transfer(pairs.bob.address, BigInt(123456789));
+  const transfer = api.tx.balances.transferAllowDeath(pairs.bob.address, BigInt(123456789));
 
   console.log('transfer casted', transfer as IMethod<AnyTuple>, transfer as IExtrinsic<AnyTuple>);
 
@@ -251,19 +251,19 @@ async function tx (api: ApiPromise, pairs: TestKeyringMapSubstrate): Promise<voi
   const nonce = await api.query.system['accountNonce']<Index>(pairs.alice.address);
 
   (await api.tx.balances
-    .transfer(pairs.bob.address, 12345)
+    .transferAllowDeath(pairs.bob.address, 12345)
     .signAndSend(pairs.alice, { nonce })
   ).toHex();
 
   // just with the callback
   await api.tx.balances
-    .transfer(pairs.bob.address, 12345)
+    .transferAllowDeath(pairs.bob.address, 12345)
     .signAndSend(pairs.alice, ({ status }: SubmittableResult) => console.log(status.type));
 
   // with options and the callback
   const nonce2 = await api.query.system['accountNonce'](pairs.alice.address);
   const unsub2 = await api.tx.balances
-    .transfer(pairs.bob.address, 12345)
+    .transferAllowDeath(pairs.bob.address, 12345)
     .signAndSend(pairs.alice, { nonce: nonce2 }, ({ status }: SubmittableResult): void => {
       console.log('transfer status:', status.type);
 
@@ -279,7 +279,7 @@ async function tx (api: ApiPromise, pairs: TestKeyringMapSubstrate): Promise<voi
   await api.tx.democracy['proxyVote'](123, { Split: { nay: 456, yay: 123 } }).signAndSend(pairs.alice);
 
   // is
-  if (api.tx.balances.transfer.is(second)) {
+  if (api.tx.balances.transferAllowDeath.is(second)) {
     const [recipientId, balance] = second.args;
 
     // should be LookupSource & Balance types

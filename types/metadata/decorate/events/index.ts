@@ -1,10 +1,10 @@
 
-import type { AnyTuple, Registry } from 'https://deno.land/x/polkadot@0.2.43/types-codec/types/index.ts';
+import type { AnyTuple, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { MetadataLatest, PalletMetadataLatest, SiVariant } from '../../../interfaces/index.ts';
 import type { IEvent, IEventLike } from '../../../types/index.ts';
 import type { Events, IsEvent } from '../types.ts';
 
-import { isCodec, isU8a, lazyMethod, stringCamelCase } from 'https://deno.land/x/polkadot@0.2.43/util/mod.ts';
+import { isCodec, isU8a, lazyMethod, stringCamelCase } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { lazyVariants } from '../../../create/lazy.ts';
 import { variantToMeta } from '../errors/index.ts';
