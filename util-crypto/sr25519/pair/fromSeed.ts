@@ -1,8 +1,8 @@
 
 import type { Keypair } from '../../types.ts';
 
-import { u8aToU8a } from 'https://deno.land/x/polkadot@0.2.43/util/mod.ts';
-import { sr25519KeypairFromSeed } from 'https://deno.land/x/polkadot@0.2.43/wasm-crypto/mod.ts';
+import { u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { sr25519KeypairFromSeed } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 import { sr25519PairFromU8a } from './fromU8a.ts';
 

@@ -5,7 +5,13 @@ declare const global: unknown;
 declare const self: unknown;
 declare const window: unknown;
 
-type GlobalThis = typeof globalThis & Record<string, unknown>;
+type GlobalThis = typeof globalThis & {
+  process?: {
+    env?: Record<string, string>;
+  };
+
+  [key: string]: unknown;
+};
 
 type GlobalNames = keyof typeof globalThis;
 
@@ -49,6 +55,6 @@ export function extractGlobal <N extends GlobalNames, T extends GlobalType<N>> (
  */
 export function exposeGlobal <N extends GlobalNames, T extends GlobalType<N>> (name: N, fallback: unknown): void {
   if (typeof xglobal[name] === 'undefined') {
-    xglobal[name] = fallback as T;
+    (xglobal as Record<string, unknown>)[name] = fallback as T;
   }
 }

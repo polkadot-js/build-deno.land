@@ -3,8 +3,8 @@ import type { Keypair } from '../../types.ts';
 
 import { ed25519 } from 'https://esm.sh/@noble/curves@1.2.0/ed25519.js';
 
-import { hasBigInt, u8aConcatStrict } from 'https://deno.land/x/polkadot@0.2.43/util/mod.ts';
-import { ed25519KeypairFromSeed, isReady } from 'https://deno.land/x/polkadot@0.2.43/wasm-crypto/mod.ts';
+import { hasBigInt, u8aConcatStrict } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { ed25519KeypairFromSeed, isReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 /**
  * @name ed25519PairFromSeed
@@ -15,7 +15,7 @@ import { ed25519KeypairFromSeed, isReady } from 'https://deno.land/x/polkadot@0.
  * <BR>
  *
  * ```javascript
- * import { ed25519PairFromSeed } from 'https://deno.land/x/polkadot@0.2.43/util-crypto/mod.ts';
+ * import { ed25519PairFromSeed } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
  *
  * ed25519PairFromSeed(...); // => { secretKey: [...], publicKey: [...] }
  * ```

@@ -2,6 +2,7 @@
 
 ## master
 
+- hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 12.6.1
 - wasm-{bridge, crypto, crypto-{asmjs, init, wasm}, util} 7.3.1
 
 ## 0.2.43 Oct 15, 2023

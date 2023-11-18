@@ -1,7 +1,7 @@
 
 import type { Logger } from './types.ts';
 
-import { xglobal } from 'https://deno.land/x/polkadot@0.2.43/x-global/mod.ts';
+import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
 
 import { formatDate } from './format/formatDate.ts';
 import { isBn } from './is/bn.ts';
@@ -11,7 +11,6 @@ import { isObject } from './is/object.ts';
 import { isU8a } from './is/u8a.ts';
 import { u8aToHex } from './u8a/toHex.ts';
 import { u8aToU8a } from './u8a/toU8a.ts';
-import { hasProcess } from './has.ts';
 import { noop } from './noop.ts';
 
 type ConsoleType = 'error' | 'log' | 'warn';
@@ -119,11 +118,10 @@ function getDebugFlag (env: readonly string[], type: string): boolean {
 }
 
 function parseEnv (type: string): [boolean, number] {
-  const env = (hasProcess ? xglobal.process as { env: Record<string, string> } : {}).env || {};
-  const maxSize = parseInt(env['DEBUG_MAX'] || '-1', 10);
+  const maxSize = parseInt(xglobal.process?.env?.['DEBUG_MAX'] || '-1', 10);
 
   return [
-    getDebugFlag((env['DEBUG'] || '').toLowerCase().split(','), type),
+    getDebugFlag((xglobal.process?.env?.['DEBUG'] || '').toLowerCase().split(','), type),
     isNaN(maxSize)
       ? -1
       : maxSize
@@ -139,7 +137,7 @@ function parseEnv (type: string): [boolean, number] {
  * <BR>
  *
  * ```javascript
- * import { logger } from 'https://deno.land/x/polkadot@0.2.43/util/mod.ts';
+ * import { logger } from 'https://deno.land/x/polkadot/util/mod.ts';
  *
  * const l = logger('test');
  * ```

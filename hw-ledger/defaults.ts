@@ -29,6 +29,7 @@ export const ledgerApps: Record<string, string> = {
   polkadex: 'Polkadex',
   polkadot: 'Polkadot',
   polymesh: 'Polymesh',
+  quartz: 'Quartz',
   sora: 'Sora',
   stafi: 'Stafi',
   statemine: 'Statemine',
