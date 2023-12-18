@@ -2,7 +2,7 @@
 /* global it */
 
 
-import { formatDecimal, formatNumber } from 'https://deno.land/x/polkadot@0.2.44/util/mod.ts';
+import { formatDecimal, formatNumber } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 type ExecFn = (...params: any[]) => unknown;
 

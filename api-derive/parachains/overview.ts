@@ -1,12 +1,12 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { ParaId } from 'https://deno.land/x/polkadot@0.2.44/types/interfaces/index.ts';
+import type { ParaId } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { DeriveApi, DeriveParachain, DeriveParachainInfo } from '../types.ts';
 import type { DidUpdate, ParaInfoResult, PendingSwap, RelayDispatchQueueSize } from './types.ts';
 
 import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.44/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 import { didUpdateToBool } from './util.ts';

@@ -1,7 +1,7 @@
 
 import type { AnyTupleValue, Codec, CodecClass, DefinitionSetter, Inspect, ITuple, Registry } from '../types/index.ts';
 
-import { identity, isFunction, isHex, isString, isU8a, stringify, u8aConcatStrict, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.44/util/mod.ts';
+import { identity, isFunction, isHex, isString, isU8a, stringify, u8aConcatStrict, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { AbstractArray } from '../abstract/Array.ts';
 import { decodeU8a, mapToTypeMap, typesToConstructors, typeToConstructor } from '../utils/index.ts';

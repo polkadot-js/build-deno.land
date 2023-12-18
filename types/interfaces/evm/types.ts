@@ -1,7 +1,7 @@
 /* eslint-disable */
 
-import type { Bytes, Enum, Option, Struct, Text, U256, Vec, u256, u64 } from 'https://deno.land/x/polkadot@0.2.44/types-codec/mod.ts';
-import type { H160, H256 } from 'https://deno.land/x/polkadot@0.2.44/types/interfaces/runtime/index.ts';
+import type { Bytes, Enum, Option, Struct, Text, U256, Vec, u256, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { H160, H256 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 /** @name EvmAccount */
 export interface EvmAccount extends Struct {

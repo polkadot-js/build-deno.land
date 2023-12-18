@@ -2,7 +2,7 @@
 import type { MetadataV14, MetadataV15 } from '../../interfaces/metadata/index.ts';
 import type { Registry } from '../../types/index.ts';
 
-import { objectSpread } from 'https://deno.land/x/polkadot@0.2.44/util/mod.ts';
+import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 /**
  * Convert the Metadata to v15

@@ -1,7 +1,7 @@
 /* eslint-disable */
 
-import type { Bytes, Enum, Text, Vec } from 'https://deno.land/x/polkadot@0.2.44/types-codec/mod.ts';
-import type { Hash } from 'https://deno.land/x/polkadot@0.2.44/types/interfaces/runtime/index.ts';
+import type { Bytes, Enum, Text, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Hash } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 /** @name ExtrinsicOrHash */
 export interface ExtrinsicOrHash extends Enum {

@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import type { Enum, u32 } from 'https://deno.land/x/polkadot@0.2.44/types-codec/mod.ts';
+import type { Enum, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 
 /** @name NpApiError */
 export interface NpApiError extends Enum {

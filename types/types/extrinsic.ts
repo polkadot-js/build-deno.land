@@ -1,6 +1,6 @@
 
-import type { AnyJson, AnyNumber, AnyTuple, AnyU8a, Codec } from 'https://deno.land/x/polkadot@0.2.44/types-codec/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.44/util/types.ts';
+import type { AnyJson, AnyNumber, AnyTuple, AnyU8a, Codec } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { ExtrinsicStatus } from '../interfaces/author/index.ts';
 import type { EcdsaSignature, Ed25519Signature, Sr25519Signature } from '../interfaces/extrinsics/index.ts';
 import type { Address, Call, H256, Hash } from '../interfaces/runtime/index.ts';
@@ -161,7 +161,7 @@ export interface SignatureOptions {
   signedExtensions?: string[];
   signer?: Signer;
   tip?: AnyNumber;
-  assetId?: AnyNumber;
+  assetId?: AnyNumber | object;
 }
 
 interface ExtrinsicSignatureBase {
@@ -182,7 +182,7 @@ export interface ExtrinsicPayloadValue {
   specVersion: AnyNumber;
   tip: AnyNumber;
   transactionVersion: AnyNumber;
-  assetId?: AnyNumber;
+  assetId?: AnyNumber | object;
 }
 
 export interface IExtrinsicSignature extends ExtrinsicSignatureBase, Codec {

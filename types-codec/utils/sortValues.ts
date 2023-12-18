@@ -1,9 +1,9 @@
 
-import type { BN } from 'https://deno.land/x/polkadot@0.2.44/util/mod.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { Enum } from '../base/Enum.ts';
 import type { Codec } from '../types/index.ts';
 
-import { bnToBn, isBigInt, isBn, isCodec, isNumber, stringify } from 'https://deno.land/x/polkadot@0.2.44/util/mod.ts';
+import { bnToBn, isBigInt, isBn, isCodec, isNumber, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 type SortArg = Codec | Codec[] | number[] | BN | bigint | number | Uint8Array;
 

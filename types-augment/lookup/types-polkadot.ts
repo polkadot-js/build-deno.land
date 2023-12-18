@@ -1,13 +1,27 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.44/types/lookup.ts';
+import 'https://deno.land/x/polkadot/types/lookup.ts';
 
-import type { BTreeMap, BitVec, Bytes, Compact, Enum, Null, Option, Result, Struct, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.44/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.44/types-codec/types/index.ts';
-import type { EthereumAddress } from 'https://deno.land/x/polkadot@0.2.44/types/interfaces/eth/index.ts';
-import type { AccountId32, H256, PerU16, Perbill } from 'https://deno.land/x/polkadot@0.2.44/types/interfaces/runtime/index.ts';
+import type { Data } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { BTreeMap, BitVec, Bytes, Compact, Enum, Null, Option, Result, Set, Struct, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { EthereumAddress } from 'https://deno.land/x/polkadot/types/interfaces/eth/index.ts';
+import type { AccountId32, H256, PerU16, Perbill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
-declare module 'https://deno.land/x/polkadot@0.2.44/types/lookup.ts' {
+declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
+  /** @name PalletStakingExposure (59) */
+  interface PalletStakingExposure extends Struct {
+    readonly total: Compact<u128>;
+    readonly own: Compact<u128>;
+    readonly others: Vec<PalletStakingIndividualExposure>;
+  }
+
+  /** @name PalletStakingIndividualExposure (62) */
+  interface PalletStakingIndividualExposure extends Struct {
+    readonly who: AccountId32;
+    readonly value: Compact<u128>;
+  }
+
   /** @name PolkadotRuntimeSessionKeys (103) */
   interface PolkadotRuntimeSessionKeys extends Struct {
     readonly grandpa: SpConsensusGrandpaAppPublic;
@@ -246,6 +260,44 @@ declare module 'https://deno.land/x/polkadot@0.2.44/types/lookup.ts' {
     readonly isRegular: boolean;
     readonly isSaft: boolean;
     readonly type: 'Regular' | 'Saft';
+  }
+
+  /** @name PalletIdentityIdentityInfo (161) */
+  interface PalletIdentityIdentityInfo extends Struct {
+    readonly additional: Vec<ITuple<[Data, Data]>>;
+    readonly display: Data;
+    readonly legal: Data;
+    readonly web: Data;
+    readonly riot: Data;
+    readonly email: Data;
+    readonly pgpFingerprint: Option<U8aFixed>;
+    readonly image: Data;
+    readonly twitter: Data;
+  }
+
+  /** @name PalletIdentityBitFlags (198) */
+  interface PalletIdentityBitFlags extends Set {
+    readonly isDisplay: boolean;
+    readonly isLegal: boolean;
+    readonly isWeb: boolean;
+    readonly isRiot: boolean;
+    readonly isEmail: boolean;
+    readonly isPgpFingerprint: boolean;
+    readonly isImage: boolean;
+    readonly isTwitter: boolean;
+  }
+
+  /** @name PalletIdentityIdentityField (199) */
+  interface PalletIdentityIdentityField extends Enum {
+    readonly isDisplay: boolean;
+    readonly isLegal: boolean;
+    readonly isWeb: boolean;
+    readonly isRiot: boolean;
+    readonly isEmail: boolean;
+    readonly isPgpFingerprint: boolean;
+    readonly isImage: boolean;
+    readonly isTwitter: boolean;
+    readonly type: 'Display' | 'Legal' | 'Web' | 'Riot' | 'Email' | 'PgpFingerprint' | 'Image' | 'Twitter';
   }
 
   /** @name PolkadotRuntimeProxyType (203) */
@@ -2166,6 +2218,12 @@ declare module 'https://deno.land/x/polkadot@0.2.44/types/lookup.ts' {
 
   /** @name PolkadotRuntimeRuntimeHoldReason (507) */
   type PolkadotRuntimeRuntimeHoldReason = Null;
+
+  /** @name PalletBalancesIdAmount (510) */
+  interface PalletBalancesIdAmount extends Struct {
+    readonly id: Null;
+    readonly amount: u128;
+  }
 
   /** @name PalletReferendaReferendumInfo (570) */
   interface PalletReferendaReferendumInfo extends Enum {

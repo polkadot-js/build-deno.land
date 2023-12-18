@@ -1,21 +1,32 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { AccountId, Balance, BlockNumber, Call, Hash, PreimageStatus } from 'https://deno.land/x/polkadot@0.2.44/types/interfaces/index.ts';
-import type { FrameSupportPreimagesBounded, PalletPreimageRequestStatus } from 'https://deno.land/x/polkadot@0.2.44/types/lookup.ts';
-import type { Bytes, Option } from 'https://deno.land/x/polkadot@0.2.44/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.44/types-codec/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.44/util/types.ts';
+import type { u128 } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, AccountId32, Balance, BlockNumber, Call, Hash, PreimageStatus } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { FrameSupportPreimagesBounded, PalletPreimageOldRequestStatus, PalletPreimageRequestStatus } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { Bytes, Option } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { DeriveApi, DeriveProposalImage } from '../types.ts';
 
 import { map, of, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
-import { BN_ZERO, isFunction } from 'https://deno.land/x/polkadot@0.2.44/util/mod.ts';
+import { BN_ZERO, isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { firstMemo, memo } from '../util/index.ts';
 import { getImageHashBounded } from './util.ts';
 
 type PreimageInfo = [Bytes, AccountId, Balance, BlockNumber];
 type OldPreimage = ITuple<PreimageInfo>;
+type CompatStatusU = PalletPreimageRequestStatus['asUnrequested'] & { deposit: ITuple<[AccountId32, u128]> };
+type CompatStatusR = PalletPreimageRequestStatus['asRequested'] & { deposit: Option<ITuple<[AccountId32, u128]>> };
+
+function getUnrequestedTicket (status: PalletPreimageRequestStatus['asUnrequested']): [AccountId32, u128] {
+  return status.ticket || (status as CompatStatusU).deposit;
+}
+
+function getRequestedTicket (status: PalletPreimageRequestStatus['asRequested']): [AccountId32, u128] {
+  return (status.maybeTicket || (status as CompatStatusR).deposit).unwrapOrDefault();
+}
 
 function isDemocracyPreimage (api: DeriveApi, imageOpt: Option<OldPreimage> | Option<PreimageStatus>): imageOpt is Option<PreimageStatus> {
   return !!imageOpt && !api.query.democracy['dispatchQueue'];
@@ -53,14 +64,14 @@ function parseDemocracy (api: DeriveApi, imageOpt: Option<OldPreimage> | Option<
   return constructProposal(api, imageOpt.unwrap());
 }
 
-function parseImage (api: DeriveApi, [proposalHash, status, bytes]: [HexString, PalletPreimageRequestStatus | null, Bytes | null]): DeriveProposalImage | undefined {
+function parseImage (api: DeriveApi, [proposalHash, status, bytes]: [HexString, PalletPreimageRequestStatus | PalletPreimageOldRequestStatus | null, Bytes | null]): DeriveProposalImage | undefined {
   if (!status) {
     return undefined;
   }
 
   const [proposer, balance] = status.isUnrequested
-    ? status.asUnrequested.deposit
-    : status.asRequested.deposit.unwrapOrDefault();
+    ? getUnrequestedTicket((status as PalletPreimageRequestStatus).asUnrequested)
+    : getRequestedTicket((status as PalletPreimageRequestStatus).asRequested);
   let proposal: Call | undefined;
 
   if (bytes) {
@@ -110,7 +121,7 @@ function getImages (api: DeriveApi, bounded: (FrameSupportPreimagesBounded | Uin
           let ptr = -1;
 
           return statuses
-            .map((s, i): [HexString, PalletPreimageRequestStatus | null, Bytes | null] =>
+            .map((s, i): [HexString, PalletPreimageRequestStatus | PalletPreimageOldRequestStatus | null, Bytes | null] =>
               s
                 ? [hashes[i], s, optBytes[++ptr].unwrapOr(null)]
                 : [hashes[i], null, null]

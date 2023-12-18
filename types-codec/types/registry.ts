@@ -1,5 +1,5 @@
 
-import type { BN } from 'https://deno.land/x/polkadot@0.2.44/util/mod.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { Codec, CodecClass } from './codec.ts';
 import type { AnyTuple, LookupString } from './helpers.ts';
 import type { ICompact, IEnum, IMap, IMethod, INumber, IOption, IResult, ISet, IStruct, ITuple, IU8a, IVec } from './interfaces.ts';
@@ -48,6 +48,7 @@ export interface CallFunction<A extends AnyTuple = AnyTuple, M = any> extends Ca
 
 export interface Registry {
   readonly chainDecimals: number[];
+  readonly chainIsEthereum: boolean;
   readonly chainSS58: number | undefined;
   readonly chainTokens: string[];
 

@@ -1,16 +1,16 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot@0.2.44/api-base/types/events.ts';
+import 'https://deno.land/x/polkadot/api-base/types/events.ts';
 
-import type { ApiTypes, AugmentedEvent } from 'https://deno.land/x/polkadot@0.2.44/api-base/types/index.ts';
-import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.44/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.44/types-codec/types/index.ts';
-import type { AccountId32, H256, Perbill, Permill, Perquintill } from 'https://deno.land/x/polkadot@0.2.44/types/interfaces/runtime/index.ts';
-import type { FrameSupportDispatchDispatchInfo, FrameSupportDispatchPostDispatchInfo, FrameSupportMessagesProcessMessageError, FrameSupportPreimagesBounded, FrameSupportTokensMiscBalanceStatus, KitchensinkRuntimeProxyType, PalletAllianceCid, PalletAllianceUnscrupulousItem, PalletAssetConversionNativeOrAssetId, PalletBrokerCoretimeInterfaceCoreAssignment, PalletBrokerRegionId, PalletBrokerScheduleItem, PalletContractsOrigin, PalletConvictionVotingTally, PalletCoreFellowshipParamsType, PalletCoreFellowshipWish, PalletDemocracyMetadataOwner, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletElectionProviderMultiPhasePhase, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNftsAttributeNamespace, PalletNftsPalletAttributes, PalletNftsPriceWithDirection, PalletNominationPoolsCommissionChangeRate, PalletNominationPoolsPoolState, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord, PalletSafeModeExitReason, PalletSocietyGroupParams, PalletStakingExposure, PalletStakingForcing, PalletStakingValidatorPrefs, PalletStateTrieMigrationError, PalletStateTrieMigrationMigrationCompute, SpConsensusGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, SpRuntimeDispatchErrorWithPostInfo, SpStatementStoreStatement, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot@0.2.44/types/lookup.ts';
+import type { ApiTypes, AugmentedEvent } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { AccountId32, H256, Perbill, Permill, Perquintill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportDispatchDispatchInfo, FrameSupportDispatchPostDispatchInfo, FrameSupportMessagesProcessMessageError, FrameSupportPreimagesBounded, FrameSupportTokensMiscBalanceStatus, KitchensinkRuntimeProxyType, KitchensinkRuntimeRuntimeTask, PalletAllianceCid, PalletAllianceUnscrupulousItem, PalletAssetConversionNativeOrAssetId, PalletBrokerCoretimeInterfaceCoreAssignment, PalletBrokerRegionId, PalletBrokerScheduleItem, PalletContractsOrigin, PalletConvictionVotingTally, PalletCoreFellowshipParamsType, PalletCoreFellowshipWish, PalletDemocracyMetadataOwner, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletElectionProviderMultiPhasePhase, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNftsAttributeNamespace, PalletNftsPalletAttributes, PalletNftsPriceWithDirection, PalletNominationPoolsCommissionChangeRate, PalletNominationPoolsCommissionClaimPermission, PalletNominationPoolsPoolState, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord, PalletSafeModeExitReason, PalletSocietyGroupParams, PalletStakingForcing, PalletStakingRewardDestination, PalletStakingValidatorPrefs, PalletStateTrieMigrationError, PalletStateTrieMigrationMigrationCompute, SpConsensusGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, SpRuntimeDispatchErrorWithPostInfo, SpStakingExposure, SpStatementStoreStatement, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedEvent<ApiType extends ApiTypes> = AugmentedEvent<ApiType>;
 
-declare module 'https://deno.land/x/polkadot@0.2.44/api-base/types/events.ts' {
+declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
   interface AugmentedEvents<ApiType extends ApiTypes> {
     alliance: {
       /**
@@ -365,6 +365,10 @@ declare module 'https://deno.land/x/polkadot@0.2.44/api-base/types/events.ts' {
     };
     bounties: {
       /**
+       * A bounty is approved.
+       **/
+      BountyApproved: AugmentedEvent<ApiType, [index: u32], { index: u32 }>;
+      /**
        * A bounty is awarded to a beneficiary.
        **/
       BountyAwarded: AugmentedEvent<ApiType, [index: u32, beneficiary: AccountId32], { index: u32, beneficiary: AccountId32 }>;
@@ -392,6 +396,18 @@ declare module 'https://deno.land/x/polkadot@0.2.44/api-base/types/events.ts' {
        * A bounty proposal was rejected; funds were slashed.
        **/
       BountyRejected: AugmentedEvent<ApiType, [index: u32, bond: u128], { index: u32, bond: u128 }>;
+      /**
+       * A bounty curator is accepted.
+       **/
+      CuratorAccepted: AugmentedEvent<ApiType, [bountyId: u32, curator: AccountId32], { bountyId: u32, curator: AccountId32 }>;
+      /**
+       * A bounty curator is proposed.
+       **/
+      CuratorProposed: AugmentedEvent<ApiType, [bountyId: u32, curator: AccountId32], { bountyId: u32, curator: AccountId32 }>;
+      /**
+       * A bounty curator is unassigned.
+       **/
+      CuratorUnassigned: AugmentedEvent<ApiType, [bountyId: u32], { bountyId: u32 }>;
       /**
        * Generic event
        **/
@@ -978,7 +994,7 @@ declare module 'https://deno.land/x/polkadot@0.2.44/api-base/types/events.ts' {
       /**
        * At the end of the session, at least one validator was found to be offline.
        **/
-      SomeOffline: AugmentedEvent<ApiType, [offline: Vec<ITuple<[AccountId32, PalletStakingExposure]>>], { offline: Vec<ITuple<[AccountId32, PalletStakingExposure]>> }>;
+      SomeOffline: AugmentedEvent<ApiType, [offline: Vec<ITuple<[AccountId32, SpStakingExposure]>>], { offline: Vec<ITuple<[AccountId32, SpStakingExposure]>> }>;
       /**
        * Generic event
        **/
@@ -1036,11 +1052,11 @@ declare module 'https://deno.land/x/polkadot@0.2.44/api-base/types/events.ts' {
       /**
        * Message is processed.
        **/
-      Processed: AugmentedEvent<ApiType, [id: U8aFixed, origin: u32, weightUsed: SpWeightsWeightV2Weight, success: bool], { id: U8aFixed, origin: u32, weightUsed: SpWeightsWeightV2Weight, success: bool }>;
+      Processed: AugmentedEvent<ApiType, [id: H256, origin: u32, weightUsed: SpWeightsWeightV2Weight, success: bool], { id: H256, origin: u32, weightUsed: SpWeightsWeightV2Weight, success: bool }>;
       /**
        * Message discarded due to an error in the `MessageProcessor` (usually a format error).
        **/
-      ProcessingFailed: AugmentedEvent<ApiType, [id: U8aFixed, origin: u32, error: FrameSupportMessagesProcessMessageError], { id: U8aFixed, origin: u32, error: FrameSupportMessagesProcessMessageError }>;
+      ProcessingFailed: AugmentedEvent<ApiType, [id: H256, origin: u32, error: FrameSupportMessagesProcessMessageError], { id: H256, origin: u32, error: FrameSupportMessagesProcessMessageError }>;
       /**
        * Generic event
        **/
@@ -1297,6 +1313,14 @@ declare module 'https://deno.land/x/polkadot@0.2.44/api-base/types/events.ts' {
        **/
       MemberRemoved: AugmentedEvent<ApiType, [poolId: u32, member: AccountId32], { poolId: u32, member: AccountId32 }>;
       /**
+       * Topped up deficit in frozen ED of the reward pool.
+       **/
+      MinBalanceDeficitAdjusted: AugmentedEvent<ApiType, [poolId: u32, amount: u128], { poolId: u32, amount: u128 }>;
+      /**
+       * Claimed excess frozen ED of af the reward pool.
+       **/
+      MinBalanceExcessAdjusted: AugmentedEvent<ApiType, [poolId: u32, amount: u128], { poolId: u32, amount: u128 }>;
+      /**
        * A payout has been made to a member.
        **/
       PaidOut: AugmentedEvent<ApiType, [member: AccountId32, poolId: u32, payout: u128], { member: AccountId32, poolId: u32, payout: u128 }>;
@@ -1308,6 +1332,10 @@ declare module 'https://deno.land/x/polkadot@0.2.44/api-base/types/events.ts' {
        * Pool commission has been claimed.
        **/
       PoolCommissionClaimed: AugmentedEvent<ApiType, [poolId: u32, commission: u128], { poolId: u32, commission: u128 }>;
+      /**
+       * Pool commission claim permission has been updated.
+       **/
+      PoolCommissionClaimPermissionUpdated: AugmentedEvent<ApiType, [poolId: u32, permission: Option<PalletNominationPoolsCommissionClaimPermission>], { poolId: u32, permission: Option<PalletNominationPoolsCommissionClaimPermission> }>;
       /**
        * A pool's commission setting has been changed.
        **/
@@ -1579,7 +1607,7 @@ declare module 'https://deno.land/x/polkadot@0.2.44/api-base/types/events.ts' {
        **/
       DecisionStarted: AugmentedEvent<ApiType, [index: u32, track: u16, proposal: FrameSupportPreimagesBounded, tally: PalletRankedCollectiveTally], { index: u32, track: u16, proposal: FrameSupportPreimagesBounded, tally: PalletRankedCollectiveTally }>;
       /**
-       * A deposit has been slashaed.
+       * A deposit has been slashed.
        **/
       DepositSlashed: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
@@ -1673,7 +1701,7 @@ declare module 'https://deno.land/x/polkadot@0.2.44/api-base/types/events.ts' {
        **/
       DecisionStarted: AugmentedEvent<ApiType, [index: u32, track: u16, proposal: FrameSupportPreimagesBounded, tally: PalletConvictionVotingTally], { index: u32, track: u16, proposal: FrameSupportPreimagesBounded, tally: PalletConvictionVotingTally }>;
       /**
-       * A deposit has been slashaed.
+       * A deposit has been slashed.
        **/
       DepositSlashed: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
@@ -1714,6 +1742,16 @@ declare module 'https://deno.land/x/polkadot@0.2.44/api-base/types/events.ts' {
        * Stored data off chain.
        **/
       Stored: AugmentedEvent<ApiType, [sender: AccountId32, contentHash: H256], { sender: AccountId32, contentHash: H256 }>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    rootTesting: {
+      /**
+       * Event dispatched when the trigger_defensive extrinsic is called.
+       **/
+      DefensiveTestCall: AugmentedEvent<ApiType, []>;
       /**
        * Generic event
        **/
@@ -1819,6 +1857,16 @@ declare module 'https://deno.land/x/polkadot@0.2.44/api-base/types/events.ts' {
        * block number as the type might suggest.
        **/
       NewSession: AugmentedEvent<ApiType, [sessionIndex: u32], { sessionIndex: u32 }>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    skipFeelessPayment: {
+      /**
+       * A transaction fee was skipped.
+       **/
+      FeeSkipped: AugmentedEvent<ApiType, [who: AccountId32], { who: AccountId32 }>;
       /**
        * Generic event
        **/
@@ -1936,9 +1984,9 @@ declare module 'https://deno.land/x/polkadot@0.2.44/api-base/types/events.ts' {
        **/
       PayoutStarted: AugmentedEvent<ApiType, [eraIndex: u32, validatorStash: AccountId32], { eraIndex: u32, validatorStash: AccountId32 }>;
       /**
-       * The nominator has been rewarded by this amount.
+       * The nominator has been rewarded by this amount to this destination.
        **/
-      Rewarded: AugmentedEvent<ApiType, [stash: AccountId32, amount: u128], { stash: AccountId32, amount: u128 }>;
+      Rewarded: AugmentedEvent<ApiType, [stash: AccountId32, dest: PalletStakingRewardDestination, amount: u128], { stash: AccountId32, dest: PalletStakingRewardDestination, amount: u128 }>;
       /**
        * A staker (validator or nominator) has been slashed by the given amount.
        **/
@@ -2017,15 +2065,19 @@ declare module 'https://deno.land/x/polkadot@0.2.44/api-base/types/events.ts' {
     };
     sudo: {
       /**
-       * The \[sudoer\] just switched identity; the old key is supplied if one existed.
+       * The sudo key has been updated.
        **/
-      KeyChanged: AugmentedEvent<ApiType, [oldSudoer: Option<AccountId32>], { oldSudoer: Option<AccountId32> }>;
+      KeyChanged: AugmentedEvent<ApiType, [old: Option<AccountId32>, new_: AccountId32], { old: Option<AccountId32>, new_: AccountId32 }>;
       /**
-       * A sudo just took place. \[result\]
+       * The key was permanently removed.
+       **/
+      KeyRemoved: AugmentedEvent<ApiType, []>;
+      /**
+       * A sudo call just took place.
        **/
       Sudid: AugmentedEvent<ApiType, [sudoResult: Result<Null, SpRuntimeDispatchError>], { sudoResult: Result<Null, SpRuntimeDispatchError> }>;
       /**
-       * A sudo just took place. \[result\]
+       * A [sudo_as](Pallet::sudo_as) call just took place.
        **/
       SudoAsDone: AugmentedEvent<ApiType, [sudoResult: Result<Null, SpRuntimeDispatchError>], { sudoResult: Result<Null, SpRuntimeDispatchError> }>;
       /**
@@ -2058,6 +2110,18 @@ declare module 'https://deno.land/x/polkadot@0.2.44/api-base/types/events.ts' {
        * On on-chain remark happened.
        **/
       Remarked: AugmentedEvent<ApiType, [sender: AccountId32, hash_: H256], { sender: AccountId32, hash_: H256 }>;
+      /**
+       * A [`Task`] has finished executing.
+       **/
+      TaskCompleted: AugmentedEvent<ApiType, [task: KitchensinkRuntimeRuntimeTask], { task: KitchensinkRuntimeRuntimeTask }>;
+      /**
+       * A [`Task`] failed during execution.
+       **/
+      TaskFailed: AugmentedEvent<ApiType, [task: KitchensinkRuntimeRuntimeTask, err: SpRuntimeDispatchError], { task: KitchensinkRuntimeRuntimeTask, err: SpRuntimeDispatchError }>;
+      /**
+       * A [`Task`] has started executing
+       **/
+      TaskStarted: AugmentedEvent<ApiType, [task: KitchensinkRuntimeRuntimeTask], { task: KitchensinkRuntimeRuntimeTask }>;
       /**
        * Generic event
        **/
@@ -2186,6 +2250,14 @@ declare module 'https://deno.land/x/polkadot@0.2.44/api-base/types/events.ts' {
     };
     treasury: {
       /**
+       * A new asset spend proposal has been approved.
+       **/
+      AssetSpendApproved: AugmentedEvent<ApiType, [index: u32, assetKind: u32, amount: u128, beneficiary: AccountId32, validFrom: u32, expireAt: u32], { index: u32, assetKind: u32, amount: u128, beneficiary: AccountId32, validFrom: u32, expireAt: u32 }>;
+      /**
+       * An approved spend was voided.
+       **/
+      AssetSpendVoided: AugmentedEvent<ApiType, [index: u32], { index: u32 }>;
+      /**
        * Some funds have been allocated.
        **/
       Awarded: AugmentedEvent<ApiType, [proposalIndex: u32, award: u128, account: AccountId32], { proposalIndex: u32, award: u128, account: AccountId32 }>;
@@ -2197,6 +2269,14 @@ declare module 'https://deno.land/x/polkadot@0.2.44/api-base/types/events.ts' {
        * Some funds have been deposited.
        **/
       Deposit: AugmentedEvent<ApiType, [value: u128], { value: u128 }>;
+      /**
+       * A payment happened.
+       **/
+      Paid: AugmentedEvent<ApiType, [index: u32, paymentId: Null], { index: u32, paymentId: Null }>;
+      /**
+       * A payment failed and can be retried.
+       **/
+      PaymentFailed: AugmentedEvent<ApiType, [index: u32, paymentId: Null], { index: u32, paymentId: Null }>;
       /**
        * New proposal.
        **/
@@ -2217,6 +2297,11 @@ declare module 'https://deno.land/x/polkadot@0.2.44/api-base/types/events.ts' {
        * We have ended a spend period and will now allocate funds.
        **/
       Spending: AugmentedEvent<ApiType, [budgetRemaining: u128], { budgetRemaining: u128 }>;
+      /**
+       * A spend was processed and removed from the storage. It might have been successfully
+       * paid or it may have expired.
+       **/
+      SpendProcessed: AugmentedEvent<ApiType, [index: u32], { index: u32 }>;
       /**
        * The inactive funds of the pallet have been updated.
        **/
