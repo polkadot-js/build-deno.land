@@ -1,5 +1,5 @@
 
-import type { BN } from 'https://deno.land/x/polkadot@0.2.44/util/mod.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { Prefix } from './types.ts';
 
 import { encodeAddress } from './encode.ts';

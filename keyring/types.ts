@@ -1,6 +1,6 @@
 
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.44/util/types.ts';
-import type { EncryptedJson, Keypair, KeypairType, Prefix } from 'https://deno.land/x/polkadot@0.2.44/util-crypto/types.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { EncryptedJson, Keypair, KeypairType, Prefix } from 'https://deno.land/x/polkadot/util-crypto/types.ts';
 
 export interface KeyringOptions {
   /** The ss58Format to use for address encoding (defaults to 42) */

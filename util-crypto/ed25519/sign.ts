@@ -1,10 +1,10 @@
 
 import type { Keypair } from '../types.ts';
 
-import { ed25519 } from 'https://esm.sh/@noble/curves@1.2.0/ed25519.js';
+import { ed25519 } from 'https://esm.sh/@noble/curves@1.3.0/ed25519.js';
 
-import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot@0.2.44/util/mod.ts';
-import { ed25519Sign as wasmSign, isReady } from 'https://deno.land/x/polkadot@0.2.44/wasm-crypto/mod.ts';
+import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { ed25519Sign as wasmSign, isReady } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 /**
  * @name ed25519Sign
@@ -15,7 +15,7 @@ import { ed25519Sign as wasmSign, isReady } from 'https://deno.land/x/polkadot@0
  * <BR>
  *
  * ```javascript
- * import { ed25519Sign } from 'https://deno.land/x/polkadot@0.2.44/util-crypto/mod.ts';
+ * import { ed25519Sign } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
  *
  * ed25519Sign([...], [...]); // => [...]
  * ```

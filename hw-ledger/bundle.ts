@@ -1,12 +1,12 @@
 
 import type { SubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.41.3';
-import type { TransportDef, TransportType } from 'https://deno.land/x/polkadot@0.2.44/hw-ledger-transports/types.ts';
+import type { TransportDef, TransportType } from 'https://deno.land/x/polkadot/hw-ledger-transports/types.ts';
 import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerVersion } from './types.ts';
 
 import { newSubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@0.41.3';
 
-import { transports } from 'https://deno.land/x/polkadot@0.2.44/hw-ledger-transports/mod.ts';
-import { hexAddPrefix, u8aToBuffer, u8aWrapBytes } from 'https://deno.land/x/polkadot@0.2.44/util/mod.ts';
+import { transports } from 'https://deno.land/x/polkadot/hw-ledger-transports/mod.ts';
+import { hexAddPrefix, u8aToBuffer, u8aWrapBytes } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { LEDGER_DEFAULT_ACCOUNT, LEDGER_DEFAULT_CHANGE, LEDGER_DEFAULT_INDEX, LEDGER_SUCCESS_CODE } from './constants.ts';
 import { ledgerApps } from './defaults.ts';
@@ -122,7 +122,13 @@ export class Ledger {
       if (!this.#app) {
         const transport = await this.#transportDef.create();
 
-        this.#app = newSubstrateApp(transport, this.#ledgerName);
+        // We need this override for the actual type passing - the Deno environment
+        // is quite a bit stricter and it yields invalids between the two (specifically
+        // since we mangle the imports from .default in the types for CJS/ESM and between
+        // esm.sh versions this yields problematic outputs)
+        //
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
+        this.#app = newSubstrateApp(transport as any, this.#ledgerName);
       }
 
       return await fn(this.#app);
