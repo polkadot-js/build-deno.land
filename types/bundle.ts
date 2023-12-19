@@ -2,7 +2,7 @@
 import * as typeDefinitions from './interfaces/definitions.ts';
 import rpcDefinitions from './interfaces/jsonrpc.ts';
 
-export { TypeDefInfo } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+export { TypeDefInfo } from 'https://deno.land/x/polkadot@0.2.45/types-create/mod.ts';
 
 export { convertSiV0toV1 } from './metadata/PortableRegistry/index.ts';
 export { packageInfo } from './packageInfo.ts';

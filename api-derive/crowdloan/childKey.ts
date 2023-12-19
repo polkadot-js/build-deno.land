@@ -1,14 +1,14 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { Option, u32 } from 'https://deno.land/x/polkadot/types/mod.ts';
-import type { PolkadotRuntimeCommonCrowdloanFundInfo } from 'https://deno.land/x/polkadot/types/lookup.ts';
-import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { Option, u32 } from 'https://deno.land/x/polkadot@0.2.45/types/mod.ts';
+import type { PolkadotRuntimeCommonCrowdloanFundInfo } from 'https://deno.land/x/polkadot@0.2.45/types/lookup.ts';
+import type { BN } from 'https://deno.land/x/polkadot@0.2.45/util/mod.ts';
 import type { DeriveApi } from '../types.ts';
 
 import { map } from 'https://esm.sh/rxjs@7.8.1';
 
-import { u8aConcat, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
-import { blake2AsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
+import { u8aConcat, u8aToHex } from 'https://deno.land/x/polkadot@0.2.45/util/mod.ts';
+import { blake2AsU8a } from 'https://deno.land/x/polkadot@0.2.45/util-crypto/mod.ts';
 
 import { memo } from '../util/index.ts';
 

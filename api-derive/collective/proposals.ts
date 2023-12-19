@@ -1,13 +1,13 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { Option } from 'https://deno.land/x/polkadot/types/mod.ts';
-import type { Hash, Proposal, Votes } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Option } from 'https://deno.land/x/polkadot@0.2.45/types/mod.ts';
+import type { Hash, Proposal, Votes } from 'https://deno.land/x/polkadot@0.2.45/types/interfaces/index.ts';
 import type { DeriveApi, DeriveCollectiveProposal } from '../types.ts';
 import type { Collective, HasProposalsFnRet, ProposalCountFn, ProposalFnRet, ProposalHashesFn, ProposalsFnRet } from './types.ts';
 
 import { catchError, combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
-import { isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isFunction } from 'https://deno.land/x/polkadot@0.2.45/util/mod.ts';
 
 import { firstObservable } from '../util/index.ts';
 import { callMethod, withSection } from './helpers.ts';

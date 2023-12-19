@@ -1,2 +1,2 @@
 
-export * from 'https://deno.land/x/polkadot/api-base/types/events.ts';
+export * from 'https://deno.land/x/polkadot@0.2.45/api-base/types/events.ts';

@@ -1,6 +1,6 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { PalletStakingEraRewardPoints } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { PalletStakingEraRewardPoints } from 'https://deno.land/x/polkadot@0.2.45/types/lookup.ts';
 import type { DeriveApi } from '../types.ts';
 
 import { switchMap } from 'https://esm.sh/rxjs@7.8.1';

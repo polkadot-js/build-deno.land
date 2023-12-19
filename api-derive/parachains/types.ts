@@ -1,7 +1,7 @@
 
-import type { Bytes, Option, u32, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
-import type { CollatorId, ParaId, ParaInfo, Retriable, UpwardMessage } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { Bytes, Option, u32, Vec } from 'https://deno.land/x/polkadot@0.2.45/types/mod.ts';
+import type { CollatorId, ParaId, ParaInfo, Retriable, UpwardMessage } from 'https://deno.land/x/polkadot@0.2.45/types/interfaces/index.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.2.45/types/types/index.ts';
 
 export type ParaInfoResult = Option<ParaInfo>;
 export type PendingSwap = Option<ParaId>;

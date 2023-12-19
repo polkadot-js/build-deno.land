@@ -1,7 +1,7 @@
 
 import type { Prefix } from './types.ts';
 
-import { u8aSorted } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { u8aSorted } from 'https://deno.land/x/polkadot@0.2.45/util/mod.ts';
 
 import { encodeAddress } from './encode.ts';
 import { addressToU8a } from './util.ts';

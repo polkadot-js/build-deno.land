@@ -1,5 +1,5 @@
 
-import type { KeypairType } from 'https://deno.land/x/polkadot/util-crypto/types.ts';
+import type { KeypairType } from 'https://deno.land/x/polkadot@0.2.45/util-crypto/types.ts';
 import type { KeyringOptions, KeyringPair } from './types.ts';
 
 import { nobody } from './pair/nobody.ts';

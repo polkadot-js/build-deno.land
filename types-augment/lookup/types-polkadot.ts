@@ -1,14 +1,14 @@
 /* eslint-disable */
 
-import 'https://deno.land/x/polkadot/types/lookup.ts';
+import 'https://deno.land/x/polkadot@0.2.45/types/lookup.ts';
 
-import type { Data } from 'https://deno.land/x/polkadot/types/mod.ts';
-import type { BTreeMap, BitVec, Bytes, Compact, Enum, Null, Option, Result, Set, Struct, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { EthereumAddress } from 'https://deno.land/x/polkadot/types/interfaces/eth/index.ts';
-import type { AccountId32, H256, PerU16, Perbill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { Data } from 'https://deno.land/x/polkadot@0.2.45/types/mod.ts';
+import type { BTreeMap, BitVec, Bytes, Compact, Enum, Null, Option, Result, Set, Struct, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot@0.2.45/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot@0.2.45/types-codec/types/index.ts';
+import type { EthereumAddress } from 'https://deno.land/x/polkadot@0.2.45/types/interfaces/eth/index.ts';
+import type { AccountId32, H256, PerU16, Perbill } from 'https://deno.land/x/polkadot@0.2.45/types/interfaces/runtime/index.ts';
 
-declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
+declare module 'https://deno.land/x/polkadot@0.2.45/types/lookup.ts' {
   /** @name PalletStakingExposure (59) */
   interface PalletStakingExposure extends Struct {
     readonly total: Compact<u128>;

@@ -1,13 +1,13 @@
 
-import type { Option, Text, Type, u32, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import type { AnyString, LookupString, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { ILookup, TypeDef } from 'https://deno.land/x/polkadot/types-create/types/index.ts';
+import type { Option, Text, Type, u32, Vec } from 'https://deno.land/x/polkadot@0.2.45/types-codec/mod.ts';
+import type { AnyString, LookupString, Registry } from 'https://deno.land/x/polkadot@0.2.45/types-codec/types/index.ts';
+import type { ILookup, TypeDef } from 'https://deno.land/x/polkadot@0.2.45/types-create/types/index.ts';
 import type { PortableType } from '../../interfaces/metadata/index.ts';
 import type { SiField, SiLookupTypeId, SiType, SiTypeDefArray, SiTypeDefBitSequence, SiTypeDefCompact, SiTypeDefComposite, SiTypeDefSequence, SiTypeDefTuple, SiTypeDefVariant, SiTypeParameter, SiVariant } from '../../interfaces/scaleInfo/index.ts';
 
-import { sanitize, Struct } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
-import { getTypeDef, TypeDefInfo, withTypeString } from 'https://deno.land/x/polkadot/types-create/mod.ts';
-import { assertUnreachable, isNumber, isString, logger, objectSpread, stringCamelCase, stringify, stringPascalCase } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { sanitize, Struct } from 'https://deno.land/x/polkadot@0.2.45/types-codec/mod.ts';
+import { getTypeDef, TypeDefInfo, withTypeString } from 'https://deno.land/x/polkadot@0.2.45/types-create/mod.ts';
+import { assertUnreachable, isNumber, isString, logger, objectSpread, stringCamelCase, stringify, stringPascalCase } from 'https://deno.land/x/polkadot@0.2.45/util/mod.ts';
 
 const l = logger('PortableRegistry');
 
