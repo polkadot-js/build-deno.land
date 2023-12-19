@@ -1,10 +1,11 @@
 # CHANGELOG
 
-## master
+## 0.2.45 Dec 19, 2023
 
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 10.11.2
 - hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 12.6.2
 - wasm-{bridge, crypto, crypto-{asmjs, init, wasm}, util} 7.3.2
+
 
 ## 0.2.44 Nov 18, 2023
 
