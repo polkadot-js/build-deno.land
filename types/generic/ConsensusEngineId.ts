@@ -1,10 +1,10 @@
 
-import type { Bytes, u32 } from 'https://deno.land/x/polkadot@0.2.45/types-codec/mod.ts';
-import type { AnyU8a, Registry } from 'https://deno.land/x/polkadot@0.2.45/types-codec/types/index.ts';
+import type { Bytes, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { AnyU8a, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { AccountId, RawAuraPreDigest, RawBabePreDigestCompat } from '../interfaces/index.ts';
 
-import { U8aFixed } from 'https://deno.land/x/polkadot@0.2.45/types-codec/mod.ts';
-import { BN, bnToU8a, isNumber, stringToU8a, u8aToHex, u8aToString } from 'https://deno.land/x/polkadot@0.2.45/util/mod.ts';
+import { U8aFixed } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { BN, bnToU8a, isNumber, stringToU8a, u8aToHex, u8aToString } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 export const CID_AURA = /*#__PURE__*/ stringToU8a('aura');
 export const CID_BABE = /*#__PURE__*/ stringToU8a('BABE');

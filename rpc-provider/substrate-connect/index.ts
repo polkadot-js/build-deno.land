@@ -1,10 +1,10 @@
 
-import type * as ScType from 'https://esm.sh/@substrate/connect@0.7.35';
+import type * as ScType from 'https://esm.sh/@substrate/connect@0.8.7';
 import type { JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, ProviderInterfaceEmitCb, ProviderInterfaceEmitted } from '../types.ts';
 
 import { EventEmitter } from 'https://esm.sh/eventemitter3@5.0.1';
 
-import { isError, isFunction, isObject, logger, noop, objectSpread } from 'https://deno.land/x/polkadot@0.2.45/util/mod.ts';
+import { isError, isFunction, isObject, logger, noop, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { RpcCoder } from '../coder/index.ts';
 import { healthChecker } from './Health.ts';
@@ -144,9 +144,17 @@ export class ScProvider implements ProviderInterface {
       callback?.(decodedResponse);
     };
 
-    const addChain = this.#wellKnownChains.has(this.#spec as ScType.WellKnownChain)
-      ? client.addWellKnownChain
-      : client.addChain;
+    const addChain = this.#sharedSandbox
+      ? (async (...args) => {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        const source = this.#sharedSandbox!;
+
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        return (await source.#chain)!.addChain(...args);
+      }) as ScType.AddChain
+      : this.#wellKnownChains.has(this.#spec as ScType.WellKnownChain)
+        ? client.addWellKnownChain
+        : client.addChain;
 
     this.#chain = addChain(this.#spec as ScType.WellKnownChain, onResponse).then((chain) => {
       hc.setSendJsonRpc(chain.sendJsonRpc);

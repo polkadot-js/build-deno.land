@@ -1,8 +1,8 @@
 
-import type { Callback } from 'https://deno.land/x/polkadot@0.2.45/types/types/index.ts';
+import type { Callback } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { UnsubscribePromise } from '../types/index.ts';
 
-import { isFunction, noop } from 'https://deno.land/x/polkadot@0.2.45/util/mod.ts';
+import { isFunction, noop } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 export type CombinatorCallback <T extends unknown[]> = Callback<T>;
 
@@ -20,7 +20,7 @@ export class Combinator<T extends unknown[] = unknown[]> {
   constructor (fns: (CombinatorFunction | [CombinatorFunction, ...unknown[]])[], callback: CombinatorCallback<T>) {
     this.#callback = callback;
 
-    // eslint-disable-next-line @typescript-eslint/require-await
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises, @typescript-eslint/require-await
     this.#subscriptions = fns.map(async (input, index): UnsubscribePromise => {
       const [fn, ...args] = Array.isArray(input)
         ? input
@@ -71,16 +71,19 @@ export class Combinator<T extends unknown[] = unknown[]> {
 
     this.#isActive = false;
 
-    this.#subscriptions.map(async (subscription): Promise<void> => {
-      try {
-        const unsubscribe = await subscription;
+    Promise
+      .all(this.#subscriptions.map(async (subscription): Promise<void> => {
+        try {
+          const unsubscribe = await subscription;
 
-        if (isFunction(unsubscribe)) {
-          unsubscribe();
+          if (isFunction(unsubscribe)) {
+            unsubscribe();
+          }
+        } catch {
+          // ignore
         }
-      } catch {
-        // ignore
-      }
-    });
+      })).catch(() => {
+        // ignore, already ignored above, should never throw
+      });
   }
 }

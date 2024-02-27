@@ -1,9 +1,9 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { AnyFunction, AnyJson, Callback, DefinitionRpc } from 'https://deno.land/x/polkadot@0.2.45/types/types/index.ts';
+import type { AnyFunction, AnyJson, Callback, DefinitionRpc } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { ApiTypes, PromiseResult, Push, RxResult, UnsubscribePromise } from './base.ts';
 
-export type { AugmentedRpc } from 'https://deno.land/x/polkadot@0.2.45/rpc-core/types/index.ts';
+export type { AugmentedRpc } from 'https://deno.land/x/polkadot/rpc-core/types/index.ts';
 
 export interface RxRpcResult<F extends AnyFunction> extends RxResult<F> {
   raw <T> (...args: Parameters<F>): Observable<T>;

@@ -1,12 +1,12 @@
 
-import type { Bytes } from 'https://deno.land/x/polkadot@0.2.45/types/mod.ts';
-import type { ChainProperties, ContractConstructorSpecLatest, ContractEventSpecLatest, ContractMessageParamSpecLatest, ContractMessageSpecLatest, ContractMetadata, ContractMetadataLatest, ContractProjectInfo, ContractTypeSpec } from 'https://deno.land/x/polkadot@0.2.45/types/interfaces/index.ts';
-import type { Codec, Registry, TypeDef } from 'https://deno.land/x/polkadot@0.2.45/types/types/index.ts';
+import type { Bytes } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { ChainProperties, ContractConstructorSpecLatest, ContractEventSpecLatest, ContractMessageParamSpecLatest, ContractMessageSpecLatest, ContractMetadata, ContractMetadataLatest, ContractProjectInfo, ContractTypeSpec } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Codec, Registry, TypeDef } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { AbiConstructor, AbiEvent, AbiMessage, AbiParam, DecodedEvent, DecodedMessage } from '../types.ts';
 
-import { Option, TypeRegistry } from 'https://deno.land/x/polkadot@0.2.45/types/mod.ts';
-import { TypeDefInfo } from 'https://deno.land/x/polkadot@0.2.45/types-create/mod.ts';
-import { assertReturn, compactAddLength, compactStripLength, isBn, isNumber, isObject, isString, isUndefined, logger, stringCamelCase, stringify, u8aConcat, u8aToHex } from 'https://deno.land/x/polkadot@0.2.45/util/mod.ts';
+import { Option, TypeRegistry } from 'https://deno.land/x/polkadot/types/mod.ts';
+import { TypeDefInfo } from 'https://deno.land/x/polkadot/types-create/mod.ts';
+import { assertReturn, compactAddLength, compactStripLength, isBn, isNumber, isObject, isString, isUndefined, logger, stringCamelCase, stringify, u8aConcat, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { convertVersions, enumVersions } from './toLatest.ts';
 

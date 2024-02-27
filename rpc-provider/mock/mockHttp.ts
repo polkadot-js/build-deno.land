@@ -1,7 +1,7 @@
 
 import type { Mock } from './types.ts';
 
-import nock from 'https://esm.sh/nock@13.4.0';
+import nock from 'https://esm.sh/nock@13.5.0';
 
 interface Request {
   code?: number;

@@ -3,7 +3,7 @@ import type { PortableType } from '../../../interfaces/index.ts';
 import type { StorageEntry } from '../../../primitive/types.ts';
 import type { Registry } from '../../../types/index.ts';
 
-import { getTypeDef } from 'https://deno.land/x/polkadot@0.2.45/types-create/mod.ts';
+import { getTypeDef } from 'https://deno.land/x/polkadot/types-create/mod.ts';
 
 import { createFunction } from './createFunction.ts';
 

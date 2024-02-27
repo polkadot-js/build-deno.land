@@ -1,16 +1,16 @@
 
-import type { Class } from 'https://deno.land/x/polkadot@0.2.45/util/types.ts';
+import type { Class } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { EndpointStats, JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, ProviderInterfaceEmitCb, ProviderInterfaceEmitted, ProviderStats } from '../types.ts';
 
 import { EventEmitter } from 'https://esm.sh/eventemitter3@5.0.1';
 
-import { isChildClass, isNull, isUndefined, logger, noop, objectSpread } from 'https://deno.land/x/polkadot@0.2.45/util/mod.ts';
-import { xglobal } from 'https://deno.land/x/polkadot@0.2.45/x-global/mod.ts';
-import { WebSocket } from 'https://deno.land/x/polkadot@0.2.45/x-ws/mod.ts';
+import { isChildClass, isNull, isUndefined, logger, noop, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
+import { WebSocket } from 'https://deno.land/x/polkadot/x-ws/mod.ts';
 
 import { RpcCoder } from '../coder/index.ts';
 import defaults from '../defaults.ts';
-import { LRUCache } from '../lru.ts';
+import { DEFAULT_CAPACITY, LRUCache } from '../lru.ts';
 import { getWSErrorString } from './errors.ts';
 
 interface SubscriptionHandler {
@@ -71,8 +71,8 @@ function defaultEndpointStats (): EndpointStats {
  * <BR>
  *
  * ```javascript
- * import Api from 'https://deno.land/x/polkadot@0.2.45/api/promise/index.ts';
- * import { WsProvider } from 'https://deno.land/x/polkadot@0.2.45/rpc-provider/ws/index.ts';
+ * import Api from 'https://deno.land/x/polkadot/api/promise/index.ts';
+ * import { WsProvider } from 'https://deno.land/x/polkadot/rpc-provider/ws/index.ts';
  *
  * const provider = new WsProvider('ws://127.0.0.1:9944');
  * const api = new Api(provider);
@@ -81,7 +81,7 @@ function defaultEndpointStats (): EndpointStats {
  * @see [[HttpProvider]]
  */
 export class WsProvider implements ProviderInterface {
-  readonly #callCache = new LRUCache();
+  readonly #callCache: LRUCache;
   readonly #coder: RpcCoder;
   readonly #endpoints: string[];
   readonly #headers: Record<string, string>;
@@ -106,7 +106,7 @@ export class WsProvider implements ProviderInterface {
    * @param {Record<string, string>} headers The headers provided to the underlying WebSocket
    * @param {number} [timeout] Custom timeout value used per request . Defaults to `DEFAULT_TIMEOUT_MS`
    */
-  constructor (endpoint: string | string[] = defaults.WS_URL, autoConnectMs: number | false = RETRY_DELAY, headers: Record<string, string> = {}, timeout?: number) {
+  constructor (endpoint: string | string[] = defaults.WS_URL, autoConnectMs: number | false = RETRY_DELAY, headers: Record<string, string> = {}, timeout?: number, cacheCapacity?: number) {
     const endpoints = Array.isArray(endpoint)
       ? endpoint
       : [endpoint];
@@ -120,7 +120,7 @@ export class WsProvider implements ProviderInterface {
         throw new Error(`Endpoint should start with 'ws://', received '${endpoint}'`);
       }
     });
-
+    this.#callCache = new LRUCache(cacheCapacity || DEFAULT_CAPACITY);
     this.#eventemitter = new EventEmitter();
     this.#autoConnectMs = autoConnectMs || 0;
     this.#coder = new RpcCoder();

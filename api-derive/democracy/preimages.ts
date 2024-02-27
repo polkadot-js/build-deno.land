@@ -1,16 +1,16 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { u128 } from 'https://deno.land/x/polkadot@0.2.45/types/mod.ts';
-import type { AccountId, AccountId32, Balance, BlockNumber, Call, Hash, PreimageStatus } from 'https://deno.land/x/polkadot@0.2.45/types/interfaces/index.ts';
-import type { FrameSupportPreimagesBounded, PalletPreimageOldRequestStatus, PalletPreimageRequestStatus } from 'https://deno.land/x/polkadot@0.2.45/types/lookup.ts';
-import type { Bytes, Option } from 'https://deno.land/x/polkadot@0.2.45/types-codec/mod.ts';
-import type { ITuple } from 'https://deno.land/x/polkadot@0.2.45/types-codec/types/index.ts';
-import type { HexString } from 'https://deno.land/x/polkadot@0.2.45/util/types.ts';
+import type { u128 } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, AccountId32, Balance, BlockNumber, Call, Hash, PreimageStatus } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { FrameSupportPreimagesBounded, PalletPreimageOldRequestStatus, PalletPreimageRequestStatus } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { Bytes, Option } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { DeriveApi, DeriveProposalImage } from '../types.ts';
 
 import { map, of, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
-import { BN_ZERO, isFunction } from 'https://deno.land/x/polkadot@0.2.45/util/mod.ts';
+import { BN_ZERO, isFunction } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { firstMemo, memo } from '../util/index.ts';
 import { getImageHashBounded } from './util.ts';
