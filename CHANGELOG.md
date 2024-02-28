@@ -2,6 +2,7 @@
 
 ## master
 
+- phishing 0.22.2
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 10.11.3
 
 ## 0.2.45 Dec 19, 2023
