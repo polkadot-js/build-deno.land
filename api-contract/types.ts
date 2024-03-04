@@ -5,6 +5,7 @@ import type { Text } from 'https://deno.land/x/polkadot/types/mod.ts';
 import type { ContractExecResultResult, ContractSelector, StorageDeposit, Weight, WeightV2 } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { Codec, TypeDef } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { Abi } from './index.ts';
 
 export interface ContractBase<ApiType extends ApiTypes> {
@@ -20,16 +21,23 @@ export interface AbiParam {
   type: TypeDef;
 }
 
+export type AbiMessageParam = AbiParam
+
+export interface AbiEventParam extends AbiParam{
+  indexed: boolean;
+}
+
 export interface AbiEvent {
-  args: AbiParam[];
+  args: AbiEventParam[];
   docs: string[];
   fromU8a: (data: Uint8Array) => DecodedEvent;
   identifier: string;
   index: number;
+  signatureTopic?: HexString | null;
 }
 
 export interface AbiMessage {
-  args: AbiParam[];
+  args: AbiMessageParam[];
   docs: string[];
   fromU8a: (data: Uint8Array) => DecodedMessage;
   identifier: string;
