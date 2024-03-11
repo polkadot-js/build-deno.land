@@ -6,7 +6,7 @@ import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot/api-
 import type { Bytes, Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { Codec, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { Perbill, Percent, Permill, Perquintill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
-import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, PalletContractsEnvironment, PalletContractsSchedule, PalletReferendaTrackInfo, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { FrameSupportPalletId, FrameSupportTokensFungibleUnionOfNativeOrWithId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, PalletContractsEnvironment, PalletContractsSchedule, PalletReferendaTrackInfo, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedConst<ApiType extends ApiTypes> = AugmentedConst<ApiType>;
 
@@ -50,10 +50,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
     };
     assetConversion: {
       /**
-       * A setting to allow creating pools with both non-native assets.
-       **/
-      allowMultiAssetPools: bool & AugmentedConst<ApiType>;
-      /**
        * A fee to withdraw the liquidity.
        **/
       liquidityWithdrawalFee: Permill & AugmentedConst<ApiType>;
@@ -77,6 +73,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        * A one-time fee to setup the pool.
        **/
       poolSetupFee: u128 & AugmentedConst<ApiType>;
+      /**
+       * Asset class from [`Config::Assets`] used to pay the [`Config::PoolSetupFee`].
+       **/
+      poolSetupFeeAsset: FrameSupportTokensFungibleUnionOfNativeOrWithId & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/
@@ -165,10 +165,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        **/
       maxFreezes: u32 & AugmentedConst<ApiType>;
       /**
-       * The maximum number of holds that can exist on an account at any time.
-       **/
-      maxHolds: u32 & AugmentedConst<ApiType>;
-      /**
        * The maximum number of locks that should exist on an account.
        * Not strictly enforced, but used for weight estimation.
        **/
@@ -177,6 +173,29 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        * The maximum number of named reserves that can exist on an account.
        **/
       maxReserves: u32 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
+    beefy: {
+      /**
+       * The maximum number of authorities that can be added.
+       **/
+      maxAuthorities: u32 & AugmentedConst<ApiType>;
+      /**
+       * The maximum number of nominators for each validator.
+       **/
+      maxNominators: u32 & AugmentedConst<ApiType>;
+      /**
+       * The maximum number of entries to keep in the set id to session index mapping.
+       * 
+       * Since the `SetIdSession` map is only used for validating equivocations this
+       * value should relate to the bonding duration of whatever staking system is
+       * being used (if any). If equivocation handling is not enabled then this value
+       * can be zero.
+       **/
+      maxSetIdSessionEntries: u64 & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/
@@ -267,8 +286,14 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
     };
     contracts: {
       /**
+       * The version of the HostFn APIs that are available in the runtime.
+       * 
+       * Only valid value is `()`.
+       **/
+      apiVersion: u16 & AugmentedConst<ApiType>;
+      /**
        * The percentage of the storage deposit that should be held for using a code hash.
-       * Instantiating a contract, or calling [`chain_extension::Ext::add_delegate_dependency`]
+       * Instantiating a contract, or calling [`chain_extension::Ext::lock_delegate_dependency`]
        * protects the code from being removed. In order to prevent abuse these actions are
        * protected with a percentage of the code deposit.
        **/
@@ -314,7 +339,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
       maxDebugBufferLen: u32 & AugmentedConst<ApiType>;
       /**
        * The maximum number of delegate_dependencies that a contract can lock with
-       * [`chain_extension::Ext::add_delegate_dependency`].
+       * [`chain_extension::Ext::lock_delegate_dependency`].
        **/
       maxDelegateDependencies: u32 & AugmentedConst<ApiType>;
       /**
@@ -454,11 +479,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        * "better" in the Signed phase.
        **/
       betterSignedThreshold: Perbill & AugmentedConst<ApiType>;
-      /**
-       * The minimum amount of improvement to the solution score that defines a solution as
-       * "better" in the Unsigned phase.
-       **/
-      betterUnsignedThreshold: Perbill & AugmentedConst<ApiType>;
       /**
        * The maximum number of winners that can be elected by this `ElectionProvider`
        * implementation.
@@ -628,7 +648,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
     };
     identity: {
       /**
-       * The amount held on deposit for a registered identity
+       * The amount held on deposit for a registered identity.
        **/
       basicDeposit: u128 & AugmentedConst<ApiType>;
       /**
@@ -644,6 +664,18 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        * The maximum number of sub-accounts allowed per identified account.
        **/
       maxSubAccounts: u32 & AugmentedConst<ApiType>;
+      /**
+       * The maximum length of a suffix.
+       **/
+      maxSuffixLength: u32 & AugmentedConst<ApiType>;
+      /**
+       * The maximum length of a username, including its suffix and any system-added delimiters.
+       **/
+      maxUsernameLength: u32 & AugmentedConst<ApiType>;
+      /**
+       * The number of blocks within which a username grant must be accepted.
+       **/
+      pendingUsernameExpiration: u32 & AugmentedConst<ApiType>;
       /**
        * The amount held on deposit for a registered subaccount. This should account for the fact
        * that one storage item's value will increase by the size of an account ID, and there will
@@ -1415,7 +1447,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        * - [`frame_support::storage::StorageDoubleMap`]: 96 byte
        * 
        * For more info see
-       * <https://www.shawntabrizi.com/substrate/querying-substrate-storage-via-rpc/>
+       * <https://www.shawntabrizi.com/blog/substrate/querying-substrate-storage-via-rpc/>
        **/
       maxKeyLen: u32 & AugmentedConst<ApiType>;
       /**
@@ -1506,7 +1538,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        **/
       tipFindersFee: Percent & AugmentedConst<ApiType>;
       /**
-       * The amount held on deposit for placing a tip report.
+       * The non-zero amount held on deposit for placing a tip report.
        **/
       tipReportDepositBase: u128 & AugmentedConst<ApiType>;
       /**

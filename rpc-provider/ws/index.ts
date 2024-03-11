@@ -4,7 +4,7 @@ import type { EndpointStats, JsonRpcResponse, ProviderInterface, ProviderInterfa
 
 import { EventEmitter } from 'https://esm.sh/eventemitter3@5.0.1';
 
-import { isChildClass, isNull, isUndefined, logger, noop, objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { isChildClass, isNull, isUndefined, logger, noop, objectSpread, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
 import { WebSocket } from 'https://deno.land/x/polkadot/x-ws/mod.ts';
 
@@ -310,15 +310,16 @@ export class WsProvider implements ProviderInterface {
     this.#stats.total.requests++;
 
     const [id, body] = this.#coder.encodeJson(method, params);
+    const cacheKey = isCacheable ? `${method}::${stringify(params)}` : '';
     let resultPromise: Promise<T> | null = isCacheable
-      ? this.#callCache.get(body)
+      ? this.#callCache.get(cacheKey)
       : null;
 
     if (!resultPromise) {
       resultPromise = this.#send(id, body, method, params, subscription);
 
       if (isCacheable) {
-        this.#callCache.set(body, resultPromise);
+        this.#callCache.set(cacheKey, resultPromise);
       }
     } else {
       this.#endpointStats.cached++;

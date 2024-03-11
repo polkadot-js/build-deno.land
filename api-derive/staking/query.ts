@@ -9,7 +9,14 @@ import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
 import { firstMemo, memo } from '../util/index.ts';
 
-function parseDetails (stashId: AccountId, controllerIdOpt: Option<AccountId> | null, nominatorsOpt: Option<PalletStakingNominations>, rewardDestination: PalletStakingRewardDestination, validatorPrefs: PalletStakingValidatorPrefs, exposure: PalletStakingExposure, stakingLedgerOpt: Option<PalletStakingStakingLedger>): DeriveStakingQuery {
+function rewardDestinationCompat (rewardDestination: PalletStakingRewardDestination | Option<PalletStakingRewardDestination>): PalletStakingRewardDestination | null {
+  // We ensure the type is an Option by checking if isSome is a boolean. When isSome doesn't exist it will always return undefined.
+  return typeof (rewardDestination as Option<PalletStakingRewardDestination>).isSome === 'boolean'
+    ? (rewardDestination as Option<PalletStakingRewardDestination>).unwrapOr(null)
+    : (rewardDestination as PalletStakingRewardDestination);
+}
+
+function parseDetails (stashId: AccountId, controllerIdOpt: Option<AccountId> | null, nominatorsOpt: Option<PalletStakingNominations>, rewardDestinationOpts: Option<PalletStakingRewardDestination> | PalletStakingRewardDestination, validatorPrefs: PalletStakingValidatorPrefs, exposure: PalletStakingExposure, stakingLedgerOpt: Option<PalletStakingStakingLedger>): DeriveStakingQuery {
   return {
     accountId: stashId,
     controllerId: controllerIdOpt?.unwrapOr(null) || null,
@@ -17,7 +24,7 @@ function parseDetails (stashId: AccountId, controllerIdOpt: Option<AccountId> | 
     nominators: nominatorsOpt.isSome
       ? nominatorsOpt.unwrap().targets
       : [],
-    rewardDestination,
+    rewardDestination: rewardDestinationCompat(rewardDestinationOpts),
     stakingLedger: stakingLedgerOpt.unwrapOrDefault(),
     stashId,
     validatorPrefs
@@ -47,9 +54,9 @@ function getLedgers (api: DeriveApi, optIds: (Option<AccountId> | null)[], { wit
   );
 }
 
-function getStashInfo (api: DeriveApi, stashIds: AccountId[], activeEra: EraIndex, { withController, withDestination, withExposure, withLedger, withNominations, withPrefs }: StakingQueryFlags): Observable<[(Option<AccountId> | null)[], Option<PalletStakingNominations>[], PalletStakingRewardDestination[], PalletStakingValidatorPrefs[], PalletStakingExposure[]]> {
+function getStashInfo (api: DeriveApi, stashIds: AccountId[], activeEra: EraIndex, { withController, withDestination, withExposure, withLedger, withNominations, withPrefs }: StakingQueryFlags): Observable<[(Option<AccountId> | null)[], Option<PalletStakingNominations>[], Option<PalletStakingRewardDestination>[], PalletStakingValidatorPrefs[], PalletStakingExposure[]]> {
   const emptyNoms = api.registry.createType<Option<PalletStakingNominations>>('Option<Nominations>');
-  const emptyRewa = api.registry.createType<PalletStakingRewardDestination>('RewardDestination');
+  const emptyRewa = api.registry.createType<Option<PalletStakingRewardDestination>>('RewardDestination');
   const emptyExpo = api.registry.createType<PalletStakingExposure>('Exposure');
   const emptyPrefs = api.registry.createType<PalletStakingValidatorPrefs>('ValidatorPrefs');
 

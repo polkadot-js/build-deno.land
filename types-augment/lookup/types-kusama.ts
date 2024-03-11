@@ -2,55 +2,11 @@
 
 import 'https://deno.land/x/polkadot/types/lookup.ts';
 
-import type { Bytes, Compact, Enum, Null, Struct, U8aFixed, Vec, u16, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Compact, Enum, Null, Struct, Vec, u16, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { H256, PerU16 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { PerU16 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
-  /** @name PalletBeefyCall (94) */
-  interface PalletBeefyCall extends Enum {
-    readonly isReportEquivocation: boolean;
-    readonly asReportEquivocation: {
-      readonly equivocationProof: SpConsensusBeefyEquivocationProof;
-      readonly keyOwnerProof: SpSessionMembershipProof;
-    } & Struct;
-    readonly isReportEquivocationUnsigned: boolean;
-    readonly asReportEquivocationUnsigned: {
-      readonly equivocationProof: SpConsensusBeefyEquivocationProof;
-      readonly keyOwnerProof: SpSessionMembershipProof;
-    } & Struct;
-    readonly type: 'ReportEquivocation' | 'ReportEquivocationUnsigned';
-  }
-
-  /** @name SpConsensusBeefyEquivocationProof (95) */
-  interface SpConsensusBeefyEquivocationProof extends Struct {
-    readonly first: SpConsensusBeefyVoteMessage;
-    readonly second: SpConsensusBeefyVoteMessage;
-  }
-
-  /** @name SpConsensusBeefyEcdsaCryptoPublic (96) */
-  interface SpConsensusBeefyEcdsaCryptoPublic extends SpCoreEcdsaPublic {}
-
-  /** @name SpConsensusBeefyEcdsaCryptoSignature (99) */
-  interface SpConsensusBeefyEcdsaCryptoSignature extends SpCoreEcdsaSignature {}
-
-  /** @name SpConsensusBeefyVoteMessage (102) */
-  interface SpConsensusBeefyVoteMessage extends Struct {
-    readonly commitment: SpConsensusBeefyCommitment;
-    readonly id: SpConsensusBeefyEcdsaCryptoPublic;
-    readonly signature: SpConsensusBeefyEcdsaCryptoSignature;
-  }
-
-  /** @name SpConsensusBeefyCommitment (103) */
-  interface SpConsensusBeefyCommitment extends Struct {
-    readonly payload: SpConsensusBeefyPayload;
-    readonly blockNumber: u32;
-    readonly validatorSetId: u64;
-  }
-
-  /** @name SpConsensusBeefyPayload (104) */
-  interface SpConsensusBeefyPayload extends Vec<ITuple<[U8aFixed, Bytes]>> {}
-
   /** @name KusamaRuntimeSessionKeys (109) */
   interface KusamaRuntimeSessionKeys extends Struct {
     readonly grandpa: SpConsensusGrandpaAppPublic;
@@ -155,21 +111,6 @@ declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
     readonly isNis: boolean;
     readonly asNis: PalletNisHoldReason;
     readonly type: 'Nis';
-  }
-
-  /** @name PalletBeefyError (591) */
-  interface PalletBeefyError extends Enum {
-    readonly isInvalidKeyOwnershipProof: boolean;
-    readonly isInvalidEquivocationProof: boolean;
-    readonly isDuplicateOffenceReport: boolean;
-    readonly type: 'InvalidKeyOwnershipProof' | 'InvalidEquivocationProof' | 'DuplicateOffenceReport';
-  }
-
-  /** @name SpConsensusBeefyMmrBeefyAuthoritySet (592) */
-  interface SpConsensusBeefyMmrBeefyAuthoritySet extends Struct {
-    readonly id: u64;
-    readonly len: u32;
-    readonly keysetCommitment: H256;
   }
 
   /** @name KusamaRuntimeRuntime (891) */
