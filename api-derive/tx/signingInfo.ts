@@ -1,7 +1,10 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
+import type { AugmentedConsts } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { u64 } from 'https://deno.land/x/polkadot/types/mod.ts';
 import type { Header, Index } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { AnyNumber, Codec, IExtrinsicEra } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { DeriveApi } from '../types.ts';
 
 import { catchError, combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.1';
@@ -61,6 +64,19 @@ function signingHeader (api: DeriveApi): Observable<Header> {
   );
 }
 
+interface Aura {
+  slotDuration: u64 & AugmentedConsts<'rxjs'>;
+}
+
+function babeOrAuraPeriod (api: DeriveApi): BN | undefined {
+  const period = api.consts.babe?.expectedBlockTime ||
+    // this will be present ones https://github.com/paritytech/polkadot-sdk/pull/3732 is merged
+    (api.consts['aura'] as unknown as Aura)?.slotDuration ||
+    api.consts.timestamp?.minimumPeriod;
+
+  return !period.isZero() ? period : undefined;
+}
+
 export function signingInfo (_instanceId: string, api: DeriveApi): (address: string, nonce?: AnyNumber | Codec, era?: IExtrinsicEra | number) => Observable<Result> {
   // no memo, we want to do this fresh on each run
   return (address: string, nonce?: AnyNumber | Codec, era?: IExtrinsicEra | number): Observable<Result> =>
@@ -81,11 +97,7 @@ export function signingInfo (_instanceId: string, api: DeriveApi): (address: str
         mortalLength: Math.min(
           api.consts.system?.blockHashCount?.toNumber() || FALLBACK_MAX_HASH_COUNT,
           MORTAL_PERIOD
-            .div(
-              api.consts.babe?.expectedBlockTime ||
-              api.consts.timestamp?.minimumPeriod.muln(2) ||
-              FALLBACK_PERIOD
-            )
+            .div(babeOrAuraPeriod(api) || FALLBACK_PERIOD)
             .iadd(MAX_FINALITY_LAG)
             .toNumber()
         ),

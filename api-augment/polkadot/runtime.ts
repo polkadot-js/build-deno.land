@@ -6,7 +6,7 @@ import type { ApiTypes, AugmentedCall, DecoratedCallBase } from 'https://deno.la
 import type { Bytes, Null, Option, Result, Vec, bool, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { AnyNumber, IMethod, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { BabeEquivocationProof, BabeGenesisConfiguration, Epoch, OpaqueKeyOwnershipProof } from 'https://deno.land/x/polkadot/types/interfaces/babe/index.ts';
-import type { BeefyEquivocationProof, ValidatorSet, ValidatorSetId } from 'https://deno.land/x/polkadot/types/interfaces/beefy/index.ts';
+import type { BeefyAuthoritySet, BeefyEquivocationProof, BeefyNextAuthoritySet, ValidatorSet, ValidatorSetId } from 'https://deno.land/x/polkadot/types/interfaces/beefy/index.ts';
 import type { CheckInherentsResult, InherentData } from 'https://deno.land/x/polkadot/types/interfaces/blockbuilder/index.ts';
 import type { BlockHash } from 'https://deno.land/x/polkadot/types/interfaces/chain/index.ts';
 import type { AuthorityId } from 'https://deno.land/x/polkadot/types/interfaces/consensus/index.ts';
@@ -100,6 +100,21 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
        * Return the current active BEEFY validator set
        **/
       validatorSet: AugmentedCall<ApiType, () => Observable<Option<ValidatorSet>>>;
+      /**
+       * Generic call
+       **/
+      [key: string]: DecoratedCallBase<ApiType>;
+    };
+    /** 0x2a5e924655399e60/1 */
+    beefyMmrApi: {
+      /**
+       * Return the currently active BEEFY authority set proof.
+       **/
+      authoritySetProof: AugmentedCall<ApiType, () => Observable<BeefyAuthoritySet>>;
+      /**
+       * Return the next/queued BEEFY authority set proof.
+       **/
+      nextAuthoritySetProof: AugmentedCall<ApiType, () => Observable<BeefyNextAuthoritySet>>;
       /**
        * Generic call
        **/

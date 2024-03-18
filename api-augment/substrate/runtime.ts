@@ -23,7 +23,7 @@ import type { AccountId, Balance, Block, BlockNumber, Call, Hash, Header, Index,
 import type { RuntimeVersion } from 'https://deno.land/x/polkadot/types/interfaces/state/index.ts';
 import type { ApplyExtrinsicResult } from 'https://deno.land/x/polkadot/types/interfaces/system/index.ts';
 import type { TransactionSource, TransactionValidity } from 'https://deno.land/x/polkadot/types/interfaces/txqueue/index.ts';
-import type { XcmV3MultiLocation } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { StagingXcmV3MultiLocation } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { IExtrinsic, Observable } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 export type __AugmentedCall<ApiType extends ApiTypes> = AugmentedCall<ApiType>;
@@ -47,15 +47,15 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
       /**
        * Get pool reserves
        **/
-      getReserves: AugmentedCall<ApiType, (asset1: XcmV3MultiLocation, asset2: XcmV3MultiLocation) => Observable<Option<ITuple<[Balance, Balance]>>>>;
+      getReserves: AugmentedCall<ApiType, (asset1: StagingXcmV3MultiLocation, asset2: StagingXcmV3MultiLocation) => Observable<Option<ITuple<[Balance, Balance]>>>>;
       /**
        * Quote price: exact tokens for tokens
        **/
-      quotePriceExactTokensForTokens: AugmentedCall<ApiType, (asset1: XcmV3MultiLocation, asset2: XcmV3MultiLocation, amount: u128 | AnyNumber | Uint8Array, include_fee: bool | boolean | Uint8Array) => Observable<Option<Balance>>>;
+      quotePriceExactTokensForTokens: AugmentedCall<ApiType, (asset1: StagingXcmV3MultiLocation, asset2: StagingXcmV3MultiLocation, amount: u128 | AnyNumber | Uint8Array, include_fee: bool | boolean | Uint8Array) => Observable<Option<Balance>>>;
       /**
        * Quote price: tokens for exact tokens
        **/
-      quotePriceTokensForExactTokens: AugmentedCall<ApiType, (asset1: XcmV3MultiLocation, asset2: XcmV3MultiLocation, amount: u128 | AnyNumber | Uint8Array, include_fee: bool | boolean | Uint8Array) => Observable<Option<Balance>>>;
+      quotePriceTokensForExactTokens: AugmentedCall<ApiType, (asset1: StagingXcmV3MultiLocation, asset2: StagingXcmV3MultiLocation, amount: u128 | AnyNumber | Uint8Array, include_fee: bool | boolean | Uint8Array) => Observable<Option<Balance>>>;
       /**
        * Generic call
        **/

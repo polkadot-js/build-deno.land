@@ -7,12 +7,21 @@ import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, 
 import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { EthereumAddress } from 'https://deno.land/x/polkadot/types/interfaces/eth/index.ts';
 import type { AccountId32, H256, Perbill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
-import type { FrameSupportDispatchDispatchInfo, FrameSupportDispatchPostDispatchInfo, FrameSupportMessagesProcessMessageError, FrameSupportPreimagesBounded, FrameSupportTokensMiscBalanceStatus, PalletConvictionVotingTally, PalletElectionProviderMultiPhaseElectionCompute, PalletElectionProviderMultiPhasePhase, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNominationPoolsCommissionChangeRate, PalletNominationPoolsPoolState, PalletStakingExposure, PalletStakingForcing, PalletStakingValidatorPrefs, PolkadotParachainPrimitivesHrmpChannelId, PolkadotPrimitivesV5CandidateReceipt, PolkadotRuntimeParachainsDisputesDisputeLocation, PolkadotRuntimeParachainsDisputesDisputeResult, PolkadotRuntimeParachainsInclusionAggregateMessageOrigin, PolkadotRuntimeProxyType, SpConsensusGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, SpRuntimeDispatchErrorWithPostInfo, SpWeightsWeightV2Weight, XcmV3MultiLocation, XcmV3MultiassetMultiAssets, XcmV3Response, XcmV3TraitsError, XcmV3TraitsOutcome, XcmV3Xcm, XcmVersionedMultiAssets, XcmVersionedMultiLocation } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { FrameSupportDispatchDispatchInfo, FrameSupportDispatchPostDispatchInfo, FrameSupportMessagesProcessMessageError, FrameSupportPreimagesBounded, FrameSupportTokensMiscBalanceStatus, PalletConvictionVotingTally, PalletElectionProviderMultiPhaseElectionCompute, PalletElectionProviderMultiPhasePhase, PalletMultisigTimepoint, PalletNominationPoolsCommissionChangeRate, PalletNominationPoolsCommissionClaimPermission, PalletNominationPoolsPoolState, PalletStakingForcing, PalletStakingRewardDestination, PalletStakingValidatorPrefs, PolkadotParachainPrimitivesPrimitivesHrmpChannelId, PolkadotPrimitivesV6CandidateReceipt, PolkadotRuntimeCommonImplsVersionedLocatableAsset, PolkadotRuntimeParachainsDisputesDisputeLocation, PolkadotRuntimeParachainsDisputesDisputeResult, PolkadotRuntimeParachainsInclusionAggregateMessageOrigin, PolkadotRuntimeProxyType, SpConsensusGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, SpRuntimeDispatchErrorWithPostInfo, SpWeightsWeightV2Weight, StagingXcmV4AssetAssets, StagingXcmV4Location, StagingXcmV4Response, StagingXcmV4TraitsOutcome, StagingXcmV4Xcm, XcmV3TraitsError, XcmVersionedAssets, XcmVersionedLocation } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedEvent<ApiType extends ApiTypes> = AugmentedEvent<ApiType>;
 
 declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
   interface AugmentedEvents<ApiType extends ApiTypes> {
+    assetRate: {
+      AssetRateCreated: AugmentedEvent<ApiType, [assetKind: PolkadotRuntimeCommonImplsVersionedLocatableAsset, rate: u128], { assetKind: PolkadotRuntimeCommonImplsVersionedLocatableAsset, rate: u128 }>;
+      AssetRateRemoved: AugmentedEvent<ApiType, [assetKind: PolkadotRuntimeCommonImplsVersionedLocatableAsset], { assetKind: PolkadotRuntimeCommonImplsVersionedLocatableAsset }>;
+      AssetRateUpdated: AugmentedEvent<ApiType, [assetKind: PolkadotRuntimeCommonImplsVersionedLocatableAsset, old: u128, new_: u128], { assetKind: PolkadotRuntimeCommonImplsVersionedLocatableAsset, old: u128, new_: u128 }>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
     auctions: {
       /**
        * An auction ended. All funds become unreserved.
@@ -119,6 +128,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       Thawed: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
+       * The `TotalIssuance` was forcefully changed.
+       **/
+      TotalIssuanceForced: AugmentedEvent<ApiType, [old: u128, new_: u128], { old: u128, new_: u128 }>;
+      /**
        * Transfer succeeded.
        **/
       Transfer: AugmentedEvent<ApiType, [from: AccountId32, to: AccountId32, amount: u128], { from: AccountId32, to: AccountId32, amount: u128 }>;
@@ -144,6 +157,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
       [key: string]: AugmentedEvent<ApiType>;
     };
     bounties: {
+      /**
+       * A bounty is approved.
+       **/
+      BountyApproved: AugmentedEvent<ApiType, [index: u32], { index: u32 }>;
       /**
        * A bounty is awarded to a beneficiary.
        **/
@@ -172,6 +189,18 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * A bounty proposal was rejected; funds were slashed.
        **/
       BountyRejected: AugmentedEvent<ApiType, [index: u32, bond: u128], { index: u32, bond: u128 }>;
+      /**
+       * A bounty curator is accepted.
+       **/
+      CuratorAccepted: AugmentedEvent<ApiType, [bountyId: u32, curator: AccountId32], { bountyId: u32, curator: AccountId32 }>;
+      /**
+       * A bounty curator is proposed.
+       **/
+      CuratorProposed: AugmentedEvent<ApiType, [bountyId: u32, curator: AccountId32], { bountyId: u32, curator: AccountId32 }>;
+      /**
+       * A bounty curator is unassigned.
+       **/
+      CuratorUnassigned: AugmentedEvent<ApiType, [bountyId: u32], { bountyId: u32 }>;
       /**
        * Generic event
        **/
@@ -357,34 +386,52 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
     };
     hrmp: {
       /**
-       * HRMP channel closed. `[by_parachain, channel_id]`
+       * HRMP channel closed.
        **/
-      ChannelClosed: AugmentedEvent<ApiType, [u32, PolkadotParachainPrimitivesHrmpChannelId]>;
+      ChannelClosed: AugmentedEvent<ApiType, [byParachain: u32, channelId: PolkadotParachainPrimitivesPrimitivesHrmpChannelId], { byParachain: u32, channelId: PolkadotParachainPrimitivesPrimitivesHrmpChannelId }>;
       /**
        * An HRMP channel was opened via Root origin.
-       * `[sender, recipient, proposed_max_capacity, proposed_max_message_size]`
        **/
-      HrmpChannelForceOpened: AugmentedEvent<ApiType, [u32, u32, u32, u32]>;
+      HrmpChannelForceOpened: AugmentedEvent<ApiType, [sender: u32, recipient: u32, proposedMaxCapacity: u32, proposedMaxMessageSize: u32], { sender: u32, recipient: u32, proposedMaxCapacity: u32, proposedMaxMessageSize: u32 }>;
       /**
-       * Open HRMP channel accepted. `[sender, recipient]`
+       * An HRMP channel was opened between two system chains.
        **/
-      OpenChannelAccepted: AugmentedEvent<ApiType, [u32, u32]>;
+      HrmpSystemChannelOpened: AugmentedEvent<ApiType, [sender: u32, recipient: u32, proposedMaxCapacity: u32, proposedMaxMessageSize: u32], { sender: u32, recipient: u32, proposedMaxCapacity: u32, proposedMaxMessageSize: u32 }>;
+      /**
+       * Open HRMP channel accepted.
+       **/
+      OpenChannelAccepted: AugmentedEvent<ApiType, [sender: u32, recipient: u32], { sender: u32, recipient: u32 }>;
       /**
        * An HRMP channel request sent by the receiver was canceled by either party.
-       * `[by_parachain, channel_id]`
        **/
-      OpenChannelCanceled: AugmentedEvent<ApiType, [u32, PolkadotParachainPrimitivesHrmpChannelId]>;
+      OpenChannelCanceled: AugmentedEvent<ApiType, [byParachain: u32, channelId: PolkadotParachainPrimitivesPrimitivesHrmpChannelId], { byParachain: u32, channelId: PolkadotParachainPrimitivesPrimitivesHrmpChannelId }>;
+      /**
+       * An HRMP channel's deposits were updated.
+       **/
+      OpenChannelDepositsUpdated: AugmentedEvent<ApiType, [sender: u32, recipient: u32], { sender: u32, recipient: u32 }>;
       /**
        * Open HRMP channel requested.
-       * `[sender, recipient, proposed_max_capacity, proposed_max_message_size]`
        **/
-      OpenChannelRequested: AugmentedEvent<ApiType, [u32, u32, u32, u32]>;
+      OpenChannelRequested: AugmentedEvent<ApiType, [sender: u32, recipient: u32, proposedMaxCapacity: u32, proposedMaxMessageSize: u32], { sender: u32, recipient: u32, proposedMaxCapacity: u32, proposedMaxMessageSize: u32 }>;
       /**
        * Generic event
        **/
       [key: string]: AugmentedEvent<ApiType>;
     };
     identity: {
+      /**
+       * A username authority was added.
+       **/
+      AuthorityAdded: AugmentedEvent<ApiType, [authority: AccountId32], { authority: AccountId32 }>;
+      /**
+       * A username authority was removed.
+       **/
+      AuthorityRemoved: AugmentedEvent<ApiType, [authority: AccountId32], { authority: AccountId32 }>;
+      /**
+       * A dangling username (as in, a username corresponding to an account that has removed its
+       * identity) has been removed.
+       **/
+      DanglingUsernameRemoved: AugmentedEvent<ApiType, [who: AccountId32, username: Bytes], { who: AccountId32, username: Bytes }>;
       /**
        * A name was cleared, and the given balance returned.
        **/
@@ -410,6 +457,14 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       JudgementUnrequested: AugmentedEvent<ApiType, [who: AccountId32, registrarIndex: u32], { who: AccountId32, registrarIndex: u32 }>;
       /**
+       * A queued username passed its expiration without being claimed and was removed.
+       **/
+      PreapprovalExpired: AugmentedEvent<ApiType, [whose: AccountId32], { whose: AccountId32 }>;
+      /**
+       * A username was set as a primary and can be looked up from `who`.
+       **/
+      PrimaryUsernameSet: AugmentedEvent<ApiType, [who: AccountId32, username: Bytes], { who: AccountId32, username: Bytes }>;
+      /**
        * A registrar was added.
        **/
       RegistrarAdded: AugmentedEvent<ApiType, [registrarIndex: u32], { registrarIndex: u32 }>;
@@ -427,23 +482,13 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       SubIdentityRevoked: AugmentedEvent<ApiType, [sub: AccountId32, main: AccountId32, deposit: u128], { sub: AccountId32, main: AccountId32, deposit: u128 }>;
       /**
-       * Generic event
+       * A username was queued, but `who` must accept it prior to `expiration`.
        **/
-      [key: string]: AugmentedEvent<ApiType>;
-    };
-    imOnline: {
+      UsernameQueued: AugmentedEvent<ApiType, [who: AccountId32, username: Bytes, expiration: u32], { who: AccountId32, username: Bytes, expiration: u32 }>;
       /**
-       * At the end of the session, no offence was committed.
+       * A username was set for `who`.
        **/
-      AllGood: AugmentedEvent<ApiType, []>;
-      /**
-       * A new heartbeat was received from `AuthorityId`.
-       **/
-      HeartbeatReceived: AugmentedEvent<ApiType, [authorityId: PalletImOnlineSr25519AppSr25519Public], { authorityId: PalletImOnlineSr25519AppSr25519Public }>;
-      /**
-       * At the end of the session, at least one validator was found to be offline.
-       **/
-      SomeOffline: AugmentedEvent<ApiType, [offline: Vec<ITuple<[AccountId32, PalletStakingExposure]>>], { offline: Vec<ITuple<[AccountId32, PalletStakingExposure]>> }>;
+      UsernameSet: AugmentedEvent<ApiType, [who: AccountId32, username: Bytes], { who: AccountId32, username: Bytes }>;
       /**
        * Generic event
        **/
@@ -479,11 +524,11 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
       /**
        * Message is processed.
        **/
-      Processed: AugmentedEvent<ApiType, [id: U8aFixed, origin: PolkadotRuntimeParachainsInclusionAggregateMessageOrigin, weightUsed: SpWeightsWeightV2Weight, success: bool], { id: U8aFixed, origin: PolkadotRuntimeParachainsInclusionAggregateMessageOrigin, weightUsed: SpWeightsWeightV2Weight, success: bool }>;
+      Processed: AugmentedEvent<ApiType, [id: H256, origin: PolkadotRuntimeParachainsInclusionAggregateMessageOrigin, weightUsed: SpWeightsWeightV2Weight, success: bool], { id: H256, origin: PolkadotRuntimeParachainsInclusionAggregateMessageOrigin, weightUsed: SpWeightsWeightV2Weight, success: bool }>;
       /**
        * Message discarded due to an error in the `MessageProcessor` (usually a format error).
        **/
-      ProcessingFailed: AugmentedEvent<ApiType, [id: U8aFixed, origin: PolkadotRuntimeParachainsInclusionAggregateMessageOrigin, error: FrameSupportMessagesProcessMessageError], { id: U8aFixed, origin: PolkadotRuntimeParachainsInclusionAggregateMessageOrigin, error: FrameSupportMessagesProcessMessageError }>;
+      ProcessingFailed: AugmentedEvent<ApiType, [id: H256, origin: PolkadotRuntimeParachainsInclusionAggregateMessageOrigin, error: FrameSupportMessagesProcessMessageError], { id: H256, origin: PolkadotRuntimeParachainsInclusionAggregateMessageOrigin, error: FrameSupportMessagesProcessMessageError }>;
       /**
        * Generic event
        **/
@@ -531,6 +576,14 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       MemberRemoved: AugmentedEvent<ApiType, [poolId: u32, member: AccountId32], { poolId: u32, member: AccountId32 }>;
       /**
+       * Topped up deficit in frozen ED of the reward pool.
+       **/
+      MinBalanceDeficitAdjusted: AugmentedEvent<ApiType, [poolId: u32, amount: u128], { poolId: u32, amount: u128 }>;
+      /**
+       * Claimed excess frozen ED of af the reward pool.
+       **/
+      MinBalanceExcessAdjusted: AugmentedEvent<ApiType, [poolId: u32, amount: u128], { poolId: u32, amount: u128 }>;
+      /**
        * A payout has been made to a member.
        **/
       PaidOut: AugmentedEvent<ApiType, [member: AccountId32, poolId: u32, payout: u128], { member: AccountId32, poolId: u32, payout: u128 }>;
@@ -542,6 +595,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * Pool commission has been claimed.
        **/
       PoolCommissionClaimed: AugmentedEvent<ApiType, [poolId: u32, commission: u128], { poolId: u32, commission: u128 }>;
+      /**
+       * Pool commission claim permission has been updated.
+       **/
+      PoolCommissionClaimPermissionUpdated: AugmentedEvent<ApiType, [poolId: u32, permission: Option<PalletNominationPoolsCommissionClaimPermission>], { poolId: u32, permission: Option<PalletNominationPoolsCommissionClaimPermission> }>;
       /**
        * A pool's commission setting has been changed.
        **/
@@ -611,15 +668,15 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
       /**
        * A candidate was backed. `[candidate, head_data]`
        **/
-      CandidateBacked: AugmentedEvent<ApiType, [PolkadotPrimitivesV5CandidateReceipt, Bytes, u32, u32]>;
+      CandidateBacked: AugmentedEvent<ApiType, [PolkadotPrimitivesV6CandidateReceipt, Bytes, u32, u32]>;
       /**
        * A candidate was included. `[candidate, head_data]`
        **/
-      CandidateIncluded: AugmentedEvent<ApiType, [PolkadotPrimitivesV5CandidateReceipt, Bytes, u32, u32]>;
+      CandidateIncluded: AugmentedEvent<ApiType, [PolkadotPrimitivesV6CandidateReceipt, Bytes, u32, u32]>;
       /**
        * A candidate timed out. `[candidate, head_data]`
        **/
-      CandidateTimedOut: AugmentedEvent<ApiType, [PolkadotPrimitivesV5CandidateReceipt, Bytes, u32]>;
+      CandidateTimedOut: AugmentedEvent<ApiType, [PolkadotPrimitivesV6CandidateReceipt, Bytes, u32]>;
       /**
        * Some upward messages have been received and will be processed.
        **/
@@ -765,7 +822,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       DecisionStarted: AugmentedEvent<ApiType, [index: u32, track: u16, proposal: FrameSupportPreimagesBounded, tally: PalletConvictionVotingTally], { index: u32, track: u16, proposal: FrameSupportPreimagesBounded, tally: PalletConvictionVotingTally }>;
       /**
-       * A deposit has been slashaed.
+       * A deposit has been slashed.
        **/
       DepositSlashed: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
@@ -903,9 +960,9 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       PayoutStarted: AugmentedEvent<ApiType, [eraIndex: u32, validatorStash: AccountId32], { eraIndex: u32, validatorStash: AccountId32 }>;
       /**
-       * The nominator has been rewarded by this amount.
+       * The nominator has been rewarded by this amount to this destination.
        **/
-      Rewarded: AugmentedEvent<ApiType, [stash: AccountId32, amount: u128], { stash: AccountId32, amount: u128 }>;
+      Rewarded: AugmentedEvent<ApiType, [stash: AccountId32, dest: PalletStakingRewardDestination, amount: u128], { stash: AccountId32, dest: PalletStakingRewardDestination, amount: u128 }>;
       /**
        * A staker (validator or nominator) has been slashed by the given amount.
        **/
@@ -975,6 +1032,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       Remarked: AugmentedEvent<ApiType, [sender: AccountId32, hash_: H256], { sender: AccountId32, hash_: H256 }>;
       /**
+       * An upgrade was authorized.
+       **/
+      UpgradeAuthorized: AugmentedEvent<ApiType, [codeHash: H256, checkVersion: bool], { codeHash: H256, checkVersion: bool }>;
+      /**
        * Generic event
        **/
       [key: string]: AugmentedEvent<ApiType>;
@@ -992,6 +1053,14 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
     };
     treasury: {
       /**
+       * A new asset spend proposal has been approved.
+       **/
+      AssetSpendApproved: AugmentedEvent<ApiType, [index: u32, assetKind: PolkadotRuntimeCommonImplsVersionedLocatableAsset, amount: u128, beneficiary: XcmVersionedLocation, validFrom: u32, expireAt: u32], { index: u32, assetKind: PolkadotRuntimeCommonImplsVersionedLocatableAsset, amount: u128, beneficiary: XcmVersionedLocation, validFrom: u32, expireAt: u32 }>;
+      /**
+       * An approved spend was voided.
+       **/
+      AssetSpendVoided: AugmentedEvent<ApiType, [index: u32], { index: u32 }>;
+      /**
        * Some funds have been allocated.
        **/
       Awarded: AugmentedEvent<ApiType, [proposalIndex: u32, award: u128, account: AccountId32], { proposalIndex: u32, award: u128, account: AccountId32 }>;
@@ -1003,6 +1072,14 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * Some funds have been deposited.
        **/
       Deposit: AugmentedEvent<ApiType, [value: u128], { value: u128 }>;
+      /**
+       * A payment happened.
+       **/
+      Paid: AugmentedEvent<ApiType, [index: u32, paymentId: u64], { index: u32, paymentId: u64 }>;
+      /**
+       * A payment failed and can be retried.
+       **/
+      PaymentFailed: AugmentedEvent<ApiType, [index: u32, paymentId: u64], { index: u32, paymentId: u64 }>;
       /**
        * New proposal.
        **/
@@ -1023,6 +1100,11 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * We have ended a spend period and will now allocate funds.
        **/
       Spending: AugmentedEvent<ApiType, [budgetRemaining: u128], { budgetRemaining: u128 }>;
+      /**
+       * A spend was processed and removed from the storage. It might have been successfully
+       * paid or it may have expired.
+       **/
+      SpendProcessed: AugmentedEvent<ApiType, [index: u32], { index: u32 }>;
       /**
        * The inactive funds of the pallet have been updated.
        **/
@@ -1105,25 +1187,25 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
       /**
        * Some assets have been claimed from an asset trap
        **/
-      AssetsClaimed: AugmentedEvent<ApiType, [hash_: H256, origin: XcmV3MultiLocation, assets: XcmVersionedMultiAssets], { hash_: H256, origin: XcmV3MultiLocation, assets: XcmVersionedMultiAssets }>;
+      AssetsClaimed: AugmentedEvent<ApiType, [hash_: H256, origin: StagingXcmV4Location, assets: XcmVersionedAssets], { hash_: H256, origin: StagingXcmV4Location, assets: XcmVersionedAssets }>;
       /**
        * Some assets have been placed in an asset trap.
        **/
-      AssetsTrapped: AugmentedEvent<ApiType, [hash_: H256, origin: XcmV3MultiLocation, assets: XcmVersionedMultiAssets], { hash_: H256, origin: XcmV3MultiLocation, assets: XcmVersionedMultiAssets }>;
+      AssetsTrapped: AugmentedEvent<ApiType, [hash_: H256, origin: StagingXcmV4Location, assets: XcmVersionedAssets], { hash_: H256, origin: StagingXcmV4Location, assets: XcmVersionedAssets }>;
       /**
        * Execution of an XCM message was attempted.
        **/
-      Attempted: AugmentedEvent<ApiType, [outcome: XcmV3TraitsOutcome], { outcome: XcmV3TraitsOutcome }>;
+      Attempted: AugmentedEvent<ApiType, [outcome: StagingXcmV4TraitsOutcome], { outcome: StagingXcmV4TraitsOutcome }>;
       /**
        * Fees were paid from a location for an operation (often for using `SendXcm`).
        **/
-      FeesPaid: AugmentedEvent<ApiType, [paying: XcmV3MultiLocation, fees: XcmV3MultiassetMultiAssets], { paying: XcmV3MultiLocation, fees: XcmV3MultiassetMultiAssets }>;
+      FeesPaid: AugmentedEvent<ApiType, [paying: StagingXcmV4Location, fees: StagingXcmV4AssetAssets], { paying: StagingXcmV4Location, fees: StagingXcmV4AssetAssets }>;
       /**
        * Expected query response has been received but the querier location of the response does
        * not match the expected. The query remains registered for a later, valid, response to
        * be received and acted upon.
        **/
-      InvalidQuerier: AugmentedEvent<ApiType, [origin: XcmV3MultiLocation, queryId: u64, expectedQuerier: XcmV3MultiLocation, maybeActualQuerier: Option<XcmV3MultiLocation>], { origin: XcmV3MultiLocation, queryId: u64, expectedQuerier: XcmV3MultiLocation, maybeActualQuerier: Option<XcmV3MultiLocation> }>;
+      InvalidQuerier: AugmentedEvent<ApiType, [origin: StagingXcmV4Location, queryId: u64, expectedQuerier: StagingXcmV4Location, maybeActualQuerier: Option<StagingXcmV4Location>], { origin: StagingXcmV4Location, queryId: u64, expectedQuerier: StagingXcmV4Location, maybeActualQuerier: Option<StagingXcmV4Location> }>;
       /**
        * Expected query response has been received but the expected querier location placed in
        * storage by this runtime previously cannot be decoded. The query remains registered.
@@ -1133,13 +1215,13 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * valid response will be dropped. Manual governance intervention is probably going to be
        * needed.
        **/
-      InvalidQuerierVersion: AugmentedEvent<ApiType, [origin: XcmV3MultiLocation, queryId: u64], { origin: XcmV3MultiLocation, queryId: u64 }>;
+      InvalidQuerierVersion: AugmentedEvent<ApiType, [origin: StagingXcmV4Location, queryId: u64], { origin: StagingXcmV4Location, queryId: u64 }>;
       /**
        * Expected query response has been received but the origin location of the response does
        * not match that expected. The query remains registered for a later, valid, response to
        * be received and acted upon.
        **/
-      InvalidResponder: AugmentedEvent<ApiType, [origin: XcmV3MultiLocation, queryId: u64, expectedLocation: Option<XcmV3MultiLocation>], { origin: XcmV3MultiLocation, queryId: u64, expectedLocation: Option<XcmV3MultiLocation> }>;
+      InvalidResponder: AugmentedEvent<ApiType, [origin: StagingXcmV4Location, queryId: u64, expectedLocation: Option<StagingXcmV4Location>], { origin: StagingXcmV4Location, queryId: u64, expectedLocation: Option<StagingXcmV4Location> }>;
       /**
        * Expected query response has been received but the expected origin location placed in
        * storage by this runtime previously cannot be decoded. The query remains registered.
@@ -1149,7 +1231,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * valid response will be dropped. Manual governance intervention is probably going to be
        * needed.
        **/
-      InvalidResponderVersion: AugmentedEvent<ApiType, [origin: XcmV3MultiLocation, queryId: u64], { origin: XcmV3MultiLocation, queryId: u64 }>;
+      InvalidResponderVersion: AugmentedEvent<ApiType, [origin: StagingXcmV4Location, queryId: u64], { origin: StagingXcmV4Location, queryId: u64 }>;
       /**
        * Query response has been received and query is removed. The registered notification has
        * been dispatched and executed successfully.
@@ -1176,17 +1258,17 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * A given location which had a version change subscription was dropped owing to an error
        * migrating the location to our new XCM format.
        **/
-      NotifyTargetMigrationFail: AugmentedEvent<ApiType, [location: XcmVersionedMultiLocation, queryId: u64], { location: XcmVersionedMultiLocation, queryId: u64 }>;
+      NotifyTargetMigrationFail: AugmentedEvent<ApiType, [location: XcmVersionedLocation, queryId: u64], { location: XcmVersionedLocation, queryId: u64 }>;
       /**
        * A given location which had a version change subscription was dropped owing to an error
        * sending the notification to it.
        **/
-      NotifyTargetSendFail: AugmentedEvent<ApiType, [location: XcmV3MultiLocation, queryId: u64, error: XcmV3TraitsError], { location: XcmV3MultiLocation, queryId: u64, error: XcmV3TraitsError }>;
+      NotifyTargetSendFail: AugmentedEvent<ApiType, [location: StagingXcmV4Location, queryId: u64, error: XcmV3TraitsError], { location: StagingXcmV4Location, queryId: u64, error: XcmV3TraitsError }>;
       /**
        * Query response has been received and is ready for taking with `take_response`. There is
        * no registered notification call.
        **/
-      ResponseReady: AugmentedEvent<ApiType, [queryId: u64, response: XcmV3Response], { queryId: u64, response: XcmV3Response }>;
+      ResponseReady: AugmentedEvent<ApiType, [queryId: u64, response: StagingXcmV4Response], { queryId: u64, response: StagingXcmV4Response }>;
       /**
        * Received query response has been read and removed.
        **/
@@ -1194,38 +1276,42 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
       /**
        * A XCM message was sent.
        **/
-      Sent: AugmentedEvent<ApiType, [origin: XcmV3MultiLocation, destination: XcmV3MultiLocation, message: XcmV3Xcm, messageId: U8aFixed], { origin: XcmV3MultiLocation, destination: XcmV3MultiLocation, message: XcmV3Xcm, messageId: U8aFixed }>;
+      Sent: AugmentedEvent<ApiType, [origin: StagingXcmV4Location, destination: StagingXcmV4Location, message: StagingXcmV4Xcm, messageId: U8aFixed], { origin: StagingXcmV4Location, destination: StagingXcmV4Location, message: StagingXcmV4Xcm, messageId: U8aFixed }>;
       /**
        * The supported version of a location has been changed. This might be through an
        * automatic notification or a manual intervention.
        **/
-      SupportedVersionChanged: AugmentedEvent<ApiType, [location: XcmV3MultiLocation, version: u32], { location: XcmV3MultiLocation, version: u32 }>;
+      SupportedVersionChanged: AugmentedEvent<ApiType, [location: StagingXcmV4Location, version: u32], { location: StagingXcmV4Location, version: u32 }>;
       /**
        * Query response received which does not match a registered query. This may be because a
        * matching query was never registered, it may be because it is a duplicate response, or
        * because the query timed out.
        **/
-      UnexpectedResponse: AugmentedEvent<ApiType, [origin: XcmV3MultiLocation, queryId: u64], { origin: XcmV3MultiLocation, queryId: u64 }>;
+      UnexpectedResponse: AugmentedEvent<ApiType, [origin: StagingXcmV4Location, queryId: u64], { origin: StagingXcmV4Location, queryId: u64 }>;
       /**
        * An XCM version change notification message has been attempted to be sent.
        * 
        * The cost of sending it (borne by the chain) is included.
        **/
-      VersionChangeNotified: AugmentedEvent<ApiType, [destination: XcmV3MultiLocation, result: u32, cost: XcmV3MultiassetMultiAssets, messageId: U8aFixed], { destination: XcmV3MultiLocation, result: u32, cost: XcmV3MultiassetMultiAssets, messageId: U8aFixed }>;
+      VersionChangeNotified: AugmentedEvent<ApiType, [destination: StagingXcmV4Location, result: u32, cost: StagingXcmV4AssetAssets, messageId: U8aFixed], { destination: StagingXcmV4Location, result: u32, cost: StagingXcmV4AssetAssets, messageId: U8aFixed }>;
+      /**
+       * A XCM version migration finished.
+       **/
+      VersionMigrationFinished: AugmentedEvent<ApiType, [version: u32], { version: u32 }>;
       /**
        * We have requested that a remote chain send us XCM version change notifications.
        **/
-      VersionNotifyRequested: AugmentedEvent<ApiType, [destination: XcmV3MultiLocation, cost: XcmV3MultiassetMultiAssets, messageId: U8aFixed], { destination: XcmV3MultiLocation, cost: XcmV3MultiassetMultiAssets, messageId: U8aFixed }>;
+      VersionNotifyRequested: AugmentedEvent<ApiType, [destination: StagingXcmV4Location, cost: StagingXcmV4AssetAssets, messageId: U8aFixed], { destination: StagingXcmV4Location, cost: StagingXcmV4AssetAssets, messageId: U8aFixed }>;
       /**
        * A remote has requested XCM version change notification from us and we have honored it.
        * A version information message is sent to them and its cost is included.
        **/
-      VersionNotifyStarted: AugmentedEvent<ApiType, [destination: XcmV3MultiLocation, cost: XcmV3MultiassetMultiAssets, messageId: U8aFixed], { destination: XcmV3MultiLocation, cost: XcmV3MultiassetMultiAssets, messageId: U8aFixed }>;
+      VersionNotifyStarted: AugmentedEvent<ApiType, [destination: StagingXcmV4Location, cost: StagingXcmV4AssetAssets, messageId: U8aFixed], { destination: StagingXcmV4Location, cost: StagingXcmV4AssetAssets, messageId: U8aFixed }>;
       /**
        * We have requested that a remote chain stops sending us XCM version change
        * notifications.
        **/
-      VersionNotifyUnrequested: AugmentedEvent<ApiType, [destination: XcmV3MultiLocation, cost: XcmV3MultiassetMultiAssets, messageId: U8aFixed], { destination: XcmV3MultiLocation, cost: XcmV3MultiassetMultiAssets, messageId: U8aFixed }>;
+      VersionNotifyUnrequested: AugmentedEvent<ApiType, [destination: StagingXcmV4Location, cost: StagingXcmV4AssetAssets, messageId: U8aFixed], { destination: StagingXcmV4Location, cost: StagingXcmV4AssetAssets, messageId: U8aFixed }>;
       /**
        * Generic event
        **/

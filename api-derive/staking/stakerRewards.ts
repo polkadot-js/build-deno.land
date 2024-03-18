@@ -2,7 +2,7 @@
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
 import type { u32, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
 import type { AccountId, EraIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
-import type { PalletStakingStakingLedger } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { PalletStakingStakingLedger, SpStakingExposure, SpStakingExposurePage } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { DeriveApi, DeriveEraPoints, DeriveEraPrefs, DeriveEraRewards, DeriveEraValPoints, DeriveEraValPrefs, DeriveStakerExposure, DeriveStakerReward, DeriveStakerRewardValidator } from '../types.ts';
 import type { DeriveStakingQuery } from './types.ts';
@@ -35,7 +35,11 @@ function parseRewards (api: DeriveApi, stashId: AccountId, [erasPoints, erasPref
     Object.entries(eraValidators).forEach(([validatorId, exposure]): void => {
       const valPoints = allValPoints[validatorId] || BN_ZERO;
       const valComm = allValPrefs[validatorId]?.commission.unwrap() || BN_ZERO;
-      const expTotal = exposure.total?.unwrap() || BN_ZERO;
+      const expTotal = (exposure as SpStakingExposure).total
+        ? (exposure as SpStakingExposure).total?.unwrap()
+        : (exposure as SpStakingExposurePage).pageTotal
+          ? (exposure as SpStakingExposurePage).pageTotal?.unwrap()
+          : BN_ZERO;
       let avail = BN_ZERO;
       let value: BN | undefined;
 
@@ -46,7 +50,15 @@ function parseRewards (api: DeriveApi, stashId: AccountId, [erasPoints, erasPref
         let staked: BN;
 
         if (validatorId === stakerId) {
-          staked = exposure.own.unwrap();
+          if ((exposure as SpStakingExposure).own) {
+            staked = (exposure as SpStakingExposure).own.unwrap();
+          } else {
+            const expAccount = exposure.others.find(({ who }) => who.eq(validatorId));
+
+            staked = expAccount
+              ? expAccount.value.unwrap()
+              : BN_ZERO;
+          }
         } else {
           const stakerExp = exposure.others.find(({ who }) => who.eq(stakerId));
 

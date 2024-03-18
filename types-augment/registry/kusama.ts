@@ -2,16 +2,32 @@
 
 import 'https://deno.land/x/polkadot/types/types/registry.ts';
 
-import type { KusamaRuntimeGovernanceOriginsPalletCustomOriginsOrigin, KusamaRuntimeNposCompactSolution24, KusamaRuntimeOriginCaller, KusamaRuntimeProxyType, KusamaRuntimeRuntime, KusamaRuntimeRuntimeHoldReason, KusamaRuntimeSessionKeys } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { PalletBalancesIdAmount, PolkadotRuntimeParachainsAssignerCoretimeAssignmentState, PolkadotRuntimeParachainsAssignerCoretimeCoreDescriptor, PolkadotRuntimeParachainsAssignerCoretimePalletError, PolkadotRuntimeParachainsAssignerCoretimeQueueDescriptor, PolkadotRuntimeParachainsAssignerCoretimeSchedule, PolkadotRuntimeParachainsAssignerCoretimeWorkState, PolkadotRuntimeParachainsAssignerOnDemandCoreAffinityCount, PolkadotRuntimeParachainsAssignerOnDemandEnqueuedOrder, PolkadotRuntimeParachainsAssignerOnDemandPalletCall, PolkadotRuntimeParachainsAssignerOnDemandPalletError, PolkadotRuntimeParachainsAssignerOnDemandPalletEvent, PolkadotRuntimeParachainsCoretimePalletCall, PolkadotRuntimeParachainsCoretimePalletError, PolkadotRuntimeParachainsCoretimePalletEvent, StagingKusamaRuntimeGovernanceOriginsPalletCustomOriginsOrigin, StagingKusamaRuntimeNposCompactSolution24, StagingKusamaRuntimeOriginCaller, StagingKusamaRuntimeProxyType, StagingKusamaRuntimeRuntime, StagingKusamaRuntimeRuntimeFreezeReason, StagingKusamaRuntimeRuntimeHoldReason, StagingKusamaRuntimeSessionKeys } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
   interface InterfaceTypes {
-    KusamaRuntimeGovernanceOriginsPalletCustomOriginsOrigin: KusamaRuntimeGovernanceOriginsPalletCustomOriginsOrigin;
-    KusamaRuntimeNposCompactSolution24: KusamaRuntimeNposCompactSolution24;
-    KusamaRuntimeOriginCaller: KusamaRuntimeOriginCaller;
-    KusamaRuntimeProxyType: KusamaRuntimeProxyType;
-    KusamaRuntimeRuntime: KusamaRuntimeRuntime;
-    KusamaRuntimeRuntimeHoldReason: KusamaRuntimeRuntimeHoldReason;
-    KusamaRuntimeSessionKeys: KusamaRuntimeSessionKeys;
+    PalletBalancesIdAmount: PalletBalancesIdAmount;
+    PolkadotRuntimeParachainsAssignerCoretimeAssignmentState: PolkadotRuntimeParachainsAssignerCoretimeAssignmentState;
+    PolkadotRuntimeParachainsAssignerCoretimeCoreDescriptor: PolkadotRuntimeParachainsAssignerCoretimeCoreDescriptor;
+    PolkadotRuntimeParachainsAssignerCoretimePalletError: PolkadotRuntimeParachainsAssignerCoretimePalletError;
+    PolkadotRuntimeParachainsAssignerCoretimeQueueDescriptor: PolkadotRuntimeParachainsAssignerCoretimeQueueDescriptor;
+    PolkadotRuntimeParachainsAssignerCoretimeSchedule: PolkadotRuntimeParachainsAssignerCoretimeSchedule;
+    PolkadotRuntimeParachainsAssignerCoretimeWorkState: PolkadotRuntimeParachainsAssignerCoretimeWorkState;
+    PolkadotRuntimeParachainsAssignerOnDemandCoreAffinityCount: PolkadotRuntimeParachainsAssignerOnDemandCoreAffinityCount;
+    PolkadotRuntimeParachainsAssignerOnDemandEnqueuedOrder: PolkadotRuntimeParachainsAssignerOnDemandEnqueuedOrder;
+    PolkadotRuntimeParachainsAssignerOnDemandPalletCall: PolkadotRuntimeParachainsAssignerOnDemandPalletCall;
+    PolkadotRuntimeParachainsAssignerOnDemandPalletError: PolkadotRuntimeParachainsAssignerOnDemandPalletError;
+    PolkadotRuntimeParachainsAssignerOnDemandPalletEvent: PolkadotRuntimeParachainsAssignerOnDemandPalletEvent;
+    PolkadotRuntimeParachainsCoretimePalletCall: PolkadotRuntimeParachainsCoretimePalletCall;
+    PolkadotRuntimeParachainsCoretimePalletError: PolkadotRuntimeParachainsCoretimePalletError;
+    PolkadotRuntimeParachainsCoretimePalletEvent: PolkadotRuntimeParachainsCoretimePalletEvent;
+    StagingKusamaRuntimeGovernanceOriginsPalletCustomOriginsOrigin: StagingKusamaRuntimeGovernanceOriginsPalletCustomOriginsOrigin;
+    StagingKusamaRuntimeNposCompactSolution24: StagingKusamaRuntimeNposCompactSolution24;
+    StagingKusamaRuntimeOriginCaller: StagingKusamaRuntimeOriginCaller;
+    StagingKusamaRuntimeProxyType: StagingKusamaRuntimeProxyType;
+    StagingKusamaRuntimeRuntime: StagingKusamaRuntimeRuntime;
+    StagingKusamaRuntimeRuntimeFreezeReason: StagingKusamaRuntimeRuntimeFreezeReason;
+    StagingKusamaRuntimeRuntimeHoldReason: StagingKusamaRuntimeRuntimeHoldReason;
+    StagingKusamaRuntimeSessionKeys: StagingKusamaRuntimeSessionKeys;
   } // InterfaceTypes
 } // declare module

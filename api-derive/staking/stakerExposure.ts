@@ -2,7 +2,7 @@
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
 import type { EraIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { DeriveApi } from '../types.ts';
-import type { DeriveEraValidatorExposure, DeriveStakerExposure } from './types.ts';
+import type { DeriveEraValidatorExposurePaged, DeriveStakerExposure } from './types.ts';
 
 import { map, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
@@ -17,7 +17,7 @@ export function _stakerExposures (instanceId: string, api: DeriveApi): (accountI
         stakerIds.map((stakerId) =>
           exposures.map(({ era, nominators: allNominators, validators: allValidators }): DeriveStakerExposure => {
             const isValidator = !!allValidators[stakerId];
-            const validators: DeriveEraValidatorExposure = {};
+            const validators: DeriveEraValidatorExposurePaged = {};
             const nominating = allNominators[stakerId] || [];
 
             if (isValidator) {

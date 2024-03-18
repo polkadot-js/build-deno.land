@@ -1,6 +1,6 @@
 
 import type { AccountId, Balance, EraIndex, RewardPoint } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
-import type { PalletStakingExposure, PalletStakingRewardDestination, PalletStakingStakingLedger, PalletStakingValidatorPrefs } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { PalletStakingRewardDestination, PalletStakingStakingLedger, PalletStakingValidatorPrefs, SpStakingExposure, SpStakingExposurePage } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { DeriveSessionIndexes } from '../session/types.ts';
 
@@ -39,9 +39,9 @@ export interface DeriveStakerPoints {
 }
 
 export interface DeriveOwnExposure {
-  clipped: PalletStakingExposure;
+  clipped: SpStakingExposure;
   era: EraIndex;
-  exposure: PalletStakingExposure;
+  exposure: SpStakingExposure;
 }
 
 export interface DeriveEraExposureNominating {
@@ -51,7 +51,9 @@ export interface DeriveEraExposureNominating {
 
 export type DeriveEraNominatorExposure = Record<string, DeriveEraExposureNominating[]>;
 
-export type DeriveEraValidatorExposure = Record<string, PalletStakingExposure>;
+export type DeriveEraValidatorExposure = Record<string, SpStakingExposure>;
+
+export type DeriveEraValidatorExposurePaged = Record<string, SpStakingExposurePage | SpStakingExposure>;
 
 export interface DeriveEraExposure {
   era: EraIndex;
@@ -59,12 +61,18 @@ export interface DeriveEraExposure {
   validators: DeriveEraValidatorExposure;
 }
 
+export interface DeriveEraExposurePaged {
+  era: EraIndex;
+  nominators: DeriveEraNominatorExposure;
+  validators: DeriveEraValidatorExposurePaged;
+}
+
 export interface DeriveStakerExposure {
   era: EraIndex;
   isEmpty: boolean;
   isValidator: boolean;
   nominating: DeriveEraExposureNominating[];
-  validators: DeriveEraValidatorExposure;
+  validators: DeriveEraValidatorExposurePaged;
 }
 
 export interface DeriveStakerPrefs {
@@ -105,7 +113,7 @@ export interface DeriveStakingValidators {
 
 export interface DeriveStakingStash {
   controllerId: AccountId | null;
-  exposure: PalletStakingExposure;
+  exposure: SpStakingExposure;
   nominators: AccountId[];
   rewardDestination: PalletStakingRewardDestination | null;
   stashId: AccountId;
