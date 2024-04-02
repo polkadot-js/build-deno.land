@@ -1,9 +1,10 @@
 
-import type { AnyJson, AnyTuple, AnyU8a, ArgsDef, IMethod, Inspect } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
+import type { AnyJson, AnyTuple, AnyU8a, ArgsDef, IMethod, Inspect, IOption } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { EcdsaSignature, Ed25519Signature, ExtrinsicUnknown, ExtrinsicV4, Sr25519Signature } from '../interfaces/extrinsics/index.ts';
 import type { FunctionMetadataLatest } from '../interfaces/metadata/index.ts';
 import type { Address, Call, CodecHash } from '../interfaces/runtime/index.ts';
+import type { MultiLocation } from '../interfaces/types.ts';
 import type { CallBase, ExtrinsicPayloadValue, ICompact, IExtrinsic, IKeyringPair, INumber, Registry, SignatureOptions } from '../types/index.ts';
 import type { GenericExtrinsicEra } from './ExtrinsicEra.ts';
 import type { ExtrinsicValueV4 } from './v4/Extrinsic.ts';
@@ -188,6 +189,13 @@ abstract class ExtrinsicBase<A extends AnyTuple> extends AbstractBase<ExtrinsicV
   }
 
   /**
+   * @description Forward compat
+   */
+  public get assetId (): IOption<INumber> | IOption<MultiLocation> {
+    return this.inner.signature.assetId;
+  }
+
+  /**
    * @description Returns the raw transaction version (not flagged with signing information)
   */
   public get type (): number {
@@ -303,20 +311,21 @@ export class GenericExtrinsic<A extends AnyTuple = AnyTuple> extends ExtrinsicBa
   /**
    * @description Converts the Object to to a human-friendly JSON, with additional fields, expansion and formatting of information
    */
-  public override toHuman (isExpanded?: boolean): AnyJson {
+  public override toHuman (isExpanded?: boolean, disableAscii?: boolean): AnyJson {
     return objectSpread<Record<string, AnyJson>>(
       {},
       {
         isSigned: this.isSigned,
-        method: this.method.toHuman(isExpanded)
+        method: this.method.toHuman(isExpanded, disableAscii)
       },
       this.isSigned
         ? {
-          era: this.era.toHuman(isExpanded),
-          nonce: this.nonce.toHuman(isExpanded),
+          assetId: this.assetId.toHuman(isExpanded, disableAscii),
+          era: this.era.toHuman(isExpanded, disableAscii),
+          nonce: this.nonce.toHuman(isExpanded, disableAscii),
           signature: this.signature.toHex(),
-          signer: this.signer.toHuman(isExpanded),
-          tip: this.tip.toHuman(isExpanded)
+          signer: this.signer.toHuman(isExpanded, disableAscii),
+          tip: this.tip.toHuman(isExpanded, disableAscii)
         }
         : null
     );

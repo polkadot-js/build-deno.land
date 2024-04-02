@@ -3,7 +3,7 @@
 import 'https://deno.land/x/polkadot/api-base/types/calls.ts';
 
 import type { ApiTypes, AugmentedCall, DecoratedCallBase } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
-import type { Bytes, Null, Option, Result, Vec, bool, u128, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Bytes, Null, Option, Result, U64, Vec, bool, u128, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { AnyNumber, IMethod, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { TAssetBalance } from 'https://deno.land/x/polkadot/types/interfaces/assets/index.ts';
 import type { BabeEquivocationProof, BabeGenesisConfiguration, Epoch, OpaqueKeyOwnershipProof } from 'https://deno.land/x/polkadot/types/interfaces/babe/index.ts';
@@ -13,17 +13,20 @@ import type { BlockHash } from 'https://deno.land/x/polkadot/types/interfaces/ch
 import type { AuthorityId } from 'https://deno.land/x/polkadot/types/interfaces/consensus/index.ts';
 import type { CodeSource, CodeUploadResult, ContractExecResult, ContractInstantiateResult } from 'https://deno.land/x/polkadot/types/interfaces/contracts/index.ts';
 import type { Extrinsic } from 'https://deno.land/x/polkadot/types/interfaces/extrinsics/index.ts';
+import type { GenesisBuildErr } from 'https://deno.land/x/polkadot/types/interfaces/genesisBuilder/index.ts';
 import type { AuthorityList, GrandpaEquivocationProof, SetId } from 'https://deno.land/x/polkadot/types/interfaces/grandpa/index.ts';
 import type { OpaqueMetadata } from 'https://deno.land/x/polkadot/types/interfaces/metadata/index.ts';
+import type { Mixnode, MixnodesErr, SessionStatus } from 'https://deno.land/x/polkadot/types/interfaces/mixnet/index.ts';
 import type { MmrBatchProof, MmrEncodableOpaqueLeaf, MmrError } from 'https://deno.land/x/polkadot/types/interfaces/mmr/index.ts';
 import type { NftCollectionId, NftItemId } from 'https://deno.land/x/polkadot/types/interfaces/nfts/index.ts';
 import type { NpPoolId } from 'https://deno.land/x/polkadot/types/interfaces/nompools/index.ts';
 import type { FeeDetails, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot/types/interfaces/payment/index.ts';
-import type { AccountId, Balance, Block, BlockNumber, Call, Hash, Header, Index, KeyTypeId, Slot, Weight, WeightV2 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { AccountId, Balance, Block, BlockNumber, Call, ExtrinsicInclusionMode, Hash, Header, Index, KeyTypeId, Slot, Weight, WeightV2 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 import type { RuntimeVersion } from 'https://deno.land/x/polkadot/types/interfaces/state/index.ts';
+import type { StatementStoreInvalidStatement, StatementStoreStatementSource, StatementStoreValidStatement } from 'https://deno.land/x/polkadot/types/interfaces/statement/index.ts';
 import type { ApplyExtrinsicResult } from 'https://deno.land/x/polkadot/types/interfaces/system/index.ts';
 import type { TransactionSource, TransactionValidity } from 'https://deno.land/x/polkadot/types/interfaces/txqueue/index.ts';
-import type { StagingXcmV3MultiLocation } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { SpStatementStoreStatement, StagingXcmV3MultiLocation } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { IExtrinsic, Observable } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 export type __AugmentedCall<ApiType extends ApiTypes> = AugmentedCall<ApiType>;
@@ -183,7 +186,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
        **/
       [key: string]: DecoratedCallBase<ApiType>;
     };
-    /** 0xdf6acb689907609b/4 */
+    /** 0xdf6acb689907609b/5 */
     core: {
       /**
        * Execute the given block.
@@ -192,11 +195,26 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
       /**
        * Initialize a block with the given header.
        **/
-      initializeBlock: AugmentedCall<ApiType, (header: Header | { parentHash?: any; number?: any; stateRoot?: any; extrinsicsRoot?: any; digest?: any } | string | Uint8Array) => Observable<Null>>;
+      initializeBlock: AugmentedCall<ApiType, (header: Header | { parentHash?: any; number?: any; stateRoot?: any; extrinsicsRoot?: any; digest?: any } | string | Uint8Array) => Observable<ExtrinsicInclusionMode>>;
       /**
        * Returns the version of the runtime.
        **/
       version: AugmentedCall<ApiType, () => Observable<RuntimeVersion>>;
+      /**
+       * Generic call
+       **/
+      [key: string]: DecoratedCallBase<ApiType>;
+    };
+    /** 0xfbc577b9d747efd6/1 */
+    genesisBuilder: {
+      /**
+       * Build `RuntimeGenesisConfig` from a JSON blob not using any defaults and store it in the storage.
+       **/
+      buildConfig: AugmentedCall<ApiType, (json: Bytes | string | Uint8Array) => Observable<Result<ITuple<[]>, GenesisBuildErr>>>;
+      /**
+       * Creates the default `RuntimeGenesisConfig` and returns it as a JSON blob.
+       **/
+      createDefaultConfig: AugmentedCall<ApiType, () => Observable<Bytes>>;
       /**
        * Generic call
        **/
@@ -244,6 +262,29 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
        **/
       [key: string]: DecoratedCallBase<ApiType>;
     };
+    /** 0x6fd7c327202e4a8d/1 */
+    mixnetApi: {
+      /**
+       * Get the index and phase of the current session.
+       **/
+      currentMixnodes: AugmentedCall<ApiType, () => Observable<Result<Mixnode, MixnodesErr>>>;
+      /**
+       * Try to register a mixnode for the next session.
+       **/
+      maybeRegister: AugmentedCall<ApiType, (session_index: u32 | AnyNumber | Uint8Array, mixnode: Mixnode | { externalAddresses?: any; kxPublic?: any; peerId?: any } | string | Uint8Array) => Observable<bool>>;
+      /**
+       * Get the index and phase of the current session.
+       **/
+      prevMixnodes: AugmentedCall<ApiType, () => Observable<Result<Mixnode, MixnodesErr>>>;
+      /**
+       * Get the index and phase of the current session.
+       **/
+      sessionStatus: AugmentedCall<ApiType, () => Observable<SessionStatus>>;
+      /**
+       * Generic call
+       **/
+      [key: string]: DecoratedCallBase<ApiType>;
+    };
     /** 0x91d5df18b0d2cf58/2 */
     mmrApi: {
       /**
@@ -251,9 +292,13 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
        **/
       generateProof: AugmentedCall<ApiType, (blockNumbers: Vec<BlockNumber> | (BlockNumber | AnyNumber | Uint8Array)[], bestKnownBlockNumber: Option<BlockNumber> | null | Uint8Array | BlockNumber | AnyNumber) => Observable<Result<ITuple<[Vec<MmrEncodableOpaqueLeaf>, MmrBatchProof]>, MmrError>>>;
       /**
+       * Return the number of MMR blocks in the chain.
+       **/
+      mmrLeafCount: AugmentedCall<ApiType, () => Observable<Result<U64, MmrError>>>;
+      /**
        * Return the on-chain MMR root hash.
        **/
-      root: AugmentedCall<ApiType, () => Observable<Result<Hash, MmrError>>>;
+      mmrRoot: AugmentedCall<ApiType, () => Observable<Result<Hash, MmrError>>>;
       /**
        * Verify MMR proof against on-chain MMR.
        **/
@@ -406,6 +451,17 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
        * Query the output of the current WeightToFee given some input
        **/
       queryWeightToFee: AugmentedCall<ApiType, (weight: Weight | { refTime?: any; proofSize?: any } | string | Uint8Array) => Observable<Balance>>;
+      /**
+       * Generic call
+       **/
+      [key: string]: DecoratedCallBase<ApiType>;
+    };
+    /** 0xbe9fb0c91a8046cf/1 */
+    validateStatement: {
+      /**
+       * Validate the statement.
+       **/
+      valdateStatement: AugmentedCall<ApiType, (source: StatementStoreStatementSource | 'Chain' | 'Network' | 'Local' | number | Uint8Array, statement: SpStatementStoreStatement | { proof?: any; decryptionKey?: any; channel?: any; priority?: any; numTopics?: any; topics?: any; data?: any } | string | Uint8Array) => Observable<Result<StatementStoreValidStatement, StatementStoreInvalidStatement>>>;
       /**
        * Generic call
        **/

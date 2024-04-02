@@ -181,8 +181,8 @@ export class Option<T extends Codec> implements IOption<T> {
   /**
    * @description Converts the Object to to a human-friendly JSON, with additional fields, expansion and formatting of information
    */
-  public toHuman (isExtended?: boolean): AnyJson {
-    return this.#raw.toHuman(isExtended);
+  public toHuman (isExtended?: boolean, disableAscii?: boolean): AnyJson {
+    return this.#raw.toHuman(isExtended, disableAscii);
   }
 
   /**
@@ -197,10 +197,10 @@ export class Option<T extends Codec> implements IOption<T> {
   /**
    * @description Converts the value in a best-fit primitive form
    */
-  public toPrimitive (): AnyJson {
+  public toPrimitive (disableAscii?: boolean): AnyJson {
     return this.isNone
       ? null
-      : this.#raw.toPrimitive();
+      : this.#raw.toPrimitive(disableAscii);
   }
 
   /**

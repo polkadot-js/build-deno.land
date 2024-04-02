@@ -2,8 +2,8 @@
 import type { Text, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { AnyJson, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
-import type { Address, BlockHash, Call, ExtrinsicEra, Hash } from '../interfaces/index.ts';
-import type { Codec, ICompact, INumber, IRuntimeVersion, ISignerPayload, SignerPayloadJSON, SignerPayloadRaw } from '../types/index.ts';
+import type { Address, BlockHash, Call, ExtrinsicEra, Hash, MultiLocation } from '../interfaces/index.ts';
+import type { Codec, ICompact, INumber, IOption, IRuntimeVersion, ISignerPayload, SignerPayloadJSON, SignerPayloadRaw } from '../types/index.ts';
 
 import { Option, Struct } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import { objectProperty, objectSpread, u8aToHex } from 'https://deno.land/x/polkadot/util/mod.ts';
@@ -100,6 +100,10 @@ export class GenericSignerPayload extends Struct implements ISignerPayload, Sign
 
   get tip (): ICompact<INumber> {
     return this.getT('tip');
+  }
+
+  get assetId (): IOption<INumber> | IOption<MultiLocation> {
+    return this.getT('assetId');
   }
 
   get version (): INumber {

@@ -16,6 +16,7 @@ export interface MmrEncodableOpaqueLeaf extends Bytes {}
 
 /** @name MmrError */
 export interface MmrError extends Enum {
+  readonly isInvalidNumericOp: boolean;
   readonly isPush: boolean;
   readonly isGetRoot: boolean;
   readonly isCommit: boolean;
@@ -24,7 +25,8 @@ export interface MmrError extends Enum {
   readonly isLeafNotFound: boolean;
   readonly isPalletNotIncluded: boolean;
   readonly isInvalidLeafIndex: boolean;
-  readonly type: 'Push' | 'GetRoot' | 'Commit' | 'GenerateProof' | 'Verify' | 'LeafNotFound' | 'PalletNotIncluded' | 'InvalidLeafIndex';
+  readonly isInvalidBestKnownBlock: boolean;
+  readonly type: 'InvalidNumericOp' | 'Push' | 'GetRoot' | 'Commit' | 'GenerateProof' | 'Verify' | 'LeafNotFound' | 'PalletNotIncluded' | 'InvalidLeafIndex' | 'InvalidBestKnownBlock';
 }
 
 /** @name MmrHash */
