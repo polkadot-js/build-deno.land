@@ -47,7 +47,7 @@ import type { NftCollectionId, NftItemId } from 'https://deno.land/x/polkadot/ty
 import type { NpApiError, NpPoolId } from 'https://deno.land/x/polkadot/types/interfaces/nompools/index.ts';
 import type { StorageKind } from 'https://deno.land/x/polkadot/types/interfaces/offchain/index.ts';
 import type { DeferredOffenceOf, Kind, OffenceDetails, Offender, OpaqueTimeSlot, ReportIdOf, Reporter } from 'https://deno.land/x/polkadot/types/interfaces/offences/index.ts';
-import type { AbridgedCandidateReceipt, AbridgedHostConfiguration, AbridgedHrmpChannel, AssignmentId, AssignmentKind, AttestedCandidate, AuctionIndex, AuthorityDiscoveryId, AvailabilityBitfield, AvailabilityBitfieldRecord, BackedCandidate, Bidder, BufferedSessionChange, CandidateCommitments, CandidateDescriptor, CandidateEvent, CandidateHash, CandidateInfo, CandidatePendingAvailability, CandidateReceipt, CollatorId, CollatorSignature, CommittedCandidateReceipt, CoreAssignment, CoreIndex, CoreOccupied, CoreState, DisputeLocation, DisputeProof, DisputeResult, DisputeState, DisputeStatement, DisputeStatementSet, DisputesTimeSlot, DoubleVoteReport, DownwardMessage, ExecutorParam, ExecutorParams, ExecutorParamsHash, ExplicitDisputeStatement, GlobalValidationData, GlobalValidationSchedule, GroupIndex, GroupRotationInfo, HeadData, HostConfiguration, HrmpChannel, HrmpChannelId, HrmpOpenChannelRequest, InboundDownwardMessage, InboundHrmpMessage, InboundHrmpMessages, IncomingParachain, IncomingParachainDeploy, IncomingParachainFixed, InvalidDisputeStatementKind, LeasePeriod, LeasePeriodOf, LocalValidationData, MessageIngestionType, MessageQueueChain, MessagingStateSnapshot, MessagingStateSnapshotEgressEntry, MultiDisputeStatementSet, NewBidder, OccupiedCore, OccupiedCoreAssumption, OldV1SessionInfo, OutboundHrmpMessage, ParaGenesisArgs, ParaId, ParaInfo, ParaLifecycle, ParaPastCodeMeta, ParaScheduling, ParaValidatorIndex, ParachainDispatchOrigin, ParachainInherentData, ParachainProposal, ParachainsInherentData, ParathreadClaim, ParathreadClaimQueue, ParathreadEntry, PendingSlashes, PersistedValidationData, PvfCheckStatement, PvfExecTimeoutKind, PvfPrepTimeoutKind, QueuedParathread, RegisteredParachainInfo, RelayBlockNumber, RelayChainBlockNumber, RelayChainHash, RelayHash, Remark, ReplacementTimes, Retriable, ScheduledCore, Scheduling, ScrapedOnChainVotes, ServiceQuality, SessionInfo, SessionInfoValidatorGroup, SignedAvailabilityBitfield, SignedAvailabilityBitfields, SigningContext, SlashingOffenceKind, SlotRange, SlotRange10, Statement, SubId, SystemInherentData, TransientValidationData, UpgradeGoAhead, UpgradeRestriction, UpwardMessage, ValidDisputeStatementKind, ValidationCode, ValidationCodeHash, ValidationData, ValidationDataType, ValidationFunctionParams, ValidatorSignature, ValidityAttestation, VecInboundHrmpMessage, WinnersData, WinnersData10, WinnersDataTuple, WinnersDataTuple10, WinningData, WinningData10, WinningDataEntry } from 'https://deno.land/x/polkadot/types/interfaces/parachains/index.ts';
+import type { AbridgedCandidateReceipt, AbridgedHostConfiguration, AbridgedHrmpChannel, ApprovalVotingParams, AssignmentId, AssignmentKind, AsyncBackingParams, AttestedCandidate, AuctionIndex, AuthorityDiscoveryId, AvailabilityBitfield, AvailabilityBitfieldRecord, BackedCandidate, BackingState, Bidder, BufferedSessionChange, CandidateCommitments, CandidateDescriptor, CandidateEvent, CandidateHash, CandidateInfo, CandidatePendingAvailability, CandidateReceipt, CollatorId, CollatorSignature, CommittedCandidateReceipt, Constraints, CoreAssignment, CoreIndex, CoreOccupied, CoreState, DisputeLocation, DisputeProof, DisputeResult, DisputeState, DisputeStatement, DisputeStatementSet, DisputesTimeSlot, DoubleVoteReport, DownwardMessage, ExecutorParam, ExecutorParams, ExecutorParamsHash, ExplicitDisputeStatement, GlobalValidationData, GlobalValidationSchedule, GroupIndex, GroupRotationInfo, HeadData, HostConfiguration, HrmpChannel, HrmpChannelId, HrmpOpenChannelRequest, InboundDownwardMessage, InboundHrmpLimitations, InboundHrmpMessage, InboundHrmpMessages, IncomingParachain, IncomingParachainDeploy, IncomingParachainFixed, InvalidDisputeStatementKind, LeasePeriod, LeasePeriodOf, LocalValidationData, MessageIngestionType, MessageQueueChain, MessagingStateSnapshot, MessagingStateSnapshotEgressEntry, MultiDisputeStatementSet, NewBidder, NodeFeatures, OccupiedCore, OccupiedCoreAssumption, OldV1SessionInfo, OutboundHrmpChannelLimitations, OutboundHrmpMessage, ParaGenesisArgs, ParaId, ParaInfo, ParaLifecycle, ParaPastCodeMeta, ParaScheduling, ParaValidatorIndex, ParachainDispatchOrigin, ParachainInherentData, ParachainProposal, ParachainsInherentData, ParathreadClaim, ParathreadClaimQueue, ParathreadEntry, PendingSlashes, PersistedValidationData, PvfCheckStatement, PvfExecTimeoutKind, PvfPrepTimeoutKind, QueuedParathread, RegisteredParachainInfo, RelayBlockNumber, RelayChainBlockNumber, RelayChainHash, RelayHash, Remark, ReplacementTimes, Retriable, ScheduledCore, Scheduling, ScrapedOnChainVotes, ServiceQuality, SessionInfo, SessionInfoValidatorGroup, SignedAvailabilityBitfield, SignedAvailabilityBitfields, SigningContext, SlashingOffenceKind, SlotRange, SlotRange10, Statement, SubId, SystemInherentData, TransientValidationData, UpgradeGoAhead, UpgradeRestriction, UpwardMessage, ValidDisputeStatementKind, ValidationCode, ValidationCodeHash, ValidationData, ValidationDataType, ValidationFunctionParams, ValidatorSignature, ValidityAttestation, VecInboundHrmpMessage, WinnersData, WinnersData10, WinnersDataTuple, WinnersDataTuple10, WinningData, WinningData10, WinningDataEntry } from 'https://deno.land/x/polkadot/types/interfaces/parachains/index.ts';
 import type { FeeDetails, InclusionFee, RuntimeDispatchInfo, RuntimeDispatchInfoV1, RuntimeDispatchInfoV2 } from 'https://deno.land/x/polkadot/types/interfaces/payment/index.ts';
 import type { Approvals } from 'https://deno.land/x/polkadot/types/interfaces/poll/index.ts';
 import type { ProxyAnnouncement, ProxyDefinition, ProxyType } from 'https://deno.land/x/polkadot/types/interfaces/proxy/index.ts';
@@ -109,6 +109,7 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     ApplyExtrinsicResultPre6: ApplyExtrinsicResultPre6;
     ApprovalFlag: ApprovalFlag;
     Approvals: Approvals;
+    ApprovalVotingParams: ApprovalVotingParams;
     ArithmeticError: ArithmeticError;
     AssetApproval: AssetApproval;
     AssetApprovalKey: AssetApprovalKey;
@@ -124,6 +125,7 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     AssetOptions: AssetOptions;
     AssignmentId: AssignmentId;
     AssignmentKind: AssignmentKind;
+    AsyncBackingParams: AsyncBackingParams;
     AttestedCandidate: AttestedCandidate;
     AuctionIndex: AuctionIndex;
     AuthIndex: AuthIndex;
@@ -146,6 +148,7 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     BabeGenesisConfigurationV1: BabeGenesisConfigurationV1;
     BabeWeight: BabeWeight;
     BackedCandidate: BackedCandidate;
+    BackingState: BackingState;
     Balance: Balance;
     BalanceLock: BalanceLock;
     BalanceLockTo212: BalanceLockTo212;
@@ -248,6 +251,7 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     ConfigData: ConfigData;
     Consensus: Consensus;
     ConsensusEngineId: ConsensusEngineId;
+    Constraints: Constraints;
     ConsumedWeight: ConsumedWeight;
     ContractCallFlags: ContractCallFlags;
     ContractCallRequest: ContractCallRequest;
@@ -582,6 +586,7 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     ImmortalEra: ImmortalEra;
     ImportedAux: ImportedAux;
     InboundDownwardMessage: InboundDownwardMessage;
+    InboundHrmpLimitations: InboundHrmpLimitations;
     InboundHrmpMessage: InboundHrmpMessage;
     InboundHrmpMessages: InboundHrmpMessages;
     InboundLaneData: InboundLaneData;
@@ -727,6 +732,7 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     NextConfigDescriptorV1: NextConfigDescriptorV1;
     NftCollectionId: NftCollectionId;
     NftItemId: NftItemId;
+    NodeFeatures: NodeFeatures;
     NodeRole: NodeRole;
     Nominations: Nominations;
     NominatorIndex: NominatorIndex;
@@ -760,6 +766,7 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     OriginKindV0: OriginKindV0;
     OriginKindV1: OriginKindV1;
     OriginKindV2: OriginKindV2;
+    OutboundHrmpChannelLimitations: OutboundHrmpChannelLimitations;
     OutboundHrmpMessage: OutboundHrmpMessage;
     OutboundLaneData: OutboundLaneData;
     OutboundMessageFee: OutboundMessageFee;

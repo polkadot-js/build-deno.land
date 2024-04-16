@@ -722,7 +722,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       DuplicateContract: AugmentedError<ApiType>;
       /**
-       * An indetermistic code was used in a context where this is not permitted.
+       * An indeterministic code was used in a context where this is not permitted.
        **/
       Indeterministic: AugmentedError<ApiType>;
       /**
@@ -1102,7 +1102,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       OcwCallWrongEra: AugmentedError<ApiType>;
       /**
-       * Sumission was prepared for a different round.
+       * Submission was prepared for a different round.
        **/
       PreDispatchDifferentRound: AugmentedError<ApiType>;
       /**
@@ -1843,7 +1843,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       DurationTooSmall: AugmentedError<ApiType>;
       /**
-       * The operation would result in a receipt worth an insignficant value.
+       * The operation would result in a receipt worth an insignificant value.
        **/
       MakesDust: AugmentedError<ApiType>;
       /**
@@ -2278,6 +2278,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       PreimageNotExist: AugmentedError<ApiType>;
       /**
+       * The preimage is stored with a different length than the one provided.
+       **/
+      PreimageStoredWithDifferentLength: AugmentedError<ApiType>;
+      /**
        * The queue of the track is empty.
        **/
       QueueEmpty: AugmentedError<ApiType>;
@@ -2405,6 +2409,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        * The preimage does not exist.
        **/
       PreimageNotExist: AugmentedError<ApiType>;
+      /**
+       * The preimage is stored with a different length than the one provided.
+       **/
+      PreimageStoredWithDifferentLength: AugmentedError<ApiType>;
       /**
        * The queue of the track is empty.
        **/
@@ -2741,6 +2749,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       CannotChillOther: AugmentedError<ApiType>;
       /**
+       * Cannot reset a ledger.
+       **/
+      CannotRestoreLedger: AugmentedError<ApiType>;
+      /**
        * Commission is too low. Must be at least `MinCommission`.
        **/
       CommissionTooLow: AugmentedError<ApiType>;
@@ -3055,7 +3067,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       MissingProof: AugmentedError<ApiType>;
       /**
-       * Unable to verify proof becasue state data is missing.
+       * Unable to verify proof because state data is missing.
        **/
       MissingStateData: AugmentedError<ApiType>;
       /**

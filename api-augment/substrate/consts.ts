@@ -167,10 +167,14 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
       /**
        * The maximum number of locks that should exist on an account.
        * Not strictly enforced, but used for weight estimation.
+       * 
+       * Use of locks is deprecated in favour of freezes. See `https://github.com/paritytech/substrate/pull/12951/`
        **/
       maxLocks: u32 & AugmentedConst<ApiType>;
       /**
        * The maximum number of named reserves that can exist on an account.
+       * 
+       * Use of reserves is deprecated in favour of holds. See `https://github.com/paritytech/substrate/pull/12951/`
        **/
       maxReserves: u32 & AugmentedConst<ApiType>;
       /**
@@ -532,17 +536,9 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        **/
       signedMaxWeight: SpWeightsWeightV2Weight & AugmentedConst<ApiType>;
       /**
-       * Duration of the signed phase.
-       **/
-      signedPhase: u32 & AugmentedConst<ApiType>;
-      /**
        * Base reward for a signed solution
        **/
       signedRewardBase: u128 & AugmentedConst<ApiType>;
-      /**
-       * Duration of the unsigned phase.
-       **/
-      unsignedPhase: u32 & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/
@@ -656,7 +652,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        **/
       byteDeposit: u128 & AugmentedConst<ApiType>;
       /**
-       * Maxmimum number of registrars allowed in the system. Needed to bound the complexity
+       * Maximum number of registrars allowed in the system. Needed to bound the complexity
        * of, e.g., updating judgements.
        **/
       maxRegistrars: u32 & AugmentedConst<ApiType>;
@@ -740,6 +736,14 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        **/
       heapSize: u32 & AugmentedConst<ApiType>;
       /**
+       * The maximum amount of weight (if any) to be used from remaining weight `on_idle` which
+       * should be provided to the message queue for servicing enqueued items `on_idle`.
+       * Useful for parachains to process messages at the same block they are received.
+       * 
+       * If `None`, it will not call `ServiceQueues::service_queues` in `on_idle`.
+       **/
+      idleMaxServiceWeight: Option<SpWeightsWeightV2Weight> & AugmentedConst<ApiType>;
+      /**
        * The maximum number of stale pages (i.e. of overweight messages) allowed before culling
        * can happen. Once there are more stale pages than this, then historical pages may be
        * dropped, even if they contain unprocessed overweight messages.
@@ -747,10 +751,11 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
       maxStale: u32 & AugmentedConst<ApiType>;
       /**
        * The amount of weight (if any) which should be provided to the message queue for
-       * servicing enqueued items.
+       * servicing enqueued items `on_initialize`.
        * 
        * This may be legitimately `None` in the case that you will call
-       * `ServiceQueues::service_queues` manually.
+       * `ServiceQueues::service_queues` manually or set [`Self::IdleMaxServiceWeight`] to have
+       * it run in `on_idle`.
        **/
       serviceWeight: Option<SpWeightsWeightV2Weight> & AugmentedConst<ApiType>;
       /**

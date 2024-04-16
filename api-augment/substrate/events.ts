@@ -116,7 +116,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       LiquidityRemoved: AugmentedEvent<ApiType, [who: AccountId32, withdrawTo: AccountId32, poolId: ITuple<[FrameSupportTokensFungibleUnionOfNativeOrWithId, FrameSupportTokensFungibleUnionOfNativeOrWithId]>, amount1: u128, amount2: u128, lpToken: u32, lpTokenBurned: u128, withdrawalFee: Permill], { who: AccountId32, withdrawTo: AccountId32, poolId: ITuple<[FrameSupportTokensFungibleUnionOfNativeOrWithId, FrameSupportTokensFungibleUnionOfNativeOrWithId]>, amount1: u128, amount2: u128, lpToken: u32, lpTokenBurned: u128, withdrawalFee: Permill }>;
       /**
-       * A successful call of the `CretaPool` extrinsic will create this event.
+       * A successful call of the `CreatePool` extrinsic will create this event.
        **/
       PoolCreated: AugmentedEvent<ApiType, [creator: AccountId32, poolId: ITuple<[FrameSupportTokensFungibleUnionOfNativeOrWithId, FrameSupportTokensFungibleUnionOfNativeOrWithId]>, poolAccount: AccountId32, lpToken: u32], { creator: AccountId32, poolId: ITuple<[FrameSupportTokensFungibleUnionOfNativeOrWithId, FrameSupportTokensFungibleUnionOfNativeOrWithId]>, poolAccount: AccountId32, lpToken: u32 }>;
       /**
@@ -769,7 +769,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       Proposed: AugmentedEvent<ApiType, [proposalIndex: u32, deposit: u128], { proposalIndex: u32, deposit: u128 }>;
       /**
-       * An account has secconded a proposal
+       * An account has seconded a proposal
        **/
       Seconded: AugmentedEvent<ApiType, [seconder: AccountId32, propIndex: u32], { seconder: AccountId32, propIndex: u32 }>;
       /**
@@ -824,7 +824,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * A solution was stored with the given compute.
        * 
        * The `origin` indicates the origin of the solution. If `origin` is `Some(AccountId)`,
-       * the stored solution was submited in the signed phase by a miner with the `AccountId`.
+       * the stored solution was submitted in the signed phase by a miner with the `AccountId`.
        * Otherwise, the solution was stored either during the unsigned phase or by
        * `T::ForceOrigin`. The `bool` is `true` when a previous solution was ejected to make
        * room for this one.
@@ -1368,7 +1368,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       Thawed: AugmentedEvent<ApiType, [index: u32, who: AccountId32, proportion: Perquintill, amount: u128, dropped: bool], { index: u32, who: AccountId32, proportion: Perquintill, amount: u128, dropped: bool }>;
       /**
-       * A receipt was transfered.
+       * A receipt was transferred.
        **/
       Transferred: AugmentedEvent<ApiType, [from: AccountId32, to: AccountId32, index: u32], { from: AccountId32, to: AccountId32, index: u32 }>;
       /**
