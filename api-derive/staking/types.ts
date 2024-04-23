@@ -1,6 +1,7 @@
 
+import type { Option, u32, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
 import type { AccountId, Balance, EraIndex, RewardPoint } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
-import type { PalletStakingRewardDestination, PalletStakingStakingLedger, PalletStakingValidatorPrefs, SpStakingExposure, SpStakingExposurePage } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { PalletStakingRewardDestination, PalletStakingStakingLedger, PalletStakingValidatorPrefs, SpStakingExposure, SpStakingExposurePage, SpStakingPagedExposureMetadata } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { BN } from 'https://deno.land/x/polkadot/util/mod.ts';
 import type { DeriveSessionIndexes } from '../session/types.ts';
 
@@ -40,8 +41,10 @@ export interface DeriveStakerPoints {
 
 export interface DeriveOwnExposure {
   clipped: SpStakingExposure;
+  exposurePaged: Option<SpStakingExposurePage>;
   era: EraIndex;
   exposure: SpStakingExposure;
+  exposureMeta: Option<SpStakingPagedExposureMetadata>;
 }
 
 export interface DeriveEraExposureNominating {
@@ -113,11 +116,13 @@ export interface DeriveStakingValidators {
 
 export interface DeriveStakingStash {
   controllerId: AccountId | null;
-  exposure: SpStakingExposure;
+  exposurePaged: Option<SpStakingExposurePage>;
+  exposureMeta: Option<SpStakingPagedExposureMetadata>;
   nominators: AccountId[];
   rewardDestination: PalletStakingRewardDestination | null;
   stashId: AccountId;
   validatorPrefs: PalletStakingValidatorPrefs;
+  claimedRewardsEras: Vec<u32>
 }
 
 export interface DeriveStakingQuery extends DeriveStakingStash {
@@ -158,4 +163,6 @@ export interface StakingQueryFlags {
   withLedger?: boolean;
   withNominations?: boolean;
   withPrefs?: boolean;
+  withExposureMeta?: boolean;
+  withClaimedRewardsEras?: boolean;
 }

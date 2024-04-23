@@ -1,7 +1,9 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
 import type { ObsInnerType } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
+import type { u32 } from 'https://deno.land/x/polkadot/types/mod.ts';
 import type { EraIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { AnyNumber } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { ExactDerive } from '../derive.ts';
 import type { DeriveApi } from '../types.ts';
 
@@ -55,9 +57,9 @@ export function erasHistoricApplyAccount <F extends '_ownExposures' | '_ownSlash
   return (instanceId: string, api: DeriveApi) =>
     // Cannot quite get the typing right, but it is right in the code
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    memo(instanceId, (accountId: string | Uint8Array, withActive = false) =>
+    memo(instanceId, (accountId: string | Uint8Array, withActive = false, page?: u32 | AnyNumber) =>
       api.derive.staking.erasHistoric(withActive).pipe(
-        switchMap((e) => api.derive.staking[fn](accountId, e, withActive))
+        switchMap((e) => api.derive.staking[fn](accountId, e, withActive, page || 0))
       )
     ) as any;
 }
