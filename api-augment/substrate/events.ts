@@ -129,6 +129,20 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       SwapExecuted: AugmentedEvent<ApiType, [who: AccountId32, sendTo: AccountId32, amountIn: u128, amountOut: u128, path: Vec<ITuple<[FrameSupportTokensFungibleUnionOfNativeOrWithId, u128]>>], { who: AccountId32, sendTo: AccountId32, amountIn: u128, amountOut: u128, path: Vec<ITuple<[FrameSupportTokensFungibleUnionOfNativeOrWithId, u128]>> }>;
       /**
+       * Pool has been touched in order to fulfill operational requirements.
+       **/
+      Touched: AugmentedEvent<ApiType, [poolId: ITuple<[FrameSupportTokensFungibleUnionOfNativeOrWithId, FrameSupportTokensFungibleUnionOfNativeOrWithId]>, who: AccountId32], { poolId: ITuple<[FrameSupportTokensFungibleUnionOfNativeOrWithId, FrameSupportTokensFungibleUnionOfNativeOrWithId]>, who: AccountId32 }>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    assetConversionMigration: {
+      /**
+       * Indicates that a pool has been migrated to the new account ID.
+       **/
+      MigratedToNewAccount: AugmentedEvent<ApiType, [poolId: ITuple<[FrameSupportTokensFungibleUnionOfNativeOrWithId, FrameSupportTokensFungibleUnionOfNativeOrWithId]>, priorAccount: AccountId32, newAccount: AccountId32], { poolId: ITuple<[FrameSupportTokensFungibleUnionOfNativeOrWithId, FrameSupportTokensFungibleUnionOfNativeOrWithId]>, priorAccount: AccountId32, newAccount: AccountId32 }>;
+      /**
        * Generic event
        **/
       [key: string]: AugmentedEvent<ApiType>;
@@ -530,7 +544,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
       /**
        * Ownership of a Region has been transferred.
        **/
-      Transferred: AugmentedEvent<ApiType, [regionId: PalletBrokerRegionId, duration: u32, oldOwner: AccountId32, owner: AccountId32], { regionId: PalletBrokerRegionId, duration: u32, oldOwner: AccountId32, owner: AccountId32 }>;
+      Transferred: AugmentedEvent<ApiType, [regionId: PalletBrokerRegionId, duration: u32, oldOwner: Option<AccountId32>, owner: Option<AccountId32>], { regionId: PalletBrokerRegionId, duration: u32, oldOwner: Option<AccountId32>, owner: Option<AccountId32> }>;
       /**
        * Generic event
        **/

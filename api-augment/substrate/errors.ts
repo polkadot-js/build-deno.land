@@ -262,6 +262,28 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
+    assetConversionMigration: {
+      /**
+       * Provided asset pair is not supported for pool.
+       **/
+      InvalidAssetPair: AugmentedError<ApiType>;
+      /**
+       * Indicates a partial transfer of balance to the new account during a migration.
+       **/
+      PartialTransfer: AugmentedError<ApiType>;
+      /**
+       * The pool doesn't exist.
+       **/
+      PoolNotFound: AugmentedError<ApiType>;
+      /**
+       * Pool's balance cannot be zero.
+       **/
+      ZeroBalance: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
     assetRate: {
       /**
        * The given asset ID already has an assigned conversion rate and cannot be re-created.
@@ -544,6 +566,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        * The configuration could not be applied because it is invalid.
        **/
       InvalidConfig: AugmentedError<ApiType>;
+      /**
+       * The revenue must be claimed for 1 or more timeslices.
+       **/
+      NoClaimTimeslices: AugmentedError<ApiType>;
       /**
        * The history item does not exist.
        **/
@@ -2811,6 +2837,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       NotController: AugmentedError<ApiType>;
       /**
+       * Not enough funds available to withdraw.
+       **/
+      NotEnoughFunds: AugmentedError<ApiType>;
+      /**
        * Items are not sorted and unique.
        **/
       NotSortedAndUnique: AugmentedError<ApiType>;
@@ -2822,6 +2852,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        * Can not rebond without unlocking chunks.
        **/
       NoUnlockChunk: AugmentedError<ApiType>;
+      /**
+       * Provided reward destination is not allowed.
+       **/
+      RewardDestinationRestricted: AugmentedError<ApiType>;
       /**
        * There are too many nominators in the system. Governance needs to adjust the staking
        * settings to keep things safe for the runtime.
