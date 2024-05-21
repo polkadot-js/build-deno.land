@@ -1,7 +1,7 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
 import type { AccountId, Address, ApplyExtrinsicResult, BlockNumber, Call, DispatchError, DispatchInfo, EventRecord, Extrinsic, ExtrinsicStatus, Hash, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
-import type { AnyFunction, AnyNumber, AnyTuple, Callback, CallBase, Codec, IExtrinsicEra, IKeyringPair, ISubmittableResult, Signer } from 'https://deno.land/x/polkadot/types/types/index.ts';
+import type { AnyFunction, AnyNumber, AnyTuple, AnyU8a, Callback, CallBase, Codec, IExtrinsicEra, IKeyringPair, ISubmittableResult, Signer } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { ApiTypes, EmptyBase, PromiseOrObs } from './base.ts';
 
 export type AugmentedSubmittable<T extends AnyFunction, A extends AnyTuple = AnyTuple> = T & CallBase<A>;
@@ -15,6 +15,8 @@ export interface SignerOptions {
   signer?: Signer;
   tip?: AnyNumber;
   assetId?: AnyNumber | object;
+  mode?: AnyNumber;
+  metadataHash?: AnyU8a;
 }
 
 export type SubmittableDryRunResult<ApiType extends ApiTypes> =

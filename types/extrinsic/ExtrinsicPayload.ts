@@ -4,7 +4,7 @@ import type { AnyJson, BareOpts, Registry } from 'https://deno.land/x/polkadot/t
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { BlockHash } from '../interfaces/chain/index.ts';
 import type { ExtrinsicPayloadV4 } from '../interfaces/extrinsics/index.ts';
-import type { MultiLocation } from '../interfaces/types.ts';
+import type { Hash, MultiLocation } from '../interfaces/types.ts';
 import type { ExtrinsicPayloadValue, ICompact, IKeyringPair, INumber, IOption } from '../types/index.ts';
 import type { GenericExtrinsicEra } from './ExtrinsicEra.ts';
 
@@ -110,8 +110,15 @@ export class GenericExtrinsicPayload extends AbstractBase<ExtrinsicPayloadVx> {
   /**
    * @description The (optional) asset id as a [[u32]] or [[MultiLocation]] for this payload
    */
-  public get assetId (): IOption<INumber | IOption<MultiLocation>> {
+  public get assetId (): IOption<INumber | MultiLocation> {
     return this.inner.assetId;
+  }
+
+  /**
+   * @description The (optional) [[Hash]] of the genesis metadata for this payload
+   */
+  public get metadataHash (): IOption<Hash> {
+    return this.inner.metadataHash;
   }
 
   /**

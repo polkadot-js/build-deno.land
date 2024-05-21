@@ -1,6 +1,6 @@
 
 import type { SignOptions } from 'https://deno.land/x/polkadot/keyring/types.ts';
-import type { MultiLocation } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Hash, MultiLocation } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { Bytes } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { Inspect, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
@@ -103,8 +103,15 @@ export class GenericExtrinsicPayloadV4 extends Struct {
   /**
    * @description The (optional) asset id for this signature for chains that support transaction fees in assets
    */
-  public get assetId (): IOption<INumber | IOption<MultiLocation>> {
+  public get assetId (): IOption<INumber | MultiLocation> {
     return this.getT('assetId');
+  }
+
+  /**
+   * @description The (optional) asset id for this signature for chains that support transaction fees in assets
+   */
+  public get metadataHash (): IOption<Hash> {
+    return this.getT('metadataHash');
   }
 
   /**

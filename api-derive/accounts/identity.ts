@@ -1,7 +1,7 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
-import type { Bytes, Data } from 'https://deno.land/x/polkadot/types/mod.ts';
-import type { AccountId } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Bytes, Data, Struct } from 'https://deno.land/x/polkadot/types/mod.ts';
+import type { AccountId, H160 } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { PalletIdentityLegacyIdentityInfo, PalletIdentityRegistration } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { Option } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
@@ -15,9 +15,26 @@ import { firstMemo, memo } from '../util/index.ts';
 
 type IdentityInfoAdditional = PalletIdentityLegacyIdentityInfo['additional'][0];
 
+interface PeopleIdentityInfo extends Struct {
+  display: Data;
+  legal: Data;
+  web: Data;
+  matrix: Data;
+  email: Data;
+  pgpFingerprint: Option<H160>;
+  image: Data;
+  twitter: Data;
+  github: Data;
+  discord: Data;
+}
+
 const UNDEF_HEX = { toHex: () => undefined };
 
 function dataAsString (data: Data): string | undefined {
+  if (!data) {
+    return data;
+  }
+
   return data.isRaw
     ? u8aToString(data.asRaw.toU8a(true))
     : data.isNone
@@ -55,13 +72,16 @@ function extractIdentity (identityOfOpt?: Option<ITuple<[PalletIdentityRegistrat
   const topDisplay = dataAsString(info.display);
 
   return {
+    discord: dataAsString((info as unknown as PeopleIdentityInfo).discord),
     display: (superOf && dataAsString(superOf[1])) || topDisplay,
     displayParent: superOf && topDisplay,
     email: dataAsString(info.email),
+    github: dataAsString((info as unknown as PeopleIdentityInfo).github),
     image: dataAsString(info.image),
     judgements,
     legal: dataAsString(info.legal),
-    other: extractOther(info.additional),
+    matrix: dataAsString((info as unknown as PeopleIdentityInfo).matrix),
+    other: info.additional ? extractOther(info.additional) : {},
     parent: superOf?.[0],
     pgp: info.pgpFingerprint.unwrapOr(UNDEF_HEX).toHex(),
     riot: dataAsString(info.riot),

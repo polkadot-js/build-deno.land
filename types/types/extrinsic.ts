@@ -34,6 +34,11 @@ export interface SignerPayloadJSON {
   address: string;
 
   /**
+   * @description The id of the asset used to pay fees, in hex
+   */
+  assetId?: number | object;
+
+  /**
    * @description The checkpoint hash of the block, in hex
    */
   blockHash: HexString;
@@ -54,9 +59,19 @@ export interface SignerPayloadJSON {
   genesisHash: HexString;
 
   /**
+   * @description The metadataHash for the CheckMetadataHash SignedExtension, as hex
+   */
+  metadataHash?: HexString;
+
+  /**
    * @description The encoded method (with arguments) in hex
    */
   method: string;
+
+  /**
+   * @description The mode for the CheckMetadataHash SignedExtension, in hex
+   */
+  mode?: number;
 
   /**
    * @description The nonce for this transaction, in hex
@@ -162,6 +177,8 @@ export interface SignatureOptions {
   signer?: Signer;
   tip?: AnyNumber;
   assetId?: AnyNumber | object;
+  mode?: AnyNumber;
+  metadataHash?: Uint8Array | string;
 }
 
 interface ExtrinsicSignatureBase {
@@ -183,6 +200,8 @@ export interface ExtrinsicPayloadValue {
   tip: AnyNumber;
   transactionVersion: AnyNumber;
   assetId?: AnyNumber | object;
+  mode?: AnyNumber;
+  metadataHash?: AnyU8a;
 }
 
 export interface IExtrinsicSignature extends ExtrinsicSignatureBase, Codec {

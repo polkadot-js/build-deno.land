@@ -2,7 +2,7 @@
 import type { MultiLocation } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { EcdsaSignature, Ed25519Signature, ExtrinsicEra, ExtrinsicSignature, Sr25519Signature } from '../../interfaces/extrinsics/index.ts';
-import type { Address, Call } from '../../interfaces/runtime/index.ts';
+import type { Address, Call, Hash } from '../../interfaces/runtime/index.ts';
 import type { ExtrinsicPayloadValue, ICompact, IExtrinsicSignature, IKeyringPair, INumber, IOption, Registry, SignatureOptions } from '../../types/index.ts';
 import type { ExtrinsicSignatureOptions } from '../types.ts';
 
@@ -119,8 +119,15 @@ export class GenericExtrinsicSignatureV4 extends Struct implements IExtrinsicSig
   /**
    * @description The [[u32]] or [[MultiLocation]] assetId
    */
-  public get assetId (): IOption<INumber> | IOption<MultiLocation> {
+  public get assetId (): IOption<INumber | MultiLocation> {
     return this.getT('assetId');
+  }
+
+  /**
+   * @description The [[Hash]] for the metadata
+   */
+  public get metadataHash (): IOption<Hash> {
+    return this.getT('metadataHash');
   }
 
   protected _injectSignature (signer: Address, signature: ExtrinsicSignature, payload: GenericExtrinsicPayloadV4): IExtrinsicSignature {
