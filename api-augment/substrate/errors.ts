@@ -2871,6 +2871,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       TooManyValidators: AugmentedError<ApiType>;
       /**
+       * Operation not allowed for virtual stakers.
+       **/
+      VirtualStakerNotAllowed: AugmentedError<ApiType>;
+      /**
        * Generic error
        **/
       [key: string]: AugmentedError<ApiType>;
