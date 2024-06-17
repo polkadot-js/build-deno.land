@@ -397,6 +397,12 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        **/
       evidenceSize: u32 & AugmentedConst<ApiType>;
       /**
+       * Represents the highest possible rank in this pallet.
+       * 
+       * Increasing this value is supported, but decreasing it may lead to a broken state.
+       **/
+      maxRank: u32 & AugmentedConst<ApiType>;
+      /**
        * Generic const
        **/
       [key: string]: Codec;

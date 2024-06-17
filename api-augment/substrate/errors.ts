@@ -810,6 +810,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       ReentranceDenied: AugmentedError<ApiType>;
       /**
+       * A contract attempted to invoke a state modifying API while being in read-only mode.
+       **/
+      StateChangeDenied: AugmentedError<ApiType>;
+      /**
        * More storage was created than allowed by the storage deposit limit.
        **/
       StorageDepositLimitExhausted: AugmentedError<ApiType>;
@@ -1912,6 +1916,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       AccountBelongsToOtherPool: AugmentedError<ApiType>;
       /**
+       * The pool or member delegation has already migrated to delegate stake.
+       **/
+      AlreadyMigrated: AugmentedError<ApiType>;
+      /**
        * Bonding extra is restricted to the exact pending reward amount.
        **/
       BondExtraRestricted: AugmentedError<ApiType>;
@@ -2003,9 +2011,17 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       NothingToAdjust: AugmentedError<ApiType>;
       /**
+       * No slash pending that can be applied to the member.
+       **/
+      NothingToSlash: AugmentedError<ApiType>;
+      /**
        * Either a) the caller cannot make a valid kick or b) the pool is not destroying.
        **/
       NotKickerOrDestroying: AugmentedError<ApiType>;
+      /**
+       * The pool or member delegation has not migrated yet to delegate stake.
+       **/
+      NotMigrated: AugmentedError<ApiType>;
       /**
        * The caller does not have nominating permissions for the pool.
        **/
@@ -2014,6 +2030,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        * The pool is not open to join
        **/
       NotOpen: AugmentedError<ApiType>;
+      /**
+       * This call is not allowed in the current state of the pallet.
+       **/
+      NotSupported: AugmentedError<ApiType>;
       /**
        * The transaction could not be executed due to overflow risk for the pool.
        **/
