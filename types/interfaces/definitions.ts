@@ -60,7 +60,9 @@ export { default as finality } from './finality/definitions.ts';
 export { default as parachains } from './parachains/definitions.ts';
 export { default as poll } from './poll/definitions.ts';
 export { default as purchase } from './purchase/definitions.ts';
+
 export { default as xcm } from './xcm/definitions.ts';
+export { default as xcmRuntimeApi } from './xcmRuntimeApi/definitions.ts';
 
 export { default as contractsAbi } from './contractsAbi/definitions.ts';
 export { default as eth } from './eth/definitions.ts';

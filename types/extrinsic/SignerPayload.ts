@@ -1,5 +1,5 @@
 
-import type { Text, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { bool, Text, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { AnyJson, Registry } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 import type { Address, BlockHash, Call, ExtrinsicEra, Hash, MultiLocation } from '../interfaces/index.ts';
@@ -53,7 +53,7 @@ export class GenericSignerPayload extends Struct implements ISignerPayload, Sign
   constructor (registry: Registry, value?: HexString | Record<string, unknown> | Map<unknown, unknown> | unknown[]) {
     const extensionTypes = objectSpread<Record<string, string>>({}, registry.getSignedExtensionTypes(), registry.getSignedExtensionExtra());
 
-    super(registry, objectSpread<Record<string, string>>({}, extensionTypes, knownTypes), value);
+    super(registry, objectSpread<Record<string, string>>({}, extensionTypes, knownTypes, { withSignedTransaction: 'bool' }), value);
 
     this.#extraTypes = {};
     const getter = (key: string) => this.get(key);
@@ -124,6 +124,12 @@ export class GenericSignerPayload extends Struct implements ISignerPayload, Sign
     return this.getT('metadataHash');
   }
 
+  get withSignedTransaction (): boolean {
+    const val: bool = this.getT('withSignedTransaction');
+
+    return val.isTrue;
+  }
+
   /**
    * @description Creates an representation of the structure as an ISignerPayload JSON
    */
@@ -164,7 +170,8 @@ export class GenericSignerPayload extends Struct implements ISignerPayload, Sign
       specVersion: this.runtimeVersion.specVersion.toHex(),
       tip: this.tip.toHex(),
       transactionVersion: this.runtimeVersion.transactionVersion.toHex(),
-      version: this.version.toNumber()
+      version: this.version.toNumber(),
+      withSignedTransaction: this.withSignedTransaction
     });
   }
 

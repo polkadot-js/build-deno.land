@@ -74,3 +74,4 @@ export * from './uniques/types.ts';
 export * from './utility/types.ts';
 export * from './vesting/types.ts';
 export * from './xcm/types.ts';
+export * from './xcmRuntimeApi/types.ts';
