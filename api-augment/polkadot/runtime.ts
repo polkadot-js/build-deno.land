@@ -16,10 +16,11 @@ import type { AuthorityList, GrandpaEquivocationProof, SetId } from 'https://den
 import type { OpaqueMetadata } from 'https://deno.land/x/polkadot/types/interfaces/metadata/index.ts';
 import type { MmrBatchProof, MmrEncodableOpaqueLeaf, MmrError } from 'https://deno.land/x/polkadot/types/interfaces/mmr/index.ts';
 import type { NpPoolId } from 'https://deno.land/x/polkadot/types/interfaces/nompools/index.ts';
-import type { CandidateCommitments, CandidateEvent, CandidateHash, CommittedCandidateReceipt, CoreState, DisputeProof, DisputeState, ExecutorParams, GroupRotationInfo, InboundDownwardMessage, InboundHrmpMessage, OccupiedCoreAssumption, ParaId, ParaValidatorIndex, PendingSlashes, PersistedValidationData, PvfCheckStatement, ScrapedOnChainVotes, SessionInfo, ValidationCode, ValidationCodeHash, ValidatorSignature } from 'https://deno.land/x/polkadot/types/interfaces/parachains/index.ts';
+import type { ApprovalVotingParams, AsyncBackingParams, BackingState, CandidateCommitments, CandidateEvent, CandidateHash, CommittedCandidateReceipt, CoreState, DisputeProof, DisputeState, ExecutorParams, GroupRotationInfo, InboundDownwardMessage, InboundHrmpMessage, NodeFeatures, OccupiedCoreAssumption, ParaId, ParaValidatorIndex, PendingSlashes, PersistedValidationData, PvfCheckStatement, ScrapedOnChainVotes, SessionInfo, ValidationCode, ValidationCodeHash, ValidatorSignature } from 'https://deno.land/x/polkadot/types/interfaces/parachains/index.ts';
 import type { FeeDetails, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot/types/interfaces/payment/index.ts';
 import type { AccountId, Balance, Block, BlockNumber, Call, Hash, Header, Index, KeyTypeId, Slot, ValidatorId, Weight } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 import type { SessionIndex } from 'https://deno.land/x/polkadot/types/interfaces/session/index.ts';
+import type { ValidatorIndex } from 'https://deno.land/x/polkadot/types/interfaces/staking/index.ts';
 import type { RuntimeVersion } from 'https://deno.land/x/polkadot/types/interfaces/state/index.ts';
 import type { ApplyExtrinsicResult } from 'https://deno.land/x/polkadot/types/interfaces/system/index.ts';
 import type { TransactionSource, TransactionValidity } from 'https://deno.land/x/polkadot/types/interfaces/txqueue/index.ts';
@@ -277,12 +278,20 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
        **/
       [key: string]: DecoratedCallBase<ApiType>;
     };
-    /** 0xaf2c0297a23e6d3d/5 */
+    /** 0xaf2c0297a23e6d3d/10 */
     parachainHost: {
+      /**
+       * Approval voting configuration parameters
+       **/
+      approvalVotingParams: AugmentedCall<ApiType, () => Observable<ApprovalVotingParams>>;
       /**
        * Returns the persisted validation data for the given `ParaId` along with the corresponding validation code hash.
        **/
       assumedValidationData: AugmentedCall<ApiType, (paraId: ParaId | AnyNumber | Uint8Array, hash: Hash | string | Uint8Array) => Observable<Option<ITuple<[PersistedValidationData, ValidationCodeHash]>>>>;
+      /**
+       * Returns candidate's acceptance limitations for asynchronous backing for a relay parent
+       **/
+      asyncBackingParams: AugmentedCall<ApiType, () => Observable<AsyncBackingParams>>;
       /**
        * Yields information on all availability cores as relevant to the child block.
        **/
@@ -300,6 +309,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
        **/
       checkValidationOutputs: AugmentedCall<ApiType, (paraId: ParaId | AnyNumber | Uint8Array, outputs: CandidateCommitments | { upwardMessages?: any; horizontalMessages?: any; newValidationCode?: any; headData?: any; processedDownwardMessages?: any; hrmpWatermark?: any } | string | Uint8Array) => Observable<bool>>;
       /**
+       * Returns a list of all disabled validators at the given block
+       **/
+      disabledValidators: AugmentedCall<ApiType, () => Observable<ValidatorIndex>>;
+      /**
        * Returns all onchain disputes.
        **/
       disputes: AugmentedCall<ApiType, () => Observable<Vec<ITuple<[SessionIndex, CandidateHash, DisputeState]>>>>;
@@ -316,9 +329,21 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
        **/
       keyOwnershipProof: AugmentedCall<ApiType, (validatorId: ValidatorId | string | Uint8Array) => Observable<Option<OpaqueKeyOwnershipProof>>>;
       /**
+       * Get the minimum number of backing votes for a parachain candidate. This is a staging method! Do not use on production runtimes!
+       **/
+      minimumBackingVotes: AugmentedCall<ApiType, () => Observable<u32>>;
+      /**
+       * Get node features. This is a staging method! Do not use on production runtimes!
+       **/
+      nodeFeatures: AugmentedCall<ApiType, () => Observable<NodeFeatures>>;
+      /**
        * Scrape dispute relevant from on-chain, backing votes and resolved disputes.
        **/
       onChainVotes: AugmentedCall<ApiType, () => Observable<Option<ScrapedOnChainVotes>>>;
+      /**
+       * Returns the state of parachain backing for a given para
+       **/
+      paraBackingState: AugmentedCall<ApiType, (paraId: ParaId | AnyNumber | Uint8Array) => Observable<Option<BackingState>>>;
       /**
        * Yields the persisted validation data for the given `ParaId` along with an assumption that should be used if the para currently occupies a core.
        **/

@@ -7,7 +7,7 @@ import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, 
 import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { EthereumAddress } from 'https://deno.land/x/polkadot/types/interfaces/eth/index.ts';
 import type { AccountId32, H256, Perbill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
-import type { FrameSupportDispatchDispatchInfo, FrameSupportDispatchPostDispatchInfo, FrameSupportMessagesProcessMessageError, FrameSupportPreimagesBounded, FrameSupportTokensMiscBalanceStatus, PalletConvictionVotingTally, PalletElectionProviderMultiPhaseElectionCompute, PalletElectionProviderMultiPhasePhase, PalletMultisigTimepoint, PalletNominationPoolsCommissionChangeRate, PalletNominationPoolsCommissionClaimPermission, PalletNominationPoolsPoolState, PalletStakingForcing, PalletStakingRewardDestination, PalletStakingValidatorPrefs, PolkadotParachainPrimitivesPrimitivesHrmpChannelId, PolkadotPrimitivesV6CandidateReceipt, PolkadotRuntimeCommonImplsVersionedLocatableAsset, PolkadotRuntimeParachainsDisputesDisputeLocation, PolkadotRuntimeParachainsDisputesDisputeResult, PolkadotRuntimeParachainsInclusionAggregateMessageOrigin, PolkadotRuntimeProxyType, SpConsensusGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, SpRuntimeDispatchErrorWithPostInfo, SpWeightsWeightV2Weight, StagingXcmV4AssetAssets, StagingXcmV4Location, StagingXcmV4Response, StagingXcmV4TraitsOutcome, StagingXcmV4Xcm, XcmV3TraitsError, XcmVersionedAssets, XcmVersionedLocation } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { FrameSupportDispatchDispatchInfo, FrameSupportDispatchPostDispatchInfo, FrameSupportMessagesProcessMessageError, FrameSupportPreimagesBounded, FrameSupportTokensMiscBalanceStatus, PalletConvictionVotingTally, PalletElectionProviderMultiPhaseElectionCompute, PalletElectionProviderMultiPhasePhase, PalletMultisigTimepoint, PalletNominationPoolsCommissionChangeRate, PalletNominationPoolsCommissionClaimPermission, PalletNominationPoolsPoolState, PalletStakingForcing, PalletStakingRewardDestination, PalletStakingValidatorPrefs, PalletStateTrieMigrationError, PalletStateTrieMigrationMigrationCompute, PolkadotParachainPrimitivesPrimitivesHrmpChannelId, PolkadotPrimitivesV6CandidateReceipt, PolkadotRuntimeCommonImplsVersionedLocatableAsset, PolkadotRuntimeParachainsDisputesDisputeLocation, PolkadotRuntimeParachainsDisputesDisputeResult, PolkadotRuntimeParachainsInclusionAggregateMessageOrigin, PolkadotRuntimeProxyType, SpConsensusGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, SpRuntimeDispatchErrorWithPostInfo, SpWeightsWeightV2Weight, StagingXcmV4AssetAssets, StagingXcmV4Location, StagingXcmV4Response, StagingXcmV4TraitsOutcome, StagingXcmV4Xcm, XcmV3TraitsError, XcmVersionedAssets, XcmVersionedLocation } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedEvent<ApiType extends ApiTypes> = AugmentedEvent<ApiType>;
 
@@ -394,7 +394,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       HrmpChannelForceOpened: AugmentedEvent<ApiType, [sender: u32, recipient: u32, proposedMaxCapacity: u32, proposedMaxMessageSize: u32], { sender: u32, recipient: u32, proposedMaxCapacity: u32, proposedMaxMessageSize: u32 }>;
       /**
-       * An HRMP channel was opened between two system chains.
+       * An HRMP channel was opened with a system chain.
        **/
       HrmpSystemChannelOpened: AugmentedEvent<ApiType, [sender: u32, recipient: u32, proposedMaxCapacity: u32, proposedMaxMessageSize: u32], { sender: u32, recipient: u32, proposedMaxCapacity: u32, proposedMaxMessageSize: u32 }>;
       /**
@@ -938,6 +938,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       Chilled: AugmentedEvent<ApiType, [stash: AccountId32], { stash: AccountId32 }>;
       /**
+       * Report of a controller batch deprecation.
+       **/
+      ControllerBatchDeprecated: AugmentedEvent<ApiType, [failures: u32], { failures: u32 }>;
+      /**
        * The era payout has been set; the first balance is the validator-payout; the second is
        * the remainder from the maximum amount of reward.
        **/
@@ -1001,6 +1005,29 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * from the unlocking queue.
        **/
       Withdrawn: AugmentedEvent<ApiType, [stash: AccountId32, amount: u128], { stash: AccountId32, amount: u128 }>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    stateTrieMigration: {
+      /**
+       * The auto migration task finished.
+       **/
+      AutoMigrationFinished: AugmentedEvent<ApiType, []>;
+      /**
+       * Migration got halted due to an error or miss-configuration.
+       **/
+      Halted: AugmentedEvent<ApiType, [error: PalletStateTrieMigrationError], { error: PalletStateTrieMigrationError }>;
+      /**
+       * Given number of `(top, child)` keys were migrated respectively, with the given
+       * `compute`.
+       **/
+      Migrated: AugmentedEvent<ApiType, [top: u32, child: u32, compute: PalletStateTrieMigrationMigrationCompute], { top: u32, child: u32, compute: PalletStateTrieMigrationMigrationCompute }>;
+      /**
+       * Some account got slashed by the given amount.
+       **/
+      Slashed: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
        * Generic event
        **/

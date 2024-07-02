@@ -62,6 +62,7 @@ export { default as poll } from './poll/definitions.ts';
 export { default as purchase } from './purchase/definitions.ts';
 
 export { default as xcm } from './xcm/definitions.ts';
+export { default as xcmPaymentApi } from './xcmPaymentApi/definitions.ts';
 export { default as xcmRuntimeApi } from './xcmRuntimeApi/definitions.ts';
 
 export { default as contractsAbi } from './contractsAbi/definitions.ts';
