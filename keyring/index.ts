@@ -1,5 +1,5 @@
 
-import './detectPackage.ts';
+import './packageDetect.ts';
 
 import { Keyring } from './bundle.ts';
 

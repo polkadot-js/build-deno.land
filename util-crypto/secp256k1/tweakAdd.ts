@@ -1,6 +1,6 @@
 
-import { _0n, BN, bnToU8a, hasBigInt, isU8a, nToU8a, u8aToBigInt } from 'https://deno.land/x/polkadot@0.2.45/util/mod.ts';
-import { BigInt } from 'https://deno.land/x/polkadot@0.2.45/x-bigint/mod.ts';
+import { _0n, BN, bnToU8a, hasBigInt, isU8a, nToU8a, u8aToBigInt } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { BigInt } from 'https://deno.land/x/polkadot/x-bigint/mod.ts';
 
 import { BN_BE_256_OPTS, BN_BE_OPTS } from '../bn.ts';
 

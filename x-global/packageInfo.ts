@@ -1,3 +1,3 @@
 
 
-export const packageInfo = { name: '@polkadot/x-global', path: new URL(import.meta.url).pathname, type: 'deno', version: '0.2.45' };
+export const packageInfo = { name: '@polkadot/x-global', path: new URL(import.meta.url).pathname, type: 'deno', version: '13.0.1' };

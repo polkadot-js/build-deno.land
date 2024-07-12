@@ -2,8 +2,8 @@
 
 import { NativeModules } from 'https://esm.sh/react-native';
 
-import { base64Decode } from 'https://deno.land/x/polkadot@0.2.45/wasm-util/base64.ts';
-import { xglobal } from 'https://deno.land/x/polkadot@0.2.45/x-global/mod.ts';
+import { base64Decode } from 'https://deno.land/x/polkadot/wasm-util/base64.ts';
+import { xglobal } from 'https://deno.land/x/polkadot/x-global/mod.ts';
 
 import { crypto as cryptoBrowser, getRandomValues as getRandomValuesBrowser } from './browser.ts';
 import { insecureRandomValues } from './fallback.ts';
