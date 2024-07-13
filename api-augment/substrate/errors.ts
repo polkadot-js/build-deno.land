@@ -312,6 +312,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       AssetNotLive: AugmentedError<ApiType>;
       /**
+       * The asset ID must be equal to the [`NextAssetId`].
+       **/
+      BadAssetId: AugmentedError<ApiType>;
+      /**
        * Invalid metadata given.
        **/
       BadMetadata: AugmentedError<ApiType>;
@@ -2077,6 +2081,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       AssetNotLive: AugmentedError<ApiType>;
       /**
+       * The asset ID must be equal to the [`NextAssetId`].
+       **/
+      BadAssetId: AugmentedError<ApiType>;
+      /**
        * Invalid metadata given.
        **/
       BadMetadata: AugmentedError<ApiType>;
@@ -2161,6 +2169,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        * Preimage has already been noted on-chain.
        **/
       AlreadyNoted: AugmentedError<ApiType>;
+      /**
+       * No ticket with a cost was returned by [`Config::Consideration`] to store the preimage.
+       **/
+      NoCost: AugmentedError<ApiType>;
       /**
        * The user is not authorized to perform this action.
        **/
@@ -2273,6 +2285,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        * The new member to exchange is the same as the old member
        **/
       SameMember: AugmentedError<ApiType>;
+      /**
+       * The max member count for the rank has been reached.
+       **/
+      TooManyMembers: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -3179,10 +3195,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        * amount to be spent.
        **/
       InsufficientPermission: AugmentedError<ApiType>;
-      /**
-       * Proposer's balance is too low.
-       **/
-      InsufficientProposersBalance: AugmentedError<ApiType>;
       /**
        * No proposal, bounty or spend at that index.
        **/
