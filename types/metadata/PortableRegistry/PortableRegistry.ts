@@ -78,10 +78,7 @@ const PATHS_ALIAS = splitNamespace([
   'ink::env::types::*',
   'ink::primitives::types::*',
   'ink_env::types::*',
-  'ink_primitives::types::*',
-  // noir
-  'np_runtime::accountname::AccountName',
-  'np_runtime::universaladdress::UniversalAddress'
+  'ink_primitives::types::*'
 ]);
 
 const PATHS_SET = splitNamespace([

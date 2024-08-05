@@ -7,7 +7,7 @@ import type { Bytes, Null, Option, Result, U64, Vec, bool, u128, u32 } from 'htt
 import type { AnyNumber, IMethod, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { TAssetBalance } from 'https://deno.land/x/polkadot/types/interfaces/assets/index.ts';
 import type { BabeEquivocationProof, BabeGenesisConfiguration, Epoch, OpaqueKeyOwnershipProof } from 'https://deno.land/x/polkadot/types/interfaces/babe/index.ts';
-import type { BeefyEquivocationProof, ValidatorSet, ValidatorSetId } from 'https://deno.land/x/polkadot/types/interfaces/beefy/index.ts';
+import type { ValidatorSet, ValidatorSetId } from 'https://deno.land/x/polkadot/types/interfaces/beefy/index.ts';
 import type { CheckInherentsResult, InherentData } from 'https://deno.land/x/polkadot/types/interfaces/blockbuilder/index.ts';
 import type { BlockHash } from 'https://deno.land/x/polkadot/types/interfaces/chain/index.ts';
 import type { AuthorityId } from 'https://deno.land/x/polkadot/types/interfaces/consensus/index.ts';
@@ -26,7 +26,7 @@ import type { RuntimeVersion } from 'https://deno.land/x/polkadot/types/interfac
 import type { StatementStoreInvalidStatement, StatementStoreStatementSource, StatementStoreValidStatement } from 'https://deno.land/x/polkadot/types/interfaces/statement/index.ts';
 import type { ApplyExtrinsicResult } from 'https://deno.land/x/polkadot/types/interfaces/system/index.ts';
 import type { TransactionSource, TransactionValidity } from 'https://deno.land/x/polkadot/types/interfaces/txqueue/index.ts';
-import type { SpStatementStoreStatement, StagingXcmV3MultiLocation } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { SpConsensusBeefyDoubleVotingProof, SpStatementStoreStatement, StagingXcmV3MultiLocation } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { IExtrinsic, Observable } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 export type __AugmentedCall<ApiType extends ApiTypes> = AugmentedCall<ApiType>;
@@ -117,7 +117,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
        **/
       [key: string]: DecoratedCallBase<ApiType>;
     };
-    /** 0x49eaaf1b548a0cb0/3 */
+    /** 0x49eaaf1b548a0cb0/4 */
     beefyApi: {
       /**
        * Return the block number where BEEFY consensus is enabled/started
@@ -128,9 +128,9 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
        **/
       generateKeyOwnershipProof: AugmentedCall<ApiType, (setId: ValidatorSetId | AnyNumber | Uint8Array, authorityId: AuthorityId | string | Uint8Array) => Observable<Option<OpaqueKeyOwnershipProof>>>;
       /**
-       * Submits an unsigned extrinsic to report an equivocation.
+       * Submits an unsigned extrinsic to report a double voting equivocation.
        **/
-      submitReportEquivocationUnsignedExtrinsic: AugmentedCall<ApiType, (equivocationProof: BeefyEquivocationProof | { first?: any; second?: any } | string | Uint8Array, keyOwnerProof: OpaqueKeyOwnershipProof | string | Uint8Array) => Observable<Option<Null>>>;
+      submitReportDoubleVotingUnsignedExtrinsic: AugmentedCall<ApiType, (equivocationProof: SpConsensusBeefyDoubleVotingProof | { first?: any; second?: any } | string | Uint8Array, keyOwnerProof: OpaqueKeyOwnershipProof | string | Uint8Array) => Observable<Option<Null>>>;
       /**
        * Return the current active BEEFY validator set
        **/

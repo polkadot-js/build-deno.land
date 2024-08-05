@@ -7,7 +7,7 @@ import { compactFromU8aLim, identity, isHex, isU8a, logger, stringify, u8aToU8a 
 import { AbstractArray } from '../abstract/Array.ts';
 import { decodeU8aVec, typeToConstructor } from '../utils/index.ts';
 
-const MAX_LENGTH = 64 * 1024;
+const MAX_LENGTH = 512 * 1024;
 
 const l = logger('Vec');
 
