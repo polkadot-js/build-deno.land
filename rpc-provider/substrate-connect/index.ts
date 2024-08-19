@@ -1,5 +1,5 @@
 
-import type * as ScType from 'https://esm.sh/@substrate/connect@0.8.10';
+import type * as ScType from 'https://esm.sh/@substrate/connect@0.8.11';
 import type { JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, ProviderInterfaceEmitCb, ProviderInterfaceEmitted } from '../types.ts';
 
 import { EventEmitter } from 'https://esm.sh/eventemitter3@5.0.1';

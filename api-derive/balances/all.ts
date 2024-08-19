@@ -52,11 +52,28 @@ function calcLocked (api: DeriveApi, bestNumber: BlockNumber, locks: (PalletBala
 
 function calcShared (api: DeriveApi, bestNumber: BlockNumber, data: DeriveBalancesAccountData, locks: (PalletBalancesBalanceLock | BalanceLockTo212)[]): DeriveBalancesAllAccountData {
   const { allLocked, lockedBalance, lockedBreakdown, vestingLocked } = calcLocked(api, bestNumber, locks);
+  let transferable = null;
+
+  if (data.frameSystemAccountInfo?.frozen) {
+    const { frameSystemAccountInfo, freeBalance, reservedBalance } = data;
+    const noFrozenReserved = frameSystemAccountInfo.frozen.isZero() && reservedBalance.isZero();
+    const ED = api.consts.balances.existentialDeposit;
+    const maybeED = noFrozenReserved ? new BN(0) : ED;
+    const frozenReserveDif = frameSystemAccountInfo.frozen.sub(reservedBalance);
+
+    transferable = api.registry.createType(
+      'Balance',
+      allLocked
+        ? 0
+        : freeBalance.sub(bnMax(maybeED, frozenReserveDif))
+    );
+  }
 
   return objectSpread({}, data, {
     availableBalance: api.registry.createType('Balance', allLocked ? 0 : bnMax(new BN(0), data?.freeBalance ? data.freeBalance.sub(lockedBalance) : new BN(0))),
     lockedBalance,
     lockedBreakdown,
+    transferable,
     vestingLocked
   });
 }
