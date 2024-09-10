@@ -36,7 +36,7 @@ export interface SignerPayloadJSON {
   /**
    * @description The id of the asset used to pay fees, in hex
    */
-  assetId?: number | object;
+  assetId?: HexString;
 
   /**
    * @description The checkpoint hash of the block, in hex
@@ -218,7 +218,7 @@ export interface ExtrinsicPayloadValue {
   specVersion: AnyNumber;
   tip: AnyNumber;
   transactionVersion: AnyNumber;
-  assetId?: AnyNumber | object;
+  assetId?: HexString;
   mode?: AnyNumber;
   metadataHash?: AnyU8a;
 }
