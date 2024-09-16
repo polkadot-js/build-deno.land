@@ -1,5 +1,5 @@
 
-import { utils } from 'https://esm.sh/@scure/base@1.1.5';
+import { utils } from 'https://esm.sh/@scure/base@1.1.7';
 
 import { createDecode, createEncode, createIs, createValidate } from './helpers.ts';
 

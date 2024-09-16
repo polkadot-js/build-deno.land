@@ -1,5 +1,5 @@
 
-import { base64 } from 'https://esm.sh/@scure/base@1.1.5';
+import { base64 } from 'https://esm.sh/@scure/base@1.1.7';
 
 import { createDecode, createEncode, createIs, createValidate } from '../base32/helpers.ts';
 

@@ -1,5 +1,5 @@
 
-export const ledgerApps: Record<string, string> = {
+export const prevLedgerRecord: Record<string, string> = {
   acala: 'Acala',
   ajuna: 'Ajuna',
   'aleph-node': 'AlephZero',
@@ -40,4 +40,14 @@ export const ledgerApps: Record<string, string> = {
   vtb: 'VTB',
   xxnetwork: 'XXNetwork',
   zeitgeist: 'Zeitgeist'
+};
+
+export const genericLedgerApps = {
+  encointer: 'Encointer',
+  integritee: 'Integritee'
+};
+
+export const ledgerApps: Record<string, string> = {
+  ...prevLedgerRecord,
+  ...genericLedgerApps
 };
