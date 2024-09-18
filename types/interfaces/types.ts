@@ -24,6 +24,7 @@ export * from './cumulus/types.ts';
 export * from './democracy/types.ts';
 export * from './dev/types.ts';
 export * from './discovery/types.ts';
+export * from './dryRunApi/types.ts';
 export * from './elections/types.ts';
 export * from './engine/types.ts';
 export * from './eth/types.ts';

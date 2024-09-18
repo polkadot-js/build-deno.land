@@ -10,6 +10,7 @@ import type { BeefyAuthoritySet, BeefyEquivocationProof, BeefyNextAuthoritySet, 
 import type { CheckInherentsResult, InherentData } from 'https://deno.land/x/polkadot/types/interfaces/blockbuilder/index.ts';
 import type { BlockHash } from 'https://deno.land/x/polkadot/types/interfaces/chain/index.ts';
 import type { AuthorityId } from 'https://deno.land/x/polkadot/types/interfaces/consensus/index.ts';
+import type { CallDryRunEffects, XcmDryRunApiError, XcmDryRunEffects } from 'https://deno.land/x/polkadot/types/interfaces/dryRunApi/index.ts';
 import type { Extrinsic } from 'https://deno.land/x/polkadot/types/interfaces/extrinsics/index.ts';
 import type { GenesisBuildErr } from 'https://deno.land/x/polkadot/types/interfaces/genesisBuilder/index.ts';
 import type { AuthorityList, GrandpaEquivocationProof, SetId } from 'https://deno.land/x/polkadot/types/interfaces/grandpa/index.ts';
@@ -18,12 +19,13 @@ import type { MmrBatchProof, MmrEncodableOpaqueLeaf, MmrError } from 'https://de
 import type { NpPoolId } from 'https://deno.land/x/polkadot/types/interfaces/nompools/index.ts';
 import type { ApprovalVotingParams, AsyncBackingParams, BackingState, CandidateCommitments, CandidateEvent, CandidateHash, CommittedCandidateReceipt, CoreIndex, CoreState, DisputeProof, DisputeState, ExecutorParams, GroupRotationInfo, InboundDownwardMessage, InboundHrmpMessage, NodeFeatures, OccupiedCoreAssumption, ParaId, ParaValidatorIndex, PendingSlashes, PersistedValidationData, PvfCheckStatement, ScrapedOnChainVotes, SessionInfo, ValidationCode, ValidationCodeHash, ValidatorSignature } from 'https://deno.land/x/polkadot/types/interfaces/parachains/index.ts';
 import type { FeeDetails, RuntimeDispatchInfo } from 'https://deno.land/x/polkadot/types/interfaces/payment/index.ts';
-import type { AccountId, Balance, Block, BlockNumber, Call, ExtrinsicInclusionMode, Hash, Header, Index, KeyTypeId, Slot, ValidatorId, Weight, WeightV2 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { AccountId, Balance, Block, BlockNumber, Call, ExtrinsicInclusionMode, Hash, Header, Index, KeyTypeId, OriginCaller, RuntimeCall, Slot, ValidatorId, Weight, WeightV2 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 import type { SessionIndex } from 'https://deno.land/x/polkadot/types/interfaces/session/index.ts';
 import type { ValidatorIndex } from 'https://deno.land/x/polkadot/types/interfaces/staking/index.ts';
 import type { RuntimeVersion } from 'https://deno.land/x/polkadot/types/interfaces/state/index.ts';
 import type { ApplyExtrinsicResult } from 'https://deno.land/x/polkadot/types/interfaces/system/index.ts';
 import type { TransactionSource, TransactionValidity } from 'https://deno.land/x/polkadot/types/interfaces/txqueue/index.ts';
+import type { VersionedMultiLocation, VersionedXcm } from 'https://deno.land/x/polkadot/types/interfaces/xcm/index.ts';
 import type { XcmPaymentApiError } from 'https://deno.land/x/polkadot/types/interfaces/xcmPaymentApi/index.ts';
 import type { Error } from 'https://deno.land/x/polkadot/types/interfaces/xcmRuntimeApi/index.ts';
 import type { XcmVersionedAssetId, XcmVersionedLocation, XcmVersionedXcm } from 'https://deno.land/x/polkadot/types/lookup.ts';
@@ -162,6 +164,21 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
        * Returns the version of the runtime.
        **/
       version: AugmentedCall<ApiType, () => Observable<RuntimeVersion>>;
+      /**
+       * Generic call
+       **/
+      [key: string]: DecoratedCallBase<ApiType>;
+    };
+    /** 0x91b1c8b16328eb92/1 */
+    dryRunApi: {
+      /**
+       * Dry run call
+       **/
+      dryRunCall: AugmentedCall<ApiType, (origin: OriginCaller | { System: any } | string | Uint8Array, call: RuntimeCall | IMethod | string | Uint8Array) => Observable<Result<CallDryRunEffects, XcmDryRunApiError>>>;
+      /**
+       * Dry run XCM program
+       **/
+      dryRunXcm: AugmentedCall<ApiType, (originLocation: VersionedMultiLocation | { V0: any } | { V1: any } | { V2: any } | { V3: any } | { V4: any } | string | Uint8Array, xcm: VersionedXcm | { V0: any } | { V1: any } | { V2: any } | { V3: any } | { V4: any } | string | Uint8Array) => Observable<Result<XcmDryRunEffects, XcmDryRunApiError>>>;
       /**
        * Generic call
        **/

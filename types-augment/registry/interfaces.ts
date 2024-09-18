@@ -27,6 +27,7 @@ import type { FundIndex, FundInfo, LastContribution, TrieIndex } from 'https://d
 import type { CollationInfo, CollationInfoV1, ConfigData, MessageId, OverweightIndex, PageCounter, PageIndexData } from 'https://deno.land/x/polkadot/types/interfaces/cumulus/index.ts';
 import type { AccountVote, AccountVoteSplit, AccountVoteStandard, Conviction, Delegations, PreimageStatus, PreimageStatusAvailable, PriorLock, PropIndex, Proposal, ProxyState, ReferendumIndex, ReferendumInfo, ReferendumInfoFinished, ReferendumInfoTo239, ReferendumStatus, Tally, Voting, VotingDelegating, VotingDirect, VotingDirectVote } from 'https://deno.land/x/polkadot/types/interfaces/democracy/index.ts';
 import type { BlockStats } from 'https://deno.land/x/polkadot/types/interfaces/dev/index.ts';
+import type { CallDryRunEffects, DispatchResultWithPostInfo, PostDispatchInfo, XcmDryRunApiError, XcmDryRunEffects } from 'https://deno.land/x/polkadot/types/interfaces/dryRunApi/index.ts';
 import type { ApprovalFlag, DefunctVoter, Renouncing, SetIndex, Vote, VoteIndex, VoteThreshold, VoterInfo } from 'https://deno.land/x/polkadot/types/interfaces/elections/index.ts';
 import type { CreatedBlock, ImportedAux } from 'https://deno.land/x/polkadot/types/interfaces/engine/index.ts';
 import type { BlockV0, BlockV1, BlockV2, EIP1559Transaction, EIP2930Transaction, EthAccessList, EthAccessListItem, EthAccount, EthAddress, EthBlock, EthBloom, EthCallRequest, EthFeeHistory, EthFilter, EthFilterAddress, EthFilterChanges, EthFilterTopic, EthFilterTopicEntry, EthFilterTopicInner, EthHeader, EthLog, EthReceipt, EthReceiptV0, EthReceiptV3, EthRichBlock, EthRichHeader, EthStorageProof, EthSubKind, EthSubParams, EthSubResult, EthSyncInfo, EthSyncStatus, EthTransaction, EthTransactionAction, EthTransactionCondition, EthTransactionRequest, EthTransactionSignature, EthTransactionStatus, EthWork, EthereumAccountId, EthereumAddress, EthereumLookupSource, EthereumSignature, LegacyTransaction, TransactionV0, TransactionV1, TransactionV2 } from 'https://deno.land/x/polkadot/types/interfaces/eth/index.ts';
@@ -70,7 +71,7 @@ import type { TransactionSource, TransactionValidity, ValidTransaction } from 'h
 import type { ClassDetails, ClassId, ClassMetadata, DepositBalance, DepositBalanceOf, DestroyWitness, InstanceDetails, InstanceId, InstanceMetadata } from 'https://deno.land/x/polkadot/types/interfaces/uniques/index.ts';
 import type { Multisig, Timepoint } from 'https://deno.land/x/polkadot/types/interfaces/utility/index.ts';
 import type { VestingInfo } from 'https://deno.land/x/polkadot/types/interfaces/vesting/index.ts';
-import type { AssetInstance, AssetInstanceV0, AssetInstanceV1, AssetInstanceV2, BodyId, BodyPart, DoubleEncodedCall, Fungibility, FungibilityV0, FungibilityV1, FungibilityV2, InboundStatus, InstructionV2, InteriorMultiLocation, Junction, JunctionV0, JunctionV1, JunctionV2, Junctions, JunctionsV1, JunctionsV2, MultiAsset, MultiAssetFilter, MultiAssetFilterV1, MultiAssetFilterV2, MultiAssetV0, MultiAssetV1, MultiAssetV2, MultiAssets, MultiAssetsV1, MultiAssetsV2, MultiLocation, MultiLocationV0, MultiLocationV1, MultiLocationV2, NetworkId, OriginKindV0, OriginKindV1, OriginKindV2, OutboundStatus, Outcome, QueryId, QueryStatus, QueueConfigData, Response, ResponseV0, ResponseV1, ResponseV2, ResponseV2Error, ResponseV2Result, VersionMigrationStage, VersionedMultiAsset, VersionedMultiAssets, VersionedMultiLocation, VersionedResponse, VersionedXcm, WeightLimitV2, WildFungibility, WildFungibilityV0, WildFungibilityV1, WildFungibilityV2, WildMultiAsset, WildMultiAssetV1, WildMultiAssetV2, Xcm, XcmAssetId, XcmError, XcmErrorV0, XcmErrorV1, XcmErrorV2, XcmOrder, XcmOrderV0, XcmOrderV1, XcmOrderV2, XcmOrigin, XcmOriginKind, XcmV0, XcmV1, XcmV2, XcmVersion, XcmpMessageFormat } from 'https://deno.land/x/polkadot/types/interfaces/xcm/index.ts';
+import type { AssetIdV2, AssetIdV3, AssetIdV4, AssetInstance, AssetInstanceV0, AssetInstanceV1, AssetInstanceV2, AssetInstanceV3, AssetInstanceV4, BodyId, BodyIdV2, BodyIdV3, BodyPart, BodyPartV2, BodyPartV3, DoubleEncodedCall, Fungibility, FungibilityV0, FungibilityV1, FungibilityV2, FungibilityV3, FungibilityV4, InboundStatus, InstructionV2, InstructionV3, InstructionV4, InteriorMultiLocation, InteriorMultiLocationV2, InteriorMultiLocationV3, Junction, JunctionV0, JunctionV1, JunctionV2, JunctionV3, JunctionV4, Junctions, JunctionsV1, JunctionsV2, JunctionsV3, JunctionsV4, MaxPalletNameLen, MaxPalletsInfo, MaybeErrorCodeV3, MultiAsset, MultiAssetFilter, MultiAssetFilterV1, MultiAssetFilterV2, MultiAssetFilterV3, MultiAssetFilterV4, MultiAssetV0, MultiAssetV1, MultiAssetV2, MultiAssetV3, MultiAssetV4, MultiAssets, MultiAssetsV1, MultiAssetsV2, MultiAssetsV3, MultiAssetsV4, MultiLocation, MultiLocationV0, MultiLocationV1, MultiLocationV2, MultiLocationV3, MultiLocationV4, NetworkId, NetworkIdV2, NetworkIdV3, NetworkIdV4, OriginKindV0, OriginKindV1, OriginKindV2, OriginKindV3, OriginKindV4, OutboundStatus, Outcome, OutcomeV4, PalletInfoV3, PalletInfoV4, QueryId, QueryResponseInfoV3, QueryResponseInfoV4, QueryStatus, QueueConfigData, Response, ResponseV0, ResponseV1, ResponseV2, ResponseV2Error, ResponseV3, ResponseV3Error, ResponseV3Result, ResponseV4, UncheckedFungibilityV4, VersionMigrationStage, VersionV3, VersionV4, VersionedMultiAsset, VersionedMultiAssets, VersionedMultiLocation, VersionedResponse, VersionedXcm, WeightLimitV2, WeightLimitV3, WildFungibility, WildFungibilityV0, WildFungibilityV1, WildFungibilityV2, WildFungibilityV3, WildFungibilityV4, WildMultiAsset, WildMultiAssetV1, WildMultiAssetV2, WildMultiAssetV3, WildMultiAssetV4, Xcm, XcmAssetId, XcmError, XcmErrorV0, XcmErrorV1, XcmErrorV2, XcmErrorV3, XcmErrorV4, XcmOrderV0, XcmOrderV1, XcmOrigin, XcmOriginKind, XcmV0, XcmV1, XcmV2, XcmV3, XcmV4, XcmVersion, XcmpMessageFormat } from 'https://deno.land/x/polkadot/types/interfaces/xcm/index.ts';
 import type { XcmPaymentApiError } from 'https://deno.land/x/polkadot/types/interfaces/xcmPaymentApi/index.ts';
 import type { Error } from 'https://deno.land/x/polkadot/types/interfaces/xcmRuntimeApi/index.ts';
 
@@ -119,10 +120,15 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     AssetDestroyWitness: AssetDestroyWitness;
     AssetDetails: AssetDetails;
     AssetId: AssetId;
+    AssetIdV2: AssetIdV2;
+    AssetIdV3: AssetIdV3;
+    AssetIdV4: AssetIdV4;
     AssetInstance: AssetInstance;
     AssetInstanceV0: AssetInstanceV0;
     AssetInstanceV1: AssetInstanceV1;
     AssetInstanceV2: AssetInstanceV2;
+    AssetInstanceV3: AssetInstanceV3;
+    AssetInstanceV4: AssetInstanceV4;
     AssetMetadata: AssetMetadata;
     AssetOptions: AssetOptions;
     AssignmentId: AssignmentId;
@@ -195,7 +201,11 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     BlockV2: BlockV2;
     BlockWeights: BlockWeights;
     BodyId: BodyId;
+    BodyIdV2: BodyIdV2;
+    BodyIdV3: BodyIdV3;
     BodyPart: BodyPart;
+    BodyPartV2: BodyPartV2;
+    BodyPartV3: BodyPartV3;
     bool: bool;
     Bool: Bool;
     Bounty: Bounty;
@@ -211,6 +221,7 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     BufferedSessionChange: BufferedSessionChange;
     Bytes: Bytes;
     Call: Call;
+    CallDryRunEffects: CallDryRunEffects;
     CallHash: CallHash;
     CallHashOf: CallHashOf;
     CallIndex: CallIndex;
@@ -370,6 +381,7 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     DispatchResult: DispatchResult;
     DispatchResultOf: DispatchResultOf;
     DispatchResultTo198: DispatchResultTo198;
+    DispatchResultWithPostInfo: DispatchResultWithPostInfo;
     DisputeLocation: DisputeLocation;
     DisputeProof: DisputeProof;
     DisputeResult: DisputeResult;
@@ -530,6 +542,8 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     FungibilityV0: FungibilityV0;
     FungibilityV1: FungibilityV1;
     FungibilityV2: FungibilityV2;
+    FungibilityV3: FungibilityV3;
+    FungibilityV4: FungibilityV4;
     FungiblesAccessError: FungiblesAccessError;
     Gas: Gas;
     GenesisBuildErr: GenesisBuildErr;
@@ -616,8 +630,12 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     InstantiateReturnValueOk: InstantiateReturnValueOk;
     InstantiateReturnValueTo267: InstantiateReturnValueTo267;
     InstructionV2: InstructionV2;
+    InstructionV3: InstructionV3;
+    InstructionV4: InstructionV4;
     InstructionWeights: InstructionWeights;
     InteriorMultiLocation: InteriorMultiLocation;
+    InteriorMultiLocationV2: InteriorMultiLocationV2;
+    InteriorMultiLocationV3: InteriorMultiLocationV3;
     InvalidDisputeStatementKind: InvalidDisputeStatementKind;
     InvalidTransaction: InvalidTransaction;
     isize: isize;
@@ -627,9 +645,13 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     Junctions: Junctions;
     JunctionsV1: JunctionsV1;
     JunctionsV2: JunctionsV2;
+    JunctionsV3: JunctionsV3;
+    JunctionsV4: JunctionsV4;
     JunctionV0: JunctionV0;
     JunctionV1: JunctionV1;
     JunctionV2: JunctionV2;
+    JunctionV3: JunctionV3;
+    JunctionV4: JunctionV4;
     Justification: Justification;
     JustificationNotification: JustificationNotification;
     Justifications: Justifications;
@@ -654,6 +676,9 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     LookupSource: LookupSource;
     LookupTarget: LookupTarget;
     LotteryConfig: LotteryConfig;
+    MaxPalletNameLen: MaxPalletNameLen;
+    MaxPalletsInfo: MaxPalletsInfo;
+    MaybeErrorCodeV3: MaybeErrorCodeV3;
     MaybeRandomness: MaybeRandomness;
     MaybeVrf: MaybeVrf;
     MemberCount: MemberCount;
@@ -710,22 +735,33 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     MultiAssetFilter: MultiAssetFilter;
     MultiAssetFilterV1: MultiAssetFilterV1;
     MultiAssetFilterV2: MultiAssetFilterV2;
+    MultiAssetFilterV3: MultiAssetFilterV3;
+    MultiAssetFilterV4: MultiAssetFilterV4;
     MultiAssets: MultiAssets;
     MultiAssetsV1: MultiAssetsV1;
     MultiAssetsV2: MultiAssetsV2;
+    MultiAssetsV3: MultiAssetsV3;
+    MultiAssetsV4: MultiAssetsV4;
     MultiAssetV0: MultiAssetV0;
     MultiAssetV1: MultiAssetV1;
     MultiAssetV2: MultiAssetV2;
+    MultiAssetV3: MultiAssetV3;
+    MultiAssetV4: MultiAssetV4;
     MultiDisputeStatementSet: MultiDisputeStatementSet;
     MultiLocation: MultiLocation;
     MultiLocationV0: MultiLocationV0;
     MultiLocationV1: MultiLocationV1;
     MultiLocationV2: MultiLocationV2;
+    MultiLocationV3: MultiLocationV3;
+    MultiLocationV4: MultiLocationV4;
     Multiplier: Multiplier;
     Multisig: Multisig;
     MultiSignature: MultiSignature;
     MultiSigner: MultiSigner;
     NetworkId: NetworkId;
+    NetworkIdV2: NetworkIdV2;
+    NetworkIdV3: NetworkIdV3;
+    NetworkIdV4: NetworkIdV4;
     NetworkState: NetworkState;
     NetworkStatePeerset: NetworkStatePeerset;
     NetworkStatePeersetInfo: NetworkStatePeersetInfo;
@@ -769,6 +805,8 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     OriginKindV0: OriginKindV0;
     OriginKindV1: OriginKindV1;
     OriginKindV2: OriginKindV2;
+    OriginKindV3: OriginKindV3;
+    OriginKindV4: OriginKindV4;
     OutboundHrmpChannelLimitations: OutboundHrmpChannelLimitations;
     OutboundHrmpMessage: OutboundHrmpMessage;
     OutboundLaneData: OutboundLaneData;
@@ -776,6 +814,7 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     OutboundPayload: OutboundPayload;
     OutboundStatus: OutboundStatus;
     Outcome: Outcome;
+    OutcomeV4: OutcomeV4;
     OuterEnums15: OuterEnums15;
     OverweightIndex: OverweightIndex;
     Owner: Owner;
@@ -790,6 +829,8 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     PalletEventMetadataLatest: PalletEventMetadataLatest;
     PalletEventMetadataV14: PalletEventMetadataV14;
     PalletId: PalletId;
+    PalletInfoV3: PalletInfoV3;
+    PalletInfoV4: PalletInfoV4;
     PalletMetadataLatest: PalletMetadataLatest;
     PalletMetadataV14: PalletMetadataV14;
     PalletMetadataV15: PalletMetadataV15;
@@ -842,6 +883,7 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     Points: Points;
     PortableType: PortableType;
     PortableTypeV14: PortableTypeV14;
+    PostDispatchInfo: PostDispatchInfo;
     Precommits: Precommits;
     PrefabWasmModule: PrefabWasmModule;
     PrefixedStorageKey: PrefixedStorageKey;
@@ -862,6 +904,8 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     PvfExecTimeoutKind: PvfExecTimeoutKind;
     PvfPrepTimeoutKind: PvfPrepTimeoutKind;
     QueryId: QueryId;
+    QueryResponseInfoV3: QueryResponseInfoV3;
+    QueryResponseInfoV4: QueryResponseInfoV4;
     QueryStatus: QueryStatus;
     QueueConfigData: QueueConfigData;
     QueuedParathread: QueuedParathread;
@@ -919,7 +963,10 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     ResponseV1: ResponseV1;
     ResponseV2: ResponseV2;
     ResponseV2Error: ResponseV2Error;
-    ResponseV2Result: ResponseV2Result;
+    ResponseV3: ResponseV3;
+    ResponseV3Error: ResponseV3Error;
+    ResponseV3Result: ResponseV3Result;
+    ResponseV4: ResponseV4;
     Retriable: Retriable;
     RewardDestination: RewardDestination;
     RewardPoint: RewardPoint;
@@ -1156,6 +1203,7 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     U8: U8;
     UnappliedSlash: UnappliedSlash;
     UnappliedSlashOther: UnappliedSlashOther;
+    UncheckedFungibilityV4: UncheckedFungibilityV4;
     UncleEntryItem: UncleEntryItem;
     UnknownTransaction: UnknownTransaction;
     UnlockChunk: UnlockChunk;
@@ -1194,6 +1242,8 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     VersionedResponse: VersionedResponse;
     VersionedXcm: VersionedXcm;
     VersionMigrationStage: VersionMigrationStage;
+    VersionV3: VersionV3;
+    VersionV4: VersionV4;
     VestingInfo: VestingInfo;
     VestingSchedule: VestingSchedule;
     Vote: Vote;
@@ -1214,6 +1264,7 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     VrfProof: VrfProof;
     Weight: Weight;
     WeightLimitV2: WeightLimitV2;
+    WeightLimitV3: WeightLimitV3;
     WeightMultiplier: WeightMultiplier;
     WeightPerClass: WeightPerClass;
     WeightToFeeCoefficient: WeightToFeeCoefficient;
@@ -1224,9 +1275,13 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     WildFungibilityV0: WildFungibilityV0;
     WildFungibilityV1: WildFungibilityV1;
     WildFungibilityV2: WildFungibilityV2;
+    WildFungibilityV3: WildFungibilityV3;
+    WildFungibilityV4: WildFungibilityV4;
     WildMultiAsset: WildMultiAsset;
     WildMultiAssetV1: WildMultiAssetV1;
     WildMultiAssetV2: WildMultiAssetV2;
+    WildMultiAssetV3: WildMultiAssetV3;
+    WildMultiAssetV4: WildMultiAssetV4;
     WinnersData: WinnersData;
     WinnersData10: WinnersData10;
     WinnersDataTuple: WinnersDataTuple;
@@ -1237,14 +1292,16 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     WithdrawReasons: WithdrawReasons;
     Xcm: Xcm;
     XcmAssetId: XcmAssetId;
+    XcmDryRunApiError: XcmDryRunApiError;
+    XcmDryRunEffects: XcmDryRunEffects;
     XcmError: XcmError;
     XcmErrorV0: XcmErrorV0;
     XcmErrorV1: XcmErrorV1;
     XcmErrorV2: XcmErrorV2;
-    XcmOrder: XcmOrder;
+    XcmErrorV3: XcmErrorV3;
+    XcmErrorV4: XcmErrorV4;
     XcmOrderV0: XcmOrderV0;
     XcmOrderV1: XcmOrderV1;
-    XcmOrderV2: XcmOrderV2;
     XcmOrigin: XcmOrigin;
     XcmOriginKind: XcmOriginKind;
     XcmPaymentApiError: XcmPaymentApiError;
@@ -1252,6 +1309,8 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     XcmV0: XcmV0;
     XcmV1: XcmV1;
     XcmV2: XcmV2;
+    XcmV3: XcmV3;
+    XcmV4: XcmV4;
     XcmVersion: XcmVersion;
   } // InterfaceTypes
 } // declare module

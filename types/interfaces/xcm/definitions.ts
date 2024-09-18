@@ -8,8 +8,10 @@ import { mapXcmTypes } from 'https://deno.land/x/polkadot/types-create/mod.ts';
 import { v0 } from './v0.ts';
 import { v1 } from './v1.ts';
 import { v2 } from './v2.ts';
+import { v3 } from './v3.ts';
+import { v4 } from './v4.ts';
 
-const XCM_LATEST = 'V2';
+const XCM_LATEST = 'V4';
 
 const xcm = {
   XcmOrigin: {
@@ -84,9 +86,11 @@ export default {
     ...v0,
     ...v1,
     ...v2,
+    ...v3,
+    ...v4,
     ...mapXcmTypes(XCM_LATEST),
     DoubleEncodedCall: {
-      encoded: 'Vec<u8>'
+      encoded: 'Bytes'
     },
     XcmOriginKind: {
       _enum: ['Native', 'SovereignAccount', 'Superuser', 'Xcm']
@@ -131,33 +135,43 @@ export default {
       _enum: {
         V0: 'MultiAssetV0',
         V1: 'MultiAssetV1',
-        V2: 'MultiAssetV2'
+        V2: 'MultiAssetV2',
+        V3: 'MultiAssetV3',
+        V4: 'MultiAssetV4'
       }
     },
     VersionedMultiAssets: {
       _enum: {
         V0: 'Vec<MultiAssetV0>',
         V1: 'MultiAssetsV1',
-        V2: 'MultiAssetsV2'
+        V2: 'MultiAssetsV2',
+        V3: 'MultiAssetsV3',
+        V4: 'MultiAssetsV4'
       }
     },
     VersionedMultiLocation: {
       _enum: {
         V0: 'MultiLocationV0',
         V1: 'MultiLocationV1',
-        V2: 'MultiLocationV2'
+        V2: 'MultiLocationV2',
+        V3: 'MultiLocationV3',
+        V4: 'MultiLocationV4'
       }
     },
     VersionedResponse: {
       V0: 'ResponseV0',
       V1: 'ResponseV1',
-      V2: 'ResponseV2'
+      V2: 'ResponseV2',
+      V3: 'ResponseV3',
+      V4: 'ResponseV4'
     },
     VersionedXcm: {
       _enum: {
         V0: 'XcmV0',
         V1: 'XcmV1',
-        V2: 'XcmV2'
+        V2: 'XcmV2',
+        V3: 'XcmV3',
+        V4: 'XcmV4'
       }
     },
     XcmVersion: 'u32'
