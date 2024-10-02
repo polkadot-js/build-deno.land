@@ -1,0 +1,114 @@
+
+import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
+import type { ExtrinsicSignatureV5 } from '../../interfaces/extrinsics/index.ts';
+import type { Address, Call } from '../../interfaces/runtime/index.ts';
+import type { ExtrinsicPayloadValue, IExtrinsicV5Impl, IKeyringPair, Registry, SignatureOptions } from '../../types/index.ts';
+import type { ExtrinsicOptions, Preamble } from '../types.ts';
+
+import { Struct } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import { isU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
+
+export const EXTRINSIC_VERSION = 5;
+
+export interface ExtrinsicValueV5 {
+  method?: Call;
+  signature?: ExtrinsicSignatureV5;
+}
+
+/**
+ * @name GenericExtrinsicV5
+ * @description
+ * The fourth generation of compact extrinsics
+ */
+export class GenericExtrinsicV5 extends Struct implements IExtrinsicV5Impl {
+  constructor (registry: Registry, value?: Uint8Array | ExtrinsicValueV5 | Call, { isSigned }: Partial<ExtrinsicOptions> = {}) {
+    super(registry, {
+      signature: 'ExtrinsicSignatureV5',
+      // eslint-disable-next-line sort-keys
+      method: 'Call'
+    }, GenericExtrinsicV5.decodeExtrinsic(registry, value, isSigned));
+  }
+
+  /** @internal */
+  public static decodeExtrinsic (registry: Registry, value?: Call | Uint8Array | ExtrinsicValueV5, isSigned = false): ExtrinsicValueV5 {
+    if (value instanceof GenericExtrinsicV5) {
+      return value;
+    } else if (value instanceof registry.createClassUnsafe<Call>('Call')) {
+      return { method: value };
+    } else if (isU8a(value)) {
+      // here we decode manually since we need to pull through the version information
+      const signature = registry.createTypeUnsafe<ExtrinsicSignatureV5>('ExtrinsicSignatureV5', [value, { isSigned }]);
+      // We add 2 here since the length of the TransactionExtension Version needs to be accounted for
+      const method = registry.createTypeUnsafe<Call>('Call', [value.subarray(signature.encodedLength)]);
+
+      return {
+        method,
+        signature
+      };
+    }
+
+    return value || {};
+  }
+
+  /**
+   * @description The length of the value when encoded as a Uint8Array
+   */
+  public override get encodedLength (): number {
+    return this.toU8a().length;
+  }
+
+  /**
+   * @description The [[Call]] this extrinsic wraps
+   */
+  public get method (): Call {
+    return this.getT('method');
+  }
+
+  /**
+   * @description The [[ExtrinsicSignatureV5]]
+   */
+  public get signature (): ExtrinsicSignatureV5 {
+    return this.getT('signature');
+  }
+
+  /**
+   * @description The version for the signature
+   */
+  public get version (): number {
+    return EXTRINSIC_VERSION;
+  }
+
+  /**
+   * @description The [[Preamble]] for the extrinsic
+   */
+  public get preamble (): Preamble {
+    return this.getT('preamble');
+  }
+
+  /**
+   * @description Add an [[ExtrinsicSignatureV5]] to the extrinsic (already generated)
+   */
+  public addSignature (signer: Address | Uint8Array | string, signature: Uint8Array | HexString, payload: ExtrinsicPayloadValue | Uint8Array | HexString): GenericExtrinsicV5 {
+    this.signature.addSignature(signer, signature, payload);
+
+    return this;
+  }
+
+  /**
+   * @description Sign the extrinsic with a specific keypair
+   */
+  public sign (account: IKeyringPair, options: SignatureOptions): GenericExtrinsicV5 {
+    this.signature.sign(this.method, account, options);
+
+    return this;
+  }
+
+  /**
+   * @describe Adds a fake signature to the extrinsic
+   */
+  public signFake (signer: Address | Uint8Array | string, options: SignatureOptions): GenericExtrinsicV5 {
+    this.signature.signFake(this.method, signer, options);
+
+    return this;
+  }
+}

@@ -7,3 +7,4 @@ export { GenericExtrinsicUnknown } from './ExtrinsicUnknown.ts';
 export { GenericSignerPayload } from './SignerPayload.ts';
 
 export * from './v4/index.ts';
+export * from './v5/index.ts';

@@ -32,7 +32,7 @@ import type { ApprovalFlag, DefunctVoter, Renouncing, SetIndex, Vote, VoteIndex,
 import type { CreatedBlock, ImportedAux } from 'https://deno.land/x/polkadot/types/interfaces/engine/index.ts';
 import type { BlockV0, BlockV1, BlockV2, EIP1559Transaction, EIP2930Transaction, EthAccessList, EthAccessListItem, EthAccount, EthAddress, EthBlock, EthBloom, EthCallRequest, EthFeeHistory, EthFilter, EthFilterAddress, EthFilterChanges, EthFilterTopic, EthFilterTopicEntry, EthFilterTopicInner, EthHeader, EthLog, EthReceipt, EthReceiptV0, EthReceiptV3, EthRichBlock, EthRichHeader, EthStorageProof, EthSubKind, EthSubParams, EthSubResult, EthSyncInfo, EthSyncStatus, EthTransaction, EthTransactionAction, EthTransactionCondition, EthTransactionRequest, EthTransactionSignature, EthTransactionStatus, EthWork, EthereumAccountId, EthereumAddress, EthereumLookupSource, EthereumSignature, LegacyTransaction, TransactionV0, TransactionV1, TransactionV2 } from 'https://deno.land/x/polkadot/types/interfaces/eth/index.ts';
 import type { EvmAccount, EvmCallInfo, EvmCallInfoV2, EvmCreateInfo, EvmCreateInfoV2, EvmLog, EvmVicinity, EvmWeightInfo, ExitError, ExitFatal, ExitReason, ExitRevert, ExitSucceed } from 'https://deno.land/x/polkadot/types/interfaces/evm/index.ts';
-import type { AnySignature, EcdsaSignature, Ed25519Signature, Era, Extrinsic, ExtrinsicEra, ExtrinsicPayload, ExtrinsicPayloadUnknown, ExtrinsicPayloadV4, ExtrinsicSignature, ExtrinsicSignatureV4, ExtrinsicUnknown, ExtrinsicV4, ImmortalEra, MortalEra, MultiSignature, Signature, SignerPayload, Sr25519Signature } from 'https://deno.land/x/polkadot/types/interfaces/extrinsics/index.ts';
+import type { AnySignature, EcdsaSignature, Ed25519Signature, Era, Extrinsic, ExtrinsicEra, ExtrinsicPayload, ExtrinsicPayloadUnknown, ExtrinsicPayloadV4, ExtrinsicPayloadV5, ExtrinsicSignature, ExtrinsicSignatureV4, ExtrinsicSignatureV5, ExtrinsicUnknown, ExtrinsicV4, ExtrinsicV5, ImmortalEra, MortalEra, MultiSignature, Signature, SignerPayload, Sr25519Signature } from 'https://deno.land/x/polkadot/types/interfaces/extrinsics/index.ts';
 import type { FungiblesAccessError } from 'https://deno.land/x/polkadot/types/interfaces/fungibles/index.ts';
 import type { AssetOptions, Owner, PermissionLatest, PermissionVersions, PermissionsV1 } from 'https://deno.land/x/polkadot/types/interfaces/genericAsset/index.ts';
 import type { GenesisBuildErr } from 'https://deno.land/x/polkadot/types/interfaces/genesisBuilder/index.ts';
@@ -501,12 +501,15 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     ExtrinsicPayload: ExtrinsicPayload;
     ExtrinsicPayloadUnknown: ExtrinsicPayloadUnknown;
     ExtrinsicPayloadV4: ExtrinsicPayloadV4;
+    ExtrinsicPayloadV5: ExtrinsicPayloadV5;
     ExtrinsicSignature: ExtrinsicSignature;
     ExtrinsicSignatureV4: ExtrinsicSignatureV4;
+    ExtrinsicSignatureV5: ExtrinsicSignatureV5;
     ExtrinsicStatus: ExtrinsicStatus;
     ExtrinsicsWeight: ExtrinsicsWeight;
     ExtrinsicUnknown: ExtrinsicUnknown;
     ExtrinsicV4: ExtrinsicV4;
+    ExtrinsicV5: ExtrinsicV5;
     f32: f32;
     F32: F32;
     f64: f64;
