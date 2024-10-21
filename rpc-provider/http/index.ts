@@ -6,7 +6,7 @@ import { fetch } from 'https://deno.land/x/polkadot/x-fetch/mod.ts';
 
 import { RpcCoder } from '../coder/index.ts';
 import defaults from '../defaults.ts';
-import { LRUCache } from '../lru.ts';
+import { DEFAULT_CAPACITY, LRUCache } from '../lru.ts';
 
 const ERROR_SUBSCRIBE = 'HTTP Provider does not have subscriptions, use WebSockets instead';
 
@@ -33,7 +33,8 @@ const l = logger('api-http');
  * @see [[WsProvider]]
  */
 export class HttpProvider implements ProviderInterface {
-  readonly #callCache = new LRUCache();
+  readonly #callCache: LRUCache;
+  readonly #cacheCapacity: number;
   readonly #coder: RpcCoder;
   readonly #endpoint: string;
   readonly #headers: Record<string, string>;
@@ -42,7 +43,7 @@ export class HttpProvider implements ProviderInterface {
   /**
    * @param {string} endpoint The endpoint url starting with http://
    */
-  constructor (endpoint: string = defaults.HTTP_URL, headers: Record<string, string> = {}) {
+  constructor (endpoint: string = defaults.HTTP_URL, headers: Record<string, string> = {}, cacheCapacity?: number) {
     if (!/^(https|http):\/\//.test(endpoint)) {
       throw new Error(`Endpoint should start with 'http://' or 'https://', received '${endpoint}'`);
     }
@@ -50,6 +51,9 @@ export class HttpProvider implements ProviderInterface {
     this.#coder = new RpcCoder();
     this.#endpoint = endpoint;
     this.#headers = headers;
+    this.#callCache = new LRUCache(cacheCapacity === 0 ? 0 : cacheCapacity || DEFAULT_CAPACITY);
+    this.#cacheCapacity = cacheCapacity === 0 ? 0 : cacheCapacity || DEFAULT_CAPACITY;
+
     this.#stats = {
       active: { requests: 0, subscriptions: 0 },
       total: { bytesRecv: 0, bytesSent: 0, cached: 0, errors: 0, requests: 0, subscriptions: 0, timeout: 0 }
@@ -123,6 +127,11 @@ export class HttpProvider implements ProviderInterface {
     this.#stats.total.requests++;
 
     const [, body] = this.#coder.encodeJson(method, params);
+
+    if (this.#cacheCapacity === 0) {
+      return this.#send(body);
+    }
+
     const cacheKey = isCacheable ? `${method}::${stringify(params)}` : '';
     let resultPromise: Promise<T> | null = isCacheable
       ? this.#callCache.get(cacheKey)

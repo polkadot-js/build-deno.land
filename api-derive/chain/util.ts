@@ -3,7 +3,7 @@ import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
 import type { QueryableStorage } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 import type { Compact, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
 import type { AccountId, BlockNumber, Header } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
-import type { SpCoreSr25519Public } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { PalletImOnlineSr25519AppSr25519Public } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { Codec, IOption } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { DeriveApi } from '../types.ts';
 
@@ -14,7 +14,7 @@ import { memo, unwrapBlockNumber } from '../util/index.ts';
 export type BlockNumberDerive = (instanceId: string, api: DeriveApi) => () => Observable<BlockNumber>;
 
 type OptionMapping = IOption<{ account: AccountId } & Codec>;
-type OptionNimbus = IOption<{ nimbus: SpCoreSr25519Public } & Codec>;
+type OptionNimbus = IOption<{ nimbus: PalletImOnlineSr25519AppSr25519Public } & Codec>;
 
 export function createBlockNumberDerive <T extends { number: Compact<BlockNumber> | BlockNumber }> (fn: (api: DeriveApi) => Observable<T>): BlockNumberDerive {
   return (instanceId: string, api: DeriveApi) =>

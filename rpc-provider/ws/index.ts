@@ -90,6 +90,7 @@ export class WsProvider implements ProviderInterface {
   readonly #isReadyPromise: Promise<WsProvider>;
   readonly #stats: ProviderStats;
   readonly #waitingForId: Record<string, JsonRpcResponse<unknown>> = {};
+  readonly #cacheCapacity: number;
 
   #autoConnectMs: number;
   #endpointIndex: number;
@@ -121,6 +122,7 @@ export class WsProvider implements ProviderInterface {
       }
     });
     this.#callCache = new LRUCache(cacheCapacity || DEFAULT_CAPACITY);
+    this.#cacheCapacity = cacheCapacity || DEFAULT_CAPACITY;
     this.#eventemitter = new EventEmitter();
     this.#autoConnectMs = autoConnectMs || 0;
     this.#coder = new RpcCoder();
@@ -310,6 +312,11 @@ export class WsProvider implements ProviderInterface {
     this.#stats.total.requests++;
 
     const [id, body] = this.#coder.encodeJson(method, params);
+
+    if (this.#cacheCapacity === 0) {
+      return this.#send(id, body, method, params, subscription);
+    }
+
     const cacheKey = isCacheable ? `${method}::${stringify(params)}` : '';
     let resultPromise: Promise<T> | null = isCacheable
       ? this.#callCache.get(cacheKey)

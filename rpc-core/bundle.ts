@@ -9,6 +9,7 @@ import type { RpcCoreStats, RpcInterfaceMethod } from './types/index.ts';
 
 import { Observable, publishReplay, refCount } from 'https://esm.sh/rxjs@7.8.1';
 
+import { DEFAULT_CAPACITY, LRUCache } from 'https://deno.land/x/polkadot/rpc-provider/mod.ts';
 import { rpcDefinitions } from 'https://deno.land/x/polkadot/types/mod.ts';
 import { hexToU8a, isFunction, isNull, isUndefined, lazyMethod, logger, memoize, objectSpread, u8aConcat, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
@@ -90,9 +91,8 @@ export class RpcCore {
   readonly #instanceId: string;
   readonly #isPedantic: boolean;
   readonly #registryDefault: Registry;
-  readonly #storageCache = new Map<string, Codec>();
+  readonly #storageCache: LRUCache;
   #storageCacheHits = 0;
-  #storageCacheSize = 0;
 
   #getBlockRegistry?: (blockHash: Uint8Array) => Promise<{ registry: Registry }>;
   #getBlockHash?: (blockNumber: AnyNumber) => Promise<Uint8Array>;
@@ -120,7 +120,7 @@ export class RpcCore {
 
     // these are the base keys (i.e. part of jsonrpc)
     this.sections.push(...sectionNames);
-
+    this.#storageCache = new LRUCache(DEFAULT_CAPACITY);
     // decorate all interfaces, defined and user on this instance
     this.addUserInterfaces(userRpc);
   }
@@ -142,7 +142,9 @@ export class RpcCore {
   /**
    * @description Manually disconnect from the attached provider
    */
-  public disconnect (): Promise<void> {
+  public async disconnect (): Promise<void> {
+    await this.#storageCache.clearInterval();
+
     return this.provider.disconnect();
   }
 
@@ -157,7 +159,7 @@ export class RpcCore {
         ...stats,
         core: {
           cacheHits: this.#storageCacheHits,
-          cacheSize: this.#storageCacheSize
+          cacheSize: this.#storageCache.length
         }
       }
       : undefined;
@@ -466,7 +468,7 @@ export class RpcCore {
     //   - if a single result value, don't fill - it is not an update hole
     //   - fallback to an empty option in all cases
     if (isNotFound && withCache) {
-      const cached = this.#storageCache.get(hexKey);
+      const cached = this.#storageCache.get(hexKey) as Codec | undefined;
 
       if (cached) {
         this.#storageCacheHits++;
@@ -484,13 +486,13 @@ export class RpcCore {
       : u8aToU8a(value);
     const codec = this._newType(registry, blockHash, key, input, isEmpty, entryIndex);
 
-    // store the retrieved result - the only issue with this cache is that there is no
-    // clearing of it, so very long running processes (not just a couple of hours, longer)
-    // will increase memory beyond what is allowed.
-    this.#storageCache.set(hexKey, codec);
-    this.#storageCacheSize++;
+    this._setToCache(hexKey, codec);
 
     return codec;
+  }
+
+  private _setToCache (key: string, value: Codec): void {
+    this.#storageCache.set(key, value);
   }
 
   private _newType (registry: Registry, blockHash: Uint8Array | string | null | undefined, key: StorageKey, input: string | Uint8Array | null, isEmpty: boolean, entryIndex = -1): Codec {
