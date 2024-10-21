@@ -2,6 +2,7 @@
 
 ## master
 
+- wasm-{bridge, crypto, crypto-{asmjs, init, wasm}, util} 7.4.1
 - phishing 0.23.7
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 14.0.1
 - phishing 0.23.6
