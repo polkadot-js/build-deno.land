@@ -2,7 +2,7 @@
 import type { TransportDef, TransportType } from 'https://deno.land/x/polkadot/hw-ledger-transports/types.ts';
 import type { AccountOptionsGeneric, LedgerAddress, LedgerSignature, LedgerVersion } from './types.ts';
 
-import { PolkadotGenericApp } from 'https://esm.sh/@zondax/ledger-substrate@0.44.7';
+import { PolkadotGenericApp } from 'https://esm.sh/@zondax/ledger-substrate@1.0.0';
 
 import { transports } from 'https://deno.land/x/polkadot/hw-ledger-transports/mod.ts';
 import { hexAddPrefix, u8aToBuffer, u8aWrapBytes } from 'https://deno.land/x/polkadot/util/mod.ts';

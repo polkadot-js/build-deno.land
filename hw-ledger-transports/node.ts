@@ -1,5 +1,5 @@
 
-import LedgerHid from 'https://esm.sh/@ledgerhq/hw-transport-node-hid-singleton@6.31.3';
+import LedgerHid from 'https://esm.sh/@ledgerhq/hw-transport-node-hid-singleton@6.31.5';
 
 import { createDefs } from './util.ts';
 

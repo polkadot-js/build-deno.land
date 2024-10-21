@@ -43,6 +43,7 @@ export const prevLedgerRecord: Record<string, string> = {
 };
 
 export const genericLedgerApps = {
+  bittensor: 'Bittensor',
   encointer: 'Encointer',
   integritee: 'Integritee'
 };

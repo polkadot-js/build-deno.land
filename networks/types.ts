@@ -1,5 +1,5 @@
 
-import type { RegistryEntry } from 'https://esm.sh/@substrate/ss58-registry@1.50.0';
+import type { RegistryEntry } from 'https://esm.sh/@substrate/ss58-registry@1.51.0';
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
 
 export type Icon = 'beachball' | 'empty' | 'jdenticon' | 'polkadot' | 'substrate';
