@@ -2,6 +2,7 @@
 
 ## master
 
+- phishing 0.24.1
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 14.1.1
 - hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 13.2.1
 - wasm-{bridge, crypto, crypto-{asmjs, init, wasm}, util} 7.4.1
