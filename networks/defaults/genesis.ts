@@ -55,6 +55,9 @@ export const knownGenesis: KnownGenesis = {
   equilibrium: [
     '0x6f1a800de3daff7f5e037ddf66ab22ce03ab91874debeddb1086f5f7dbd48925'
   ],
+  frequency: [
+    '0x4a587bf17a404e3572747add7aab7bbe56e805a5479c6c436f07f36fcc8d3ae1'
+  ],
   genshiro: [
     '0x9b8cefc0eb5c568b527998bdd76c184e2b76ae561be76e4667072230217ea243'
   ],
@@ -113,6 +116,9 @@ export const knownGenesis: KnownGenesis = {
   picasso: [
     '0x6811a339673c9daa897944dcdac99c6e2939cc88245ed21951a0a3c9a2be75bc',
     '0xe8e7f0f4c4f5a00720b4821dbfddefea7490bcf0b19009961cc46957984e2c1c'
+  ],
+  polimec: [
+    '0x7eb9354488318e7549c722669dcbdcdc526f1fef1420e7944667212f3601fdbd'
   ],
   polkadex: [
     '0x3920bcb4960a1eef5580cd5367ff3f430eef052774f78468852f7b9cb39f8a3c'
