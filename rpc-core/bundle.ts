@@ -143,8 +143,6 @@ export class RpcCore {
    * @description Manually disconnect from the attached provider
    */
   public async disconnect (): Promise<void> {
-    await this.#storageCache.clearInterval();
-
     return this.provider.disconnect();
   }
 
