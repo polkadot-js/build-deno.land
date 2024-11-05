@@ -1,6 +1,6 @@
 
 
-export const DEFAULT_CAPACITY = 64;
+export const DEFAULT_CAPACITY = 1024;
 
 class LRUNode {
   readonly key: string;
