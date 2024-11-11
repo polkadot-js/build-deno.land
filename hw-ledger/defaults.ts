@@ -47,7 +47,8 @@ export const genericLedgerApps = {
   encointer: 'Encointer',
   frequency: 'Frequency',
   integritee: 'Integritee',
-  polimec: 'Polimec'
+  polimec: 'Polimec',
+  vara: 'Vara'
 };
 
 export const ledgerApps: Record<string, string> = {
