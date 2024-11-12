@@ -9,7 +9,7 @@ import type { RpcCoreStats, RpcInterfaceMethod } from './types/index.ts';
 
 import { Observable, publishReplay, refCount } from 'https://esm.sh/rxjs@7.8.1';
 
-import { DEFAULT_CAPACITY, LRUCache } from 'https://deno.land/x/polkadot/rpc-provider/mod.ts';
+import { LRUCache } from 'https://deno.land/x/polkadot/rpc-provider/mod.ts';
 import { rpcDefinitions } from 'https://deno.land/x/polkadot/types/mod.ts';
 import { hexToU8a, isFunction, isNull, isUndefined, lazyMethod, logger, memoize, objectSpread, u8aConcat, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
@@ -31,6 +31,7 @@ type MemoizedRpcInterfaceMethod = Memoized<RpcInterfaceMethod> & {
 interface Options {
   isPedantic?: boolean;
   provider: ProviderInterface;
+  rpcCacheCapacity?: number;
   userRpc?: Record<string, Record<string, DefinitionRpc | DefinitionRpcSub>>;
 }
 
@@ -44,6 +45,8 @@ const EMPTY_META = {
     isMap: false
   }
 };
+
+const RPC_CORE_DEFAULT_CAPACITY = 1024 * 10 * 10;
 
 /** @internal */
 function logErrorMessage (method: string, { noErrorLog, params, type }: DefinitionRpc, error: Error): void {
@@ -106,7 +109,7 @@ export class RpcCore {
    * Default constructor for the core RPC handler
    * @param  {ProviderInterface} provider An API provider using any of the supported providers (HTTP, SC or WebSocket)
    */
-  constructor (instanceId: string, registry: Registry, { isPedantic = true, provider, userRpc = {} }: Options) {
+  constructor (instanceId: string, registry: Registry, { isPedantic = true, provider, rpcCacheCapacity, userRpc = {} }: Options) {
     if (!provider || !isFunction(provider.send)) {
       throw new Error('Expected Provider to API create');
     }
@@ -120,7 +123,7 @@ export class RpcCore {
 
     // these are the base keys (i.e. part of jsonrpc)
     this.sections.push(...sectionNames);
-    this.#storageCache = new LRUCache(DEFAULT_CAPACITY * 10 * 10);
+    this.#storageCache = new LRUCache(rpcCacheCapacity || RPC_CORE_DEFAULT_CAPACITY);
     // decorate all interfaces, defined and user on this instance
     this.addUserInterfaces(userRpc);
   }
