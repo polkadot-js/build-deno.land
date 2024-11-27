@@ -33,8 +33,7 @@ const VERSIONS = [
 const PREAMBLES = {
   bare: 'ExtrinsicPayloadV5',
   // Not supported yet
-  general: 'ExtrinsicPayloadV5',
-  signed: 'ExtrinsicPayloadV5'
+  general: 'ExtrinsicPayloadV5'
 };
 
 /** @internal */
@@ -55,12 +54,18 @@ function decodeExtrinsicPayload (registry: Registry, value?: GenericExtrinsicPay
    * ref: https://github.com/polkadot-js/api/pull/5967
    */
   if (value && (value as ExtrinsicPayloadValue).assetId && isHex((value as ExtrinsicPayloadValue).assetId)) {
-    const adjustedPayload = {
-      ...(value as ExtrinsicPayloadValue),
-      assetId: registry.createType('TAssetConversion', hexToU8a((value as ExtrinsicPayloadValue).assetId)).toJSON()
-    };
+    const assetId = registry.createType('TAssetConversion', hexToU8a((value as ExtrinsicPayloadValue).assetId));
 
-    return registry.createTypeUnsafe(extVersion, [adjustedPayload, { version }]);
+    // we only want to adjust the payload if the hex passed has the option
+    if ((value as ExtrinsicPayloadValue).assetId === '0x00' ||
+      (value as ExtrinsicPayloadValue).assetId === '0x01' + assetId.toHex().slice(2)) {
+      const adjustedPayload = {
+        ...(value as ExtrinsicPayloadValue),
+        assetId: assetId.toJSON()
+      };
+
+      return registry.createTypeUnsafe(extVersion, [adjustedPayload, { version }]);
+    }
   }
 
   return registry.createTypeUnsafe(extVersion, [value, { version }]);
