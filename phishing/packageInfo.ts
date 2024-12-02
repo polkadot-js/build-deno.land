@@ -1,3 +1,3 @@
 
 
-export const packageInfo = { name: '@polkadot/phishing', path: new URL(import.meta.url).pathname, type: 'deno', version: '0.24.3' };
+export const packageInfo = { name: '@polkadot/phishing', path: new URL(import.meta.url).pathname, type: 'deno', version: '0.24.4' };
