@@ -1,3 +1,3 @@
 
 
-export const packageInfo = { name: '@polkadot/rpc-augment', path: new URL(import.meta.url).pathname, type: 'deno', version: '15.0.2' };
+export const packageInfo = { name: '@polkadot/rpc-augment', path: new URL(import.meta.url).pathname, type: 'deno', version: '15.1.1' };

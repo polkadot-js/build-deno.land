@@ -9,6 +9,13 @@ import type { AccountId32, H256, PerU16, Perbill, Perquintill } from 'https://de
 import type { Event } from 'https://deno.land/x/polkadot/types/interfaces/system/index.ts';
 
 declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
+  /** @name FrameSupportDispatchDispatchInfo (23) */
+  interface FrameSupportDispatchDispatchInfo extends Struct {
+    readonly weight: SpWeightsWeightV2Weight;
+    readonly class: FrameSupportDispatchDispatchClass;
+    readonly paysFee: FrameSupportDispatchPays;
+  }
+
   /** @name PolkadotRuntimeCommonImplsVersionedLocatableAsset (55) */
   interface PolkadotRuntimeCommonImplsVersionedLocatableAsset extends Enum {
     readonly isV3: boolean;

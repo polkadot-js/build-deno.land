@@ -691,6 +691,16 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        **/
       subAccountDeposit: u128 & AugmentedConst<ApiType>;
       /**
+       * The amount held on deposit per registered username. This value should change only in
+       * runtime upgrades with proper migration of existing deposits.
+       **/
+      usernameDeposit: u128 & AugmentedConst<ApiType>;
+      /**
+       * The number of blocks that must pass to enable the permanent deletion of a username by
+       * its respective authority.
+       **/
+      usernameGracePeriod: u32 & AugmentedConst<ApiType>;
+      /**
        * Generic const
        **/
       [key: string]: Codec;
@@ -1236,6 +1246,13 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
     revive: {
       apiVersion: u16 & AugmentedConst<ApiType>;
       /**
+       * The [EIP-155](https://eips.ethereum.org/EIPS/eip-155) chain ID.
+       * 
+       * This is a unique identifier assigned to each blockchain network,
+       * preventing replay attacks.
+       **/
+      chainId: u64 & AugmentedConst<ApiType>;
+      /**
        * The percentage of the storage deposit that should be held for using a code hash.
        * Instantiating a contract, or calling [`chain_extension::Ext::lock_delegate_dependency`]
        * protects the code from being removed. In order to prevent abuse these actions are
@@ -1247,7 +1264,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        * 
        * # Note
        * 
-       * It is safe to chage this value on a live chain as all refunds are pro rata.
+       * It is safe to change this value on a live chain as all refunds are pro rata.
        **/
       depositPerByte: u128 & AugmentedConst<ApiType>;
       /**
@@ -1255,17 +1272,13 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        * 
        * # Note
        * 
-       * It is safe to chage this value on a live chain as all refunds are pro rata.
+       * It is safe to change this value on a live chain as all refunds are pro rata.
        **/
       depositPerItem: u128 & AugmentedConst<ApiType>;
       /**
-       * The maximum length of a contract code in bytes.
-       * 
-       * This value hugely affects the memory requirements of this pallet since all the code of
-       * all contracts on the call stack will need to be held in memory. Setting of a correct
-       * value will be enforced in [`Pallet::integrity_test`].
+       * The ratio between the decimal representation of the native token and the ETH token.
        **/
-      maxCodeLen: u32 & AugmentedConst<ApiType>;
+      nativeToEthRatio: u32 & AugmentedConst<ApiType>;
       /**
        * Make contract callable functions marked as `#[unstable]` available.
        * 
@@ -1669,6 +1682,9 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        **/
       burn: Permill & AugmentedConst<ApiType>;
       /**
+       * DEPRECATED: associated with `spend_local` call and will be removed in May 2025.
+       * Refer to <https://github.com/paritytech/polkadot-sdk/pull/5961> for migration to `spend`.
+       * 
        * The maximum number of approvals that can wait in the spending queue.
        * 
        * NOTE: This parameter is also used within the Bounties Pallet extension if enabled.
