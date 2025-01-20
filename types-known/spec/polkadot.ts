@@ -34,7 +34,18 @@ const addrAccountIdTypes = {
 
 export const versioned: OverrideVersionedType[] = [
   {
-    minmax: [0, 12],
+    minmax: [0, 10],
+    types: {
+      ...sharedTypes,
+      ...addrAccountIdTypes,
+      CompactAssignments: 'CompactAssignmentsTo257',
+      OpenTip: 'OpenTipTo225',
+      RefCount: 'RefCountTo259',
+      ElectionResult: 'ElectionResultToSpec10'
+    }
+  },
+  {
+    minmax: [11, 12],
     types: {
       ...sharedTypes,
       ...addrAccountIdTypes,

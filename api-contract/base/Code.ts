@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer';
+
 
 import type { ApiBase } from 'https://deno.land/x/polkadot/api/base/index.ts';
 import type { SubmittableExtrinsic } from 'https://deno.land/x/polkadot/api/submittable/types.ts';

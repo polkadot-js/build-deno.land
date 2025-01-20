@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer';
+
 /* eslint-disable */
 
 import 'https://deno.land/x/polkadot/types/types/registry.ts';
@@ -60,7 +62,7 @@ import type { Si0Field, Si0LookupTypeId, Si0Path, Si0Type, Si0TypeDef, Si0TypeDe
 import type { Period, Priority, SchedulePeriod, SchedulePriority, Scheduled, ScheduledTo254, TaskAddress } from 'https://deno.land/x/polkadot/types/interfaces/scheduler/index.ts';
 import type { BeefyKey, FullIdentification, IdentificationTuple, Keys, MembershipProof, SessionIndex, SessionKeys1, SessionKeys10, SessionKeys10B, SessionKeys2, SessionKeys3, SessionKeys4, SessionKeys5, SessionKeys6, SessionKeys6B, SessionKeys7, SessionKeys7B, SessionKeys8, SessionKeys8B, SessionKeys9, SessionKeys9B, ValidatorCount } from 'https://deno.land/x/polkadot/types/interfaces/session/index.ts';
 import type { Bid, BidKind, SocietyJudgement, SocietyVote, StrikeCount, VouchingStatus } from 'https://deno.land/x/polkadot/types/interfaces/society/index.ts';
-import type { ActiveEraInfo, CompactAssignments, CompactAssignmentsTo257, CompactAssignmentsTo265, CompactAssignmentsWith16, CompactAssignmentsWith24, CompactScore, CompactScoreCompact, ElectionCompute, ElectionPhase, ElectionResult, ElectionScore, ElectionSize, ElectionStatus, EraIndex, EraPoints, EraRewardPoints, EraRewards, Exposure, ExtendedBalance, Forcing, IndividualExposure, KeyType, MomentOf, Nominations, NominatorIndex, NominatorIndexCompact, OffchainAccuracy, OffchainAccuracyCompact, PhragmenScore, Points, RawSolution, RawSolutionTo265, RawSolutionWith16, RawSolutionWith24, ReadySolution, RewardDestination, RewardPoint, RoundSnapshot, SeatHolder, SignedSubmission, SignedSubmissionOf, SignedSubmissionTo276, SlashJournalEntry, SlashingSpans, SlashingSpansTo204, SolutionOrSnapshotSize, SolutionSupport, SolutionSupports, SpanIndex, SpanRecord, StakingLedger, StakingLedgerTo223, StakingLedgerTo240, SubmissionIndicesOf, Supports, UnappliedSlash, UnappliedSlashOther, UnlockChunk, ValidatorIndex, ValidatorIndexCompact, ValidatorPrefs, ValidatorPrefsTo145, ValidatorPrefsTo196, ValidatorPrefsWithBlocked, ValidatorPrefsWithCommission, VoteWeight, Voter } from 'https://deno.land/x/polkadot/types/interfaces/staking/index.ts';
+import type { ActiveEraInfo, CompactAssignments, CompactAssignmentsTo257, CompactAssignmentsTo265, CompactAssignmentsWith16, CompactAssignmentsWith24, CompactScore, CompactScoreCompact, ElectionCompute, ElectionPhase, ElectionResult, ElectionResultToSpec10, ElectionScore, ElectionSize, ElectionStatus, EraIndex, EraPoints, EraRewardPoints, EraRewards, Exposure, ExtendedBalance, Forcing, IndividualExposure, KeyType, MomentOf, Nominations, NominatorIndex, NominatorIndexCompact, OffchainAccuracy, OffchainAccuracyCompact, PhragmenScore, Points, RawSolution, RawSolutionTo265, RawSolutionWith16, RawSolutionWith24, ReadySolution, RewardDestination, RewardPoint, RoundSnapshot, SeatHolder, SignedSubmission, SignedSubmissionOf, SignedSubmissionTo276, SlashJournalEntry, SlashingSpans, SlashingSpansTo204, SolutionOrSnapshotSize, SolutionSupport, SolutionSupports, SpanIndex, SpanRecord, StakingLedger, StakingLedgerTo223, StakingLedgerTo240, SubmissionIndicesOf, Supports, UnappliedSlash, UnappliedSlashOther, UnlockChunk, ValidatorIndex, ValidatorIndexCompact, ValidatorPrefs, ValidatorPrefsTo145, ValidatorPrefsTo196, ValidatorPrefsWithBlocked, ValidatorPrefsWithCommission, VoteWeight, Voter } from 'https://deno.land/x/polkadot/types/interfaces/staking/index.ts';
 import type { ApiId, BlockTrace, BlockTraceEvent, BlockTraceEventData, BlockTraceSpan, KeyValueOption, MigrationStatusResult, ReadProof, RuntimeVersion, RuntimeVersionApi, RuntimeVersionPartial, RuntimeVersionPre3, RuntimeVersionPre4, SpecVersion, StorageChangeSet, TraceBlockResponse, TraceError } from 'https://deno.land/x/polkadot/types/interfaces/state/index.ts';
 import type { StatementStoreInvalidStatement, StatementStoreStatementSource, StatementStoreValidStatement } from 'https://deno.land/x/polkadot/types/interfaces/statement/index.ts';
 import type { WeightToFeeCoefficient } from 'https://deno.land/x/polkadot/types/interfaces/support/index.ts';
@@ -399,6 +401,7 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     ElectionCompute: ElectionCompute;
     ElectionPhase: ElectionPhase;
     ElectionResult: ElectionResult;
+    ElectionResultToSpec10: ElectionResultToSpec10;
     ElectionScore: ElectionScore;
     ElectionSize: ElectionSize;
     ElectionStatus: ElectionStatus;

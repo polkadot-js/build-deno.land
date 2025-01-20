@@ -132,8 +132,31 @@ export function identity (instanceId: string, api: DeriveApi): (accountId?: Acco
       ),
       map(([identityOfOpt, superOf]) =>
         extractIdentity(identityOfOpt, superOf)
+      ),
+      switchMap((identity) =>
+        getSubIdentities(identity, api, accountId)
       )
     )
+  );
+}
+
+function getSubIdentities (identity: DeriveAccountRegistration, api: DeriveApi, accountId?: AccountId | Uint8Array | string): Observable<DeriveAccountRegistration> {
+  const targetAccount = identity.parent || accountId;
+
+  if (!targetAccount) {
+    // No valid accountId return the identity as-is
+    return of(identity);
+  }
+
+  return api.query.identity.subsOf(targetAccount).pipe(
+    map((subsResponse) => {
+      const subs = subsResponse[1];
+
+      return {
+        ...identity,
+        subs
+      };
+    })
   );
 }
 

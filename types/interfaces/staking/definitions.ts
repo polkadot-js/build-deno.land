@@ -99,6 +99,11 @@ const phragmen = {
     electedStashes: 'Vec<AccountId>',
     exposures: 'Vec<(AccountId, Exposure)>'
   },
+  ElectionResultToSpec10: {
+    electedStashes: 'Vec<AccountId>',
+    exposures: 'Vec<(AccountId, Exposure<AccountId, Balance>)>',
+    compute: 'ElectionCompute'
+  },
   ElectionScore: '[u128; 3]',
   ElectionSize: {
     validators: 'Compact<ValidatorIndex>',

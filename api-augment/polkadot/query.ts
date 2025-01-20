@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer';
+
 /* eslint-disable */
 
 import 'https://deno.land/x/polkadot/api-base/types/storage.ts';

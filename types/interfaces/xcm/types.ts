@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer';
+
 /* eslint-disable */
 
 import type { Bytes, Compact, Enum, Option, Struct, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';

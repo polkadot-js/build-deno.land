@@ -1,5 +1,6 @@
 
 import type { AccountId, AccountIndex, RegistrationJudgement } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 
 export type AccountIdAndIndex = [AccountId | undefined, AccountIndex | undefined];
 
@@ -18,6 +19,7 @@ export interface DeriveAccountRegistration {
   parent?: AccountId | undefined;
   pgp?: string | undefined;
   riot?: string | undefined;
+  subs?: Vec<AccountId> | undefined;
   twitter?: string | undefined;
   web?: string | undefined;
   judgements: RegistrationJudgement[];

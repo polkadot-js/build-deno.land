@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer';
+
 
 import type { ApiRx } from 'https://deno.land/x/polkadot/api/mod.ts';
 import type { AccountId, Hash } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';

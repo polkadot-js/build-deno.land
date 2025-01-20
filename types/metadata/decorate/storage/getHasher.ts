@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer';
+
 
 import type { StorageHasher } from '../../../interfaces/index.ts';
 import type { AllHashers } from '../../../interfaces/metadata/definitions.ts';
