@@ -2,6 +2,21 @@
 import type { DefinitionsRpc } from '../../types/index.ts';
 
 export const rpc: DefinitionsRpc = {
+  localStorageClear: {
+    description: 'Clear offchain local storage under given key and prefix',
+    isUnsafe: true,
+    params: [
+      {
+        name: 'kind',
+        type: 'StorageKind'
+      },
+      {
+        name: 'key',
+        type: 'Bytes'
+      }
+    ],
+    type: 'Null'
+  },
   localStorageGet: {
     description: 'Get offchain local storage under given key and prefix',
     isUnsafe: true,
