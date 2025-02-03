@@ -11,6 +11,7 @@ import type { ExtrinsicPayloadValue, ICompact, IKeyringPair, INumber, IOption } 
 import { Enum, Struct } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 
+import { decodeAssetId } from '../ExtrinsicPayload.ts';
 import { sign } from '../util.ts';
 
 /**
@@ -27,7 +28,7 @@ export class GenericExtrinsicPayloadV4 extends Struct {
       { method: 'Bytes' },
       registry.getSignedExtensionTypes(),
       registry.getSignedExtensionExtra()
-    ), value);
+    ), decodeAssetId(registry, value));
 
     // Do detection for the type of extrinsic, in the case of MultiSignature
     // this is an enum, in the case of AnySignature, this is a Hash only
