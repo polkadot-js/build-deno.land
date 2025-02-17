@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer';
+
 
 import type { TransportDef, TransportType } from 'https://deno.land/x/polkadot/hw-ledger-transports/types.ts';
 import type { AccountOptionsGeneric, LedgerAddress, LedgerSignature, LedgerVersion } from './types.ts';

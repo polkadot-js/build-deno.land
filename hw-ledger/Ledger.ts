@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer';
+
 
 import type { SubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@1.0.0';
 import type { TransportDef, TransportType } from 'https://deno.land/x/polkadot/hw-ledger-transports/types.ts';

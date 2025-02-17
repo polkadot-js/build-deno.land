@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer';
+
 
 import type { U8aLike } from '../types.ts';
 

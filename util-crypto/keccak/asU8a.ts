@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer';
+
 
 import { keccak_256 as keccak256Js, keccak_512 as keccak512Js } from 'https://esm.sh/@noble/hashes@1.3.3/sha3.js';
 

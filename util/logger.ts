@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer';
+
 
 import type { Logger } from './types.ts';
 

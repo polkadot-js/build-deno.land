@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer';
+
 
 import { hexToBn } from './toBn.ts';
 

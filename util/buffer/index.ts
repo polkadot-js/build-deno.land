@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer';
+
 
 /**
  * @summary Utility methods to convert to and from `Buffer` objects

@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer';
+
 
 /**
  * @name bufferToU8a

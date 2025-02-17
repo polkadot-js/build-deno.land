@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer';
+
 
 
 import { stringToU8a, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';

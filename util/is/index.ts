@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer';
+
 
 /**
  * @summary Type checking utilities

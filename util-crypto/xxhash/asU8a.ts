@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer';
+
 
 import { hasBigInt, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { isReady, twox } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
