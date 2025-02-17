@@ -1,5 +1,6 @@
 
 import type { Class } from 'https://deno.land/x/polkadot/util/types.ts';
+import type RpcError from '../coder/error.ts';
 import type { EndpointStats, JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, ProviderInterfaceEmitCb, ProviderInterfaceEmitted, ProviderStats } from '../types.ts';
 
 import { EventEmitter } from 'https://esm.sh/eventemitter3@5.0.1';
@@ -370,7 +371,12 @@ export class WsProvider implements ProviderInterface {
         this.#endpointStats.errors++;
         this.#stats.total.errors++;
 
-        reject(error);
+        const rpcError: RpcError = error as RpcError;
+        const failedRequest = `\nFailed WS Request: ${JSON.stringify({ method, params })}`;
+
+        // Provide WS Request alongside the error
+        rpcError.message = `${rpcError.message}${failedRequest}`;
+        reject(rpcError);
       }
     });
   }

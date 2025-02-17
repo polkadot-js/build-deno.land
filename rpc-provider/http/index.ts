@@ -1,4 +1,5 @@
 
+import type RpcError from '../coder/error.ts';
 import type { JsonRpcResponse, ProviderInterface, ProviderInterfaceCallback, ProviderInterfaceEmitCb, ProviderInterfaceEmitted, ProviderStats } from '../types.ts';
 
 import { logger, noop, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
@@ -183,7 +184,18 @@ export class HttpProvider implements ProviderInterface {
       this.#stats.active.requests--;
       this.#stats.total.errors++;
 
-      throw e;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      const { method, params } = JSON.parse(body);
+
+      const rpcError: RpcError = e as RpcError;
+
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      const failedRequest = `\nFailed HTTP Request: ${JSON.stringify({ method, params })}`;
+
+      // Provide HTTP Request alongside the error
+      rpcError.message = `${rpcError.message}${failedRequest}`;
+
+      throw rpcError;
     }
   }
 
