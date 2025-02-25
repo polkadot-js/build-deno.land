@@ -7,7 +7,7 @@ import type { Bytes, Compact, Option, U8aFixed, Vec, bool, u128, u16, u32, u64, 
 import type { AnyNumber, IMethod, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { EthereumAddress } from 'https://deno.land/x/polkadot/types/interfaces/eth/index.ts';
 import type { AccountId32, Call, H256, MultiAddress, Perbill, Percent } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
-import type { FrameSupportPreimagesBounded, FrameSupportScheduleDispatchTime, PalletBalancesAdjustmentDirection, PalletBrokerCoretimeInterfaceCoreAssignment, PalletConvictionVotingConviction, PalletConvictionVotingVoteAccountVote, PalletElectionProviderMultiPhaseRawSolution, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletMultisigTimepoint, PalletNominationPoolsBondExtra, PalletNominationPoolsClaimPermission, PalletNominationPoolsCommissionChangeRate, PalletNominationPoolsCommissionClaimPermission, PalletNominationPoolsConfigOpAccountId32, PalletNominationPoolsConfigOpPerbill, PalletNominationPoolsConfigOpU128, PalletNominationPoolsConfigOpU32, PalletNominationPoolsPoolState, PalletStakingPalletConfigOpPerbill, PalletStakingPalletConfigOpPercent, PalletStakingPalletConfigOpU128, PalletStakingPalletConfigOpU32, PalletStakingRewardDestination, PalletStakingUnlockChunk, PalletStakingValidatorPrefs, PalletStateTrieMigrationMigrationLimits, PalletStateTrieMigrationMigrationTask, PalletStateTrieMigrationProgress, PalletVestingVestingInfo, PolkadotParachainPrimitivesPrimitivesHrmpChannelId, PolkadotPrimitivesV7ApprovalVotingParams, PolkadotPrimitivesV7AsyncBackingAsyncBackingParams, PolkadotPrimitivesV7ExecutorParams, PolkadotPrimitivesV7InherentData, PolkadotPrimitivesV7PvfCheckStatement, PolkadotPrimitivesV7SlashingDisputeProof, PolkadotPrimitivesV7ValidatorAppSignature, PolkadotPrimitivesVstagingSchedulerParams, PolkadotRuntimeCommonClaimsEcdsaSignature, PolkadotRuntimeCommonClaimsStatementKind, PolkadotRuntimeCommonImplsVersionedLocatableAsset, PolkadotRuntimeOriginCaller, PolkadotRuntimeParachainsInclusionAggregateMessageOrigin, PolkadotRuntimeProxyType, PolkadotRuntimeRuntimeParameters, PolkadotRuntimeSessionKeys, SpConsensusBabeDigestsNextConfigDescriptor, SpConsensusBeefyDoubleVotingProof, SpConsensusGrandpaEquivocationProof, SpConsensusSlotsEquivocationProof, SpNposElectionsElectionScore, SpNposElectionsSupport, SpRuntimeMultiSignature, SpRuntimeMultiSigner, SpSessionMembershipProof, SpWeightsWeightV2Weight, StagingXcmExecutorAssetTransferTransferType, StagingXcmV4Location, XcmV3WeightLimit, XcmVersionedAssetId, XcmVersionedAssets, XcmVersionedLocation, XcmVersionedXcm } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { FrameSupportPreimagesBounded, FrameSupportScheduleDispatchTime, PalletBalancesAdjustmentDirection, PalletBrokerCoretimeInterfaceCoreAssignment, PalletConvictionVotingConviction, PalletConvictionVotingVoteAccountVote, PalletElectionProviderMultiPhaseRawSolution, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletMultisigTimepoint, PalletNominationPoolsBondExtra, PalletNominationPoolsClaimPermission, PalletNominationPoolsCommissionChangeRate, PalletNominationPoolsCommissionClaimPermission, PalletNominationPoolsConfigOpAccountId32, PalletNominationPoolsConfigOpPerbill, PalletNominationPoolsConfigOpU128, PalletNominationPoolsConfigOpU32, PalletNominationPoolsPoolState, PalletStakingPalletConfigOpPerbill, PalletStakingPalletConfigOpPercent, PalletStakingPalletConfigOpU128, PalletStakingPalletConfigOpU32, PalletStakingRewardDestination, PalletStakingUnlockChunk, PalletStakingValidatorPrefs, PalletStateTrieMigrationMigrationLimits, PalletStateTrieMigrationMigrationTask, PalletStateTrieMigrationProgress, PalletVestingVestingInfo, PolkadotParachainPrimitivesPrimitivesHrmpChannelId, PolkadotPrimitivesV8ApprovalVotingParams, PolkadotPrimitivesV8AsyncBackingAsyncBackingParams, PolkadotPrimitivesV8ExecutorParams, PolkadotPrimitivesV8InherentData, PolkadotPrimitivesV8PvfCheckStatement, PolkadotPrimitivesV8SchedulerParams, PolkadotPrimitivesV8SlashingDisputeProof, PolkadotPrimitivesV8ValidatorAppSignature, PolkadotRuntimeCommonClaimsEcdsaSignature, PolkadotRuntimeCommonClaimsStatementKind, PolkadotRuntimeCommonImplsVersionedLocatableAsset, PolkadotRuntimeOriginCaller, PolkadotRuntimeParachainsInclusionAggregateMessageOrigin, PolkadotRuntimeProxyType, PolkadotRuntimeSessionKeys, SpConsensusBabeDigestsNextConfigDescriptor, SpConsensusBeefyDoubleVotingProof, SpConsensusBeefyForkVotingProofAncestryProof, SpConsensusBeefyFutureBlockVotingProof, SpConsensusGrandpaEquivocationProof, SpConsensusSlotsEquivocationProof, SpNposElectionsElectionScore, SpNposElectionsSupport, SpRuntimeMultiSignature, SpRuntimeMultiSigner, SpSessionMembershipProof, SpWeightsWeightV2Weight, StagingXcmExecutorAssetTransferTransferType, StagingXcmV4Location, XcmV3WeightLimit, XcmVersionedAssetId, XcmVersionedAssets, XcmVersionedLocation, XcmVersionedXcm } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedSubmittable = AugmentedSubmittable<() => unknown>;
 export type __SubmittableExtrinsic<ApiType extends ApiTypes> = SubmittableExtrinsic<ApiType>;
@@ -208,7 +208,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * against the extracted offender. If both are valid, the offence
        * will be reported.
        **/
-      reportEquivocation: AugmentedSubmittable<(equivocationProof: SpConsensusBeefyDoubleVotingProof | { first?: any; second?: any } | string | Uint8Array, keyOwnerProof: SpSessionMembershipProof | { session?: any; trieNodes?: any; validatorCount?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [SpConsensusBeefyDoubleVotingProof, SpSessionMembershipProof]>;
+      reportDoubleVoting: AugmentedSubmittable<(equivocationProof: SpConsensusBeefyDoubleVotingProof | { first?: any; second?: any } | string | Uint8Array, keyOwnerProof: SpSessionMembershipProof | { session?: any; trieNodes?: any; validatorCount?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [SpConsensusBeefyDoubleVotingProof, SpSessionMembershipProof]>;
       /**
        * Report voter equivocation/misbehavior. This method will verify the
        * equivocation proof and validate the given key ownership proof
@@ -220,7 +220,41 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * if the block author is defined it will be defined as the equivocation
        * reporter.
        **/
-      reportEquivocationUnsigned: AugmentedSubmittable<(equivocationProof: SpConsensusBeefyDoubleVotingProof | { first?: any; second?: any } | string | Uint8Array, keyOwnerProof: SpSessionMembershipProof | { session?: any; trieNodes?: any; validatorCount?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [SpConsensusBeefyDoubleVotingProof, SpSessionMembershipProof]>;
+      reportDoubleVotingUnsigned: AugmentedSubmittable<(equivocationProof: SpConsensusBeefyDoubleVotingProof | { first?: any; second?: any } | string | Uint8Array, keyOwnerProof: SpSessionMembershipProof | { session?: any; trieNodes?: any; validatorCount?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [SpConsensusBeefyDoubleVotingProof, SpSessionMembershipProof]>;
+      /**
+       * Report fork voting equivocation. This method will verify the equivocation proof
+       * and validate the given key ownership proof against the extracted offender.
+       * If both are valid, the offence will be reported.
+       **/
+      reportForkVoting: AugmentedSubmittable<(equivocationProof: SpConsensusBeefyForkVotingProofAncestryProof | { vote?: any; ancestryProof?: any; header?: any } | string | Uint8Array, keyOwnerProof: SpSessionMembershipProof | { session?: any; trieNodes?: any; validatorCount?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [SpConsensusBeefyForkVotingProofAncestryProof, SpSessionMembershipProof]>;
+      /**
+       * Report fork voting equivocation. This method will verify the equivocation proof
+       * and validate the given key ownership proof against the extracted offender.
+       * If both are valid, the offence will be reported.
+       * 
+       * This extrinsic must be called unsigned and it is expected that only
+       * block authors will call it (validated in `ValidateUnsigned`), as such
+       * if the block author is defined it will be defined as the equivocation
+       * reporter.
+       **/
+      reportForkVotingUnsigned: AugmentedSubmittable<(equivocationProof: SpConsensusBeefyForkVotingProofAncestryProof | { vote?: any; ancestryProof?: any; header?: any } | string | Uint8Array, keyOwnerProof: SpSessionMembershipProof | { session?: any; trieNodes?: any; validatorCount?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [SpConsensusBeefyForkVotingProofAncestryProof, SpSessionMembershipProof]>;
+      /**
+       * Report future block voting equivocation. This method will verify the equivocation proof
+       * and validate the given key ownership proof against the extracted offender.
+       * If both are valid, the offence will be reported.
+       **/
+      reportFutureBlockVoting: AugmentedSubmittable<(equivocationProof: SpConsensusBeefyFutureBlockVotingProof | { vote?: any } | string | Uint8Array, keyOwnerProof: SpSessionMembershipProof | { session?: any; trieNodes?: any; validatorCount?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [SpConsensusBeefyFutureBlockVotingProof, SpSessionMembershipProof]>;
+      /**
+       * Report future block voting equivocation. This method will verify the equivocation proof
+       * and validate the given key ownership proof against the extracted offender.
+       * If both are valid, the offence will be reported.
+       * 
+       * This extrinsic must be called unsigned and it is expected that only
+       * block authors will call it (validated in `ValidateUnsigned`), as such
+       * if the block author is defined it will be defined as the equivocation
+       * reporter.
+       **/
+      reportFutureBlockVotingUnsigned: AugmentedSubmittable<(equivocationProof: SpConsensusBeefyFutureBlockVotingProof | { vote?: any } | string | Uint8Array, keyOwnerProof: SpSessionMembershipProof | { session?: any; trieNodes?: any; validatorCount?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [SpConsensusBeefyFutureBlockVotingProof, SpSessionMembershipProof]>;
       /**
        * Reset BEEFY consensus by setting a new BEEFY genesis at `delay_in_blocks` blocks in the
        * future.
@@ -628,11 +662,11 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
       /**
        * Set approval-voting-params.
        **/
-      setApprovalVotingParams: AugmentedSubmittable<(updated: PolkadotPrimitivesV7ApprovalVotingParams | { maxApprovalCoalesceCount?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [PolkadotPrimitivesV7ApprovalVotingParams]>;
+      setApprovalVotingParams: AugmentedSubmittable<(updated: PolkadotPrimitivesV8ApprovalVotingParams | { maxApprovalCoalesceCount?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [PolkadotPrimitivesV8ApprovalVotingParams]>;
       /**
        * Set the asynchronous backing parameters.
        **/
-      setAsyncBackingParams: AugmentedSubmittable<(updated: PolkadotPrimitivesV7AsyncBackingAsyncBackingParams | { maxCandidateDepth?: any; allowedAncestryLen?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [PolkadotPrimitivesV7AsyncBackingAsyncBackingParams]>;
+      setAsyncBackingParams: AugmentedSubmittable<(updated: PolkadotPrimitivesV8AsyncBackingAsyncBackingParams | { maxCandidateDepth?: any; allowedAncestryLen?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [PolkadotPrimitivesV8AsyncBackingAsyncBackingParams]>;
       /**
        * Setting this to true will disable consistency checks for the configuration setters.
        * Use with caution.
@@ -660,7 +694,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
       /**
        * Set PVF executor parameters.
        **/
-      setExecutorParams: AugmentedSubmittable<(updated: PolkadotPrimitivesV7ExecutorParams) => SubmittableExtrinsic<ApiType>, [PolkadotPrimitivesV7ExecutorParams]>;
+      setExecutorParams: AugmentedSubmittable<(updated: PolkadotPrimitivesV8ExecutorParams) => SubmittableExtrinsic<ApiType>, [PolkadotPrimitivesV8ExecutorParams]>;
       /**
        * Set the parachain validator-group rotation frequency
        **/
@@ -810,7 +844,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
       /**
        * Set scheduler-params.
        **/
-      setSchedulerParams: AugmentedSubmittable<(updated: PolkadotPrimitivesVstagingSchedulerParams | { groupRotationFrequency?: any; parasAvailabilityPeriod?: any; maxValidatorsPerCore?: any; lookahead?: any; numCores?: any; maxAvailabilityTimeouts?: any; onDemandQueueMaxSize?: any; onDemandTargetQueueUtilization?: any; onDemandFeeVariability?: any; onDemandBaseFee?: any; ttl?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [PolkadotPrimitivesVstagingSchedulerParams]>;
+      setSchedulerParams: AugmentedSubmittable<(updated: PolkadotPrimitivesV8SchedulerParams | { groupRotationFrequency?: any; parasAvailabilityPeriod?: any; maxValidatorsPerCore?: any; lookahead?: any; numCores?: any; maxAvailabilityTimeouts?: any; onDemandQueueMaxSize?: any; onDemandTargetQueueUtilization?: any; onDemandFeeVariability?: any; onDemandBaseFee?: any; ttl?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [PolkadotPrimitivesV8SchedulerParams]>;
       /**
        * Set the scheduling lookahead, in expected number of blocks at peak throughput.
        **/
@@ -1618,8 +1652,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * Fails unless [`crate::pallet::Config::StakeAdapter`] is of strategy type:
        * [`adapter::StakeStrategyType::Delegate`].
        * 
-       * This call can be dispatched permissionlessly (i.e. by any account). If the member has
-       * slash to be applied, caller may be rewarded with the part of the slash.
+       * The pending slash amount of the member must be equal or more than `ExistentialDeposit`.
+       * This call can be dispatched permissionlessly (i.e. by any account). If the execution
+       * is successful, fee is refunded and caller may be rewarded with a part of the slash
+       * based on the [`crate::pallet::Config::StakeAdapter`] configuration.
        **/
       applySlash: AugmentedSubmittable<(memberAccount: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress]>;
       /**
@@ -1719,8 +1755,13 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        **/
       createWithPoolId: AugmentedSubmittable<(amount: Compact<u128> | AnyNumber | Uint8Array, root: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, nominator: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, bouncer: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, poolId: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u128>, MultiAddress, MultiAddress, MultiAddress, u32]>;
       /**
-       * Stake funds with a pool. The amount to bond is transferred from the member to the
-       * pools account and immediately increases the pools bond.
+       * Stake funds with a pool. The amount to bond is transferred from the member to the pool
+       * account and immediately increases the pools bond.
+       * 
+       * The method of transferring the amount to the pool account is determined by
+       * [`adapter::StakeStrategyType`]. If the pool is configured to use
+       * [`adapter::StakeStrategyType::Delegate`], the funds remain in the account of
+       * the `origin`, while the pool gains the right to use these funds for staking.
        * 
        * # Note
        * 
@@ -1979,20 +2020,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
       /**
        * Enter the paras inherent. This will process bitfields and backed candidates.
        **/
-      enter: AugmentedSubmittable<(data: PolkadotPrimitivesV7InherentData | { bitfields?: any; backedCandidates?: any; disputes?: any; parentHeader?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [PolkadotPrimitivesV7InherentData]>;
-      /**
-       * Generic tx
-       **/
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
-    };
-    parameters: {
-      /**
-       * Set the value of a parameter.
-       * 
-       * The dispatch origin of this call must be `AdminOrigin` for the given `key`. Values be
-       * deleted by setting them to `None`.
-       **/
-      setParameter: AugmentedSubmittable<(keyValue: PolkadotRuntimeRuntimeParameters | { Inflation: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [PolkadotRuntimeRuntimeParameters]>;
+      enter: AugmentedSubmittable<(data: PolkadotPrimitivesV8InherentData | { bitfields?: any; backedCandidates?: any; disputes?: any; parentHeader?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [PolkadotPrimitivesV8InherentData]>;
       /**
        * Generic tx
        **/
@@ -2046,7 +2074,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * Includes a statement for a PVF pre-checking vote. Potentially, finalizes the vote and
        * enacts the results if that was the last vote before achieving the supermajority.
        **/
-      includePvfCheckStatement: AugmentedSubmittable<(stmt: PolkadotPrimitivesV7PvfCheckStatement | { accept?: any; subject?: any; sessionIndex?: any; validatorIndex?: any } | string | Uint8Array, signature: PolkadotPrimitivesV7ValidatorAppSignature | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [PolkadotPrimitivesV7PvfCheckStatement, PolkadotPrimitivesV7ValidatorAppSignature]>;
+      includePvfCheckStatement: AugmentedSubmittable<(stmt: PolkadotPrimitivesV8PvfCheckStatement | { accept?: any; subject?: any; sessionIndex?: any; validatorIndex?: any } | string | Uint8Array, signature: PolkadotPrimitivesV8ValidatorAppSignature | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [PolkadotPrimitivesV8PvfCheckStatement, PolkadotPrimitivesV8ValidatorAppSignature]>;
       /**
        * Remove the validation code from the storage iff the reference count is 0.
        * 
@@ -2074,7 +2102,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
       [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     parasSlashing: {
-      reportDisputeLostUnsigned: AugmentedSubmittable<(disputeProof: PolkadotPrimitivesV7SlashingDisputeProof | { timeSlot?: any; kind?: any; validatorIndex?: any; validatorId?: any } | string | Uint8Array, keyOwnerProof: SpSessionMembershipProof | { session?: any; trieNodes?: any; validatorCount?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [PolkadotPrimitivesV7SlashingDisputeProof, SpSessionMembershipProof]>;
+      reportDisputeLostUnsigned: AugmentedSubmittable<(disputeProof: PolkadotPrimitivesV8SlashingDisputeProof | { timeSlot?: any; kind?: any; validatorIndex?: any; validatorId?: any } | string | Uint8Array, keyOwnerProof: SpSessionMembershipProof | { session?: any; trieNodes?: any; validatorCount?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [PolkadotPrimitivesV8SlashingDisputeProof, SpSessionMembershipProof]>;
       /**
        * Generic tx
        **/
@@ -2133,7 +2161,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * - `delay`: The announcement period required of the initial proxy. Will generally be
        * zero.
        **/
-      addProxy: AugmentedSubmittable<(delegate: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, proxyType: PolkadotRuntimeProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'CancelProxy' | 'Auction' | 'NominationPools' | number | Uint8Array, delay: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, PolkadotRuntimeProxyType, u32]>;
+      addProxy: AugmentedSubmittable<(delegate: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, proxyType: PolkadotRuntimeProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'CancelProxy' | 'Auction' | 'NominationPools' | 'ParaRegistration' | number | Uint8Array, delay: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, PolkadotRuntimeProxyType, u32]>;
       /**
        * Publish the hash of a proxy-call that will be made in the future.
        * 
@@ -2172,7 +2200,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * 
        * Fails if there are insufficient funds to pay for deposit.
        **/
-      createPure: AugmentedSubmittable<(proxyType: PolkadotRuntimeProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'CancelProxy' | 'Auction' | 'NominationPools' | number | Uint8Array, delay: u32 | AnyNumber | Uint8Array, index: u16 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [PolkadotRuntimeProxyType, u32, u16]>;
+      createPure: AugmentedSubmittable<(proxyType: PolkadotRuntimeProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'CancelProxy' | 'Auction' | 'NominationPools' | 'ParaRegistration' | number | Uint8Array, delay: u32 | AnyNumber | Uint8Array, index: u16 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [PolkadotRuntimeProxyType, u32, u16]>;
       /**
        * Removes a previously spawned pure proxy.
        * 
@@ -2191,7 +2219,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * Fails with `NoPermission` in case the caller is not a previously created pure
        * account whose `pure` call has corresponding parameters.
        **/
-      killPure: AugmentedSubmittable<(spawner: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, proxyType: PolkadotRuntimeProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'CancelProxy' | 'Auction' | 'NominationPools' | number | Uint8Array, index: u16 | AnyNumber | Uint8Array, height: Compact<u32> | AnyNumber | Uint8Array, extIndex: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, PolkadotRuntimeProxyType, u16, Compact<u32>, Compact<u32>]>;
+      killPure: AugmentedSubmittable<(spawner: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, proxyType: PolkadotRuntimeProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'CancelProxy' | 'Auction' | 'NominationPools' | 'ParaRegistration' | number | Uint8Array, index: u16 | AnyNumber | Uint8Array, height: Compact<u32> | AnyNumber | Uint8Array, extIndex: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, PolkadotRuntimeProxyType, u16, Compact<u32>, Compact<u32>]>;
       /**
        * Dispatch the given `call` from an account that the sender is authorised for through
        * `add_proxy`.
@@ -2203,7 +2231,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * - `force_proxy_type`: Specify the exact proxy type to be used and checked for this call.
        * - `call`: The call to be made by the `real` account.
        **/
-      proxy: AugmentedSubmittable<(real: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, forceProxyType: Option<PolkadotRuntimeProxyType> | null | Uint8Array | PolkadotRuntimeProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'CancelProxy' | 'Auction' | 'NominationPools' | number, call: Call | IMethod | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Option<PolkadotRuntimeProxyType>, Call]>;
+      proxy: AugmentedSubmittable<(real: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, forceProxyType: Option<PolkadotRuntimeProxyType> | null | Uint8Array | PolkadotRuntimeProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'CancelProxy' | 'Auction' | 'NominationPools' | 'ParaRegistration' | number, call: Call | IMethod | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Option<PolkadotRuntimeProxyType>, Call]>;
       /**
        * Dispatch the given `call` from an account that the sender is authorized for through
        * `add_proxy`.
@@ -2217,7 +2245,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * - `force_proxy_type`: Specify the exact proxy type to be used and checked for this call.
        * - `call`: The call to be made by the `real` account.
        **/
-      proxyAnnounced: AugmentedSubmittable<(delegate: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, real: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, forceProxyType: Option<PolkadotRuntimeProxyType> | null | Uint8Array | PolkadotRuntimeProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'CancelProxy' | 'Auction' | 'NominationPools' | number, call: Call | IMethod | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, MultiAddress, Option<PolkadotRuntimeProxyType>, Call]>;
+      proxyAnnounced: AugmentedSubmittable<(delegate: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, real: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, forceProxyType: Option<PolkadotRuntimeProxyType> | null | Uint8Array | PolkadotRuntimeProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'CancelProxy' | 'Auction' | 'NominationPools' | 'ParaRegistration' | number, call: Call | IMethod | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, MultiAddress, Option<PolkadotRuntimeProxyType>, Call]>;
       /**
        * Remove the given announcement of a delegate.
        * 
@@ -2262,7 +2290,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * - `proxy`: The account that the `caller` would like to remove as a proxy.
        * - `proxy_type`: The permissions currently enabled for the removed proxy account.
        **/
-      removeProxy: AugmentedSubmittable<(delegate: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, proxyType: PolkadotRuntimeProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'CancelProxy' | 'Auction' | 'NominationPools' | number | Uint8Array, delay: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, PolkadotRuntimeProxyType, u32]>;
+      removeProxy: AugmentedSubmittable<(delegate: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, proxyType: PolkadotRuntimeProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'CancelProxy' | 'Auction' | 'NominationPools' | 'ParaRegistration' | number | Uint8Array, delay: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, PolkadotRuntimeProxyType, u32]>;
       /**
        * Generic tx
        **/
