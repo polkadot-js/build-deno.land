@@ -11,6 +11,10 @@ import { BN_ONE, BN_ZERO } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
 
+/**
+ * @name erasHistoric
+ * @param {boolean} withActive? (Optional) Whether to include the active era in the result.
+ */
 export function erasHistoric (instanceId: string, api: DeriveApi): (withActive?: boolean) => Observable<EraIndex[]> {
   return memo(instanceId, (withActive?: boolean): Observable<EraIndex[]> =>
     combineLatest([

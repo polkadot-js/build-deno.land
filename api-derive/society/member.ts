@@ -8,7 +8,14 @@ import { map } from 'https://esm.sh/rxjs@7.8.1';
 import { memo } from '../util/index.ts';
 
 /**
- * @description Get the member info for a society
+ * @name member
+ * @description Get the member info for a society.
+ * @param { AccountId } accountId
+ * @example
+ * ```javascript
+ * const member = await api.derive.society.member(ALICE);
+ * console.log(member);
+ * ```
  */
 export function member (instanceId: string, api: DeriveApi): (accountId: AccountId) => Observable<DeriveSocietyMember> {
   return memo(instanceId, (accountId: AccountId): Observable<DeriveSocietyMember> =>

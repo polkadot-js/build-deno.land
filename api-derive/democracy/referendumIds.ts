@@ -8,6 +8,14 @@ import { map, of } from 'https://esm.sh/rxjs@7.8.1';
 
 import { memo } from '../util/index.ts';
 
+/**
+ * @name referendumIds
+ * @description Retrieves an array of active referendum IDs.
+ * @example
+ * ```javascript
+ * const referendums = await api.derive.democracy.referendumIds();
+ * ```
+ */
 export function referendumIds (instanceId: string, api: DeriveApi): () => Observable<BN[]> {
   return memo(instanceId, (): Observable<BN[]> =>
     api.query.democracy?.lowestUnbaked

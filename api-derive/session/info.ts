@@ -9,7 +9,14 @@ import { objectSpread } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { memo } from '../util/index.ts';
 
 /**
- * @description Retrieves all the session and era query and calculates specific values on it as the length of the session and eras
+ * @name info
+ * @description Retrieves all the session and era query and calculates specific values on it as the length of the session and eras.
+ * @example
+ * ```javascript
+ * api.derive.session.info((info) => {
+ *   console.log(`Session info ${JSON.stringify(info)}`);
+ * });
+ * ```
  */
 export function info (instanceId: string, api: DeriveApi): () => Observable<DeriveSessionInfo> {
   return memo(instanceId, (): Observable<DeriveSessionInfo> =>

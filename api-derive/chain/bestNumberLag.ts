@@ -11,9 +11,7 @@ import { memo } from '../util/index.ts';
  * @name bestNumberLag
  * @returns A number of blocks
  * @description Calculates the lag between finalized head and best head
- * @example
- * <BR>
- *
+ * @examplew
  * ```javascript
  * api.derive.chain.bestNumberLag((lag) => {
  *   console.log(`finalized is ${lag} blocks behind head`);
