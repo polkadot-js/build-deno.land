@@ -2,6 +2,7 @@
 
 ## master
 
+- phishing 0.25.5
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 15.7.2
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 15.7.1
 - phishing 0.25.4
