@@ -2,6 +2,7 @@
 
 ## master
 
+- phishing 0.25.9
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 15.9.2
 - phishing 0.25.8
 - hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 13.4.4
