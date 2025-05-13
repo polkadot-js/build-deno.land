@@ -7,8 +7,8 @@ import 'https://deno.land/x/polkadot/api-base/types/consts.ts';
 import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 import type { Bytes, Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { Codec, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { Perbill, Percent, Permill, Perquintill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
-import type { FrameSupportPalletId, FrameSupportTokensFungibleUnionOfNativeOrWithId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, PalletContractsEnvironment, PalletContractsSchedule, PalletReferendaTrackInfo, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { AccountId32, Perbill, Percent, Permill, Perquintill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportPalletId, FrameSupportTokensFungibleUnionOfNativeOrWithId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, PalletContractsEnvironment, PalletContractsSchedule, PalletReferendaTrackDetails, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedConst<ApiType extends ApiTypes> = AugmentedConst<ApiType>;
 
@@ -79,6 +79,18 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        * Asset class from [`Config::Assets`] used to pay the [`Config::PoolSetupFee`].
        **/
       poolSetupFeeAsset: FrameSupportTokensFungibleUnionOfNativeOrWithId & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
+    assetRewards: {
+      /**
+       * The pallet's unique identifier, used to derive the pool's account ID.
+       * 
+       * The account ID is derived once during pool creation and stored in the storage.
+       **/
+      palletId: FrameSupportPalletId & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/
@@ -217,7 +229,12 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        **/
       bountyDepositPayoutDelay: u32 & AugmentedConst<ApiType>;
       /**
-       * Bounty duration in blocks.
+       * The time limit for a curator to act before a bounty expires.
+       * 
+       * The period that starts when a curator is approved, during which they must execute or
+       * update the bounty via `extend_bounty_expiry`. If missed, the bounty expires, and the
+       * curator may be slashed. If `BlockNumberFor::MAX`, bounties stay active indefinitely,
+       * removing the need for `extend_bounty_expiry`.
        **/
       bountyUpdatePeriod: u32 & AugmentedConst<ApiType>;
       /**
@@ -255,6 +272,9 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
       [key: string]: Codec;
     };
     broker: {
+      /**
+       * Given that we are performing all auto-renewals in a single block, it has to be limited.
+       **/
       maxAutoRenewals: u32 & AugmentedConst<ApiType>;
       /**
        * Maximum number of legacy leases.
@@ -264,6 +284,12 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        * Maximum number of system cores.
        **/
       maxReservedCores: u32 & AugmentedConst<ApiType>;
+      /**
+       * The smallest amount of credits a user can purchase.
+       * 
+       * Needed to prevent spam attacks.
+       **/
+      minimumCreditPurchase: u128 & AugmentedConst<ApiType>;
       /**
        * Identifier from which the internal Pot is generated.
        **/
@@ -420,6 +446,20 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        * The maximum weight of a dispatch call that can be proposed and executed.
        **/
       maxProposalWeight: SpWeightsWeightV2Weight & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
+    delegatedStaking: {
+      /**
+       * Injected identifier for the pallet.
+       **/
+      palletId: FrameSupportPalletId & AugmentedConst<ApiType>;
+      /**
+       * Fraction of the slash that is rewarded to the caller of pending slash to the agent.
+       **/
+      slashRewardFraction: Perbill & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/
@@ -1163,9 +1203,11 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        **/
       submissionDeposit: u128 & AugmentedConst<ApiType>;
       /**
-       * Information concerning the different referendum tracks.
+       * A list of tracks.
+       * 
+       * Note: if the tracks are dynamic, the value in the static metadata might be inaccurate.
        **/
-      tracks: Vec<ITuple<[u16, PalletReferendaTrackInfo]>> & AugmentedConst<ApiType>;
+      tracks: Vec<ITuple<[u16, PalletReferendaTrackDetails]>> & AugmentedConst<ApiType>;
       /**
        * The number of blocks after submission that a referendum must begin being decided by.
        * Once this passes, then anyone may cancel the referendum.
@@ -1232,9 +1274,11 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        **/
       submissionDeposit: u128 & AugmentedConst<ApiType>;
       /**
-       * Information concerning the different referendum tracks.
+       * A list of tracks.
+       * 
+       * Note: if the tracks are dynamic, the value in the static metadata might be inaccurate.
        **/
-      tracks: Vec<ITuple<[u16, PalletReferendaTrackInfo]>> & AugmentedConst<ApiType>;
+      tracks: Vec<ITuple<[u16, PalletReferendaTrackDetails]>> & AugmentedConst<ApiType>;
       /**
        * The number of blocks after submission that a referendum must begin being decided by.
        * Once this passes, then anyone may cancel the referendum.
@@ -1246,7 +1290,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
       [key: string]: Codec;
     };
     revive: {
-      apiVersion: u16 & AugmentedConst<ApiType>;
       /**
        * The [EIP-155](https://eips.ethereum.org/EIPS/eip-155) chain ID.
        * 
@@ -1256,9 +1299,8 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
       chainId: u64 & AugmentedConst<ApiType>;
       /**
        * The percentage of the storage deposit that should be held for using a code hash.
-       * Instantiating a contract, or calling [`chain_extension::Ext::lock_delegate_dependency`]
-       * protects the code from being removed. In order to prevent abuse these actions are
-       * protected with a percentage of the code deposit.
+       * Instantiating a contract, protects the code from being removed. In order to prevent
+       * abuse these actions are protected with a percentage of the code deposit.
        **/
       codeHashLockupDepositPercent: Perbill & AugmentedConst<ApiType>;
       /**
@@ -1700,6 +1742,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        * The period during which an approved treasury spend has to be claimed.
        **/
       payoutPeriod: u32 & AugmentedConst<ApiType>;
+      /**
+       * Gets this pallet's derived pot account.
+       **/
+      potAccount: AccountId32 & AugmentedConst<ApiType>;
       /**
        * Period between successive spends.
        **/

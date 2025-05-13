@@ -357,26 +357,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
     coretimeAssignmentProvider: {
       AssignmentsEmpty: AugmentedError<ApiType>;
       /**
-       * Tried to add an unsorted set of assignments
-       **/
-      AssignmentsNotSorted: AugmentedError<ApiType>;
-      /**
        * assign_core is only allowed to append new assignments at the end of already existing
-       * ones.
+       * ones or update the last entry.
        **/
       DisallowedInsert: AugmentedError<ApiType>;
-      /**
-       * Tried to insert a schedule for the same core and block number as an existing schedule
-       **/
-      DuplicateInsert: AugmentedError<ApiType>;
-      /**
-       * Assignments together exceeded 57600.
-       **/
-      OverScheduled: AugmentedError<ApiType>;
-      /**
-       * Assignments together less than 57600
-       **/
-      UnderScheduled: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -1278,10 +1262,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       RewardPoolNotFound: AugmentedError<ApiType>;
       /**
-       * The slash amount is too low to be applied.
-       **/
-      SlashTooLow: AugmentedError<ApiType>;
-      /**
        * A sub pool does not exist.
        **/
       SubPoolsNotFound: AugmentedError<ApiType>;
@@ -1384,14 +1364,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
     };
     paraInherent: {
       /**
-       * A candidate was filtered during inherent execution. This should have only been done
+       * Inherent data was filtered during execution. This should have only been done
        * during creation.
        **/
-      CandidatesFilteredDuringExecution: AugmentedError<ApiType>;
-      /**
-       * The data given to the inherent will result in an overweight block.
-       **/
-      InherentOverweight: AugmentedError<ApiType>;
+      InherentDataFilteredDuringExecution: AugmentedError<ApiType>;
       /**
        * The hash of the submitted parent header doesn't correspond to the saved block hash of
        * the parent.

@@ -7,7 +7,7 @@ import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/inde
 import type { AccountId32, PerU16, Permill, Perquintill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
-  /** @name StagingKusamaRuntimeSessionKeys (127) */
+  /** @name StagingKusamaRuntimeSessionKeys (136) */
   interface StagingKusamaRuntimeSessionKeys extends Struct {
     readonly grandpa: SpConsensusGrandpaAppPublic;
     readonly babe: SpConsensusBabeAppPublic;
@@ -17,21 +17,20 @@ declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
     readonly beefy: SpConsensusBeefyEcdsaCryptoPublic;
   }
 
-  /** @name StagingKusamaRuntimeOriginCaller (150) */
+  /** @name StagingKusamaRuntimeOriginCaller (158) */
   interface StagingKusamaRuntimeOriginCaller extends Enum {
     readonly isSystem: boolean;
     readonly asSystem: FrameSupportDispatchRawOrigin;
-    readonly isVoid: boolean;
     readonly isOrigins: boolean;
     readonly asOrigins: StagingKusamaRuntimeGovernanceOriginsPalletCustomOriginsOrigin;
     readonly isParachainsOrigin: boolean;
     readonly asParachainsOrigin: PolkadotRuntimeParachainsOriginPalletOrigin;
     readonly isXcmPallet: boolean;
     readonly asXcmPallet: PalletXcmOrigin;
-    readonly type: 'System' | 'Void' | 'Origins' | 'ParachainsOrigin' | 'XcmPallet';
+    readonly type: 'System' | 'Origins' | 'ParachainsOrigin' | 'XcmPallet';
   }
 
-  /** @name StagingKusamaRuntimeGovernanceOriginsPalletCustomOriginsOrigin (152) */
+  /** @name StagingKusamaRuntimeGovernanceOriginsPalletCustomOriginsOrigin (160) */
   interface StagingKusamaRuntimeGovernanceOriginsPalletCustomOriginsOrigin extends Enum {
     readonly isStakingAdmin: boolean;
     readonly isTreasurer: boolean;
@@ -64,7 +63,7 @@ declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
     readonly type: 'StakingAdmin' | 'Treasurer' | 'FellowshipAdmin' | 'GeneralAdmin' | 'AuctionAdmin' | 'LeaseAdmin' | 'ReferendumCanceller' | 'ReferendumKiller' | 'SmallTipper' | 'BigTipper' | 'SmallSpender' | 'MediumSpender' | 'BigSpender' | 'WhitelistedCaller' | 'FellowshipInitiates' | 'Fellows' | 'FellowshipExperts' | 'FellowshipMasters' | 'Fellowship1Dan' | 'Fellowship2Dan' | 'Fellowship3Dan' | 'Fellowship4Dan' | 'Fellowship5Dan' | 'Fellowship6Dan' | 'Fellowship7Dan' | 'Fellowship8Dan' | 'Fellowship9Dan' | 'WishForChange';
   }
 
-  /** @name StagingKusamaRuntimeRuntimeParameters (163) */
+  /** @name StagingKusamaRuntimeRuntimeParameters (170) */
   interface StagingKusamaRuntimeRuntimeParameters extends Enum {
     readonly isInflation: boolean;
     readonly asInflation: StagingKusamaRuntimeDynamicParamsInflationParameters;
@@ -73,7 +72,7 @@ declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
     readonly type: 'Inflation' | 'Treasury';
   }
 
-  /** @name StagingKusamaRuntimeDynamicParamsInflationParameters (164) */
+  /** @name StagingKusamaRuntimeDynamicParamsInflationParameters (171) */
   interface StagingKusamaRuntimeDynamicParamsInflationParameters extends Enum {
     readonly isMinInflation: boolean;
     readonly asMinInflation: ITuple<[StagingKusamaRuntimeDynamicParamsInflationMinInflation, Option<Perquintill>]>;
@@ -88,22 +87,22 @@ declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
     readonly type: 'MinInflation' | 'MaxInflation' | 'IdealStake' | 'Falloff' | 'UseAuctionSlots';
   }
 
-  /** @name StagingKusamaRuntimeDynamicParamsInflationMinInflation (165) */
+  /** @name StagingKusamaRuntimeDynamicParamsInflationMinInflation (172) */
   type StagingKusamaRuntimeDynamicParamsInflationMinInflation = Null;
 
-  /** @name StagingKusamaRuntimeDynamicParamsInflationMaxInflation (168) */
+  /** @name StagingKusamaRuntimeDynamicParamsInflationMaxInflation (175) */
   type StagingKusamaRuntimeDynamicParamsInflationMaxInflation = Null;
 
-  /** @name StagingKusamaRuntimeDynamicParamsInflationIdealStake (169) */
+  /** @name StagingKusamaRuntimeDynamicParamsInflationIdealStake (176) */
   type StagingKusamaRuntimeDynamicParamsInflationIdealStake = Null;
 
-  /** @name StagingKusamaRuntimeDynamicParamsInflationFalloff (170) */
+  /** @name StagingKusamaRuntimeDynamicParamsInflationFalloff (177) */
   type StagingKusamaRuntimeDynamicParamsInflationFalloff = Null;
 
-  /** @name StagingKusamaRuntimeDynamicParamsInflationUseAuctionSlots (171) */
+  /** @name StagingKusamaRuntimeDynamicParamsInflationUseAuctionSlots (178) */
   type StagingKusamaRuntimeDynamicParamsInflationUseAuctionSlots = Null;
 
-  /** @name StagingKusamaRuntimeDynamicParamsTreasuryParameters (173) */
+  /** @name StagingKusamaRuntimeDynamicParamsTreasuryParameters (180) */
   interface StagingKusamaRuntimeDynamicParamsTreasuryParameters extends Enum {
     readonly isBurnPortion: boolean;
     readonly asBurnPortion: ITuple<[StagingKusamaRuntimeDynamicParamsTreasuryBurnPortion, Option<Permill>]>;
@@ -112,17 +111,17 @@ declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
     readonly type: 'BurnPortion' | 'BurnDestination';
   }
 
-  /** @name StagingKusamaRuntimeDynamicParamsTreasuryBurnPortion (174) */
+  /** @name StagingKusamaRuntimeDynamicParamsTreasuryBurnPortion (181) */
   type StagingKusamaRuntimeDynamicParamsTreasuryBurnPortion = Null;
 
-  /** @name StagingKusamaRuntimeDynamicParamsTreasuryBurnDestination (177) */
+  /** @name StagingKusamaRuntimeDynamicParamsTreasuryBurnDestination (184) */
   type StagingKusamaRuntimeDynamicParamsTreasuryBurnDestination = Null;
 
-  /** @name StagingKusamaRuntimeBurnDestinationAccount (179) */
+  /** @name StagingKusamaRuntimeBurnDestinationAccount (186) */
   interface StagingKusamaRuntimeBurnDestinationAccount extends Option<AccountId32> {}
 
-  /** @name StagingKusamaRuntimeProxyType (199) */
-  interface StagingKusamaRuntimeProxyType extends Enum {
+  /** @name KusamaRuntimeConstantsProxyProxyType (206) */
+  interface KusamaRuntimeConstantsProxyProxyType extends Enum {
     readonly isAny: boolean;
     readonly isNonTransfer: boolean;
     readonly isGovernance: boolean;
@@ -136,7 +135,7 @@ declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
     readonly type: 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'CancelProxy' | 'Auction' | 'Society' | 'NominationPools' | 'Spokesperson' | 'ParaRegistration';
   }
 
-  /** @name StagingKusamaRuntimeNposCompactSolution24 (209) */
+  /** @name StagingKusamaRuntimeNposCompactSolution24 (216) */
   interface StagingKusamaRuntimeNposCompactSolution24 extends Struct {
     readonly votes1: Vec<ITuple<[Compact<u32>, Compact<u16>]>>;
     readonly votes2: Vec<ITuple<[Compact<u32>, ITuple<[Compact<u16>, Compact<PerU16>]>, Compact<u16>]>>;
@@ -164,7 +163,7 @@ declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
     readonly votes24: Vec<ITuple<[Compact<u32>, Vec<ITuple<[Compact<u16>, Compact<PerU16>]>>, Compact<u16>]>>;
   }
 
-  /** @name StagingKusamaRuntimeRuntimeParametersKey (491) */
+  /** @name StagingKusamaRuntimeRuntimeParametersKey (509) */
   interface StagingKusamaRuntimeRuntimeParametersKey extends Enum {
     readonly isInflation: boolean;
     readonly asInflation: StagingKusamaRuntimeDynamicParamsInflationParametersKey;
@@ -173,7 +172,7 @@ declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
     readonly type: 'Inflation' | 'Treasury';
   }
 
-  /** @name StagingKusamaRuntimeDynamicParamsInflationParametersKey (492) */
+  /** @name StagingKusamaRuntimeDynamicParamsInflationParametersKey (510) */
   interface StagingKusamaRuntimeDynamicParamsInflationParametersKey extends Enum {
     readonly isMinInflation: boolean;
     readonly isMaxInflation: boolean;
@@ -183,14 +182,14 @@ declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
     readonly type: 'MinInflation' | 'MaxInflation' | 'IdealStake' | 'Falloff' | 'UseAuctionSlots';
   }
 
-  /** @name StagingKusamaRuntimeDynamicParamsTreasuryParametersKey (493) */
+  /** @name StagingKusamaRuntimeDynamicParamsTreasuryParametersKey (511) */
   interface StagingKusamaRuntimeDynamicParamsTreasuryParametersKey extends Enum {
     readonly isBurnPortion: boolean;
     readonly isBurnDestination: boolean;
     readonly type: 'BurnPortion' | 'BurnDestination';
   }
 
-  /** @name StagingKusamaRuntimeRuntimeParametersValue (495) */
+  /** @name StagingKusamaRuntimeRuntimeParametersValue (513) */
   interface StagingKusamaRuntimeRuntimeParametersValue extends Enum {
     readonly isInflation: boolean;
     readonly asInflation: StagingKusamaRuntimeDynamicParamsInflationParametersValue;
@@ -199,7 +198,7 @@ declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
     readonly type: 'Inflation' | 'Treasury';
   }
 
-  /** @name StagingKusamaRuntimeDynamicParamsInflationParametersValue (496) */
+  /** @name StagingKusamaRuntimeDynamicParamsInflationParametersValue (514) */
   interface StagingKusamaRuntimeDynamicParamsInflationParametersValue extends Enum {
     readonly isMinInflation: boolean;
     readonly asMinInflation: Perquintill;
@@ -214,7 +213,7 @@ declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
     readonly type: 'MinInflation' | 'MaxInflation' | 'IdealStake' | 'Falloff' | 'UseAuctionSlots';
   }
 
-  /** @name StagingKusamaRuntimeDynamicParamsTreasuryParametersValue (497) */
+  /** @name StagingKusamaRuntimeDynamicParamsTreasuryParametersValue (515) */
   interface StagingKusamaRuntimeDynamicParamsTreasuryParametersValue extends Enum {
     readonly isBurnPortion: boolean;
     readonly asBurnPortion: Permill;
@@ -223,7 +222,7 @@ declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
     readonly type: 'BurnPortion' | 'BurnDestination';
   }
 
-  /** @name StagingKusamaRuntimeRuntimeHoldReason (585) */
+  /** @name StagingKusamaRuntimeRuntimeHoldReason (604) */
   interface StagingKusamaRuntimeRuntimeHoldReason extends Enum {
     readonly isPreimage: boolean;
     readonly asPreimage: PalletPreimageHoldReason;
@@ -234,23 +233,23 @@ declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
     readonly type: 'Preimage' | 'Nis' | 'DelegatedStaking';
   }
 
-  /** @name StagingKusamaRuntimeRuntimeFreezeReason (592) */
+  /** @name StagingKusamaRuntimeRuntimeFreezeReason (611) */
   interface StagingKusamaRuntimeRuntimeFreezeReason extends Enum {
     readonly isNominationPools: boolean;
     readonly asNominationPools: PalletNominationPoolsFreezeReason;
     readonly type: 'NominationPools';
   }
 
-  /** @name FrameSupportTokensMiscIdAmount (764) */
+  /** @name FrameSupportTokensMiscIdAmount (783) */
   interface FrameSupportTokensMiscIdAmount extends Struct {
     readonly id: Null;
     readonly amount: u128;
   }
 
-  /** @name StagingKusamaRuntimeRuntime (946) */
+  /** @name StagingKusamaRuntimeRuntime (970) */
   type StagingKusamaRuntimeRuntime = Null;
 
-  /** @name StagingKusamaRuntimeRuntimeError (1059) */
+  /** @name StagingKusamaRuntimeRuntimeError (1084) */
   interface StagingKusamaRuntimeRuntimeError extends Enum {
     readonly isSystem: boolean;
     readonly asSystem: FrameSystemError;

@@ -27,8 +27,11 @@ export interface AssetIdV3 extends Enum {
 /** @name AssetIdV4 */
 export interface AssetIdV4 extends MultiLocationV4 {}
 
+/** @name AssetIdV5 */
+export interface AssetIdV5 extends MultiLocationV5 {}
+
 /** @name AssetInstance */
-export interface AssetInstance extends AssetInstanceV4 {}
+export interface AssetInstance extends AssetInstanceV5 {}
 
 /** @name AssetInstanceV0 */
 export interface AssetInstanceV0 extends Enum {
@@ -110,6 +113,22 @@ export interface AssetInstanceV3 extends Enum {
 
 /** @name AssetInstanceV4 */
 export interface AssetInstanceV4 extends Enum {
+  readonly isUndefined: boolean;
+  readonly isIndex: boolean;
+  readonly asIndex: Compact<u128>;
+  readonly isArray4: boolean;
+  readonly asArray4: U8aFixed;
+  readonly isArray8: boolean;
+  readonly asArray8: U8aFixed;
+  readonly isArray16: boolean;
+  readonly asArray16: U8aFixed;
+  readonly isArray32: boolean;
+  readonly asArray32: U8aFixed;
+  readonly type: 'Undefined' | 'Index' | 'Array4' | 'Array8' | 'Array16' | 'Array32';
+}
+
+/** @name AssetInstanceV5 */
+export interface AssetInstanceV5 extends Enum {
   readonly isUndefined: boolean;
   readonly isIndex: boolean;
   readonly asIndex: Compact<u128>;
@@ -251,7 +270,7 @@ export interface DoubleEncodedCall extends Struct {
 }
 
 /** @name Fungibility */
-export interface Fungibility extends FungibilityV4 {}
+export interface Fungibility extends FungibilityV5 {}
 
 /** @name FungibilityV0 */
 export interface FungibilityV0 extends FungibilityV1 {}
@@ -290,6 +309,24 @@ export interface FungibilityV4 extends Enum {
   readonly isNonFungible: boolean;
   readonly asNonFungible: AssetInstanceV4;
   readonly type: 'Fungible' | 'NonFungible';
+}
+
+/** @name FungibilityV5 */
+export interface FungibilityV5 extends Enum {
+  readonly isFungible: boolean;
+  readonly asFungible: Compact<u128>;
+  readonly isNonFungible: boolean;
+  readonly asNonFungible: AssetInstanceV5;
+  readonly type: 'Fungible' | 'NonFungible';
+}
+
+/** @name HintV5 */
+export interface HintV5 extends Enum {
+  readonly isAssetClaimer: boolean;
+  readonly asAssetClaimer: {
+    readonly location: MultiLocationV5;
+  } & Struct;
+  readonly type: 'AssetClaimer';
 }
 
 /** @name InboundStatus */
@@ -783,6 +820,209 @@ export interface InstructionV4 extends Enum {
   readonly type: 'WithdrawAsset' | 'ReserveAssetDeposited' | 'ReceiveTeleportedAsset' | 'QueryResponse' | 'TransferAsset' | 'TransferReserveAsset' | 'Transact' | 'HrmpNewChannelOpenRequest' | 'HrmpChannelAccepted' | 'HrmpChannelClosing' | 'ClearOrigin' | 'DescendOrigin' | 'ReportError' | 'DepositAsset' | 'DepositReserveAsset' | 'ExchangeAsset' | 'InitiateReserveWithdraw' | 'InitiateTeleport' | 'ReportHolding' | 'BuyExecution' | 'RefundSurplus' | 'SetErrorHandler' | 'SetAppendix' | 'ClearError' | 'ClaimAsset' | 'Trap' | 'SubscribeVersion' | 'UnsubscribeVersion' | 'BurnAsset' | 'ExpectAsset' | 'ExpectOrigin' | 'ExpectError' | 'ExpectTransactStatus' | 'QueryPallet' | 'ExpectPallet' | 'ReportTransactStatus' | 'ClearTransactStatus' | 'UniversalOrigin' | 'ExportMessage' | 'LockAsset' | 'UnlockAsset' | 'NoteUnlockable' | 'RequestUnlock' | 'SetFeesMode' | 'SetTopic' | 'ClearTopic' | 'AliasOrigin' | 'UnpaidExecution';
 }
 
+/** @name InstructionV5 */
+export interface InstructionV5 extends Enum {
+  readonly isWithdrawAsset: boolean;
+  readonly asWithdrawAsset: MultiAssetsV5;
+  readonly isReserveAssetDeposited: boolean;
+  readonly asReserveAssetDeposited: MultiAssetsV5;
+  readonly isReceiveTeleportedAsset: boolean;
+  readonly asReceiveTeleportedAsset: MultiAssetsV5;
+  readonly isQueryResponse: boolean;
+  readonly asQueryResponse: {
+    readonly queryId: Compact<u64>;
+    readonly response: ResponseV5;
+    readonly maxWeight: WeightV2;
+    readonly querier: Option<MultiLocationV5>;
+  } & Struct;
+  readonly isTransferAsset: boolean;
+  readonly asTransferAsset: {
+    readonly assets: MultiAssetsV5;
+    readonly beneficiary: MultiLocationV5;
+  } & Struct;
+  readonly isTransferReserveAsset: boolean;
+  readonly asTransferReserveAsset: {
+    readonly assets: MultiAssetsV5;
+    readonly dest: MultiLocationV5;
+    readonly xcm: XcmV5;
+  } & Struct;
+  readonly isTransact: boolean;
+  readonly asTransact: {
+    readonly originKind: OriginKindV4;
+    readonly requireWeightAtMost: WeightV2;
+    readonly call: DoubleEncodedCall;
+  } & Struct;
+  readonly isHrmpNewChannelOpenRequest: boolean;
+  readonly asHrmpNewChannelOpenRequest: {
+    readonly sender: Compact<u32>;
+    readonly maxMessageSize: Compact<u32>;
+    readonly maxCapacity: Compact<u32>;
+  } & Struct;
+  readonly isHrmpChannelAccepted: boolean;
+  readonly asHrmpChannelAccepted: {
+    readonly recipient: Compact<u32>;
+  } & Struct;
+  readonly isHrmpChannelClosing: boolean;
+  readonly asHrmpChannelClosing: {
+    readonly initiator: Compact<u32>;
+    readonly sender: Compact<u32>;
+    readonly recipient: Compact<u32>;
+  } & Struct;
+  readonly isClearOrigin: boolean;
+  readonly isDescendOrigin: boolean;
+  readonly asDescendOrigin: InteriorMultiLocationV5;
+  readonly isReportError: boolean;
+  readonly asReportError: QueryResponseInfoV4;
+  readonly isDepositAsset: boolean;
+  readonly asDepositAsset: {
+    readonly assets: MultiAssetFilterV5;
+    readonly beneficiary: MultiLocationV5;
+  } & Struct;
+  readonly isDepositReserveAsset: boolean;
+  readonly asDepositReserveAsset: {
+    readonly assets: MultiAssetFilterV5;
+    readonly dest: MultiLocationV5;
+    readonly xcm: XcmV5;
+  } & Struct;
+  readonly isExchangeAsset: boolean;
+  readonly asExchangeAsset: {
+    readonly give: MultiAssetFilterV5;
+    readonly want: MultiAssetsV5;
+    readonly maximal: bool;
+  } & Struct;
+  readonly isInitiateReserveWithdraw: boolean;
+  readonly asInitiateReserveWithdraw: {
+    readonly assets: MultiAssetFilterV5;
+    readonly reserve: MultiLocationV5;
+    readonly xcm: XcmV5;
+  } & Struct;
+  readonly isInitiateTeleport: boolean;
+  readonly asInitiateTeleport: {
+    readonly assets: MultiAssetFilterV5;
+    readonly dest: MultiLocationV5;
+    readonly xcm: XcmV5;
+  } & Struct;
+  readonly isReportHolding: boolean;
+  readonly asReportHolding: {
+    readonly responseInfo: QueryResponseInfoV4;
+    readonly assets: MultiAssetFilterV5;
+  } & Struct;
+  readonly isBuyExecution: boolean;
+  readonly asBuyExecution: {
+    readonly fees: MultiAssetV4;
+    readonly weightLimit: WeightLimitV3;
+  } & Struct;
+  readonly isRefundSurplus: boolean;
+  readonly isSetErrorHandler: boolean;
+  readonly asSetErrorHandler: XcmV5;
+  readonly isSetAppendix: boolean;
+  readonly asSetAppendix: XcmV5;
+  readonly isClearError: boolean;
+  readonly isClaimAsset: boolean;
+  readonly asClaimAsset: {
+    readonly assets: MultiAssetsV5;
+    readonly ticket: MultiLocationV5;
+  } & Struct;
+  readonly isTrap: boolean;
+  readonly asTrap: Compact<u64>;
+  readonly isSubscribeVersion: boolean;
+  readonly asSubscribeVersion: {
+    readonly queryId: Compact<u64>;
+    readonly maxResponseWeight: WeightV2;
+  } & Struct;
+  readonly isUnsubscribeVersion: boolean;
+  readonly isBurnAsset: boolean;
+  readonly asBurnAsset: MultiAssetsV5;
+  readonly isExpectAsset: boolean;
+  readonly asExpectAsset: MultiAssetsV5;
+  readonly isExpectOrigin: boolean;
+  readonly asExpectOrigin: Option<MultiLocationV5>;
+  readonly isExpectError: boolean;
+  readonly asExpectError: Option<ITuple<[u32, XcmErrorV3]>>;
+  readonly isExpectTransactStatus: boolean;
+  readonly asExpectTransactStatus: MaybeErrorCodeV3;
+  readonly isQueryPallet: boolean;
+  readonly asQueryPallet: {
+    readonly moduleName: Bytes;
+    readonly responseInfo: QueryResponseInfoV4;
+  } & Struct;
+  readonly isExpectPallet: boolean;
+  readonly asExpectPallet: {
+    readonly index: Compact<u32>;
+    readonly name: Bytes;
+    readonly moduleName: Bytes;
+    readonly crateMajor: Compact<u32>;
+    readonly minCrateMinor: Compact<u32>;
+  } & Struct;
+  readonly isReportTransactStatus: boolean;
+  readonly asReportTransactStatus: QueryResponseInfoV4;
+  readonly isClearTransactStatus: boolean;
+  readonly isUniversalOrigin: boolean;
+  readonly asUniversalOrigin: JunctionV5;
+  readonly isExportMessage: boolean;
+  readonly asExportMessage: {
+    readonly network: NetworkIdV5;
+    readonly destination: InteriorMultiLocationV5;
+    readonly xcm: XcmV5;
+  } & Struct;
+  readonly isLockAsset: boolean;
+  readonly asLockAsset: {
+    readonly asset: MultiAssetV5;
+    readonly unlocker: MultiLocationV5;
+  } & Struct;
+  readonly isUnlockAsset: boolean;
+  readonly asUnlockAsset: {
+    readonly asset: MultiAssetV5;
+    readonly target: MultiLocationV5;
+  } & Struct;
+  readonly isNoteUnlockable: boolean;
+  readonly asNoteUnlockable: {
+    readonly asset: MultiAssetV5;
+    readonly owner: MultiLocationV5;
+  } & Struct;
+  readonly isRequestUnlock: boolean;
+  readonly asRequestUnlock: {
+    readonly asset: MultiAssetV5;
+    readonly locker: MultiLocationV5;
+  } & Struct;
+  readonly isSetFeesMode: boolean;
+  readonly asSetFeesMode: {
+    readonly jitWithdraw: bool;
+  } & Struct;
+  readonly isSetTopic: boolean;
+  readonly asSetTopic: U8aFixed;
+  readonly isClearTopic: boolean;
+  readonly isAliasOrigin: boolean;
+  readonly asAliasOrigin: MultiLocationV5;
+  readonly isUnpaidExecution: boolean;
+  readonly asUnpaidExecution: {
+    readonly weightLimit: WeightLimitV3;
+    readonly checkOrigin: Option<MultiLocationV5>;
+  } & Struct;
+  readonly isPayFees: boolean;
+  readonly asPayFees: {
+    readonly asset: MultiAssetV5;
+  } & Struct;
+  readonly isInitiateTransfer: boolean;
+  readonly asInitiateTransfer: {
+    readonly destination: MultiLocationV5;
+    readonly remoteFees: Option<MultiAssetTransferFilterV5>;
+    readonly preserveOrigin: bool;
+    readonly assets: Vec<MultiAssetTransferFilterV5>;
+    readonly remoteXcm: XcmV5;
+  } & Struct;
+  readonly isExecuteWithOrigin: boolean;
+  readonly asExecuteWithOrigin: {
+    readonly descendant_origin: Option<InteriorMultiLocationV5>;
+    readonly xcm: XcmV5;
+  } & Struct;
+  readonly isSetHints: boolean;
+  readonly asSetHints: {
+    readonly hints: Vec<HintV5>;
+  } & Struct;
+  readonly type: 'WithdrawAsset' | 'ReserveAssetDeposited' | 'ReceiveTeleportedAsset' | 'QueryResponse' | 'TransferAsset' | 'TransferReserveAsset' | 'Transact' | 'HrmpNewChannelOpenRequest' | 'HrmpChannelAccepted' | 'HrmpChannelClosing' | 'ClearOrigin' | 'DescendOrigin' | 'ReportError' | 'DepositAsset' | 'DepositReserveAsset' | 'ExchangeAsset' | 'InitiateReserveWithdraw' | 'InitiateTeleport' | 'ReportHolding' | 'BuyExecution' | 'RefundSurplus' | 'SetErrorHandler' | 'SetAppendix' | 'ClearError' | 'ClaimAsset' | 'Trap' | 'SubscribeVersion' | 'UnsubscribeVersion' | 'BurnAsset' | 'ExpectAsset' | 'ExpectOrigin' | 'ExpectError' | 'ExpectTransactStatus' | 'QueryPallet' | 'ExpectPallet' | 'ReportTransactStatus' | 'ClearTransactStatus' | 'UniversalOrigin' | 'ExportMessage' | 'LockAsset' | 'UnlockAsset' | 'NoteUnlockable' | 'RequestUnlock' | 'SetFeesMode' | 'SetTopic' | 'ClearTopic' | 'AliasOrigin' | 'UnpaidExecution' | 'PayFees' | 'InitiateTransfer' | 'ExecuteWithOrigin' | 'SetHints';
+}
+
 /** @name InteriorMultiLocation */
 export interface InteriorMultiLocation extends Junctions {}
 
@@ -792,11 +1032,14 @@ export interface InteriorMultiLocationV2 extends JunctionsV2 {}
 /** @name InteriorMultiLocationV3 */
 export interface InteriorMultiLocationV3 extends JunctionsV3 {}
 
+/** @name InteriorMultiLocationV5 */
+export interface InteriorMultiLocationV5 extends JunctionsV5 {}
+
 /** @name Junction */
-export interface Junction extends JunctionV4 {}
+export interface Junction extends JunctionV5 {}
 
 /** @name Junctions */
-export interface Junctions extends JunctionsV4 {}
+export interface Junctions extends JunctionsV5 {}
 
 /** @name JunctionsV1 */
 export interface JunctionsV1 extends Enum {
@@ -883,6 +1126,28 @@ export interface JunctionsV4 extends Enum {
   readonly asX7: Vec<JunctionV4>;
   readonly isX8: boolean;
   readonly asX8: Vec<JunctionV4>;
+  readonly type: 'Here' | 'X1' | 'X2' | 'X3' | 'X4' | 'X5' | 'X6' | 'X7' | 'X8';
+}
+
+/** @name JunctionsV5 */
+export interface JunctionsV5 extends Enum {
+  readonly isHere: boolean;
+  readonly isX1: boolean;
+  readonly asX1: Vec<JunctionV5>;
+  readonly isX2: boolean;
+  readonly asX2: Vec<JunctionV5>;
+  readonly isX3: boolean;
+  readonly asX3: Vec<JunctionV5>;
+  readonly isX4: boolean;
+  readonly asX4: Vec<JunctionV5>;
+  readonly isX5: boolean;
+  readonly asX5: Vec<JunctionV5>;
+  readonly isX6: boolean;
+  readonly asX6: Vec<JunctionV5>;
+  readonly isX7: boolean;
+  readonly asX7: Vec<JunctionV5>;
+  readonly isX8: boolean;
+  readonly asX8: Vec<JunctionV5>;
   readonly type: 'Here' | 'X1' | 'X2' | 'X3' | 'X4' | 'X5' | 'X6' | 'X7' | 'X8';
 }
 
@@ -1067,6 +1332,45 @@ export interface JunctionV4 extends Enum {
   readonly type: 'Parachain' | 'AccountId32' | 'AccountIndex64' | 'AccountKey20' | 'PalletInstance' | 'GeneralIndex' | 'GeneralKey' | 'OnlyChild' | 'Plurality' | 'GlobalConsensus';
 }
 
+/** @name JunctionV5 */
+export interface JunctionV5 extends Enum {
+  readonly isParachain: boolean;
+  readonly asParachain: Compact<u32>;
+  readonly isAccountId32: boolean;
+  readonly asAccountId32: {
+    readonly network: Option<NetworkIdV5>;
+    readonly id: U8aFixed;
+  } & Struct;
+  readonly isAccountIndex64: boolean;
+  readonly asAccountIndex64: {
+    readonly network: Option<NetworkIdV5>;
+    readonly index: Compact<u64>;
+  } & Struct;
+  readonly isAccountKey20: boolean;
+  readonly asAccountKey20: {
+    readonly network: Option<NetworkIdV5>;
+    readonly key: U8aFixed;
+  } & Struct;
+  readonly isPalletInstance: boolean;
+  readonly asPalletInstance: u8;
+  readonly isGeneralIndex: boolean;
+  readonly asGeneralIndex: Compact<u128>;
+  readonly isGeneralKey: boolean;
+  readonly asGeneralKey: {
+    readonly length: u8;
+    readonly data: U8aFixed;
+  } & Struct;
+  readonly isOnlyChild: boolean;
+  readonly isPlurality: boolean;
+  readonly asPlurality: {
+    readonly id: BodyIdV3;
+    readonly part: BodyPartV3;
+  } & Struct;
+  readonly isGlobalConsensus: boolean;
+  readonly asGlobalConsensus: NetworkIdV5;
+  readonly type: 'Parachain' | 'AccountId32' | 'AccountIndex64' | 'AccountKey20' | 'PalletInstance' | 'GeneralIndex' | 'GeneralKey' | 'OnlyChild' | 'Plurality' | 'GlobalConsensus';
+}
+
 /** @name MaxPalletNameLen */
 export interface MaxPalletNameLen extends u32 {}
 
@@ -1084,10 +1388,10 @@ export interface MaybeErrorCodeV3 extends Enum {
 }
 
 /** @name MultiAsset */
-export interface MultiAsset extends MultiAssetV4 {}
+export interface MultiAsset extends MultiAssetV5 {}
 
 /** @name MultiAssetFilter */
-export interface MultiAssetFilter extends MultiAssetFilterV4 {}
+export interface MultiAssetFilter extends MultiAssetFilterV5 {}
 
 /** @name MultiAssetFilterV1 */
 export interface MultiAssetFilterV1 extends Enum {
@@ -1125,6 +1429,15 @@ export interface MultiAssetFilterV4 extends Enum {
   readonly type: 'Definite' | 'Wild';
 }
 
+/** @name MultiAssetFilterV5 */
+export interface MultiAssetFilterV5 extends Enum {
+  readonly isDefinite: boolean;
+  readonly asDefinite: MultiAssetsV5;
+  readonly isWild: boolean;
+  readonly asWild: WildMultiAssetV5;
+  readonly type: 'Definite' | 'Wild';
+}
+
 /** @name MultiAssets */
 export interface MultiAssets extends Vec<MultiAsset> {}
 
@@ -1139,6 +1452,20 @@ export interface MultiAssetsV3 extends Vec<MultiAssetV3> {}
 
 /** @name MultiAssetsV4 */
 export interface MultiAssetsV4 extends Vec<MultiAssetV4> {}
+
+/** @name MultiAssetsV5 */
+export interface MultiAssetsV5 extends Vec<MultiAssetV5> {}
+
+/** @name MultiAssetTransferFilterV5 */
+export interface MultiAssetTransferFilterV5 extends Enum {
+  readonly isTeleport: boolean;
+  readonly asTeleport: MultiAssetFilterV5;
+  readonly isReserveDeposit: boolean;
+  readonly asReserveDeposit: MultiAssetFilterV5;
+  readonly isReserveWithdraw: boolean;
+  readonly asReserveWithdraw: MultiAssetFilterV5;
+  readonly type: 'Teleport' | 'ReserveDeposit' | 'ReserveWithdraw';
+}
 
 /** @name MultiAssetV0 */
 export interface MultiAssetV0 extends Enum {
@@ -1201,8 +1528,14 @@ export interface MultiAssetV4 extends Struct {
   readonly fun: FungibilityV4;
 }
 
+/** @name MultiAssetV5 */
+export interface MultiAssetV5 extends Struct {
+  readonly id: AssetIdV5;
+  readonly fun: FungibilityV5;
+}
+
 /** @name MultiLocation */
-export interface MultiLocation extends MultiLocationV4 {}
+export interface MultiLocation extends MultiLocationV5 {}
 
 /** @name MultiLocationV0 */
 export interface MultiLocationV0 extends Enum {
@@ -1248,6 +1581,12 @@ export interface MultiLocationV3 extends Struct {
 export interface MultiLocationV4 extends Struct {
   readonly parents: u8;
   readonly interior: JunctionsV4;
+}
+
+/** @name MultiLocationV5 */
+export interface MultiLocationV5 extends Struct {
+  readonly parents: u8;
+  readonly interior: JunctionsV5;
 }
 
 /** @name NetworkId */
@@ -1296,6 +1635,27 @@ export interface NetworkIdV3 extends Enum {
 
 /** @name NetworkIdV4 */
 export interface NetworkIdV4 extends NetworkIdV3 {}
+
+/** @name NetworkIdV5 */
+export interface NetworkIdV5 extends Enum {
+  readonly isByGenesis: boolean;
+  readonly asByGenesis: U8aFixed;
+  readonly isByFork: boolean;
+  readonly asByFork: {
+    readonly blockNumber: u64;
+    readonly blockHash: U8aFixed;
+  } & Struct;
+  readonly isPolkadot: boolean;
+  readonly isKusama: boolean;
+  readonly isEthereum: boolean;
+  readonly asEthereum: {
+    readonly chainId: Compact<u64>;
+  } & Struct;
+  readonly isBitcoinCore: boolean;
+  readonly isBitcoinCash: boolean;
+  readonly isPolkadotBulletin: boolean;
+  readonly type: 'ByGenesis' | 'ByFork' | 'Polkadot' | 'Kusama' | 'Ethereum' | 'BitcoinCore' | 'BitcoinCash' | 'PolkadotBulletin';
+}
 
 /** @name OriginKindV0 */
 export interface OriginKindV0 extends Enum {
@@ -1373,6 +1733,9 @@ export interface PalletInfoV3 extends Struct {
 /** @name PalletInfoV4 */
 export interface PalletInfoV4 extends PalletInfoV3 {}
 
+/** @name PalletInfoV5 */
+export interface PalletInfoV5 extends PalletInfoV3 {}
+
 /** @name QueryId */
 export interface QueryId extends u64 {}
 
@@ -1386,6 +1749,13 @@ export interface QueryResponseInfoV3 extends Struct {
 /** @name QueryResponseInfoV4 */
 export interface QueryResponseInfoV4 extends Struct {
   readonly destination: MultiLocationV4;
+  readonly queryId: Compact<u64>;
+  readonly maxWeight: WeightV2;
+}
+
+/** @name QueryResponseInfoV5 */
+export interface QueryResponseInfoV5 extends Struct {
+  readonly destination: MultiLocationV5;
   readonly queryId: Compact<u64>;
   readonly maxWeight: WeightV2;
 }
@@ -1416,7 +1786,7 @@ export interface QueueConfigData extends Struct {
 }
 
 /** @name Response */
-export interface Response extends ResponseV4 {}
+export interface Response extends ResponseV5 {}
 
 /** @name ResponseV0 */
 export interface ResponseV0 extends Enum {
@@ -1485,12 +1855,37 @@ export interface ResponseV4 extends Enum {
   readonly type: 'Null' | 'Assets' | 'ExecutionResult' | 'Version' | 'PalletsInfo' | 'DispatchResult';
 }
 
+/** @name ResponseV5 */
+export interface ResponseV5 extends Enum {
+  readonly isNull: boolean;
+  readonly isAssets: boolean;
+  readonly asAssets: MultiAssetsV5;
+  readonly isExecutionResult: boolean;
+  readonly asExecutionResult: Option<ITuple<[u32, XcmErrorV3]>>;
+  readonly isVersion: boolean;
+  readonly asVersion: u32;
+  readonly isPalletsInfo: boolean;
+  readonly asPalletsInfo: Vec<PalletInfoV5>;
+  readonly isDispatchResult: boolean;
+  readonly asDispatchResult: MaybeErrorCodeV3;
+  readonly type: 'Null' | 'Assets' | 'ExecutionResult' | 'Version' | 'PalletsInfo' | 'DispatchResult';
+}
+
 /** @name UncheckedFungibilityV4 */
 export interface UncheckedFungibilityV4 extends Enum {
   readonly isFungible: boolean;
   readonly asFungible: Compact<u128>;
   readonly isNonFungible: boolean;
   readonly asNonFungible: AssetInstanceV4;
+  readonly type: 'Fungible' | 'NonFungible';
+}
+
+/** @name UncheckedFungibilityV5 */
+export interface UncheckedFungibilityV5 extends Enum {
+  readonly isFungible: boolean;
+  readonly asFungible: Compact<u128>;
+  readonly isNonFungible: boolean;
+  readonly asNonFungible: AssetInstanceV5;
   readonly type: 'Fungible' | 'NonFungible';
 }
 
@@ -1506,7 +1901,9 @@ export interface VersionedMultiAsset extends Enum {
   readonly asV3: MultiAssetV3;
   readonly isV4: boolean;
   readonly asV4: MultiAssetV4;
-  readonly type: 'V0' | 'V1' | 'V2' | 'V3' | 'V4';
+  readonly isV5: boolean;
+  readonly asV5: MultiAssetV5;
+  readonly type: 'V0' | 'V1' | 'V2' | 'V3' | 'V4' | 'V5';
 }
 
 /** @name VersionedMultiAssets */
@@ -1521,7 +1918,9 @@ export interface VersionedMultiAssets extends Enum {
   readonly asV3: MultiAssetsV3;
   readonly isV4: boolean;
   readonly asV4: MultiAssetsV4;
-  readonly type: 'V0' | 'V1' | 'V2' | 'V3' | 'V4';
+  readonly isV5: boolean;
+  readonly asV5: MultiAssetsV5;
+  readonly type: 'V0' | 'V1' | 'V2' | 'V3' | 'V4' | 'V5';
 }
 
 /** @name VersionedMultiLocation */
@@ -1536,7 +1935,9 @@ export interface VersionedMultiLocation extends Enum {
   readonly asV3: MultiLocationV3;
   readonly isV4: boolean;
   readonly asV4: MultiLocationV4;
-  readonly type: 'V0' | 'V1' | 'V2' | 'V3' | 'V4';
+  readonly isV5: boolean;
+  readonly asV5: MultiLocationV5;
+  readonly type: 'V0' | 'V1' | 'V2' | 'V3' | 'V4' | 'V5';
 }
 
 /** @name VersionedResponse */
@@ -1546,6 +1947,7 @@ export interface VersionedResponse extends Struct {
   readonly V2: ResponseV2;
   readonly V3: ResponseV3;
   readonly V4: ResponseV4;
+  readonly V5: ResponseV5;
 }
 
 /** @name VersionedXcm */
@@ -1560,7 +1962,9 @@ export interface VersionedXcm extends Enum {
   readonly asV3: XcmV3;
   readonly isV4: boolean;
   readonly asV4: XcmV4;
-  readonly type: 'V0' | 'V1' | 'V2' | 'V3' | 'V4';
+  readonly isV5: boolean;
+  readonly asV5: XcmV5;
+  readonly type: 'V0' | 'V1' | 'V2' | 'V3' | 'V4' | 'V5';
 }
 
 /** @name VersionMigrationStage */
@@ -1596,7 +2000,7 @@ export interface WeightLimitV3 extends Enum {
 }
 
 /** @name WildFungibility */
-export interface WildFungibility extends WildFungibilityV4 {}
+export interface WildFungibility extends WildFungibilityV5 {}
 
 /** @name WildFungibilityV0 */
 export interface WildFungibilityV0 extends WildFungibilityV1 {}
@@ -1621,8 +2025,11 @@ export interface WildFungibilityV3 extends WildFungibilityV2 {}
 /** @name WildFungibilityV4 */
 export interface WildFungibilityV4 extends WildFungibilityV2 {}
 
+/** @name WildFungibilityV5 */
+export interface WildFungibilityV5 extends WildFungibilityV2 {}
+
 /** @name WildMultiAsset */
-export interface WildMultiAsset extends WildMultiAssetV4 {}
+export interface WildMultiAsset extends WildMultiAssetV5 {}
 
 /** @name WildMultiAssetV1 */
 export interface WildMultiAssetV1 extends Enum {
@@ -1684,8 +2091,27 @@ export interface WildMultiAssetV4 extends Enum {
   readonly type: 'All' | 'AllOf' | 'AllCounted' | 'AllOfCounted';
 }
 
+/** @name WildMultiAssetV5 */
+export interface WildMultiAssetV5 extends Enum {
+  readonly isAll: boolean;
+  readonly isAllOf: boolean;
+  readonly asAllOf: {
+    readonly id: AssetIdV5;
+    readonly fun: WildFungibilityV5;
+  } & Struct;
+  readonly isAllCounted: boolean;
+  readonly asAllCounted: Compact<u32>;
+  readonly isAllOfCounted: boolean;
+  readonly asAllOfCounted: {
+    readonly id: AssetIdV5;
+    readonly fun: WildFungibilityV5;
+    readonly count: Compact<u32>;
+  } & Struct;
+  readonly type: 'All' | 'AllOf' | 'AllCounted' | 'AllOfCounted';
+}
+
 /** @name Xcm */
-export interface Xcm extends XcmV4 {}
+export interface Xcm extends XcmV5 {}
 
 /** @name XcmAssetId */
 export interface XcmAssetId extends Enum {
@@ -1697,7 +2123,7 @@ export interface XcmAssetId extends Enum {
 }
 
 /** @name XcmError */
-export interface XcmError extends XcmErrorV4 {}
+export interface XcmError extends XcmErrorV5 {}
 
 /** @name XcmErrorV0 */
 export interface XcmErrorV0 extends Enum {
@@ -1851,6 +2277,9 @@ export interface XcmErrorV3 extends Enum {
 
 /** @name XcmErrorV4 */
 export interface XcmErrorV4 extends XcmErrorV3 {}
+
+/** @name XcmErrorV5 */
+export interface XcmErrorV5 extends XcmErrorV3 {}
 
 /** @name XcmOrderV0 */
 export interface XcmOrderV0 extends Enum {
@@ -2108,6 +2537,9 @@ export interface XcmV3 extends Vec<InstructionV3> {}
 
 /** @name XcmV4 */
 export interface XcmV4 extends Vec<InstructionV4> {}
+
+/** @name XcmV5 */
+export interface XcmV5 extends Vec<InstructionV5> {}
 
 /** @name XcmVersion */
 export interface XcmVersion extends u32 {}

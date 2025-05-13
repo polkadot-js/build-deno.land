@@ -6,7 +6,7 @@ import type { ApiTypes, AugmentedEvent } from 'https://deno.land/x/polkadot/api-
 import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { AccountId32, H160, H256, Perbill, Permill, Perquintill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
-import type { FrameSupportDispatchPostDispatchInfo, FrameSupportMessagesProcessMessageError, FrameSupportPreimagesBounded, FrameSupportTokensFungibleUnionOfNativeOrWithId, FrameSupportTokensMiscBalanceStatus, FrameSystemDispatchEventInfo, KitchensinkRuntimeOriginCaller, KitchensinkRuntimeProxyType, KitchensinkRuntimeRuntimeParametersKey, KitchensinkRuntimeRuntimeParametersValue, PalletAllianceCid, PalletAllianceUnscrupulousItem, PalletBrokerCoretimeInterfaceCoreAssignment, PalletBrokerRegionId, PalletBrokerScheduleItem, PalletContractsOrigin, PalletConvictionVotingTally, PalletConvictionVotingVoteAccountVote, PalletCoreFellowshipParamsTypeU128, PalletCoreFellowshipWish, PalletDemocracyMetadataOwner, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletElectionProviderMultiPhasePhase, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNftsAttributeNamespace, PalletNftsPalletAttributes, PalletNftsPriceWithDirection, PalletNominationPoolsCommissionChangeRate, PalletNominationPoolsCommissionClaimPermission, PalletNominationPoolsPoolState, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord, PalletReviveExecOrigin, PalletSafeModeExitReason, PalletSocietyGroupParams, PalletStakingForcing, PalletStakingRewardDestination, PalletStakingValidatorPrefs, PalletStateTrieMigrationError, PalletStateTrieMigrationMigrationCompute, SpConsensusGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, SpRuntimeDispatchErrorWithPostInfo, SpStakingExposure, SpStatementStoreStatement, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { FrameSupportDispatchPostDispatchInfo, FrameSupportMessagesProcessMessageError, FrameSupportPreimagesBounded, FrameSupportTokensFungibleUnionOfNativeOrWithId, FrameSupportTokensMiscBalanceStatus, FrameSystemDispatchEventInfo, KitchensinkRuntimeOriginCaller, KitchensinkRuntimeProxyType, KitchensinkRuntimeRuntimeParametersKey, KitchensinkRuntimeRuntimeParametersValue, PalletAllianceCid, PalletAllianceUnscrupulousItem, PalletBrokerCoretimeInterfaceCoreAssignment, PalletBrokerRegionId, PalletBrokerScheduleItem, PalletContractsOrigin, PalletConvictionVotingTally, PalletConvictionVotingVoteAccountVote, PalletCoreFellowshipParamsTypeU128, PalletCoreFellowshipWish, PalletDemocracyMetadataOwner, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletElectionProviderMultiPhasePhase, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNftsAttributeNamespace, PalletNftsPalletAttributes, PalletNftsPriceWithDirection, PalletNominationPoolsClaimPermission, PalletNominationPoolsCommissionChangeRate, PalletNominationPoolsCommissionClaimPermission, PalletNominationPoolsPoolState, PalletProxyDepositKind, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord, PalletSafeModeExitReason, PalletSocietyGroupParams, PalletStakingForcing, PalletStakingRewardDestination, PalletStakingValidatorPrefs, PalletStateTrieMigrationError, PalletStateTrieMigrationMigrationCompute, SpConsensusGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, SpRuntimeDispatchErrorWithPostInfo, SpStatementStoreStatement, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedEvent<ApiType extends ApiTypes> = AugmentedEvent<ApiType>;
 
@@ -183,6 +183,44 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       [key: string]: AugmentedEvent<ApiType>;
     };
+    assetRewards: {
+      /**
+       * A pool admin was modified.
+       **/
+      PoolAdminModified: AugmentedEvent<ApiType, [poolId: u32, newAdmin: AccountId32], { poolId: u32, newAdmin: AccountId32 }>;
+      /**
+       * A pool information was cleared after it's completion.
+       **/
+      PoolCleanedUp: AugmentedEvent<ApiType, [poolId: u32], { poolId: u32 }>;
+      /**
+       * A new reward pool was created.
+       **/
+      PoolCreated: AugmentedEvent<ApiType, [creator: AccountId32, poolId: u32, stakedAssetId: FrameSupportTokensFungibleUnionOfNativeOrWithId, rewardAssetId: FrameSupportTokensFungibleUnionOfNativeOrWithId, rewardRatePerBlock: u128, expiryBlock: u32, admin: AccountId32], { creator: AccountId32, poolId: u32, stakedAssetId: FrameSupportTokensFungibleUnionOfNativeOrWithId, rewardAssetId: FrameSupportTokensFungibleUnionOfNativeOrWithId, rewardRatePerBlock: u128, expiryBlock: u32, admin: AccountId32 }>;
+      /**
+       * A pool expiry block was modified by the admin.
+       **/
+      PoolExpiryBlockModified: AugmentedEvent<ApiType, [poolId: u32, newExpiryBlock: u32], { poolId: u32, newExpiryBlock: u32 }>;
+      /**
+       * A pool reward rate was modified by the admin.
+       **/
+      PoolRewardRateModified: AugmentedEvent<ApiType, [poolId: u32, newRewardRatePerBlock: u128], { poolId: u32, newRewardRatePerBlock: u128 }>;
+      /**
+       * An account harvested some rewards.
+       **/
+      RewardsHarvested: AugmentedEvent<ApiType, [caller: AccountId32, staker: AccountId32, poolId: u32, amount: u128], { caller: AccountId32, staker: AccountId32, poolId: u32, amount: u128 }>;
+      /**
+       * An account staked some tokens in a pool.
+       **/
+      Staked: AugmentedEvent<ApiType, [staker: AccountId32, poolId: u32, amount: u128], { staker: AccountId32, poolId: u32, amount: u128 }>;
+      /**
+       * An account unstaked some tokens from a pool.
+       **/
+      Unstaked: AugmentedEvent<ApiType, [caller: AccountId32, staker: AccountId32, poolId: u32, amount: u128], { caller: AccountId32, staker: AccountId32, poolId: u32, amount: u128 }>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
     assets: {
       /**
        * Accounts were destroyed for given asset.
@@ -289,6 +327,14 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * Some assets were withdrawn from the account (e.g. for transaction fees).
        **/
       Withdrawn: AugmentedEvent<ApiType, [assetId: u32, who: AccountId32, amount: u128], { assetId: u32, who: AccountId32, amount: u128 }>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    assetsFreezer: {
+      Frozen: AugmentedEvent<ApiType, [who: AccountId32, assetId: u32, amount: u128], { who: AccountId32, assetId: u32, amount: u128 }>;
+      Thawed: AugmentedEvent<ApiType, [who: AccountId32, assetId: u32, amount: u128], { who: AccountId32, assetId: u32, amount: u128 }>;
       /**
        * Generic event
        **/
@@ -445,6 +491,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * A Region has been assigned to a particular task.
        **/
       Assigned: AugmentedEvent<ApiType, [regionId: PalletBrokerRegionId, duration: u32, task: u32], { regionId: PalletBrokerRegionId, duration: u32, task: u32 }>;
+      /**
+       * An assignment has been removed from the workplan.
+       **/
+      AssignmentRemoved: AugmentedEvent<ApiType, [regionId: PalletBrokerRegionId], { regionId: PalletBrokerRegionId }>;
       AutoRenewalDisabled: AugmentedEvent<ApiType, [core: u16, task: u32], { core: u16, task: u32 }>;
       AutoRenewalEnabled: AugmentedEvent<ApiType, [core: u16, task: u32], { core: u16, task: u32 }>;
       /**
@@ -508,6 +558,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * A lease is about to end.
        **/
       LeaseEnding: AugmentedEvent<ApiType, [task: u32, when: u32], { task: u32, when: u32 }>;
+      /**
+       * A lease has been removed.
+       **/
+      LeaseRemoved: AugmentedEvent<ApiType, [task: u32], { task: u32 }>;
       /**
        * A Region has been split into two non-overlapping Regions.
        **/
@@ -668,13 +722,17 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       Undelegated: AugmentedEvent<ApiType, [AccountId32]>;
       /**
-       * An account that has voted
+       * An account has voted
        **/
       Voted: AugmentedEvent<ApiType, [who: AccountId32, vote: PalletConvictionVotingVoteAccountVote], { who: AccountId32, vote: PalletConvictionVotingVoteAccountVote }>;
       /**
-       * A vote that been removed
+       * A vote has been removed
        **/
       VoteRemoved: AugmentedEvent<ApiType, [who: AccountId32, vote: PalletConvictionVotingVoteAccountVote], { who: AccountId32, vote: PalletConvictionVotingVoteAccountVote }>;
+      /**
+       * The lockup period of a conviction vote expired, and the funds have been unlocked.
+       **/
+      VoteUnlocked: AugmentedEvent<ApiType, [who: AccountId32, class_: u16], { who: AccountId32, class: u16 }>;
       /**
        * Generic event
        **/
@@ -775,6 +833,28 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * a tally (yes votes and no votes given respectively as `MemberCount`).
        **/
       Voted: AugmentedEvent<ApiType, [account: AccountId32, proposalHash: H256, voted: bool, yes: u32, no: u32], { account: AccountId32, proposalHash: H256, voted: bool, yes: u32, no: u32 }>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    delegatedStaking: {
+      /**
+       * Funds delegated by a delegator.
+       **/
+      Delegated: AugmentedEvent<ApiType, [agent: AccountId32, delegator: AccountId32, amount: u128], { agent: AccountId32, delegator: AccountId32, amount: u128 }>;
+      /**
+       * Unclaimed delegation funds migrated to delegator.
+       **/
+      MigratedDelegation: AugmentedEvent<ApiType, [agent: AccountId32, delegator: AccountId32, amount: u128], { agent: AccountId32, delegator: AccountId32, amount: u128 }>;
+      /**
+       * Funds released to a delegator.
+       **/
+      Released: AugmentedEvent<ApiType, [agent: AccountId32, delegator: AccountId32, amount: u128], { agent: AccountId32, delegator: AccountId32, amount: u128 }>;
+      /**
+       * Funds slashed from a delegator.
+       **/
+      Slashed: AugmentedEvent<ApiType, [agent: AccountId32, delegator: AccountId32, amount: u128], { agent: AccountId32, delegator: AccountId32, amount: u128 }>;
       /**
        * Generic event
        **/
@@ -916,7 +996,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
       MemberKicked: AugmentedEvent<ApiType, [member: AccountId32], { member: AccountId32 }>;
       /**
        * A new term with new_members. This indicates that enough candidates existed to run
-       * the election, not that enough have has been elected. The inner value must be examined
+       * the election, not that enough have been elected. The inner value must be examined
        * for this purpose. A `NewTerm(\[\])` indicates that some candidates got their bond
        * slashed and none were elected, whilst `EmptyTerm` means that no candidates existed to
        * begin with.
@@ -1112,13 +1192,17 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
       /**
        * At the end of the session, at least one validator was found to be offline.
        **/
-      SomeOffline: AugmentedEvent<ApiType, [offline: Vec<ITuple<[AccountId32, SpStakingExposure]>>], { offline: Vec<ITuple<[AccountId32, SpStakingExposure]>> }>;
+      SomeOffline: AugmentedEvent<ApiType, [offline: Vec<ITuple<[AccountId32, Null]>>], { offline: Vec<ITuple<[AccountId32, Null]>> }>;
       /**
        * Generic event
        **/
       [key: string]: AugmentedEvent<ApiType>;
     };
     indices: {
+      /**
+       * A deposit to reserve an index has been poked/reconsidered.
+       **/
+      DepositPoked: AugmentedEvent<ApiType, [who: AccountId32, index: u32, oldDeposit: u128, newDeposit: u128], { who: AccountId32, index: u32, oldDeposit: u128, newDeposit: u128 }>;
       /**
        * A account index was assigned.
        **/
@@ -1180,6 +1264,19 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       [key: string]: AugmentedEvent<ApiType>;
     };
+    metaTx: {
+      /**
+       * A meta transaction has been dispatched.
+       * 
+       * Contains the dispatch result of the meta transaction along with post-dispatch
+       * information.
+       **/
+      Dispatched: AugmentedEvent<ApiType, [result: Result<FrameSupportDispatchPostDispatchInfo, SpRuntimeDispatchErrorWithPostInfo>], { result: Result<FrameSupportDispatchPostDispatchInfo, SpRuntimeDispatchErrorWithPostInfo> }>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
     multiBlockMigrations: {
       /**
        * The set of historical migrations has been cleared.
@@ -1227,6 +1324,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
       [key: string]: AugmentedEvent<ApiType>;
     };
     multisig: {
+      /**
+       * The deposit for a multisig operation has been updated/poked.
+       **/
+      DepositPoked: AugmentedEvent<ApiType, [who: AccountId32, callHash: U8aFixed, oldDeposit: u128, newDeposit: u128], { who: AccountId32, callHash: U8aFixed, oldDeposit: u128, newDeposit: u128 }>;
       /**
        * A multisig operation has been approved by someone.
        **/
@@ -1471,6 +1572,14 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       Destroyed: AugmentedEvent<ApiType, [poolId: u32], { poolId: u32 }>;
       /**
+       * Global parameters regulating nomination pools have been updated.
+       **/
+      GlobalParamsUpdated: AugmentedEvent<ApiType, [minJoinBond: u128, minCreateBond: u128, maxPools: Option<u32>, maxMembers: Option<u32>, maxMembersPerPool: Option<u32>, globalMaxCommission: Option<Perbill>], { minJoinBond: u128, minCreateBond: u128, maxPools: Option<u32>, maxMembers: Option<u32>, maxMembersPerPool: Option<u32>, globalMaxCommission: Option<Perbill> }>;
+      /**
+       * A pool member's claim permission has been updated.
+       **/
+      MemberClaimPermissionUpdated: AugmentedEvent<ApiType, [member: AccountId32, permission: PalletNominationPoolsClaimPermission], { member: AccountId32, permission: PalletNominationPoolsClaimPermission }>;
+      /**
        * A member has been removed from a pool.
        * 
        * The removal can be voluntary (withdrawn all unbonded funds) or involuntary (kicked).
@@ -1478,6 +1587,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * represented by `released_balance`.
        **/
       MemberRemoved: AugmentedEvent<ApiType, [poolId: u32, member: AccountId32, releasedBalance: u128], { poolId: u32, member: AccountId32, releasedBalance: u128 }>;
+      /**
+       * A pool's metadata was updated.
+       **/
+      MetadataUpdated: AugmentedEvent<ApiType, [poolId: u32, caller: AccountId32], { poolId: u32, caller: AccountId32 }>;
       /**
        * Topped up deficit in frozen ED of the reward pool.
        **/
@@ -1510,6 +1623,15 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * A pool's maximum commission setting has been changed.
        **/
       PoolMaxCommissionUpdated: AugmentedEvent<ApiType, [poolId: u32, maxCommission: Perbill], { poolId: u32, maxCommission: Perbill }>;
+      /**
+       * A pool's nominating account (or the pool's root account) has nominated a validator set
+       * on behalf of the pool.
+       **/
+      PoolNominationMade: AugmentedEvent<ApiType, [poolId: u32, caller: AccountId32], { poolId: u32, caller: AccountId32 }>;
+      /**
+       * The pool is chilled i.e. no longer nominating.
+       **/
+      PoolNominatorChilled: AugmentedEvent<ApiType, [poolId: u32, caller: AccountId32], { poolId: u32, caller: AccountId32 }>;
       /**
        * The active balance of pool `pool_id` has been slashed to `balance`.
        **/
@@ -1720,6 +1842,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * An announcement was placed to make a call in the future.
        **/
       Announced: AugmentedEvent<ApiType, [real: AccountId32, proxy: AccountId32, callHash: H256], { real: AccountId32, proxy: AccountId32, callHash: H256 }>;
+      /**
+       * A deposit stored for proxies or announcements was poked / updated.
+       **/
+      DepositPoked: AugmentedEvent<ApiType, [who: AccountId32, kind: PalletProxyDepositKind, oldDeposit: u128, newDeposit: u128], { who: AccountId32, kind: PalletProxyDepositKind, oldDeposit: u128, newDeposit: u128 }>;
       /**
        * A proxy was added.
        **/
@@ -1939,62 +2065,9 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
     };
     revive: {
       /**
-       * A contract was called either by a plain account or another contract.
-       * 
-       * # Note
-       * 
-       * Please keep in mind that like all events this is only emitted for successful
-       * calls. This is because on failure all storage changes including events are
-       * rolled back.
-       **/
-      Called: AugmentedEvent<ApiType, [caller: PalletReviveExecOrigin, contract: H160], { caller: PalletReviveExecOrigin, contract: H160 }>;
-      /**
-       * A code with the specified hash was removed.
-       **/
-      CodeRemoved: AugmentedEvent<ApiType, [codeHash: H256, depositReleased: u128, remover: H160], { codeHash: H256, depositReleased: u128, remover: H160 }>;
-      /**
-       * Code with the specified hash has been stored.
-       **/
-      CodeStored: AugmentedEvent<ApiType, [codeHash: H256, depositHeld: u128, uploader: H160], { codeHash: H256, depositHeld: u128, uploader: H160 }>;
-      /**
-       * A contract's code was updated.
-       **/
-      ContractCodeUpdated: AugmentedEvent<ApiType, [contract: H160, newCodeHash: H256, oldCodeHash: H256], { contract: H160, newCodeHash: H256, oldCodeHash: H256 }>;
-      /**
        * A custom event emitted by the contract.
        **/
       ContractEmitted: AugmentedEvent<ApiType, [contract: H160, data: Bytes, topics: Vec<H256>], { contract: H160, data: Bytes, topics: Vec<H256> }>;
-      /**
-       * A contract delegate called a code hash.
-       * 
-       * # Note
-       * 
-       * Please keep in mind that like all events this is only emitted for successful
-       * calls. This is because on failure all storage changes including events are
-       * rolled back.
-       **/
-      DelegateCalled: AugmentedEvent<ApiType, [contract: H160, codeHash: H256], { contract: H160, codeHash: H256 }>;
-      /**
-       * Contract deployed by address at the specified address.
-       **/
-      Instantiated: AugmentedEvent<ApiType, [deployer: H160, contract: H160], { deployer: H160, contract: H160 }>;
-      /**
-       * Some funds have been transferred and held as storage deposit.
-       **/
-      StorageDepositTransferredAndHeld: AugmentedEvent<ApiType, [from: H160, to: H160, amount: u128], { from: H160, to: H160, amount: u128 }>;
-      /**
-       * Some storage deposit funds have been transferred and released.
-       **/
-      StorageDepositTransferredAndReleased: AugmentedEvent<ApiType, [from: H160, to: H160, amount: u128], { from: H160, to: H160, amount: u128 }>;
-      /**
-       * Contract has been removed.
-       * 
-       * # Note
-       * 
-       * The only way for a contract to be removed and emitting this event is by calling
-       * `seal_terminate`.
-       **/
-      Terminated: AugmentedEvent<ApiType, [contract: H160, beneficiary: H160], { contract: H160, beneficiary: H160 }>;
       /**
        * Generic event
        **/
@@ -2080,6 +2153,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
     };
     scheduler: {
       /**
+       * Agenda is incomplete from `when`.
+       **/
+      AgendaIncomplete: AugmentedEvent<ApiType, [when: u32], { when: u32 }>;
+      /**
        * The call for the provided hash was not found so the task has been aborted.
        **/
       CallUnavailable: AugmentedEvent<ApiType, [task: ITuple<[u32, u32]>, id: Option<U8aFixed>], { task: ITuple<[u32, u32]>, id: Option<U8aFixed> }>;
@@ -2127,6 +2204,14 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * block number as the type might suggest.
        **/
       NewSession: AugmentedEvent<ApiType, [sessionIndex: u32], { sessionIndex: u32 }>;
+      /**
+       * Validator has been disabled.
+       **/
+      ValidatorDisabled: AugmentedEvent<ApiType, [validator: AccountId32], { validator: AccountId32 }>;
+      /**
+       * Validator has been re-enabled.
+       **/
+      ValidatorReenabled: AugmentedEvent<ApiType, [validator: AccountId32], { validator: AccountId32 }>;
       /**
        * Generic event
        **/
@@ -2235,6 +2320,11 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * Report of a controller batch deprecation.
        **/
       ControllerBatchDeprecated: AugmentedEvent<ApiType, [failures: u32], { failures: u32 }>;
+      /**
+       * Staking balance migrated from locks to holds, with any balance that could not be held
+       * is force withdrawn.
+       **/
+      CurrencyMigrated: AugmentedEvent<ApiType, [stash: AccountId32, forceWithdraw: u128], { stash: AccountId32, forceWithdraw: u128 }>;
       /**
        * The era payout has been set; the first balance is the validator-payout; the second is
        * the remainder from the maximum amount of reward.
@@ -2380,6 +2470,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * A new account was created.
        **/
       NewAccount: AugmentedEvent<ApiType, [account: AccountId32], { account: AccountId32 }>;
+      /**
+       * An invalid authorized upgrade was rejected while trying to apply it.
+       **/
+      RejectedInvalidAuthorizedUpgrade: AugmentedEvent<ApiType, [codeHash: H256, error: SpRuntimeDispatchError], { codeHash: H256, error: SpRuntimeDispatchError }>;
       /**
        * On on-chain remark happened.
        **/
@@ -2729,6 +2823,14 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * A call was dispatched.
        **/
       DispatchedAs: AugmentedEvent<ApiType, [result: Result<Null, SpRuntimeDispatchError>], { result: Result<Null, SpRuntimeDispatchError> }>;
+      /**
+       * The fallback call was dispatched.
+       **/
+      IfElseFallbackCalled: AugmentedEvent<ApiType, [mainError: SpRuntimeDispatchError], { mainError: SpRuntimeDispatchError }>;
+      /**
+       * Main call was dispatched.
+       **/
+      IfElseMainSuccess: AugmentedEvent<ApiType, []>;
       /**
        * A single item within a Batch of dispatches has completed with no error.
        **/

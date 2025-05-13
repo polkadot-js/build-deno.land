@@ -10,7 +10,7 @@ import type { Extrinsic } from 'https://deno.land/x/polkadot/types/interfaces/ex
 import type { OpaqueMetadata } from 'https://deno.land/x/polkadot/types/interfaces/metadata/index.ts';
 import type { ParaId, ValidationCodeHash } from 'https://deno.land/x/polkadot/types/interfaces/parachains/index.ts';
 import type { AccountId32, H256, RuntimeCall, Slot } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
-import type { PalletTransactionPaymentFeeDetails, PalletTransactionPaymentRuntimeDispatchInfo, PolkadotCorePrimitivesInboundDownwardMessage, PolkadotCorePrimitivesInboundHrmpMessage, PolkadotPrimitivesV8ApprovalVotingParams, PolkadotPrimitivesV8AsyncBackingAsyncBackingParams, PolkadotPrimitivesV8AsyncBackingBackingState, PolkadotPrimitivesV8CandidateCommitments, PolkadotPrimitivesV8CandidateEvent, PolkadotPrimitivesV8CommittedCandidateReceipt, PolkadotPrimitivesV8CoreState, PolkadotPrimitivesV8DisputeState, PolkadotPrimitivesV8ExecutorParams, PolkadotPrimitivesV8GroupRotationInfo, PolkadotPrimitivesV8OccupiedCoreAssumption, PolkadotPrimitivesV8PersistedValidationData, PolkadotPrimitivesV8PvfCheckStatement, PolkadotPrimitivesV8ScrapedOnChainVotes, PolkadotPrimitivesV8SessionInfo, PolkadotPrimitivesV8SlashingDisputeProof, PolkadotPrimitivesV8SlashingPendingSlashes, PolkadotPrimitivesV8ValidatorAppPublic, PolkadotPrimitivesV8ValidatorAppSignature, PolkadotRuntimeOriginCaller, RelayCommonApisInflationInfo, SpAuthorityDiscoveryAppPublic, SpConsensusBabeAppPublic, SpConsensusBabeBabeConfiguration, SpConsensusBabeEpoch, SpConsensusBeefyDoubleVotingProof, SpConsensusBeefyEcdsaCryptoPublic, SpConsensusBeefyForkVotingProofOpaqueValue, SpConsensusBeefyFutureBlockVotingProof, SpConsensusBeefyMmrBeefyAuthoritySet, SpConsensusBeefyValidatorSet, SpConsensusGrandpaAppPublic, SpConsensusGrandpaEquivocationProof, SpConsensusSlotsEquivocationProof, SpCoreCryptoKeyTypeId, SpInherentsCheckInherentsResult, SpInherentsInherentData, SpMmrPrimitivesError, SpMmrPrimitivesLeafProof, SpRuntimeBlock, SpRuntimeDispatchError, SpRuntimeExtrinsicInclusionMode, SpRuntimeHeader, SpRuntimeTransactionValidityTransactionSource, SpRuntimeTransactionValidityTransactionValidityError, SpRuntimeTransactionValidityValidTransaction, SpVersionRuntimeVersion, SpWeightsWeightV2Weight, XcmRuntimeApisConversionsError, XcmRuntimeApisDryRunCallDryRunEffects, XcmRuntimeApisDryRunError, XcmRuntimeApisDryRunXcmDryRunEffects, XcmRuntimeApisFeesError, XcmVersionedAssetId, XcmVersionedAssets, XcmVersionedLocation, XcmVersionedXcm } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { PalletTransactionPaymentFeeDetails, PalletTransactionPaymentRuntimeDispatchInfo, PolkadotCorePrimitivesInboundDownwardMessage, PolkadotCorePrimitivesInboundHrmpMessage, PolkadotPrimitivesV8ApprovalVotingParams, PolkadotPrimitivesV8AsyncBackingAsyncBackingParams, PolkadotPrimitivesV8CandidateCommitments, PolkadotPrimitivesV8DisputeState, PolkadotPrimitivesV8ExecutorParams, PolkadotPrimitivesV8GroupRotationInfo, PolkadotPrimitivesV8OccupiedCoreAssumption, PolkadotPrimitivesV8PersistedValidationData, PolkadotPrimitivesV8PvfCheckStatement, PolkadotPrimitivesV8SessionInfo, PolkadotPrimitivesV8SlashingDisputeProof, PolkadotPrimitivesV8SlashingPendingSlashes, PolkadotPrimitivesV8ValidatorAppPublic, PolkadotPrimitivesV8ValidatorAppSignature, PolkadotPrimitivesVstagingAsyncBackingBackingState, PolkadotPrimitivesVstagingCandidateEvent, PolkadotPrimitivesVstagingCommittedCandidateReceiptV2, PolkadotPrimitivesVstagingCoreState, PolkadotPrimitivesVstagingScrapedOnChainVotes, PolkadotRuntimeOriginCaller, RelayCommonApisInflationInfo, SpAuthorityDiscoveryAppPublic, SpConsensusBabeAppPublic, SpConsensusBabeBabeConfiguration, SpConsensusBabeEpoch, SpConsensusBeefyDoubleVotingProof, SpConsensusBeefyEcdsaCryptoPublic, SpConsensusBeefyForkVotingProofOpaqueValue, SpConsensusBeefyFutureBlockVotingProof, SpConsensusBeefyMmrBeefyAuthoritySet, SpConsensusBeefyValidatorSet, SpConsensusGrandpaAppPublic, SpConsensusGrandpaEquivocationProof, SpConsensusSlotsEquivocationProof, SpCoreCryptoKeyTypeId, SpInherentsCheckInherentsResult, SpInherentsInherentData, SpMmrPrimitivesError, SpMmrPrimitivesLeafProof, SpRuntimeBlock, SpRuntimeDispatchError, SpRuntimeExtrinsicInclusionMode, SpRuntimeHeader, SpRuntimeTransactionValidityTransactionSource, SpRuntimeTransactionValidityTransactionValidityError, SpRuntimeTransactionValidityValidTransaction, SpVersionRuntimeVersion, SpWeightsWeightV2Weight, XcmRuntimeApisConversionsError, XcmRuntimeApisDryRunCallDryRunEffects, XcmRuntimeApisDryRunError, XcmRuntimeApisDryRunXcmDryRunEffects, XcmRuntimeApisFeesError, XcmVersionedAssetId, XcmVersionedAssets, XcmVersionedLocation, XcmVersionedXcm } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { IExtrinsic, Observable } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 export type __AugmentedCall<ApiType extends ApiTypes> = AugmentedCall<ApiType>;
@@ -166,13 +166,13 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
     /** 0x91b1c8b16328eb92/ */
     dryRunApi: {
       /**
-       * Dry run call.
+       * Dry run call V2.
        **/
-      dryRunCall: AugmentedCall<ApiType, (origin: PolkadotRuntimeOriginCaller | { system: any } | { Void: any } | { Origins: any } | { ParachainsOrigin: any } | { XcmPallet: any } | string | Uint8Array, call: RuntimeCall | IMethod | string | Uint8Array) => Observable<Result<XcmRuntimeApisDryRunCallDryRunEffects, XcmRuntimeApisDryRunError>>>;
+      dryRunCall: AugmentedCall<ApiType, (origin: PolkadotRuntimeOriginCaller | { system: any } | { Origins: any } | { ParachainsOrigin: any } | { XcmPallet: any } | string | Uint8Array, call: RuntimeCall | IMethod | string | Uint8Array, result_xcms_version: u32 | AnyNumber | Uint8Array) => Observable<Result<XcmRuntimeApisDryRunCallDryRunEffects, XcmRuntimeApisDryRunError>>>;
       /**
        * Dry run XCM program
        **/
-      dryRunXcm: AugmentedCall<ApiType, (origin_location: XcmVersionedLocation | { V2: any } | { V3: any } | { V4: any } | string | Uint8Array, xcm: XcmVersionedXcm | { V2: any } | { V3: any } | { V4: any } | string | Uint8Array) => Observable<Result<XcmRuntimeApisDryRunXcmDryRunEffects, XcmRuntimeApisDryRunError>>>;
+      dryRunXcm: AugmentedCall<ApiType, (origin_location: XcmVersionedLocation | { V3: any } | { V4: any } | { V5: any } | string | Uint8Array, xcm: XcmVersionedXcm | { V3: any } | { V4: any } | { V5: any } | string | Uint8Array) => Observable<Result<XcmRuntimeApisDryRunXcmDryRunEffects, XcmRuntimeApisDryRunError>>>;
       /**
        * Generic call
        **/
@@ -181,11 +181,11 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
     /** 0xfbc577b9d747efd6/ */
     genesisBuilder: {
       /**
-       * Build `RuntimeGenesisConfig` from a JSON blob not using any defaults and store it in the, storage.,, In the case of a FRAME-based runtime, this function deserializes the full `RuntimeGenesisConfig` from the given JSON blob and, puts it into the storage. If the provided JSON blob is incorrect or incomplete or the, deserialization fails, an error is returned.,, Please note that provided JSON blob must contain all `RuntimeGenesisConfig` fields, no, defaults will be used.
+       * Build `RuntimeGenesisConfig` from a JSON blob not using any defaults and store it in the, storage.,, In the case of a FRAME-based runtime, this function deserializes the full, `RuntimeGenesisConfig` from the given JSON blob and puts it into the storage. If the, provided JSON blob is incorrect or incomplete or the deserialization fails, an error, is returned.,, Please note that provided JSON blob must contain all `RuntimeGenesisConfig` fields, no, defaults will be used.
        **/
       buildState: AugmentedCall<ApiType, (json: Bytes | string | Uint8Array) => Observable<Result<Null, Text>>>;
       /**
-       * Returns a JSON blob representation of the built-in `RuntimeGenesisConfig` identified by, `id`.,, If `id` is `None` the function returns JSON blob representation of the default, `RuntimeGenesisConfig` struct of the runtime. Implementation must provide default, `RuntimeGenesisConfig`.,, Otherwise function returns a JSON representation of the built-in, named, `RuntimeGenesisConfig` preset identified by `id`, or `None` if such preset does not, exist. Returned `Vec<u8>` contains bytes of JSON blob (patch) which comprises a list of, (potentially nested) key-value pairs that are intended for customizing the default, runtime genesis config. The patch shall be merged (rfc7386) with the JSON representation, of the default `RuntimeGenesisConfig` to create a comprehensive genesis config that can, be used in `build_state` method.
+       * Returns a JSON blob representation of the built-in `RuntimeGenesisConfig` identified by, `id`.,, If `id` is `None` the function should return JSON blob representation of the default, `RuntimeGenesisConfig` struct of the runtime. Implementation must provide default, `RuntimeGenesisConfig`.,, Otherwise function returns a JSON representation of the built-in, named, `RuntimeGenesisConfig` preset identified by `id`, or `None` if such preset does not, exist. Returned `Vec<u8>` contains bytes of JSON blob (patch) which comprises a list of, (potentially nested) key-value pairs that are intended for customizing the default, runtime genesis config. The patch shall be merged (rfc7386) with the JSON representation, of the default `RuntimeGenesisConfig` to create a comprehensive genesis config that can, be used in `build_state` method.
        **/
       getPreset: AugmentedCall<ApiType, (id: Option<Text> | null | Uint8Array | Text | string) => Observable<Option<Bytes>>>;
       /**
@@ -236,7 +236,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
       /**
        * Converts `Location` to `AccountId`.
        **/
-      convertLocation: AugmentedCall<ApiType, (location: XcmVersionedLocation | { V2: any } | { V3: any } | { V4: any } | string | Uint8Array) => Observable<Result<AccountId32, XcmRuntimeApisConversionsError>>>;
+      convertLocation: AugmentedCall<ApiType, (location: XcmVersionedLocation | { V3: any } | { V4: any } | { V5: any } | string | Uint8Array) => Observable<Result<AccountId32, XcmRuntimeApisConversionsError>>>;
       /**
        * Generic call
        **/
@@ -299,7 +299,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
        **/
       memberNeedsDelegateMigration: AugmentedCall<ApiType, (member: AccountId32 | string | Uint8Array) => Observable<bool>>;
       /**
-       * Returns the pending slash for a given pool member.,, If pending slash of the member exceeds `ExistentialDeposit`, it can be reported on, chain.
+       * Returns the pending slash for a given pool member.
        **/
       memberPendingSlash: AugmentedCall<ApiType, (member: AccountId32 | string | Uint8Array) => Observable<u128>>;
       /**
@@ -314,6 +314,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
        * Returns the equivalent balance of `points` for a given pool.
        **/
       pointsToBalance: AugmentedCall<ApiType, (pool_id: u32 | AnyNumber | Uint8Array, points: u128 | AnyNumber | Uint8Array) => Observable<u128>>;
+      /**
+       * Returns the bonded account and reward account associated with the pool_id.
+       **/
+      poolAccounts: AugmentedCall<ApiType, (pool_id: u32 | AnyNumber | Uint8Array) => Observable<ITuple<[AccountId32, AccountId32]>>>;
       /**
        * Total balance contributed to the pool.
        **/
@@ -359,19 +363,19 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
       /**
        * Yields information on all availability cores as relevant to the child block., Cores are either free or occupied. Free cores can have paras assigned to them.
        **/
-      availabilityCores: AugmentedCall<ApiType, () => Observable<Vec<PolkadotPrimitivesV8CoreState>>>;
+      availabilityCores: AugmentedCall<ApiType, () => Observable<Vec<PolkadotPrimitivesVstagingCoreState>>>;
       /**
        * Get a vector of events concerning candidates that occurred within a block.
        **/
-      candidateEvents: AugmentedCall<ApiType, () => Observable<Vec<PolkadotPrimitivesV8CandidateEvent>>>;
+      candidateEvents: AugmentedCall<ApiType, () => Observable<Vec<PolkadotPrimitivesVstagingCandidateEvent>>>;
       /**
        * Get the receipt of a candidate pending availability. This returns `Some` for any paras, assigned to occupied cores in `availability_cores` and `None` otherwise.
        **/
-      candidatePendingAvailability: AugmentedCall<ApiType, (para_id: ParaId | AnyNumber | Uint8Array) => Observable<Option<PolkadotPrimitivesV8CommittedCandidateReceipt>>>;
+      candidatePendingAvailability: AugmentedCall<ApiType, (para_id: ParaId | AnyNumber | Uint8Array) => Observable<Option<PolkadotPrimitivesVstagingCommittedCandidateReceiptV2>>>;
       /**
        * Elastic scaling support
        **/
-      candidatesPendingAvailability: AugmentedCall<ApiType, (para_id: ParaId | AnyNumber | Uint8Array) => Observable<Vec<PolkadotPrimitivesV8CommittedCandidateReceipt>>>;
+      candidatesPendingAvailability: AugmentedCall<ApiType, (para_id: ParaId | AnyNumber | Uint8Array) => Observable<Vec<PolkadotPrimitivesVstagingCommittedCandidateReceiptV2>>>;
       /**
        * Checks if the given validation outputs pass the acceptance criteria.
        **/
@@ -411,11 +415,11 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
       /**
        * Scrape dispute relevant from on-chain, backing votes and resolved disputes.
        **/
-      onChainVotes: AugmentedCall<ApiType, () => Observable<Option<PolkadotPrimitivesV8ScrapedOnChainVotes>>>;
+      onChainVotes: AugmentedCall<ApiType, () => Observable<Option<PolkadotPrimitivesVstagingScrapedOnChainVotes>>>;
       /**
        * Returns the state of parachain backing for a given para.
        **/
-      paraBackingState: AugmentedCall<ApiType, (_: ParaId | AnyNumber | Uint8Array) => Observable<Option<PolkadotPrimitivesV8AsyncBackingBackingState>>>;
+      paraBackingState: AugmentedCall<ApiType, (__runtime_api_generated_name_0__: ParaId | AnyNumber | Uint8Array) => Observable<Option<PolkadotPrimitivesVstagingAsyncBackingBackingState>>>;
       /**
        * Yields the persisted validation data for the given `ParaId` along with an assumption that, should be used if the para currently occupies a core.,, Returns `None` if either the para is not registered or the assumption is `Freed`, and the para already occupies a core.
        **/
@@ -452,6 +456,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
        * Fetch the validation code used by a para, making the given `OccupiedCoreAssumption`.,, Returns `None` if either the para is not registered or the assumption is `Freed`, and the para already occupies a core.
        **/
       validationCode: AugmentedCall<ApiType, (para_id: ParaId | AnyNumber | Uint8Array, assumption: PolkadotPrimitivesV8OccupiedCoreAssumption | 'Included' | 'TimedOut' | 'Free' | number | Uint8Array) => Observable<Option<Bytes>>>;
+      /**
+       * Retrieve the maximum uncompressed code size.
+       **/
+      validationCodeBombLimit: AugmentedCall<ApiType, () => Observable<u32>>;
       /**
        * Get the validation code from its hash.
        **/
@@ -573,15 +581,15 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
       /**
        * Get delivery fees for sending a specific `message` to a `destination`., These always come in a specific asset, defined by the chain.,, # Arguments, * `message`: The message that'll be sent, necessary because most delivery fees are based on the,   size of the message., * `destination`: The destination to send the message to. Different destinations may use,   different senders that charge different fees.
        **/
-      queryDeliveryFees: AugmentedCall<ApiType, (destination: XcmVersionedLocation | { V2: any } | { V3: any } | { V4: any } | string | Uint8Array, message: XcmVersionedXcm | { V2: any } | { V3: any } | { V4: any } | string | Uint8Array) => Observable<Result<XcmVersionedAssets, XcmRuntimeApisFeesError>>>;
+      queryDeliveryFees: AugmentedCall<ApiType, (destination: XcmVersionedLocation | { V3: any } | { V4: any } | { V5: any } | string | Uint8Array, message: XcmVersionedXcm | { V3: any } | { V4: any } | { V5: any } | string | Uint8Array) => Observable<Result<XcmVersionedAssets, XcmRuntimeApisFeesError>>>;
       /**
        * Converts a weight into a fee for the specified `AssetId`.,, # Arguments,, * `weight`: convertible `Weight`., * `asset`: `VersionedAssetId`.
        **/
-      queryWeightToAssetFee: AugmentedCall<ApiType, (weight: SpWeightsWeightV2Weight | { refTime?: any; proofSize?: any } | string | Uint8Array, asset: XcmVersionedAssetId | { V3: any } | { V4: any } | string | Uint8Array) => Observable<Result<u128, XcmRuntimeApisFeesError>>>;
+      queryWeightToAssetFee: AugmentedCall<ApiType, (weight: SpWeightsWeightV2Weight | { refTime?: any; proofSize?: any } | string | Uint8Array, asset: XcmVersionedAssetId | { V3: any } | { V4: any } | { V5: any } | string | Uint8Array) => Observable<Result<u128, XcmRuntimeApisFeesError>>>;
       /**
        * Returns a weight needed to execute a XCM.,, # Arguments,, * `message`: `VersionedXcm`.
        **/
-      queryXcmWeight: AugmentedCall<ApiType, (message: XcmVersionedXcm | { V2: any } | { V3: any } | { V4: any } | string | Uint8Array) => Observable<Result<SpWeightsWeightV2Weight, XcmRuntimeApisFeesError>>>;
+      queryXcmWeight: AugmentedCall<ApiType, (message: XcmVersionedXcm | { V3: any } | { V4: any } | { V5: any } | string | Uint8Array) => Observable<Result<SpWeightsWeightV2Weight, XcmRuntimeApisFeesError>>>;
       /**
        * Generic call
        **/

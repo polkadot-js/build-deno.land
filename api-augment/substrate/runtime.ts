@@ -3,13 +3,13 @@
 import 'https://deno.land/x/polkadot/api-base/types/calls.ts';
 
 import type { ApiTypes, AugmentedCall, DecoratedCallBase } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
-import type { Bytes, Null, Option, Result, Struct, Text, U8aFixed, Vec, bool, u128, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Bytes, Null, Option, Result, Struct, Text, U256, U8aFixed, Vec, bool, u128, u32, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { AnyNumber, IMethod, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { OpaqueKeyOwnershipProof } from 'https://deno.land/x/polkadot/types/interfaces/babe/index.ts';
 import type { Extrinsic } from 'https://deno.land/x/polkadot/types/interfaces/extrinsics/index.ts';
 import type { OpaqueMetadata } from 'https://deno.land/x/polkadot/types/interfaces/metadata/index.ts';
 import type { AccountId32, H160, H256, RuntimeCall, Slot } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
-import type { FrameSupportTokensFungibleUnionOfNativeOrWithId, FrameSystemEventRecord, PalletContractsPrimitivesCode, PalletContractsPrimitivesCodeUploadReturnValue, PalletContractsPrimitivesContractAccessError, PalletContractsPrimitivesContractResult, PalletContractsPrimitivesExecReturnValue, PalletContractsPrimitivesStorageDeposit, PalletContractsWasmDeterminism, PalletRevivePrimitivesCode, PalletRevivePrimitivesCodeUploadReturnValue, PalletRevivePrimitivesContractAccessError, PalletRevivePrimitivesContractResultExecReturnValue, PalletRevivePrimitivesContractResultInstantiateReturnValue, PalletRevivePrimitivesEthContractResult, PalletTransactionPaymentFeeDetails, PalletTransactionPaymentRuntimeDispatchInfo, SpAuthorityDiscoveryAppPublic, SpConsensusBabeAppPublic, SpConsensusBabeBabeConfiguration, SpConsensusBabeEpoch, SpConsensusBeefyDoubleVotingProof, SpConsensusBeefyEcdsaCryptoPublic, SpConsensusBeefyForkVotingProofOpaqueValue, SpConsensusBeefyFutureBlockVotingProof, SpConsensusBeefyValidatorSet, SpConsensusGrandpaAppPublic, SpConsensusGrandpaEquivocationProof, SpConsensusSlotsEquivocationProof, SpCoreCryptoKeyTypeId, SpInherentsCheckInherentsResult, SpInherentsInherentData, SpMixnetMixnode, SpMixnetMixnodesErr, SpMixnetSessionStatus, SpMmrPrimitivesError, SpMmrPrimitivesLeafProof, SpRuntimeBlock, SpRuntimeDispatchError, SpRuntimeExtrinsicInclusionMode, SpRuntimeHeader, SpRuntimeTransactionValidityTransactionSource, SpRuntimeTransactionValidityTransactionValidityError, SpRuntimeTransactionValidityValidTransaction, SpStatementStoreRuntimeApiInvalidStatement, SpStatementStoreRuntimeApiStatementSource, SpStatementStoreRuntimeApiValidStatement, SpStatementStoreStatement, SpVersionRuntimeVersion, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { FrameSupportTokensFungibleUnionOfNativeOrWithId, FrameSupportViewFunctionsViewFunctionDispatchError, FrameSupportViewFunctionsViewFunctionId, FrameSystemEventRecord, PalletContractsPrimitivesCode, PalletContractsPrimitivesCodeUploadReturnValue, PalletContractsPrimitivesContractAccessError, PalletContractsPrimitivesContractResult, PalletContractsPrimitivesExecReturnValue, PalletContractsPrimitivesStorageDeposit, PalletContractsWasmDeterminism, PalletReviveEvmApiDebugRpcTypesCallTrace, PalletReviveEvmApiDebugRpcTypesTracerConfig, PalletReviveEvmApiRpcTypesGenGenericTransaction, PalletRevivePrimitivesCode, PalletRevivePrimitivesCodeUploadReturnValue, PalletRevivePrimitivesContractAccessError, PalletRevivePrimitivesContractResultExecReturnValue, PalletRevivePrimitivesContractResultInstantiateReturnValue, PalletRevivePrimitivesEthTransactError, PalletRevivePrimitivesEthTransactInfo, PalletTransactionPaymentFeeDetails, PalletTransactionPaymentRuntimeDispatchInfo, SpAuthorityDiscoveryAppPublic, SpConsensusBabeAppPublic, SpConsensusBabeBabeConfiguration, SpConsensusBabeEpoch, SpConsensusBeefyDoubleVotingProof, SpConsensusBeefyEcdsaCryptoPublic, SpConsensusBeefyForkVotingProofOpaqueValue, SpConsensusBeefyFutureBlockVotingProof, SpConsensusBeefyValidatorSet, SpConsensusGrandpaAppPublic, SpConsensusGrandpaEquivocationProof, SpConsensusSlotsEquivocationProof, SpCoreCryptoKeyTypeId, SpInherentsCheckInherentsResult, SpInherentsInherentData, SpMixnetMixnode, SpMixnetMixnodesErr, SpMixnetSessionStatus, SpMmrPrimitivesError, SpMmrPrimitivesLeafProof, SpRuntimeBlock, SpRuntimeDispatchError, SpRuntimeExtrinsicInclusionMode, SpRuntimeHeader, SpRuntimeTransactionValidityTransactionSource, SpRuntimeTransactionValidityTransactionValidityError, SpRuntimeTransactionValidityValidTransaction, SpStatementStoreRuntimeApiInvalidStatement, SpStatementStoreRuntimeApiStatementSource, SpStatementStoreRuntimeApiValidStatement, SpStatementStoreStatement, SpVersionRuntimeVersion, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { IExtrinsic, Observable } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 export type __AugmentedCall<ApiType extends ApiTypes> = AugmentedCall<ApiType>;
@@ -42,6 +42,17 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
        * Provides a quote for [`Pallet::swap_tokens_for_exact_tokens`].,, Note that the price may have changed by the time the transaction is executed., (Use `amount_in_max` to control slippage.)
        **/
       quotePriceTokensForExactTokens: AugmentedCall<ApiType, (asset1: FrameSupportTokensFungibleUnionOfNativeOrWithId | { Native: any } | { WithId: any } | string | Uint8Array, asset2: FrameSupportTokensFungibleUnionOfNativeOrWithId | { Native: any } | { WithId: any } | string | Uint8Array, amount: u128 | AnyNumber | Uint8Array, include_fee: bool | boolean | Uint8Array) => Observable<Option<u128>>>;
+      /**
+       * Generic call
+       **/
+      [key: string]: DecoratedCallBase<ApiType>;
+    };
+    /** 0x65f855d6e093c2f1/ */
+    assetRewards: {
+      /**
+       * Get the cost of creating a pool.,, This is especially useful when the cost is dynamic.
+       **/
+      poolCreationCost: AugmentedCall<ApiType, () => Observable<u128>>;
       /**
        * Generic call
        **/
@@ -360,7 +371,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
        **/
       memberNeedsDelegateMigration: AugmentedCall<ApiType, (member: AccountId32 | string | Uint8Array) => Observable<bool>>;
       /**
-       * Returns the pending slash for a given pool member.
+       * Returns the pending slash for a given pool member.,, If pending slash of the member exceeds `ExistentialDeposit`, it can be reported on, chain.
        **/
       memberPendingSlash: AugmentedCall<ApiType, (member: AccountId32 | string | Uint8Array) => Observable<u128>>;
       /**
@@ -410,9 +421,13 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
     /** 0x8c403e5c4a9fd442/ */
     reviveApi: {
       /**
-       * Returns the free balance of the given `[H160]` address.
+       * Returns the free balance of the given `[H160]` address, using EVM decimals.
        **/
-      balance: AugmentedCall<ApiType, (address: H160 | string | Uint8Array) => Observable<u128>>;
+      balance: AugmentedCall<ApiType, (address: H160 | string | Uint8Array) => Observable<U256>>;
+      /**
+       * Returns the block gas limit.
+       **/
+      blockGasLimit: AugmentedCall<ApiType, () => Observable<U256>>;
       /**
        * Perform a call from a specified account to a given contract.,, See [`crate::Pallet::bare_call`].
        **/
@@ -420,7 +435,11 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
       /**
        * Perform an Ethereum call.,, See [`crate::Pallet::bare_eth_transact`]
        **/
-      ethTransact: AugmentedCall<ApiType, (origin: H160 | string | Uint8Array, dest: Option<H160> | null | Uint8Array | H160 | string, value: u128 | AnyNumber | Uint8Array, input: Bytes | string | Uint8Array, gas_limit: Option<SpWeightsWeightV2Weight> | null | Uint8Array | SpWeightsWeightV2Weight | { refTime?: any; proofSize?: any } | string, storage_deposit_limit: Option<u128> | null | Uint8Array | u128 | AnyNumber) => Observable<PalletRevivePrimitivesEthContractResult>>;
+      ethTransact: AugmentedCall<ApiType, (tx: PalletReviveEvmApiRpcTypesGenGenericTransaction | { accessList?: any; blobVersionedHashes?: any; blobs?: any; chainId?: any; from?: any; gas?: any; gasPrice?: any; input?: any; maxFeePerBlobGas?: any; maxFeePerGas?: any; maxPriorityFeePerGas?: any; nonce?: any; to?: any; r_type?: any; value?: any } | string | Uint8Array) => Observable<Result<PalletRevivePrimitivesEthTransactInfo, PalletRevivePrimitivesEthTransactError>>>;
+      /**
+       * Returns the gas price.
+       **/
+      gasPrice: AugmentedCall<ApiType, () => Observable<U256>>;
       /**
        * Query a given storage key in a given contract.,, Returns `Ok(Some(Vec<u8>))` if the storage value exists under the given key in the, specified account and `Ok(None)` if it doesn't. If the account specified by the address, doesn't exist, or doesn't have a contract then `Err` is returned.
        **/
@@ -434,9 +453,32 @@ declare module 'https://deno.land/x/polkadot/api-base/types/calls.ts' {
        **/
       nonce: AugmentedCall<ApiType, (address: H160 | string | Uint8Array) => Observable<u32>>;
       /**
+       * Traces the execution of an entire block and returns call traces.,, This is intended to be called through `state_call` to replay the block from the, parent block.,, See eth-rpc `debug_traceBlockByNumber` for usage.
+       **/
+      traceBlock: AugmentedCall<ApiType, (block: SpRuntimeBlock | { header?: any; extrinsics?: any } | string | Uint8Array, config: PalletReviveEvmApiDebugRpcTypesTracerConfig | { CallTracer: any } | string | Uint8Array) => Observable<Vec<ITuple<[u32, PalletReviveEvmApiDebugRpcTypesCallTrace]>>>>;
+      /**
+       * Dry run and return the trace of the given call.,, See eth-rpc `debug_traceCall` for usage.
+       **/
+      traceCall: AugmentedCall<ApiType, (tx: PalletReviveEvmApiRpcTypesGenGenericTransaction | { accessList?: any; blobVersionedHashes?: any; blobs?: any; chainId?: any; from?: any; gas?: any; gasPrice?: any; input?: any; maxFeePerBlobGas?: any; maxFeePerGas?: any; maxPriorityFeePerGas?: any; nonce?: any; to?: any; r_type?: any; value?: any } | string | Uint8Array, config: PalletReviveEvmApiDebugRpcTypesTracerConfig | { CallTracer: any } | string | Uint8Array) => Observable<Result<PalletReviveEvmApiDebugRpcTypesCallTrace, PalletRevivePrimitivesEthTransactError>>>;
+      /**
+       * Traces the execution of a specific transaction within a block.,, This is intended to be called through `state_call` to replay the block from the, parent hash up to the transaction.,, See eth-rpc `debug_traceTransaction` for usage.
+       **/
+      traceTx: AugmentedCall<ApiType, (block: SpRuntimeBlock | { header?: any; extrinsics?: any } | string | Uint8Array, tx_index: u32 | AnyNumber | Uint8Array, config: PalletReviveEvmApiDebugRpcTypesTracerConfig | { CallTracer: any } | string | Uint8Array) => Observable<Option<PalletReviveEvmApiDebugRpcTypesCallTrace>>>;
+      /**
        * Upload new code without instantiating a contract from it.,, See [`crate::Pallet::bare_upload_code`].
        **/
       uploadCode: AugmentedCall<ApiType, (origin: AccountId32 | string | Uint8Array, code: Bytes | string | Uint8Array, storage_deposit_limit: Option<u128> | null | Uint8Array | u128 | AnyNumber) => Observable<Result<PalletRevivePrimitivesCodeUploadReturnValue, SpRuntimeDispatchError>>>;
+      /**
+       * Generic call
+       **/
+      [key: string]: DecoratedCallBase<ApiType>;
+    };
+    /** 0xccd9de6396c899ca/ */
+    runtimeViewFunction: {
+      /**
+       * Execute a view function query.
+       **/
+      executeViewFunction: AugmentedCall<ApiType, (query_id: FrameSupportViewFunctionsViewFunctionId | { prefix?: any; suffix?: any } | string | Uint8Array, input: Bytes | string | Uint8Array) => Observable<Result<Bytes, FrameSupportViewFunctionsViewFunctionDispatchError>>>;
       /**
        * Generic call
        **/
