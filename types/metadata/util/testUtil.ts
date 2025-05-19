@@ -31,6 +31,7 @@ interface MetadataJson {
     v13: MetadataJsonDef;
     v14: MetadataJsonDef;
     v15: MetadataJsonDef;
+    v16: MetadataJsonDef;
   }
 }
 

@@ -12,6 +12,7 @@ import { v12 } from './v12.ts';
 import { v13 } from './v13.ts';
 import { v14 } from './v14.ts';
 import { v15 } from './v15.ts';
+import { v16 } from './v16.ts';
 
 export { AllHashers };
 
@@ -27,26 +28,28 @@ export default {
     ...v13,
     ...v14,
     ...v15,
+    ...v16,
 
     // latest mappings
     // NOTE: For v15, we only added the runtime defintions,
     // hence latest for most pointing to the previous V14
     ErrorMetadataLatest: 'ErrorMetadataV14',
     EventMetadataLatest: 'EventMetadataV14',
-    ExtrinsicMetadataLatest: 'ExtrinsicMetadataV15',
+    ExtrinsicMetadataLatest: 'ExtrinsicMetadataV16',
     FunctionArgumentMetadataLatest: 'FunctionArgumentMetadataV14',
     FunctionMetadataLatest: 'FunctionMetadataV14',
-    MetadataLatest: 'MetadataV15',
-    PalletCallMetadataLatest: 'PalletCallMetadataV14',
-    PalletConstantMetadataLatest: 'PalletConstantMetadataV14',
-    PalletErrorMetadataLatest: 'PalletErrorMetadataV14',
-    PalletEventMetadataLatest: 'PalletEventMetadataV14',
-    PalletMetadataLatest: 'PalletMetadataV15',
-    PalletStorageMetadataLatest: 'PalletStorageMetadataV14',
+    MetadataLatest: 'MetadataV16',
+    PalletCallMetadataLatest: 'PalletCallMetadataV16',
+    PalletConstantMetadataLatest: 'PalletConstantMetadataV16',
+    PalletErrorMetadataLatest: 'PalletErrorMetadataV16',
+    PalletEventMetadataLatest: 'PalletEventMetadataV16',
+    PalletMetadataLatest: 'PalletMetadataV16',
+    PalletStorageMetadataLatest: 'PalletStorageMetadataV16',
     PortableType: 'PortableTypeV14',
-    RuntimeApiMetadataLatest: 'RuntimeApiMetadataV15',
+    RuntimeApiMetadataLatest: 'RuntimeApiMetadataV16',
     SignedExtensionMetadataLatest: 'SignedExtensionMetadataV14',
-    StorageEntryMetadataLatest: 'StorageEntryMetadataV14',
+    TransactionExtensionMetadataLatest: 'TransactionExtensionMetadataV16',
+    StorageEntryMetadataLatest: 'StorageEntryMetadataV16',
     StorageEntryModifierLatest: 'StorageEntryModifierV14',
     StorageEntryTypeLatest: 'StorageEntryTypeV14',
     StorageHasher: 'StorageHasherV14',
@@ -73,7 +76,8 @@ export default {
         V12: 'MetadataV12',
         V13: 'MetadataV13',
         V14: 'MetadataV14',
-        V15: 'MetadataV15'
+        V15: 'MetadataV15',
+        V16: 'MetadataV16'
       }
     }
   }

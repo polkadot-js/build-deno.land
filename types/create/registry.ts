@@ -7,7 +7,7 @@ import type { CallFunction, CodecHasher, Definitions, DetectCodec, RegisteredTyp
 
 import { DoNotConstruct, Json, Raw } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import { constructTypeClass, createClassUnsafe, createTypeUnsafe } from 'https://deno.land/x/polkadot/types-create/mod.ts';
-import { assertReturn, BN_ZERO, formatBalance, isBn, isFunction, isNumber, isString, isU8a, lazyMethod, logger, objectSpread, stringCamelCase, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
+import { assertReturn, formatBalance, isBn, isFunction, isNumber, isString, isU8a, lazyMethod, logger, objectSpread, stringCamelCase, stringify } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { blake2AsU8a } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
 
 import { expandExtensionTypes, fallbackExtensions, findUnknownExtensions } from '../extrinsic/signedExtensions/index.ts';
@@ -602,9 +602,9 @@ export class TypeRegistry implements Registry {
     // setup the available extensions
     this.setSignedExtensions(
       signedExtensions || (
-        this.#metadata.extrinsic.version.gt(BN_ZERO)
+        this.#metadata.extrinsic.versions.length > 0 && this.#metadata.extrinsic.versions.every((value) => value > 0)
           // FIXME Use the extension and their injected types
-          ? this.#metadata.extrinsic.signedExtensions.map(({ identifier }) => identifier.toString())
+          ? this.#metadata.extrinsic.transactionExtensions.map(({ identifier }) => identifier.toString())
           : fallbackExtensions
       ),
       userExtensions,

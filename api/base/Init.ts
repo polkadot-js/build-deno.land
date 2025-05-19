@@ -12,6 +12,7 @@ import type { VersionedRegistry } from './types.ts';
 import { firstValueFrom, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
 import { Metadata, TypeRegistry } from 'https://deno.land/x/polkadot/types/mod.ts';
+import { LATEST_EXTRINSIC_VERSION } from 'https://deno.land/x/polkadot/types/extrinsic/constants.ts';
 import { getSpecAlias, getSpecExtensions, getSpecHasher, getSpecRpc, getSpecTypes, getUpgradeVersion } from 'https://deno.land/x/polkadot/types-known/mod.ts';
 import { assertReturn, BN_ZERO, isUndefined, logger, noop, objectSpread, u8aEq, u8aToHex, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 import { blake2AsHex, cryptoWaitReady } from 'https://deno.land/x/polkadot/util-crypto/mod.ts';
@@ -20,7 +21,8 @@ import { Decorate } from './Decorate.ts';
 
 const KEEPALIVE_INTERVAL = 10000;
 const WITH_VERSION_SHORTCUT = false;
-const SUPPORTED_METADATA_VERSIONS = [15, 14];
+
+const SUPPORTED_METADATA_VERSIONS = [16, 15, 14];
 
 const l = logger('api/init');
 
@@ -370,7 +372,7 @@ export abstract class Init<ApiType extends ApiTypes> extends Decorate<ApiType> {
       throw new Error('Invalid initializion order, runtimeVersion is not available');
     }
 
-    this._extrinsicType = metadata.asLatest.extrinsic.version.toNumber();
+    this._extrinsicType = metadata.asLatest.extrinsic.versions.at(-1) || LATEST_EXTRINSIC_VERSION;
     this._rx.extrinsicType = this._extrinsicType;
     this._rx.genesisHash = this._genesisHash;
     this._rx.runtimeVersion = runtimeVersion;

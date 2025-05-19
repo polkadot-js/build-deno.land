@@ -1,7 +1,7 @@
 
 import type { AnyJson } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { HexString } from 'https://deno.land/x/polkadot/util/types.ts';
-import type { MetadataAll, MetadataLatest, MetadataV9, MetadataV10, MetadataV11, MetadataV12, MetadataV13, MetadataV14, MetadataV15 } from '../interfaces/metadata/index.ts';
+import type { MetadataAll, MetadataLatest, MetadataV9, MetadataV10, MetadataV11, MetadataV12, MetadataV13, MetadataV14, MetadataV15, MetadataV16 } from '../interfaces/metadata/index.ts';
 import type { Registry } from '../types/index.ts';
 import type { MetaVersionAll, MetaVersionAsX } from './versions.ts';
 
@@ -14,7 +14,8 @@ import { toV12 } from './v11/toV12.ts';
 import { toV13 } from './v12/toV13.ts';
 import { toV14 } from './v13/toV14.ts';
 import { toV15 } from './v14/toV15.ts';
-import { toLatest } from './v15/toLatest.ts';
+import { toV16 } from './v15/toV16.ts';
+import { toLatest } from './v16/toLatest.ts';
 import { MagicNumber } from './MagicNumber.ts';
 import { LATEST_VERSION, TO_CALLS_VERSION } from './versions.ts';
 
@@ -128,10 +129,17 @@ export class MetadataVersioned extends Struct {
   }
 
   /**
-   * @description Returns the wrapped values as a V14 object
+   * @description Returns the wrapped values as a V15 object
    */
   public get asV15 (): MetadataV15 {
     return this.#getVersion(15, toV15);
+  }
+
+  /**
+  * @description Returns the wrapped values as a V16 object
+  */
+  public get asV16 (): MetadataV16 {
+    return this.#getVersion(16, toV16);
   }
 
   /**

@@ -3,7 +3,7 @@ import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
 import type { AugmentedCall, DeriveCustom, QueryableCalls } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 import type { RpcInterface } from 'https://deno.land/x/polkadot/rpc-core/types/index.ts';
 import type { Metadata, StorageKey, Text, u64, Vec } from 'https://deno.land/x/polkadot/types/mod.ts';
-import type { Call, Hash, RuntimeApiMethodMetadataV15, RuntimeVersion } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { Call, Hash, RuntimeApiMethodMetadataV16, RuntimeVersion } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { DecoratedMeta } from 'https://deno.land/x/polkadot/types/metadata/decorate/types.ts';
 import type { StorageEntry } from 'https://deno.land/x/polkadot/types/primitive/types.ts';
 import type { AnyFunction, AnyJson, AnyTuple, CallFunction, Codec, DefinitionCall, DefinitionCallNamed, DefinitionRpc, DefinitionRpcSub, DefinitionsCall, DefinitionsCallEntry, DetectCodec, IMethod, IStorageKey, Registry, RegistryError, RegistryTypes } from 'https://deno.land/x/polkadot/types/types/index.ts';
@@ -491,7 +491,7 @@ export abstract class Decorate<ApiType extends ApiTypes> extends Events {
   }
 
   // Helper for _getRuntimeDefsViaMetadata
-  protected _getMethods (registry: Registry, methods: Vec<RuntimeApiMethodMetadataV15>) {
+  protected _getMethods (registry: Registry, methods: Vec<RuntimeApiMethodMetadataV16>) {
     const result: Record<string, DefinitionCall> = {};
 
     methods.forEach((m) => {
