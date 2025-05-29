@@ -3,6 +3,8 @@
 export const DEFAULT_CAPACITY = 1024;
 export const DEFAULT_TTL = 30000;
 
+const DISABLED_TTL = 31_536_000_000;
+
 class LRUNode {
   readonly key: string;
   #expires: number;
@@ -41,13 +43,13 @@ export class LRUCache {
 
   readonly #ttl: number;
 
-  constructor (capacity = DEFAULT_CAPACITY, ttl = DEFAULT_TTL) {
+  constructor (capacity = DEFAULT_CAPACITY, ttl: number | null = DEFAULT_TTL) {
     this.capacity = capacity;
-    this.#ttl = ttl;
-    this.#head = this.#tail = new LRUNode('<empty>', ttl);
+    ttl ? this.#ttl = ttl : this.#ttl = DISABLED_TTL;
+    this.#head = this.#tail = new LRUNode('<empty>', this.#ttl);
   }
 
-  get ttl (): number {
+  get ttl (): number | null {
     return this.#ttl;
   }
 
