@@ -11,7 +11,7 @@ export const UNMASK_VERSION = 0b01111111;
 
 export const DEFAULT_PREAMBLE = 'bare';
 
-export const LATEST_EXTRINSIC_VERSION = 5;
+export const LATEST_EXTRINSIC_VERSION = 4;
 
 export const VERSION_MASK = 0b00111111;
 
