@@ -2,7 +2,7 @@ import { Buffer } from 'node:buffer';
 
 
 import type { ApiPromise } from 'https://deno.land/x/polkadot/api/mod.ts';
-import type { AccountId, Hash } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { AccountId, AccountId20, Hash } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { Abi } from '../Abi/index.ts';
 
 import { toPromiseMethod } from 'https://deno.land/x/polkadot/api/mod.ts';
@@ -22,7 +22,7 @@ export class CodePromise extends Code<'promise'> {
 }
 
 export class ContractPromise extends Contract<'promise'> {
-  constructor (api: ApiPromise, abi: string | Record<string, unknown> | Abi, address: string | AccountId) {
+  constructor (api: ApiPromise, abi: string | Record<string, unknown> | Abi, address: string | AccountId | AccountId20) {
     super(api, abi, address, toPromiseMethod);
   }
 }
