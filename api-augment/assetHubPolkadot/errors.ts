@@ -139,6 +139,14 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       CallbackFailed: AugmentedError<ApiType>;
       /**
+       * The asset cannot be destroyed because some accounts for this asset contain freezes.
+       **/
+      ContainsFreezes: AugmentedError<ApiType>;
+      /**
+       * The asset cannot be destroyed because some accounts for this asset contain holds.
+       **/
+      ContainsHolds: AugmentedError<ApiType>;
+      /**
        * The origin account is frozen.
        **/
       Frozen: AugmentedError<ApiType>;
@@ -360,6 +368,14 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       CallbackFailed: AugmentedError<ApiType>;
       /**
+       * The asset cannot be destroyed because some accounts for this asset contain freezes.
+       **/
+      ContainsFreezes: AugmentedError<ApiType>;
+      /**
+       * The asset cannot be destroyed because some accounts for this asset contain holds.
+       **/
+      ContainsHolds: AugmentedError<ApiType>;
+      /**
        * The origin account is frozen.
        **/
       Frozen: AugmentedError<ApiType>;
@@ -493,7 +509,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       NoApprovalsNeeded: AugmentedError<ApiType>;
       /**
-       * Multisig operation not found when attempting to cancel.
+       * Multisig operation not found in storage.
        **/
       NotFound: AugmentedError<ApiType>;
       /**
@@ -501,7 +517,8 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       NoTimepoint: AugmentedError<ApiType>;
       /**
-       * Only the account that originally created the multisig is able to cancel it.
+       * Only the account that originally created the multisig is able to cancel it or update
+       * its deposits.
        **/
       NotOwner: AugmentedError<ApiType>;
       /**
@@ -725,10 +742,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       HostConfigurationNotAvailable: AugmentedError<ApiType>;
       /**
-       * No code upgrade has been authorized.
-       **/
-      NothingAuthorized: AugmentedError<ApiType>;
-      /**
        * No validation function upgrade is currently scheduled.
        **/
       NotScheduled: AugmentedError<ApiType>;
@@ -746,10 +759,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       TooBig: AugmentedError<ApiType>;
       /**
-       * The given code upgrade has not been authorized.
-       **/
-      Unauthorized: AugmentedError<ApiType>;
-      /**
        * The inherent which supplies the validation data did not run this block.
        **/
       ValidationDataNotAvailable: AugmentedError<ApiType>;
@@ -763,6 +772,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        * The given account is not an identifiable sovereign account for any location.
        **/
       AccountNotSovereign: AugmentedError<ApiType>;
+      /**
+       * The alias to remove authorization for was not found.
+       **/
+      AliasNotFound: AugmentedError<ApiType>;
       /**
        * The location is invalid since it already has a subscription from us.
        **/
@@ -792,6 +805,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        * The assets to be sent are empty.
        **/
       Empty: AugmentedError<ApiType>;
+      /**
+       * Expiry block number is in the past.
+       **/
+      ExpiresInPast: AugmentedError<ApiType>;
       /**
        * The operation required fees to be paid which the initiator could not meet.
        **/
@@ -841,6 +858,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        * Too many assets have been attempted for transfer.
        **/
       TooManyAssets: AugmentedError<ApiType>;
+      /**
+       * Too many locations authorized to alias origin.
+       **/
+      TooManyAuthorizedAliases: AugmentedError<ApiType>;
       /**
        * The asset owner has too many locks on the asset.
        **/
@@ -892,6 +913,14 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        * Callback action resulted in error
        **/
       CallbackFailed: AugmentedError<ApiType>;
+      /**
+       * The asset cannot be destroyed because some accounts for this asset contain freezes.
+       **/
+      ContainsFreezes: AugmentedError<ApiType>;
+      /**
+       * The asset cannot be destroyed because some accounts for this asset contain holds.
+       **/
+      ContainsHolds: AugmentedError<ApiType>;
       /**
        * The origin account is frozen.
        **/

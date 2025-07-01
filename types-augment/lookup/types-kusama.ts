@@ -2,7 +2,7 @@
 
 import 'https://deno.land/x/polkadot/types/lookup.ts';
 
-import type { Compact, Enum, Null, Option, Struct, Vec, bool, u128, u16, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Compact, Enum, Null, Option, Struct, Text, Vec, bool, u128, u16, u32 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { AccountId32, PerU16, Permill, Perquintill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
@@ -238,6 +238,19 @@ declare module 'https://deno.land/x/polkadot/types/lookup.ts' {
     readonly isNominationPools: boolean;
     readonly asNominationPools: PalletNominationPoolsFreezeReason;
     readonly type: 'NominationPools';
+  }
+
+  /** @name PalletReferendaTrackInfo (686) */
+  interface PalletReferendaTrackInfo extends Struct {
+    readonly name: Text;
+    readonly maxDeciding: u32;
+    readonly decisionDeposit: u128;
+    readonly preparePeriod: u32;
+    readonly decisionPeriod: u32;
+    readonly confirmPeriod: u32;
+    readonly minEnactmentPeriod: u32;
+    readonly minApproval: PalletReferendaCurve;
+    readonly minSupport: PalletReferendaCurve;
   }
 
   /** @name FrameSupportTokensMiscIdAmount (783) */

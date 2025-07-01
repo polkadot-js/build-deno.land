@@ -5,8 +5,8 @@ import 'https://deno.land/x/polkadot/api-base/types/consts.ts';
 import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 import type { Bytes, Option, Vec, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { Codec, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { Perbill, Permill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
-import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, PalletReferendaTrackInfo, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight, StagingXcmV5Junctions } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { AccountId32, Perbill, Permill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, PalletReferendaTrackDetails, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight, StagingXcmV5Junctions } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedConst<ApiType extends ApiTypes> = AugmentedConst<ApiType>;
 
@@ -125,7 +125,12 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        **/
       bountyDepositPayoutDelay: u32 & AugmentedConst<ApiType>;
       /**
-       * Bounty duration in blocks.
+       * The time limit for a curator to act before a bounty expires.
+       * 
+       * The period that starts when a curator is approved, during which they must execute or
+       * update the bounty via `extend_bounty_expiry`. If missed, the bounty expires, and the
+       * curator may be slashed. If `BlockNumberFor::MAX`, bounties stay active indefinitely,
+       * removing the need for `extend_bounty_expiry`.
        **/
       bountyUpdatePeriod: u32 & AugmentedConst<ApiType>;
       /**
@@ -538,9 +543,11 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        **/
       submissionDeposit: u128 & AugmentedConst<ApiType>;
       /**
-       * Information concerning the different referendum tracks.
+       * A list of tracks.
+       * 
+       * Note: if the tracks are dynamic, the value in the static metadata might be inaccurate.
        **/
-      tracks: Vec<ITuple<[u16, PalletReferendaTrackInfo]>> & AugmentedConst<ApiType>;
+      tracks: Vec<ITuple<[u16, PalletReferendaTrackDetails]>> & AugmentedConst<ApiType>;
       /**
        * The number of blocks after submission that a referendum must begin being decided by.
        * Once this passes, then anyone may cancel the referendum.
@@ -801,6 +808,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        **/
       payoutPeriod: u32 & AugmentedConst<ApiType>;
       /**
+       * Gets this pallet's derived pot account.
+       **/
+      potAccount: AccountId32 & AugmentedConst<ApiType>;
+      /**
        * Period between successive spends.
        **/
       spendPeriod: u32 & AugmentedConst<ApiType>;
@@ -877,6 +888,17 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        * With that `List::migrate` can be called, which will perform the appropriate migration.
        **/
       bagThresholds: Vec<u64> & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
+    xcmPallet: {
+      /**
+       * The latest supported version that we advertise. Generally just set it to
+       * `pallet_xcm::CurrentXcmVersion`.
+       **/
+      advertisedXcmVersion: u32 & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/

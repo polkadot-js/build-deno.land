@@ -5,8 +5,8 @@ import 'https://deno.land/x/polkadot/api-base/types/storage.ts';
 import type { ApiTypes, AugmentedQuery, QueryableStorageEntry } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 import type { BTreeMap, BTreeSet, Bytes, Null, Option, Struct, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { AnyNumber, ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { AccountId32, H256 } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
-import type { AssetHubPolkadotRuntimeRuntimeHoldReason, AssetHubPolkadotRuntimeSessionKeys, BpXcmBridgeHubRouterBridgeState, CumulusPalletParachainSystemRelayStateSnapshotMessagingStateSnapshot, CumulusPalletParachainSystemUnincludedSegmentAncestor, CumulusPalletParachainSystemUnincludedSegmentSegmentTracker, CumulusPalletXcmpQueueOutboundChannelDetails, CumulusPalletXcmpQueueQueueConfigData, CumulusPrimitivesCoreAggregateMessageOrigin, FrameSupportDispatchPerDispatchClassWeight, FrameSupportTokensMiscIdAmount, FrameSystemAccountInfo, FrameSystemCodeUpgradeAuthorization, FrameSystemEventRecord, FrameSystemLastRuntimeUpgradeInfo, FrameSystemPhase, PalletAssetConversionPoolInfo, PalletAssetsApproval, PalletAssetsAssetAccount, PalletAssetsAssetDetails, PalletAssetsAssetMetadata, PalletBalancesAccountData, PalletBalancesBalanceLock, PalletBalancesReserveData, PalletCollatorSelectionCandidateInfo, PalletMessageQueueBookState, PalletMessageQueuePage, PalletMultisigMultisig, PalletNftsAttributeDeposit, PalletNftsAttributeNamespace, PalletNftsCollectionConfig, PalletNftsCollectionDetails, PalletNftsCollectionMetadata, PalletNftsItemConfig, PalletNftsItemDetails, PalletNftsItemMetadata, PalletNftsPendingSwap, PalletProxyAnnouncement, PalletProxyProxyDefinition, PalletStateTrieMigrationMigrationLimits, PalletStateTrieMigrationMigrationTask, PalletTransactionPaymentReleases, PalletUniquesCollectionDetails, PalletUniquesCollectionMetadata, PalletUniquesItemDetails, PalletUniquesItemMetadata, PalletVestingReleases, PalletVestingVestingInfo, PalletXcmQueryStatus, PalletXcmRemoteLockedFungibleRecord, PalletXcmVersionMigrationStage, PolkadotCorePrimitivesOutboundHrmpMessage, PolkadotPrimitivesV8AbridgedHostConfiguration, PolkadotPrimitivesV8PersistedValidationData, PolkadotPrimitivesV8UpgradeGoAhead, PolkadotPrimitivesV8UpgradeRestriction, SpConsensusAuraEd25519AppEd25519Public, SpCoreCryptoKeyTypeId, SpRuntimeDigest, SpTrieStorageProof, SpWeightsWeightV2Weight, StagingXcmV4Location, StagingXcmV5Instruction, XcmVersionedAssetId, XcmVersionedLocation } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { AccountId32, H256, Perbill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { AssetHubPolkadotRuntimeRuntimeHoldReason, AssetHubPolkadotRuntimeSessionKeys, BpXcmBridgeHubRouterBridgeState, CumulusPalletParachainSystemRelayStateSnapshotMessagingStateSnapshot, CumulusPalletParachainSystemUnincludedSegmentAncestor, CumulusPalletParachainSystemUnincludedSegmentSegmentTracker, CumulusPalletXcmpQueueOutboundChannelDetails, CumulusPalletXcmpQueueQueueConfigData, CumulusPrimitivesCoreAggregateMessageOrigin, FrameSupportDispatchPerDispatchClassWeight, FrameSupportTokensMiscIdAmount, FrameSystemAccountInfo, FrameSystemCodeUpgradeAuthorization, FrameSystemEventRecord, FrameSystemLastRuntimeUpgradeInfo, FrameSystemPhase, PalletAssetConversionPoolInfo, PalletAssetsApproval, PalletAssetsAssetAccount, PalletAssetsAssetDetails, PalletAssetsAssetMetadata, PalletBalancesAccountData, PalletBalancesBalanceLock, PalletBalancesReserveData, PalletCollatorSelectionCandidateInfo, PalletMessageQueueBookState, PalletMessageQueuePage, PalletMultisigMultisig, PalletNftsAttributeDeposit, PalletNftsAttributeNamespace, PalletNftsCollectionConfig, PalletNftsCollectionDetails, PalletNftsCollectionMetadata, PalletNftsItemConfig, PalletNftsItemDetails, PalletNftsItemMetadata, PalletNftsPendingSwap, PalletProxyAnnouncement, PalletProxyProxyDefinition, PalletStateTrieMigrationMigrationLimits, PalletStateTrieMigrationMigrationTask, PalletTransactionPaymentReleases, PalletUniquesCollectionDetails, PalletUniquesCollectionMetadata, PalletUniquesItemDetails, PalletUniquesItemMetadata, PalletVestingReleases, PalletVestingVestingInfo, PalletXcmAuthorizedAliasesEntry, PalletXcmQueryStatus, PalletXcmRemoteLockedFungibleRecord, PalletXcmVersionMigrationStage, PolkadotCorePrimitivesOutboundHrmpMessage, PolkadotPrimitivesV8AbridgedHostConfiguration, PolkadotPrimitivesV8PersistedValidationData, PolkadotPrimitivesV8UpgradeGoAhead, PolkadotPrimitivesV8UpgradeRestriction, SpConsensusAuraEd25519AppEd25519Public, SpCoreCryptoKeyTypeId, SpRuntimeDigest, SpTrieStorageProof, SpWeightsWeightV2Weight, StagingXcmV4Location, StagingXcmV5Instruction, XcmVersionedAssetId, XcmVersionedLocation } from 'https://deno.land/x/polkadot/types/lookup.ts';
 import type { Observable } from 'https://deno.land/x/polkadot/types/types/index.ts';
 
 export type __AugmentedQuery<ApiType extends ApiTypes> = AugmentedQuery<ApiType, () => unknown>;
@@ -98,11 +98,12 @@ declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
        **/
       authorities: AugmentedQuery<ApiType, () => Observable<Vec<SpConsensusAuraEd25519AppEd25519Public>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * Current slot paired with a number of authored blocks.
+       * Current relay chain slot paired with a number of authored blocks.
        * 
-       * Updated on each block initialization.
+       * This is updated in [`FixedVelocityConsensusHook::on_state_proof`] with the current relay
+       * chain slot as provided by the relay chain state proof.
        **/
-      slotInfo: AugmentedQuery<ApiType, () => Observable<Option<ITuple<[u64, u32]>>>, []> & QueryableStorageEntry<ApiType, []>;
+      relaySlotInfo: AugmentedQuery<ApiType, () => Observable<Option<ITuple<[u64, u32]>>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Generic query
        **/
@@ -540,6 +541,12 @@ declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
        **/
       assetTraps: AugmentedQuery<ApiType, (arg: H256 | string | Uint8Array) => Observable<u32>, [H256]> & QueryableStorageEntry<ApiType, [H256]>;
       /**
+       * Map of authorized aliasers of local origins. Each local location can authorize a list of
+       * other locations to alias into it. Each aliaser is only valid until its inner `expiry`
+       * block number.
+       **/
+      authorizedAliases: AugmentedQuery<ApiType, (arg: XcmVersionedLocation | { V3: any } | { V4: any } | { V5: any } | string | Uint8Array) => Observable<Option<PalletXcmAuthorizedAliasesEntry>>, [XcmVersionedLocation]> & QueryableStorageEntry<ApiType, [XcmVersionedLocation]>;
+      /**
        * The current migration's stage, if any.
        **/
       currentMigration: AugmentedQuery<ApiType, () => Observable<Option<PalletXcmVersionMigrationStage>>, []> & QueryableStorageEntry<ApiType, []>;
@@ -674,7 +681,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
        * disabled using binary search. It gets cleared when `on_session_ending` returns
        * a new set of identities.
        **/
-      disabledValidators: AugmentedQuery<ApiType, () => Observable<Vec<u32>>, []> & QueryableStorageEntry<ApiType, []>;
+      disabledValidators: AugmentedQuery<ApiType, () => Observable<Vec<ITuple<[u32, Perbill]>>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * The owner of a key. The key is the `KeyTypeId` + the encoded key.
        **/
@@ -791,6 +798,16 @@ declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
        * Extrinsics data for the current block (maps an extrinsic's index to its data).
        **/
       extrinsicData: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Bytes>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
+      /**
+       * The weight reclaimed for the extrinsic.
+       * 
+       * This information is available until the end of the extrinsic execution.
+       * More precisely this information is removed in `note_applied_extrinsic`.
+       * 
+       * Logic doing some post dispatch weight reduction must update this storage to avoid duplicate
+       * reduction.
+       **/
+      extrinsicWeightReclaimed: AugmentedQuery<ApiType, () => Observable<SpWeightsWeightV2Weight>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Whether all inherents have been applied.
        **/

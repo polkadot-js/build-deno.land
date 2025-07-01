@@ -3,9 +3,9 @@
 import 'https://deno.land/x/polkadot/api-base/types/consts.ts';
 
 import type { ApiTypes, AugmentedConst } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
-import type { Bytes, Option, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Bytes, Option, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { Codec } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
-import type { Permill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { AccountId32, Perbill, Permill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight, StagingXcmV4Location } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedConst<ApiType extends ApiTypes> = AugmentedConst<ApiType>;
@@ -126,6 +126,37 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        * Use of reserves is deprecated in favour of holds. See `https://github.com/paritytech/substrate/pull/12951/`
        **/
       maxReserves: u32 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
+    collatorSelection: {
+      kickThreshold: u32 & AugmentedConst<ApiType>;
+      /**
+       * Maximum number of candidates that we should have.
+       * 
+       * This does not take into account the invulnerables.
+       **/
+      maxCandidates: u32 & AugmentedConst<ApiType>;
+      /**
+       * Maximum number of invulnerables.
+       **/
+      maxInvulnerables: u32 & AugmentedConst<ApiType>;
+      /**
+       * Minimum number eligible collators. Should always be greater than zero. This includes
+       * Invulnerable collators. This ensures that there will always be one collator who can
+       * produce a block.
+       **/
+      minEligibleCollators: u32 & AugmentedConst<ApiType>;
+      /**
+       * Gets this pallet's derived pot account.
+       **/
+      potAccount: AccountId32 & AugmentedConst<ApiType>;
+      /**
+       * Account Identifier from which the internal Pot is generated.
+       **/
+      potId: FrameSupportPalletId & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/
@@ -331,6 +362,17 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        **/
       [key: string]: Codec;
     };
+    polkadotXcm: {
+      /**
+       * The latest supported version that we advertise. Generally just set it to
+       * `pallet_xcm::CurrentXcmVersion`.
+       **/
+      advertisedXcmVersion: u32 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
     poolAssets: {
       /**
        * The amount of funds that must be reserved when creating a new approval.
@@ -407,6 +449,57 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        * into account `32 + proxy_type.encode().len()` bytes of data.
        **/
       proxyDepositFactor: u128 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
+    revive: {
+      /**
+       * The [EIP-155](https://eips.ethereum.org/EIPS/eip-155) chain ID.
+       * 
+       * This is a unique identifier assigned to each blockchain network,
+       * preventing replay attacks.
+       **/
+      chainId: u64 & AugmentedConst<ApiType>;
+      /**
+       * The percentage of the storage deposit that should be held for using a code hash.
+       * Instantiating a contract, protects the code from being removed. In order to prevent
+       * abuse these actions are protected with a percentage of the code deposit.
+       **/
+      codeHashLockupDepositPercent: Perbill & AugmentedConst<ApiType>;
+      /**
+       * The amount of balance a caller has to pay for each byte of storage.
+       * 
+       * # Note
+       * 
+       * It is safe to change this value on a live chain as all refunds are pro rata.
+       **/
+      depositPerByte: u128 & AugmentedConst<ApiType>;
+      /**
+       * The amount of balance a caller has to pay for each storage item.
+       * 
+       * # Note
+       * 
+       * It is safe to change this value on a live chain as all refunds are pro rata.
+       **/
+      depositPerItem: u128 & AugmentedConst<ApiType>;
+      /**
+       * The ratio between the decimal representation of the native token and the ETH token.
+       **/
+      nativeToEthRatio: u32 & AugmentedConst<ApiType>;
+      /**
+       * Make contract callable functions marked as `#[unstable]` available.
+       * 
+       * Contracts that use `#[unstable]` functions won't be able to be uploaded unless
+       * this is set to `true`. This is only meant for testnets and dev nodes in order to
+       * experiment with new features.
+       * 
+       * # Warning
+       * 
+       * Do **not** set to `true` on productions chains.
+       **/
+      unsafeUnstableInterface: bool & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/
