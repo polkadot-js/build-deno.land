@@ -122,7 +122,7 @@ export class Contract<ApiType extends ApiTypes> extends Base<ApiType> {
               return null;
             }
           })
-          .filter((decoded): decoded is DecodedEvent => !!decoded)
+          .filter((decoded): decoded is DecodedEvent => !!decoded), this._isRevive
       ))
     );
   };
