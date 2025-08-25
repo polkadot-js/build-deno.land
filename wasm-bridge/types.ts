@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer';
+
 
 export type WasmImports = Record<string, (...args: never[]) => unknown>;
 

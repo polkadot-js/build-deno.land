@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer';
+
 
 const CHR = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/' as const;
 const map = new Array<number>(256);
