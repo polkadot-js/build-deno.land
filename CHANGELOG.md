@@ -2,6 +2,7 @@
 
 ## master
 
+- hw-{ledger, ledger-transports}, keyring, networks, util, util-crypto, x-{bigint, fetch, global, randomvalues, textdecoder, textencoder, ws} 13.5.6
 - wasm-{bridge, crypto, crypto-{asmjs, init, wasm}, util} 7.5.1
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 16.4.5
 - api, api-{augment, base, contract, derive}, rpc-{augment, core, provider}, types, types-{augment, codec, create, known} 16.4.4
