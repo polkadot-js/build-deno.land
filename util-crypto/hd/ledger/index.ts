@@ -7,7 +7,7 @@ import { HARDENED, hdValidatePath } from '../validatePath.ts';
 import { ledgerDerivePrivate } from './derivePrivate.ts';
 import { ledgerMaster } from './master.ts';
 
-export function hdLedger (_mnemonic: string, path: string, rounds?: number): Keypair {
+export function hdLedger (_mnemonic: string, path: string): Keypair {
   const words = _mnemonic
     .split(' ')
     .map((s) => s.trim())
@@ -28,7 +28,7 @@ export function hdLedger (_mnemonic: string, path: string, rounds?: number): Key
   }
 
   const parts = path.split('/').slice(1);
-  let seed = ledgerMaster(mnemonic, password, rounds);
+  let seed = ledgerMaster(mnemonic, password);
 
   for (const p of parts) {
     const n = parseInt(p.replace(/'$/, ''), 10);
