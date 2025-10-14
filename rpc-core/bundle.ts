@@ -11,6 +11,7 @@ import { Observable, publishReplay, refCount } from 'https://esm.sh/rxjs@7.8.1';
 
 import { LRUCache } from 'https://deno.land/x/polkadot/rpc-provider/mod.ts';
 import { rpcDefinitions } from 'https://deno.land/x/polkadot/types/mod.ts';
+import { unwrapStorageSi } from 'https://deno.land/x/polkadot/types/util/index.ts';
 import { hexToU8a, isFunction, isNull, isUndefined, lazyMethod, logger, memoize, objectSpread, u8aConcat, u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { drr, refCountDelay } from './util/index.ts';
@@ -505,7 +506,7 @@ export class RpcCore {
   private _newType (registry: Registry, blockHash: Uint8Array | string | null | undefined, key: StorageKey, input: string | Uint8Array | null, isEmpty: boolean, entryIndex = -1): Codec {
     // single return value (via state.getStorage), decode the value based on the
     // outputType that we have specified. Fallback to Raw on nothing
-    const type = key.outputType || 'Raw';
+    const type = key.meta ? registry.createLookupType(unwrapStorageSi(key.meta.type)) : (key.outputType || 'Raw');
     const meta = key.meta || EMPTY_META;
     const entryNum = entryIndex === -1
       ? ''
