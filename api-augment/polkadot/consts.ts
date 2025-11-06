@@ -263,8 +263,13 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        **/
       betterSignedThreshold: Perbill & AugmentedConst<ApiType>;
       /**
-       * The maximum number of winners that can be elected by this `ElectionProvider`
-       * implementation.
+       * Maximum number of voters that can support a winner in an election solution.
+       * 
+       * This is needed to ensure election computation is bounded.
+       **/
+      maxBackersPerWinner: u32 & AugmentedConst<ApiType>;
+      /**
+       * Maximum number of winners that an election supports.
        * 
        * Note: This must always be greater or equal to `T::DataProvider::desired_targets()`.
        **/
@@ -591,6 +596,16 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        **/
       [key: string]: Codec;
     };
+    session: {
+      /**
+       * The amount to be held when setting keys.
+       **/
+      keyDeposit: u128 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
     slots: {
       /**
        * The number of blocks to offset each lease period by.
@@ -660,6 +675,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        * this effect.
        **/
       maxUnlockingChunks: u32 & AugmentedConst<ApiType>;
+      /**
+       * The absolute maximum of winner validators this pallet should return.
+       **/
+      maxValidatorSet: u32 & AugmentedConst<ApiType>;
       /**
        * Number of sessions per era.
        **/
@@ -889,6 +908,13 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        **/
       bagThresholds: Vec<u64> & AugmentedConst<ApiType>;
       /**
+       * Maximum number of accounts that may be re-bagged automatically in `on_idle`.
+       * 
+       * A value of `0` (obtained by configuring `type MaxAutoRebagPerBlock = ();`) disables
+       * the feature.
+       **/
+      maxAutoRebagPerBlock: u32 & AugmentedConst<ApiType>;
+      /**
        * Generic const
        **/
       [key: string]: Codec;
@@ -899,6 +925,18 @@ declare module 'https://deno.land/x/polkadot/api-base/types/consts.ts' {
        * `pallet_xcm::CurrentXcmVersion`.
        **/
       advertisedXcmVersion: u32 & AugmentedConst<ApiType>;
+      /**
+       * The maximum number of local XCM locks that a single account may have.
+       **/
+      maxLockers: u32 & AugmentedConst<ApiType>;
+      /**
+       * The maximum number of consumers a single remote lock may have.
+       **/
+      maxRemoteLockConsumers: u32 & AugmentedConst<ApiType>;
+      /**
+       * This chain's Universal Location.
+       **/
+      universalLocation: StagingXcmV5Junctions & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/

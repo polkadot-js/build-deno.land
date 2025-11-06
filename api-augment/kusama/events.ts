@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer';
+
 /* eslint-disable */
 
 import 'https://deno.land/x/polkadot/api-base/types/events.ts';
@@ -6,8 +8,8 @@ import type { ApiTypes, AugmentedEvent } from 'https://deno.land/x/polkadot/api-
 import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { EthereumAddress } from 'https://deno.land/x/polkadot/types/interfaces/eth/index.ts';
-import type { AccountId32, H256, Perbill, Perquintill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
-import type { FrameSupportDispatchPostDispatchInfo, FrameSupportMessagesProcessMessageError, FrameSupportPreimagesBounded, FrameSupportTokensMiscBalanceStatus, FrameSystemDispatchEventInfo, KusamaRuntimeConstantsProxyProxyType, PalletConvictionVotingTally, PalletConvictionVotingVoteAccountVote, PalletElectionProviderMultiPhaseElectionCompute, PalletElectionProviderMultiPhasePhase, PalletMultisigTimepoint, PalletNominationPoolsClaimPermission, PalletNominationPoolsCommissionChangeRate, PalletNominationPoolsCommissionClaimPermission, PalletNominationPoolsPoolState, PalletProxyDepositKind, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord, PalletSocietyGroupParams, PalletStakingForcing, PalletStakingRewardDestination, PalletStakingValidatorPrefs, PolkadotParachainPrimitivesPrimitivesHrmpChannelId, PolkadotPrimitivesVstagingCandidateReceiptV2, PolkadotRuntimeCommonImplsVersionedLocatableAsset, PolkadotRuntimeParachainsDisputesDisputeLocation, PolkadotRuntimeParachainsDisputesDisputeResult, PolkadotRuntimeParachainsInclusionAggregateMessageOrigin, SpConsensusGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, SpRuntimeDispatchErrorWithPostInfo, SpWeightsWeightV2Weight, StagingKusamaRuntimeRuntimeParametersKey, StagingKusamaRuntimeRuntimeParametersValue, StagingXcmV5AssetAssets, StagingXcmV5Location, StagingXcmV5Response, StagingXcmV5TraitsOutcome, StagingXcmV5Xcm, XcmV3TraitsSendError, XcmV5TraitsError, XcmVersionedAssets, XcmVersionedLocation } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { AccountId32, H256, Perbill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+import type { FrameSupportDispatchPostDispatchInfo, FrameSupportMessagesProcessMessageError, FrameSupportPreimagesBounded, FrameSupportTokensMiscBalanceStatus, FrameSystemDispatchEventInfo, KusamaRuntimeConstantsProxyProxyType, PalletBalancesUnexpectedKind, PalletConvictionVotingTally, PalletConvictionVotingVoteAccountVote, PalletElectionProviderMultiPhaseElectionCompute, PalletElectionProviderMultiPhasePhase, PalletMultisigTimepoint, PalletNominationPoolsClaimPermission, PalletNominationPoolsCommissionChangeRate, PalletNominationPoolsCommissionClaimPermission, PalletNominationPoolsPoolState, PalletProxyDepositKind, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord, PalletRcMigratorMigrationStage, PalletRcMigratorQueuePriority, PalletRecoveryDepositKind, PalletSocietyGroupParams, PalletStakingAsyncAhClientUnexpectedKind, PalletStakingForcing, PalletStakingRewardDestination, PalletStakingValidatorPrefs, PolkadotParachainPrimitivesPrimitivesHrmpChannelId, PolkadotPrimitivesVstagingCandidateReceiptV2, PolkadotRuntimeCommonImplsVersionedLocatableAsset, PolkadotRuntimeParachainsDisputesDisputeLocation, PolkadotRuntimeParachainsDisputesDisputeResult, PolkadotRuntimeParachainsInclusionAggregateMessageOrigin, SpConsensusGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, SpRuntimeDispatchErrorWithPostInfo, SpWeightsWeightV2Weight, StagingKusamaRuntimeRuntimeParametersKey, StagingKusamaRuntimeRuntimeParametersValue, StagingXcmV5AssetAssets, StagingXcmV5Location, StagingXcmV5Response, StagingXcmV5TraitsOutcome, StagingXcmV5Xcm, XcmV3MaybeErrorCode, XcmV3TraitsSendError, XcmV5TraitsError, XcmVersionedAssets, XcmVersionedLocation } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedEvent<ApiType extends ApiTypes> = AugmentedEvent<ApiType>;
 
@@ -136,6 +138,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       Transfer: AugmentedEvent<ApiType, [from: AccountId32, to: AccountId32, amount: u128], { from: AccountId32, to: AccountId32, amount: u128 }>;
       /**
+       * An unexpected/defensive event was triggered.
+       **/
+      Unexpected: AugmentedEvent<ApiType, [PalletBalancesUnexpectedKind]>;
+      /**
        * Some balance was unlocked.
        **/
       Unlocked: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
@@ -201,6 +207,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * A bounty curator is unassigned.
        **/
       CuratorUnassigned: AugmentedEvent<ApiType, [bountyId: u32], { bountyId: u32 }>;
+      /**
+       * A bounty deposit has been poked.
+       **/
+      DepositPoked: AugmentedEvent<ApiType, [bountyId: u32, proposer: AccountId32, oldDeposit: u128, newDeposit: u128], { bountyId: u32, proposer: AccountId32, oldDeposit: u128, newDeposit: u128 }>;
       /**
        * Generic event
        **/
@@ -523,6 +533,20 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       [key: string]: AugmentedEvent<ApiType>;
     };
+    historical: {
+      /**
+       * The merkle roots of up to this session index were pruned
+       **/
+      RootsPruned: AugmentedEvent<ApiType, [upTo: u32], { upTo: u32 }>;
+      /**
+       * The merkle root of the validators of the said session were stored
+       **/
+      RootStored: AugmentedEvent<ApiType, [index: u32], { index: u32 }>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
     hrmp: {
       /**
        * HRMP channel closed.
@@ -622,136 +646,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * A new multisig operation has begun.
        **/
       NewMultisig: AugmentedEvent<ApiType, [approving: AccountId32, multisig: AccountId32, callHash: U8aFixed], { approving: AccountId32, multisig: AccountId32, callHash: U8aFixed }>;
-      /**
-       * Generic event
-       **/
-      [key: string]: AugmentedEvent<ApiType>;
-    };
-    nis: {
-      /**
-       * A bid was dropped from a queue because of another, more substantial, bid was present.
-       **/
-      BidDropped: AugmentedEvent<ApiType, [who: AccountId32, amount: u128, duration: u32], { who: AccountId32, amount: u128, duration: u32 }>;
-      /**
-       * A bid was successfully placed.
-       **/
-      BidPlaced: AugmentedEvent<ApiType, [who: AccountId32, amount: u128, duration: u32], { who: AccountId32, amount: u128, duration: u32 }>;
-      /**
-       * A bid was successfully removed (before being accepted).
-       **/
-      BidRetracted: AugmentedEvent<ApiType, [who: AccountId32, amount: u128, duration: u32], { who: AccountId32, amount: u128, duration: u32 }>;
-      /**
-       * An automatic funding of the deficit was made.
-       **/
-      Funded: AugmentedEvent<ApiType, [deficit: u128], { deficit: u128 }>;
-      /**
-       * A bid was accepted. The balance may not be released until expiry.
-       **/
-      Issued: AugmentedEvent<ApiType, [index: u32, expiry: u32, who: AccountId32, proportion: Perquintill, amount: u128], { index: u32, expiry: u32, who: AccountId32, proportion: Perquintill, amount: u128 }>;
-      /**
-       * An receipt has been (at least partially) thawed.
-       **/
-      Thawed: AugmentedEvent<ApiType, [index: u32, who: AccountId32, proportion: Perquintill, amount: u128, dropped: bool], { index: u32, who: AccountId32, proportion: Perquintill, amount: u128, dropped: bool }>;
-      /**
-       * A receipt was transferred.
-       **/
-      Transferred: AugmentedEvent<ApiType, [from: AccountId32, to: AccountId32, index: u32], { from: AccountId32, to: AccountId32, index: u32 }>;
-      /**
-       * Generic event
-       **/
-      [key: string]: AugmentedEvent<ApiType>;
-    };
-    nisCounterpartBalances: {
-      /**
-       * A balance was set by root.
-       **/
-      BalanceSet: AugmentedEvent<ApiType, [who: AccountId32, free: u128], { who: AccountId32, free: u128 }>;
-      /**
-       * Some amount was burned from an account.
-       **/
-      Burned: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
-      /**
-       * Some amount was deposited (e.g. for transaction fees).
-       **/
-      Deposit: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
-      /**
-       * An account was removed whose balance was non-zero but below ExistentialDeposit,
-       * resulting in an outright loss.
-       **/
-      DustLost: AugmentedEvent<ApiType, [account: AccountId32, amount: u128], { account: AccountId32, amount: u128 }>;
-      /**
-       * An account was created with some free balance.
-       **/
-      Endowed: AugmentedEvent<ApiType, [account: AccountId32, freeBalance: u128], { account: AccountId32, freeBalance: u128 }>;
-      /**
-       * Some balance was frozen.
-       **/
-      Frozen: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
-      /**
-       * Total issuance was increased by `amount`, creating a credit to be balanced.
-       **/
-      Issued: AugmentedEvent<ApiType, [amount: u128], { amount: u128 }>;
-      /**
-       * Some balance was locked.
-       **/
-      Locked: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
-      /**
-       * Some amount was minted into an account.
-       **/
-      Minted: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
-      /**
-       * Total issuance was decreased by `amount`, creating a debt to be balanced.
-       **/
-      Rescinded: AugmentedEvent<ApiType, [amount: u128], { amount: u128 }>;
-      /**
-       * Some balance was reserved (moved from free to reserved).
-       **/
-      Reserved: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
-      /**
-       * Some balance was moved from the reserve of the first account to the second account.
-       * Final argument indicates the destination balance type.
-       **/
-      ReserveRepatriated: AugmentedEvent<ApiType, [from: AccountId32, to: AccountId32, amount: u128, destinationStatus: FrameSupportTokensMiscBalanceStatus], { from: AccountId32, to: AccountId32, amount: u128, destinationStatus: FrameSupportTokensMiscBalanceStatus }>;
-      /**
-       * Some amount was restored into an account.
-       **/
-      Restored: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
-      /**
-       * Some amount was removed from the account (e.g. for misbehavior).
-       **/
-      Slashed: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
-      /**
-       * Some amount was suspended from an account (it can be restored later).
-       **/
-      Suspended: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
-      /**
-       * Some balance was thawed.
-       **/
-      Thawed: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
-      /**
-       * The `TotalIssuance` was forcefully changed.
-       **/
-      TotalIssuanceForced: AugmentedEvent<ApiType, [old: u128, new_: u128], { old: u128, new_: u128 }>;
-      /**
-       * Transfer succeeded.
-       **/
-      Transfer: AugmentedEvent<ApiType, [from: AccountId32, to: AccountId32, amount: u128], { from: AccountId32, to: AccountId32, amount: u128 }>;
-      /**
-       * Some balance was unlocked.
-       **/
-      Unlocked: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
-      /**
-       * Some balance was unreserved (moved from reserved to free).
-       **/
-      Unreserved: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
-      /**
-       * An account was upgraded.
-       **/
-      Upgraded: AugmentedEvent<ApiType, [who: AccountId32], { who: AccountId32 }>;
-      /**
-       * Some amount was withdrawn from the account (e.g. for transaction fees).
-       **/
-      Withdraw: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
        * Generic event
        **/
@@ -946,6 +840,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       ActionQueued: AugmentedEvent<ApiType, [u32, u32]>;
       /**
+       * A new code hash has been authorized for a Para.
+       **/
+      CodeAuthorized: AugmentedEvent<ApiType, [paraId: u32, codeHash: H256, expireAt: u32], { paraId: u32, codeHash: H256, expireAt: u32 }>;
+      /**
        * A code upgrade has been scheduled for a Para. `para_id`
        **/
       CodeUpgradeScheduled: AugmentedEvent<ApiType, [u32]>;
@@ -976,6 +874,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * code. `code_hash` `para_id`
        **/
       PvfCheckStarted: AugmentedEvent<ApiType, [H256, u32]>;
+      /**
+       * The upgrade cooldown was removed.
+       **/
+      UpgradeCooldownRemoved: AugmentedEvent<ApiType, [paraId: u32], { paraId: u32 }>;
       /**
        * Generic event
        **/
@@ -1048,6 +950,105 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       PureCreated: AugmentedEvent<ApiType, [pure: AccountId32, who: AccountId32, proxyType: KusamaRuntimeConstantsProxyProxyType, disambiguationIndex: u16], { pure: AccountId32, who: AccountId32, proxyType: KusamaRuntimeConstantsProxyProxyType, disambiguationIndex: u16 }>;
       /**
+       * A pure proxy was killed by its spawner.
+       **/
+      PureKilled: AugmentedEvent<ApiType, [pure: AccountId32, spawner: AccountId32, proxyType: KusamaRuntimeConstantsProxyProxyType, disambiguationIndex: u16], { pure: AccountId32, spawner: AccountId32, proxyType: KusamaRuntimeConstantsProxyProxyType, disambiguationIndex: u16 }>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    rcMigrator: {
+      /**
+       * The accounts to be preserved on Relay Chain were set.
+       **/
+      AccountsPreserved: AugmentedEvent<ApiType, [accounts: Vec<AccountId32>], { accounts: Vec<AccountId32> }>;
+      /**
+       * The AH UMP queue priority config was set.
+       **/
+      AhUmpQueuePriorityConfigSet: AugmentedEvent<ApiType, [old: PalletRcMigratorQueuePriority, new_: PalletRcMigratorQueuePriority], { old: PalletRcMigratorQueuePriority, new_: PalletRcMigratorQueuePriority }>;
+      /**
+       * Whether the AH UMP queue was prioritized for the next block.
+       **/
+      AhUmpQueuePrioritySet: AugmentedEvent<ApiType, [prioritized: bool, cycleBlock: u32, cyclePeriod: u32], { prioritized: bool, cycleBlock: u32, cyclePeriod: u32 }>;
+      /**
+       * The Asset Hub Migration finished.
+       * 
+       * This event is equivalent to `StageTransition { new: MigrationDone, .. }` but is easier
+       * to understand. The finishing is immediate and affects all events happening
+       * afterwards.
+       **/
+      AssetHubMigrationFinished: AugmentedEvent<ApiType, []>;
+      /**
+       * The Asset Hub Migration started and is active until `AssetHubMigrationFinished` is
+       * emitted.
+       * 
+       * This event is equivalent to `StageTransition { new: Initializing, .. }` but is easier
+       * to understand. The activation is immediate and affects all events happening
+       * afterwards.
+       **/
+      AssetHubMigrationStarted: AugmentedEvent<ApiType, []>;
+      /**
+       * The canceller account id was set.
+       **/
+      CancellerSet: AugmentedEvent<ApiType, [old: Option<AccountId32>, new_: Option<AccountId32>], { old: Option<AccountId32>, new_: Option<AccountId32> }>;
+      /**
+       * The manager multisig dispatched something.
+       **/
+      ManagerMultisigDispatched: AugmentedEvent<ApiType, [res: Result<Null, SpRuntimeDispatchError>], { res: Result<Null, SpRuntimeDispatchError> }>;
+      /**
+       * The manager multisig received a vote.
+       **/
+      ManagerMultisigVoted: AugmentedEvent<ApiType, [votes: u32], { votes: u32 }>;
+      /**
+       * The manager account id was set.
+       **/
+      ManagerSet: AugmentedEvent<ApiType, [old: Option<AccountId32>, new_: Option<AccountId32>], { old: Option<AccountId32>, new_: Option<AccountId32> }>;
+      /**
+       * The RC kept balance was consumed.
+       **/
+      MigratedBalanceConsumed: AugmentedEvent<ApiType, [kept: u128, migrated: u128], { kept: u128, migrated: u128 }>;
+      /**
+       * The total issuance was recorded.
+       **/
+      MigratedBalanceRecordSet: AugmentedEvent<ApiType, [kept: u128, migrated: u128], { kept: u128, migrated: u128 }>;
+      /**
+       * The migration was cancelled.
+       **/
+      MigrationCancelled: AugmentedEvent<ApiType, []>;
+      /**
+       * The migration was paused.
+       **/
+      MigrationPaused: AugmentedEvent<ApiType, [pauseStage: PalletRcMigratorMigrationStage], { pauseStage: PalletRcMigratorMigrationStage }>;
+      /**
+       * Some pure accounts were indexed for possibly receiving free `Any` proxies.
+       **/
+      PureAccountsIndexed: AugmentedEvent<ApiType, [numPureAccounts: u32], { numPureAccounts: u32 }>;
+      /**
+       * A query response has been received.
+       **/
+      QueryResponseReceived: AugmentedEvent<ApiType, [queryId: u64, response: XcmV3MaybeErrorCode], { queryId: u64, response: XcmV3MaybeErrorCode }>;
+      /**
+       * A stage transition has occurred.
+       **/
+      StageTransition: AugmentedEvent<ApiType, [old: PalletRcMigratorMigrationStage, new_: PalletRcMigratorMigrationStage], { old: PalletRcMigratorMigrationStage, new_: PalletRcMigratorMigrationStage }>;
+      /**
+       * The staking elections were paused.
+       **/
+      StakingElectionsPaused: AugmentedEvent<ApiType, []>;
+      /**
+       * The unprocessed message buffer size has been set.
+       **/
+      UnprocessedMsgBufferSet: AugmentedEvent<ApiType, [new_: u32, old: u32], { new_: u32, old: u32 }>;
+      /**
+       * A XCM message has been resent.
+       **/
+      XcmResendAttempt: AugmentedEvent<ApiType, [queryId: u64, sendError: Option<XcmV3TraitsSendError>], { queryId: u64, sendError: Option<XcmV3TraitsSendError> }>;
+      /**
+       * An XCM message was sent.
+       **/
+      XcmSent: AugmentedEvent<ApiType, [origin: StagingXcmV5Location, destination: StagingXcmV5Location, message: StagingXcmV5Xcm, messageId: U8aFixed], { origin: StagingXcmV5Location, destination: StagingXcmV5Location, message: StagingXcmV5Xcm, messageId: U8aFixed }>;
+      /**
        * Generic event
        **/
       [key: string]: AugmentedEvent<ApiType>;
@@ -1057,6 +1058,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * Lost account has been successfully recovered by rescuer account.
        **/
       AccountRecovered: AugmentedEvent<ApiType, [lostAccount: AccountId32, rescuerAccount: AccountId32], { lostAccount: AccountId32, rescuerAccount: AccountId32 }>;
+      /**
+       * A deposit has been updated.
+       **/
+      DepositPoked: AugmentedEvent<ApiType, [who: AccountId32, kind: PalletRecoveryDepositKind, oldDeposit: u128, newDeposit: u128], { who: AccountId32, kind: PalletRecoveryDepositKind, oldDeposit: u128, newDeposit: u128 }>;
       /**
        * A recovery process for lost account by rescuer account has been closed.
        **/
@@ -1205,6 +1210,11 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
     };
     session: {
       /**
+       * The `NewSession` event in the current block also implies a new validator set to be
+       * queued.
+       **/
+      NewQueued: AugmentedEvent<ApiType, []>;
+      /**
        * New session has happened. Note that the argument is the session index, not the
        * block number as the type might suggest.
        **/
@@ -1264,6 +1274,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * Some funds were deposited into the society account.
        **/
       Deposit: AugmentedEvent<ApiType, [value: u128], { value: u128 }>;
+      /**
+       * A deposit was poked / adjusted.
+       **/
+      DepositPoked: AugmentedEvent<ApiType, [who: AccountId32, oldDeposit: u128, newDeposit: u128], { who: AccountId32, oldDeposit: u128, newDeposit: u128 }>;
       /**
        * A \[member\] got elevated to \[rank\].
        **/
@@ -1400,6 +1414,33 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * from the unlocking queue.
        **/
       Withdrawn: AugmentedEvent<ApiType, [stash: AccountId32, amount: u128], { stash: AccountId32, amount: u128 }>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    stakingAhClient: {
+      /**
+       * We could not merge, and therefore dropped a buffered message.
+       * 
+       * Note that this event is more resembling an error, but we use an event because in this
+       * pallet we need to mutate storage upon some failures.
+       **/
+      CouldNotMergeAndDropped: AugmentedEvent<ApiType, []>;
+      /**
+       * The validator set received is way too small, as per
+       * [`Config::MinimumValidatorSetSize`].
+       **/
+      SetTooSmallAndDropped: AugmentedEvent<ApiType, []>;
+      /**
+       * Something occurred that should never happen under normal operation. Logged as an event
+       * for fail-safe observability.
+       **/
+      Unexpected: AugmentedEvent<ApiType, [PalletStakingAsyncAhClientUnexpectedKind]>;
+      /**
+       * A new validator set has been received.
+       **/
+      ValidatorSetReceived: AugmentedEvent<ApiType, [id: u32, newValidatorSetCount: u32, pruneUpTo: Option<u32>, leftover: bool], { id: u32, newValidatorSetCount: u32, pruneUpTo: Option<u32>, leftover: bool }>;
       /**
        * Generic event
        **/
@@ -1553,6 +1594,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * An \[account\] has become fully vested.
        **/
       VestingCompleted: AugmentedEvent<ApiType, [account: AccountId32], { account: AccountId32 }>;
+      /**
+       * A vesting schedule has been created.
+       **/
+      VestingCreated: AugmentedEvent<ApiType, [account: AccountId32, scheduleIndex: u32], { account: AccountId32, scheduleIndex: u32 }>;
       /**
        * The amount vested has been updated. This could indicate a change in funds available.
        * The balance given is the amount which is left unvested (and thus locked).
