@@ -1,8 +1,9 @@
 
 import type { Keypair } from '../types.ts';
 
+import * as sr25519 from 'https://esm.sh/@scure/sr25519@0.2.0';
+
 import { u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
-import { sr25519Sign as wasmSign } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 /**
  * @name sr25519Sign
@@ -15,5 +16,5 @@ export function sr25519Sign (message: string | Uint8Array, { publicKey, secretKe
     throw new Error('Expected a valid secretKey, 64-bytes');
   }
 
-  return wasmSign(publicKey, secretKey, u8aToU8a(message));
+  return sr25519.sign(secretKey, u8aToU8a(message));
 }

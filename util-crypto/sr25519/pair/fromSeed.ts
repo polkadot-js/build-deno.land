@@ -1,10 +1,9 @@
 
 import type { Keypair } from '../../types.ts';
 
-import { u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
-import { sr25519KeypairFromSeed } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
+import * as sr25519 from 'https://esm.sh/@scure/sr25519@0.2.0';
 
-import { sr25519PairFromU8a } from './fromU8a.ts';
+import { u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 /**
  * @name sr25519PairFromSeed
@@ -17,7 +16,11 @@ export function sr25519PairFromSeed (seed: string | Uint8Array): Keypair {
     throw new Error(`Expected a seed matching 32 bytes, found ${seedU8a.length}`);
   }
 
-  return sr25519PairFromU8a(
-    sr25519KeypairFromSeed(seedU8a)
-  );
+  const sec = sr25519.secretFromSeed(seedU8a);
+  const pub = sr25519.getPublicKey(sec);
+
+  return {
+    publicKey: pub,
+    secretKey: sec
+  };
 }

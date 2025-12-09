@@ -1,6 +1,7 @@
 
+import * as sr25519 from 'https://esm.sh/@scure/sr25519@0.2.0';
+
 import { u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
-import { sr25519Verify as wasmVerify } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 /**
  * @name sr25519Verify
@@ -16,5 +17,5 @@ export function sr25519Verify (message: string | Uint8Array, signature: string |
     throw new Error(`Invalid signature, received ${signatureU8a.length} bytes, expected 64`);
   }
 
-  return wasmVerify(signatureU8a, u8aToU8a(message), publicKeyU8a);
+  return sr25519.verify(u8aToU8a(message), signatureU8a, publicKeyU8a);
 }

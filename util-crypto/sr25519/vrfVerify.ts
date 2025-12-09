@@ -1,6 +1,7 @@
 
+import * as sr25519 from 'https://esm.sh/@scure/sr25519@0.2.0';
+
 import { u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
-import { vrfVerify } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 const EMPTY_U8A = new Uint8Array();
 
@@ -18,5 +19,5 @@ export function sr25519VrfVerify (message: string | Uint8Array, signOutput: stri
     throw new Error('Invalid vrfSign output, expected 96 bytes');
   }
 
-  return vrfVerify(publicKeyU8a, u8aToU8a(context), u8aToU8a(message), u8aToU8a(extra), proofU8a);
+  return sr25519.vrf.verify(u8aToU8a(message), proofU8a, publicKeyU8a, u8aToU8a(context), u8aToU8a(extra));
 }

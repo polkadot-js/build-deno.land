@@ -1,6 +1,7 @@
 
+import { getSharedSecret } from 'https://esm.sh/@scure/sr25519@0.2.0';
+
 import { u8aToU8a } from 'https://deno.land/x/polkadot/util/mod.ts';
-import { sr25519Agree } from 'https://deno.land/x/polkadot/wasm-crypto/mod.ts';
 
 /**
  * @name sr25519Agreement
@@ -16,5 +17,5 @@ export function sr25519Agreement (secretKey: string | Uint8Array, publicKey: str
     throw new Error(`Invalid secretKey, received ${secretKeyU8a.length} bytes, expected 64`);
   }
 
-  return sr25519Agree(publicKeyU8a, secretKeyU8a);
+  return getSharedSecret(secretKeyU8a, publicKeyU8a);
 }
