@@ -3,7 +3,7 @@ import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
 import type { Hash, Header } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { DeriveApi } from '../types.ts';
 
-import { from, of, switchMap } from 'https://esm.sh/rxjs@7.8.1';
+import { from, mergeMap, of, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
 import { memo } from '../util/index.ts';
 
@@ -41,7 +41,7 @@ export function subscribeFinalizedHeads (instanceId: string, api: DeriveApi): ()
     let prevHash: Hash | null = null;
 
     return api.rpc.chain.subscribeFinalizedHeads().pipe(
-      switchMap((header) => {
+      mergeMap((header) => {
         const endHash = prevHash;
         const startHash = header.parentHash;
 
