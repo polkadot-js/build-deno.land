@@ -1,3 +1,3 @@
 
 
-export const packageInfo = { name: '@polkadot/networks', path: new URL(import.meta.url).pathname, type: 'deno', version: '14.0.2' };
+export const packageInfo = { name: '@polkadot/networks', path: new URL(import.meta.url).pathname, type: 'deno', version: '14.0.3' };

@@ -1,7 +1,7 @@
 import { Buffer } from 'node:buffer';
 
 
-import type { TransportDef, TransportType } from 'https://deno.land/x/polkadot/hw-ledger-transports/types.ts';
+import type { Transport, TransportDef, TransportType } from 'https://deno.land/x/polkadot/hw-ledger-transports/types.ts';
 import type { AccountOptionsGeneric, LedgerAddress, LedgerSignature, LedgerVersion } from './types.ts';
 
 import { PolkadotGenericApp } from 'https://esm.sh/@zondax/ledger-substrate@1.1.1';
@@ -29,7 +29,7 @@ async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promis
   try {
     result = await promise;
   } catch (e: unknown) {
-    // We check to see if the propogated error is the newer ResponseError type.
+    // We check to see if the propagated error is the newer ResponseError type.
     // The response code use to be part of the result, but with the latest breaking changes from 0.42.x
     // the interface and it's types have completely changed.
     if ((e as ResponseError).returnCode) {
@@ -40,6 +40,17 @@ async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promis
   }
 
   return result;
+}
+
+/** @internal Best-effort transport cleanup after failed operations */
+async function closeTransport (transport: Transport | null): Promise<void> {
+  if (transport) {
+    try {
+      await transport.close();
+    } catch {
+      // Ignore cleanup errors so the original failure is preserved.
+    }
+  }
 }
 
 /** @internal Wraps a signEd25519/signRawEd25519 call and returns the associated signature */
@@ -242,15 +253,28 @@ export class LedgerGeneric {
   }
 
   /**
+   * Closes any active transport connection
+   */
+  public async disconnect (): Promise<void> {
+    const app = this.#app;
+
+    this.#app = null;
+
+    await closeTransport(app?.transport || null);
+  }
+
+  /**
    * @internal
    *
    * Returns a created PolkadotGenericApp to perform operations against. Generally
    * this is only used internally, to ensure consistent bahavior.
    */
   async withApp <T> (fn: (app: PolkadotGenericApp) => Promise<T>): Promise<T> {
+    let transport: Transport | null = null;
+
     try {
       if (!this.#app) {
-        const transport = await this.#transportDef.create();
+        transport = await this.#transportDef.create();
 
         // We need this override for the actual type passing - the Deno environment
         // is quite a bit stricter and it yields invalids between the two (specifically
@@ -263,6 +287,7 @@ export class LedgerGeneric {
 
       return await fn(this.#app);
     } catch (error) {
+      await closeTransport(this.#app?.transport || transport);
       this.#app = null;
 
       throw error;

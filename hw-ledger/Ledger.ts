@@ -2,7 +2,7 @@ import { Buffer } from 'node:buffer';
 
 
 import type { SubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@1.1.1';
-import type { TransportDef, TransportType } from 'https://deno.land/x/polkadot/hw-ledger-transports/types.ts';
+import type { Transport, TransportDef, TransportType } from 'https://deno.land/x/polkadot/hw-ledger-transports/types.ts';
 import type { AccountOptions, LedgerAddress, LedgerSignature, LedgerVersion } from './types.ts';
 
 import { newSubstrateApp } from 'https://esm.sh/@zondax/ledger-substrate@1.1.1';
@@ -28,6 +28,17 @@ async function wrapError <T extends WrappedResult> (promise: Promise<T>): Promis
   }
 
   return result;
+}
+
+/** @internal Best-effort transport cleanup after failed operations */
+async function closeTransport (transport: Transport | null): Promise<void> {
+  if (transport) {
+    try {
+      await transport.close();
+    } catch {
+      // Ignore cleanup errors so the original failure is preserved.
+    }
+  }
 }
 
 /** @internal Wraps a sign/signRaw call and returns the associated signature */
@@ -115,15 +126,28 @@ export class Ledger {
   }
 
   /**
+   * Closes any active transport connection
+   */
+  public async disconnect (): Promise<void> {
+    const app = this.#app;
+
+    this.#app = null;
+
+    await closeTransport(app?.transport || null);
+  }
+
+  /**
    * @internal
    *
    * Returns a created SubstrateApp to perform operations against. Generally
-   * this is only used internally, to ensure consistent bahavior.
+   * this is only used internally, to ensure consistent behavior.
    */
   async withApp <T> (fn: (app: SubstrateApp) => Promise<T>): Promise<T> {
+    let transport: Transport | null = null;
+
     try {
       if (!this.#app) {
-        const transport = await this.#transportDef.create();
+        transport = await this.#transportDef.create();
 
         // We need this override for the actual type passing - the Deno environment
         // is quite a bit stricter and it yields invalids between the two (specifically
@@ -136,6 +160,7 @@ export class Ledger {
 
       return await fn(this.#app);
     } catch (error) {
+      await closeTransport(this.#app?.transport || transport);
       this.#app = null;
 
       throw error;
