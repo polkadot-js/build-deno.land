@@ -1,5 +1,5 @@
 
-import type { Mock } from './types.ts';
+import type { Mock } from './testTypes.manual.ts';
 
 import nock from 'https://esm.sh/nock@13.5.5';
 

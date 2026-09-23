@@ -1,8 +1,17 @@
 /* eslint-disable */
 
 import type { Bytes, Enum, Struct, Vec, u64 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { BlockHash } from 'https://deno.land/x/polkadot/types/interfaces/chain/index.ts';
 import type { Hash } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
+
+/** @name MmrAncestryProof */
+export interface MmrAncestryProof extends Struct {
+  readonly prevPeaks: Vec<MmrHash>;
+  readonly prevLeafCount: MmrNodeIndex;
+  readonly leafCount: MmrNodeIndex;
+  readonly items: Vec<ITuple<[MmrNodeIndex, MmrHash]>>;
+}
 
 /** @name MmrBatchProof */
 export interface MmrBatchProof extends Struct {

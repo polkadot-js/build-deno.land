@@ -10,7 +10,7 @@ import type { TAssetConversion } from 'https://deno.land/x/polkadot/types/interf
 import type { AssetApproval, AssetApprovalKey, AssetBalance, AssetDestroyWitness, AssetDetails, AssetMetadata, TAssetBalance, TAssetDepositBalance } from 'https://deno.land/x/polkadot/types/interfaces/assets/index.ts';
 import type { BlockAttestations, IncludedBlocks, MoreAttestations } from 'https://deno.land/x/polkadot/types/interfaces/attestations/index.ts';
 import type { RawAuraPreDigest } from 'https://deno.land/x/polkadot/types/interfaces/aura/index.ts';
-import type { ExtrinsicOrHash, ExtrinsicStatus } from 'https://deno.land/x/polkadot/types/interfaces/author/index.ts';
+import type { ExtrinsicOrHash, ExtrinsicStatus, GeneratedSessionKeys } from 'https://deno.land/x/polkadot/types/interfaces/author/index.ts';
 import type { UncleEntryItem } from 'https://deno.land/x/polkadot/types/interfaces/authorship/index.ts';
 import type { AllowedSlots, BabeAuthorityWeight, BabeBlockWeight, BabeEpochConfiguration, BabeEquivocationProof, BabeGenesisConfiguration, BabeGenesisConfigurationV1, BabeWeight, Epoch, EpochAuthorship, MaybeRandomness, MaybeVrf, NextConfigDescriptor, NextConfigDescriptorV1, OpaqueKeyOwnershipProof, Randomness, RawBabePreDigest, RawBabePreDigestCompat, RawBabePreDigestPrimary, RawBabePreDigestPrimaryTo159, RawBabePreDigestSecondaryPlain, RawBabePreDigestSecondaryTo159, RawBabePreDigestSecondaryVRF, RawBabePreDigestTo159, SlotNumber, VrfData, VrfOutput, VrfProof } from 'https://deno.land/x/polkadot/types/interfaces/babe/index.ts';
 import type { AccountData, BalanceLock, BalanceLockTo212, BalanceStatus, Reasons, ReserveData, ReserveIdentifier, VestingSchedule, WithdrawReasons } from 'https://deno.land/x/polkadot/types/interfaces/balances/index.ts';
@@ -45,7 +45,7 @@ import type { AuthIndex, AuthoritySignature, Heartbeat, HeartbeatTo244, OpaqueMu
 import type { CallIndex, LotteryConfig } from 'https://deno.land/x/polkadot/types/interfaces/lottery/index.ts';
 import type { CustomMetadata15, CustomValueMetadata15, EnumDeprecationInfoV16, ErrorMetadataLatest, ErrorMetadataV10, ErrorMetadataV11, ErrorMetadataV12, ErrorMetadataV13, ErrorMetadataV14, ErrorMetadataV9, EventMetadataLatest, EventMetadataV10, EventMetadataV11, EventMetadataV12, EventMetadataV13, EventMetadataV14, EventMetadataV9, ExtrinsicMetadataLatest, ExtrinsicMetadataV11, ExtrinsicMetadataV12, ExtrinsicMetadataV13, ExtrinsicMetadataV14, ExtrinsicMetadataV15, ExtrinsicMetadataV16, FunctionArgumentMetadataLatest, FunctionArgumentMetadataV10, FunctionArgumentMetadataV11, FunctionArgumentMetadataV12, FunctionArgumentMetadataV13, FunctionArgumentMetadataV14, FunctionArgumentMetadataV9, FunctionMetadataLatest, FunctionMetadataV10, FunctionMetadataV11, FunctionMetadataV12, FunctionMetadataV13, FunctionMetadataV14, FunctionMetadataV9, ItemDeprecationInfoV16, MetadataAll, MetadataLatest, MetadataV10, MetadataV11, MetadataV12, MetadataV13, MetadataV14, MetadataV15, MetadataV16, MetadataV9, ModuleConstantMetadataV10, ModuleConstantMetadataV11, ModuleConstantMetadataV12, ModuleConstantMetadataV13, ModuleConstantMetadataV9, ModuleMetadataV10, ModuleMetadataV11, ModuleMetadataV12, ModuleMetadataV13, ModuleMetadataV9, OpaqueMetadata, OuterEnums15, PalletAssociatedTypeMetadataV16, PalletCallMetadataLatest, PalletCallMetadataV14, PalletCallMetadataV16, PalletConstantMetadataLatest, PalletConstantMetadataV14, PalletConstantMetadataV16, PalletErrorMetadataLatest, PalletErrorMetadataV14, PalletErrorMetadataV16, PalletEventMetadataLatest, PalletEventMetadataV14, PalletEventMetadataV16, PalletMetadataLatest, PalletMetadataV14, PalletMetadataV15, PalletMetadataV16, PalletStorageMetadataLatest, PalletStorageMetadataV14, PalletStorageMetadataV16, PalletViewFunctionMetadataV16, PortableType, PortableTypeV14, RuntimeApiMetadataLatest, RuntimeApiMetadataV15, RuntimeApiMetadataV16, RuntimeApiMethodMetadataV15, RuntimeApiMethodMetadataV16, RuntimeApiMethodParamMetadataV15, SignedExtensionMetadataLatest, SignedExtensionMetadataV14, StorageEntryMetadataLatest, StorageEntryMetadataV10, StorageEntryMetadataV11, StorageEntryMetadataV12, StorageEntryMetadataV13, StorageEntryMetadataV14, StorageEntryMetadataV16, StorageEntryMetadataV9, StorageEntryModifierLatest, StorageEntryModifierV10, StorageEntryModifierV11, StorageEntryModifierV12, StorageEntryModifierV13, StorageEntryModifierV14, StorageEntryModifierV9, StorageEntryTypeLatest, StorageEntryTypeV10, StorageEntryTypeV11, StorageEntryTypeV12, StorageEntryTypeV13, StorageEntryTypeV14, StorageEntryTypeV9, StorageHasher, StorageHasherV10, StorageHasherV11, StorageHasherV12, StorageHasherV13, StorageHasherV14, StorageHasherV9, StorageMetadataV10, StorageMetadataV11, StorageMetadataV12, StorageMetadataV13, StorageMetadataV9, TransactionExtensionMetadataLatest, TransactionExtensionMetadataV16, VariantDeprecationInfoV16 } from 'https://deno.land/x/polkadot/types/interfaces/metadata/index.ts';
 import type { Mixnode, MixnodesErr, SessionPhase, SessionStatus } from 'https://deno.land/x/polkadot/types/interfaces/mixnet/index.ts';
-import type { MmrBatchProof, MmrEncodableOpaqueLeaf, MmrError, MmrHash, MmrLeafBatchProof, MmrLeafIndex, MmrLeafProof, MmrNodeIndex, MmrProof } from 'https://deno.land/x/polkadot/types/interfaces/mmr/index.ts';
+import type { MmrAncestryProof, MmrBatchProof, MmrEncodableOpaqueLeaf, MmrError, MmrHash, MmrLeafBatchProof, MmrLeafIndex, MmrLeafProof, MmrNodeIndex, MmrProof } from 'https://deno.land/x/polkadot/types/interfaces/mmr/index.ts';
 import type { NftCollectionId, NftItemId } from 'https://deno.land/x/polkadot/types/interfaces/nfts/index.ts';
 import type { NpApiError, NpPoolId } from 'https://deno.land/x/polkadot/types/interfaces/nompools/index.ts';
 import type { StorageKind } from 'https://deno.land/x/polkadot/types/interfaces/offchain/index.ts';
@@ -568,6 +568,7 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     FungibilityV5: FungibilityV5;
     FungiblesAccessError: FungiblesAccessError;
     Gas: Gas;
+    GeneratedSessionKeys: GeneratedSessionKeys;
     GenesisBuildErr: GenesisBuildErr;
     GiltBid: GiltBid;
     GlobalValidationData: GlobalValidationData;
@@ -734,6 +735,7 @@ declare module 'https://deno.land/x/polkadot/types/types/registry.ts' {
     MigrationStatusResult: MigrationStatusResult;
     Mixnode: Mixnode;
     MixnodesErr: MixnodesErr;
+    MmrAncestryProof: MmrAncestryProof;
     MmrBatchProof: MmrBatchProof;
     MmrEncodableOpaqueLeaf: MmrEncodableOpaqueLeaf;
     MmrError: MmrError;

@@ -6,7 +6,7 @@ import type { ApiTypes, AugmentedEvent } from 'https://deno.land/x/polkadot/api-
 import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { ITuple } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { AccountId32, H160, H256, Perbill, Permill, Perquintill } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
-import type { FrameSupportDispatchPostDispatchInfo, FrameSupportMessagesProcessMessageError, FrameSupportPreimagesBounded, FrameSupportTokensFungibleUnionOfNativeOrWithId, FrameSupportTokensMiscBalanceStatus, FrameSystemDispatchEventInfo, KitchensinkRuntimeOriginCaller, KitchensinkRuntimeProxyType, KitchensinkRuntimeRuntimeParametersKey, KitchensinkRuntimeRuntimeParametersValue, PalletAllianceCid, PalletAllianceUnscrupulousItem, PalletBrokerCoretimeInterfaceCoreAssignment, PalletBrokerRegionId, PalletBrokerScheduleItem, PalletContractsOrigin, PalletConvictionVotingTally, PalletConvictionVotingVoteAccountVote, PalletCoreFellowshipParamsTypeU128, PalletCoreFellowshipWish, PalletDemocracyMetadataOwner, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletElectionProviderMultiPhasePhase, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNftsAttributeNamespace, PalletNftsPalletAttributes, PalletNftsPriceWithDirection, PalletNominationPoolsClaimPermission, PalletNominationPoolsCommissionChangeRate, PalletNominationPoolsCommissionClaimPermission, PalletNominationPoolsPoolState, PalletProxyDepositKind, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord, PalletSafeModeExitReason, PalletSocietyGroupParams, PalletStakingForcing, PalletStakingRewardDestination, PalletStakingValidatorPrefs, PalletStateTrieMigrationError, PalletStateTrieMigrationMigrationCompute, SpConsensusGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, SpRuntimeDispatchErrorWithPostInfo, SpStatementStoreStatement, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot/types/lookup.ts';
+import type { FrameSupportDispatchPostDispatchInfo, FrameSupportMessagesProcessMessageError, FrameSupportPreimagesBounded, FrameSupportTokensFungibleUnionOfNativeOrWithId, FrameSupportTokensMiscBalanceStatus, FrameSystemDispatchEventInfo, KitchensinkRuntimeOriginCaller, KitchensinkRuntimeProxyType, KitchensinkRuntimeRuntimeParametersKey, KitchensinkRuntimeRuntimeParametersValue, PalletAllianceCid, PalletAllianceUnscrupulousItem, PalletBrokerCoretimeInterfaceCoreAssignment, PalletBrokerRegionId, PalletBrokerScheduleItem, PalletContractsOrigin, PalletConvictionVotingTally, PalletConvictionVotingVoteAccountVote, PalletCoreFellowshipParamsTypeU128, PalletCoreFellowshipWish, PalletDemocracyMetadataOwner, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletElectionProviderMultiPhasePhase, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, PalletNftsAttributeNamespace, PalletNftsPalletAttributes, PalletNftsPriceWithDirection, PalletNominationPoolsClaimPermission, PalletNominationPoolsCommissionChangeRate, PalletNominationPoolsCommissionClaimPermission, PalletNominationPoolsPoolState, PalletProxyDepositKind, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord, PalletRecoveryDepositKind, PalletSafeModeExitReason, PalletSocietyGroupParams, PalletStakingForcing, PalletStakingRewardDestination, PalletStakingValidatorPrefs, PalletStateTrieMigrationError, PalletStateTrieMigrationMigrationCompute, SpConsensusGrandpaAppPublic, SpNposElectionsElectionScore, SpRuntimeDispatchError, SpRuntimeDispatchErrorWithPostInfo, SpStatementStoreStatement, SpWeightsWeightV2Weight } from 'https://deno.land/x/polkadot/types/lookup.ts';
 
 export type __AugmentedEvent<ApiType extends ApiTypes> = AugmentedEvent<ApiType>;
 
@@ -481,6 +481,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * A bounty curator is unassigned.
        **/
       CuratorUnassigned: AugmentedEvent<ApiType, [bountyId: u32], { bountyId: u32 }>;
+      /**
+       * A bounty deposit has been poked.
+       **/
+      DepositPoked: AugmentedEvent<ApiType, [bountyId: u32, proposer: AccountId32, oldDeposit: u128, newDeposit: u128], { bountyId: u32, proposer: AccountId32, oldDeposit: u128, newDeposit: u128 }>;
       /**
        * Generic event
        **/
@@ -1079,6 +1083,20 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * Current authority set has been resumed.
        **/
       Resumed: AugmentedEvent<ApiType, []>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    historical: {
+      /**
+       * The merkle roots of up to this session index were pruned
+       **/
+      RootsPruned: AugmentedEvent<ApiType, [upTo: u32], { upTo: u32 }>;
+      /**
+       * The merkle root of the validators of the said session were stored
+       **/
+      RootStored: AugmentedEvent<ApiType, [index: u32], { index: u32 }>;
       /**
        * Generic event
        **/
@@ -1864,6 +1882,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        **/
       PureCreated: AugmentedEvent<ApiType, [pure: AccountId32, who: AccountId32, proxyType: KitchensinkRuntimeProxyType, disambiguationIndex: u16], { pure: AccountId32, who: AccountId32, proxyType: KitchensinkRuntimeProxyType, disambiguationIndex: u16 }>;
       /**
+       * A pure proxy was killed by its spawner.
+       **/
+      PureKilled: AugmentedEvent<ApiType, [pure: AccountId32, spawner: AccountId32, proxyType: KitchensinkRuntimeProxyType, disambiguationIndex: u16], { pure: AccountId32, spawner: AccountId32, proxyType: KitchensinkRuntimeProxyType, disambiguationIndex: u16 }>;
+      /**
        * Generic event
        **/
       [key: string]: AugmentedEvent<ApiType>;
@@ -1964,6 +1986,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * Lost account has been successfully recovered by rescuer account.
        **/
       AccountRecovered: AugmentedEvent<ApiType, [lostAccount: AccountId32, rescuerAccount: AccountId32], { lostAccount: AccountId32, rescuerAccount: AccountId32 }>;
+      /**
+       * A deposit has been updated.
+       **/
+      DepositPoked: AugmentedEvent<ApiType, [who: AccountId32, kind: PalletRecoveryDepositKind, oldDeposit: u128, newDeposit: u128], { who: AccountId32, kind: PalletRecoveryDepositKind, oldDeposit: u128, newDeposit: u128 }>;
       /**
        * A recovery process for lost account by rescuer account has been closed.
        **/
@@ -2200,6 +2226,11 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
     };
     session: {
       /**
+       * The `NewSession` event in the current block also implies a new validator set to be
+       * queued.
+       **/
+      NewQueued: AugmentedEvent<ApiType, []>;
+      /**
        * New session has happened. Note that the argument is the session index, not the
        * block number as the type might suggest.
        **/
@@ -2253,6 +2284,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * Some funds were deposited into the society account.
        **/
       Deposit: AugmentedEvent<ApiType, [value: u128], { value: u128 }>;
+      /**
+       * A deposit was poked / adjusted.
+       **/
+      DepositPoked: AugmentedEvent<ApiType, [who: AccountId32, oldDeposit: u128, newDeposit: u128], { who: AccountId32, oldDeposit: u128, newDeposit: u128 }>;
       /**
        * A \[member\] got elevated to \[rank\].
        **/
@@ -2849,6 +2884,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/events.ts' {
        * An \[account\] has become fully vested.
        **/
       VestingCompleted: AugmentedEvent<ApiType, [account: AccountId32], { account: AccountId32 }>;
+      /**
+       * A vesting schedule has been created.
+       **/
+      VestingCreated: AugmentedEvent<ApiType, [account: AccountId32, scheduleIndex: u32], { account: AccountId32, scheduleIndex: u32 }>;
       /**
        * The amount vested has been updated. This could indicate a change in funds available.
        * The balance given is the amount which is left unvested (and thus locked).

@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import type { Bytes, Enum, Text, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
+import type { Bytes, Enum, Option, Struct, Text, Vec } from 'https://deno.land/x/polkadot/types-codec/mod.ts';
 import type { Hash } from 'https://deno.land/x/polkadot/types/interfaces/runtime/index.ts';
 
 /** @name ExtrinsicOrHash */
@@ -31,6 +31,12 @@ export interface ExtrinsicStatus extends Enum {
   readonly isDropped: boolean;
   readonly isInvalid: boolean;
   readonly type: 'Future' | 'Ready' | 'Broadcast' | 'InBlock' | 'Retracted' | 'FinalityTimeout' | 'Finalized' | 'Usurped' | 'Dropped' | 'Invalid';
+}
+
+/** @name GeneratedSessionKeys */
+export interface GeneratedSessionKeys extends Struct {
+  readonly sessionKeys: Bytes;
+  readonly proof: Option<Bytes>;
 }
 
 export type PHANTOM_AUTHOR = 'author';

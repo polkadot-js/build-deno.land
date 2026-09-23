@@ -1,3 +1,3 @@
 
 
-export const packageInfo = { name: '@polkadot/api-augment', path: new URL(import.meta.url).pathname, type: 'deno', version: '16.5.6' };
+export const packageInfo = { name: '@polkadot/api-augment', path: new URL(import.meta.url).pathname, type: 'deno', version: '17.0.1' };

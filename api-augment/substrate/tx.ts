@@ -1263,6 +1263,24 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        **/
       extendBountyExpiry: AugmentedSubmittable<(bountyId: Compact<u32> | AnyNumber | Uint8Array, remark: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>, Bytes]>;
       /**
+       * Poke the deposit reserved for creating a bounty proposal.
+       * 
+       * This can be used by accounts to update their reserved amount.
+       * 
+       * The dispatch origin for this call must be _Signed_.
+       * 
+       * Parameters:
+       * - `bounty_id`: The bounty id for which to adjust the deposit.
+       * 
+       * If the deposit is updated, the difference will be reserved/unreserved from the
+       * proposer's account.
+       * 
+       * The transaction is made free if the deposit is updated and paid otherwise.
+       * 
+       * Emits `DepositPoked` if the deposit is updated.
+       **/
+      pokeDeposit: AugmentedSubmittable<(bountyId: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>]>;
+      /**
        * Propose a new bounty.
        * 
        * The dispatch origin for this call must be _Signed_.
@@ -1735,6 +1753,8 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
       call: AugmentedSubmittable<(dest: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, value: Compact<u128> | AnyNumber | Uint8Array, gasLimit: SpWeightsWeightV2Weight | { refTime?: any; proofSize?: any } | string | Uint8Array, storageDepositLimit: Option<Compact<u128>> | null | Uint8Array | Compact<u128> | AnyNumber, data: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u128>, SpWeightsWeightV2Weight, Option<Compact<u128>>, Bytes]>;
       /**
        * Deprecated version if [`Self::call`] for use in an in-storage `Call`.
+       * 
+       * @deprecated 1D weight is used in this extrinsic, please migrate to `call`
        **/
       callOldWeight: AugmentedSubmittable<(dest: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, value: Compact<u128> | AnyNumber | Uint8Array, gasLimit: Compact<u64> | AnyNumber | Uint8Array, storageDepositLimit: Option<Compact<u128>> | null | Uint8Array | Compact<u128> | AnyNumber, data: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress, Compact<u128>, Compact<u64>, Option<Compact<u128>>, Bytes]>;
       /**
@@ -1747,6 +1767,8 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
       instantiate: AugmentedSubmittable<(value: Compact<u128> | AnyNumber | Uint8Array, gasLimit: SpWeightsWeightV2Weight | { refTime?: any; proofSize?: any } | string | Uint8Array, storageDepositLimit: Option<Compact<u128>> | null | Uint8Array | Compact<u128> | AnyNumber, codeHash: H256 | string | Uint8Array, data: Bytes | string | Uint8Array, salt: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u128>, SpWeightsWeightV2Weight, Option<Compact<u128>>, H256, Bytes, Bytes]>;
       /**
        * Deprecated version if [`Self::instantiate`] for use in an in-storage `Call`.
+       * 
+       * @deprecated 1D weight is used in this extrinsic, please migrate to `instantiate`
        **/
       instantiateOldWeight: AugmentedSubmittable<(value: Compact<u128> | AnyNumber | Uint8Array, gasLimit: Compact<u64> | AnyNumber | Uint8Array, storageDepositLimit: Option<Compact<u128>> | null | Uint8Array | Compact<u128> | AnyNumber, codeHash: H256 | string | Uint8Array, data: Bytes | string | Uint8Array, salt: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u128>, Compact<u64>, Option<Compact<u128>>, H256, Bytes, Bytes]>;
       /**
@@ -1779,6 +1801,8 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
       instantiateWithCode: AugmentedSubmittable<(value: Compact<u128> | AnyNumber | Uint8Array, gasLimit: SpWeightsWeightV2Weight | { refTime?: any; proofSize?: any } | string | Uint8Array, storageDepositLimit: Option<Compact<u128>> | null | Uint8Array | Compact<u128> | AnyNumber, code: Bytes | string | Uint8Array, data: Bytes | string | Uint8Array, salt: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u128>, SpWeightsWeightV2Weight, Option<Compact<u128>>, Bytes, Bytes, Bytes]>;
       /**
        * Deprecated version if [`Self::instantiate_with_code`] for use in an in-storage `Call`.
+       * 
+       * @deprecated 1D weight is used in this extrinsic, please migrate to `instantiate_with_code`
        **/
       instantiateWithCodeOldWeight: AugmentedSubmittable<(value: Compact<u128> | AnyNumber | Uint8Array, gasLimit: Compact<u64> | AnyNumber | Uint8Array, storageDepositLimit: Option<Compact<u128>> | null | Uint8Array | Compact<u128> | AnyNumber, code: Bytes | string | Uint8Array, data: Bytes | string | Uint8Array, salt: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u128>, Compact<u64>, Option<Compact<u128>>, Bytes, Bytes, Bytes]>;
       /**
@@ -1995,6 +2019,8 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * allowing immediate promotion.
        * 
        * - `origin`: A signed origin of a ranked, but not tracked, account.
+       * 
+       * @deprecated Use `import_member` instead
        **/
       import: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
       /**
@@ -2503,7 +2529,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * This can only be called when [`Phase::Emergency`] is enabled, as an alternative to
        * calling [`Call::set_emergency_election_result`].
        **/
-      governanceFallback: AugmentedSubmittable<(maybeMaxVoters: Option<u32> | null | Uint8Array | u32 | AnyNumber, maybeMaxTargets: Option<u32> | null | Uint8Array | u32 | AnyNumber) => SubmittableExtrinsic<ApiType>, [Option<u32>, Option<u32>]>;
+      governanceFallback: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
       /**
        * Set a solution in the queue, to be handed out to the client of this pallet in the next
        * call to `ElectionProvider::elect`.
@@ -5204,7 +5230,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * `pure` with corresponding parameters.
        * 
        * - `spawner`: The account that originally called `pure` to create this account.
-       * - `index`: The disambiguation index originally passed to `pure`. Probably `0`.
+       * - `index`: The disambiguation index originally passed to `create_pure`. Probably `0`.
        * - `proxy_type`: The proxy type originally passed to `pure`.
        * - `height`: The height of the chain when the call to `pure` was processed.
        * - `ext_index`: The extrinsic index in which the call to `pure` was processed.
@@ -5556,6 +5582,32 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * recoverable (i.e. have a recovery configuration).
        **/
       initiateRecovery: AugmentedSubmittable<(account: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [MultiAddress]>;
+      /**
+       * Poke deposits for recovery configurations and / or active recoveries.
+       * 
+       * This can be used by accounts to possibly lower their locked amount.
+       * 
+       * The dispatch origin for this call must be _Signed_.
+       * 
+       * Parameters:
+       * - `maybe_account`: Optional recoverable account for which you have an active recovery
+       * and want to adjust the deposit for the active recovery.
+       * 
+       * This function checks both recovery configuration deposit and active recovery deposits
+       * of the caller:
+       * - If the caller has created a recovery configuration, checks and adjusts its deposit
+       * - If the caller has initiated any active recoveries, and provides the account in
+       * `maybe_account`, checks and adjusts those deposits
+       * 
+       * If any deposit is updated, the difference will be reserved/unreserved from the caller's
+       * account.
+       * 
+       * The transaction is made free if any deposit is updated and paid otherwise.
+       * 
+       * Emits `DepositPoked` if any deposit is updated.
+       * Multiple events may be emitted in case both types of deposits are updated.
+       **/
+      pokeDeposit: AugmentedSubmittable<(maybeAccount: Option<MultiAddress> | null | Uint8Array | MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string) => SubmittableExtrinsic<ApiType>, [Option<MultiAddress>]>;
       /**
        * Remove the recovery process for your account. Recovered accounts are still accessible.
        * 
@@ -6238,6 +6290,16 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        **/
       payout: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
       /**
+       * Poke the deposit reserved when bidding.
+       * 
+       * The dispatch origin for this call must be _Signed_ and must be the bidder.
+       * 
+       * The transaction fee is waived if the deposit is changed after poking/reconsideration.
+       * 
+       * Emits `DepositPoked` if successful.
+       **/
+      pokeDeposit: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
+      /**
        * Punish the skeptic with a strike if they did not vote on a candidate. Callable by the
        * candidate.
        **/
@@ -6367,6 +6429,7 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * Can be called by the `T::AdminOrigin`.
        * 
        * Parameters: era and indices of the slashes for that era to kill.
+       * They **must** be sorted in ascending order, *and* unique.
        **/
       cancelDeferredSlash: AugmentedSubmittable<(era: u32 | AnyNumber | Uint8Array, slashIndices: Vec<u32> | (u32 | AnyNumber | Uint8Array)[]) => SubmittableExtrinsic<ApiType>, [u32, Vec<u32>]>;
       /**
@@ -6723,6 +6786,8 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * Schedule a portion of the stash to be unlocked ready for transfer out after the bond
        * period ends. If this leaves an amount actively bonded less than
        * [`asset::existential_deposit`], then it is increased to the full amount.
+       * 
+       * The stash may be chilled if the ledger total amount falls to 0 after unbonding.
        * 
        * The dispatch origin for this call must be _Signed_ by the controller, not the stash.
        * 
@@ -7404,6 +7469,8 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * approval queue, i.e., the proposal has not been approved. This could also mean the
        * proposal does not exist altogether, thus there is no way it would have been approved
        * in the first place.
+       * 
+       * @deprecated The `remove_approval` call will be removed by May 2025. It associated with the deprecated `spend_local` call.
        **/
       removeApproval: AugmentedSubmittable<(proposalId: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>]>;
       /**
@@ -7453,6 +7520,8 @@ declare module 'https://deno.land/x/polkadot/api-base/types/submittable.ts' {
        * ## Events
        * 
        * Emits [`Event::SpendApproved`] if successful.
+       * 
+       * @deprecated The `spend_local` call will be removed by May 2025. Migrate to the new flow and use the `spend` call.
        **/
       spendLocal: AugmentedSubmittable<(amount: Compact<u128> | AnyNumber | Uint8Array, beneficiary: MultiAddress | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u128>, MultiAddress]>;
       /**

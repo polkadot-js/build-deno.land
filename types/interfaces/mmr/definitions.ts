@@ -10,6 +10,12 @@ export default {
   rpc,
   runtime,
   types: {
+    MmrAncestryProof: {
+      prevPeaks: 'Vec<MmrHash>',
+      prevLeafCount: 'MmrNodeIndex',
+      leafCount: 'MmrNodeIndex',
+      items: 'Vec<(MmrNodeIndex, MmrHash)>'
+    },
     MmrBatchProof: {
       leafIndices: 'Vec<MmrLeafIndex>',
       leafCount: 'MmrNodeIndex',

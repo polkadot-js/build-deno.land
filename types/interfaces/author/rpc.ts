@@ -69,6 +69,17 @@ export const rpc: DefinitionsRpc = {
     params: [],
     type: 'Bytes'
   },
+  rotateKeysWithOwner: {
+    description: 'Generate new session keys and returns the corresponding public keys and owner proof',
+    isUnsafe: true,
+    params: [
+      {
+        name: 'owner',
+        type: 'Bytes'
+      }
+    ],
+    type: 'GeneratedSessionKeys'
+  },
   submitAndWatchExtrinsic: {
     description: 'Submit and subscribe to watch an extrinsic until unsubscribed',
     isSigned: true,

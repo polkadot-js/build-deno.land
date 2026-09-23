@@ -2,7 +2,7 @@
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
 import type { ObsInnerType } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 import type { u32 } from 'https://deno.land/x/polkadot/types/mod.ts';
-import type { EraIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
+import type { AccountId, EraIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { AnyNumber } from 'https://deno.land/x/polkadot/types-codec/types/index.ts';
 import type { ExactDerive } from '../derive.ts';
 import type { DeriveApi } from '../types.ts';
@@ -36,6 +36,17 @@ function chunkEras <T> (eras: EraIndex[], fn: (eras: EraIndex[]) => Observable<T
     toArray(),
     map(arrayFlatten)
   );
+}
+
+export function electedKeysAt (api: DeriveApi, era: EraIndex): Observable<AccountId[]> {
+  // Compatibility for future generation changes in staking.
+  const elected = api.query.staking.erasStakersOverview || api.query.staking.erasStakers;
+
+  return elected
+    ? elected.keys(era).pipe(
+      map((keys) => [...new Set(keys.map(({ args: [, accountId] }) => accountId.toString()))].map((a) => api.registry.createType('AccountId', a)))
+    )
+    : api.query.staking['currentElected']<AccountId[]>();
 }
 
 export function filterEras <T extends { era: EraIndex }> (eras: EraIndex[], list: T[]): EraIndex[] {

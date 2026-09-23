@@ -597,6 +597,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       InvalidValue: AugmentedError<ApiType>;
       /**
+       * User is not the proposer of the bounty.
+       **/
+      NotProposer: AugmentedError<ApiType>;
+      /**
        * A bounty payout is pending.
        * To cancel the bounty, you must unassign and slash the curator.
        **/
@@ -2872,12 +2876,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       MaxDelegateDependenciesReached: AugmentedError<ApiType>;
       /**
-       * The chain does not provide a chain extension. Calling the chain extension results
-       * in this error. Note that this usually  shouldn't happen as deploying such contracts
-       * is rejected.
-       **/
-      NoChainExtension: AugmentedError<ApiType>;
-      /**
        * A buffer outside of sandbox memory was passed to a contract API function.
        **/
       OutOfBounds: AugmentedError<ApiType>;
@@ -2889,10 +2887,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        * Can not add more data to transient storage.
        **/
       OutOfTransientStorage: AugmentedError<ApiType>;
-      /**
-       * Precompile Error
-       **/
-      PrecompileFailure: AugmentedError<ApiType>;
       /**
        * A contract called into the runtime which then called back into this pallet.
        **/
@@ -2950,10 +2944,6 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        * The size defined in `T::MaxValueSize` was exceeded.
        **/
       ValueTooLarge: AugmentedError<ApiType>;
-      /**
-       * Failed to decode the XCM program.
-       **/
-      XCMDecodeFailed: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -3169,6 +3159,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        * There is no defender currently.
        **/
       NoDefender: AugmentedError<ApiType>;
+      /**
+       * There is no deposit associated with a bid.
+       **/
+      NoDeposit: AugmentedError<ApiType>;
       /**
        * Nothing to payout.
        **/
@@ -3723,6 +3717,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       AlreadyExists: AugmentedError<ApiType>;
       /**
+       * An attribute is not found.
+       **/
+      AttributeNotFound: AugmentedError<ApiType>;
+      /**
        * Invalid witness data given.
        **/
       BadWitness: AugmentedError<ApiType>;
@@ -3759,6 +3757,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       NoDelegate: AugmentedError<ApiType>;
       /**
+       * No metadata is found.
+       **/
+      NoMetadata: AugmentedError<ApiType>;
+      /**
        * The signing account has no permission to do the operation.
        **/
       NoPermission: AugmentedError<ApiType>;
@@ -3783,9 +3785,17 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        **/
       UnknownItem: AugmentedError<ApiType>;
       /**
+       * Wrong attribute key/value bytes supplied.
+       **/
+      WrongAttribute: AugmentedError<ApiType>;
+      /**
        * The delegate turned out to be different to what was expected.
        **/
       WrongDelegate: AugmentedError<ApiType>;
+      /**
+       * Wrong metadata key/value bytes supplied.
+       **/
+      WrongMetadata: AugmentedError<ApiType>;
       /**
        * The owner turned out to be different to what was expected.
        **/
@@ -3837,6 +3847,10 @@ declare module 'https://deno.land/x/polkadot/api-base/types/errors.ts' {
        * A error in the list interface implementation.
        **/
       List: AugmentedError<ApiType>;
+      /**
+       * Could not update a node, because the pallet is locked.
+       **/
+      Locked: AugmentedError<ApiType>;
       /**
        * Generic error
        **/

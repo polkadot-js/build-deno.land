@@ -3,17 +3,14 @@ import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
 import type { AccountId } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { DeriveApi, DeriveStakingElected, StakingQueryFlags } from '../types.ts';
 
-import { map, switchMap } from 'https://esm.sh/rxjs@7.8.1';
+import { combineLatest, map, of, switchMap } from 'https://esm.sh/rxjs@7.8.1';
 
 import { arrayFlatten } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 import { memo } from '../util/index.ts';
+import { electedKeysAt } from './util.ts';
 
 const DEFAULT_FLAGS = { withController: true, withExposure: true, withPrefs: true };
-
-function combineAccounts (nextElected: AccountId[], validators: AccountId[]): AccountId[] {
-  return arrayFlatten([nextElected, validators.filter((v) => !nextElected.find((n) => n.eq(v)))]);
-}
 
 /**
  * @name electedInfo
@@ -37,14 +34,36 @@ function combineAccounts (nextElected: AccountId[], validators: AccountId[]): Ac
  */
 export function electedInfo (instanceId: string, api: DeriveApi): (flags?: StakingQueryFlags, page?: number) => Observable<DeriveStakingElected> {
   return memo(instanceId, (flags: StakingQueryFlags = DEFAULT_FLAGS, page = 0): Observable<DeriveStakingElected> =>
-    api.derive.staking.validators().pipe(
-      switchMap(({ nextElected, validators }): Observable<DeriveStakingElected> =>
-        api.derive.staking.queryMulti(combineAccounts(nextElected, validators), flags, page).pipe(
-          map((info): DeriveStakingElected => ({
-            info,
-            nextElected,
-            validators
-          }))
+    api.derive.session.indexes().pipe(
+      switchMap(({ activeEra, currentEra }): Observable<DeriveStakingElected> =>
+        combineLatest([
+          api.query.session
+            ? api.query.session.validators()
+            : of([] as AccountId[]),
+          electedKeysAt(api, currentEra)
+        ]).pipe(
+          switchMap(([validators, plannedElected]): Observable<DeriveStakingElected> => {
+            // a stash is only exposed at the era it was elected for: the planned set against the
+            // planned era, the validators left out of it against the active era. Until the
+            // election result is stored the planned era holds nothing, so the current validators
+            // stand in as the next set.
+            const plannedIds = new Set(plannedElected.map((a) => a.toString()));
+            const active = validators.filter((v) => !plannedIds.has(v.toString()));
+            const nextElected = plannedElected.length
+              ? plannedElected
+              : validators;
+
+            return combineLatest([
+              api.derive.staking.queryMulti(plannedElected, flags, page, currentEra),
+              api.derive.staking.queryMulti(active, flags, page, activeEra)
+            ]).pipe(
+              map(([plannedInfo, activeInfo]): DeriveStakingElected => ({
+                info: arrayFlatten([plannedInfo, activeInfo]),
+                nextElected,
+                validators
+              }))
+            );
+          })
         )
       )
     )

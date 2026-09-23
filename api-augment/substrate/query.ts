@@ -1631,6 +1631,8 @@ declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
       requestStatusFor: AugmentedQuery<ApiType, (arg: H256 | string | Uint8Array) => Observable<Option<PalletPreimageRequestStatus>>, [H256]> & QueryableStorageEntry<ApiType, [H256]>;
       /**
        * The request status of a given hash.
+       * 
+       * @deprecated RequestStatusFor
        **/
       statusFor: AugmentedQuery<ApiType, (arg: H256 | string | Uint8Array) => Observable<Option<PalletPreimageOldRequestStatus>>, [H256]> & QueryableStorageEntry<ApiType, [H256]>;
       /**
@@ -2715,6 +2717,13 @@ declare module 'https://deno.land/x/polkadot/api-base/types/storage.ts' {
        * Nodes store links forward and back within their respective bags.
        **/
       listNodes: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Option<PalletBagsListListNode>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
+      /**
+       * Lock all updates to this pallet.
+       * 
+       * If any nodes needs updating, removal or addition due to a temporary lock, the
+       * [`Call::rebag`] can be used.
+       **/
+      lock: AugmentedQuery<ApiType, () => Observable<Option<Null>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Generic query
        **/
