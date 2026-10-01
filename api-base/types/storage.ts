@@ -6,6 +6,12 @@ import type { StorageEntry } from 'https://deno.land/x/polkadot/types/primitive/
 import type { AnyFunction, AnyTuple, Callback, Codec, IStorageKey } from 'https://deno.land/x/polkadot/types/types/index.ts';
 import type { ApiTypes, DropLast, EmptyBase, MethodResult, PaginationOptions, PromiseOrObs, ReturnCodec, UnsubscribePromise } from './base.ts';
 
+declare const storageEntryResult: unique symbol;
+
+interface StorageEntryResult<R extends Codec> {
+  readonly [storageEntryResult]?: R;
+}
+
 type StorageEntryObservableMulti<R extends Codec = Codec> = <T extends Codec = R>(args: unknown[]) => Observable<T[]>;
 
 interface StorageEntryPromiseMulti<R extends Codec = Codec> {
@@ -80,13 +86,45 @@ export type QueryableModuleStorageAt<ApiType extends ApiTypes> = Record<string, 
 
 export type QueryableStorageMultiArg<ApiType extends ApiTypes> =
   QueryableStorageEntry<ApiType> |
-  [QueryableStorageEntry<ApiType>, ...unknown[]];
+  readonly [QueryableStorageEntry<ApiType>, ...unknown[]];
 
-export type QueryableStorageMultiBase<ApiType extends ApiTypes> = <T extends Codec[]>(calls: QueryableStorageMultiArg<ApiType>[]) => Observable<T>;
+type QueryableStorageMultiCallResult<Call> =
+  Call extends readonly [infer Entry, ...unknown[]]
+    ? Entry extends StorageEntryResult<infer R>
+      ? R
+      : Codec
+    : Call extends StorageEntryResult<infer R>
+      ? R
+      : Codec;
+
+type QueryableStorageMultiResult<ApiType extends ApiTypes, Calls extends readonly QueryableStorageMultiArg<ApiType>[]> = {
+  -readonly [Index in keyof Calls]: QueryableStorageMultiCallResult<Calls[Index]>;
+};
+
+type QueryableStorageMultiReturn<ApiType extends ApiTypes, T extends Codec[], Calls extends readonly QueryableStorageMultiArg<ApiType>[]> =
+  [T] extends [never]
+    ? QueryableStorageMultiResult<ApiType, Calls>
+    : T;
+
+export interface QueryableStorageMultiBase<ApiType extends ApiTypes> {
+  <
+    T extends Codec[] = never,
+    Calls extends readonly QueryableStorageMultiArg<ApiType>[] = readonly QueryableStorageMultiArg<ApiType>[]
+  >(calls: readonly [...Calls]): Observable<QueryableStorageMultiReturn<ApiType, T, Calls>>;
+  <T extends Codec[] = Codec[]>(calls: readonly QueryableStorageMultiArg<ApiType>[]): Observable<T>;
+}
 
 export interface QueryableStorageMultiPromise<ApiType extends ApiTypes> {
-  <T extends Codec[]>(calls: QueryableStorageMultiArg<ApiType>[], callback: Callback<T>): UnsubscribePromise;
-  <T extends Codec[]>(calls: QueryableStorageMultiArg<ApiType>[]): Promise<T>;
+  <
+    T extends Codec[] = never,
+    Calls extends readonly QueryableStorageMultiArg<ApiType>[] = readonly QueryableStorageMultiArg<ApiType>[]
+  >(calls: readonly [...Calls], callback: Callback<QueryableStorageMultiReturn<ApiType, T, Calls>>): UnsubscribePromise;
+  <T extends Codec[] = Codec[]>(calls: readonly QueryableStorageMultiArg<ApiType>[], callback: Callback<T>): UnsubscribePromise;
+  <
+    T extends Codec[] = never,
+    Calls extends readonly QueryableStorageMultiArg<ApiType>[] = readonly QueryableStorageMultiArg<ApiType>[]
+  >(calls: readonly [...Calls]): Promise<QueryableStorageMultiReturn<ApiType, T, Calls>>;
+  <T extends Codec[] = Codec[]>(calls: readonly QueryableStorageMultiArg<ApiType>[]): Promise<T>;
 }
 
 export type QueryableStorageMulti<ApiType extends ApiTypes> =
@@ -94,9 +132,9 @@ export type QueryableStorageMulti<ApiType extends ApiTypes> =
     ? QueryableStorageMultiBase<ApiType>
     : QueryableStorageMultiPromise<ApiType>;
 
-export type AugmentedQuery<ApiType extends ApiTypes, F extends AnyFunction, A extends AnyTuple = AnyTuple> = MethodResult<ApiType, F> & StorageEntryBase<ApiType, F, A>;
+export type AugmentedQuery<ApiType extends ApiTypes, F extends AnyFunction, A extends AnyTuple = AnyTuple> = MethodResult<ApiType, F> & StorageEntryBase<ApiType, F, A> & StorageEntryResult<ReturnCodec<F>>;
 
-export type AugmentedQueryAt<ApiType extends ApiTypes, F extends AnyFunction, A extends AnyTuple = AnyTuple> = MethodResult<ApiType, F> & StorageEntryBaseAt<ApiType, F, A>;
+export type AugmentedQueryAt<ApiType extends ApiTypes, F extends AnyFunction, A extends AnyTuple = AnyTuple> = MethodResult<ApiType, F> & StorageEntryBaseAt<ApiType, F, A> & StorageEntryResult<ReturnCodec<F>>;
 
 export type AugmentedQueryDoubleMap<ApiType extends ApiTypes, F extends AnyFunction, A extends AnyTuple = AnyTuple> = AugmentedQuery<ApiType, F, A>;
 

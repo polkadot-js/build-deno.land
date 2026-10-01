@@ -1,10 +1,11 @@
 
 import type { Observable } from 'https://esm.sh/rxjs@7.8.1';
+import type { QueryableStorageEntry } from 'https://deno.land/x/polkadot/api-base/types/index.ts';
 import type { Option } from 'https://deno.land/x/polkadot/types/mod.ts';
 import type { Balance, EraIndex } from 'https://deno.land/x/polkadot/types/interfaces/index.ts';
 import type { DeriveApi, DeriveEraRewards } from '../types.ts';
 
-import { map, of } from 'https://esm.sh/rxjs@7.8.1';
+import { combineLatest, map, of } from 'https://esm.sh/rxjs@7.8.1';
 
 import { memo } from '../util/index.ts';
 import { filterCachedEras, getEraMultiCache, setEraMultiCache } from './cache.ts';
@@ -12,10 +13,10 @@ import { erasHistoricApply, filterEras } from './util.ts';
 
 const CACHE_KEY = 'eraRewards';
 
-function mapRewards (eras: EraIndex[], optRewards: Option<Balance>[]): DeriveEraRewards[] {
+function mapRewards (api: DeriveApi, eras: EraIndex[], optRewards: Option<Balance>[], budgets: Balance[]): DeriveEraRewards[] {
   return eras.map((era, index): DeriveEraRewards => ({
     era,
-    eraReward: optRewards[index].unwrapOrDefault()
+    eraReward: api.registry.createType('Balance', optRewards[index].unwrapOrDefault().add(budgets[index]))
   }));
 }
 
@@ -32,8 +33,23 @@ export function _erasRewards (instanceId: string, api: DeriveApi): (eras: EraInd
       return of(cached);
     }
 
-    return api.query.staking.erasValidatorReward.multi(remaining).pipe(
-      map((r) => filterCachedEras(eras, cached, setEraMultiCache(CACHE_KEY, withActive, mapRewards(remaining, r))))
+    // pallet-staking-async pays validators from a second pot, `ErasValidatorIncentiveBudget`.
+    // When that storage is present, add the incentive budget to the era reward so derived
+    // totals are not short on the self-stake incentive stream. Non-async and pre-rollout
+    // chains have no such storage (or a zero budget), in which case the era reward is
+    // unchanged.
+    const optIncentive = (api.query.staking as unknown as Record<string, QueryableStorageEntry<'rxjs'>>)['erasValidatorIncentiveBudget'];
+    const budgets = optIncentive
+      ? optIncentive.multi<Balance>(remaining)
+      : of(remaining.map(() => api.registry.createType('Balance')));
+
+    return combineLatest([
+      api.query.staking.erasValidatorReward.multi(remaining),
+      budgets
+    ]).pipe(
+      map(([rewards, budgets]) =>
+        filterCachedEras(eras, cached, setEraMultiCache(CACHE_KEY, withActive, mapRewards(api, remaining, rewards, budgets)))
+      )
     );
   });
 }
